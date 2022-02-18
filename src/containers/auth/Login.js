@@ -12,6 +12,10 @@ function LoginScreen(){
 
   const navigate = useNavigate();
 
+  const navToHome = () => {
+    navigate("/home");
+  };
+
   const navToRegister = () => {
     navigate("/register");
   };
@@ -87,6 +91,7 @@ function LoginScreen(){
             <CustomButton
               text="Login"
               type="submit"
+              onClick={navToHome}
               style={{
                 marginBottom: "10%"
               }}

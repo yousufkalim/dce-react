@@ -1,0 +1,75 @@
+
+.appbar_container {
+  display: flex;
+  flex-direction: row;
+  height: 7vh;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+}
+
+.appbar_top {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.appbar_row1 {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 4vw;
+}
+
+.appbar_row1_img {
+  max-width: 6vh;
+  width: 6vh;
+  vertical-align: top;
+}
+
+.appbar_row1_tab_text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #A0A0A0
+}
+
+.appbar_row2 {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 3vw;
+}
+
+.appbar_row2_user_img {
+  max-width: 6vh;
+  width: 6vh;
+  vertical-align: top;
+}
+
+.appbar_row2_notifications_img {
+  max-width: 4vh;
+  width: 4vh;
+  vertical-align: top;
+}
+
+.appbar_row2_search_img {
+  position: absolute;
+  right: 10px;
+  top: 1.4vh;
+  max-width: 2.4vh;
+  width: 2.4vh;
+  vertical-align: top;
+}
+
+.appbar_row2_input {
+  width: 20vw;
+  padding: 10px;
+  background: #FFFFFF;
+  border-color: transparent;
+  border-radius: 10px;
+}

@@ -2,11 +2,13 @@ import LoginScreen from "../containers/auth/Login";
 import RegisterScreen from "../containers/auth/Register";
 import VerifyEmailScreen from "../containers/auth/VerifyEmail";
 import CreateAccountScreen from "../containers/auth/CreateAccount";
+import ClientHomeScreen from "../containers/client/Home";
 
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterIcon from "@mui/icons-material/AccountBox";
 import VerifyEmailIcon from "@mui/icons-material/AccountBox";
 import CreateAccountIcon from "@mui/icons-material/AccountBox";
+import ClientHomeIcon from "@mui/icons-material/AccountBox";
 
 // Routes for login
 const DefaultRoutes = [
@@ -39,6 +41,12 @@ const DefaultRoutes = [
     name: "CreateAccount",
     icon: <CreateAccountIcon />,
     element: CreateAccountScreen,
+  },
+  {
+    path: "/home",
+    name: "ClientHome",
+    icon: <ClientHomeIcon />,
+    element: ClientHomeScreen,
   }
 ];
 

@@ -1,4 +1,5 @@
 /* Importing all CSS files */
+@import url("./AppBar.css");
 @import url("./CustomButton.css");
 @import url("./CustomDatePicker.css");
 @import url("./CustomDropDown.css");

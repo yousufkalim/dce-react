@@ -5,6 +5,15 @@
   overflow: hidden !important;
 }
 
+.container-page {
+  overflow: hidden !important;
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+  display:none;
+}
+
 /* Defaults */
 * {
   padding: 0;
