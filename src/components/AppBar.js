@@ -5,12 +5,25 @@ import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 
+import { useNavigate} from "react-router-dom";
+
 function AppBar({
   activeTab,
   color,
   sticky = true,
   divStyle
 }){
+
+  const navigate = useNavigate();
+
+  const navToHome = () => {
+    navigate("/home");
+  };
+
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
   return (
     <div
       className="appbar_container"
@@ -22,9 +35,9 @@ function AppBar({
     >
       <div className="appbar_top">
         <div className="appbar_row1">
-          <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} />
+          <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} onClick={navToHome} />
           <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>Designers</p>
-          <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>Orders</p>
+          <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }} onClick={navToOrders}>Orders</p>
           <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>My Ads</p>
           <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>Chats</p>
         </div>
