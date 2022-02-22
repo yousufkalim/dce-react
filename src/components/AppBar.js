@@ -24,6 +24,18 @@ function AppBar({
     navigate("/orders");
   };
 
+  const navToDesigners = () => {
+    navigate("/designers");
+  };
+
+  const navToProfile = () => {
+    navigate("/profile");
+  };
+
+  const navToMyAds = () => {
+    navigate("/my_ads");
+  };
+
   return (
     <div
       className="appbar_container"
@@ -36,15 +48,51 @@ function AppBar({
       <div className="appbar_top">
         <div className="appbar_row1">
           <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} onClick={navToHome} />
-          <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>Designers</p>
-          <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }} onClick={navToOrders}>Orders</p>
-          <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>My Ads</p>
-          <p className="appbar_row1_tab_text" style={{ paddingRight: "5%" }}>Chats</p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToDesigners}
+          >
+            Designers
+          </p>
+          {/*  */}
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToOrders}
+          >
+            Orders
+          </p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToMyAds}
+          >
+            My Ads
+          </p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+          >
+            Chats
+          </p>
         </div>
         <div className="appbar_row2">
           <SearchInput />
           <img src={NotificationsSVG} className="appbar_row2_notifications_img" style={{ marginLeft: "3%" }} />
-          <img src={UserSVG} className="appbar_row2_user_img" style={{ marginLeft: "3%" }} />
+          <img src={UserSVG} className="appbar_row2_user_img" style={{ marginLeft: "3%" }} onClick={navToProfile}/>
         </div>
       </div>
     </div>

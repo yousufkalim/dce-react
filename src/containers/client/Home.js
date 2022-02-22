@@ -1,10 +1,11 @@
 import React from "react";
 
 import ClientHomeSVG from "../../assets/ClientHome.svg";
-import AddOrderSVG from "../../assets/AddOrder.svg";
 import UserSVG from "../../assets/User.svg";
 
 import AppBar from "../../components/AppBar";
+import OrderListTile from "../../components/OrderListTile";
+import NewOrderListTile from "../../components/NewOrderListTile";
 
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +24,7 @@ function ClientHomeScreen(){
           background: "#E8DCCA",
         }}
       >
-        <div className="client_home_screen_top">
+        <div className="client_home_screen_row1">
           <div className="client_home_screen_row1_column1">
             <p className="client_home_screen_row1_column1_text_1">
               Submit your idea,
@@ -102,98 +103,9 @@ function ClientHomeScreen(){
   );
 }
 
-function NewOrderListTile(){
-  return (
-    <div className="new_order_list_tile">
-      <div className="new_order_list_tile_img">
-        <img style={{ width: "40%" }} src={AddOrderSVG} />
-      </div>
-      <p className="new_order_list_tile_text">
-        New Order
-      </p>
-    </div>
-  );
-}
-
-function OrderListTile(){
-  return (
-    <div className="order_list_tile">
-      <div
-        className="order_list_tile_img"
-        style={{
-          "paddingBottom": "5%"
-        }}
-      >
-        <img style={{ width: "30%" }} src={UserSVG} />
-      </div>
-      <p
-        className="order_list_tile_title_text"
-        style={{
-          paddingBottom: "8%"
-        }}
-      >
-        Sasha Designs
-      </p>
-      <div className="order_list_tile_divider" />
-      <div className="order_list_tile_item">
-        <p className="order_list_tile_item_key">
-          Order
-        </p>
-        <p className="order_list_tile_item_value">
-          Shirt, Pant
-        </p>
-      </div>
-      <div className="order_list_tile_item">
-        <p className="order_list_tile_item_key">
-          Order Date
-        </p>
-        <p className="order_list_tile_item_value">
-          August 10, 2022
-        </p>
-      </div>
-      <div className="order_list_tile_item">
-        <p className="order_list_tile_item_key">
-          Delivery Date
-        </p>
-        <p className="order_list_tile_item_value">
-          August 25, 2022
-        </p>
-      </div>
-      <div
-        className="order_list_tile_item"
-        style={{
-          paddingTop: "2%"
-        }}
-      >
-        <p className="order_list_tile_item_key">
-          Bill
-        </p>
-        <p
-          className="order_list_tile_item_value"
-          style={{
-            fontSize: "15px",
-            fontWeight: "700"
-          }}
-        >
-          500$
-        </p>
-      </div>
-      <div className="order_list_tile_divider" />
-      <p
-        className="order_list_tile_title_text"
-        style={{
-          padding: "4% 0"
-        }}
-      >
-        In Process
-      </p>
-    </div>
-  );
-}
-
 function DesignerListTile(){
   return (
-    <div className="designer_list_tile">
+    <div className="chs_designer_list_tile">
       <div
         className="order_list_tile_img"
         style={{
@@ -203,7 +115,7 @@ function DesignerListTile(){
         <img style={{ width: "40%" }} src={UserSVG} />
       </div>
       <p
-        className="designer_list_tile_title_text"
+        className="chs_designer_list_tile_title_text"
         style={{
           paddingBottom: "2%"
         }}
@@ -211,7 +123,7 @@ function DesignerListTile(){
         Almirah
       </p>
       <p
-        className="designer_list_tile_location_text"
+        className="chs_designer_list_tile_location_text"
         style={{
           paddingBottom: "6%"
         }}
@@ -219,7 +131,7 @@ function DesignerListTile(){
         Lahore, Pakistan
       </p>
       <p
-        className="designer_list_tile_rating_text"
+        className="chs_designer_list_tile_rating_text"
       >
         4.5(32K)
       </p>
