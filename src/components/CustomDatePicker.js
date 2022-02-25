@@ -37,6 +37,7 @@ function CustomDatePicker({
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
+            className="cdp_container"
             value={value}
             onChange={onChange}
             inputFormat="MM/dd/yyyy"

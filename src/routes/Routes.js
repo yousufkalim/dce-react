@@ -6,7 +6,9 @@ import ClientHomeScreen from "../containers/client/Home";
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientDesignersScreen from "../containers/client/Designers";
 import ClientProfileScreen from "../containers/client/Profile";
-import ClientMyAdsScreen from "../containers/client/MyAds";
+import ClientAdsScreen from "../containers/client/MyAds";
+import ClientCreateAdScreen from "../containers/client/CreateAd";
+import ClientEditAdScreen from "../containers/client/EditAd";
 
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterIcon from "@mui/icons-material/AccountBox";
@@ -16,7 +18,9 @@ import ClientHomeIcon from "@mui/icons-material/AccountBox";
 import ClientOrdersIcon from "@mui/icons-material/AccountBox";
 import ClientDesignersIcon from "@mui/icons-material/AccountBox";
 import ClientProfileIcon from "@mui/icons-material/AccountBox";
-import ClientMyAdsIcon from "@mui/icons-material/AccountBox";
+import ClientAdsIcon from "@mui/icons-material/AccountBox";
+import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
+import ClientEditAdIcon from "@mui/icons-material/AccountBox";
 
 // Routes for login
 const DefaultRoutes = [
@@ -75,10 +79,22 @@ const DefaultRoutes = [
     element: ClientProfileScreen,
   },
   {
+    path: "/create_ad",
+    name: "ClientCreateAd",
+    icon: <ClientCreateAdIcon />,
+    element: ClientCreateAdScreen,
+  },
+  {
     path: "/my_ads",
     name: "ClientAds",
-    icon: <ClientMyAdsIcon />,
-    element: ClientMyAdsScreen,
+    icon: <ClientAdsIcon />,
+    element: ClientAdsScreen,
+  },
+  {
+    path: "/edit_ad",
+    name: "ClientEditAd",
+    icon: <ClientEditAdIcon />,
+    element: ClientEditAdScreen,
   }
 ];
 

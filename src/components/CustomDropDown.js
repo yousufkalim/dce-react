@@ -12,6 +12,7 @@ function CustomDropDown({
   menuItems,
   divStyle,
   labelStyle,
+  selectSX,
 }){
   return (
     <div
@@ -46,6 +47,11 @@ function CustomDropDown({
           renderValue={(value) =>
             value.length > 0 ? value : selectNullValue
           }
+          sx={{
+            minWidth: "100%",
+            background: "transparent",
+            ...selectSX
+          }}
         >
           {menuItems}
         </Select>

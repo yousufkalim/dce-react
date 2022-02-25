@@ -128,6 +128,12 @@ function CreateAccountScreen(){
                   width: "48%",
                   marginBottom: "6%"
                 }}
+                selectSX={{
+                  borderColor: "#CC8E9C",
+                  borderStyle: "solid",
+                  borderWidth: "1.5px",
+                  borderRadius: "10px"
+                }}
               />
               <CustomDropDown
                 labelText="City"
@@ -145,6 +151,12 @@ function CreateAccountScreen(){
                   display: "flex",
                   width: "48%",
                   marginBottom: "6%",
+                }}
+                selectSX={{
+                  borderColor: "#CC8E9C",
+                  borderStyle: "solid",
+                  borderWidth: "1.5px",
+                  borderRadius: "10px"
                 }}
               />
             </div>
