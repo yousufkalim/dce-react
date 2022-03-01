@@ -1,12 +1,5 @@
 
-/* .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-  min-width: 100% !important;
-  background: transparent !important;
-  border-color: #CC8E9C !important;
-  border-style: solid !important;
-  border-width: 1.5px !important;
-  border-radius: 10px !important;
-} */
+/* Development */
 
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
   background: #CC8E9C !important;
@@ -18,5 +11,12 @@
 }
 
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-size: 12px !important;
+}
+
+/* Production */
+
+.css-qiwgdb {
+  padding: 5px 10px !important;
   font-size: 12px !important;
 }

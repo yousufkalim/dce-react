@@ -1,4 +1,6 @@
 
+/* Development */
+
 .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
   min-width: 100% !important;
   background: transparent !important;
@@ -13,6 +15,22 @@
   font-size: 14px !important;
 }
 
-.cdp_container {
-  
+/* Production */
+
+.css-i44wyl {
+  min-width: 100% !important;
+  background: transparent !important;
+  border-color: #CC8E9C !important;
+  border-style: solid !important;
+  border-width: 0.5px !important;
+  border-radius: 10px !important;
+}
+
+.css-1uvydh2 {
+  padding: 10px 10px !important;
+  font-size: 14px !important;
+}
+
+.css-igs3ac {
+  border: none !important;
 }
