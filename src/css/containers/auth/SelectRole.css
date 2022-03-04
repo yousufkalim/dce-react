@@ -1,0 +1,29 @@
+.selectrole_row2_container {
+  display: flex;
+  justify-content: center;
+}
+.selectrole_heading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 88px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  padding-bottom: 8%;
+}
+.selectrole_tile {
+  background: #ffffff;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12%;
+  cursor: pointer;
+}
+
+div .selectrole_tile:hover {
+  background: #cc8e9c;
+  color: #ffffff;
+}
