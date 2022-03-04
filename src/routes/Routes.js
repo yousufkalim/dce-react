@@ -1,5 +1,6 @@
 import LoginScreen from "../containers/auth/Login";
 import RegisterScreen from "../containers/auth/Register";
+import SelectRole from "../containers/auth/selectRole";
 import VerifyEmailScreen from "../containers/auth/VerifyEmail";
 import CreateAccountScreen from "../containers/auth/CreateAccount";
 import ClientHomeScreen from "../containers/client/Home";
@@ -9,6 +10,7 @@ import ClientProfileScreen from "../containers/client/Profile";
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
+import TailorHomeScreen from "../containers/tailor/Home";
 
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterIcon from "@mui/icons-material/AccountBox";
@@ -29,6 +31,12 @@ const DefaultRoutes = [
     name: "Login",
     icon: <LoginIcon />,
     element: LoginScreen,
+  },
+  {
+    path: "/Select_role",
+    name: "Selectrole",
+    icon: <LoginIcon />,
+    element: SelectRole,
   },
   {
     path: "/login",
@@ -95,7 +103,14 @@ const DefaultRoutes = [
     name: "ClientEditAd",
     icon: <ClientEditAdIcon />,
     element: ClientEditAdScreen,
-  }
+  },
+
+  {
+    path: "/tailor_home",
+    name: "TailorHome",
+    icon: <ClientHomeIcon />,
+    element: TailorHomeScreen,
+  },
 ];
 
 // Getting all routes
