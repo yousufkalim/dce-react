@@ -1,6 +1,6 @@
 import LoginScreen from "../containers/auth/Login";
 import RegisterScreen from "../containers/auth/Register";
-import SelectRole from "../containers/auth/selectRole";
+import SelectRoleScreen from "../containers/auth/SelectRole";
 import VerifyEmailScreen from "../containers/auth/VerifyEmail";
 import CreateAccountScreen from "../containers/auth/CreateAccount";
 import ClientHomeScreen from "../containers/client/Home";
@@ -34,9 +34,9 @@ const DefaultRoutes = [
   },
   {
     path: "/Select_role",
-    name: "Selectrole",
+    name: "SelectRoleScreen",
     icon: <LoginIcon />,
-    element: SelectRole,
+    element: SelectRoleScreen,
   },
   {
     path: "/login",

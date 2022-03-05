@@ -28,15 +28,18 @@ const selectRole = () => {
           </div>
         </div>
         <div className="login_screen_row2">
-          <h1 className="selectrole_heading">Register As a</h1>
-          <div className="selectrole_row2_container">
-            <div className="selectrole_tile" style={{ marginRight: "15%" }}>
+          <h1 className="select_role_screen_heading">Register As a</h1>
+          <div className="select_role_screen_row2_container">
+            <div
+              className="select_role_screen_tile"
+              style={{ marginRight: "15%" }}
+            >
               <img src={ClientRole} style={{ height: "90%" }}></img>
               <p className="custom_input_label" style={{ marginTop: "16%" }}>
                 Client
               </p>
             </div>
-            <div className="selectrole_tile">
+            <div className="select_role_screen_tile">
               <img src={DesignerRole}></img>
               <p className="custom_input_label" style={{ marginTop: "16%" }}>
                 Designer
