@@ -1,0 +1,27 @@
+.footer_main_div {
+  background: #000000;
+  color: #ffffff;
+  padding: 6%;
+  height: 40vh;
+}
+.footer_list {
+  display: flex;
+  padding-top: 2%;
+}
+.footer_list li {
+  padding-right: 2%;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+}
+.footer_bottom_text {
+  color: #cc8e9c;
+}
+.Footer_icon_div {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2%;
+}
+.Footer_icon {
+  padding-right: 20px;
+}
