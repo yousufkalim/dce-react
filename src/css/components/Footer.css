@@ -2,7 +2,7 @@
   background: #000000;
   color: #ffffff;
   padding: 6%;
-  height: 40vh;
+  height: 300pt;
 }
 .footer_list {
   display: flex;
@@ -13,15 +13,17 @@
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+  cursor: pointer;
 }
 .footer_bottom_text {
   color: #cc8e9c;
 }
-.Footer_icon_div {
+.footer_icon_div {
   display: flex;
   justify-content: space-between;
   padding-top: 2%;
 }
-.Footer_icon {
+.footer_icon {
   padding-right: 20px;
+  cursor: pointer;
 }
