@@ -29,9 +29,9 @@ const Footer = () => {
               </p>
             </div>
             <div>
-              <img src={FacebookIcon} className="Footer_icon"></img>
-              <img src={TwitterIcon} className="Footer_icon"></img>
-              <img src={LinkedinIcon}></img>
+              <img src={FacebookIcon} className="footer_icon"></img>
+              <img src={TwitterIcon} className="footer_icon"></img>
+              <img src={LinkedinIcon} className="footer_icon" style={{ padding: "0" }}></img>
             </div>
           </div>
         </div>
