@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <div className="footer_main_div">
-        <img src={FooterLogo}></img>
+        <img src={FooterLogo} style={{ height: "50%" }}></img>
         <p style={{ paddingTop: "1%" }}>Terms & conditions</p>
         <div>
           <ul className="footer_list">

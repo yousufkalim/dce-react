@@ -1,17 +1,20 @@
+
 .select_role_screen_row2_container {
   display: flex;
   justify-content: center;
 }
+
 .select_role_screen_heading {
   font-style: normal;
   font-weight: normal;
-  font-size: 72px;
+  font-size: 60px;
   line-height: 88px;
   display: flex;
   align-items: center;
   color: #000000;
   padding-bottom: 8%;
 }
+
 .select_role_screen_tile {
   background: #ffffff;
   border-radius: 50px;
@@ -19,11 +22,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 12%;
+  padding: 10%;
   cursor: pointer;
 }
 
-div .select_role_screen_tile:hover {
+.select_role_screen_tile_text {
+  color: #CC8E9C;
+  font-weight: 600;
+}
+
+.select_role_screen_tile:hover {
   background: #cc8e9c;
-  color: #ffffff;
 }

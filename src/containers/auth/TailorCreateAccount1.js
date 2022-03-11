@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 import { useNavigate, useLocation} from "react-router-dom";
 
-function CreateAccountScreen(){
+function TailorCreateAccount1Screen(){
 
   const [dateOfBirth, setDateOfBirth] = useState(null);
   const [country, setCountry] = useState("");
@@ -21,8 +21,8 @@ function CreateAccountScreen(){
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const navToHome = () => {
-    navigate("/home");
+  const navToCreateAccount2 = (_state) => {
+    navigate("/tailor_create_account_2", { "state": _state });
   };
 
   const handleSubmit = (event) => {
@@ -42,7 +42,7 @@ function CreateAccountScreen(){
 
       console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
 
-      navToHome(body);
+      navToCreateAccount2(body);
     } catch (e) {
       console.trace(e);
     }
@@ -175,4 +175,4 @@ function CreateAccountScreen(){
   );
 }
 
-export default CreateAccountScreen;
+export default TailorCreateAccount1Screen;

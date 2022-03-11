@@ -11,7 +11,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   const navigate = useNavigate();
 
   const navToHome = () => {
-    navigate("/home");
+    navigate("/tailor_home");
   };
 
   const navToOrders = () => {

@@ -72,7 +72,7 @@ function TailorHomeScreen() {
             borderBottomWidth: "0.5px",
           }}
         >
-          <p className="client_home_screen_row2_row1_text">Order Request</p>
+          <p className="client_home_screen_row2_row1_text">Order Requests</p>
           <div className="client_home_screen_row2_row1_row_container">
             <OrderListTile detail="See Details" />
             <OrderListTile detail="See Details" />
@@ -92,13 +92,13 @@ function TailorHomeScreen() {
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
-          <p className="client_home_screen_row2_row1_text">Recently Orders</p>
+          <p className="client_home_screen_row2_row1_text">Recent Orders</p>
           <div className="client_home_screen_row2_row1_row_container">
             <OrderListTile detail="In Process" />
             <OrderListTile detail="In Process" />
-            <OrderListTile detail="In Process" />
-            <OrderListTile detail="In Process" />
-            <OrderListTile detail="In Process" />
+            <OrderListTile detail="Completed" />
+            <OrderListTile detail="Completed" />
+            <OrderListTile detail="Completed" />
             <p
               style={{
                 color: "#CC8E9C",

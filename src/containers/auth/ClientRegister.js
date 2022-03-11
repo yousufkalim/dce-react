@@ -6,15 +6,23 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function VerifyEmailScreen(){
+function ClientRegisterScreen(){
 
   const navigate = useNavigate();
-  const { state } = useLocation();
 
-  const navToCreateAccount = (_state) => {
-    navigate("/create_account", { state: _state });
+  const navToLogin = () => {
+    navigate("/login");
+  };
+
+  const navToVerifyEmail = (state) => {
+    navigate(
+      "/client_verify_email",
+      {
+        state: state
+      }
+    );
   };
 
   const handleSubmit = (event) => {
@@ -25,13 +33,12 @@ function VerifyEmailScreen(){
     try {
       const body = {
         "email": data.get("Email"),
-        "password": data.get("Password"),
-        "verification_code": data.get("Verification Code"),
+        "password": data.get("Password")
       };
 
       console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
 
-      navToCreateAccount(body);
+      navToVerifyEmail(body);
     } catch (e) {
       console.trace(e);
     }
@@ -64,7 +71,6 @@ function VerifyEmailScreen(){
               inputType="email"
               inputName="Email"
               inputPlaceholder="abc@xyz.com"
-              inputDefaultValue={state.email}
               divStyle={{
                 marginBottom: "6%"
               }}
@@ -74,28 +80,41 @@ function VerifyEmailScreen(){
               inputType="password"
               inputName="Password"
               inputPlaceholder="********"
-              inputDefaultValue={state.password}
-              divStyle={{
-                marginBottom: "6%"
-              }}
-            />
-            <CustomInput
-              labelText="Verification Code"
-              inputType="password"
-              inputName="Verification Code"
-              inputPlaceholder="Passcode"
               enableEyes={true}
               divStyle={{
                 marginBottom: "6%"
               }}
             />
             <CustomButton
-              text="Create Account"
+              text="Sign up"
               type="submit"
               style={{
                 marginBottom: "10%"
               }}
             />
+            <div
+              onClick={navToLogin}
+              style={{
+                cursor: "pointer"
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "11px",
+                  color: "#A0A0A0",
+                }}
+              >
+                Already have an account?
+              </p>
+              <p
+                style={{
+                  fontSize: "16px",
+                  color: "#CC8E9C",
+                }}
+              >
+                Sign in now
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -104,4 +123,4 @@ function VerifyEmailScreen(){
   );
 }
 
-export default VerifyEmailScreen;
+export default ClientRegisterScreen;

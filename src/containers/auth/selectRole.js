@@ -6,7 +6,20 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import ClientRole from "../../assets/ClientRole.svg";
 import DesignerRole from "../../assets/DesignerRole.svg";
 
+import { useNavigate } from "react-router-dom";
+
 const selectRole = () => {
+
+  const navigate = useNavigate();
+
+  const navToClientRegister = () => {
+    navigate("/client_register");
+  };
+
+  const navToTailorRegister = () => {
+    navigate("/tailor_register");
+  };
+
   return (
     <div
       className="container"
@@ -33,15 +46,19 @@ const selectRole = () => {
             <div
               className="select_role_screen_tile"
               style={{ marginRight: "15%" }}
+              onClick={navToClientRegister}
             >
               <img src={ClientRole} style={{ height: "90%" }}></img>
-              <p className="custom_input_label" style={{ marginTop: "16%" }}>
+              <p className="select_role_screen_tile_text" style={{ marginTop: "16%" }}>
                 Client
               </p>
             </div>
-            <div className="select_role_screen_tile">
+            <div
+              className="select_role_screen_tile"
+              onClick={navToTailorRegister}
+            >
               <img src={DesignerRole}></img>
-              <p className="custom_input_label" style={{ marginTop: "16%" }}>
+              <p className="select_role_screen_tile_text" style={{ marginTop: "16%" }}>
                 Designer
               </p>
             </div>
