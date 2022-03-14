@@ -15,6 +15,7 @@ import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import TailorHomeScreen from "../containers/tailor/Home";
+import TailorCatalogScreen from "../containers/tailor/Catalog";
 import TailorOrdersScreen from "../containers/tailor/Orders";
 import TailorQuotesScreen from "../containers/tailor/Quotes";
 import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
@@ -151,6 +152,11 @@ const DefaultRoutes = [
     element: TailorHomeScreen,
   },
   {
+    path: "/tailor_catalog",
+    name: "TailorCatalog",
+    icon: <ClientHomeIcon />,
+    element: TailorCatalogScreen,
+  },
     path: "/tailor_orders",
     name: "TailorOrders",
     icon: <TailorOrdersIcon />,
