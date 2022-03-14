@@ -15,6 +15,7 @@ import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import TailorHomeScreen from "../containers/tailor/Home";
+import TailorCatalog from "../containers/tailor/Catalog";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -142,6 +143,12 @@ const DefaultRoutes = [
     name: "TailorHome",
     icon: <ClientHomeIcon />,
     element: TailorHomeScreen,
+  },
+  {
+    path: "/catalog",
+    name: "TailorCatalog",
+    icon: <ClientHomeIcon />,
+    element: TailorCatalog,
   },
 ];
 
