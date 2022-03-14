@@ -15,6 +15,9 @@ import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import TailorHomeScreen from "../containers/tailor/Home";
+import TailorOrdersScreen from "../containers/tailor/Orders";
+import TailorQuotesScreen from "../containers/tailor/Quotes";
+import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -32,6 +35,10 @@ import ClientProfileIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
+import TailorHomeIcon from "@mui/icons-material/AccountBox";
+import TailorOrdersIcon from "@mui/icons-material/AccountBox";
+import TailorQuotesIcon from "@mui/icons-material/AccountBox";
+import TailorViewQuoteIcon from "@mui/icons-material/AccountBox";
 
 // Routes for login
 const DefaultRoutes = [
@@ -140,8 +147,26 @@ const DefaultRoutes = [
   {
     path: "/tailor_home",
     name: "TailorHome",
-    icon: <ClientHomeIcon />,
+    icon: <TailorHomeIcon />,
     element: TailorHomeScreen,
+  },
+  {
+    path: "/tailor_orders",
+    name: "TailorOrders",
+    icon: <TailorOrdersIcon />,
+    element: TailorOrdersScreen,
+  },
+  {
+    path: "/tailor_quotes",
+    name: "TailorQuote",
+    icon: <TailorQuotesIcon />,
+    element: TailorQuotesScreen,
+  },
+  {
+    path: "/tailor_view_quote",
+    name: "TailorViewQuote",
+    icon: <TailorViewQuoteIcon />,
+    element: TailorViewQuoteScreen,
   },
 ];
 

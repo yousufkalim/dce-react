@@ -1,0 +1,137 @@
+
+/* Screen Components */
+
+.tqs_quote_list_tile_column0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 13.33vw;
+  height: 100%;
+}
+
+.tqs_quote_list_tile_column0_img {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.tqs_quote_list_tile_column0_title_text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #CC8E9C;
+}
+
+.tqs_quote_list_tile_column1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36.67vw;
+  height: 100%;
+  border-right-color: #DBDBDB;
+  border-right-style: solid;
+  border-right-width: 1.5px;
+}
+
+.tqs_quote_list_tile_column5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 20vw;
+  height: 100%;
+}
+
+.tqs_quote_list_tile_column5_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tqs_sqm_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60vh;
+  width: 40vw;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 0 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tqs_sqm_input_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6% 0;
+  width: 100%;
+  background-color: transparent;
+  border-color: #F7C9D0;
+  border-style: solid;
+  border-width: 0.5px;
+}
+
+.tqs_sqm_input_label {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tqs_sqm_input_text {
+  font-size: 12px;
+  font-Weight: 900;
+  margin-left: 15%;
+}
+
+.tqs_sqm_input_input {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tqs_sqm_textarea_container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 30%;
+  width: 100%;
+  background-color: transparent;
+  border-color: #F7C9D0;
+  border-style: solid;
+  border-width: 0.5px;
+}
+
+.tqs_sqm_textarea_label {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 2%;
+}
+
+.tqs_sqm_textarea_textarea {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding-top: 2%;
+}
