@@ -37,6 +37,7 @@ import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
 import TailorHomeIcon from "@mui/icons-material/AccountBox";
+import TailorCatalogIcon from "@mui/icons-material/AccountBox";
 import TailorOrdersIcon from "@mui/icons-material/AccountBox";
 import TailorQuotesIcon from "@mui/icons-material/AccountBox";
 import TailorViewQuoteIcon from "@mui/icons-material/AccountBox";
@@ -154,9 +155,10 @@ const DefaultRoutes = [
   {
     path: "/tailor_catalog",
     name: "TailorCatalog",
-    icon: <ClientHomeIcon />,
+    icon: <TailorCatalogIcon />,
     element: TailorCatalogScreen,
   },
+  {
     path: "/tailor_orders",
     name: "TailorOrders",
     icon: <TailorOrdersIcon />,

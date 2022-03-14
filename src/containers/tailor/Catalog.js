@@ -1,5 +1,5 @@
 import React from "react";
-import AppBar from "../../components/TailorAppBar";
+import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import Grid from "@mui/material/Grid";
@@ -12,10 +12,10 @@ import Rating from "@mui/material/Rating";
 const TailorCatalogScreen = () => {
 
   const [value, setValue] = React.useState(2);
-  
+
   return (
     <div className="container-page">
-      <AppBar color="#ffffff" />
+      <TailorAppBar color="#ffffff" activeTab={1} />
       <div className="catalog-container">
         <div
           className="catalog_screen_row1"
