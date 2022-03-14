@@ -1,4 +1,5 @@
 /* Importing all CSS files */
 @import url("./auth/index.css");
 @import url("./client/index.css");
-@import url("../containers/tailor/catalog.css");
+@import url("../containers/tailor/Catalog.css");
+@import url("./tailor/index.css");

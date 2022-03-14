@@ -1,0 +1,20 @@
+
+.tvqs_sq_container {
+  height: 60vh;
+  width: 40vw;
+  background-color: #FFF8F7;
+  border: none;
+  border-radius: 10px;
+  padding: 0 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tvqs_sq_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
