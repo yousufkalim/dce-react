@@ -1,3 +1,4 @@
+
 .catalog-container {
   width: 100vw;
   height: 70vh;
@@ -5,12 +6,14 @@
   background-repeat: no-repeat;
   background-position: 0% 100%;
 }
+
 .catalog_screen_row1 {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
 }
+
 .catalog_screen_heading {
   font-family: "Montserrat";
   font-style: normal;
@@ -23,10 +26,9 @@
   letter-spacing: -0.5px;
   padding: 0 30%;
   margin-bottom: 2%;
-  /* White - Design Confection Ethiques */
-
   color: #ffffff;
 }
+
 .catalog_screen_mycatalog {
   width: 100vw;
   background: linear-gradient(
@@ -36,6 +38,7 @@
   );
   padding-bottom: 5%;
 }
+
 .mycatalog_heading {
   font-family: "Montserrat";
   font-style: normal;
@@ -48,6 +51,7 @@
   padding-top: 5%;
   padding-bottom: 2%;
 }
+
 .mycatalog_details {
   display: flex;
   align-items: center;
@@ -55,17 +59,16 @@
   padding-top: 3%;
   padding-bottom: 2%;
 }
+
 .mycatalog_title {
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
   display: flex;
   align-items: center;
-
-  /* Black - Design Confection Ethiques */
-
   color: #000000;
 }
+
 .mycatalog_price_detail {
   font-weight: 500;
   font-size: 14px;
@@ -75,17 +78,16 @@
   color: #000000;
   margin-right: 15%;
 }
+
 .mycatalog_price {
   font-weight: 500;
   font-size: 14px;
   line-height: 15px;
   display: flex;
   align-items: center;
-
-  /* Purple - Design Confection Ethiques */
-
   color: #cc8e9c;
 }
+
 .mycatalog_image {
   width: 100%;
 }

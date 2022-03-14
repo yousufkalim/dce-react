@@ -8,8 +8,11 @@ import CatalogContent2 from "../../assets/CatalogContent2.svg";
 import CatalogContent3 from "../../assets/CatalogContent3.svg";
 
 import Rating from "@mui/material/Rating";
-const Catalog = () => {
+
+const TailorCatalogScreen = () => {
+
   const [value, setValue] = React.useState(2);
+  
   return (
     <div className="container-page">
       <AppBar color="#ffffff" />
@@ -140,4 +143,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default TailorCatalogScreen;
