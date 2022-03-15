@@ -8,7 +8,7 @@ import CustomButton from "../../components/CustomButton";
 
 import { useNavigate } from "react-router-dom";
 
-function RegisterScreen(){
+function TailorRegisterScreen(){
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function RegisterScreen(){
 
   const navToVerifyEmail = (state) => {
     navigate(
-      "/verify_email",
+      "/tailor_verify_email",
       {
         state: state
       }
@@ -94,6 +94,9 @@ function RegisterScreen(){
             />
             <div
               onClick={navToLogin}
+              style={{
+                cursor: "pointer"
+              }}
             >
               <p
                 style={{
@@ -120,4 +123,4 @@ function RegisterScreen(){
   );
 }
 
-export default RegisterScreen;
+export default TailorRegisterScreen;

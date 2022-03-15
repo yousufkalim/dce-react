@@ -11,23 +11,23 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   const navigate = useNavigate();
 
   const navToHome = () => {
-    navigate("/home");
+    navigate("/tailor_home");
   };
 
   const navToOrders = () => {
-    navigate("/orders");
+    navigate("/tailor_orders");
   };
 
-  const navToDesigners = () => {
-    navigate("/designers");
+  const navToCatalog = () => {
+    navigate("/tailor_catalog");
+  };
+
+  const navToQuotes = () => {
+    navigate("/tailor_quotes");
   };
 
   const navToProfile = () => {
-    navigate("/profile");
-  };
-
-  const navToMyAds = () => {
-    navigate("/my_ads");
+    navigate("/tailor_profile");
   };
 
   return (
@@ -53,7 +53,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
               paddingRight: "5%",
               color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`,
             }}
-            onClick={navToDesigners}
+            onClick={navToOrders}
           >
             Orders
           </p>
@@ -64,7 +64,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
               paddingRight: "5%",
               color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`,
             }}
-            onClick={navToOrders}
+            onClick={navToCatalog}
           >
             Catalog
           </p>
@@ -74,7 +74,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
               paddingRight: "5%",
               color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`,
             }}
-            onClick={navToMyAds}
+            onClick={navToQuotes}
           >
             Quotes
           </p>

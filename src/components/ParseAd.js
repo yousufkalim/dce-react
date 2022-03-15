@@ -463,7 +463,8 @@ function DeliverySection({
 }
 
 function NotesSection({
-  noButton = false
+  noButton = false,
+  noCheckbox = false
 }){
 
   const navigate = useNavigate();
@@ -524,53 +525,57 @@ function NotesSection({
             <input className="pa_payment_section_input_input" />
           </div>
         </div>
-        <div className="pa_payment_section_consent_container">
-          <Checkbox
-            style={{
-              transform: "scale(0.8)",
-              color: "#000000",
-              paddingRight: "2%"
-            }}
-            defaultChecked
-          />
-          <p
-            style={{
-              fontSize: "11px",
-              fontWeight: "600",
-              paddingRight: "0.6%"
-            }}
-          >
-            I agree to the design Confection Ethiques
-          </p>
-          <p
-            style={{
-              fontSize: "11px",
-              fontWeight: "600",
-              paddingRight: "0.6%",
-              color: "#CC8E9C"
-            }}
-          >
-            Terms of Services
-          </p>
-          <p
-            style={{
-              fontSize: "11px",
-              fontWeight: "600",
-              paddingRight: "0.6%"
-            }}
-          >
-            and
-          </p>
-          <p
-            style={{
-              fontSize: "11px",
-              fontWeight: "600",
-              color: "#CC8E9C"
-            }}
-          >
-            Privacy Policy
-          </p>
-        </div>
+        {
+          noCheckbox
+          ? <></>
+          : <div className="pa_payment_section_consent_container">
+              <Checkbox
+                style={{
+                  transform: "scale(0.8)",
+                  color: "#000000",
+                  paddingRight: "2%"
+                }}
+                defaultChecked
+              />
+              <p
+                style={{
+                  fontSize: "11px",
+                  fontWeight: "600",
+                  paddingRight: "0.6%"
+                }}
+              >
+                I agree to the design Confection Ethiques
+              </p>
+              <p
+                style={{
+                  fontSize: "11px",
+                  fontWeight: "600",
+                  paddingRight: "0.6%",
+                  color: "#CC8E9C"
+                }}
+              >
+                Terms of Services
+              </p>
+              <p
+                style={{
+                  fontSize: "11px",
+                  fontWeight: "600",
+                  paddingRight: "0.6%"
+                }}
+              >
+                and
+              </p>
+              <p
+                style={{
+                  fontSize: "11px",
+                  fontWeight: "600",
+                  color: "#CC8E9C"
+                }}
+              >
+                Privacy Policy
+              </p>
+            </div>
+        }
         {
           noButton
           ? <></>

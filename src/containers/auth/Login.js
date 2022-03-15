@@ -16,8 +16,8 @@ function LoginScreen(){
     navigate("/home");
   };
 
-  const navToRegister = () => {
-    navigate("/register");
+  const navToSelectRole = () => {
+    navigate("/select_role");
   };
 
   const handleSubmit = (event) => {
@@ -97,7 +97,10 @@ function LoginScreen(){
               }}
             />
             <div
-              onClick={navToRegister}
+              onClick={navToSelectRole}
+              style={{
+                cursor: "pointer"
+              }}
             >
               <p
                 style={{

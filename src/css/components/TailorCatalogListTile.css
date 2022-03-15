@@ -1,0 +1,40 @@
+
+.tailor_catalog_list_tile_details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 3%;
+  padding-bottom: 2%;
+}
+
+.tailor_catalog_list_tile_title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.tailor_catalog_list_tile_price_detail {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin-right: 15%;
+}
+
+.tailor_catalog_list_tile_price {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #cc8e9c;
+}
+
+.tailor_catalog_list_tile_image {
+  width: 100%;
+}
