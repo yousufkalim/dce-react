@@ -1,6 +1,9 @@
 /* Importing all CSS files */
+@import url("./Catalog.css");
+@import url("./CreateCatalog.css");
+@import url("./Home.css");
 @import url("./Orders.css");
 @import url("./Quotes.css");
-@import url("./Catalog.css");
+@import url("./ViewCatalog.css");
 @import url("./ViewQuote.css");
 

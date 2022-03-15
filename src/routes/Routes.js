@@ -16,6 +16,9 @@ import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import TailorHomeScreen from "../containers/tailor/Home";
 import TailorCatalogScreen from "../containers/tailor/Catalog";
+import TailorViewCatalogScreen from "../containers/tailor/ViewCatalog";
+import TailorCreateCatalogScreen from "../containers/tailor/CreateCatalog";
+import TailorEditCatalogScreen from "../containers/tailor/EditCatalog";
 import TailorOrdersScreen from "../containers/tailor/Orders";
 import TailorQuotesScreen from "../containers/tailor/Quotes";
 import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
@@ -38,6 +41,9 @@ import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
 import TailorHomeIcon from "@mui/icons-material/AccountBox";
 import TailorCatalogIcon from "@mui/icons-material/AccountBox";
+import TailorViewCatalogIcon from "@mui/icons-material/AccountBox";
+import TailorCreateCatalogIcon from "@mui/icons-material/AccountBox";
+import TailorEditCatalogIcon from "@mui/icons-material/AccountBox";
 import TailorOrdersIcon from "@mui/icons-material/AccountBox";
 import TailorQuotesIcon from "@mui/icons-material/AccountBox";
 import TailorViewQuoteIcon from "@mui/icons-material/AccountBox";
@@ -157,6 +163,24 @@ const DefaultRoutes = [
     name: "TailorCatalog",
     icon: <TailorCatalogIcon />,
     element: TailorCatalogScreen,
+  },
+  {
+    path: "/tailor_view_catalog",
+    name: "TailorViewCatalog",
+    icon: <TailorViewCatalogIcon />,
+    element: TailorViewCatalogScreen,
+  },
+  {
+    path: "/tailor_create_catalog",
+    name: "TailorCreateCatalog",
+    icon: <TailorCreateCatalogIcon />,
+    element: TailorCreateCatalogScreen,
+  },
+  {
+    path: "/tailor_edit_catalog",
+    name: "TailorEditCatalog",
+    icon: <TailorEditCatalogIcon />,
+    element: TailorEditCatalogScreen,
   },
   {
     path: "/tailor_orders",

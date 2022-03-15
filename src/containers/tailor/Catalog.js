@@ -1,17 +1,36 @@
 import React from "react";
+
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
+
 import Grid from "@mui/material/Grid";
+
 import CatalogContent1 from "../../assets/CatalogContent1.svg";
 import CatalogContent2 from "../../assets/CatalogContent2.svg";
 import CatalogContent3 from "../../assets/CatalogContent3.svg";
 
 import Rating from "@mui/material/Rating";
 
+import { useNavigate } from "react-router-dom";
+
 const TailorCatalogScreen = () => {
 
   const [value, setValue] = React.useState(2);
+
+  const navigate = useNavigate();
+
+  const navToViewCatalog = () => {
+    navigate("/tailor_view_catalog");
+  }
+
+  const navToCreateCatalog = () => {
+    navigate("/tailor_create_catalog");
+  }
+
+  const navToEditCatalog = () => {
+    navigate("/tailor_edit_catalog");
+  }
 
   return (
     <div className="container-page">
@@ -36,6 +55,7 @@ const TailorCatalogScreen = () => {
               marginTop: "0%",
               padding: "1% 2% 1% 2%",
             }}
+            onClick={navToCreateCatalog}
           />
         </div>
       </div>
@@ -47,11 +67,13 @@ const TailorCatalogScreen = () => {
             sm={5}
             md={3}
             sx={{ position: "relative", margin: "auto" }}
+            onClick={navToViewCatalog}
           >
             <img src={CatalogContent1} className="mycatalog_image"></img>
             <CustomButton
               text="Edit"
               type="submit"
+              onClick={navToEditCatalog}
               style={{
                 background: "#fff",
                 color: "#CC8E9C",
@@ -138,7 +160,7 @@ const TailorCatalogScreen = () => {
           </Grid>
         </Grid>
       </div>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
