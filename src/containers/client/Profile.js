@@ -14,7 +14,7 @@ import AppBar from "../../components/AppBar";
 
 import { useNavigate } from "react-router-dom";
 
-function ClientprofileScreen(){
+function ClientProfileScreen(){
 
   const navigate = useNavigate();
 
@@ -186,4 +186,4 @@ function ProfileInput({
 }
 
 
-export default ClientprofileScreen;
+export default ClientProfileScreen;

@@ -27,7 +27,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   };
 
   const navToProfile = () => {
-    navigate("/profile");
+    navigate("/tailor_profile");
   };
 
   return (
