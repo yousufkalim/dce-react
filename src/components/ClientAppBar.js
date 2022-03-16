@@ -5,9 +5,13 @@ import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 
-import { useNavigate} from "react-router-dom";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-function AppBar({
+import { useNavigate} from "react-router-dom";
+import { toast } from "react-toastify";
+
+function ClientAppBar({
   activeTab,
   color,
   sticky = true,
@@ -15,6 +19,19 @@ function AppBar({
 }){
 
   const navigate = useNavigate();
+
+  const handleClickNotifications = () => {
+    toast.success("Coming soon!");
+  };
+
+  const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+  const openProfile = Boolean(anchorElProfile);
+  const handleClickProfile = (event) => {
+    setAnchorElProfile(event.currentTarget);
+  };
+  const handleCloseProfile = () => {
+    setAnchorElProfile(null);
+  };
 
   const navToHome = () => {
     navigate("/home");
@@ -28,12 +45,17 @@ function AppBar({
     navigate("/designers");
   };
 
-  const navToProfile = () => {
-    navigate("/profile");
-  };
-
   const navToMyAds = () => {
     navigate("/my_ads");
+  };
+
+  const navToChat = () => {
+    handleCloseProfile();
+    toast.success("Coming soon!");
+  };
+
+  const navToProfile = () => {
+    navigate("/profile");
   };
 
   return (
@@ -85,23 +107,49 @@ function AppBar({
               paddingRight: "5%",
               color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`
             }}
+            onClick={navToChat}
           >
             Chats
           </p>
         </div>
         <div className="appbar_row2">
           <SearchInput />
-          <img src={NotificationsSVG} className="appbar_row2_notifications_img" style={{ marginLeft: "3%" }} />
-          <img src={UserSVG} className="appbar_row2_user_img" style={{ marginLeft: "3%" }} onClick={navToProfile}/>
+          <img
+            src={NotificationsSVG}
+            className="appbar_row2_notifications_img"
+            style={{ marginLeft: "3%" }}
+            onClick={handleClickNotifications}
+          />
+          <img
+            src={UserSVG}
+            className="appbar_row2_user_img"
+            style={{ marginLeft: "3%" }}
+            onClick={handleClickProfile}
+          />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElProfile}
+            open={openProfile}
+            onClose={handleCloseProfile}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={navToProfile}>Profile</MenuItem>
+            <MenuItem onClick={handleCloseProfile}>Logout</MenuItem>
+          </Menu>
         </div>
       </div>
     </div>
   );
 }
 
-function SearchInput({
+function SearchInput({}){
 
-}){
+  const callback = () => {
+    toast.success("Coming soon!");
+  };
+
   return (
     <div>
       <div
@@ -117,12 +165,14 @@ function SearchInput({
           className="appbar_row2_input"
         />
         <img
+          onClick={callback}
           src={SearchSVG}
           className="appbar_row2_search_img"
         />
       </div>
     </div>
   );
+
 }
 
-export default AppBar;
+export default ClientAppBar;

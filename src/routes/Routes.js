@@ -23,6 +23,8 @@ import TailorOrdersScreen from "../containers/tailor/Orders";
 import TailorQuotesScreen from "../containers/tailor/Quotes";
 import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
 import TailorProfileScreen from "../containers/tailor/Profile";
+import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
+import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -49,6 +51,8 @@ import TailorOrdersIcon from "@mui/icons-material/AccountBox";
 import TailorQuotesIcon from "@mui/icons-material/AccountBox";
 import TailorViewQuoteIcon from "@mui/icons-material/AccountBox";
 import TailorProfileIcon from "@mui/icons-material/AccountBox";
+import TailorHowItWorksIcon from "@mui/icons-material/AccountBox";
+import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 
 // Routes for login
 const DefaultRoutes = [
@@ -207,6 +211,18 @@ const DefaultRoutes = [
     name: "TailorProfile",
     icon: <TailorProfileIcon />,
     element: TailorProfileScreen,
+  },
+  {
+    path: "/tailor_how_it_works",
+    name: "TailorHowItWorks",
+    icon: <TailorHowItWorksIcon />,
+    element: TailorHowItWorksScreen,
+  },
+  {
+    path: "/tailor_terms_and_conditions",
+    name: "TailorTermsAndConditions",
+    icon: <TailorTermsAndConditionsIcon />,
+    element: TailorTermsAndConditionsScreen,
   },
 ];
 

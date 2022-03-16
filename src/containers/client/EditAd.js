@@ -8,7 +8,7 @@ import AdEdit1SVG from "../../assets/AdEdit1.svg";
 import AdEdit2SVG from "../../assets/AdEdit2.svg";
 import AdEdit3SVG from "../../assets/AdEdit3.svg";
 
-import AppBar from "../../components/AppBar";
+import ClientAppBar from "../../components/ClientAppBar";
 import * as ParseAd from "../../components/ParseAd";
 
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ function ClientEditAdScreen(){
 
   return (
     <div className="container-page">
-      <AppBar
+      <ClientAppBar
         color="#F8F4EF"
         activeTab={2}
       />

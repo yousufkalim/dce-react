@@ -10,7 +10,7 @@ import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
-import AppBar from "../../components/AppBar";
+import ClientAppBar from "../../components/ClientAppBar";
 
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ function ClientProfileScreen(){
 
   return (
     <div className="container">
-      <AppBar
+      <ClientAppBar
         color="#FCFCFC"
       />
       <div

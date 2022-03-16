@@ -3,7 +3,7 @@ import React from "react";
 import ClientHomeSVG from "../../assets/ClientHome.svg";
 import UserSVG from "../../assets/User.svg";
 
-import AppBar from "../../components/AppBar";
+import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
 
@@ -15,7 +15,7 @@ function ClientHomeScreen(){
 
   return (
     <div className="container-page">
-      <AppBar
+      <ClientAppBar
         color="#F8F4EF"
       />
       <div

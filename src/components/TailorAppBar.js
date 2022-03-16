@@ -5,10 +5,33 @@ import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 
-import { useNavigate } from "react-router-dom";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+function TailorAppBar({
+  activeTab,
+  color,
+  sticky = true,
+  divStyle
+}) {
+
   const navigate = useNavigate();
+
+  const handleClickNotifications = () => {
+    toast.success("Coming soon!");
+  };
+
+  const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+  const openProfile = Boolean(anchorElProfile);
+  const handleClickProfile = (event) => {
+    setAnchorElProfile(event.currentTarget);
+  };
+  const handleCloseProfile = () => {
+    setAnchorElProfile(null);
+  };
 
   const navToHome = () => {
     navigate("/tailor_home");
@@ -26,8 +49,24 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
     navigate("/tailor_quotes");
   };
 
+  const navToChat = () => {
+    handleCloseProfile();
+    toast.success("Coming soon!");
+  };
+
   const navToProfile = () => {
+    handleCloseProfile();
     navigate("/tailor_profile");
+  };
+
+  const navToSupport = () => {
+    handleCloseProfile();
+    toast.success("Coming soon!");
+  };
+
+  const navToTermsAndConditions = () => {
+    handleCloseProfile();
+    navigate("/tailor_terms_and_conditions");
   };
 
   return (
@@ -84,6 +123,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
               paddingRight: "5%",
               color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`,
             }}
+            onClick={navToChat}
           >
             Chats
           </p>
@@ -94,13 +134,28 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
             src={NotificationsSVG}
             className="appbar_row2_notifications_img"
             style={{ marginLeft: "3%" }}
+            onClick={handleClickNotifications}
           />
           <img
             src={UserSVG}
             className="appbar_row2_user_img"
             style={{ marginLeft: "3%" }}
-            onClick={navToProfile}
+            onClick={handleClickProfile}
           />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElProfile}
+            open={openProfile}
+            onClose={handleCloseProfile}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={navToProfile}>Profile</MenuItem>
+            <MenuItem onClick={navToSupport}>Support</MenuItem>
+            <MenuItem onClick={navToTermsAndConditions}>Terms and Conditions</MenuItem>
+            <MenuItem onClick={handleCloseProfile}>Logout</MenuItem>
+          </Menu>
         </div>
       </div>
     </div>
@@ -108,6 +163,11 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
 }
 
 function SearchInput({}) {
+
+  const callback = () => {
+    toast.success("Coming soon!");
+  };
+
   return (
     <div>
       <div
@@ -118,10 +178,11 @@ function SearchInput({}) {
         }}
       >
         <input type="text" placeholder="Search" className="appbar_row2_input" />
-        <img src={SearchSVG} className="appbar_row2_search_img" />
+        <img onClick={callback} src={SearchSVG} className="appbar_row2_search_img" />
       </div>
     </div>
   );
+  
 }
 
 export default TailorAppBar;
