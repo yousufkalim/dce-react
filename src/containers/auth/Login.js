@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -6,11 +6,20 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
+import { handleLogin } from "../../utils/Auth";
+import Api from "../../api/index";
+
 import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function LoginScreen(){
 
   const navigate = useNavigate();
+
+  const [processing, setProcessing] = useState(false);
 
   const navToHome = () => {
     navigate("/home");
@@ -20,21 +29,44 @@ function LoginScreen(){
     navigate("/select_role");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (processing) {
+      return;
+    }
     
     const data = new FormData(event.currentTarget);
 
+    const isValidated = FormValidations.login(data);
+
+    if (!isValidated) {
+      return;
+    }
+
+    let response;
+
     try {
+      setProcessing(true);
+
       const body = {
         "email": data.get("Email"),
-        "password": data.get("Password")
+        "password": data.get("Password"),
       };
 
-      console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
+      response = await Api("post", "/auth/login", body);
+
+      if (response?.data?.success) {
+        toast.success("Logged In");
+        handleLogin(response.data.token, response.data.user);
+        navToHome();
+      }
     } catch (e) {
       console.trace(e);
     }
+
+    setProcessing(false);
+    
   }
 
   return (

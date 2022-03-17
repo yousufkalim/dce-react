@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -7,45 +7,94 @@ import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomDropDown from "../../components/CustomDropDown";
-
 import MenuItem from "@mui/material/MenuItem";
+
+import { handleLogin } from "../../utils/Auth";
+import Api from "../../api/index";
 
 import { useNavigate, useLocation} from "react-router-dom";
 
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
+
 function ClientCreateAccountScreen(){
 
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const [processing, setProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(null);
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
 
-  const navigate = useNavigate();
-  const { state } = useLocation();
+  useEffect(() => {
+    if(
+      !state?.["Email"] ||
+      !state?.["Password"]
+    ){
+      navigate("/login");
+    }
+  }, [])
 
   const navToHome = () => {
     navigate("/home");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (processing) {
+      return;
+    }
     
     const data = new FormData(event.currentTarget);
 
+    const isValidated = FormValidations.clientCreateAccount(data);
+
+    if (!isValidated) {
+      return;
+    }
+
+    if(dateOfBirth == null){
+      toast.error("Date of Birth must be selected.");
+      return;
+    } else if(country == ""){
+      toast.error("Country must be selected.");
+      return;
+    } else if(city == "") {
+      toast.error("City must be selected.");
+      return;
+    }
+
+    let response;
+
     try {
+      setProcessing(true);
+
       const body = {
-        ...state,
-        "full_name": data.get("Full Name"),
-        "data_of_birth": dateOfBirth,
+        "email": state["Email"],
+        "password": state["Password"],
+        "name": data.get("Full Name"),
+        "dob": dateOfBirth,
         "address": data.get("Address"),
         "country": country,
         "city": city,
       };
 
-      console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
+      response = await Api("post", "/clients", body);
 
-      navToHome(body);
+      if (response?.data?.success) {
+        toast.success("Registered successfully!");
+        handleLogin(response.data.token, response.data.user);
+        navToHome();
+      }
     } catch (e) {
       console.trace(e);
     }
+
+    setProcessing(false);
+    
   }
 
   return (
@@ -143,8 +192,8 @@ function ClientCreateAccountScreen(){
                 selectValue={city}
                 onChange={e => setCity(e.target.value)}
                 menuItems={[
-                  <MenuItem value={"USA"}>New York</MenuItem>,
-                  <MenuItem value={"Pakistan"}>Lahore</MenuItem>
+                  <MenuItem value={"New York"}>New York</MenuItem>,
+                  <MenuItem value={"Lahore"}>Lahore</MenuItem>
                 ]}
                 inputName="City"
                 divStyle={{

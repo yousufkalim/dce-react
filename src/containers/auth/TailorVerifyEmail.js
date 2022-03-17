@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -6,35 +6,82 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
+import Api from "../../api/index";
+
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function TailorVerifyEmailScreen(){
 
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    if(
+      !state?.["Email"] ||
+      !state?.["Password"] ||
+      !state?.["otp"]
+    ){
+      navigate("/login");
+    }
+  }, [])
+
   const navToCreateAccount = (_state) => {
     navigate("/tailor_create_account_1", { state: _state });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (processing) {
+      return;
+    }
     
     const data = new FormData(event.currentTarget);
 
+    const isValidated = FormValidations.tailorVerifyEmail(data);
+
+    if (!isValidated) {
+      return;
+    }
+
+    if(
+      data.get("Verification Code") != state.otp.otp
+    ){
+      toast.error("OTP is incorrect.");
+      return;
+    }
+
+    let response;
+
     try {
+      setProcessing(true);
+
       const body = {
-        "email": data.get("Email"),
-        "password": data.get("Password"),
-        "verification_code": data.get("Verification Code"),
+        "email": state["Email"],
+        "code": data.get("Verification Code"),
       };
 
-      console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
+      response = await Api("put", "/otps", body);
 
-      navToCreateAccount(body);
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToCreateAccount({
+          "Email": state["Email"],
+          "Password": state["Password"],
+        });
+      }
     } catch (e) {
       console.trace(e);
     }
+
+    setProcessing(false);
+    
   }
 
   return (
@@ -60,21 +107,23 @@ function TailorVerifyEmailScreen(){
         <div className="login_screen_row2">
           <div className="login_screen_row2_container">
             <CustomInput
+              disabled
               labelText="Email"
               inputType="email"
               inputName="Email"
               inputPlaceholder="abc@xyz.com"
-              inputDefaultValue={state.email}
+              inputDefaultValue={state?.["Email"]}
               divStyle={{
                 marginBottom: "6%"
               }}
             />
             <CustomInput
+              disabled
               labelText="Password"
               inputType="password"
               inputName="Password"
               inputPlaceholder="********"
-              inputDefaultValue={state.password}
+              inputDefaultValue={state?.["Email"]}
               divStyle={{
                 marginBottom: "6%"
               }}
@@ -83,7 +132,7 @@ function TailorVerifyEmailScreen(){
               labelText="Verification Code"
               inputType="password"
               inputName="Verification Code"
-              inputPlaceholder="Passcode"
+              inputPlaceholder="Verification Code"
               enableEyes={true}
               divStyle={{
                 marginBottom: "6%"

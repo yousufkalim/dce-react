@@ -16,11 +16,11 @@ function TailorCatalogListTile(){
   const [value, setValue] = React.useState(2);
 
   const navToViewCatalog = () => {
-    navigate("/tailor_view_catalog");
+    navigate("/view_catalog");
   }
 
   const navToEditCatalog = () => {
-    navigate("/tailor_edit_catalog");
+    navigate("/edit_catalog");
   }
 
   return (

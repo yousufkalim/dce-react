@@ -11,19 +11,19 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const navToOrders = () => {
-    navigate("/tailor_orders");
+    navigate("/orders");
   };
 
   const navToQuotes = () => {
-    navigate("/tailor_quotes");
+    navigate("/quotes");
   };
 
   const navToCatalog = () => {
-    navigate("/tailor_catalog");
+    navigate("/catalog");
   };
 
   const navToHowItWorks = () => {
-    navigate("/tailor_how_it_works");
+    navigate("/how_it_works");
   };
 
   return (

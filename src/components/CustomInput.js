@@ -9,6 +9,7 @@ function CustomInput({
   inputDefaultValue,
   enableEyes,
   onChange,
+  disabled,
   divStyle,
   labelStyle,
   inputStyle
@@ -44,6 +45,7 @@ function CustomInput({
         }}
       >
         <input
+          disabled={disabled}
           type={
             enableEyes
             ? !isPasswordVisible

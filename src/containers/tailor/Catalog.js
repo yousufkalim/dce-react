@@ -12,7 +12,7 @@ const TailorCatalogScreen = () => {
   const navigate = useNavigate();
 
   const navToCreateCatalog = () => {
-    navigate("/tailor_create_catalog");
+    navigate("/create_catalog");
   }
 
   return (

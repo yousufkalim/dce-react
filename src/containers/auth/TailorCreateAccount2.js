@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -6,37 +6,87 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
+import { handleLogin } from "../../utils/Auth";
+import Api from "../../api/index";
+
 import { useNavigate, useLocation} from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function TailorCreateAccount2Screen(){
 
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    if(
+      !state?.["Email"] ||
+      !state?.["Password"] ||
+      !state?.["Full Name"] ||
+      !state?.["Date of Birth"] ||
+      !state?.["Address"] ||
+      !state?.["Country"] ||
+      !state?.["City"]
+    ){
+      navigate("/login");
+    }
+  }, [])
+
   const navToHome = () => {
-    navigate("/tailor_home");
+    navigate("/home");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (processing) {
+      return;
+    }
     
     const data = new FormData(event.currentTarget);
 
+    const isValidated = FormValidations.tailorCreateAccount2(data);
+
+    if (!isValidated) {
+      return;
+    }
+
+    let response;
+
     try {
+      setProcessing(true);
+
       const body = {
-        ...state,
+        "email": state["Email"],
+        "password": state["Password"],
+        "name": state["Full Name"],
+        "dob": state["Date of Birth"],
+        "address": state["Address"],
+        "country": state["Country"],
+        "city": state["City"],
         "experience": data.get("Experience"),
         "area_of_experience": data.get("Area of Experience"),
         "diploma": data.get("Diploma"),
         "speciality": data.get("Speciality"),
       };
 
-      console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
+      response = await Api("post", "/tailors", body);
 
-      navToHome(body);
+      if (response?.data?.success) {
+        toast.success("Registered successfully!");
+        handleLogin(response.data.token, response.data.user);
+        navToHome();
+      }
     } catch (e) {
       console.trace(e);
     }
+
+    setProcessing(false);
+  
   }
 
   return (

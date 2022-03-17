@@ -55,7 +55,7 @@ function QuoteListTile(){
   const navigate = useNavigate();
 
   const navToViewQuote = () => {
-    navigate("/tailor_view_quote");
+    navigate("/view_quote");
   };
 
   return (

@@ -8,6 +8,8 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+import { handleLogout } from "../utils/Auth";
+
 import { useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -57,6 +59,11 @@ function ClientAppBar({
   const navToProfile = () => {
     navigate("/profile");
   };
+
+  const handleLogoutSubmit = () => {
+    handleCloseProfile();
+    handleLogout(navigate);
+  }
 
   return (
     <div
@@ -136,7 +143,7 @@ function ClientAppBar({
             }}
           >
             <MenuItem onClick={navToProfile}>Profile</MenuItem>
-            <MenuItem onClick={handleCloseProfile}>Logout</MenuItem>
+            <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
           </Menu>
         </div>
       </div>
@@ -144,7 +151,9 @@ function ClientAppBar({
   );
 }
 
-function SearchInput({}){
+function SearchInput({
+  
+}){
 
   const callback = () => {
     toast.success("Coming soon!");

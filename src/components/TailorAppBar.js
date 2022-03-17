@@ -8,6 +8,8 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+import { handleLogout } from "../utils/Auth";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -34,19 +36,19 @@ function TailorAppBar({
   };
 
   const navToHome = () => {
-    navigate("/tailor_home");
+    navigate("/home");
   };
 
   const navToOrders = () => {
-    navigate("/tailor_orders");
+    navigate("/orders");
   };
 
   const navToCatalog = () => {
-    navigate("/tailor_catalog");
+    navigate("/catalog");
   };
 
   const navToQuotes = () => {
-    navigate("/tailor_quotes");
+    navigate("/quotes");
   };
 
   const navToChat = () => {
@@ -56,7 +58,7 @@ function TailorAppBar({
 
   const navToProfile = () => {
     handleCloseProfile();
-    navigate("/tailor_profile");
+    navigate("/profile");
   };
 
   const navToSupport = () => {
@@ -66,8 +68,13 @@ function TailorAppBar({
 
   const navToTermsAndConditions = () => {
     handleCloseProfile();
-    navigate("/tailor_terms_and_conditions");
+    navigate("/terms_and_conditions");
   };
+
+  const handleLogoutSubmit = () => {
+    handleCloseProfile();
+    handleLogout(navigate);
+  }
 
   return (
     <div
@@ -154,7 +161,7 @@ function TailorAppBar({
             <MenuItem onClick={navToProfile}>Profile</MenuItem>
             <MenuItem onClick={navToSupport}>Support</MenuItem>
             <MenuItem onClick={navToTermsAndConditions}>Terms and Conditions</MenuItem>
-            <MenuItem onClick={handleCloseProfile}>Logout</MenuItem>
+            <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
           </Menu>
         </div>
       </div>

@@ -54,8 +54,8 @@ import TailorProfileIcon from "@mui/icons-material/AccountBox";
 import TailorHowItWorksIcon from "@mui/icons-material/AccountBox";
 import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 
-// Routes for login
-const DefaultRoutes = [
+// Routes for Auth
+const AuthRoutes = [
   {
     path: "*",
     name: "Login",
@@ -116,6 +116,16 @@ const DefaultRoutes = [
     icon: <TailorCreateAccount2Icon />,
     element: TailorCreateAccount2Screen,
   },
+];
+
+// Routes for Client
+const ClientRoutes = [
+  {
+    path: "*",
+    name: "ClientHome",
+    icon: <ClientHomeIcon />,
+    element: ClientHomeScreen,
+  },
   {
     path: "/home",
     name: "ClientHome",
@@ -158,68 +168,78 @@ const DefaultRoutes = [
     icon: <ClientEditAdIcon />,
     element: ClientEditAdScreen,
   },
+];
+
+// Routes for Tailor
+const TailorRoutes = [
   {
-    path: "/tailor_home",
+    path: "*",
     name: "TailorHome",
     icon: <TailorHomeIcon />,
     element: TailorHomeScreen,
   },
   {
-    path: "/tailor_catalog",
+    path: "/home",
+    name: "TailorHome",
+    icon: <TailorHomeIcon />,
+    element: TailorHomeScreen,
+  },
+  {
+    path: "/catalog",
     name: "TailorCatalog",
     icon: <TailorCatalogIcon />,
     element: TailorCatalogScreen,
   },
   {
-    path: "/tailor_view_catalog",
+    path: "/view_catalog",
     name: "TailorViewCatalog",
     icon: <TailorViewCatalogIcon />,
     element: TailorViewCatalogScreen,
   },
   {
-    path: "/tailor_create_catalog",
+    path: "/create_catalog",
     name: "TailorCreateCatalog",
     icon: <TailorCreateCatalogIcon />,
     element: TailorCreateCatalogScreen,
   },
   {
-    path: "/tailor_edit_catalog",
+    path: "/edit_catalog",
     name: "TailorEditCatalog",
     icon: <TailorEditCatalogIcon />,
     element: TailorEditCatalogScreen,
   },
   {
-    path: "/tailor_orders",
+    path: "/orders",
     name: "TailorOrders",
     icon: <TailorOrdersIcon />,
     element: TailorOrdersScreen,
   },
   {
-    path: "/tailor_quotes",
+    path: "/quotes",
     name: "TailorQuote",
     icon: <TailorQuotesIcon />,
     element: TailorQuotesScreen,
   },
   {
-    path: "/tailor_view_quote",
+    path: "/view_quote",
     name: "TailorViewQuote",
     icon: <TailorViewQuoteIcon />,
     element: TailorViewQuoteScreen,
   },
   {
-    path: "/tailor_profile",
+    path: "/profile",
     name: "TailorProfile",
     icon: <TailorProfileIcon />,
     element: TailorProfileScreen,
   },
   {
-    path: "/tailor_how_it_works",
+    path: "/how_it_works",
     name: "TailorHowItWorks",
     icon: <TailorHowItWorksIcon />,
     element: TailorHowItWorksScreen,
   },
   {
-    path: "/tailor_terms_and_conditions",
+    path: "/terms_and_conditions",
     name: "TailorTermsAndConditions",
     icon: <TailorTermsAndConditionsIcon />,
     element: TailorTermsAndConditionsScreen,
@@ -228,7 +248,9 @@ const DefaultRoutes = [
 
 // Getting all routes
 const RoutesObj = {
-  DefaultRoutes,
+  AuthRoutes,
+  ClientRoutes,
+  TailorRoutes,
 };
 
 export default RoutesObj;
