@@ -6,7 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 
 import AdElaborationSVG from "../../assets/AdElaboration.svg";
 
-import AppBar from "../../components/AppBar";
+import ClientAppBar from "../../components/ClientAppBar";
 import * as ParseAd from "../../components/ParseAd";
 
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ function ClientCreateAdScreen(){
 
   return (
     <div className="container">
-      <AppBar
+      <ClientAppBar
         activeTab={2}
         color="#FFFAF9"
       />

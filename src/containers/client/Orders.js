@@ -2,7 +2,7 @@ import React from "react";
 
 import UserSVG from "../../assets/User.svg";
 
-import AppBar from "../../components/AppBar";
+import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ function ClientOrdersScreen(){
 
   return (
     <div className="container-page-vertical">
-      <AppBar
+      <ClientAppBar
         activeTab={1}
         color="#FCFCFC"
       />

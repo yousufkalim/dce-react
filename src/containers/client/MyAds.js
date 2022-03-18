@@ -1,6 +1,6 @@
 import React from "react";
 
-import AppBar from "../../components/AppBar";
+import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ function ClientAdsScreen(){
 
   return (
     <div className="container-page-vertical">
-      <AppBar
+      <ClientAppBar
         activeTab={2}
         color="#FCFCFC"
       />

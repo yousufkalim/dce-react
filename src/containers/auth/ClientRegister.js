@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -6,11 +6,18 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
+import Api from "../../api/index";
+
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function ClientRegisterScreen(){
 
   const navigate = useNavigate();
+
+  const [processing, setProcessing] = useState(false);
 
   const navToLogin = () => {
     navigate("/login");
@@ -25,23 +32,48 @@ function ClientRegisterScreen(){
     );
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (processing) {
+      return;
+    }
     
     const data = new FormData(event.currentTarget);
 
+    const isValidated = FormValidations.clientRegister(data);
+
+    if (!isValidated) {
+      return;
+    }
+
+    let response;
+
     try {
+      setProcessing(true);
+
       const body = {
         "email": data.get("Email"),
-        "password": data.get("Password")
       };
 
-      console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
+      response = await Api("post", "/otps", body);
 
-      navToVerifyEmail(body);
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToVerifyEmail({
+          "Email": data.get("Email"),
+          "Password": data.get("Password"),
+          "otp": {
+            ...response.data.otp
+          }
+        });
+      }
     } catch (e) {
       console.trace(e);
     }
+
+    setProcessing(false);
+
   }
 
   return (

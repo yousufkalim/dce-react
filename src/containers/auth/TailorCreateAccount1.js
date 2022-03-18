@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -12,14 +12,27 @@ import MenuItem from "@mui/material/MenuItem";
 
 import { useNavigate, useLocation} from "react-router-dom";
 
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
+
 function TailorCreateAccount1Screen(){
+
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   const [dateOfBirth, setDateOfBirth] = useState(null);
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
 
-  const navigate = useNavigate();
-  const { state } = useLocation();
+  useEffect(() => {
+    if(
+      !state?.["Email"] ||
+      !state?.["Password"]
+    ){
+      navigate("/login");
+    }
+  }, [])
 
   const navToCreateAccount2 = (_state) => {
     navigate("/tailor_create_account_2", { "state": _state });
@@ -27,20 +40,36 @@ function TailorCreateAccount1Screen(){
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const data = new FormData(event.currentTarget);
+
+    const isValidated = FormValidations.tailorCreateAccount1(data);
+
+    if (!isValidated) {
+      return;
+    }
+
+    if(dateOfBirth == null){
+      toast.error("Date of Birth must be selected.");
+      return;
+    } else if(country == ""){
+      toast.error("Country must be selected.");
+      return;
+    } else if(city == "") {
+      toast.error("City must be selected.");
+      return;
+    }
 
     try {
       const body = {
-        ...state,
-        "full_name": data.get("Full Name"),
-        "data_of_birth": dateOfBirth,
-        "address": data.get("Address"),
-        "country": country,
-        "city": city,
+        "Email": state["Email"],
+        "Password": state["Password"],
+        "Full Name": data.get("Full Name"),
+        "Date of Birth": dateOfBirth,
+        "Address": data.get("Address"),
+        "Country": country,
+        "City": city,
       };
-
-      console.log(`THIS IS THE body: ${JSON.stringify(body)}`);
 
       navToCreateAccount2(body);
     } catch (e) {
@@ -143,8 +172,8 @@ function TailorCreateAccount1Screen(){
                 selectValue={city}
                 onChange={e => setCity(e.target.value)}
                 menuItems={[
-                  <MenuItem value={"USA"}>New York</MenuItem>,
-                  <MenuItem value={"Pakistan"}>Lahore</MenuItem>
+                  <MenuItem value={"New York"}>New York</MenuItem>,
+                  <MenuItem value={"Lahore"}>Lahore</MenuItem>
                 ]}
                 inputName="City"
                 divStyle={{
