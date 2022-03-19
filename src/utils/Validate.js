@@ -24,6 +24,13 @@ class Validators{
     return null;
   }
 
+  static selectValidator(name, value){
+    if (isEmpty(value)) {
+      return `${name} must be selected`;
+    }
+    return null;
+  }
+
   static lengthValidator(name, value, length){
 
     if (isEmpty(value)) {
@@ -105,13 +112,10 @@ function formValidator(data, objsArr){
 
   for( let i = 0; i < objsArr.length; i++ ){
 
-    const name = objsArr[i].name;
-    const objData = data.get(name);
-
     const objDataValidationError =
     objsArr[i].validationFunction
     ? objsArr[i].validationFunction()
-    : Validators.nullValidator(name, objData);
+    : Validators.nullValidator(objsArr[i].name, data.get(name));
 
     if(objDataValidationError){
       toast.error(objDataValidationError);

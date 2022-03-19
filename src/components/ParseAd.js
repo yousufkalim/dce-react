@@ -8,17 +8,20 @@ import CustomDatePicker from "./CustomDatePicker";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from '@mui/material/Checkbox';
 
-import { useNavigate } from "react-router-dom";
-
 function BasicSection({
-  noButton = false
+  state,
+  setState,
+  onClick
 }){
 
-  const [gender, setGender] = useState("");
-  const [category, setCategory] = useState("");
-  const [cut, setCut] = useState("");
-  const [color, setColor] = useState("");
-  const [materialFabrics, setMaterialFabrics] = useState("");
+  const _setState = (key, value) => {
+    const obj = {};
+    obj[key] = value;
+    setState({
+      ...state,
+      ...obj
+    });
+  }
 
   return (
     <>
@@ -43,8 +46,8 @@ function BasicSection({
               selectID="gender"
               selectName="gender"
               selectNullValue="Select gender for your creation"
-              selectValue={gender}
-              onChange={e => setGender(e.target.value)}
+              selectValue={state.gender}
+              onChange={e => _setState("gender", e.target.value)}
               menuItems={[
                 <MenuItem value={"Male"}>Male</MenuItem>,
                 <MenuItem value={"Female"}>Female</MenuItem>
@@ -69,8 +72,8 @@ function BasicSection({
               selectID="category"
               selectName="category"
               selectNullValue="Select one category for your ad"
-              selectValue={category}
-              onChange={e => setCategory(e.target.value)}
+              selectValue={state.category}
+              onChange={e => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"Category1"}>Category1</MenuItem>,
                 <MenuItem value={"Category2"}>Category2</MenuItem>
@@ -101,7 +104,7 @@ function BasicSection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Name of your creation"
-              onChange={e => console.log(e.target.value)}
+              onChange={e => _setState("name", e.target.value)}
             />
           </div>
         </div>
@@ -125,8 +128,8 @@ function BasicSection({
               selectID="cut"
               selectName="cut"
               selectNullValue="Select size"
-              selectValue={cut}
-              onChange={e => setCut(e.target.value)}
+              selectValue={state.cut}
+              onChange={e => _setState("cut", e.target.value)}
               menuItems={[
                 <MenuItem value={"5"}>5</MenuItem>,
                 <MenuItem value={"10"}>10</MenuItem>
@@ -160,6 +163,7 @@ function BasicSection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Write Measurement here"
+              onChange={e => _setState("measurements", e.target.value)}
             />
           </div>
         </div>
@@ -190,8 +194,8 @@ function BasicSection({
               selectID="colour"
               selectName="colour"
               selectNullValue="Select one colour for your Creations"
-              selectValue={color}
-              onChange={e => setColor(e.target.value)}
+              selectValue={state.color}
+              onChange={e => _setState("color", e.target.value)}
               menuItems={[
                 <MenuItem value={"Colour1"}>Colour1</MenuItem>,
                 <MenuItem value={"Colour2"}>Colour2</MenuItem>
@@ -219,8 +223,8 @@ function BasicSection({
               selectID="materialFabrics"
               selectName="materialFabrics"
               selectNullValue="Select Fabric Style"
-              selectValue={materialFabrics}
-              onChange={e => setMaterialFabrics(e.target.value)}
+              selectValue={state.fabric}
+              onChange={e => _setState("fabric", e.target.value)}
               menuItems={[
                 <MenuItem value={"Fabric1"}>Fabric1</MenuItem>,
                 <MenuItem value={"Fabric2"}>Fabric2</MenuItem>
@@ -254,7 +258,7 @@ function BasicSection({
           </div>
         </div>
         {
-          noButton
+          !onClick
           ? <></>
           : <CustomButton
               text="Next"
@@ -264,6 +268,7 @@ function BasicSection({
                 padding: "1.2% 5%",
                 boxShadow: "none"
               }}
+              onClick={onClick}
             />
         }
       </div>
@@ -272,13 +277,19 @@ function BasicSection({
 }
 
 function DeliverySection({
-  noButton = false
+  state,
+  setState,
+  onClick
 }){
 
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [deliveryType, setDeliveryType] = useState("");
-  const [deliveryDate, setDeliveryDate] = useState(null);
+  const _setState = (key, value) => {
+    const obj = {};
+    obj[key] = value;
+    setState({
+      ...state,
+      ...obj
+    });
+  }
 
   return (
     <>
@@ -305,6 +316,7 @@ function DeliverySection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Delivery Address"
+              onChange={e => _setState("address", e.target.value)}
             />
           </div>
         </div>
@@ -322,8 +334,8 @@ function DeliverySection({
               selectID="country"
               selectName="country"
               selectNullValue="Country"
-              selectValue={country}
-              onChange={e => setCountry(e.target.value)}
+              selectValue={state.country}
+              onChange={e => _setState("country", e.target.value)}
               menuItems={[
                 <MenuItem value={"Country1"}>Country1</MenuItem>,
                 <MenuItem value={"Country2"}>Country2</MenuItem>
@@ -352,8 +364,8 @@ function DeliverySection({
               selectID="city"
               selectName="city"
               selectNullValue="City"
-              selectValue={city}
-              onChange={e => setCity(e.target.value)}
+              selectValue={state.city}
+              onChange={e => _setState("city", e.target.value)}
               menuItems={[
                 <MenuItem value={"City1"}>City1</MenuItem>,
                 <MenuItem value={"City2"}>City2</MenuItem>
@@ -383,6 +395,7 @@ function DeliverySection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Write any note regarding Delivery (Optional)"
+              onChange={e => _setState("note", e.target.value)}
             />
           </div>
         </div>
@@ -406,8 +419,8 @@ function DeliverySection({
               selectID="delivery_type"
               selectName="delivery_type"
               selectNullValue="Urgent, Normal"
-              selectValue={deliveryType}
-              onChange={e => setDeliveryType(e.target.value)}
+              selectValue={state.type}
+              onChange={e => _setState("type", e.target.value)}
               menuItems={[
                 <MenuItem value={"Urgent"}>Urgent</MenuItem>,
                 <MenuItem value={"Normal"}>Normal</MenuItem>
@@ -436,8 +449,8 @@ function DeliverySection({
               labelStyle={{
                 display: "none"
               }}
-              value={deliveryDate}
-              onChange={setDeliveryDate}
+              value={state.date}
+              onChange={e => _setState("date", e)}
             />
           </div>
         </div>
@@ -445,7 +458,7 @@ function DeliverySection({
           *Select Date for delivery
         </p>
         {
-          noButton
+          !onClick
           ? <></>
           : <CustomButton
               text="Next"
@@ -455,6 +468,7 @@ function DeliverySection({
                 padding: "1.2% 5%",
                 boxShadow: "none"
               }}
+              onClick={onClick}
             />
         }
       </div>
@@ -463,15 +477,8 @@ function DeliverySection({
 }
 
 function NotesSection({
-  noButton = false,
-  noCheckbox = false
+  onClick
 }){
-
-  const navigate = useNavigate();
-
-  const navToCreateAd = () => {
-    navigate("/my_ads");
-  };
 
   return (
     <>
@@ -526,7 +533,7 @@ function NotesSection({
           </div>
         </div>
         {
-          noCheckbox
+          !onClick
           ? <></>
           : <div className="pa_payment_section_consent_container">
               <Checkbox
@@ -577,11 +584,11 @@ function NotesSection({
             </div>
         }
         {
-          noButton
+          !onClick
           ? <></>
           : <CustomButton
               text="Publish Ad"
-              onClick={navToCreateAd}
+              onClick={onClick}
               style={{
                 marginBottom: "2%",
                 padding: "1.2% 5%",
