@@ -23,7 +23,7 @@ function ClientCreateAccountScreen(){
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [processing, setProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(null);
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
@@ -44,7 +44,7 @@ function ClientCreateAccountScreen(){
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (processing) {
+    if (isProcessing) {
       return;
     }
     
@@ -70,7 +70,7 @@ function ClientCreateAccountScreen(){
     let response;
 
     try {
-      setProcessing(true);
+      setIsProcessing(true);
 
       const body = {
         "email": state["Email"],
@@ -93,7 +93,7 @@ function ClientCreateAccountScreen(){
       console.trace(e);
     }
 
-    setProcessing(false);
+    setIsProcessing(false);
     
   }
 

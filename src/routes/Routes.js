@@ -163,7 +163,7 @@ const ClientRoutes = [
     element: ClientAdsScreen,
   },
   {
-    path: "/edit_ad",
+    path: "/edit_ad/:id",
     name: "ClientEditAd",
     icon: <ClientEditAdIcon />,
     element: ClientEditAdScreen,

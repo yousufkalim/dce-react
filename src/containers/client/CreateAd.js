@@ -27,6 +27,7 @@ function ClientCreateAdScreen(){
 
   const navigate = useNavigate();
 
+  const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [basicSection, setBasicSection] = useState({
     gender: "",
@@ -67,13 +68,71 @@ function ClientCreateAdScreen(){
     setActiveStep(2);
   }
 
+  const notesSectionCallback = async (event) => {
+    event.preventDefault();
+
+    const isValidated =
+    FormValidations.parseAdBasicSection(basicSection) &&
+    FormValidations.parseAdDeliverySection(deliverySection) &&
+    FormValidations.parseAdNotesSection(notesSection);
+    if (!isValidated) {
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+    
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        "gender": basicSection.gender,
+        "category": basicSection.category,
+        "name": basicSection.name,
+        "cut": basicSection.cut,
+        "measurments": basicSection.measurements,
+        "color": basicSection.color,
+        "fabric": basicSection.fabric,
+        "delivery": {
+          "address": deliverySection.address,
+          "country": deliverySection.country,
+          "city": deliverySection.city,
+          "note": deliverySection.note,
+          "type": deliverySection.type,
+          "date": "2022/02/25"
+        },
+        "note": notesSection.note,
+        "budget": {
+          "min_price": notesSection.min_price,
+          "max_price": notesSection.max_price
+        }
+      }
+
+      console.log(body);
+
+      response = await Api("post", "/orders", body);
+
+      if (response?.data?.success) {
+        toast.success("Ad created successfully.");
+        navToMyAds();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
+
   const navToMyAds = () => {
-    navigate("my_ads");
+    navigate("/my_ads");
   }
 
   return (
     <>
-    {console.log(deliverySection)}
     <div className="container">
       <ClientAppBar
         activeTab={2}
@@ -129,7 +188,9 @@ function ClientCreateAdScreen(){
                   />
                 : activeStep == 2
                 ? <ParseAd.NotesSection
-                    onClick={() => navToMyAds()}
+                    state={notesSection}
+                    setState={setNotesSection}
+                    onClick={notesSectionCallback}
                   />
                 : <></>
               }

@@ -20,7 +20,7 @@ function TailorCreateAccount2Screen(){
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [processing, setProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     if(
@@ -43,7 +43,7 @@ function TailorCreateAccount2Screen(){
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (processing) {
+    if (isProcessing) {
       return;
     }
     
@@ -58,7 +58,7 @@ function TailorCreateAccount2Screen(){
     let response;
 
     try {
-      setProcessing(true);
+      setIsProcessing(true);
 
       const body = {
         "email": state["Email"],
@@ -85,7 +85,7 @@ function TailorCreateAccount2Screen(){
       console.trace(e);
     }
 
-    setProcessing(false);
+    setIsProcessing(false);
   
   }
 

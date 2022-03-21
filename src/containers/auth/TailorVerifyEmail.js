@@ -19,7 +19,7 @@ function TailorVerifyEmailScreen(){
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [processing, setProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     if(
@@ -38,7 +38,7 @@ function TailorVerifyEmailScreen(){
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (processing) {
+    if (isProcessing) {
       return;
     }
     
@@ -60,7 +60,7 @@ function TailorVerifyEmailScreen(){
     let response;
 
     try {
-      setProcessing(true);
+      setIsProcessing(true);
 
       const body = {
         "email": state["Email"],
@@ -80,7 +80,7 @@ function TailorVerifyEmailScreen(){
       console.trace(e);
     }
 
-    setProcessing(false);
+    setIsProcessing(false);
     
   }
 

@@ -87,7 +87,7 @@ function AdListTile(props){
   const [expanded, setExpanded] = React.useState(false);
 
   const navToEditAd = () => {
-    navigate("/edit_ad");
+    navigate(`/edit_ad/${props._id}`);
   };
 
   return (
