@@ -194,6 +194,23 @@ function parseAdDeliverySection(data){
   return validated;
 
 }
+
+function parseAdNotesSection(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Minimum Price", data["min_price"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Maximum Price", data["max_price"])
+    },
+  ];
+
+  const validated = formValidator(null, valArr)
+
+  return validated;
+
+}
   
 export {
   login,
@@ -205,5 +222,6 @@ export {
   tailorCreateAccount1,
   tailorCreateAccount2,
   parseAdBasicSection,
-  parseAdDeliverySection
+  parseAdDeliverySection,
+  parseAdNotesSection
 }

@@ -17,7 +17,7 @@ function ClientRegisterScreen(){
 
   const navigate = useNavigate();
 
-  const [processing, setProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const navToLogin = () => {
     navigate("/login");
@@ -35,7 +35,7 @@ function ClientRegisterScreen(){
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (processing) {
+    if (isProcessing) {
       return;
     }
     
@@ -50,7 +50,7 @@ function ClientRegisterScreen(){
     let response;
 
     try {
-      setProcessing(true);
+      setIsProcessing(true);
 
       const body = {
         "email": data.get("Email"),
@@ -72,7 +72,7 @@ function ClientRegisterScreen(){
       console.trace(e);
     }
 
-    setProcessing(false);
+    setIsProcessing(false);
 
   }
 

@@ -49,8 +49,8 @@ function BasicSection({
               selectValue={state.gender}
               onChange={e => _setState("gender", e.target.value)}
               menuItems={[
-                <MenuItem value={"Male"}>Male</MenuItem>,
-                <MenuItem value={"Female"}>Female</MenuItem>
+                <MenuItem value={"male"}>Male</MenuItem>,
+                <MenuItem value={"female"}>Female</MenuItem>
               ]}
               selectSX={{
                 fontSize: "12px"
@@ -75,8 +75,8 @@ function BasicSection({
               selectValue={state.category}
               onChange={e => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"Category1"}>Category1</MenuItem>,
-                <MenuItem value={"Category2"}>Category2</MenuItem>
+                <MenuItem value={"category_1"}>Category1</MenuItem>,
+                <MenuItem value={"category_2"}>Category2</MenuItem>
               ]}
             />
           </div>
@@ -104,6 +104,7 @@ function BasicSection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Name of your creation"
+              inputDefaultValue={state.name}
               onChange={e => _setState("name", e.target.value)}
             />
           </div>
@@ -163,6 +164,7 @@ function BasicSection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Write Measurement here"
+              inputDefaultValue={state.measurements}
               onChange={e => _setState("measurements", e.target.value)}
             />
           </div>
@@ -197,8 +199,8 @@ function BasicSection({
               selectValue={state.color}
               onChange={e => _setState("color", e.target.value)}
               menuItems={[
-                <MenuItem value={"Colour1"}>Colour1</MenuItem>,
-                <MenuItem value={"Colour2"}>Colour2</MenuItem>
+                <MenuItem value={"colour_1"}>Colour1</MenuItem>,
+                <MenuItem value={"colour_2"}>Colour2</MenuItem>
               ]}
             />
           </div>
@@ -226,8 +228,8 @@ function BasicSection({
               selectValue={state.fabric}
               onChange={e => _setState("fabric", e.target.value)}
               menuItems={[
-                <MenuItem value={"Fabric1"}>Fabric1</MenuItem>,
-                <MenuItem value={"Fabric2"}>Fabric2</MenuItem>
+                <MenuItem value={"fabric_1"}>Fabric1</MenuItem>,
+                <MenuItem value={"fabric_2"}>Fabric2</MenuItem>
               ]}
             />
           </div>
@@ -254,6 +256,7 @@ function BasicSection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Upload Drawing, Photo, Document, etc."
+              inputType="file"
             />
           </div>
         </div>
@@ -316,6 +319,7 @@ function DeliverySection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Delivery Address"
+              inputDefaultValue={state.address}
               onChange={e => _setState("address", e.target.value)}
             />
           </div>
@@ -337,8 +341,8 @@ function DeliverySection({
               selectValue={state.country}
               onChange={e => _setState("country", e.target.value)}
               menuItems={[
-                <MenuItem value={"Country1"}>Country1</MenuItem>,
-                <MenuItem value={"Country2"}>Country2</MenuItem>
+                <MenuItem value={"country_1"}>Country1</MenuItem>,
+                <MenuItem value={"country_2"}>Country2</MenuItem>
               ]}
             />
           </div>
@@ -367,8 +371,8 @@ function DeliverySection({
               selectValue={state.city}
               onChange={e => _setState("city", e.target.value)}
               menuItems={[
-                <MenuItem value={"City1"}>City1</MenuItem>,
-                <MenuItem value={"City2"}>City2</MenuItem>
+                <MenuItem value={"city_1"}>City1</MenuItem>,
+                <MenuItem value={"city_2"}>City2</MenuItem>
               ]}
             />
           </div>
@@ -395,6 +399,7 @@ function DeliverySection({
                 fontSize: "12px"
               }}
               inputPlaceholder="Write any note regarding Delivery (Optional)"
+              inputDefaultValue={state.note}
               onChange={e => _setState("note", e.target.value)}
             />
           </div>
@@ -422,8 +427,8 @@ function DeliverySection({
               selectValue={state.type}
               onChange={e => _setState("type", e.target.value)}
               menuItems={[
-                <MenuItem value={"Urgent"}>Urgent</MenuItem>,
-                <MenuItem value={"Normal"}>Normal</MenuItem>
+                <MenuItem value={"urgent"}>Urgent</MenuItem>,
+                <MenuItem value={"normal"}>Normal</MenuItem>
               ]}
             />
           </div>
@@ -477,8 +482,19 @@ function DeliverySection({
 }
 
 function NotesSection({
+  state,
+  setState,
   onClick
 }){
+
+  const _setState = (key, value) => {
+    const obj = {};
+    obj[key] = value;
+    setState({
+      ...state,
+      ...obj
+    });
+  }
 
   return (
     <>
@@ -496,7 +512,11 @@ function NotesSection({
             </p>
           </div>
           <div className="pa_profile_section_input_input">
-            <textarea className="pa_profile_section_textarea_textarea">
+            <textarea
+              className="pa_profile_section_textarea_textarea"
+              defaultValue={state.note}
+              onChange={e => _setState("note", e.target.value)}
+            >
             </textarea>
           </div>
         </div>
@@ -513,7 +533,12 @@ function NotesSection({
             </p>
           </div>
           <div className="pa_payment_section_input_input_container">
-            <input className="pa_payment_section_input_input" />
+            <input
+              className="pa_payment_section_input_input"
+              type="number"
+              defaultValue={state.min_price}
+              onChange={e => _setState("min_price", e.target.value)}
+            />
           </div>
         </div>
         <div
@@ -529,7 +554,12 @@ function NotesSection({
             </p>
           </div>
           <div className="pa_payment_section_input_input_container">
-            <input className="pa_payment_section_input_input" />
+            <input
+              className="pa_payment_section_input_input"
+              type="number"
+              defaultValue={state.max_price}
+              onChange={e => _setState("max_price", e.target.value)}
+            />
           </div>
         </div>
         {

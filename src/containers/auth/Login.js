@@ -19,7 +19,7 @@ function LoginScreen(){
 
   const navigate = useNavigate();
 
-  const [processing, setProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const navToHome = () => {
     navigate("/home");
@@ -32,7 +32,7 @@ function LoginScreen(){
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (processing) {
+    if (isProcessing) {
       return;
     }
     
@@ -47,7 +47,7 @@ function LoginScreen(){
     let response;
 
     try {
-      setProcessing(true);
+      setIsProcessing(true);
 
       const body = {
         "email": data.get("Email"),
@@ -65,7 +65,7 @@ function LoginScreen(){
       console.trace(e);
     }
 
-    setProcessing(false);
+    setIsProcessing(false);
     
   }
 
