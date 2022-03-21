@@ -10,6 +10,7 @@ function CustomDropDown({
   selectValue,
   onChange,
   menuItems,
+  disabled,
   divStyle,
   labelStyle,
   selectSX,
@@ -39,6 +40,7 @@ function CustomDropDown({
       >
         <Select
           displayEmpty
+          disabled={disabled}
           id={selectID}
           name={selectName}
           value={selectValue}

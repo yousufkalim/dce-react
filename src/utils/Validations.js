@@ -211,6 +211,23 @@ function parseAdNotesSection(data){
   return validated;
 
 }
+
+function sendQuote(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Price", data["price"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Description", data["description"])
+    },
+  ];
+
+  const validated = formValidator(null, valArr)
+
+  return validated;
+
+}
   
 export {
   login,
@@ -223,5 +240,6 @@ export {
   tailorCreateAccount2,
   parseAdBasicSection,
   parseAdDeliverySection,
-  parseAdNotesSection
+  parseAdNotesSection,
+  sendQuote
 }

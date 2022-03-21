@@ -221,7 +221,7 @@ const TailorRoutes = [
     element: TailorQuotesScreen,
   },
   {
-    path: "/view_quote",
+    path: "/view_quote/:id",
     name: "TailorViewQuote",
     icon: <TailorViewQuoteIcon />,
     element: TailorViewQuoteScreen,

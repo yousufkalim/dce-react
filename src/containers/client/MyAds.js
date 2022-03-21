@@ -25,7 +25,7 @@ function ClientAdsScreen(){
   const getAds = async () => {
     let response;
     try {
-      response = await Api("get", `/orders`);
+      response = await Api("get", `/orders/client`);
       const adsData = response.data.orders;
       setAds(adsData);
       setIsLoading(false);

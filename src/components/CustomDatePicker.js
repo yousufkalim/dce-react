@@ -9,6 +9,7 @@ function CustomDatePicker({
   labelText,
   value,
   onChange,
+  disabled,
   divStyle,
   labelStyle,
 }){
@@ -43,6 +44,7 @@ function CustomDatePicker({
             inputFormat="MM/dd/yyyy"
             renderInput={(params) => <TextField {...params} />}
             maxDate={new Date()}
+            disabled={disabled}
           />
         </LocalizationProvider>
       </div>
