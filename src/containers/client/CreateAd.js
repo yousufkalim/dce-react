@@ -9,7 +9,13 @@ import AdElaborationSVG from "../../assets/AdElaboration.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import * as ParseAd from "../../components/ParseAd";
 
+import Api from "../../api/index";
+
 import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 const steps = [
   'Basic',
@@ -22,8 +28,52 @@ function ClientCreateAdScreen(){
   const navigate = useNavigate();
 
   const [activeStep, setActiveStep] = useState(0);
+  const [basicSection, setBasicSection] = useState({
+    gender: "",
+    category: "",
+    name: "",
+    cut: "",
+    measurements: "",
+    color: "",
+    fabric: ""
+  });
+  const [deliverySection, setDeliverySection] = useState({
+    address: "",
+    country: "",
+    city: "",
+    note: "",
+    type: "",
+    date: "",
+  });
+  const [notesSection, setNotesSection] = useState({
+    note: "",
+    min_price: "",
+    max_price: "",
+  });
+
+  const basicSectionCallback = () => {
+    const isValidated = FormValidations.parseAdBasicSection(basicSection);
+    if (!isValidated) {
+      return;
+    }
+    setActiveStep(1);
+  }
+
+  const deliverySectionCallback = () => {
+    const isValidated = FormValidations.parseAdDeliverySection(deliverySection);
+    if (!isValidated) {
+      return;
+    }
+    setActiveStep(2);
+  }
+
+  const navToMyAds = () => {
+    navigate("my_ads");
+  }
 
   return (
+    <>
+    {console.log(deliverySection)}
     <div className="container">
       <ClientAppBar
         activeTab={2}
@@ -56,9 +106,9 @@ function ClientCreateAdScreen(){
           >
             <div className="pa_steps_row">
               <Stepper activeStep={activeStep} alternativeLabel>
-                {steps.map((label, index) => (
-                  <Step key={label}>
-                    <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                {steps.map((v, i) => (
+                  <Step key={v}>
+                    <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>
                   </Step>
                 ))}
               </Stepper>
@@ -66,11 +116,21 @@ function ClientCreateAdScreen(){
             <div className="pa_content_row">
               {
                 activeStep == 0
-                ? <ParseAd.BasicSection />
+                ? <ParseAd.BasicSection
+                    state={basicSection}
+                    setState={setBasicSection}
+                    onClick={basicSectionCallback}
+                  />
                 : activeStep == 1
-                ? <ParseAd.DeliverySection />
+                ? <ParseAd.DeliverySection
+                    state={deliverySection}
+                    setState={setDeliverySection}
+                    onClick={deliverySectionCallback}
+                  />
                 : activeStep == 2
-                ? <ParseAd.NotesSection />
+                ? <ParseAd.NotesSection
+                    onClick={() => navToMyAds()}
+                  />
                 : <></>
               }
             </div>
@@ -78,6 +138,7 @@ function ClientCreateAdScreen(){
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -73,7 +73,7 @@ function ClientEditAdScreen(){
                 </Stepper>
               </div>
               <div className="pa_content_row">
-                <ParseAd.BasicSection noButton />
+                <ParseAd.BasicSection />
               </div>
             </div>
           </div>

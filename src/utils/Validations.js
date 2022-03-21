@@ -136,6 +136,64 @@ function tailorCreateAccount2(data){
   return validated;
 
 }
+
+function parseAdBasicSection(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.selectValidator("Gender", data["gender"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Category", data["category"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Name", data["name"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Cut", data["cut"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Measurements", data["measurements"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Color", data["color"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Fabric", data["fabric"])
+    },
+  ];
+
+  const validated = formValidator(null, valArr)
+
+  return validated;
+
+}
+
+function parseAdDeliverySection(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Delivery Address", data["address"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Country", data["country"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("City", data["city"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Delivery Type", data["type"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Delivery Date", data["date"])
+    },
+  ];
+
+  const validated = formValidator(null, valArr)
+
+  return validated;
+
+}
   
 export {
   login,
@@ -145,5 +203,7 @@ export {
   tailorRegister,
   tailorVerifyEmail,
   tailorCreateAccount1,
-  tailorCreateAccount2
+  tailorCreateAccount2,
+  parseAdBasicSection,
+  parseAdDeliverySection
 }
