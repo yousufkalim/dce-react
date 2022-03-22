@@ -9,14 +9,18 @@ import Collapse from "@mui/material/Collapse";
 
 import { useNavigate } from "react-router-dom";
 
+import { getUser } from "../../utils/Auth";
 import Api from "../../api";
+import { toast } from "react-toastify";
 
 function ClientAdsScreen(){
 
   const navigate = useNavigate();
 
+  const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [ads, setAds] = useState([]);
+  const user = getUser();
 
   useEffect(() => {
     getAds();
@@ -25,7 +29,7 @@ function ClientAdsScreen(){
   const getAds = async () => {
     let response;
     try {
-      response = await Api("get", `/orders/client`);
+      response = await Api("post", `/orders/byQuery`, { client: user._id, status: "pending" });
       const adsData = response.data.orders;
       setAds(adsData);
       setIsLoading(false);
@@ -33,6 +37,36 @@ function ClientAdsScreen(){
       console.trace(e);
     }
   };
+
+  const acceptQuote = async (event, id) => {
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        "quote": id,
+      };
+
+      response = await Api("post", "/quotes/accept", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        getAds();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
 
   const navToCreateAd = () => {
     navigate("/create_ad");
@@ -71,7 +105,10 @@ function ClientAdsScreen(){
           {
             ads.map(
               _ =>
-              <AdListTile {..._} />
+              <AdListTile
+                {..._}
+                acceptQuote={acceptQuote}
+              />
             )
           }
         </div>
@@ -195,7 +232,10 @@ function AdListTile(props){
         {
           props?.quotes?.map(
             _ =>
-            <AdQuoteListTile {..._} />
+            <AdQuoteListTile
+              {..._}
+              acceptQuote={props.acceptQuote}
+            />
           )
         }
       </Collapse>
@@ -267,6 +307,7 @@ function AdQuoteListTile(props){
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
             text="Accept"
+            onClick={e => props.acceptQuote(e, props._id)}
             style={{
               boxShadow: "none"
             }}

@@ -28,7 +28,7 @@ function TailorQuotesScreen(){
   const getQuotes = async () => {
     let response;
     try {
-      response = await Api("get", `/orders/quotes`);
+      response = await Api("post", `/orders/byQuery`, { status: "pending" });
       const quotesData = response.data.orders;
       setQuotes(quotesData);
       setIsLoading(false);

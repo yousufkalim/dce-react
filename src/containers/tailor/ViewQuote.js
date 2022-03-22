@@ -14,6 +14,7 @@ import CustomButton from "../../components/CustomButton";
 import Footer from "../../components/Footer";
 import * as ParseAd from "../../components/ParseAd";
 
+import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -34,7 +35,9 @@ function TailorViewQuoteScreen(){
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const user = getUser();
 
+  const [ad, setAd] = useState(null);
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -71,6 +74,7 @@ function TailorViewQuoteScreen(){
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
+      setAd(adData);
       setBasicSection({
         gender: adData.gender,
         category: adData.category,
@@ -90,6 +94,11 @@ function TailorViewQuoteScreen(){
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(ad.quotes.some(_ => _.tailor._id == user._id)){
+      toast.error("You have already sent quote for this ad.");
+      return;
+    }
 
     const isValidated =
     FormValidations.sendQuote({
@@ -326,6 +335,7 @@ function TailorViewQuoteScreen(){
             </div>
             <div className="tqs_sqm_input_input">
               <CustomInput
+                inputType="number"
                 labelStyle={{
                   display: "none"
                 }}
