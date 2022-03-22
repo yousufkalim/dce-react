@@ -36,6 +36,8 @@ function TailorOrdersScreen(){
   };
 
   return (
+    <>
+    {console.log(ordersInProgress)}
     <div className="container-page-vertical">
       <TailorAppBar
         activeTab={0}
@@ -112,6 +114,7 @@ function TailorOrdersScreen(){
       </div>
       <Footer />
     </div>
+    </>
   );
 }
 
