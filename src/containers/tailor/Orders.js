@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
 
@@ -8,11 +8,36 @@ import Footer from "../../components/Footer";
 
 import { useNavigate } from "react-router-dom";
 
+import { getUser } from "../../utils/Auth";
+import Api from "../../api";
+
 function TailorOrdersScreen(){
 
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [ordersInProgress, setOrdersInProgress] = useState([]);
+  const user = getUser();
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
+  const getOrders = async () => {
+    let response;
+    try {
+      response = await Api("post", `/orders/byQuery`, { tailor: user._id }); // TODO
+      const ordersData = response.data.orders;
+      setOrdersInProgress(ordersData);
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
   return (
+    <>
+    {console.log(ordersInProgress)}
     <div className="container-page-vertical">
       <TailorAppBar
         activeTab={0}
@@ -33,9 +58,9 @@ function TailorOrdersScreen(){
           />
         </div>
         <div className="client_orders_screen_row2">
+          {/* <OrderRequestListTile />
           <OrderRequestListTile />
-          <OrderRequestListTile />
-          <OrderRequestListTile />
+          <OrderRequestListTile /> */}
         </div>
       </div>
       <div
@@ -55,8 +80,15 @@ function TailorOrdersScreen(){
           />
         </div>
         <div className="client_orders_screen_row2">
-          <OrderInProgressListTile />
-          <OrderInProgressListTile />
+          {
+            ordersInProgress.map(
+              _ =>
+              <OrderInProgressListTile
+                order={_}
+                quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+              />
+            )
+          }
         </div>
       </div>
       <div
@@ -76,12 +108,13 @@ function TailorOrdersScreen(){
           />
         </div>
         <div className="client_orders_screen_row2">
-          <OrderCompletedListTile />
-          <OrderCompletedListTile />
+          {/* <OrderCompletedListTile />
+          <OrderCompletedListTile /> */}
         </div>
       </div>
       <Footer />
     </div>
+    </>
   );
 }
 
@@ -181,7 +214,7 @@ function OrderRequestListTile(){
   );
 }
 
-function OrderInProgressListTile(){
+function OrderInProgressListTile(props){
   return (
     <div className="cos_order_list_tile_container">
       <div className="cos_order_list_tile_column1">
@@ -194,7 +227,7 @@ function OrderInProgressListTile(){
           <img style={{ width: "30%" }} src={UserSVG} />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
-          Sasha Designs
+          {props.order.client.name}
         </p>
       </div>
       <div
@@ -213,7 +246,7 @@ function OrderInProgressListTile(){
             Order
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            Pant, Shirt
+            {props.order.name}
           </p>
         </div>
         <div
@@ -226,7 +259,7 @@ function OrderInProgressListTile(){
             Order Date
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            August 10, 2022
+            {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
         </div>
         <div
@@ -239,13 +272,13 @@ function OrderInProgressListTile(){
             Delivery Date
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            August 25, 2022
+            {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
         </div>
       </div>
       <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
-          500$
+          {`${props.quote.price}$`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           Bill

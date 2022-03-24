@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
 
@@ -7,9 +7,32 @@ import CustomButton from "../../components/CustomButton";
 
 import { useNavigate } from "react-router-dom";
 
+import { getUser } from "../../utils/Auth";
+import Api from "../../api";
+
 function ClientOrdersScreen(){
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
+  const user = getUser();
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
+  const getOrders = async () => {
+    let response;
+    try {
+      response = await Api("post", `/orders/byQuery`, { client: user._id, status: "in_progress" });
+      const ordersData = response.data.orders;
+      setOrders(ordersData);
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
 
   return (
     <div className="container-page-vertical">
@@ -27,23 +50,27 @@ function ClientOrdersScreen(){
           <p className="client_orders_screen_row1_text">
             Orders List
           </p>
-          <CustomButton
+          {/* <CustomButton
             text="Place your order"
-          />
+          /> */}
         </div>
         <div className="client_orders_screen_row2">
-          <OrderListTile />
-          <OrderListTile />
-          <OrderListTile />
-          <OrderListTile />
-          <OrderListTile />
+          {
+            orders.map(
+              _ =>
+              <OrderListTile
+                order={_}
+                quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+              />
+            )
+          }
         </div>
       </div>
     </div>
   );
 }
 
-function OrderListTile(){
+function OrderListTile(props){
   return (
     <div className="cos_order_list_tile_container">
       <div className="cos_order_list_tile_column1">
@@ -56,7 +83,7 @@ function OrderListTile(){
           <img style={{ width: "30%" }} src={UserSVG} />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
-          Sasha Designs
+          {props.quote.tailor.name}
         </p>
       </div>
       <div
@@ -75,7 +102,7 @@ function OrderListTile(){
             Order
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            Pant, Shirt
+            {props.order.name}
           </p>
         </div>
         <div
@@ -88,7 +115,7 @@ function OrderListTile(){
             Order Date
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            August 10, 2022
+            {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
         </div>
         <div
@@ -101,13 +128,13 @@ function OrderListTile(){
             Delivery Date
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            August 25, 2022
+            {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
         </div>
       </div>
       <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
-          500$
+          {`${props.quote.price}$`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           Bill

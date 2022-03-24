@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -14,7 +14,13 @@ import CustomButton from "../../components/CustomButton";
 import Footer from "../../components/Footer";
 import * as ParseAd from "../../components/ParseAd";
 
-import { useNavigate } from "react-router-dom";
+import { getUser } from "../../utils/Auth";
+import Api from "../../api";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 const steps = [
   'Basic',
@@ -25,6 +31,117 @@ const steps = [
 function TailorViewQuoteScreen(){
 
   const navigate = useNavigate();
+  const params = useParams();
+
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const user = getUser();
+
+  const [ad, setAd] = useState(null);
+  const [basicSection, setBasicSection] = useState({
+    gender: "",
+    category: "",
+    name: "",
+    cut: "",
+    measurements: "",
+    color: "",
+    fabric: ""
+  });
+  const [deliverySection, setDeliverySection] = useState({
+    address: "",
+    country: "",
+    city: "",
+    note: "",
+    type: "",
+    date: "",
+  });
+  const [notesSection, setNotesSection] = useState({
+    note: "",
+    min_price: "",
+    max_price: "",
+  });
+
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    getAd();
+  }, []);
+
+  // func to get current project
+  const getAd = async () => {
+    let response;
+    try {
+      response = await Api("get", `/orders/${params.id}`);
+      const adData = response.data.order;
+      setAd(adData);
+      setBasicSection({
+        gender: adData.gender,
+        category: adData.category,
+        name: adData.name,
+        cut: adData.cut,
+        measurements: adData.measurements,
+        color: adData.color,
+        fabric: adData.fabric
+      });
+      setDeliverySection(adData.delivery);
+      setNotesSection(adData.budget);
+    } catch (e) {
+      console.trace(e);
+    }
+    setIsLoading(false);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if(ad.quotes.some(_ => _.tailor._id == user._id)){
+      toast.error("You have already sent quote for this ad.");
+      return;
+    }
+
+    const isValidated =
+    FormValidations.sendQuote({
+      price,
+      description
+    });
+
+    if (!isValidated) {
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+    
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        "order": params.id,
+        "price": price,
+        "description": description
+      }
+
+      response = await Api("post", `/quotes`, body);
+
+      if (response?.data?.success) {
+        toast.success("Quote sent successfully.");
+        navToQuotes();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
+
+  const navToQuotes = () => {
+    navigate("/quotes");
+  }
 
   return (
     <div className="container-page">
@@ -76,7 +193,11 @@ function TailorViewQuoteScreen(){
                 </Stepper>
               </div>
               <div className="pa_content_row">
-                <ParseAd.BasicSection />
+                <ParseAd.BasicSection
+                  disabled
+                  state={basicSection}
+                  setState={setBasicSection}
+                />
               </div>
             </div>
           </div>
@@ -106,7 +227,11 @@ function TailorViewQuoteScreen(){
                 </Stepper>
               </div>
               <div className="pa_content_row">
-                <ParseAd.DeliverySection noButton />
+                <ParseAd.DeliverySection
+                  disabled
+                  state={deliverySection}
+                  setState={setDeliverySection}
+                />
               </div>
             </div>
           </div>
@@ -176,7 +301,11 @@ function TailorViewQuoteScreen(){
                 </Stepper>
               </div>
               <div className="pa_content_row">
-                <ParseAd.NotesSection noButton noCheckbox />
+                <ParseAd.NotesSection
+                  disabled
+                  state={notesSection}
+                  setState={setNotesSection}
+                />
               </div>
             </div>
           </div>
@@ -206,6 +335,7 @@ function TailorViewQuoteScreen(){
             </div>
             <div className="tqs_sqm_input_input">
               <CustomInput
+                inputType="number"
                 labelStyle={{
                   display: "none"
                 }}
@@ -214,6 +344,7 @@ function TailorViewQuoteScreen(){
                   fontSize: "12px"
                 }}
                 inputPlaceholder="Set Your Price"
+                onChange={e => setPrice(e.target.value)}
               />
             </div>
           </div>
@@ -234,6 +365,7 @@ function TailorViewQuoteScreen(){
               <textarea
                 className="tqs_sqm_textarea_textarea"
                 placeholder="Tell us"
+                onChange={e => setDescription(e.target.value)}
               >
               </textarea>
             </div>
@@ -245,6 +377,7 @@ function TailorViewQuoteScreen(){
                 boxShadow: "none",
                 marginRight: "10pt"
               }}
+              onClick={handleSubmit}
             />
             <CustomButton
               text="Chat Here"

@@ -93,7 +93,7 @@ function ClientCreateAdScreen(){
         "category": basicSection.category,
         "name": basicSection.name,
         "cut": basicSection.cut,
-        "measurments": basicSection.measurements,
+        "measurements": basicSection.measurements,
         "color": basicSection.color,
         "fabric": basicSection.fabric,
         "delivery": {

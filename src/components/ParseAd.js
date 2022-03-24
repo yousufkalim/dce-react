@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
@@ -11,7 +11,8 @@ import Checkbox from '@mui/material/Checkbox';
 function BasicSection({
   state,
   setState,
-  onClick
+  onClick,
+  disabled
 }){
 
   const _setState = (key, value) => {
@@ -40,6 +41,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -66,6 +68,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -96,6 +99,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -123,6 +127,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -156,6 +161,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -190,6 +196,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -219,6 +226,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -248,6 +256,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -282,7 +291,8 @@ function BasicSection({
 function DeliverySection({
   state,
   setState,
-  onClick
+  onClick,
+  disabled
 }){
 
   const _setState = (key, value) => {
@@ -311,6 +321,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -332,6 +343,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -362,6 +374,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -391,6 +404,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -418,6 +432,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -451,6 +466,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
+              disabled={disabled}
               labelStyle={{
                 display: "none"
               }}
@@ -484,7 +500,8 @@ function DeliverySection({
 function NotesSection({
   state,
   setState,
-  onClick
+  onClick,
+  disabled
 }){
 
   const _setState = (key, value) => {
@@ -513,6 +530,7 @@ function NotesSection({
           </div>
           <div className="pa_profile_section_input_input">
             <textarea
+              disabled={disabled}
               className="pa_profile_section_textarea_textarea"
               defaultValue={state.note}
               onChange={e => _setState("note", e.target.value)}
@@ -534,6 +552,7 @@ function NotesSection({
           </div>
           <div className="pa_payment_section_input_input_container">
             <input
+              disabled={disabled}
               className="pa_payment_section_input_input"
               type="number"
               defaultValue={state.min_price}
@@ -555,6 +574,7 @@ function NotesSection({
           </div>
           <div className="pa_payment_section_input_input_container">
             <input
+              disabled={disabled}
               className="pa_payment_section_input_input"
               type="number"
               defaultValue={state.max_price}
