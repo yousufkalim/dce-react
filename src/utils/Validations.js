@@ -254,6 +254,29 @@ function tailorCreateCatalog(data){
   return validated;
 
 }
+
+function tailorEditProfile(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Phone", data["phone"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Experience", data["experience"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Diploma", data["diploma"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Shop Name", data["shop_name"])
+    },
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
   
 export {
   login,
@@ -268,5 +291,6 @@ export {
   parseAdDeliverySection,
   parseAdNotesSection,
   sendQuote,
-  tailorCreateCatalog
+  tailorCreateCatalog,
+  tailorEditProfile
 }
