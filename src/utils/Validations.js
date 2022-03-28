@@ -228,6 +228,32 @@ function sendQuote(data){
   return validated;
 
 }
+
+function tailorCreateCatalog(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Name", data["name"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Gender", data["gender"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Category", data["category"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Price", data["price"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Description", data["description"])
+    },
+  ];
+
+  const validated = formValidator(null, valArr)
+
+  return validated;
+
+}
   
 export {
   login,
@@ -241,5 +267,6 @@ export {
   parseAdBasicSection,
   parseAdDeliverySection,
   parseAdNotesSection,
-  sendQuote
+  sendQuote,
+  tailorCreateCatalog
 }

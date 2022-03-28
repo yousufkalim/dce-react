@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AddCatalogSVG from "../../assets/AddCatalog.svg";
 
@@ -11,61 +11,154 @@ import CustomButton from "../../components/CustomButton";
 
 import MenuItem from "@mui/material/MenuItem";
 
-import { useNavigate } from "react-router-dom";
+import Api from "../../api/index";
+
+import { useNavigate, useParams } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function TailorEditCatalogScreen(){
 
-  const navigate = useNavigate();
+  const params = useParams();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [catalog, setCatalog] = useState(null);
+
+  useEffect(() => {
+    getCatalog();
+  }, []);
+
+  const getCatalog = async () => {
+    let response;
+    try {
+      response = await Api("get", `/catalogs/${params.id}`);
+      const catalogData = response.data.catalog;
+      setCatalog(catalogData);
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
 
   return (
-    <div className="container-page">
-      <TailorAppBar
-        color="#FFFAF9"
-        activeTab={1}
-      />
-      <div
-        className="container"
-        style={{
-          background: "#FFEEEA",
-        }}
-      >
-        <div className="tailor_create_catalog_screen_row1">
-          <div className="tailor_create_catalog_screen_row1_column1">
-            <img style={{ width: "60%" }} src={AddCatalogSVG} />
-          </div>
-          <div className="tailor_create_catalog_screen_row1_column2">
-            <p
-              style={{
-                marginTop: "10%",
-                marginBottom: "2.5%",
-                fontSize: "18px",
-                fontWeight: "900"
-              }}
-            >
-              Edit Catalog
-            </p>
-            <div
-              className="tccs_input_section_container"
-              style={{
-                
-              }}
-            >
-              <div className="pa_content_row">
-                <InputSection />
+    <>
+      {
+        isLoading ?
+        <></> :
+        <div className="container-page">
+          <TailorAppBar
+            color="#FFFAF9"
+            activeTab={1}
+          />
+          <div
+            className="container"
+            style={{
+              background: "#FFEEEA",
+            }}
+          >
+            <div className="tailor_create_catalog_screen_row1">
+              <div className="tailor_create_catalog_screen_row1_column1">
+                <img style={{ width: "60%" }} src={AddCatalogSVG} />
+              </div>
+              <div className="tailor_create_catalog_screen_row1_column2">
+                <p
+                  style={{
+                    marginTop: "10%",
+                    marginBottom: "2.5%",
+                    fontSize: "18px",
+                    fontWeight: "900"
+                  }}
+                >
+                  Edit Catalog
+                </p>
+                <div
+                  className="tccs_input_section_container"
+                  style={{
+                    
+                  }}
+                >
+                  <div className="pa_content_row">
+                    <InputSection {...catalog}/>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <Footer />
         </div>
-      </div>
-      <Footer />
-    </div>
+      }
+    </>
   );
 }
 
-function InputSection(){
+function InputSection(props){
 
-  const [gender, setGender] = useState("");
-  const [category, setCategory] = useState("");
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const [state, setState] = useState({
+    name: props.name ?? "",
+    gender: props.gender ?? "",
+    category: props.category ?? "",
+    price: props.price ?? "",
+    description: props.description ?? ""
+  });
+
+  const _setState = (key, value) => {
+    const obj = {};
+    obj[key] = value;
+    setState({
+      ...state,
+      ...obj
+    });
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const isValidated = FormValidations.tailorCreateCatalog(state);
+    if (!isValidated) {
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+    
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        "name": state.name,
+        "gender": state.gender,
+        "category": state.category,
+        "price": state.price,
+        "description": state.description
+      }
+
+      response = await Api("put", `/catalogs/${params.id}`, body);
+
+      if (response?.data?.success) {
+        toast.success("Catalog created successfully.");
+        navToCatalogs();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
+
+  const navToCatalogs = () => {
+    navigate("/catalog");
+  }
 
   return (
     <>
@@ -92,7 +185,8 @@ function InputSection(){
                 fontSize: "12px"
               }}
               inputPlaceholder="Name of your Creation"
-              onChange={e => console.log(e.target.value)}
+              inputDefaultValue={state.name}
+              onChange={e => _setState("name", e.target.value)}
             />
           </div>
         </div>
@@ -116,11 +210,11 @@ function InputSection(){
               selectID="gender"
               selectName="gender"
               selectNullValue="Select gender"
-              selectValue={gender}
-              onChange={e => setGender(e.target.value)}
+              selectValue={state.gender}
+              onChange={e => _setState("gender", e.target.value)}
               menuItems={[
-                <MenuItem value={"Male"}>Male</MenuItem>,
-                <MenuItem value={"Female"}>Female</MenuItem>
+                <MenuItem value={"male"}>Male</MenuItem>,
+                <MenuItem value={"female"}>Female</MenuItem>
               ]}
               selectSX={{
                 fontSize: "12px"
@@ -142,11 +236,11 @@ function InputSection(){
               selectID="category"
               selectName="category"
               selectNullValue="Select category"
-              selectValue={category}
-              onChange={e => setCategory(e.target.value)}
+              selectValue={state.category}
+              onChange={e => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"Category1"}>Category1</MenuItem>,
-                <MenuItem value={"Category2"}>Category2</MenuItem>
+                <MenuItem value={"category_1"}>Category1</MenuItem>,
+                <MenuItem value={"category_2"}>Category2</MenuItem>
               ]}
             />
           </div>
@@ -174,7 +268,8 @@ function InputSection(){
                 fontSize: "12px"
               }}
               inputPlaceholder="Set your Price"
-              onChange={e => console.log(e.target.value)}
+              inputDefaultValue={state.price}
+              onChange={e => _setState("price", e.target.value)}
             />
           </div>
         </div>
@@ -195,7 +290,9 @@ function InputSection(){
             <textarea
               className="pa_profile_section_textarea_textarea"
               placeholder="Tell us about your service"
+              onChange={e => _setState("description", e.target.value)}
             >
+              {state.description}
             </textarea>
           </div>
         </div>
@@ -226,6 +323,7 @@ function InputSection(){
         </div>
         <CustomButton
           text="Edit Catalog"
+          onClick={handleSubmit}
           style={{
             marginTop: "3%",
             marginBottom: "2%",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
@@ -7,9 +7,32 @@ import TailorCatalogListTile from "../../components/TailorCatalogListTile";
 
 import { useNavigate } from "react-router-dom";
 
+import { getUser } from "../../utils/Auth";
+import Api from "../../api";
+
 const TailorCatalogScreen = () => {
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [catalogs, setCatalogs] = useState([]);
+  const user = getUser();
+
+  useEffect(() => {
+    getCatalogs();
+  }, []);
+
+  const getCatalogs = async () => {
+    let response;
+    try {
+      response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
+      const catalogsData = response.data.catalogs;
+      setCatalogs(catalogsData);
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
 
   const navToCreateCatalog = () => {
     navigate("/create_catalog");
@@ -49,9 +72,14 @@ const TailorCatalogScreen = () => {
         <div
           className="tailor_catalog_screen_row2_list_container"
         >
-          <TailorCatalogListTile />
-          <TailorCatalogListTile />
-          <TailorCatalogListTile />
+          {
+            catalogs.map(
+              _ =>
+              <TailorCatalogListTile
+                catalog={_}
+              />
+            )
+          }
         </div>
       </div>
       <Footer />

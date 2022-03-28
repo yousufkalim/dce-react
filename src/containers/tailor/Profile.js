@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import AddCatalogSVG from "../../assets/AddOrder.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
 import ProfileCitySVG from "../../assets/ProfileCity.svg";
@@ -16,12 +17,44 @@ import TailorCatalogListTile from "../../components/TailorCatalogListTile";
 
 import { useNavigate } from "react-router-dom";
 
+import { getUser } from "../../utils/Auth";
+import Api from "../../api";
+
 function TailorProfileScreen(){
 
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [catalogs, setCatalogs] = useState([]);
+  const user = getUser();
+
+  useEffect(() => {
+    getCatalogs();
+  }, []);
+
+  const getCatalogs = async () => {
+    let response;
+    try {
+      response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
+      const catalogsData = response.data.catalogs;
+      setCatalogs(catalogsData);
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const navToCreateCatalog = () => {
+    navigate("/create_catalog");
+  }
+
   return (
-    <div className="container">
+    <div
+      style={{
+        height: "150vh",
+        width: "100vw"
+      }}
+    >
       <TailorAppBar
         color="#FCFCFC"
       />
@@ -165,22 +198,92 @@ function TailorProfileScreen(){
           </div>
         </div>
         <div className="tailor_profile_screen_row2">
-          <div
-            style={{
-              paddingBottom: "5%"
-            }}
-          >
-            <p className="tailor_profile_screen_row2_text">
-              My Catalog
-            </p>
-          <div
-            className="tailor_profile_screen_row2_list_container"
-          >
-            <TailorCatalogListTile />
-            <TailorCatalogListTile />
-            <TailorCatalogListTile />
+          <div className="tailor_profile_screen_row2_list_container">
+            <div className="tailor_profile_screen_row2_column1">
+              <p className="tailor_profile_screen_row2_column1_text">
+                Hourly Rate
+              </p>
+            </div>
+            <div className="tailor_profile_screen_row2_column2">
+              <ProfileInput
+                disabled
+                name="Fixed price"
+                placeholder="Certain Amount"
+                label="Fixed price"
+                divStyle={{
+                  borderTopLeftRadius: "10px",
+                  borderTopRightRadius: "10px",
+                  padding: "1.0% 0"
+                }}
+              />
+              <ProfileInput
+                name="Any Confection"
+                placeholder="$120"
+                label="Any Confection"
+                inputType="number"
+                divStyle={{
+                  borderBottomLeftRadius: "10px",
+                  borderBottomRightRadius: "10px",
+                  padding: "1.0% 0"
+                }}
+              />
+            </div>
+          </div>
+          <div className="tailor_profile_screen_row2_list_container">
+            <div className="tailor_profile_screen_row2_column1">
+              <p className="tailor_profile_screen_row2_column1_text">
+                Free Shipping
+              </p>
+            </div>
+            <div className="tailor_profile_screen_row2_column2">
+              <ProfileInput
+                disabled
+                name="Free Shipping"
+                placeholder="Certain Amount"
+                label="Free Shipping"
+                divStyle={{
+                  borderTopLeftRadius: "10px",
+                  borderTopRightRadius: "10px",
+                  padding: "1.0% 0"
+                }}
+              />
+              <ProfileInput
+                name="Confection"
+                placeholder="$500"
+                label="Confection"
+                inputType="number"
+                divStyle={{
+                  borderBottomLeftRadius: "10px",
+                  borderBottomRightRadius: "10px",
+                  padding: "1.0% 0"
+                }}
+              />
+            </div>
           </div>
         </div>
+        <div className="tailor_profile_screen_row3">
+          <p
+            className="tailor_profile_screen_row3_text"
+            style={{
+              marginRight: "2%"
+            }}
+          >
+            Catalog
+          </p>
+          <div className="tailor_profile_screen_row3_list_container">
+            <AddCatalogListTile />
+            {
+              catalogs.map(
+                _ =>
+                <TailorCatalogListTile
+                  catalog={_}
+                  mainDivStyle={{
+                    width: "160pt"
+                  }}
+                />
+              )
+            }
+          </div>
         </div>
       </div>
       <Footer />
@@ -193,8 +296,10 @@ function ProfileInput({
   onChange,
   placeholder,
   defaultValue,
+  inputType,
   img,
   label,
+  disabled,
   divStyle
 }){
   return (
@@ -212,11 +317,13 @@ function ProfileInput({
         }}
       >
         <input
+          disabled={disabled}
           className="tps_profile_input_input"
           name={name}
           onChange={onChange}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          type={inputType}
         />
         {
           label
@@ -246,5 +353,31 @@ function ProfileInput({
   );
 }
 
+function AddCatalogListTile(){
+
+  const navigate = useNavigate();
+
+  const navToCreateCatalog = () => {
+    navigate("/create_catalog");
+  }
+
+  return (
+    <div
+      className="new_order_list_tile"
+      style={{
+        height: "65%",
+        width: "13%",
+      }}
+      onClick={navToCreateCatalog}
+    >
+      <div className="new_order_list_tile_img">
+        <img style={{ width: "40%" }} src={AddCatalogSVG} />
+      </div>
+      <p className="new_order_list_tile_text">
+        Add Catalog
+      </p>
+    </div>
+  );
+}
 
 export default TailorProfileScreen;

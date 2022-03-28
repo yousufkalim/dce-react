@@ -111,8 +111,6 @@ function ClientCreateAdScreen(){
         }
       }
 
-      console.log(body);
-
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {

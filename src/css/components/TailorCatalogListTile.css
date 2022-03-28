@@ -1,4 +1,13 @@
 
+.tailor_catalog_list_tile_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200pt;
+  margin: 0 3%;
+}
+
 .tailor_catalog_list_tile_details {
   display: flex;
   align-items: center;
@@ -35,6 +44,3 @@
   color: #cc8e9c;
 }
 
-.tailor_catalog_list_tile_image {
-  width: 100%;
-}
