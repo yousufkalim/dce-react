@@ -228,6 +228,55 @@ function sendQuote(data){
   return validated;
 
 }
+
+function tailorCreateCatalog(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Name", data["name"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Gender", data["gender"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Category", data["category"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Price", data["price"])
+    },
+    {
+      validationFunction: () => Validators.selectValidator("Description", data["description"])
+    },
+  ];
+
+  const validated = formValidator(null, valArr)
+
+  return validated;
+
+}
+
+function tailorEditProfile(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Phone", data["phone"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Experience", data["experience"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Diploma", data["diploma"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Shop Name", data["shop_name"])
+    },
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
   
 export {
   login,
@@ -241,5 +290,7 @@ export {
   parseAdBasicSection,
   parseAdDeliverySection,
   parseAdNotesSection,
-  sendQuote
+  sendQuote,
+  tailorCreateCatalog,
+  tailorEditProfile
 }

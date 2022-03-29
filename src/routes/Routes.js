@@ -191,7 +191,7 @@ const TailorRoutes = [
     element: TailorCatalogScreen,
   },
   {
-    path: "/view_catalog",
+    path: "/view_catalog/:id",
     name: "TailorViewCatalog",
     icon: <TailorViewCatalogIcon />,
     element: TailorViewCatalogScreen,
@@ -203,7 +203,7 @@ const TailorRoutes = [
     element: TailorCreateCatalogScreen,
   },
   {
-    path: "/edit_catalog",
+    path: "/edit_catalog/:id",
     name: "TailorEditCatalog",
     icon: <TailorEditCatalogIcon />,
     element: TailorEditCatalogScreen,

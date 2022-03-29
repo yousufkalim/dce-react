@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import AddCatalogSVG from "../../assets/AddOrder.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
 import ProfileCitySVG from "../../assets/ProfileCity.svg";
@@ -11,180 +12,415 @@ import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
+import CustomButton from "../../components/CustomButton";
 
 import TailorCatalogListTile from "../../components/TailorCatalogListTile";
 
+import { getUser } from "../../utils/Auth";
+
+import Api from "../../api";
+
 import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function TailorProfileScreen(){
 
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [catalogs, setCatalogs] = useState([]);
+  const [profile, setProfile] = useState(null);
+
+  const user = getUser();
+
+  const [toEdit, setToEdit] = useState(false);
+
+  const [state, setState] = useState({
+    phone: "",
+    experience: "",
+    diploma: "",
+    shop_name: "",
+  });
+
+  const _setState = (key, value) => {
+    const obj = {};
+    obj[key] = value;
+    setState({
+      ...state,
+      ...obj
+    });
+  }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    await getCatalogs();
+    await getProfile();
+  }
+
+  const getCatalogs = async () => {
+    let response;
+    try {
+      response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
+      const catalogsData = response.data.catalogs;
+      setCatalogs(catalogsData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const getProfile = async () => {
+    let response;
+    try {
+      response = await Api("get", `/auth`);
+      const userData = response.data.user;
+      setProfile(userData);
+      setState({
+        phone: userData.phone ?? "",
+        experience: userData.experience ?? "",
+        diploma: userData.diploma ?? "",
+        shop_name: userData.shop_name ?? ""
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const toEditCallback = (event) => {
+    event.preventDefault();
+
+    if (!toEdit) {
+      setToEdit(true);
+    } else {
+      handleSubmit(event);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const isValidated = FormValidations.tailorEditProfile(state);
+    if (!isValidated) {
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+    
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        phone: state.phone,
+        experience: state.experience,
+        diploma: state.diploma,
+        shop_name: state.shop_name,
+      }
+
+      response = await Api("put", "/tailors", body);
+
+      if (response?.data?.success) {
+        toast.success("Profile updated successfully.");
+        navToHome();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
+
+  const navToHome = () => {
+    navigate("/home");
+  }
+
   return (
-    <div className="container">
-      <TailorAppBar
-        color="#FCFCFC"
-      />
-      <div
-        className="client_profile_screen_top"
-        style={{
-          background: "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
+    <>
+      {console.log(state)}
+      {
+        isLoading ?
+        <></> :
         <div
-          className="tailor_profile_screen_row1"
           style={{
-            borderBottomColor: "#DBDBDB",
-            borderBottomStyle: "solid",
-            borderBottomWidth: "1.5px",
+            height: "150vh",
+            width: "100vw"
           }}
         >
-          <div className="tailor_profile_screen_row1_column1">
-            <div className="tailor_profile_screen_row1_column1_header_text">
-              <p className="client_profile_screen_row1_text" style={{paddingLeft: "3%"}}>
-                Profile
-              </p>
-            </div>
-            <div
-              className="tailor_profile_screen_row1_column1_img"
-              style={{
-                "paddingBottom": "5%"
-              }}
-            >
-              <img style={{ width: "30%" }} src={UserSVG} />
-            </div>
-            <p className="tailor_profile_screen_row1_column1_user_name_text">
-              Sasha
-            </p>
-          </div>
-          <div className="tailor_profile_screen_row1_column2">
-            <ProfileInput
-              name="Phone"
-              placeholder="Phone"
-              defaultValue="+92 312 4967890"
-              img={ProfilePhoneSVG}
-              divStyle={{
-                borderTopLeftRadius: "10px",
-                borderTopRightRadius: "10px"
-              }}
-            />
-            <ProfileInput
-              name="Email"
-              placeholder="Email"
-              defaultValue="falcon@designcreation.com"
-              img={ProfileEmailSVG}
-            />
-            <ProfileInput
-              name="Date Of Birth"
-              placeholder="Date Of Birth"
-              defaultValue="2002/11/23"
-              img={ProfileBirthdaySVG}
-              divStyle={{
-                marginBottom: "3%"
-              }}
-            />
-            <ProfileInput
-              name="Country"
-              placeholder="Country"
-              defaultValue="Pakistan"
-              img={ProfileCountrySVG}
-            />
-            <ProfileInput
-              name="City"
-              placeholder="City"
-              defaultValue="Lahore"
-              img={ProfileCitySVG}
-            />
-            <ProfileInput
-              name="Location"
-              placeholder="Location"
-              defaultValue="Johar Town"
-              img={ProfileLocationSVG}
-              divStyle={{
-                borderBottomLeftRadius: "10px",
-                borderBottomRightRadius: "10px",
-                marginBottom: "3%"
-              }}
-            />
-          </div>
-          <div className="tailor_profile_screen_row1_column2">
-            <ProfileInput
-              name="Last Password Changed"
-              placeholder="Last Password Changed"
-              defaultValue="13-Dec-2022"
-              label="Last Password Changed"
-              divStyle={{
-                borderTopLeftRadius: "10px",
-                borderTopRightRadius: "10px"
-              }}
-            />
-            <ProfileInput
-              name="Password"
-              placeholder="**********"
-              defaultValue="**********"
-              label="Password"
-            />
-            <ProfileInput
-              name="Account Created"
-              placeholder="Account Created"
-              defaultValue="29-July-2021"
-              label="Account Created"
-              divStyle={{
-                borderBottomLeftRadius: "10px",
-                borderBottomRightRadius: "10px",
-                marginBottom: "3%"
-              }}
-            />
-            <ProfileInput
-              name="Experience"
-              placeholder="Experience"
-              defaultValue="2 years"
-              label="Experience"
-              divStyle={{
-                borderTopLeftRadius: "10px",
-                borderTopRightRadius: "10px"
-              }}
-            />
-            <ProfileInput
-              name="Diploma"
-              placeholder="Diploma"
-              defaultValue="Bachelor of Arts (BA)"
-              label="Diploma"
-            />
-            <ProfileInput
-              name="Shop Name"
-              placeholder="Shop Name"
-              defaultValue="Urooj Garments"
-              label="Shop Name"
-              divStyle={{
-                borderBottomLeftRadius: "10px",
-                borderBottomRightRadius: "10px",
-                marginBottom: "3%"
-              }}
-            />
-          </div>
-        </div>
-        <div className="tailor_profile_screen_row2">
+          <TailorAppBar
+            color="#FCFCFC"
+          />
           <div
+            className="client_profile_screen_top"
             style={{
-              paddingBottom: "5%"
+              background: "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
             }}
           >
-            <p className="tailor_profile_screen_row2_text">
-              My Catalog
-            </p>
-          <div
-            className="tailor_profile_screen_row2_list_container"
-          >
-            <TailorCatalogListTile />
-            <TailorCatalogListTile />
-            <TailorCatalogListTile />
+            <div
+              className="tailor_profile_screen_row1"
+              style={{
+                borderBottomColor: "#DBDBDB",
+                borderBottomStyle: "solid",
+                borderBottomWidth: "1.5px",
+              }}
+            >
+              <div className="tailor_profile_screen_row1_column1">
+                <div className="tailor_profile_screen_row1_column1_header_text">
+                  <p className="client_profile_screen_row1_text" style={{paddingLeft: "3%"}}>
+                    Profile
+                  </p>
+                </div>
+                <div
+                  className="tailor_profile_screen_row1_column1_img"
+                  style={{
+                    "paddingBottom": "5%"
+                  }}
+                >
+                  <img style={{ width: "30%" }} src={UserSVG} />
+                </div>
+                <p className="tailor_profile_screen_row1_column1_user_name_text">
+                  {profile.name}
+                </p>
+              </div>
+              <div className="tailor_profile_screen_row1_column2">
+                <ProfileInput
+                  disabled={!toEdit}
+                  name="Phone"
+                  placeholder="Phone"
+                  defaultValue={profile.phone}
+                  img={ProfilePhoneSVG}
+                  divStyle={{
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px"
+                  }}
+                  onChange={e => _setState("phone", e.target.value)}
+                />
+                <ProfileInput
+                  disabled
+                  name="Email"
+                  placeholder="Email"
+                  defaultValue={profile.email}
+                  img={ProfileEmailSVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="Date Of Birth"
+                  placeholder="Date Of Birth"
+                  defaultValue={new Date(profile.dob).toLocaleDateString("en-US")}
+                  img={ProfileBirthdaySVG}
+                  divStyle={{
+                    marginBottom: "3%"
+                  }}
+                />
+                <ProfileInput
+                  disabled
+                  name="Country"
+                  placeholder="Country"
+                  defaultValue={profile.country}
+                  img={ProfileCountrySVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="City"
+                  placeholder="City"
+                  defaultValue={profile.city}
+                  img={ProfileCitySVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="Location"
+                  placeholder="Location"
+                  defaultValue={profile.address}
+                  img={ProfileLocationSVG}
+                  divStyle={{
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
+                    marginBottom: "3%"
+                  }}
+                />
+              </div>
+              <div className="tailor_profile_screen_row1_column2">
+                <CustomButton
+                  type="submit"
+                  onClick={toEditCallback}
+                  text={toEdit ? "Save" : "Edit"}
+                  style={{
+                    "alignSelf": "flex-end",
+                    "boxShadow": "none",
+                    "marginRight": "5%",
+                    "marginBottom": "2%"
+                  }}
+                />
+                <ProfileInput
+                  disabled
+                  name="Last Password Changed"
+                  placeholder="Last Password Changed"
+                  defaultValue="N/A"
+                  label="Last Password Changed"
+                  divStyle={{
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px"
+                  }}
+                />
+                <ProfileInput
+                  disabled
+                  name="Password"
+                  placeholder="**********"
+                  defaultValue="**********"
+                  label="Password"
+                />
+                <ProfileInput
+                  disabled
+                  name="Account Created"
+                  placeholder="Account Created"
+                  defaultValue={new Date(profile.createdAt).toLocaleDateString("en-US")}
+                  label="Account Created"
+                  divStyle={{
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
+                    marginBottom: "3%"
+                  }}
+                />
+                <ProfileInput
+                  disabled={!toEdit}
+                  name="Experience"
+                  placeholder="Experience"
+                  defaultValue={profile.experience}
+                  label="Experience"
+                  divStyle={{
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px"
+                  }}
+                  onChange={e => _setState("experience", e.target.value)}
+                />
+                <ProfileInput
+                  disabled={!toEdit}
+                  name="Diploma"
+                  placeholder="Diploma"
+                  defaultValue={profile.diploma}
+                  label="Diploma"
+                  onChange={e => _setState("diploma", e.target.value)}
+                />
+                <ProfileInput
+                  disabled={!toEdit}
+                  name="Shop Name"
+                  placeholder="Shop Name"
+                  defaultValue={profile.shop_name}
+                  label="Shop Name"
+                  divStyle={{
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
+                    marginBottom: "3%"
+                  }}
+                  onChange={e => _setState("shop_name", e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="tailor_profile_screen_row2">
+              <div className="tailor_profile_screen_row2_list_container">
+                <div className="tailor_profile_screen_row2_column1">
+                  <p className="tailor_profile_screen_row2_column1_text">
+                    Hourly Rate
+                  </p>
+                </div>
+                <div className="tailor_profile_screen_row2_column2">
+                  <ProfileInput
+                    disabled
+                    name="Fixed price"
+                    placeholder="Certain Amount"
+                    label="Fixed price"
+                    divStyle={{
+                      borderTopLeftRadius: "10px",
+                      borderTopRightRadius: "10px",
+                      padding: "1.0% 0"
+                    }}
+                  />
+                  <ProfileInput
+                    name="Any Confection"
+                    placeholder="$120"
+                    label="Any Confection"
+                    inputType="number"
+                    divStyle={{
+                      borderBottomLeftRadius: "10px",
+                      borderBottomRightRadius: "10px",
+                      padding: "1.0% 0"
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="tailor_profile_screen_row2_list_container">
+                <div className="tailor_profile_screen_row2_column1">
+                  <p className="tailor_profile_screen_row2_column1_text">
+                    Free Shipping
+                  </p>
+                </div>
+                <div className="tailor_profile_screen_row2_column2">
+                  <ProfileInput
+                    disabled
+                    name="Free Shipping"
+                    placeholder="Certain Amount"
+                    label="Free Shipping"
+                    divStyle={{
+                      borderTopLeftRadius: "10px",
+                      borderTopRightRadius: "10px",
+                      padding: "1.0% 0"
+                    }}
+                  />
+                  <ProfileInput
+                    name="Confection"
+                    placeholder="$500"
+                    label="Confection"
+                    inputType="number"
+                    divStyle={{
+                      borderBottomLeftRadius: "10px",
+                      borderBottomRightRadius: "10px",
+                      padding: "1.0% 0"
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="tailor_profile_screen_row3">
+              <p
+                className="tailor_profile_screen_row3_text"
+                style={{
+                  marginRight: "2%"
+                }}
+              >
+                Catalog
+              </p>
+              <div className="tailor_profile_screen_row3_list_container">
+                <AddCatalogListTile />
+                {
+                  catalogs.map(
+                    _ =>
+                    <TailorCatalogListTile
+                      catalog={_}
+                      mainDivStyle={{
+                        width: "160pt"
+                      }}
+                    />
+                  )
+                }
+              </div>
+            </div>
           </div>
+          <Footer />
         </div>
-        </div>
-      </div>
-      <Footer />
-    </div>
+      }
+    </>
   );
 }
 
@@ -193,8 +429,10 @@ function ProfileInput({
   onChange,
   placeholder,
   defaultValue,
+  inputType,
   img,
   label,
+  disabled,
   divStyle
 }){
   return (
@@ -212,11 +450,13 @@ function ProfileInput({
         }}
       >
         <input
+          disabled={disabled}
           className="tps_profile_input_input"
           name={name}
           onChange={onChange}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          type={inputType}
         />
         {
           label
@@ -246,5 +486,31 @@ function ProfileInput({
   );
 }
 
+function AddCatalogListTile(){
+
+  const navigate = useNavigate();
+
+  const navToCreateCatalog = () => {
+    navigate("/create_catalog");
+  }
+
+  return (
+    <div
+      className="new_order_list_tile"
+      style={{
+        height: "65%",
+        width: "13%",
+      }}
+      onClick={navToCreateCatalog}
+    >
+      <div className="new_order_list_tile_img">
+        <img style={{ width: "40%" }} src={AddCatalogSVG} />
+      </div>
+      <p className="new_order_list_tile_text">
+        Add Catalog
+      </p>
+    </div>
+  );
+}
 
 export default TailorProfileScreen;
