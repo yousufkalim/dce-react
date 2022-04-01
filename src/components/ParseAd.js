@@ -42,7 +42,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
-              disabled={disabled || disables.includes("gender")}
+              disabled={disabled || disables?.includes("gender")}
               labelStyle={{
                 display: "none"
               }}
@@ -69,7 +69,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
-              disabled={disabled || disables.includes("category")}
+              disabled={disabled || disables?.includes("category")}
               labelStyle={{
                 display: "none"
               }}
@@ -100,7 +100,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled || disables.includes("name")}
+              disabled={disabled || disables?.includes("name")}
               labelStyle={{
                 display: "none"
               }}
@@ -501,6 +501,7 @@ function DeliverySection({
 function NotesSection({
   state,
   setState,
+  buttonText,
   onClick,
   disabled
 }){
@@ -638,7 +639,7 @@ function NotesSection({
           !onClick
           ? <></>
           : <CustomButton
-              text="Publish Ad"
+              text={buttonText ?? "Publish Ad"}
               onClick={onClick}
               style={{
                 marginBottom: "2%",

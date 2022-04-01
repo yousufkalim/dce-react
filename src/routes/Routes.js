@@ -13,6 +13,7 @@ import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
 import ClientViewCatalogScreen from "../containers/client/ViewCatalog";
 import ClientOrderFromCatalogScreen from "../containers/client/OrderFromCatalog";
+import ClientCreateOrderScreen from "../containers/client/CreateOrder";
 import ClientProfileScreen from "../containers/client/Profile";
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
@@ -44,6 +45,7 @@ import ClientTailorsIcon from "@mui/icons-material/AccountBox";
 import ClientViewTailorIcon from "@mui/icons-material/AccountBox";
 import ClientViewCatalogIcon from "@mui/icons-material/AccountBox";
 import ClientOrderFromCatalogIcon from "@mui/icons-material/AccountBox";
+import ClientCreateOrderIcon from "@mui/icons-material/AccountBox";
 import ClientProfileIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
@@ -164,9 +166,15 @@ const ClientRoutes = [
   },
   {
     path: "/order_from_catalog/:id",
-    name: "CailorOrderFromCatalog",
+    name: "ClientOrderFromCatalog",
     icon: <ClientOrderFromCatalogIcon />,
     element: ClientOrderFromCatalogScreen,
+  },
+  {
+    path: "/create_order/:id",
+    name: "ClientCreateOrder",
+    icon: <ClientCreateOrderIcon />,
+    element: ClientCreateOrderScreen,
   },
   {
     path: "/profile",

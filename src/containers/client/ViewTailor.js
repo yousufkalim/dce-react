@@ -48,7 +48,7 @@ function ClientViewTailorScreen(){
     let response;
     try {
       response = await Api("post", `/catalogs/byQuery`, { tailor: params.id });
-      const catalogsData = response.data.catalogs;
+      const catalogsData = response.data.catalogs.splice(-4);
       setCatalogs(catalogsData);
     } catch (e) {
       console.trace(e);
@@ -60,7 +60,7 @@ function ClientViewTailorScreen(){
     let response;
     try {
       response = await Api("post", `/orders/byQuery`, { tailor: params.id, client: user._id });
-      const ordersData = response.data.orders;
+      const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);
     } catch (e) {
       console.trace(e);
@@ -325,7 +325,9 @@ function ClientViewTailorScreen(){
                 Orders
               </p>
               <div className="tailor_profile_screen_row3_list_container">
-                <AddOrderListTile />
+                <AddOrderListTile
+                  id={params.id}
+                />
                 {
                   orders.map(
                     _ =>
@@ -409,12 +411,12 @@ function ProfileInput({
   );
 }
 
-function AddOrderListTile(){
+function AddOrderListTile(props){
 
   const navigate = useNavigate();
 
-  const navToCreateCatalog = () => {
-    navigate("/create_catalog");
+  const navToCreateOrder = () => {
+    navigate(`/create_order/${props.id}`);
   }
 
   return (
@@ -424,7 +426,7 @@ function AddOrderListTile(){
         height: "100%",
         width: "14%",
       }}
-      onClick={navToCreateCatalog}
+      onClick={navToCreateOrder}
     >
       <div className="new_order_list_tile_img">
         <img style={{ width: "40%" }} src={AddCatalogSVG} />

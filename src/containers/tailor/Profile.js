@@ -70,7 +70,7 @@ function TailorProfileScreen(){
     let response;
     try {
       response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
-      const catalogsData = response.data.catalogs;
+      const catalogsData = response.data.catalogs.splice(-4);
       setCatalogs(catalogsData);
     } catch (e) {
       console.trace(e);

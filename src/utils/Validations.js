@@ -284,6 +284,20 @@ function tailorEditProfile(data){
 
 }
 
+function clientEditProfile(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Phone", data["phone"])
+    }
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
 export {
   login,
   clientRegister,
@@ -298,5 +312,6 @@ export {
   parseAdNotesSection,
   sendQuote,
   tailorCreateCatalog,
-  tailorEditProfile
+  tailorEditProfile,
+  clientEditProfile
 }
