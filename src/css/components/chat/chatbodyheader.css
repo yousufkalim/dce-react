@@ -1,0 +1,41 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  padding: 2% 8%;
+  border-bottom: 1px solid #dbdbdb;
+}
+.img-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img-user-chat {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.usr {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+.last-online {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #cc8e9c;
+}
+.chat-header-icons {
+  box-shadow: 0px 7px 10px rgb(0 0 0 / 6%);
+  padding: 8px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.chat-header-icons-two {
+  box-shadow: 0px 7px 10px rgb(0 0 0 / 6%);
+  border-radius: 50%;
+  padding: 8px 18px;
+}
