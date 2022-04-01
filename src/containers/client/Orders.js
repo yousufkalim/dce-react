@@ -83,7 +83,7 @@ function OrderListTile(props){
           <img style={{ width: "30%" }} src={UserSVG} />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
-          {props.quote.tailor.name}
+          {props?.quote?.tailor?.name ?? props?.order?.tailor?.name ?? "N/A"}
         </p>
       </div>
       <div

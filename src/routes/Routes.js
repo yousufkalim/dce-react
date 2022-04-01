@@ -9,7 +9,10 @@ import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1"
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 import ClientHomeScreen from "../containers/client/Home";
 import ClientOrdersScreen from "../containers/client/Orders";
-import ClientDesignersScreen from "../containers/client/Designers";
+import ClientTailorsScreen from "../containers/client/Tailors";
+import ClientViewTailorScreen from "../containers/client/ViewTailor";
+import ClientViewCatalogScreen from "../containers/client/ViewCatalog";
+import ClientOrderFromCatalogScreen from "../containers/client/OrderFromCatalog";
 import ClientProfileScreen from "../containers/client/Profile";
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
@@ -37,7 +40,10 @@ import TailorCreateAccount1Icon from "@mui/icons-material/AccountBox";
 import TailorCreateAccount2Icon from "@mui/icons-material/AccountBox";
 import ClientHomeIcon from "@mui/icons-material/AccountBox";
 import ClientOrdersIcon from "@mui/icons-material/AccountBox";
-import ClientDesignersIcon from "@mui/icons-material/AccountBox";
+import ClientTailorsIcon from "@mui/icons-material/AccountBox";
+import ClientViewTailorIcon from "@mui/icons-material/AccountBox";
+import ClientViewCatalogIcon from "@mui/icons-material/AccountBox";
+import ClientOrderFromCatalogIcon from "@mui/icons-material/AccountBox";
 import ClientProfileIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
@@ -139,10 +145,28 @@ const ClientRoutes = [
     element: ClientOrdersScreen,
   },
   {
-    path: "/designers",
+    path: "/tailors",
     name: "ClientDesigners",
-    icon: <ClientDesignersIcon />,
-    element: ClientDesignersScreen,
+    icon: <ClientTailorsIcon />,
+    element: ClientTailorsScreen,
+  },
+  {
+    path: "/view_tailor/:id",
+    name: "ClientViewTailorScreen",
+    icon: <ClientViewTailorIcon />,
+    element: ClientViewTailorScreen,
+  },
+  {
+    path: "/view_catalog/:id",
+    name: "CailorViewCatalog",
+    icon: <ClientViewCatalogIcon />,
+    element: ClientViewCatalogScreen,
+  },
+  {
+    path: "/order_from_catalog/:id",
+    name: "CailorOrderFromCatalog",
+    icon: <ClientOrderFromCatalogIcon />,
+    element: ClientOrderFromCatalogScreen,
   },
   {
     path: "/profile",
