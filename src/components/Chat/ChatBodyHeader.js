@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import ron from "../../assets/ron.jpeg";
 import attachment from "../../assets/attachment.svg";
-import threedots from "../../assets/threedots.svg";
+import threedots from "../../assets/dotted.svg";
 const ChatBodyHeader = () => {
   const [inputData, setInputData] = useState("")
   const onChange =(e)=>{
@@ -15,7 +15,7 @@ const ChatBodyHeader = () => {
         <div className="img-user">
           <img className="img-user-chat" src={ron} />
           <div>
-            <p className="usr"> ihtisham</p>
+            <p className="usr"> Zain</p>
             <p className="last-online"> last online 3 hours ago</p>
           </div>
         </div>

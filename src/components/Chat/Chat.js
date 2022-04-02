@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClientAppBar from "../ClientAppBar";
 import ChatBody from "./ChatBody";
-import arrow from "../../assets/DownArrow.svg";
+import arrow from "../../assets/recentdown.svg";
 import UserCard from "./UserCard";
 import search from "../../assets/search.svg";
 import Box from "@mui/material/Box";
@@ -42,8 +42,8 @@ const Chat = () => {
               <h4>Chats</h4>
               <div className="recentchats">
                 <p> Recent Chats</p>
-                <img src={arrow} />
-              </div>
+                <img className="recent-down-icon" src={arrow} />
+              </div> 
               <div className="search-msg-cont">
                 <img className="srch-icon" src={search} />
                 <input className="search-msg-input" placeholder="Search" />

@@ -6,8 +6,12 @@ import three from "../../assets/attachthree.svg";
 import four from "../../assets/attachfour.svg";
 import Box from "@mui/material/Box";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
+import Picker from "emoji-picker-react";
+import chatemoji from "../../assets/chatemoji.svg";
 const ChatBodyBottom = ({ setFileName }) => {
   const [iconsToggle, setIconsToggle] = useState(true);
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [Open, setOpen] = useState(false);
   const [values, setvalues] = useState({
     video: "",
     image: "",
@@ -16,10 +20,12 @@ const ChatBodyBottom = ({ setFileName }) => {
   const ToggleIcon = () => {
     setIconsToggle(!iconsToggle);
   };
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+  };
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
-    console.log("dhgdshgdsghdgh", e.target.files[0].name);
     setvalues((pre) => {
       return {
         ...pre,
@@ -30,7 +36,9 @@ const ChatBodyBottom = ({ setFileName }) => {
       return [...pre, e.target.files[0].name];
     });
   };
-  console.log(values, "values");
+  const EmojiOpen = () => {
+    setOpen(!Open);
+  };
   return (
     <>
       <div className="send-msg-cont">
@@ -47,7 +55,7 @@ const ChatBodyBottom = ({ setFileName }) => {
                     onChange={onChange}
                     name="video"
                   />
-                  <img style={{ width: "15px", height: "10px" }} src={one} />
+                  <img src={one} />
                 </label>
               </div>
 
@@ -61,7 +69,7 @@ const ChatBodyBottom = ({ setFileName }) => {
                     onChange={onChange}
                     name="image"
                   />
-                  <img style={{ width: "15px", height: "10px" }} src={two} />
+                  <img src={two} />
                 </label>
               </div>
 
@@ -75,25 +83,36 @@ const ChatBodyBottom = ({ setFileName }) => {
                     onChange={onChange}
                     name="file"
                   />
-                  <img style={{ width: "15px", height: "10px" }} src={three} />
+                  <img src={three} />
                 </label>
               </div>
             </Box>
           }
           <div onClick={ToggleIcon} className="send-att-img add-icon">
             {iconsToggle ? (
-              <img style={{ width: "15px", height: "10px" }} src={four} />
-            ) : (
               <RemoveOutlinedIcon sx={{ height: "10px", width: "15px" }} />
+            ) : (
+              <img src={four} />
             )}
           </div>
         </div>
         <input
-          style={{ width: "80%", border: "none", margin: "auto" }}
+          className="msg-input"
           placeholder="Type a message here"
+          value={chosenEmoji?.emoji}
         />
+        {
+          <>
+            <img className="emoji-init" onClick={EmojiOpen} src={chatemoji} />
+            {Open ? (
+              <div className="emoji-open">
+                <Picker onEmojiClick={onEmojiClick} />
+              </div>
+            ) : null}
+          </>
+        }
         <div className="send-btn">
-          <img style={{ width: "15px", height: "15px" }} src={send} />
+          <img src={send} />
         </div>
       </div>
     </>

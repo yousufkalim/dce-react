@@ -33,4 +33,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px 0px;
+}
+.emoji-open {
+  position: absolute;
+  bottom: 100%;
+  right: 20%;
+}
+.emoji-init {
+  margin-right: 3%;
+}
+.msg-input {
+  width: 80%;
+  border: none;
+  margin: auto;
+}
+.send-att-img img {
+  width: 15px;
+  height: 10px;
+}
+.send-btn img {
+  width: 15px;
+  height: 15px;
 }

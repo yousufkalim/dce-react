@@ -49,16 +49,19 @@ function OrderListTile(props) {
           500$
         </p>
       </div>
-      <div className="order_list_tile_divider" />
+      <div className="order_list_tile_divider"/>
       <p
         className="order_list_tile_title_text_bottom"
         style={{
           padding: "4% 0",
         }}
       >
-        {props.detail}
+        {/* {props.detail} */}
+        <p> In Process </p>
       </p>
     </div>
+
+    
   );
 }
 

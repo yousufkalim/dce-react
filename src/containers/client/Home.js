@@ -80,7 +80,10 @@ function ClientHomeScreen(){
             <OrderListTile />
             <OrderListTile />
             <OrderListTile />
-            <p style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}>See all</p>
+           <div style={{paddingLeft: "2%" }}> 
+           <p className="see-all-text">See all</p>
+           </div>
+         
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
@@ -93,7 +96,9 @@ function ClientHomeScreen(){
             <DesignerListTile />
             <DesignerListTile />
             <DesignerListTile />
-            <p style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}>See all</p>
+            <div style={{paddingLeft: "2%" }}> 
+            <p className="see-all-text">See all</p>
+            </div>
           </div>
         </div>
       </div>

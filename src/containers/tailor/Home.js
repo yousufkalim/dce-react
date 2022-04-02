@@ -79,16 +79,9 @@ function TailorHomeScreen() {
             <OrderListTile detail="See Details" />
             <OrderListTile detail="See Details" />
             <OrderListTile detail="See Details" />
-            <p
-              style={{
-                color: "#CC8E9C",
-                fontWeight: "800",
-                paddingLeft: "2%",
-                textDecoration: "underline",
-              }}
-            >
-              See all
-            </p>
+            <div style={{paddingLeft: "2%" }}> 
+            <p className="see-all-text">See all</p>
+            </div>
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
@@ -99,16 +92,9 @@ function TailorHomeScreen() {
             <OrderListTile detail="Completed" />
             <OrderListTile detail="Completed" />
             <OrderListTile detail="Completed" />
-            <p
-              style={{
-                color: "#CC8E9C",
-                fontWeight: "800",
-                paddingLeft: "2%",
-                textDecoration: "underline",
-              }}
-            >
-              See all
-            </p>
+            <div style={{paddingLeft: "2%" }}> 
+            <p className="see-all-text">See all</p>
+            </div>
           </div>
         </div>
       </div>
