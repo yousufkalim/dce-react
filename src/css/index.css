@@ -1,6 +1,9 @@
 /* Importing all CSS files */
 @import url("./components/index.css");
+@import url("./components/chat/index.css");
 @import url("./containers/index.css");
 @import url("./Global.css");
 @import url("./Reset.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&display=swap");
+
+
