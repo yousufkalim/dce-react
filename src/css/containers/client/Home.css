@@ -33,6 +33,7 @@
 }
 
 .client_home_screen_row1_column1_button {
+  cursor: pointer;
   font-weight: 600;
   color: #cc8e9c;
   background-color: #fbf3e8;

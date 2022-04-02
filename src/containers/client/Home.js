@@ -19,6 +19,7 @@ function ClientHomeScreen(){
 
   const [isLoading, setIsLoading] = useState(true);
   const [orders, setOrders] = useState([]);
+  const [tailors, setTailors] = useState([]);
 
   const user = getUser();
 
@@ -28,6 +29,7 @@ function ClientHomeScreen(){
 
   const loadData = async () => {
     await getOrders();
+    await getTailors();
   }
 
   const getOrders = async () => {
@@ -41,6 +43,22 @@ function ClientHomeScreen(){
     }
     return;
   };
+
+  const getTailors = async () => {
+    let response;
+    try {
+      response = await Api("get", `/tailors`);
+      const tailorsData = response.data.users.splice(-5);
+      setTailors(tailorsData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const navToCreateAd = () => {
+    navigate("/create_ad");
+  }
 
   return (
     <div className="container-page">
@@ -77,7 +95,10 @@ function ClientHomeScreen(){
             >
               at home!
             </p>
-            <button className="client_home_screen_row1_column1_button">
+            <button
+              className="client_home_screen_row1_column1_button"
+              onClick={navToCreateAd}
+            >
               Place your Ad
             </button>
           </div>
@@ -124,11 +145,14 @@ function ClientHomeScreen(){
             Designers
           </p>
           <div className="client_home_screen_row2_row1_row_container">
-            <DesignerListTile />
-            <DesignerListTile />
-            <DesignerListTile />
-            <DesignerListTile />
-            <DesignerListTile />
+            {
+              tailors.map(
+                _ =>
+                <DesignerListTile
+                  {..._}
+                />
+              )
+            }
             <p style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}>See all</p>
           </div>
         </div>
@@ -137,9 +161,19 @@ function ClientHomeScreen(){
   );
 }
 
-function DesignerListTile(){
+function DesignerListTile(props){
+
+  const navigate = useNavigate();
+
+  const navToViewTailor = () => {
+    navigate(`/view_tailor/${props._id}`);
+  };
+
   return (
-    <div className="chs_designer_list_tile">
+    <div
+      className="chs_designer_list_tile"
+      onClick={navToViewTailor}
+    >
       <div
         className="order_list_tile_img"
         style={{
@@ -154,7 +188,7 @@ function DesignerListTile(){
           paddingBottom: "2%"
         }}
       >
-        Almirah
+        {props.name}
       </p>
       <p
         className="chs_designer_list_tile_location_text"
@@ -162,7 +196,7 @@ function DesignerListTile(){
           paddingBottom: "6%"
         }}
       >
-        Lahore, Pakistan
+        {`${props.country}, ${props.city}`}
       </p>
       <p
         className="chs_designer_list_tile_rating_text"

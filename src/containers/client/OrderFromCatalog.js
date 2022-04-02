@@ -126,7 +126,7 @@ function OrderFromCatalogScreen(){
           "city": deliverySection.city,
           "note": deliverySection.note,
           "type": deliverySection.type,
-          "date": "2022/02/25"
+          "date": deliverySection.date
         },
         "note": notesSection.note,
         "budget": {

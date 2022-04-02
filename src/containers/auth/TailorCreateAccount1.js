@@ -124,6 +124,7 @@ function TailorCreateAccount1Screen(){
               }}
             />
             <CustomDatePicker
+              disableFuture
               labelText="Date of Birth"
               value={dateOfBirth}
               onChange={setDateOfBirth}
@@ -148,8 +149,8 @@ function TailorCreateAccount1Screen(){
                 selectValue={country}
                 onChange={e => setCountry(e.target.value)}
                 menuItems={[
-                  <MenuItem value={"USA"}>USA</MenuItem>,
-                  <MenuItem value={"Pakistan"}>Pakistan</MenuItem>
+                  <MenuItem value={"country_1"}>Country1</MenuItem>,
+                  <MenuItem value={"country_2"}>Country2</MenuItem>
                 ]}
                 inputName="Country"
                 divStyle={{
@@ -172,8 +173,8 @@ function TailorCreateAccount1Screen(){
                 selectValue={city}
                 onChange={e => setCity(e.target.value)}
                 menuItems={[
-                  <MenuItem value={"New York"}>New York</MenuItem>,
-                  <MenuItem value={"Lahore"}>Lahore</MenuItem>
+                  <MenuItem value={"city_1"}>City1</MenuItem>,
+                  <MenuItem value={"city_2"}>City2</MenuItem>
                 ]}
                 inputName="City"
                 divStyle={{
