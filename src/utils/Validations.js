@@ -270,6 +270,12 @@ function tailorEditProfile(data){
     {
       validationFunction: () => Validators.nullValidator("Shop Name", data["shop_name"])
     },
+    {
+      validationFunction: () => Validators.nullValidator("Hourly Rate", data["hourly_rate"])
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Free Shipping", data["free_shipping_rate"])
+    },
   ];
 
   const validated = formValidator(data, valArr)
@@ -277,7 +283,21 @@ function tailorEditProfile(data){
   return validated;
 
 }
-  
+
+function clientEditProfile(data){
+
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Phone", data["phone"])
+    }
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
 export {
   login,
   clientRegister,
@@ -292,5 +312,6 @@ export {
   parseAdNotesSection,
   sendQuote,
   tailorCreateCatalog,
-  tailorEditProfile
+  tailorEditProfile,
+  clientEditProfile
 }

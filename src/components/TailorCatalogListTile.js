@@ -10,20 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 function TailorCatalogListTile({
   catalog,
+  buttonText,
+  onClickButton,
+  onClick,
   mainDivStyle
 }){
 
-  const navigate = useNavigate();
-
   const [value, setValue] = React.useState(2);
-
-  const navToViewCatalog = () => {
-    navigate(`/view_catalog/${catalog._id}`);
-  }
-
-  const navToEditCatalog = () => {
-    navigate(`/edit_catalog/${catalog._id}`);
-  }
 
   return (
     <div
@@ -38,7 +31,7 @@ function TailorCatalogListTile({
           height: "100%",
           width: "100%"
         }}
-        onClick={navToViewCatalog}
+        onClick={onClick}
       >
         <img
           src={CatalogContent1SVG}
@@ -48,9 +41,9 @@ function TailorCatalogListTile({
           }}
         />
         <CustomButton
-          text="Edit"
+          text={buttonText}
           type="submit"
-          onClick={navToEditCatalog}
+          onClick={onClickButton}
           style={{
             background: "#fff",
             color: "#CC8E9C",

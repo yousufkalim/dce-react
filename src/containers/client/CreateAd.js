@@ -89,6 +89,7 @@ function ClientCreateAdScreen(){
       setIsProcessing(true);
 
       const body = {
+        "type": "ad",
         "gender": basicSection.gender,
         "category": basicSection.category,
         "name": basicSection.name,

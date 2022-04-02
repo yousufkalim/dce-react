@@ -1,7 +1,13 @@
 import React from "react";
-
 import Select from "@mui/material/Select";
-
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme) => ({
+  icon:{
+     right:20,
+   color:"#000000"
+  },
+}));
 function CustomDropDown({
   labelText,
   selectID,
@@ -14,7 +20,12 @@ function CustomDropDown({
   divStyle,
   labelStyle,
   selectSX,
-}){
+}
+
+)
+
+{
+  const classes = useStyles();
   return (
     <div
       className="custom_input_container"
@@ -49,7 +60,10 @@ function CustomDropDown({
           renderValue={(value) =>
             value.length > 0 ? value : selectNullValue
           }
+          IconComponent={KeyboardArrowDownRoundedIcon}
+          classes={{icon:classes.icon}}
           sx={{
+            color:"#A0A0A0",
             minWidth: "100%",
             background: "transparent",
             ...selectSX

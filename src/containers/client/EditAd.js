@@ -103,11 +103,12 @@ function ClientEditAdScreen(){
       setIsProcessing(true);
 
       const body = {
+        "type": "ad",
         "gender": basicSection.gender,
         "category": basicSection.category,
         "name": basicSection.name,
         "cut": basicSection.cut,
-        "measurments": basicSection.measurements,
+        "measurements": basicSection.measurements,
         "color": basicSection.color,
         "fabric": basicSection.fabric,
         "delivery": {
@@ -145,7 +146,6 @@ function ClientEditAdScreen(){
 
   return (
     <>
-      {console.log(basicSection)}
       {
         isLoading
         ? <></>
