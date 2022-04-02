@@ -1,8 +1,18 @@
 import UserSVG from "../assets/User.svg";
 
-function OrderListTile(props) {
+function OrderListTile({
+  order,
+  quote,
+  mainDivStyle
+}) {
   return (
-    <div className="order_list_tile">
+    <>
+    <div
+      className="order_list_tile"
+      style={{
+        ...mainDivStyle
+      }}
+    >
       <div
         className="order_list_tile_img"
         style={{
@@ -17,20 +27,20 @@ function OrderListTile(props) {
           paddingBottom: "8%",
         }}
       >
-        Sasha Designs
+        {order.tailor.name}
       </p>
       <div className="order_list_tile_divider" />
       <div className="order_list_tile_item">
         <p className="order_list_tile_item_key">Order</p>
-        <p className="order_list_tile_item_value">Shirt, Pant</p>
+        <p className="order_list_tile_item_value">{order.name}</p>
       </div>
       <div className="order_list_tile_item">
         <p className="order_list_tile_item_key">Order Date</p>
-        <p className="order_list_tile_item_value">August 10, 2022</p>
+        <p className="order_list_tile_item_value">{new Date(order.createdAt).toLocaleDateString("en-US")}</p>
       </div>
       <div className="order_list_tile_item">
         <p className="order_list_tile_item_key">Delivery Date</p>
-        <p className="order_list_tile_item_value">August 25, 2022</p>
+        <p className="order_list_tile_item_value">{new Date(order.delivery.date).toLocaleDateString("en-US")}</p>
       </div>
       <div
         className="order_list_tile_item"
@@ -46,7 +56,7 @@ function OrderListTile(props) {
             fontWeight: "700",
           }}
         >
-          500$
+          {quote?.price ?? order.budget.min_price}$
         </p>
       </div>
       <div className="order_list_tile_divider" />
@@ -56,9 +66,10 @@ function OrderListTile(props) {
           padding: "4% 0",
         }}
       >
-        {props.detail}
+        {order?.status?.replace("_", " ")}
       </p>
     </div>
+    </>
   );
 }
 

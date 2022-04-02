@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import ClientHomeSVG from "../../assets/ClientHome.svg";
 import UserSVG from "../../assets/User.svg";
@@ -7,11 +7,40 @@ import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
 
+import { getUser } from "../../utils/Auth";
+
+import Api from "../../api";
+
 import { useNavigate } from "react-router-dom";
 
 function ClientHomeScreen(){
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
+
+  const user = getUser();
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    await getOrders();
+  }
+
+  const getOrders = async () => {
+    let response;
+    try {
+      response = await Api("post", `/orders/byQuery`, { client: user._id, status: "in_progress" });
+      const ordersData = response.data.orders.splice(-4);
+      setOrders(ordersData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
 
   return (
     <div className="container-page">
@@ -78,10 +107,15 @@ function ClientHomeScreen(){
           </p>
           <div className="client_home_screen_row2_row1_row_container">
             <NewOrderListTile />
-            <OrderListTile />
-            <OrderListTile />
-            <OrderListTile />
-            <OrderListTile />
+            {
+              orders.map(
+                _ =>
+                <OrderListTile
+                  order={_}
+                  quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+                />
+              )
+            }
             <p style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}>See all</p>
           </div>
         </div>

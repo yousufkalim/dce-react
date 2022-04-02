@@ -44,6 +44,8 @@ function TailorProfileScreen(){
     experience: "",
     diploma: "",
     shop_name: "",
+    hourly_rate: "",
+    free_shipping_rate: "",
   });
 
   const _setState = (key, value) => {
@@ -68,7 +70,7 @@ function TailorProfileScreen(){
     let response;
     try {
       response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
-      const catalogsData = response.data.catalogs;
+      const catalogsData = response.data.catalogs.splice(-4);
       setCatalogs(catalogsData);
     } catch (e) {
       console.trace(e);
@@ -86,7 +88,9 @@ function TailorProfileScreen(){
         phone: userData.phone ?? "",
         experience: userData.experience ?? "",
         diploma: userData.diploma ?? "",
-        shop_name: userData.shop_name ?? ""
+        shop_name: userData.shop_name ?? "",
+        hourly_rate: userData.hourly_rate ?? "",
+        free_shipping_rate: userData.free_shipping_rate ?? ""
       });
       setIsLoading(false);
     } catch (e) {
@@ -127,6 +131,8 @@ function TailorProfileScreen(){
         experience: state.experience,
         diploma: state.diploma,
         shop_name: state.shop_name,
+        hourly_rate: state.hourly_rate,
+        free_shipping_rate: state.free_shipping_rate
       }
 
       response = await Api("put", "/tailors", body);
@@ -149,7 +155,6 @@ function TailorProfileScreen(){
 
   return (
     <>
-      {console.log(state)}
       {
         isLoading ?
         <></> :
@@ -348,8 +353,10 @@ function TailorProfileScreen(){
                     }}
                   />
                   <ProfileInput
+                    disabled={!toEdit}
                     name="Any Confection"
                     placeholder="$120"
+                    defaultValue={profile.hourly_rate}
                     label="Any Confection"
                     inputType="number"
                     divStyle={{
@@ -357,6 +364,7 @@ function TailorProfileScreen(){
                       borderBottomRightRadius: "10px",
                       padding: "1.0% 0"
                     }}
+                    onChange={e => _setState("hourly_rate", e.target.value)}
                   />
                 </div>
               </div>
@@ -379,8 +387,10 @@ function TailorProfileScreen(){
                     }}
                   />
                   <ProfileInput
+                    disabled={!toEdit}
                     name="Confection"
                     placeholder="$500"
+                    defaultValue={profile.free_shipping_rate}
                     label="Confection"
                     inputType="number"
                     divStyle={{
@@ -388,6 +398,7 @@ function TailorProfileScreen(){
                       borderBottomRightRadius: "10px",
                       padding: "1.0% 0"
                     }}
+                    onChange={e => _setState("free_shipping_rate", e.target.value)}
                   />
                 </div>
               </div>

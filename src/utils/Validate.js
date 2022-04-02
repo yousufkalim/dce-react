@@ -115,7 +115,7 @@ function formValidator(data, objsArr){
     const objDataValidationError =
     objsArr[i].validationFunction
     ? objsArr[i].validationFunction()
-    : Validators.nullValidator(objsArr[i].name, data.get(name));
+    : Validators.nullValidator(objsArr[i].name, data.get(objsArr[i].name));
 
     if(objDataValidationError){
       toast.error(objDataValidationError);

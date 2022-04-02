@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -11,123 +11,248 @@ import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import CustomButton from "../../components/CustomButton";
+
+import { getUser } from "../../utils/Auth";
+
+import Api from "../../api";
 
 import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function ClientProfileScreen(){
 
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [profile, setProfile] = useState(null);
+
+  const user = getUser();
+
+  const [toEdit, setToEdit] = useState(false);
+
+  const [state, setState] = useState({
+    phone: "",
+  });
+
+  const _setState = (key, value) => {
+    const obj = {};
+    obj[key] = value;
+    setState({
+      ...state,
+      ...obj
+    });
+  }
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile = async () => {
+    let response;
+    try {
+      response = await Api("get", `/auth`);
+      const userData = response.data.user;
+      setProfile(userData);
+      setState({
+        phone: userData.phone ?? "",
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const toEditCallback = (event) => {
+    event.preventDefault();
+
+    if (!toEdit) {
+      setToEdit(true);
+    } else {
+      handleSubmit(event);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const isValidated = FormValidations.clientEditProfile(state);
+    if (!isValidated) {
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+    
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        phone: state.phone,
+      }
+
+      response = await Api("put", "/clients", body);
+
+      if (response?.data?.success) {
+        toast.success("Profile updated successfully.");
+        navToHome();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
+
+  const navToHome = () => {
+    navigate("/home");
+  }
+
   return (
-    <div className="container">
-      <ClientAppBar
-        color="#FCFCFC"
-      />
-      <div
-        className="client_profile_screen_top"
-        style={{
-          background: "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <div className="client_profile_screen_row1">
-          <p className="client_profile_screen_row1_text" style={{paddingLeft: "3%"}}>
-            Profile
-          </p>
-        </div>
-        <div className="client_profile_screen_row2">
-          <div className="client_profile_screen_row2_column1">
-            <div>
-              <img style={{ width: "80%" }} src={DesignElaborationSVG} />
-            </div>
+    <>
+    {
+      isLoading ?
+      <></> :
+      <div className="container">
+        <ClientAppBar
+          color="#FCFCFC"
+        />
+        <div
+          className="client_profile_screen_top"
+          style={{
+            background: "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          }}
+        >
+          <div className="client_profile_screen_row1">
+            <p className="client_profile_screen_row1_text" style={{paddingLeft: "3%"}}>
+              Profile
+            </p>
+            <CustomButton
+              type="submit"
+              onClick={toEditCallback}
+              text={toEdit ? "Save" : "Edit"}
+              style={{
+                "boxShadow": "none",
+                "marginRight": "5%"
+              }}
+            />
           </div>
-          <div className="client_profile_screen_row2_column2">
-            <div className="cps_profile_container">
-              <div className="cps_profile_img" style={{ paddingBottom: "2%" }}>
-                <img style={{ width: "12%" }} src={UserSVG} />
+          <div className="client_profile_screen_row2">
+            <div className="client_profile_screen_row2_column1">
+              <div>
+                <img style={{ width: "80%" }} src={DesignElaborationSVG} />
               </div>
-              <p className="cps_profile_text" style={{ paddingBottom: "10px" }}>
-                Maria. B
-              </p>
-              <ProfileInput
-                name="Phone"
-                placeholder="Phone"
-                defaultValue="+92 312 4967890"
-                img={ProfilePhoneSVG}
-                divStyle={{
-                  borderTopLeftRadius: "10px",
-                  borderTopRightRadius: "10px"
-                }}
-              />
-              <ProfileInput
-                name="Email"
-                placeholder="Email"
-                defaultValue="falcon@designcreation.com"
-                img={ProfileEmailSVG}
-              />
-              <ProfileInput
-                name="Date Of Birth"
-                placeholder="Date Of Birth"
-                defaultValue="2002/11/23"
-                img={ProfileBirthdaySVG}
-              />
-              <ProfileInput
-                name="Country"
-                placeholder="Country"
-                defaultValue="Pakistan"
-                img={ProfileCountrySVG}
-              />
-              <ProfileInput
-                name="City"
-                placeholder="City"
-                defaultValue="Lahore"
-                img={ProfileCitySVG}
-              />
-              <ProfileInput
-                name="Location"
-                placeholder="Location"
-                defaultValue="Johar Town"
-                img={ProfileLocationSVG}
-                divStyle={{
-                  borderBottomLeftRadius: "10px",
-                  borderBottomRightRadius: "10px",
-                  marginBottom: "2%"
-                }}
-              />
-              <ProfileInput
-                name="Last Password Changed"
-                placeholder="Last Password Changed"
-                defaultValue="13-Dec-2022"
-                label="Last Password Changed"
-                divStyle={{
-                  borderTopLeftRadius: "10px",
-                  borderTopRightRadius: "10px"
-                }}
-              />
-              <ProfileInput
-                name="Password"
-                placeholder="**********"
-                defaultValue="**********"
-                label="Password"
-              />
-              <ProfileInput
-                name="Account Created"
-                placeholder="Account Created"
-                defaultValue="29-July-2021"
-                label="Account Created"
-                divStyle={{
-                  borderBottomLeftRadius: "10px",
-                  borderBottomRightRadius: "10px"
-                }}
-              />
+            </div>
+            <div className="client_profile_screen_row2_column2">
+              <div className="cps_profile_container">
+                <div className="cps_profile_img" style={{ paddingBottom: "2%" }}>
+                  <img style={{ width: "12%" }} src={UserSVG} />
+                </div>
+                <p className="cps_profile_text" style={{ paddingBottom: "10px" }}>
+                  {profile.name}
+                </p>
+                <ProfileInput
+                  disabled={!toEdit}
+                  name="Phone"
+                  placeholder="Phone"
+                  defaultValue={profile.phone}
+                  img={ProfilePhoneSVG}
+                  divStyle={{
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px"
+                  }}
+                  onChange={e => _setState("phone", e.target.value)}
+                />
+                <ProfileInput
+                  disabled
+                  name="Email"
+                  placeholder="Email"
+                  defaultValue={profile.email}
+                  img={ProfileEmailSVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="Date Of Birth"
+                  placeholder="Date Of Birth"
+                  defaultValue={new Date(profile.dob).toLocaleDateString("en-US")}
+                  img={ProfileBirthdaySVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="Country"
+                  placeholder="Country"
+                  defaultValue={profile.country}
+                  img={ProfileCountrySVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="City"
+                  placeholder="City"
+                  defaultValue={profile.city}
+                  img={ProfileCitySVG}
+                />
+                <ProfileInput
+                  disabled
+                  name="Location"
+                  placeholder="Location"
+                  defaultValue={profile.location}
+                  img={ProfileLocationSVG}
+                  divStyle={{
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
+                    marginBottom: "2%"
+                  }}
+                />
+                <ProfileInput
+                  disabled
+                  name="Last Password Changed"
+                  placeholder="Last Password Changed"
+                  defaultValue="N/A"
+                  label="Last Password Changed"
+                  divStyle={{
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px"
+                  }}
+                />
+                <ProfileInput
+                  disabled
+                  name="Password"
+                  placeholder="**********"
+                  defaultValue="**********"
+                  label="Password"
+                />
+                <ProfileInput
+                  disabled
+                  name="Account Created"
+                  placeholder="Account Created"
+                  defaultValue={new Date(profile.createdAt).toLocaleDateString("en-US")}
+                  label="Account Created"
+                  divStyle={{
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px"
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    }
+    </>
   );
 }
 
 function ProfileInput({
+  disabled,
   name,
   onChange,
   placeholder,
@@ -151,6 +276,7 @@ function ProfileInput({
         }}
       >
         <input
+          disabled={disabled}
           className="cps_profile_input_input"
           name={name}
           onChange={onChange}
