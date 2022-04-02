@@ -1,14 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TailorHomeSVG from "../../assets/Tailorsvg.svg";
 import UserSVG from "../../assets/User.svg";
 import AppBar from "../../components/TailorAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import Footer from "../../components/Footer";
 
+import { getUser } from "../../utils/Auth";
+
+import Api from "../../api";
+
 import { useNavigate } from "react-router-dom";
 
 function TailorHomeScreen() {
+  
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [ordersRequest, setOrdersRequest] = useState([]);
+  const [ordersInProgress, setOrdersInProgress] = useState([]);
+
+  const user = getUser();
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    await getOrdersRequest();
+    await getOrdersInProgress();
+  }
+
+  const getOrdersRequest = async () => {
+    let response;
+    try {
+      response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "direct" });
+      const ordersData = response.data.orders.splice(-4);
+      setOrdersRequest(ordersData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const getOrdersInProgress = async () => {
+    let response;
+    try {
+      // response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "ad", status: "in_progress" });
+      response = await Api("post", `/orders/byQuery`, { tailor: user._id, status: "in_progress" }); // TODO: Remove it
+      const ordersData = response.data.orders.splice(-4);
+      setOrdersInProgress(ordersData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
 
   return (
     <div className="container-page">
@@ -74,63 +119,52 @@ function TailorHomeScreen() {
         >
           <p className="client_home_screen_row2_row1_text">Order Requests</p>
           <div className="client_home_screen_row2_row1_row_container">
-            <OrderListTile detail="See Details" />
-            <OrderListTile detail="See Details" />
-            <OrderListTile detail="See Details" />
-            <OrderListTile detail="See Details" />
-            <OrderListTile detail="See Details" />
-            <div style={{paddingLeft: "2%" }}> 
-            <p className="see-all-text">See all</p>
-            </div>
+            {
+              ordersRequest.map(
+                _ =>
+                <OrderListTile
+                  order={_}
+                />
+              )
+            }
+            <p
+              style={{
+                color: "#CC8E9C",
+                fontWeight: "800",
+                paddingLeft: "2%",
+                textDecoration: "underline",
+              }}
+            >
+              See all
+            </p>
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
           <p className="client_home_screen_row2_row1_text">Recent Orders</p>
           <div className="client_home_screen_row2_row1_row_container">
-            <OrderListTile detail="In Process" />
-            <OrderListTile detail="In Process" />
-            <OrderListTile detail="Completed" />
-            <OrderListTile detail="Completed" />
-            <OrderListTile detail="Completed" />
-            <div style={{paddingLeft: "2%" }}> 
-            <p className="see-all-text">See all</p>
-            </div>
+            {
+              ordersInProgress.map(
+                _ =>
+                <OrderListTile
+                  order={_}
+                  quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+                />
+              )
+            }
+            <p
+              style={{
+                color: "#CC8E9C",
+                fontWeight: "800",
+                paddingLeft: "2%",
+                textDecoration: "underline",
+              }}
+            >
+              See all
+            </p>
           </div>
         </div>
       </div>
       <Footer></Footer>
-    </div>
-  );
-}
-
-function DesignerListTile() {
-  return (
-    <div className="chs_designer_list_tile">
-      <div
-        className="order_list_tile_img"
-        style={{
-          paddingBottom: "5%",
-        }}
-      >
-        <img style={{ width: "40%" }} src={UserSVG} />
-      </div>
-      <p
-        className="chs_designer_list_tile_title_text"
-        style={{
-          paddingBottom: "2%",
-        }}
-      >
-        Almirah
-      </p>
-      <p
-        className="chs_designer_list_tile_location_text"
-        style={{
-          paddingBottom: "6%",
-        }}
-      >
-        Lahore, Pakistan
-      </p>
-      <p className="chs_designer_list_tile_rating_text">4.5(32K)</p>
     </div>
   );
 }

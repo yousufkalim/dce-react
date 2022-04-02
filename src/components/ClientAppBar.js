@@ -43,8 +43,8 @@ function ClientAppBar({
     navigate("/orders");
   };
 
-  const navToDesigners = () => {
-    navigate("/designers");
+  const navToTailors = () => {
+    navigate("/tailors");
   };
 
   const navToMyAds = () => {
@@ -82,7 +82,7 @@ function ClientAppBar({
               paddingRight: "5%",
               color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`
             }}
-            onClick={navToDesigners}
+            onClick={navToTailors}
           >
             Designers
           </p>
