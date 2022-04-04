@@ -1,5 +1,5 @@
 import LoginScreen from "../containers/auth/Login";
-import SelectRoleScreen from "../containers/auth/SelectRole";
+import SelectRoleScreen from "../containers/auth/selectRole";
 import ClientRegisterScreen from "../containers/auth/ClientRegister";
 import ClientVerifyEmailScreen from "../containers/auth/ClientVerifyEmail";
 import ClientCreateAccountScreen from "../containers/auth/ClientCreateAccount";
@@ -8,6 +8,7 @@ import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
 import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 import ClientHomeScreen from "../containers/client/Home";
+import Chat from '../components/Chat/Chat'
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
@@ -139,6 +140,12 @@ const ClientRoutes = [
     name: "ClientHome",
     icon: <ClientHomeIcon />,
     element: ClientHomeScreen,
+  },
+  {
+    path: "/chat",
+    name: "Chat",
+    icon: <ClientHomeIcon />,
+    element: Chat,
   },
   {
     path: "/orders",

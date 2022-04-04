@@ -59,7 +59,7 @@ function OrderListTile({
           {quote?.price ?? order.budget.min_price}$
         </p>
       </div>
-      <div className="order_list_tile_divider" />
+      <div className="order_list_tile_divider"/>
       <p
         className="order_list_tile_title_text_bottom"
         style={{

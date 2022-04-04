@@ -1,5 +1,5 @@
 /* Importing all CSS files */
-@import url("./Catalog.css");
+@import url("./catalog.css");
 @import url("./CreateCatalog.css");
 @import url("./Home.css");
 @import url("./HowItWorks.css");
@@ -8,4 +8,3 @@
 @import url("./Quotes.css");
 @import url("./ViewCatalog.css");
 @import url("./ViewQuote.css");
-
