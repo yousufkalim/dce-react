@@ -1,15 +1,16 @@
 
 .new_order_list_tile {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 16.66%;
-  margin-right: 2%;
-  background-color: #FFFFFF;
-  border-radius: 30px;
-  cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 18.66%;
+    margin-right: 1%;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 10.5% 0%;
 }
 
 .new_order_list_tile_img {

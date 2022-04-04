@@ -1,27 +1,33 @@
-import React from "react";
-
+import React,{useEffect, useState} from "react";
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
 import { handleLogout } from "../utils/Auth";
-
 import { useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
-
+import dotted from '../assets/dotted.svg'
+function useWindowSize() {
+  const [size, setSize] = useState([window.innerWidth]);
+  useEffect(() => {
+    const handleResize = () => {
+      setSize([window.innerWidth]);
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+  return size;
+}
 function ClientAppBar({
   activeTab,
   color,
   sticky = true,
   divStyle
 }){
-
+  const [width] = useWindowSize();
   const navigate = useNavigate();
-
+  const [toggle, setToggle] = useState(true)
   const handleClickNotifications = () => {
     toast.success("Coming soon!");
   };
@@ -39,21 +45,7 @@ function ClientAppBar({
     navigate("/home");
   };
 
-  const navToOrders = () => {
-    navigate("/orders");
-  };
-
-  const navToDesigners = () => {
-    navigate("/designers");
-  };
-
-  const navToMyAds = () => {
-    navigate("/my_ads");
-  };
-
-  const navToChat = () => {
-    navigate("/chat");
-  };
+ 
 
   const navToProfile = () => {
     navigate("/profile");
@@ -63,8 +55,11 @@ function ClientAppBar({
     handleCloseProfile();
     handleLogout(navigate);
   }
-
+const mobilemenu =()=>{
+  setToggle(!toggle)
+}
   return (
+    <> 
     <div
       className="appbar_container"
       style={{
@@ -76,48 +71,16 @@ function ClientAppBar({
       <div className="appbar_top">
         <div className="appbar_row1">
           <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} onClick={navToHome} />
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToDesigners}
-          >
-            Designers
-          </p>
-          {/*  */}
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToOrders}
-          >
-            Orders
-          </p>
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToMyAds}
-          >
-            My Ads
-          </p>
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToChat}
-          >
-            Chats
-          </p>
+          {
+            width>768? (
+              <>
+              <Navlink activeTab={activeTab}/>
+               </>
+            ):
+          <img className="cursor-pointer" onClick={mobilemenu} src={dotted}/>
+          }
         </div>
+
         <div className="appbar_row2">
           <SearchInput />
           <img
@@ -146,8 +109,19 @@ function ClientAppBar({
           </Menu>
         </div>
       </div>
+
+     
     </div>
-  );
+  {
+width<=768 && !toggle?
+(
+ < NavlinkMobile/>
+):null
+  } 
+  
+  
+  </>
+   );
 }
 
 function SearchInput({
@@ -182,5 +156,133 @@ function SearchInput({
   );
 
 }
+function Navlink({activeTab}){
+  const navigate = useNavigate();
+  const navToOrders = () => {
+    navigate("/orders");
+  };
 
+  const navToDesigners = () => {
+    navigate("/designers");
+  };
+
+  const navToMyAds = () => {
+    navigate("/my_ads");
+  };
+
+  const navToChat = () => {
+    navigate("/chat");
+  };
+  return(
+     <>
+              <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToDesigners}
+          >
+            Designers
+          </p>
+          
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToOrders}
+          >
+            Orders
+          </p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToMyAds}
+          >
+            My Ads
+          </p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToChat}
+          >
+            Chats
+          </p>
+         </>
+  )
+} 
+
+function NavlinkMobile({activeTab}){
+  const navigate = useNavigate();
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
+  const navToDesigners = () => {
+    navigate("/designers");
+  };
+
+  const navToMyAds = () => {
+    navigate("/my_ads");
+  };
+
+  const navToChat = () => {
+    navigate("/chat");
+  };
+  return(
+    <div className="mobile-nav">
+              <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToDesigners}
+          >
+            Designers
+          </p>
+          
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToOrders}
+          >
+            Orders
+          </p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToMyAds}
+          >
+            My Ads
+          </p>
+          <p
+            className="appbar_row1_tab_text"
+            style={{
+              paddingRight: "5%",
+              color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`
+            }}
+            onClick={navToChat}
+          >
+            Chats
+          </p>
+         </div>
+  )
+}
 export default ClientAppBar;
+
+

@@ -5,7 +5,7 @@ import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
 import { useNavigate } from "react-router-dom";
-
+import star from '../../assets/star.svg'
 
 function ClientHomeScreen(){
 
@@ -76,10 +76,10 @@ function ClientHomeScreen(){
           </p>
           <div className="client_home_screen_row2_row1_row_container">
             <NewOrderListTile />
-            <OrderListTile />
-            <OrderListTile />
-            <OrderListTile />
-            <OrderListTile />
+            <OrderListTile  detail="In Process"  />
+            <OrderListTile  detail="Completed"  />
+            <OrderListTile  detail="Completed"/>
+            <OrderListTile  detail="Completed"/>
            <div style={{paddingLeft: "2%" }}> 
            <p className="see-all-text">See all</p>
            </div>
@@ -133,11 +133,19 @@ function DesignerListTile(){
       >
         Lahore, Pakistan
       </p>
-      <p
+      <div className="stars">
+        <img src={star}/>
+        <img src={star}/>
+        <img src={star}/>
+        <img src={star}/>
+        <img src={star}/>
+        <p
         className="chs_designer_list_tile_rating_text"
       >
         4.5(32K)
       </p>
+      </div>
+      
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import ron from "../../assets/ron.jpeg";
+import writing from '../../assets/writing.svg'
 const UserCard = () => {
   const items = [
     {
@@ -36,7 +37,7 @@ const UserCard = () => {
     },
     {
       name: "Emma",
-      status: "offline",
+      status: "do not disturb",
       time: "40 minute ago",
       paragraph: `  Vestibulum eget augue consectetur, mattis turpis et, 
       luctus eros. Aenean luctus varius lacus in imperdiet. Curabitur mi ligula, consequat venenatis nunc accumsan, ornare lobortis nibh. Duis consequat nibh non pulvinar 
@@ -48,7 +49,7 @@ const UserCard = () => {
       {items.map((val) => (
         <div
           style={{
-            padding: "15px 10px",
+            padding: "24px",
             background: "#ffffff",
             borderRadius: "10px",
             marginBottom: "10px",
@@ -65,8 +66,12 @@ const UserCard = () => {
               ) : null}
               <img className="user-img" src={ron} />
               <div className="name-status">
-                <p className="user-name">{val?.name} </p>
-                <p className="status">{val?.status} </p>
+                <strong className="user-name">{val?.name}</strong>
+                <div className="status-cont">
+               {val?.status =="Writing"? 
+               <img className="writing" src={writing}/> : null}
+                <p style={{color:val?.status=="do not disturb"?"#FF3737":"#149E7A"}} className="status">{val?.status} </p>
+                </div>
               </div>
             </div>
             <p className="time"> {val?.time}</p>

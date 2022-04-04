@@ -1,13 +1,18 @@
 import React from "react";
 
 import UserSVG from "../../assets/User.svg";
-
+import star from '../../assets/star.svg'
 import ClientAppBar from "../../components/ClientAppBar";
 
 import { useNavigate } from "react-router-dom";
 
 function ClientDesignersScreen(){
-
+ const items= [{
+   brand:"Almirah",
+   city:"Lahore, Pakistan",
+   size:"4.5(32K)",
+   icons:4
+ }]
   const navigate = useNavigate();
 
   return (
@@ -61,6 +66,7 @@ function DesignerListTile(){
         </p>
       </div>
       <div className="cds_designer_list_tile_column3">
+        <img src={star}/>
         <p style={{ fontSize: "14px", fontWeight: "400", color: "#A0A0A0" }}>
           4.5 (32K)
         </p>
