@@ -47,9 +47,10 @@ function ClientCreateAdScreen(){
     date: "",
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
+    type: "",
     min_price: "",
     max_price: "",
+    note: "",
   });
 
   const basicSectionCallback = () => {
@@ -89,6 +90,7 @@ function ClientCreateAdScreen(){
       setIsProcessing(true);
 
       const body = {
+        "type": "ad",
         "gender": basicSection.gender,
         "category": basicSection.category,
         "name": basicSection.name,
@@ -102,12 +104,14 @@ function ClientCreateAdScreen(){
           "city": deliverySection.city,
           "note": deliverySection.note,
           "type": deliverySection.type,
-          "date": "2022/02/25"
+          "date": deliverySection.date
         },
         "note": notesSection.note,
         "budget": {
+          "type": notesSection.type,
           "min_price": notesSection.min_price,
-          "max_price": notesSection.max_price
+          "max_price": notesSection.max_price,
+          "note": notesSection.note
         }
       }
 
@@ -158,11 +162,11 @@ function ClientCreateAdScreen(){
           <div
             className="pa_container"
             style={{
-              marginTop: "10%"
+              marginTop: "8.5%"
             }}
           >
             <div className="pa_steps_row">
-              <Stepper activeStep={activeStep} alternativeLabel>
+              <Stepper  activeStep={activeStep} alternativeLabel>
                 {steps.map((v, i) => (
                   <Step key={v}>
                     <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>

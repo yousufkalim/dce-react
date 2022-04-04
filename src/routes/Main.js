@@ -11,7 +11,6 @@ import RoutesObj from "../routes/Routes";
 import { getRoutes } from "../utils/Auth";
 
 const Main = () => {
-
   const token = getToken();
   const user = getUser();
   const location = useLocation();
@@ -35,19 +34,13 @@ const Main = () => {
         {token && isMyTokenExpired == false ? (
           <>
             {user.role == "client" ? (
-              <>
-                {getRoutes(RoutesObj.ClientRoutes)}
-              </>
+              <>{getRoutes(RoutesObj.ClientRoutes)}</>
             ) : (
-              <>
-                {getRoutes(RoutesObj.TailorRoutes)}
-              </>
+              <>{getRoutes(RoutesObj.TailorRoutes)}</>
             )}
           </>
         ) : (
-          <>
-            {getRoutes(RoutesObj.AuthRoutes)}
-          </>
+          <>{getRoutes(RoutesObj.AuthRoutes)}</>
         )}
       </Routes>
     </div>

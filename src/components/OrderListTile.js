@@ -50,8 +50,7 @@ const Opacity = (status)=>{
       <div className="order_list_tile_divider" />
       <div className="order_list_tile_item">
         <p style={{
-            opacity:Opacity(props.detail),
-            
+            opacity:Opacity(props.detail)
         }}
     className="order_list_tile_item_key">
       Order

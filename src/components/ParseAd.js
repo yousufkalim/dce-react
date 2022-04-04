@@ -4,15 +4,20 @@ import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
-
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from '@mui/material/Checkbox';
+import dotted from '../assets/dotted.svg'
+import { grey } from '@mui/material/colors';
+
+import upload from '../assets/upload.svg'
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function BasicSection({
   state,
   setState,
   onClick,
-  disabled
+  disabled,
+  disables
 }){
 
   const _setState = (key, value) => {
@@ -41,7 +46,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
-              disabled={disabled}
+              disabled={disabled || disables?.includes("gender")}
               labelStyle={{
                 display: "none"
               }}
@@ -68,7 +73,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
-              disabled={disabled}
+              disabled={disabled || disables?.includes("category")}
               labelStyle={{
                 display: "none"
               }}
@@ -99,7 +104,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled}
+              disabled={disabled || disables?.includes("name")}
               labelStyle={{
                 display: "none"
               }}
@@ -143,6 +148,9 @@ function BasicSection({
             />
           </div>
         </div>
+        <div>
+
+        </div>
         <p className="pa_profile_section_input_instructions_text">
           *Ex: Long skirt size 38
         </p>
@@ -173,6 +181,7 @@ function BasicSection({
               inputDefaultValue={state.measurements}
               onChange={e => _setState("measurements", e.target.value)}
             />
+             <img className="dots-measurement" src={dotted}/>
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
@@ -255,7 +264,20 @@ function BasicSection({
             </p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomInput
+                <label className="upload-pic-label" htmlFor="filePicker">
+                  <input
+                    type="file"
+                    accept="*"
+                    hidden
+                    id="filePicker"
+                    name="file"
+                  />
+                  <div className="upload-img-text-cont"> 
+                  <span className="upload-img-text">Upload Drawing, Photo, Document, etc</span> 
+                  <img src={upload}/>
+                  </div>
+                </label>
+            {/* <CustomInput
               disabled={disabled}
               labelStyle={{
                 display: "none"
@@ -266,8 +288,21 @@ function BasicSection({
               }}
               inputPlaceholder="Upload Drawing, Photo, Document, etc."
               inputType="file"
-            />
+            /> */}
           </div>
+        </div>
+       <div className="checkbox-container">
+       <Checkbox
+        {...label}
+        defaultChecked
+        sx={{
+          color: grey[900],
+          '&.Mui-checked': {
+            color: grey[900],
+          },
+        }}
+      />
+         <label> <span className="duw-text">Do you Want</span>  <span className="alteration-txt">ALTREATION SERVICE </span></label>
         </div>
         {
           !onClick
@@ -277,7 +312,7 @@ function BasicSection({
               style={{
                 marginTop: "3%",
                 marginBottom: "2%",
-                padding: "1.2% 5%",
+                padding: "1.7% 5%",
                 boxShadow: "none"
               }}
               onClick={onClick}
@@ -466,6 +501,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
+              disablePast
               disabled={disabled}
               labelStyle={{
                 display: "none"
@@ -500,6 +536,7 @@ function DeliverySection({
 function NotesSection({
   state,
   setState,
+  buttonText,
   onClick,
   disabled
 }){
@@ -517,25 +554,33 @@ function NotesSection({
     <>
       <div className="pa_profile_section_container">
         <div
-          className="pa_payment_section_textarea_container"
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
             marginBottom: "2%"
           }}
         >
-          <div className="pa_payment_section_textarea_label">
+          <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">
-              Extra Note
+              Choose Method
             </p>
           </div>
           <div className="pa_profile_section_input_input">
-            <textarea
+            <CustomDropDown
               disabled={disabled}
-              className="pa_profile_section_textarea_textarea"
-              defaultValue={state.note}
-              onChange={e => _setState("note", e.target.value)}
-            >
-            </textarea>
+              labelStyle={{
+                display: "none"
+              }}
+              selectID="payment_type"
+              selectName="payment_type"
+              selectNullValue="Fixed Price"
+              selectValue={state.type}
+              onChange={e => _setState("type", e.target.value)}
+              menuItems={[
+                <MenuItem value={"fixed"}>Fixed Price</MenuItem>,
+                <MenuItem value={"hourly"}>Hourly Rate</MenuItem>
+              ]}
+            />
           </div>
         </div>
         <div
@@ -564,7 +609,7 @@ function NotesSection({
           className="pa_payment_section_input_container"
           style={{
             borderRadius: "20px",
-            marginBottom: "3%"
+            marginBottom: "2%"
           }}
         >
           <div className="pa_payment_section_input_label">
@@ -579,6 +624,34 @@ function NotesSection({
               type="number"
               defaultValue={state.max_price}
               onChange={e => _setState("max_price", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+            borderRadius: "20px",
+            marginBottom: "1%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+              Payment Note
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Write any note regarding Payment (Optional)"
+              inputDefaultValue={state.note}
+              onChange={e => _setState("note", e.target.value)}
             />
           </div>
         </div>
@@ -637,7 +710,7 @@ function NotesSection({
           !onClick
           ? <></>
           : <CustomButton
-              text="Publish Ad"
+              text={buttonText ?? "Publish Ad"}
               onClick={onClick}
               style={{
                 marginBottom: "2%",

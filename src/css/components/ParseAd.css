@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80%;
+  height: 88%;
   width: 70%;
   background-color: #FFF8F7;
   border-radius: 20px;
@@ -25,12 +25,34 @@
 .pa_content_row {
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: 85%;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
 
+.alteration-txt{
+  color: #CC8E9C;
+  font-weight: 100;
+font-size: 14px;
+line-height: 17px;
+}
+.duw-text{
+  font-weight: 500;
+font-size: 12px;
+line-height: 17px;
+}
+.altration-checkbox{
+  zoom: 1.5;
+  margin-right: 1.5%;
+}
+
+.checkbox-container{
+  display: flex;
+  align-items: center;
+  width: 89%;
+  padding: 1% 2%;
+}
 /* Containers */
 
 .pa_profile_section_container {
@@ -54,6 +76,9 @@
   border-style: solid;
   border-width: 0.5px;
 }
+.dots-measurement{
+  margin: 0px 7%;
+}
 
 .pa_profile_section_input_label {
   width: 30%;
@@ -66,7 +91,7 @@
 
 .pa_profile_section_input_text {
   font-size: 12px;
-  font-Weight: 900;
+  font-Weight: 400;
   margin-left: 15%;
 }
 
@@ -78,7 +103,20 @@
   align-items: center;
   justify-content: flex-start;
 }
-
+.upload-img-text{
+  font-size: 12px;
+  line-height: 17px;
+  color: #A0A0A0;
+  margin-left: 3%;
+}
+.upload-pic-label{
+  width: 93%;
+}
+.upload-img-text-cont{
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 0%;
+}
 .pa_profile_section_input_instructions_text {
   align-self: flex-end;
   font-size: 12px;
@@ -171,3 +209,6 @@
   align-items: center;
   justify-content: center;
 }
+
+/* media-queries */
+

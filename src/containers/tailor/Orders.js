@@ -11,33 +11,87 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
+import { toast } from "react-toastify";
+
 function TailorOrdersScreen(){
 
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [ordersRequest, setOrdersRequest] = useState([]);
   const [ordersInProgress, setOrdersInProgress] = useState([]);
+
   const user = getUser();
 
   useEffect(() => {
-    getOrders();
+    loadData();
   }, []);
 
-  const getOrders = async () => {
+  const loadData = async () => {
+    await getOrdersRequest();
+    await getOrdersInProgress();
+  }
+
+  const getOrdersRequest = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { tailor: user._id }); // TODO
-      const ordersData = response.data.orders;
+      response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "direct", status: "pending" });
+      const ordersData = response.data.orders.splice(-4);
+      setOrdersRequest(ordersData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const getOrdersInProgress = async () => {
+    let response;
+    try {
+      // response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "ad", status: "in_progress" });
+      response = await Api("post", `/orders/byQuery`, { tailor: user._id, status: "in_progress" }); // TODO: Remove it
+      const ordersData = response.data.orders.splice(-4);
       setOrdersInProgress(ordersData);
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
     }
+    return;
   };
+
+  const acceptOrder = async (event, id) => {
+
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        "id": id,
+      };
+
+      response = await Api("post", "/orders/acceptRequest", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        loadData();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
 
   return (
     <>
-    {console.log(ordersInProgress)}
     <div className="container-page-vertical">
       <TailorAppBar
         activeTab={0}
@@ -58,9 +112,15 @@ function TailorOrdersScreen(){
           />
         </div>
         <div className="client_orders_screen_row2">
-          {/* <OrderRequestListTile />
-          <OrderRequestListTile />
-          <OrderRequestListTile /> */}
+          {
+            ordersRequest.map(
+              _ =>
+              <OrderRequestListTile
+                order={_}
+                acceptOrder={acceptOrder}
+              />
+            )
+          }
         </div>
       </div>
       <div
@@ -118,7 +178,7 @@ function TailorOrdersScreen(){
   );
 }
 
-function OrderRequestListTile(){
+function OrderRequestListTile(props){
   return (
     <div className="cos_order_list_tile_container">
       <div className="cos_order_list_tile_column1">
@@ -131,7 +191,7 @@ function OrderRequestListTile(){
           <img style={{ width: "30%" }} src={UserSVG} />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
-          Sasha Designs
+          {props.order.client.name}
         </p>
       </div>
       <div
@@ -150,7 +210,7 @@ function OrderRequestListTile(){
             Order
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            Pant, Shirt
+            {props.order.name}
           </p>
         </div>
         <div
@@ -163,7 +223,7 @@ function OrderRequestListTile(){
             Order Date
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            August 10, 2022
+            {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
         </div>
         <div
@@ -176,13 +236,13 @@ function OrderRequestListTile(){
             Delivery Date
           </p>
           <p className="cos_order_list_tile_column2_item_value">
-            August 25, 2022
+            {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
         </div>
       </div>
       <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
-          500$
+          {props.order.budget.min_price ?? props.order.budget.max_price}$
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           Bill
@@ -192,6 +252,7 @@ function OrderRequestListTile(){
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
             text="Accept"
+            onClick={e => props.acceptOrder(e, props.order._id)}
             style={{
               boxShadow: "none",
               marginBottom: "10px"

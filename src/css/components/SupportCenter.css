@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Mulish:wght@400;500&family=Poppins:ital,wght@0,200;0,400;1,200;1,300;1,400&display=swap");
+.supportheading {
+  font-size: 35px;
+  font-weight: 900;
+}
+.suppordesc {
+  width: 43%;
+  margin: auto;
+  text-align: center;
+  opacity: 0.5;
+  padding: 15px;
+}
+.supportcol1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 2px;
+}
+.supportName {
+  width: 65%;
+}
+.supportReview {
+  padding: 10px 70px;
+}
+.supportmainDiv {
+  width: 70%;
+  background: white;
+  margin: 0 auto;
+  border-radius: 35px;
+  margin-bottom: 25px;
+}
+.chatBtn {
+  color: white;
+  background: #cc8e9c;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 13px;
+  font-weight: 900;
+}
+.supportR {
+  font-size: 15px;
+  font-weight: 900;
+  padding: 5px 25px;
+  margin-top: 5px;
+  text-align: center;
+}
+.supportnameh3 {
+  font-size: 22px;
+  font-weight: 600;
+}

@@ -46,6 +46,21 @@ function ClientAppBar({
   };
 
  
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
+  const navToTailors = () => {
+    navigate("/tailors");
+  };
+
+  const navToMyAds = () => {
+    navigate("/my_ads");
+  };
+
+  const navToChat = () => {
+    navigate("/chat");
+  };
 
   const navToProfile = () => {
     navigate("/profile");

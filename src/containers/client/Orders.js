@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
+import { border, borderRadius } from "@mui/system";
 
 function ClientOrdersScreen(){
 
@@ -50,9 +51,11 @@ function ClientOrdersScreen(){
           <p className="client_orders_screen_row1_text">
             Orders List
           </p>
-          {/* <CustomButton
+          <CustomButton
+           padding={"15px 45px"}
+           style={{borderRadius:"15px", boxShadow:"none"}}
             text="Place your order"
-          /> */}
+          />
         </div>
         <div className="client_orders_screen_row2">
           {
@@ -71,6 +74,7 @@ function ClientOrdersScreen(){
 }
 
 function OrderListTile(props){
+  console.log(props,"props");
   return (
     <div className="cos_order_list_tile_container">
       <div className="cos_order_list_tile_column1">
@@ -80,10 +84,10 @@ function OrderListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img style={{ width: "50%" }} src={UserSVG} />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
-          {props.quote.tailor.name}
+          {props?.quote?.tailor?.name ?? props?.order?.tailor?.name ?? "N/A"}
         </p>
       </div>
       <div
@@ -95,7 +99,7 @@ function OrderListTile(props){
         <div
           className="cos_order_list_tile_column2_item"
           style={{
-            padding: "2% 0",
+            padding: "3% 0",
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">
@@ -108,7 +112,7 @@ function OrderListTile(props){
         <div
           className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
           style={{
-            padding: "2% 0",
+            padding: "3% 0",
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">
@@ -121,7 +125,7 @@ function OrderListTile(props){
         <div
           className="cos_order_list_tile_column2_item"
           style={{
-            padding: "2% 0",
+            padding: "3% 0",
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">
@@ -134,15 +138,20 @@ function OrderListTile(props){
       </div>
       <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
-          {`${props.quote.price}$`}
+          {`$${props.quote.price}`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           Bill
         </p>
       </div>
       <div className="cos_order_list_tile_column4">
-        <p style={{ fontSize: "16px", fontWeight: "bold" }}>
-          In Process
+      <CustomButton
+            text="Support"
+            padding={"10px 14px"}
+            style={{borderRadius:"15px", margin:"8px 0px", boxShadow:"none"}}
+          />
+        <p style={{ fontSize: "15px", fontWeight: "600" }}>
+        {props.quote.status}
         </p>
       </div>
     </div>

@@ -1,4 +1,3 @@
-
 .thiw_qna_standard_screen_row1 {
   width: 100%;
   display: flex;
@@ -29,4 +28,17 @@
   width: 100%;
   margin-bottom: 2%;
   padding: 0 5%;
+}
+.termsimg {
+  position: absolute;
+  top: 65%;
+  left: 77%;
+  width: 21%;
+  opacity: 0.2;
+}
+.machineimg {
+  position: absolute;
+  top: 65%;
+  right: 0;
+  width: 33%;
 }

@@ -50,9 +50,10 @@ function ClientEditAdScreen(){
     date: "",
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
+    type: "",
     min_price: "",
     max_price: "",
+    note: "",
   });
 
   useEffect(() => {
@@ -103,11 +104,12 @@ function ClientEditAdScreen(){
       setIsProcessing(true);
 
       const body = {
+        "type": "ad",
         "gender": basicSection.gender,
         "category": basicSection.category,
         "name": basicSection.name,
         "cut": basicSection.cut,
-        "measurments": basicSection.measurements,
+        "measurements": basicSection.measurements,
         "color": basicSection.color,
         "fabric": basicSection.fabric,
         "delivery": {
@@ -116,12 +118,14 @@ function ClientEditAdScreen(){
           "city": deliverySection.city,
           "note": deliverySection.note,
           "type": deliverySection.type,
-          "date": "2022/02/25"
+          "date": deliverySection.date
         },
         "note": notesSection.note,
         "budget": {
+          "type": notesSection.type,
           "min_price": notesSection.min_price,
-          "max_price": notesSection.max_price
+          "max_price": notesSection.max_price,
+          "note": notesSection.note
         }
       }
 
@@ -145,7 +149,6 @@ function ClientEditAdScreen(){
 
   return (
     <>
-      {console.log(basicSection)}
       {
         isLoading
         ? <></>

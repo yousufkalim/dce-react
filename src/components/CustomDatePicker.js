@@ -9,6 +9,8 @@ function CustomDatePicker({
   labelText,
   value,
   onChange,
+  disablePast,
+  disableFuture,
   disabled,
   divStyle,
   labelStyle,
@@ -41,9 +43,10 @@ function CustomDatePicker({
             className="cdp_container"
             value={value}
             onChange={onChange}
+            disablePast={disablePast}
+            disableFuture={disableFuture}
             inputFormat="MM/dd/yyyy"
             renderInput={(params) => <TextField {...params} />}
-            maxDate={new Date()}
             disabled={disabled}
           />
         </LocalizationProvider>
