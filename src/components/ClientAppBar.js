@@ -52,8 +52,7 @@ function ClientAppBar({
   };
 
   const navToChat = () => {
-    handleCloseProfile();
-    toast.success("Coming soon!");
+    navigate("/chat");
   };
 
   const navToProfile = () => {

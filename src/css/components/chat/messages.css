@@ -1,0 +1,25 @@
+.message-width {
+  margin: 20px 0px;
+  display: flex;
+  width: 100%;
+}
+.dot-msg {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.msg-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 170.02%;
+  background: #f7c9d0;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 15px;
+  margin-right: 2%;
+}
+.message-cont {
+  height: 78%;
+  width: 83%;
+  margin: auto;
+  overflow-y: scroll;
+}

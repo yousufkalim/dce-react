@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
-
 import ClientHomeSVG from "../../assets/ClientHome.svg";
 import UserSVG from "../../assets/User.svg";
-
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
-
 import { getUser } from "../../utils/Auth";
-
 import Api from "../../api";
-
 import { useNavigate } from "react-router-dom";
+
 
 function ClientHomeScreen(){
 
