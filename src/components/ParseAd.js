@@ -467,6 +467,7 @@ function DeliverySection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
+              disablePast
               disabled={disabled}
               labelStyle={{
                 display: "none"
@@ -519,25 +520,33 @@ function NotesSection({
     <>
       <div className="pa_profile_section_container">
         <div
-          className="pa_payment_section_textarea_container"
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
             marginBottom: "2%"
           }}
         >
-          <div className="pa_payment_section_textarea_label">
+          <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">
-              Extra Note
+              Choose Method
             </p>
           </div>
           <div className="pa_profile_section_input_input">
-            <textarea
+            <CustomDropDown
               disabled={disabled}
-              className="pa_profile_section_textarea_textarea"
-              defaultValue={state.note}
-              onChange={e => _setState("note", e.target.value)}
-            >
-            </textarea>
+              labelStyle={{
+                display: "none"
+              }}
+              selectID="payment_type"
+              selectName="payment_type"
+              selectNullValue="Fixed Price"
+              selectValue={state.type}
+              onChange={e => _setState("type", e.target.value)}
+              menuItems={[
+                <MenuItem value={"fixed"}>Fixed Price</MenuItem>,
+                <MenuItem value={"hourly"}>Hourly Rate</MenuItem>
+              ]}
+            />
           </div>
         </div>
         <div
@@ -566,7 +575,7 @@ function NotesSection({
           className="pa_payment_section_input_container"
           style={{
             borderRadius: "20px",
-            marginBottom: "3%"
+            marginBottom: "2%"
           }}
         >
           <div className="pa_payment_section_input_label">
@@ -581,6 +590,34 @@ function NotesSection({
               type="number"
               defaultValue={state.max_price}
               onChange={e => _setState("max_price", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+            borderRadius: "20px",
+            marginBottom: "1%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+              Payment Note
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Write any note regarding Payment (Optional)"
+              inputDefaultValue={state.note}
+              onChange={e => _setState("note", e.target.value)}
             />
           </div>
         </div>

@@ -29,7 +29,7 @@ function ClientAdsScreen(){
   const getAds = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { client: user._id, status: "pending" });
+      response = await Api("post", `/orders/byQuery`, { client: user._id, type: "ad", status: "pending" });
       const adsData = response.data.orders;
       setAds(adsData);
       setIsLoading(false);

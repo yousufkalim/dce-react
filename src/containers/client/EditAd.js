@@ -50,9 +50,10 @@ function ClientEditAdScreen(){
     date: "",
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
+    type: "",
     min_price: "",
     max_price: "",
+    note: "",
   });
 
   useEffect(() => {
@@ -117,12 +118,14 @@ function ClientEditAdScreen(){
           "city": deliverySection.city,
           "note": deliverySection.note,
           "type": deliverySection.type,
-          "date": "2022/02/25"
+          "date": deliverySection.date
         },
         "note": notesSection.note,
         "budget": {
+          "type": notesSection.type,
           "min_price": notesSection.min_price,
-          "max_price": notesSection.max_price
+          "max_price": notesSection.max_price,
+          "note": notesSection.note
         }
       }
 
