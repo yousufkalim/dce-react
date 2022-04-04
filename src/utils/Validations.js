@@ -199,6 +199,9 @@ function parseAdNotesSection(data){
 
   const valArr = [
     {
+      validationFunction: () => Validators.selectValidator("Choose Method", data["type"])
+    },
+    {
       validationFunction: () => Validators.nullValidator("Minimum Price", data["min_price"])
     },
     {

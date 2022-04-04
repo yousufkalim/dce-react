@@ -38,6 +38,14 @@ const TailorCatalogScreen = () => {
     navigate("/create_catalog");
   }
 
+  const navToViewCatalog = (id) => {
+    navigate(`/view_catalog/${id}`);
+  }
+
+  const navToEditCatalog = (id) => {
+    navigate(`/edit_catalog/${id}`);
+  }
+
   return (
     <div className="container-page">
       <TailorAppBar color="#ffffff" activeTab={1} />
@@ -77,6 +85,9 @@ const TailorCatalogScreen = () => {
               _ =>
               <TailorCatalogListTile
                 catalog={_}
+                buttonText="Edit"
+                onClick={() => navToViewCatalog(_._id)}
+                onClickButton={() => navToEditCatalog(_._id)}
               />
             )
           }
