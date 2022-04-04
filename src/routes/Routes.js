@@ -30,6 +30,8 @@ import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
 import TailorProfileScreen from "../containers/tailor/Profile";
 import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
+import SearchResult from "../containers/tailor/SearchResult";
+import SupportCentre from "../containers/tailor/SupportCentre";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -282,6 +284,18 @@ const TailorRoutes = [
     name: "TailorTermsAndConditions",
     icon: <TailorTermsAndConditionsIcon />,
     element: TailorTermsAndConditionsScreen,
+  },
+  {
+    path: "/search_result",
+    name: "search_result",
+    // icon: <TailorCreateAccount2Icon />,
+    element: SearchResult,
+  },
+  {
+    path: "/support_centre",
+    name: "support_centre",
+    // icon: <TailorCreateAccount2Icon />,
+    element: SupportCentre,
   },
 ];
 

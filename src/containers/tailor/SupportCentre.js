@@ -1,0 +1,78 @@
+import React from "react";
+import TailorAppBar from "../../components/TailorAppBar";
+import UserSVG from "../../assets/supportpic.png";
+
+function SupportCentre() {
+  let data = [
+    {
+      name: "Kurta Shalwar",
+      description:
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
+      review: "Review",
+    },
+    {
+      name: "Bride Dress",
+      description:
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
+      review: "Pending",
+    },
+    {
+      name: "T-Shirt",
+      description:
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
+      review: "Completed",
+    },
+    {
+      name: "Trouser",
+      description:
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
+      review: "Completed",
+    },
+  ];
+  return (
+    <div className="container-page-vertical">
+      <TailorAppBar color="#FDFDFC" />
+      <div
+        className="client_orders_screen_top"
+        style={{
+          background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+        }}
+      >
+        <div className="thiw_qna_standard_screen_row1">
+          <h1 className="supportheading">Support Center</h1>
+          <p className="suppordesc">
+            In just a few clicks, Design Créations allows you to find one-off
+            assignments in the production and manufacture of clothing,
+            decorative elements or household linen.
+          </p>
+        </div>
+        {data.map((item) => (
+          <Support item={item} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Support({ item }) {
+  return (
+    <div className="supportmainDiv">
+      <div className="supportcol1">
+        <img src={UserSVG} style={{ width: "10%", padding: "25px 25px" }} />
+
+        <div className="supportName">
+          <h3 className="supportnameh3">{item.name}</h3>
+          <p className="headingp">{item.description}</p>
+        </div>
+
+        <div className="supportReview">
+          <button className="chatBtn">Chat With Us</button>
+
+          <h1 className="supportR">{item.review}</h1>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SupportCentre;
