@@ -201,7 +201,7 @@ function DesignerListTile(props){
       <p
         className="chs_designer_list_tile_rating_text"
       >
-        4.5(32K)
+        {5} ({10})
       </p>
     </div>
   );

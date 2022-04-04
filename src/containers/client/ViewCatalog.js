@@ -97,7 +97,7 @@ function ClientViewCatalogScreen(){
                 <p
                   className="view_catalog_screen_row1_column1_text_2"
                 >
-                  4.7
+                  {catalog.rating.value}
                 </p>
               </div>
               <CustomButton

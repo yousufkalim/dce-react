@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Country, City }  from 'country-state-city';
 
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
@@ -296,6 +297,24 @@ function DeliverySection({
   disabled
 }){
 
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    const _countries = Country.getAllCountries();
+    setCountries(_countries);
+  }, [])
+
+  useEffect(() => {
+    if(state.country){
+      _setState("city", "");
+
+      const countryObj = countries.find(_ => _.name == state.country);
+      const _cities = City.getCitiesOfCountry(countryObj.isoCode);
+      setCities(_cities);
+    }
+  }, [state.country])
+
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -353,10 +372,11 @@ function DeliverySection({
               selectNullValue="Country"
               selectValue={state.country}
               onChange={e => _setState("country", e.target.value)}
-              menuItems={[
-                <MenuItem value={"country_1"}>Country1</MenuItem>,
-                <MenuItem value={"country_2"}>Country2</MenuItem>
-              ]}
+              menuItems={
+                countries.map(
+                  _ => <MenuItem value={_.name}>{_.name}</MenuItem>
+                )
+              }
             />
           </div>
         </div>
@@ -384,10 +404,11 @@ function DeliverySection({
               selectNullValue="City"
               selectValue={state.city}
               onChange={e => _setState("city", e.target.value)}
-              menuItems={[
-                <MenuItem value={"city_1"}>City1</MenuItem>,
-                <MenuItem value={"city_2"}>City2</MenuItem>
-              ]}
+              menuItems={
+                cities.map(
+                  _ => <MenuItem value={_.name}>{_.name}</MenuItem>
+                )
+              }
             />
           </div>
         </div>

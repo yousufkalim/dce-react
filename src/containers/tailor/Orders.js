@@ -21,6 +21,8 @@ function TailorOrdersScreen(){
   const [isProcessing, setIsProcessing] = useState(false);
   const [ordersRequest, setOrdersRequest] = useState([]);
   const [ordersInProgress, setOrdersInProgress] = useState([]);
+  const [ordersCompleted, setOrdersCompleted] = useState([]);
+  const [ordersDiscarded, setOrdersDiscarded] = useState([]);
 
   const user = getUser();
 
@@ -29,30 +31,22 @@ function TailorOrdersScreen(){
   }, []);
 
   const loadData = async () => {
-    await getOrdersRequest();
-    await getOrdersInProgress();
+    await getOrders();
   }
 
-  const getOrdersRequest = async () => {
+  const getOrders = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "direct", status: "pending" });
-      const ordersData = response.data.orders.splice(-4);
-      setOrdersRequest(ordersData);
-    } catch (e) {
-      console.trace(e);
-    }
-    return;
-  };
-
-  const getOrdersInProgress = async () => {
-    let response;
-    try {
-      // response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "ad", status: "in_progress" });
-      response = await Api("post", `/orders/byQuery`, { tailor: user._id, status: "in_progress" }); // TODO: Remove it
-      const ordersData = response.data.orders.splice(-4);
-      setOrdersInProgress(ordersData);
-      setIsLoading(false);
+      response = await Api("post", `/orders/byQuery`, { tailor: user._id });
+      const ordersData = response.data.orders;
+      const _ordersRequest = ordersData.filter( _ => (_.type == "direct" && _.status == "pending") ).splice(-4);
+      setOrdersRequest(_ordersRequest);
+      const _ordersInProgress = ordersData.filter( _ => (_.status == "in_progress") ).splice(-4);
+      setOrdersInProgress(_ordersInProgress);
+      const _ordersCompleted = ordersData.filter( _ => (_.status == "completed") ).splice(-4);
+      setOrdersCompleted(_ordersCompleted);
+      const _ordersDiscarded = ordersData.filter( _ => (_.status == "discarded") ).splice(-4);
+      setOrdersDiscarded(_ordersDiscarded);
     } catch (e) {
       console.trace(e);
     }
@@ -77,6 +71,37 @@ function TailorOrdersScreen(){
       };
 
       response = await Api("post", "/orders/acceptRequest", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        loadData();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+
+  }
+
+  const discardOrder = async (event, id) => {
+
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        "id": id,
+      };
+
+      response = await Api("post", "/orders/discard", body);
 
       if (response?.data?.success) {
         toast.success(response.data.message);
@@ -118,6 +143,7 @@ function TailorOrdersScreen(){
               <OrderRequestListTile
                 order={_}
                 acceptOrder={acceptOrder}
+                discardOrder={discardOrder}
               />
             )
           }
@@ -146,6 +172,7 @@ function TailorOrdersScreen(){
               <OrderInProgressListTile
                 order={_}
                 quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+                discardOrder={discardOrder}
               />
             )
           }
@@ -168,8 +195,43 @@ function TailorOrdersScreen(){
           />
         </div>
         <div className="client_orders_screen_row2">
-          {/* <OrderCompletedListTile />
-          <OrderCompletedListTile /> */}
+          {
+            ordersCompleted.map(
+              _ =>
+              <OrderCompletedListTile
+                order={_}
+                quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+              />
+            )
+          }
+        </div>
+      </div>
+      <div
+        className="tailor_orders_screen_top"
+        style={{
+          background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+        }}
+      >
+        <div
+          className="tailor_orders_screen_row1"
+        >
+          <p className="client_orders_screen_row1_text">
+            Discarded
+          </p>
+          <CustomButton
+            text="See All Orders"
+          />
+        </div>
+        <div className="client_orders_screen_row2">
+          {
+            ordersDiscarded.map(
+              _ =>
+              <OrderDiscardedListTile
+                order={_}
+                quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+              />
+            )
+          }
         </div>
       </div>
       <Footer />
@@ -265,6 +327,7 @@ function OrderRequestListTile(props){
               backgroundColor: "transparent",
               color: "#CC8E9C"
             }}
+            onClick={e => props.discardOrder(e, props.order._id)}
           />
         </div>
         <p style={{ fontSize: "16px", fontWeight: "900" }}>
@@ -355,6 +418,7 @@ function OrderInProgressListTile(props){
             style={{
               boxShadow: "none",
             }}
+            onClick={e => props.discardOrder(e, props.order._id)}
           />
         </div>
       </div>
@@ -362,7 +426,7 @@ function OrderInProgressListTile(props){
   );
 }
 
-function OrderCompletedListTile(){
+function OrderCompletedListTile(props){
   return (
     <div className="tcos_order_list_tile_container">
       <div className="tcos_order_list_tile_column1">
@@ -388,10 +452,10 @@ function OrderCompletedListTile(){
             paddingBottom: "10px"
           }}
         >
-          Almirah
+          {props.order.client.name}
         </p>
         <p className="tcos_order_list_tile_column1_description_text">
-          Bride Dresses
+          {props.order.name}
         </p>
       </div>
       <div
@@ -406,7 +470,7 @@ function OrderCompletedListTile(){
             color: "#A0A0A0"
           }}
         >
-          4.5(32K)
+          {props.order.rating.value}({props.order.rating.count})
         </p>
       </div>
       <div className="tcos_order_list_tile_column1">
@@ -414,7 +478,7 @@ function OrderCompletedListTile(){
           Offer
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          500$
+          {`${props.quote.price}$`}
         </p>
       </div>
       <div
@@ -431,7 +495,84 @@ function OrderCompletedListTile(){
             }}
           />
           <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>
-            Completed
+            {props.order.status.replace("_", " ")}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function OrderDiscardedListTile(props){
+  return (
+    <div className="tcos_order_list_tile_container">
+      <div className="tcos_order_list_tile_column1">
+        <div
+          className="tcos_order_list_tile_column1_img"
+          style={{
+            "paddingBottom": "5%"
+          }}
+        >
+          <img style={{ width: "30%" }} src={UserSVG} />
+        </div>
+      </div>
+      <div
+        className="tcos_order_list_tile_column1"
+        style={{
+          padding: "3%",
+          alignItems: "flex-start"
+        }}
+      >
+        <p
+          className="tcos_order_list_tile_column1_title_text"
+          style={{
+            paddingBottom: "10px"
+          }}
+        >
+          {props.order.client.name}
+        </p>
+        <p className="tcos_order_list_tile_column1_description_text">
+          {props.order.name}
+        </p>
+      </div>
+      <div
+        className="tcos_order_list_tile_column1"
+        style={{
+          padding: "3%",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "12px",
+            color: "#A0A0A0"
+          }}
+        >
+          {props.order.rating.value}({props.order.rating.count})
+        </p>
+      </div>
+      <div className="tcos_order_list_tile_column1">
+        <p style={{ fontSize: "12px", fontWeight: "200", color: "#A0A0A0", paddingBottom: "3%" }}>
+          Offer
+        </p>
+        <p style={{ fontSize: "20px", fontWeight: "bold" }}>
+          {`${props.quote.price}$`}
+        </p>
+      </div>
+      <div
+        className="tcos_order_list_tile_column5"
+        style={{
+          marginRight: "5vw"
+        }}
+      >
+        <div className="tcos_order_list_tile_column5_buttons">
+          <CustomButton
+            text="Support"
+            style={{
+              boxShadow: "none"
+            }}
+          />
+          <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>
+            {props.order.status.replace("_", " ")}
           </p>
         </div>
       </div>

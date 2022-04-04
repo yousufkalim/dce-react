@@ -13,8 +13,6 @@ import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
-import { getUser } from "../../utils/Auth";
-
 import Api from "../../api";
 
 import { useNavigate } from "react-router-dom";
@@ -31,12 +29,11 @@ function ClientProfileScreen(){
   const [isProcessing, setIsProcessing] = useState(false);
   const [profile, setProfile] = useState(null);
 
-  const user = getUser();
-
   const [toEdit, setToEdit] = useState(false);
 
   const [state, setState] = useState({
     phone: "",
+    password: ""
   });
 
   const _setState = (key, value) => {
@@ -98,6 +95,8 @@ function ClientProfileScreen(){
       const body = {
         phone: state.phone,
       }
+
+      console.log(body); return;
 
       response = await Api("put", "/clients", body);
 
@@ -216,7 +215,11 @@ function ClientProfileScreen(){
                   disabled
                   name="Last Password Changed"
                   placeholder="Last Password Changed"
-                  defaultValue="N/A"
+                  defaultValue={
+                    profile.last_password_changed ?
+                    new Date(profile.last_password_changed).toLocaleDateString("en-US") :
+                    "N/A"
+                  }
                   label="Last Password Changed"
                   divStyle={{
                     borderTopLeftRadius: "10px",
@@ -224,11 +227,12 @@ function ClientProfileScreen(){
                   }}
                 />
                 <ProfileInput
-                  disabled
+                  disabled={!toEdit}
                   name="Password"
                   placeholder="**********"
-                  defaultValue="**********"
+                  defaultValue=""
                   label="Password"
+                  onChange={e => _setState("password", e.target.value)}
                 />
                 <ProfileInput
                   disabled

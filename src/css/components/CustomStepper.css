@@ -1,5 +1,7 @@
 
-.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root{
+/* Development */
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
   width: 5em !important;
 }
 
@@ -11,4 +13,17 @@
   color: #CC8E9C !important;
 }
 
+/* Production */
+
+.css-1hngkjo {
+  width: 5em !important;
+}
+
+.css-4ff9q7.Mui-active {
+  color: #CC8E9C !important;
+}
+
+.css-4ff9q7.Mui-completed {
+  color: #CC8E9C !important;
+}
 
