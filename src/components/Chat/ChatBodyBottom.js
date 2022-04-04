@@ -8,21 +8,29 @@ import Box from "@mui/material/Box";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import Picker from "emoji-picker-react";
 import chatemoji from "../../assets/chatemoji.svg";
+import { Store } from "../../StoreContext";
+
 const ChatBodyBottom = ({ setFileName }) => {
   const [iconsToggle, setIconsToggle] = useState(true);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
   const [values, setvalues] = useState({
     video: "",
     image: "",
     file: "",
   });
+
+  const { socket } = Store();
+
   const ToggleIcon = () => {
     setIconsToggle(!iconsToggle);
   };
+
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject);
   };
+
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
@@ -32,13 +40,20 @@ const ChatBodyBottom = ({ setFileName }) => {
         [name]: value,
       };
     });
+
     setFileName((pre) => {
       return [...pre, e.target.files[0].name];
     });
   };
+
   const EmojiOpen = () => {
     setOpen(!Open);
   };
+
+  const handleSend = () => {
+    socket?.emit("sendMessage", { message });
+  };
+
   return (
     <>
       <div className="send-msg-cont">
@@ -99,7 +114,9 @@ const ChatBodyBottom = ({ setFileName }) => {
         <input
           className="msg-input"
           placeholder="Type a message here"
-          value={chosenEmoji?.emoji}
+          name="message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
         {
           <>
@@ -111,7 +128,7 @@ const ChatBodyBottom = ({ setFileName }) => {
             ) : null}
           </>
         }
-        <div className="send-btn">
+        <div className="send-btn" onClick={handleSend}>
           <img src={send} />
         </div>
       </div>
