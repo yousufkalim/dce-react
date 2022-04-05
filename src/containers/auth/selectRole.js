@@ -8,7 +8,7 @@ import DesignerRole from "../../assets/DesignerRole.svg";
 
 import { useNavigate } from "react-router-dom";
 
-const selectRole = () => {
+const SelectRole = () => {
 
   const navigate = useNavigate();
 
@@ -70,4 +70,4 @@ const selectRole = () => {
   );
 };
 
-export default selectRole;
+export default SelectRole;

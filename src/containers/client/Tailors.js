@@ -95,7 +95,7 @@ function TailorListTile(props){
       </div>
       <div className="cds_tailor_list_tile_column3">
         <p style={{ fontSize: "14px", fontWeight: "400", color: "#A0A0A0" }}>
-          4.5 (32K)
+          {5} ({10})
         </p>
       </div>
       <div className="cds_tailor_list_tile_column1">

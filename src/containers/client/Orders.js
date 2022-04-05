@@ -25,7 +25,7 @@ function ClientOrdersScreen(){
   const getOrders = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { client: user._id, status: "in_progress" });
+      response = await Api("post", `/orders/byQuery`, { client: user._id });
       const ordersData = response.data.orders;
       setOrders(ordersData);
       setIsLoading(false);
@@ -134,7 +134,7 @@ function OrderListTile(props){
       </div>
       <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
-          {`${props.quote.price}$`}
+          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}$`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           Bill
@@ -142,7 +142,7 @@ function OrderListTile(props){
       </div>
       <div className="cos_order_list_tile_column4">
         <p style={{ fontSize: "16px", fontWeight: "bold" }}>
-          In Process
+          {props.order.status.replace("_", " ")}
         </p>
       </div>
     </div>

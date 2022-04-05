@@ -16,7 +16,7 @@ function TailorCatalogListTile({
   mainDivStyle
 }){
 
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(catalog.rating.value);
 
   return (
     <div

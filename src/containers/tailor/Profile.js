@@ -153,6 +153,14 @@ function TailorProfileScreen(){
     navigate("/home");
   }
 
+  const navToViewCatalog = (id) => {
+    navigate(`/view_catalog/${id}`);
+  }
+
+  const navToEditCatalog = (id) => {
+    navigate(`/edit_catalog/${id}`);
+  }
+
   return (
     <>
       {
@@ -422,6 +430,9 @@ function TailorProfileScreen(){
                       mainDivStyle={{
                         width: "160pt"
                       }}
+                      buttonText="Edit"
+                      onClick={() => navToViewCatalog(_._id)}
+                      onClickButton={() => navToEditCatalog(_._id)}
                     />
                   )
                 }
