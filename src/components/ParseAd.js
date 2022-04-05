@@ -9,12 +9,15 @@ import CustomDatePicker from "./CustomDatePicker";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from '@mui/material/Checkbox';
 
+import { materialFabrics, colors } from "../utils/Constants"
+
 function BasicSection({
   state,
   setState,
   onClick,
   disabled,
-  disables
+  disables,
+  handleImageSelect
 }){
 
   const _setState = (key, value) => {
@@ -80,8 +83,9 @@ function BasicSection({
               selectValue={state.category}
               onChange={e => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"category_1"}>Category1</MenuItem>,
-                <MenuItem value={"category_2"}>Category2</MenuItem>
+                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
+                <MenuItem value={"MAN"}>MAN</MenuItem>,
+                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
               ]}
             />
           </div>
@@ -139,8 +143,20 @@ function BasicSection({
               selectValue={state.cut}
               onChange={e => _setState("cut", e.target.value)}
               menuItems={[
-                <MenuItem value={"5"}>5</MenuItem>,
-                <MenuItem value={"10"}>10</MenuItem>
+                <MenuItem value={"34"}>34</MenuItem>,
+                <MenuItem value={"36"}>36</MenuItem>,
+                <MenuItem value={"38"}>38</MenuItem>,
+                <MenuItem value={"40"}>40</MenuItem>,
+                <MenuItem value={"42"}>42</MenuItem>,
+                <MenuItem value={"44"}>44</MenuItem>,
+                <MenuItem value={"46"}>46</MenuItem>,
+                <MenuItem value={"48"}>48</MenuItem>,
+                <MenuItem value={"50"}>50</MenuItem>,
+                <MenuItem value={"52"}>52</MenuItem>,
+                <MenuItem value={"54"}>54</MenuItem>,
+                <MenuItem value={"56"}>56</MenuItem>,
+                <MenuItem value={"58"}>58</MenuItem>,
+                <MenuItem value={"60"}>60</MenuItem>,
               ]}
             />
           </div>
@@ -188,7 +204,8 @@ function BasicSection({
           style={{
             borderTopLeftRadius: "20px",
             borderTopRightRadius: "20px",
-            marginTop: "2%"
+            marginTop: "2%",
+            backgroundColor: state.color ? colors.filter( _ => _.name == state.color )[0].value : null
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -207,10 +224,11 @@ function BasicSection({
               selectNullValue="Select one colour for your Creations"
               selectValue={state.color}
               onChange={e => _setState("color", e.target.value)}
-              menuItems={[
-                <MenuItem value={"colour_1"}>Colour1</MenuItem>,
-                <MenuItem value={"colour_2"}>Colour2</MenuItem>
-              ]}
+              menuItems={
+                colors.map(
+                  _ => <MenuItem value={_.name}>{_.name}</MenuItem>
+                )
+              }
             />
           </div>
         </div>
@@ -237,10 +255,11 @@ function BasicSection({
               selectNullValue="Select Fabric Style"
               selectValue={state.fabric}
               onChange={e => _setState("fabric", e.target.value)}
-              menuItems={[
-                <MenuItem value={"fabric_1"}>Fabric1</MenuItem>,
-                <MenuItem value={"fabric_2"}>Fabric2</MenuItem>
-              ]}
+              menuItems={
+                materialFabrics.map(
+                  _ => <MenuItem value={_.title}>{_.title}</MenuItem>
+                )
+              }
             />
           </div>
         </div>
@@ -268,6 +287,8 @@ function BasicSection({
               }}
               inputPlaceholder="Upload Drawing, Photo, Document, etc."
               inputType="file"
+              accept="image/*"
+              onChange={handleImageSelect}
             />
           </div>
         </div>
@@ -307,11 +328,12 @@ function DeliverySection({
 
   useEffect(() => {
     if(state.country){
-      _setState("city", "");
-
       const countryObj = countries.find(_ => _.name == state.country);
-      const _cities = City.getCitiesOfCountry(countryObj.isoCode);
-      setCities(_cities);
+      if(countryObj){
+        _setState("city", "");
+        const _cities = City.getCitiesOfCountry(countryObj.isoCode);
+        setCities(_cities);
+      }
     }
   }, [state.country])
 

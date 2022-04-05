@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
-import TailorCatalogListTile from "../../components/TailorCatalogListTile";
+import CatalogListTile from "../../components/CatalogListTile";
 
 import { useNavigate } from "react-router-dom";
 
@@ -83,7 +83,7 @@ const TailorCatalogScreen = () => {
           {
             catalogs.map(
               _ =>
-              <TailorCatalogListTile
+              <CatalogListTile
                 catalog={_}
                 buttonText="Edit"
                 onClick={() => navToViewCatalog(_._id)}

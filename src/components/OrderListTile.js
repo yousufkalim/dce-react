@@ -1,12 +1,16 @@
 import UserSVG from "../assets/User.svg";
 
+import assetsURL from "../utils/Assets";
+
 function OrderListTile({
   order,
   quote,
-  mainDivStyle
+  mainDivStyle,
+  viewAs
 }) {
   return (
     <>
+    {console.log(order)}
     <div
       className="order_list_tile"
       style={{
@@ -19,7 +23,24 @@ function OrderListTile({
           paddingBottom: "5%",
         }}
       >
-        <img style={{ width: "30%" }} src={UserSVG} />
+        <img
+          className="image_container"
+          style={{
+            height: "50pt",
+            width: "50pt"
+          }}
+          src={
+            viewAs == "client" ?
+              order?.tailor?.avatar ?
+              assetsURL(order.tailor.avatar) :
+              UserSVG :
+            viewAs == "tailor" ?
+              order?.client?.avatar ?
+              assetsURL(order.client.avatar) :
+              UserSVG :
+            UserSVG
+          }
+        />
       </div>
       <p
         className="order_list_tile_title_text"
@@ -27,7 +48,13 @@ function OrderListTile({
           paddingBottom: "8%",
         }}
       >
-        {order.tailor.name}
+        {
+          viewAs == "client" ?
+          order?.tailor?.name ?? "" :
+          viewAs == "tailor" ?
+          order?.client?.name ?? "" :
+          ""
+        }
       </p>
       <div className="order_list_tile_divider" />
       <div className="order_list_tile_item">

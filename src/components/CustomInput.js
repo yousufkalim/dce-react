@@ -8,6 +8,7 @@ function CustomInput({
   inputPlaceholder,
   inputDefaultValue,
   enableEyes,
+  accept,
   onChange,
   disabled,
   divStyle,
@@ -55,6 +56,7 @@ function CustomInput({
             inputType ? inputType : "text"
           }
           name={inputName}
+          accept={accept}
           onChange={onChange}
           placeholder={inputPlaceholder}
           defaultValue={inputDefaultValue}

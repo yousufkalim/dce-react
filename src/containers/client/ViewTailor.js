@@ -13,7 +13,7 @@ import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
-import TailorCatalogListTile from "../../components/TailorCatalogListTile";
+import CatalogListTile from "../../components/CatalogListTile";
 import OrderListTile from "../../components/OrderListTile";
 
 import { getUser } from "../../utils/Auth";
@@ -21,6 +21,8 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
 import { useNavigate, useParams } from "react-router-dom";
+
+import assetsURL from "../../utils/Assets";
 
 function ClientViewTailorScreen(){
 
@@ -127,7 +129,18 @@ function ClientViewTailorScreen(){
                     "paddingBottom": "5%"
                   }}
                 >
-                  <img style={{ width: "30%" }} src={UserSVG} />
+                  <img
+                    className="image_container"
+                    style={{
+                      height: "80pt",
+                      width: "80pt"
+                    }}
+                    src={
+                      tailor.avatar
+                      ? assetsURL(tailor.avatar)
+                      : UserSVG
+                    }
+                  />
                 </div>
                 <p className="tailor_profile_screen_row1_column1_user_name_text">
                   {tailor.name}
@@ -297,7 +310,7 @@ function ClientViewTailorScreen(){
                 {
                   catalogs.map(
                     _ =>
-                    <TailorCatalogListTile
+                    <CatalogListTile
                       catalog={_}
                       buttonText="View"
                       onClickButton={() => navToViewCatalog(_._id)}
@@ -337,6 +350,7 @@ function ClientViewTailorScreen(){
                       mainDivStyle={{
                         width: "14%"
                       }}
+                      viewAs="client"
                     />
                   )
                 }

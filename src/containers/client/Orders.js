@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
+import assetsURL from "../../utils/Assets";
+
 function ClientOrdersScreen(){
 
   const navigate = useNavigate();
@@ -80,7 +82,20 @@ function OrderListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "70pt",
+              width: "70pt"
+            }}
+            src={
+              props?.quote?.tailor?.avatar ?
+              assetsURL(props.quote.tailor.avatar) :
+              props?.order?.tailor?.avatar ?
+              assetsURL(props.order.tailor.avatar) :
+              UserSVG
+            }
+          />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
           {props?.quote?.tailor?.name ?? props?.order?.tailor?.name ?? "N/A"}

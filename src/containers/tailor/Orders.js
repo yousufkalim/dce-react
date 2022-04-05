@@ -13,6 +13,8 @@ import Api from "../../api";
 
 import { toast } from "react-toastify";
 
+import assetsURL from "../../utils/Assets";
+
 function TailorOrdersScreen(){
 
   const navigate = useNavigate();
@@ -250,7 +252,18 @@ function OrderRequestListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "65pt",
+              width: "65pt"
+            }}
+            src={
+              props.order.client.avatar ?
+              assetsURL(props.order.client.avatar) :
+              UserSVG
+            }
+          />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
           {props.order.client.name}
@@ -348,7 +361,18 @@ function OrderInProgressListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "65pt",
+              width: "65pt"
+            }}
+            src={
+              props.order.client.avatar ?
+              assetsURL(props.order.client.avatar) :
+              UserSVG
+            }
+          />
         </div>
         <p className="cos_order_list_tile_column1_title_text">
           {props.order.client.name}
@@ -436,7 +460,18 @@ function OrderCompletedListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "50pt",
+              width: "50pt"
+            }}
+            src={
+              props.order.client.avatar ?
+              assetsURL(props.order.client.avatar) :
+              UserSVG
+            }
+          />
         </div>
       </div>
       <div
@@ -513,7 +548,18 @@ function OrderDiscardedListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "50pt",
+              width: "50pt"
+            }}
+            src={
+              props.order.client.avatar ?
+              assetsURL(props.order.client.avatar) :
+              UserSVG
+            }
+          />
         </div>
       </div>
       <div

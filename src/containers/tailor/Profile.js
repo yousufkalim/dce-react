@@ -14,7 +14,7 @@ import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 
-import TailorCatalogListTile from "../../components/TailorCatalogListTile";
+import CatalogListTile from "../../components/CatalogListTile";
 
 import { getUser } from "../../utils/Auth";
 
@@ -26,6 +26,8 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import assetsURL from "../../utils/Assets";
+
 function TailorProfileScreen(){
 
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ function TailorProfileScreen(){
   const [isProcessing, setIsProcessing] = useState(false);
   const [catalogs, setCatalogs] = useState([]);
   const [profile, setProfile] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
 
   const user = getUser();
 
@@ -46,7 +49,13 @@ function TailorProfileScreen(){
     shop_name: "",
     hourly_rate: "",
     free_shipping_rate: "",
+    password: undefined
   });
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  };
 
   const _setState = (key, value) => {
     const obj = {};
@@ -85,6 +94,7 @@ function TailorProfileScreen(){
       const userData = response.data.user;
       setProfile(userData);
       setState({
+        ...state,
         phone: userData.phone ?? "",
         experience: userData.experience ?? "",
         diploma: userData.diploma ?? "",
@@ -126,14 +136,16 @@ function TailorProfileScreen(){
     try {
       setIsProcessing(true);
 
-      const body = {
-        phone: state.phone,
-        experience: state.experience,
-        diploma: state.diploma,
-        shop_name: state.shop_name,
-        hourly_rate: state.hourly_rate,
-        free_shipping_rate: state.free_shipping_rate
-      }
+      const body = new FormData();
+
+      body.append("phone", state.phone);
+      body.append("experience", state.experience);
+      body.append("diploma", state.diploma);
+      body.append("shop_name", state.shop_name);
+      body.append("hourly_rate", state.hourly_rate);
+      body.append("free_shipping_rate", state.free_shipping_rate);
+      body.append("password", state.password);
+      body.append("image", profileImage);
 
       response = await Api("put", "/tailors", body);
 
@@ -201,7 +213,32 @@ function TailorProfileScreen(){
                     "paddingBottom": "5%"
                   }}
                 >
-                  <img style={{ width: "30%" }} src={UserSVG} />
+                  <label>
+                    <input
+                      style={{
+                        display: "none",
+                        cursor: "none",
+                      }}
+                      disabled={!toEdit}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageSelect}
+                    />
+                    <img
+                      className="image_container"
+                      style={{
+                        height: "80pt",
+                        width: "80pt"
+                      }}
+                      src={
+                        profileImage
+                        ? URL.createObjectURL(profileImage)
+                        : profile.avatar
+                        ? assetsURL(profile.avatar)
+                        : UserSVG
+                      }
+                    />
+                  </label>
                 </div>
                 <p className="tailor_profile_screen_row1_column1_user_name_text">
                   {profile.name}
@@ -280,7 +317,11 @@ function TailorProfileScreen(){
                   disabled
                   name="Last Password Changed"
                   placeholder="Last Password Changed"
-                  defaultValue="N/A"
+                  defaultValue={
+                    profile.last_password_changed ?
+                    new Date(profile.last_password_changed).toLocaleDateString("en-US") :
+                    "N/A"
+                  }
                   label="Last Password Changed"
                   divStyle={{
                     borderTopLeftRadius: "10px",
@@ -288,11 +329,11 @@ function TailorProfileScreen(){
                   }}
                 />
                 <ProfileInput
-                  disabled
+                  disabled={!toEdit}
                   name="Password"
                   placeholder="**********"
-                  defaultValue="**********"
                   label="Password"
+                  onChange={e => _setState("password", e.target.value)}
                 />
                 <ProfileInput
                   disabled
@@ -425,7 +466,7 @@ function TailorProfileScreen(){
                 {
                   catalogs.map(
                     _ =>
-                    <TailorCatalogListTile
+                    <CatalogListTile
                       catalog={_}
                       mainDivStyle={{
                         width: "160pt"

@@ -10,6 +10,8 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { toast } from "react-toastify";
 
+import assetsURL from "../../utils/Assets";
+
 function ClientTailorsScreen(){
 
   const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +84,18 @@ function TailorListTile(props){
             "paddingBottom": "5%"
           }}
         >
-          <img style={{ width: "50%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "80pt",
+              width: "80pt"
+            }}
+            src={
+              props.avatar ?
+              assetsURL(props.avatar) :
+              UserSVG
+            }
+          />
         </div>
       </div>
       <div className="cds_tailor_list_tile_column1" style={{ alignItems: "flex-start" }}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
@@ -8,10 +8,14 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+import Api from "../api";
+
 import { handleLogout } from "../utils/Auth";
 
 import { useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
+
+import assetsURL from "../utils/Assets";
 
 function ClientAppBar({
   activeTab,
@@ -63,6 +67,24 @@ function ClientAppBar({
     handleCloseProfile();
     handleLogout(navigate);
   }
+
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile = async () => {
+    let response;
+    try {
+      response = await Api("get", `/auth`);
+      const userData = response.data.user;
+      setProfile(userData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
 
   return (
     <div
@@ -127,9 +149,17 @@ function ClientAppBar({
             onClick={handleClickNotifications}
           />
           <img
-            src={UserSVG}
-            className="appbar_row2_user_img"
-            style={{ marginLeft: "3%" }}
+            className="appbar_row2_user_img image_container"
+            style={{
+              width: "6vh",
+              height: "6vh",
+              marginLeft: "3%"
+            }}
+            src={
+              profile?.avatar
+              ? assetsURL(profile.avatar)
+              : UserSVG
+            }
             onClick={handleClickProfile}
           />
           <Menu

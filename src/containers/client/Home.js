@@ -8,6 +8,7 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
+import assetsURL from "../../utils/Assets";
 
 function ClientHomeScreen(){
 
@@ -130,6 +131,7 @@ function ClientHomeScreen(){
                 <OrderListTile
                   order={_}
                   quote={_.quotes.filter(__ => __.status == "accepted")[0]}
+                  viewAs="client"
                 />
               )
             }
@@ -176,7 +178,18 @@ function DesignerListTile(props){
           "paddingBottom": "5%"
         }}
       >
-        <img style={{ width: "40%" }} src={UserSVG} />
+        <img
+          className="image_container"
+          style={{
+            height: "80pt",
+            width: "80pt"
+          }}
+          src={
+            props.avatar
+            ? assetsURL(props.avatar)
+            : UserSVG
+          }
+        />
       </div>
       <p
         className="chs_designer_list_tile_title_text"

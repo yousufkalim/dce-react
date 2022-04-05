@@ -124,6 +124,7 @@ function TailorHomeScreen() {
                 _ =>
                 <OrderListTile
                   order={_}
+                  viewAs="tailor"
                 />
               )
             }
