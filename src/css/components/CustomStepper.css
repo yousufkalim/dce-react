@@ -5,10 +5,20 @@
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
   color: #CC8E9C !important;
+  height: 6vh;
 }
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
   color: #CC8E9C !important;
 }
 
+.css-z7uhs0-MuiStepConnector-line{
+  border-color:#CC8E9C !important;
+  border-top-width:6px !important;
+}
 
+
+.css-zpcwqm-MuiStepConnector-root {
+  left: calc(-57% + 20px) !important;
+  right: calc(43% + 20px) !important;
+}

@@ -81,7 +81,7 @@
 
 /* mobileview */
 .mobile-nav{
-position: absolute;
+position: fixed;
 height: 25%;
 top: 7%;
 background: #DFDFDF;

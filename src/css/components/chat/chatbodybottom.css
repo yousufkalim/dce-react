@@ -27,8 +27,8 @@
 .send-btn {
   background: #f7c9d0;
   box-shadow: 0px 5px 18px rgba(132, 132, 132, 0.35);
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -56,8 +56,8 @@
     cursor: pointer;
 }
 .send-btn img {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
 }
 .toggle-icons{
   padding: 13px;

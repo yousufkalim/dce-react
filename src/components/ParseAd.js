@@ -6,12 +6,25 @@ import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from '@mui/material/Checkbox';
-import dotted from '../assets/dotted.svg'
+import dotted from '../assets/dottedblack.svg'
 import { grey } from '@mui/material/colors';
 
 import upload from '../assets/upload.svg'
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
+const items= [
+  {
+  size:"small",
+  measurements:"28,30,32"
+},
+{
+  size:"medium",
+  measurements:"36,38,40"
+},
+{
+  size:"smaill",
+  measurements:"42,44,46"
+}
+]
 function BasicSection({
   state,
   setState,
@@ -151,9 +164,19 @@ function BasicSection({
         <div>
 
         </div>
-        <p className="pa_profile_section_input_instructions_text">
+        <div style={{display:"flex", justifyContent:"space-between", width:"80%", marginLeft:"4%"}}>
+          <div><span className="measurements"> Standard size</span> </div>
+          <div className="size-measurement-cont"> 
+          {
+            items.map((val)=>(
+            <div><span className="size">{val?.size} </span> <span className="measurements">{val?.measurements}</span> </div>
+            ))
+          }
+         </div>
+        </div>
+        {/* <p className="pa_profile_section_input_instructions_text">
           *Ex: Long skirt size 38
-        </p>
+        </p> */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -310,8 +333,7 @@ function BasicSection({
           : <CustomButton
               text="Next"
               style={{
-                marginTop: "3%",
-                marginBottom: "2%",
+                marginBottom: "6%",
                 padding: "1.7% 5%",
                 boxShadow: "none"
               }}
@@ -518,11 +540,11 @@ function DeliverySection({
           !onClick
           ? <></>
           : <CustomButton
-              text="Next"
+              text="Write Here"
               style={{
                 marginTop: "3%",
-                marginBottom: "2%",
-                padding: "1.2% 5%",
+                marginBottom: "10%",
+                padding: "1.5% 5%",
                 boxShadow: "none"
               }}
               onClick={onClick}
@@ -602,6 +624,7 @@ function NotesSection({
               type="number"
               defaultValue={state.min_price}
               onChange={e => _setState("min_price", e.target.value)}
+              placeholder="$50"
             />
           </div>
         </div>
@@ -624,6 +647,7 @@ function NotesSection({
               type="number"
               defaultValue={state.max_price}
               onChange={e => _setState("max_price", e.target.value)}
+              placeholder="$80"
             />
           </div>
         </div>
@@ -668,18 +692,16 @@ function NotesSection({
                 defaultChecked
               />
               <p
+              className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   paddingRight: "0.6%"
                 }}
               >
                 I agree to the design Confection Ethiques
               </p>
               <p
+               className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   paddingRight: "0.6%",
                   color: "#CC8E9C"
                 }}
@@ -687,18 +709,16 @@ function NotesSection({
                 Terms of Services
               </p>
               <p
+               className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   paddingRight: "0.6%"
                 }}
               >
                 and
               </p>
               <p
+               className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   color: "#CC8E9C"
                 }}
               >
@@ -713,8 +733,8 @@ function NotesSection({
               text={buttonText ?? "Publish Ad"}
               onClick={onClick}
               style={{
-                marginBottom: "2%",
-                padding: "1.2% 5%",
+                margin: "7%",
+                padding: "1.5% 5%",
                 boxShadow: "none"
               }}
             />

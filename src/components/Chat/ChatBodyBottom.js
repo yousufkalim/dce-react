@@ -9,7 +9,7 @@ import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import Picker from "emoji-picker-react";
 import chatemoji from "../../assets/chatemoji.svg";
 const ChatBodyBottom = ({ setFileName }) => {
-  const [iconsToggle, setIconsToggle] = useState(true);
+  const [iconsToggle, setIconsToggle] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
   const [values, setvalues] = useState({

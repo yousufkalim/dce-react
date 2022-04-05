@@ -165,6 +165,7 @@ function ClientCreateAdScreen(){
               marginTop: "8.5%"
             }}
           >
+          
             <div className="pa_steps_row">
               <Stepper  activeStep={activeStep} alternativeLabel>
                 {steps.map((v, i) => (
@@ -197,6 +198,7 @@ function ClientCreateAdScreen(){
                 : <></>
               }
             </div>
+      
           </div>
         </div>
       </div>
