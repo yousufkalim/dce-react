@@ -9,6 +9,7 @@ import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1"
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 import ClientHomeScreen from "../containers/client/Home";
 import Chat from '../components/Chat/Chat'
+import Measurements from '../containers/client/Measurements'
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
@@ -32,7 +33,7 @@ import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
 import SearchResult from "../containers/tailor/SearchResult";
 import SupportCentre from "../containers/tailor/SupportCentre";
-
+import Faqs from '../containers/client/Faqs'
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
 import ClientRegisterIcon from "@mui/icons-material/AccountBox";
@@ -160,6 +161,18 @@ const ClientRoutes = [
     name: "ClientDesigners",
     icon: <ClientTailorsIcon />,
     element: ClientTailorsScreen,
+  },
+  {
+    path: "/measurements",
+    name: "Measurements",
+    icon: <ClientTailorsIcon />,
+    element: Measurements,
+  },
+  {
+    path: "/faqs",
+    name: "Faqs",
+    icon: <ClientTailorsIcon />,
+    element: Faqs,
   },
   {
     path: "/view_tailor/:id",

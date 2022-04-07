@@ -196,7 +196,7 @@ function OrderFromCatalogScreen(){
                   <div
                     className="pa_container"
                     style={{
-                      marginTop: "10%"
+                      marginTop: "8%"
                     }}
                   >
                     <div className="pa_steps_row">

@@ -150,11 +150,11 @@ function ClientCreateOrderScreen(){
       >
         <div className="client_create_ad_screen_column1">
           <p
-            style={{
-              fontSize: "30px",
-              fontWeight: "900",
-              marginBottom: "8%"
-            }}
+           style={{
+            fontSize: "30px",
+            fontWeight: "900",
+            marginBottom: "8%"
+          }}
           >
             Place Your Order
           </p>

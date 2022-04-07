@@ -178,7 +178,7 @@ function Navlink({activeTab}){
   };
 
   const navToDesigners = () => {
-    navigate("/designers");
+    navigate("/tailors");
   };
 
   const navToMyAds = () => {
@@ -242,7 +242,7 @@ function NavlinkMobile({activeTab}){
   };
 
   const navToDesigners = () => {
-    navigate("/designers");
+    navigate("/tailors");
   };
 
   const navToMyAds = () => {

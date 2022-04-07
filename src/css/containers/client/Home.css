@@ -175,11 +175,20 @@
     align-items: center;
   }
 }
+.order-now{
+  height: 100%;
+  width: 17%;
+  padding: 3.5% 0% !important;
+}
 
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .client_home_screen_row1{
     height: 70vh;
     white-space: nowrap;
+  }
+  .order-now{
+    width: 90%;
+    margin: 2% 0%;
+    
   }
 }

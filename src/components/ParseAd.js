@@ -743,9 +743,369 @@ function NotesSection({
     </>
   );
 }
+function Circumference({disabled}){
+  return(
+    <>
+     <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+              Arm
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("armSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Chest size
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("chestSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Waist size
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("waistSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Hip 
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("hipSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Thigh
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("thighSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Calf 
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("calfSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Ankle
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("ankleSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <CustomButton
+              text={"Save and Next"}
+              style={{
+                marginTop:'2%',
+                marginBottom:'7%',
+                padding: "1.5% 5%",
+                boxShadow: "none",
+                borderRadius:'10px'
+              }}
+            />
+
+   
+    </>
+  )
+}
+function Length({disabled}){
+  return(
+    <>
+ <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            Head to floor height
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("headtofloorheight", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            From shoulder to floor
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("shouldertofloorheight", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            From waist to floor
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("waisttofloorheight", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            Arm length <span style={{color:"#A0A0A0"}}> (handle) </span>
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("armlength", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            Leg length
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("leglength", e.target.value)}
+            />
+          </div>
+        </div>
+        <CustomButton
+              text={"Next"}
+              style={{
+                marginTop:'2%',
+                marginBottom:'7%',
+                padding: "1.5% 5%",
+                boxShadow: "none",
+                borderRadius:'10px'
+              }}
+            />
+    </>
+  )
+}
 
 export {
   BasicSection,
   DeliverySection,
-  NotesSection
+  NotesSection,
+  Circumference,
+  Length
 }

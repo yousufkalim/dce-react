@@ -13,6 +13,7 @@
   flex-direction: row;
   height: 100%;
   width: 100%;
+  background: rgb(248, 244, 239);
 }
 
 .appbar_row1 {
@@ -91,5 +92,11 @@ z-index: 9;
 }
 .mobile-nav>*{
   padding: 2% 0%;
+}
+
+@media only screen and (max-width: 768px) {
+  .appbar_row2_input{
+    width: 46vw;
+  }
 }
 

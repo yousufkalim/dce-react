@@ -74,7 +74,6 @@ function ClientOrdersScreen(){
 }
 
 function OrderListTile(props){
-  console.log(props,"props");
   return (
     <div className="cos_order_list_tile_container">
       <div className="cos_order_list_tile_column1">

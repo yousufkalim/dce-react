@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
-import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
+import DesignElaborationSVG from "../../assets/profile.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
 import ProfileCitySVG from "../../assets/ProfileCity.svg";
@@ -148,14 +148,14 @@ function ClientProfileScreen(){
           </div>
           <div className="client_profile_screen_row2">
             <div className="client_profile_screen_row2_column1">
-              <div>
-                <img style={{ width: "80%" }} src={DesignElaborationSVG} />
+              <div className="prof-img">
+                <img style={{ width: "86%" }} src={DesignElaborationSVG} />
               </div>
             </div>
             <div className="client_profile_screen_row2_column2">
               <div className="cps_profile_container">
                 <div className="cps_profile_img" style={{ paddingBottom: "2%" }}>
-                  <img style={{ width: "12%" }} src={UserSVG} />
+                  <img style={{ width: "20%" }} src={UserSVG} />
                 </div>
                 <p className="cps_profile_text" style={{ paddingBottom: "10px" }}>
                   {profile.name}

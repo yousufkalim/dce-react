@@ -16,6 +16,11 @@
   align-items: center;
   justify-content: center;
 }
+.place-ad-text{
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 8%;
+}
 
 .client_create_ad_screen_column2 {
   display: flex;
@@ -37,6 +42,7 @@
   }
   .client_create_ad_screen_column1{
     width: 85%;
+    margin: 5% 0%;
   }
   .client_create_ad_screen_column2 {
     display: flex;

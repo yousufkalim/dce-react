@@ -11,19 +11,25 @@ function OrderListTile(props) {
     status:"In Process"
   },
 ]
-const Opacity = (status)=>{
-  console.log(status);
-  let opacity=""
+const Color = (status)=>{
   let color=""
  if(status=="In Process"){
-      opacity="1"
       color="#000000"
  }
  if(status=="Completed"){
-   opacity="0.5"
    color="#A0A0A0"
  }
- return opacity, color
+ return color
+}
+const Opacity = (status)=>{
+  let opacity=""
+  if(status=="Completed"){
+    opacity="0.5"
+  }
+  if(status=="In Process"){
+    opacity="1"
+}
+  return opacity
 }
   return (
     <>
@@ -53,11 +59,10 @@ const Opacity = (status)=>{
             opacity:Opacity(props.detail)
         }}
     className="order_list_tile_item_key">
-      Order
+      Order {props.detail}
       </p>
         <p  style={{
-          opacity:Opacity(props.detail),
-          color:Opacity(props.detail)
+          color:Color(props.detail)
           }} className="order_list_tile_item_value">{val.dress}</p>
       </div>
       <div className="order_list_tile_item">
@@ -66,9 +71,8 @@ const Opacity = (status)=>{
            
         }} className="order_list_tile_item_key">Order Date</p>
         <p style={{
-        opacity:Opacity(props.detail),
-        color:Opacity(props.detail
-          )}}  
+        color:Color(props.detail)
+      }}  
         className="order_list_tile_item_value">{val?.orderdate}</p>
       </div>
       <div className="order_list_tile_item">
@@ -78,14 +82,14 @@ const Opacity = (status)=>{
         }} 
         className="order_list_tile_item_key">Delivery Date</p>
         <p style={{
-          opacity:Opacity(props.detail),
-          color:Opacity(props.detail)
+          color:Color(props.detail)
           }}  className="order_list_tile_item_value">{val?.deliverydate}</p>
       </div>
       <div
         className="order_list_tile_item"
         style={{
-          paddingTop: "2%",
+          paddingTop: "6%",
+          paddingBottom:"4%"
         }}
       >
         <p style={{
@@ -96,7 +100,7 @@ const Opacity = (status)=>{
           style={{
             fontSize: "15px",
             fontWeight: "700",
-            color:Opacity(props.detail)
+            color:Color(props.detail)
           }}
         >
           {val.price}
@@ -108,7 +112,7 @@ const Opacity = (status)=>{
         style={{
           padding: "4% 0",
       
-          color:Opacity(props.detail)
+          color:Color(props.detail)
         }}
       >
         {props.detail}
