@@ -6,16 +6,15 @@ import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
 import { useNavigate } from "react-router-dom";
 import star from '../../assets/star.svg'
-
+import ModalComp from '../../components/Modal/ModalComp'
 function ClientHomeScreen(){
-
   const navigate = useNavigate();
-
   return (
     <div className="container-page">
       <ClientAppBar
         color="#F8F4EF"
       />
+     <ModalComp open={open} setOpen={setOpen}/>
       <div
         className="container"
         style={{

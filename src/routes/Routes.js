@@ -34,6 +34,8 @@ import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditi
 import SearchResult from "../containers/tailor/SearchResult";
 import SupportCentre from "../containers/tailor/SupportCentre";
 import Faqs from '../containers/client/Faqs'
+import GetTape from '../containers/client/GetTape'
+import OrderAcceptForm from '../containers/client/OrderAcceptForm'
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
 import ClientRegisterIcon from "@mui/icons-material/AccountBox";
@@ -167,6 +169,18 @@ const ClientRoutes = [
     name: "Measurements",
     icon: <ClientTailorsIcon />,
     element: Measurements,
+  },
+  {
+    path: "/measurements/tape",
+    name: "GetTape",
+    icon: <ClientTailorsIcon />,
+    element: GetTape,
+  },
+  {
+    path: "/orderacceptform",
+    name: "OrderAcceptForm",
+    icon: <ClientTailorsIcon />,
+    element: OrderAcceptForm,
   },
   {
     path: "/faqs",
