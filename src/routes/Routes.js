@@ -8,7 +8,7 @@ import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
 import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 import ClientHomeScreen from "../containers/client/Home";
-import Chat from '../components/Chat/Chat'
+import Chat from "../components/Chat/Chat";
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
@@ -32,6 +32,7 @@ import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
 import SearchResult from "../containers/tailor/SearchResult";
 import SupportCentre from "../containers/tailor/SupportCentre";
+import ClientProfile from "../containers/tailor/ClientProfile";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -296,6 +297,12 @@ const TailorRoutes = [
     name: "support_centre",
     // icon: <TailorCreateAccount2Icon />,
     element: SupportCentre,
+  },
+  {
+    path: "/clientprofile",
+    name: "clientprofile",
+    // icon: <TailorCreateAccount2Icon />,
+    element: ClientProfile,
   },
 ];
 
