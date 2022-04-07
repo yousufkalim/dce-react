@@ -70,6 +70,7 @@ function InputSection(){
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [image, setImage] = useState(null);
 
   const [state, setState] = useState({
     name: "",
@@ -78,6 +79,11 @@ function InputSection(){
     price: "",
     description: ""
   });
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+  };
 
   const _setState = (key, value) => {
     const obj = {};
@@ -96,6 +102,11 @@ function InputSection(){
       return;
     }
 
+    if(!image){
+      toast.error("Image must be selected");
+      return;
+    }
+
     if (isProcessing) {
       return;
     }
@@ -105,13 +116,14 @@ function InputSection(){
     try {
       setIsProcessing(true);
 
-      const body = {
-        "name": state.name,
-        "gender": state.gender,
-        "category": state.category,
-        "price": state.price,
-        "description": state.description
-      }
+      const body = new FormData();
+
+      body.append("name", state.name);
+      body.append("gender", state.gender);
+      body.append("category", state.category);
+      body.append("price", state.price);
+      body.append("description", state.description);
+      body.append("image", image);
 
       response = await Api("post", "/catalogs", body);
 
@@ -209,8 +221,9 @@ function InputSection(){
               selectValue={state.category}
               onChange={e => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"category_1"}>Category1</MenuItem>,
-                <MenuItem value={"category_2"}>Category2</MenuItem>
+                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
+                <MenuItem value={"MAN"}>MAN</MenuItem>,
+                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
               ]}
             />
           </div>
@@ -287,6 +300,9 @@ function InputSection(){
                 fontSize: "12px"
               }}
               inputPlaceholder="Upload Drawing, Photo, Document, etc."
+              inputType="file"
+              accept="image/*"
+              onChange={handleImageSelect}
             />
           </div>
         </div>

@@ -10,6 +10,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import Api from "../../api";
 
+import assetsURL from "../../utils/Assets";
+
 function ClientViewCatalogScreen(){
 
   const navigate = useNavigate();
@@ -112,7 +114,20 @@ function ClientViewCatalogScreen(){
             </div>
             <div className="view_catalog_screen_row1_column2">
               <div className="view_catalog_screen_row1_column2_img">
-                <img style={{ width: "60%" }} src={ViewCatalogSVG} />
+                <img
+                  style={{
+                    height: "60%",
+                    width: "60%",
+                    objectFit: "cover",
+                    borderTopLeftRadius: "20px",
+                    borderBottomLeftRadius: "20px"
+                  }}
+                  src={
+                    catalog.attachment
+                    ? assetsURL(catalog.attachment)
+                    : ViewCatalogSVG
+                  }
+                />
               </div>
             </div>
           </div>

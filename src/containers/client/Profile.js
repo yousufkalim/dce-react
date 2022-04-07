@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
-import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
+import DesignElaborationSVG from "../../assets/profile.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
 import ProfileCitySVG from "../../assets/ProfileCity.svg";
@@ -21,6 +21,8 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import assetsURL from "../../utils/Assets";
+
 function ClientProfileScreen(){
 
   const navigate = useNavigate();
@@ -28,13 +30,19 @@ function ClientProfileScreen(){
   const [isLoading, setIsLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
   const [profile, setProfile] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
 
   const [toEdit, setToEdit] = useState(false);
 
   const [state, setState] = useState({
     phone: "",
-    password: ""
+    password: undefined
   });
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  };
 
   const _setState = (key, value) => {
     const obj = {};
@@ -56,6 +64,7 @@ function ClientProfileScreen(){
       const userData = response.data.user;
       setProfile(userData);
       setState({
+        ...state,
         phone: userData.phone ?? "",
       });
       setIsLoading(false);
@@ -92,11 +101,11 @@ function ClientProfileScreen(){
     try {
       setIsProcessing(true);
 
-      const body = {
-        phone: state.phone,
-      }
+      const body = new FormData();
 
-      console.log(body); return;
+      body.append("phone", state.phone);
+      body.append("password", state.password);
+      body.append("image", profileImage);
 
       response = await Api("put", "/clients", body);
 
@@ -147,14 +156,39 @@ function ClientProfileScreen(){
           </div>
           <div className="client_profile_screen_row2">
             <div className="client_profile_screen_row2_column1">
-              <div>
-                <img style={{ width: "80%" }} src={DesignElaborationSVG} />
+              <div className="prof-img">
+                <img style={{ width: "86%" }} src={DesignElaborationSVG} />
               </div>
             </div>
             <div className="client_profile_screen_row2_column2">
               <div className="cps_profile_container">
                 <div className="cps_profile_img" style={{ paddingBottom: "2%" }}>
-                  <img style={{ width: "12%" }} src={UserSVG} />
+                  <label>
+                    <input
+                      style={{
+                        display: "none",
+                        cursor: "none",
+                      }}
+                      disabled={!toEdit}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageSelect}
+                    />
+                    <img
+                      className="image_container"
+                      style={{
+                        height: "80pt",
+                        width: "80pt"
+                      }}
+                      src={
+                        profileImage
+                        ? URL.createObjectURL(profileImage)
+                        : profile.avatar
+                        ? assetsURL(profile.avatar)
+                        : UserSVG
+                      }
+                    />
+                  </label>
                 </div>
                 <p className="cps_profile_text" style={{ paddingBottom: "10px" }}>
                   {profile.name}

@@ -1,0 +1,160 @@
+.clientProfileRow {
+  display: flex;
+  width: 90%;
+}
+.clientProfilePic {
+  width: 14%;
+  margin: 0 60px;
+  text-align: center;
+}
+.clientInfoleftdiv {
+  width: 65%;
+}
+.clientinfoRightDiv {
+  width: 65%;
+}
+.ClientOrder {
+  width: 100%;
+  z-index: 1;
+}
+.ordermainDiv {
+  width: 80%;
+  background: white;
+  margin: 0 auto;
+  border-radius: 40px;
+  margin-bottom: 25px;
+}
+.ordermainColDiv {
+  display: flex;
+  justify-content: space-around;
+  padding: 18px 0px;
+}
+.ordercol1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.orderDiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0px;
+}
+.orderLine {
+  width: 1px;
+  height: 130px;
+  background: gray;
+  opacity: 0.3;
+}
+.hrline {
+  opacity: 0.3;
+}
+.ordercompleteStatus {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  padding-right: 40px;
+}
+.ordername {
+  color: #cc8e9c;
+  font-size: 12px;
+}
+.ordername2 {
+  font-size: 14px;
+}
+.clientName {
+  color: #cc8e9c;
+  font-size: 15px;
+  padding: 15px;
+  font-weight: 900;
+}
+.orderimgdiv {
+  padding: 35px;
+  text-align: center;
+}
+.orderofferPrice {
+  font-size: 22px;
+  font-weight: 600;
+  padding: 20px 0px;
+}
+.orderofferheading {
+  color: gray;
+  padding: 4px 5px;
+  font-weight: 100;
+  text-align: center;
+}
+.clientorderdiv {
+  width: 90%;
+  text-align: right;
+  padding: 40px;
+  opacity: 0.4;
+  font-size: 24px;
+  font-weight: 900;
+}
+.clientProfilediv {
+  width: 85%;
+  padding: 40px;
+  font-size: 24px;
+  font-weight: 900;
+}
+.orderabovediv {
+  width: 35%;
+}
+.orderofferDiv {
+  padding-left: 20px;
+}
+.backgrounimg {
+  position: absolute;
+  bottom: -6%;
+  width: 21%;
+  left: -15px;
+}
+@media only screen and (max-width: 768px) {
+  .clientProfileRow {
+    display: block;
+  }
+  .clientProfilePic {
+    width: 24%;
+    margin: auto;
+    text-align: center;
+  }
+  .clientInfoleftdiv {
+    margin: auto;
+  }
+  .clientinfoRightDiv {
+    margin: auto;
+  }
+  .clientProfilediv {
+    text-align: center;
+  }
+  .orderLine {
+    display: none;
+  }
+  .ordercol1 {
+    display: block;
+  }
+  .orderabovediv {
+    width: 75%;
+    margin: auto;
+  }
+  .orderofferDiv {
+    text-align: center;
+  }
+  .ordercompleteStatus {
+    text-align: center;
+    padding: 20px;
+  }
+  .inputcontainer2 {
+    padding: 10px !important;
+    margin: auto !important;
+  }
+  .orderclientinfo {
+    width: 100% !important;
+  }
+  .clientorderdiv {
+    text-align: center;
+    margin: auto;
+  }
+  .backgrounimg {
+    display: none;
+  }
+}

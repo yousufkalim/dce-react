@@ -1,5 +1,5 @@
 import LoginScreen from "../containers/auth/Login";
-import SelectRoleScreen from "../containers/auth/selectRole";
+import SelectRoleScreen from "../containers/auth/SelectRoleGIT";
 import ClientRegisterScreen from "../containers/auth/ClientRegister";
 import ClientVerifyEmailScreen from "../containers/auth/ClientVerifyEmail";
 import ClientCreateAccountScreen from "../containers/auth/ClientCreateAccount";
@@ -8,7 +8,7 @@ import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
 import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 import ClientHomeScreen from "../containers/client/Home";
-import Chat from '../components/Chat/Chat'
+import Chat from "../components/Chat/Chat";
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
@@ -19,6 +19,8 @@ import ClientProfileScreen from "../containers/client/Profile";
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
+import ClientMeasurementsScreen from "../containers/client/Measurements";
+import ClientFaqsScreen from "../containers/client/Faqs";
 import TailorHomeScreen from "../containers/tailor/Home";
 import TailorCatalogScreen from "../containers/tailor/Catalog";
 import TailorViewCatalogScreen from "../containers/tailor/ViewCatalog";
@@ -30,8 +32,9 @@ import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
 import TailorProfileScreen from "../containers/tailor/Profile";
 import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
-import SearchResult from "../containers/tailor/SearchResult";
-import SupportCentre from "../containers/tailor/SupportCentre";
+import TailorSearchResultsScreen from "../containers/tailor/SearchResult";
+import TailorSupportCentreScreen from "../containers/tailor/SupportCentre";
+import TailorClientProfileScreen from "../containers/tailor/ClientProfile";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -64,6 +67,9 @@ import TailorViewQuoteIcon from "@mui/icons-material/AccountBox";
 import TailorProfileIcon from "@mui/icons-material/AccountBox";
 import TailorHowItWorksIcon from "@mui/icons-material/AccountBox";
 import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
+import TailorSearchResultsIcon from "@mui/icons-material/AccountBox";
+import TailorSupportCentreIcon from "@mui/icons-material/AccountBox";
+import TailorClientProfileIcon from "@mui/icons-material/AccountBox";
 
 // Routes for Auth
 const AuthRoutes = [
@@ -160,6 +166,18 @@ const ClientRoutes = [
     name: "ClientDesigners",
     icon: <ClientTailorsIcon />,
     element: ClientTailorsScreen,
+  },
+  {
+    path: "/measurements",
+    name: "Measurements",
+    icon: <ClientTailorsIcon />,
+    element: ClientMeasurementsScreen,
+  },
+  {
+    path: "/faqs",
+    name: "Faqs",
+    icon: <ClientTailorsIcon />,
+    element: ClientFaqsScreen,
   },
   {
     path: "/view_tailor/:id",
@@ -288,14 +306,20 @@ const TailorRoutes = [
   {
     path: "/search_result",
     name: "search_result",
-    // icon: <TailorCreateAccount2Icon />,
-    element: SearchResult,
+    icon: <TailorSearchResultsIcon />,
+    element: TailorSearchResultsScreen,
   },
   {
     path: "/support_centre",
     name: "support_centre",
-    // icon: <TailorCreateAccount2Icon />,
-    element: SupportCentre,
+    icon: <TailorSupportCentreIcon />,
+    element: TailorSupportCentreScreen,
+  },
+  {
+    path: "/client_profile",
+    name: "clientprofile",
+    icon: <TailorClientProfileIcon />,
+    element: TailorClientProfileScreen,
   },
 ];
 

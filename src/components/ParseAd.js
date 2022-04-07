@@ -5,16 +5,39 @@ import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
-
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from '@mui/material/Checkbox';
+import dotted from '../assets/dottedblack.svg'
+import { grey } from '@mui/material/colors';
+
+import { materialFabrics, colors } from "../utils/Constants"
+
+import upload from '../assets/upload.svg';
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+const items= [
+  {
+    size:"small",
+    measurements:"28,30,32"
+  },
+  {
+    size:"medium",
+    measurements:"36,38,40"
+  },
+  {
+    size:"smaill",
+    measurements:"42,44,46"
+  }
+]
 
 function BasicSection({
   state,
   setState,
   onClick,
   disabled,
-  disables
+  disables,
+  handleImageSelect
 }){
 
   const _setState = (key, value) => {
@@ -80,8 +103,9 @@ function BasicSection({
               selectValue={state.category}
               onChange={e => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"category_1"}>Category1</MenuItem>,
-                <MenuItem value={"category_2"}>Category2</MenuItem>
+                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
+                <MenuItem value={"MAN"}>MAN</MenuItem>,
+                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
               ]}
             />
           </div>
@@ -139,15 +163,40 @@ function BasicSection({
               selectValue={state.cut}
               onChange={e => _setState("cut", e.target.value)}
               menuItems={[
-                <MenuItem value={"5"}>5</MenuItem>,
-                <MenuItem value={"10"}>10</MenuItem>
+                <MenuItem value={"34"}>34</MenuItem>,
+                <MenuItem value={"36"}>36</MenuItem>,
+                <MenuItem value={"38"}>38</MenuItem>,
+                <MenuItem value={"40"}>40</MenuItem>,
+                <MenuItem value={"42"}>42</MenuItem>,
+                <MenuItem value={"44"}>44</MenuItem>,
+                <MenuItem value={"46"}>46</MenuItem>,
+                <MenuItem value={"48"}>48</MenuItem>,
+                <MenuItem value={"50"}>50</MenuItem>,
+                <MenuItem value={"52"}>52</MenuItem>,
+                <MenuItem value={"54"}>54</MenuItem>,
+                <MenuItem value={"56"}>56</MenuItem>,
+                <MenuItem value={"58"}>58</MenuItem>,
+                <MenuItem value={"60"}>60</MenuItem>,
               ]}
             />
           </div>
         </div>
-        <p className="pa_profile_section_input_instructions_text">
+        <div>
+
+        </div>
+        <div style={{display:"flex", justifyContent:"space-between", width:"80%", marginLeft:"4%"}}>
+          <div><span className="measurements"> Standard size</span> </div>
+          <div className="size-measurement-cont"> 
+          {
+            items.map((val)=>(
+            <div><span className="size">{val?.size} </span> <span className="measurements">{val?.measurements}</span> </div>
+            ))
+          }
+         </div>
+        </div>
+        {/* <p className="pa_profile_section_input_instructions_text">
           *Ex: Long skirt size 38
-        </p>
+        </p> */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -175,6 +224,7 @@ function BasicSection({
               inputDefaultValue={state.measurements}
               onChange={e => _setState("measurements", e.target.value)}
             />
+             <img className="dots-measurement" src={dotted}/>
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
@@ -188,7 +238,8 @@ function BasicSection({
           style={{
             borderTopLeftRadius: "20px",
             borderTopRightRadius: "20px",
-            marginTop: "2%"
+            marginTop: "2%",
+            backgroundColor: state.color ? colors.filter( _ => _.name == state.color )[0].value : null
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -207,10 +258,11 @@ function BasicSection({
               selectNullValue="Select one colour for your Creations"
               selectValue={state.color}
               onChange={e => _setState("color", e.target.value)}
-              menuItems={[
-                <MenuItem value={"colour_1"}>Colour1</MenuItem>,
-                <MenuItem value={"colour_2"}>Colour2</MenuItem>
-              ]}
+              menuItems={
+                colors.map(
+                  _ => <MenuItem value={_.name}>{_.name}</MenuItem>
+                )
+              }
             />
           </div>
         </div>
@@ -237,10 +289,11 @@ function BasicSection({
               selectNullValue="Select Fabric Style"
               selectValue={state.fabric}
               onChange={e => _setState("fabric", e.target.value)}
-              menuItems={[
-                <MenuItem value={"fabric_1"}>Fabric1</MenuItem>,
-                <MenuItem value={"fabric_2"}>Fabric2</MenuItem>
-              ]}
+              menuItems={
+                materialFabrics.map(
+                  _ => <MenuItem value={_.title}>{_.title}</MenuItem>
+                )
+              }
             />
           </div>
         </div>
@@ -257,19 +310,47 @@ function BasicSection({
             </p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomInput
-              disabled={disabled}
-              labelStyle={{
-                display: "none"
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px"
-              }}
-              inputPlaceholder="Upload Drawing, Photo, Document, etc."
-              inputType="file"
-            />
+                <label className="upload-pic-label" htmlFor="filePicker">
+                  <input
+                    type="file"
+                    accept="*"
+                    hidden
+                    id="filePicker"
+                    name="file"
+                  />
+                  <div className="upload-img-text-cont"> 
+                  <span className="upload-img-text">Upload Drawing, Photo, Document, etc</span> 
+                  <img src={upload}/>
+                  </div>
+                </label>
+                {/* <CustomInput
+                  disabled={disabled}
+                  labelStyle={{
+                    display: "none"
+                  }}
+                  inputStyle={{
+                    border: "none",
+                    fontSize: "12px"
+                  }}
+                  inputPlaceholder="Upload Drawing, Photo, Document, etc."
+                  inputType="file"
+                  accept="image/*"
+                  onChange={handleImageSelect}
+                /> */}
           </div>
+        </div>
+       <div className="checkbox-container">
+       <Checkbox
+        {...label}
+        defaultChecked
+        sx={{
+          color: grey[900],
+          '&.Mui-checked': {
+            color: grey[900],
+          },
+        }}
+      />
+         <label> <span className="duw-text">Do you Want</span>  <span className="alteration-txt">ALTREATION SERVICE </span></label>
         </div>
         {
           !onClick
@@ -277,9 +358,8 @@ function BasicSection({
           : <CustomButton
               text="Next"
               style={{
-                marginTop: "3%",
-                marginBottom: "2%",
-                padding: "1.2% 5%",
+                marginBottom: "6%",
+                padding: "1.7% 5%",
                 boxShadow: "none"
               }}
               onClick={onClick}
@@ -307,11 +387,12 @@ function DeliverySection({
 
   useEffect(() => {
     if(state.country){
-      _setState("city", "");
-
       const countryObj = countries.find(_ => _.name == state.country);
-      const _cities = City.getCitiesOfCountry(countryObj.isoCode);
-      setCities(_cities);
+      if(countryObj){
+        _setState("city", "");
+        const _cities = City.getCitiesOfCountry(countryObj.isoCode);
+        setCities(_cities);
+      }
     }
   }, [state.country])
 
@@ -505,11 +586,11 @@ function DeliverySection({
           !onClick
           ? <></>
           : <CustomButton
-              text="Next"
+              text="Write Here"
               style={{
                 marginTop: "3%",
-                marginBottom: "2%",
-                padding: "1.2% 5%",
+                marginBottom: "10%",
+                padding: "1.5% 5%",
                 boxShadow: "none"
               }}
               onClick={onClick}
@@ -589,6 +670,7 @@ function NotesSection({
               type="number"
               defaultValue={state.min_price}
               onChange={e => _setState("min_price", e.target.value)}
+              placeholder="$50"
             />
           </div>
         </div>
@@ -611,6 +693,7 @@ function NotesSection({
               type="number"
               defaultValue={state.max_price}
               onChange={e => _setState("max_price", e.target.value)}
+              placeholder="$80"
             />
           </div>
         </div>
@@ -655,18 +738,16 @@ function NotesSection({
                 defaultChecked
               />
               <p
+              className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   paddingRight: "0.6%"
                 }}
               >
                 I agree to the design Confection Ethiques
               </p>
               <p
+               className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   paddingRight: "0.6%",
                   color: "#CC8E9C"
                 }}
@@ -674,18 +755,16 @@ function NotesSection({
                 Terms of Services
               </p>
               <p
+               className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   paddingRight: "0.6%"
                 }}
               >
                 and
               </p>
               <p
+               className="terms-text"
                 style={{
-                  fontSize: "11px",
-                  fontWeight: "600",
                   color: "#CC8E9C"
                 }}
               >
@@ -700,8 +779,8 @@ function NotesSection({
               text={buttonText ?? "Publish Ad"}
               onClick={onClick}
               style={{
-                marginBottom: "2%",
-                padding: "1.2% 5%",
+                margin: "7%",
+                padding: "1.5% 5%",
                 boxShadow: "none"
               }}
             />
@@ -710,9 +789,369 @@ function NotesSection({
     </>
   );
 }
+function Circumference({disabled}){
+  return(
+    <>
+     <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+              Arm
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("armSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Chest size
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("chestSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Waist size
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("waistSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Hip 
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("hipSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Thigh
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("thighSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Calf 
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("calfSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
+            Ankle
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("ankleSize", e.target.value)}
+            />
+          </div>
+        </div>
+        <CustomButton
+              text={"Save and Next"}
+              style={{
+                marginTop:'2%',
+                marginBottom:'7%',
+                padding: "1.5% 5%",
+                boxShadow: "none",
+                borderRadius:'10px'
+              }}
+            />
+
+   
+    </>
+  )
+}
+function Length({disabled}){
+  return(
+    <>
+ <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            Head to floor height
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("headtofloorheight", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            From shoulder to floor
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("shouldertofloorheight", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            From waist to floor
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("waisttofloorheight", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            Arm length <span style={{color:"#A0A0A0"}}> (handle) </span>
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("armlength", e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+           borderRadius:'20px',
+            marginBottom: "2%"
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text measurement_profile_section">
+            Leg length
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: "none"
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px"
+              }}
+              inputPlaceholder="Select size"
+              onChange={e => _setState("leglength", e.target.value)}
+            />
+          </div>
+        </div>
+        <CustomButton
+              text={"Next"}
+              style={{
+                marginTop:'2%',
+                marginBottom:'7%',
+                padding: "1.5% 5%",
+                boxShadow: "none",
+                borderRadius:'10px'
+              }}
+            />
+    </>
+  )
+}
 
 export {
   BasicSection,
   DeliverySection,
-  NotesSection
+  NotesSection,
+  Circumference,
+  Length
 }

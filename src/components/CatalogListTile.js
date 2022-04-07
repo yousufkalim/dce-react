@@ -8,7 +8,9 @@ import Rating from "@mui/material/Rating";
 
 import { useNavigate } from "react-router-dom";
 
-function TailorCatalogListTile({
+import assetsURL from "../utils/Assets";
+
+function CatalogListTile({
   catalog,
   buttonText,
   onClickButton,
@@ -34,11 +36,17 @@ function TailorCatalogListTile({
         onClick={onClick}
       >
         <img
-          src={CatalogContent1SVG}
           style={{
             width: "100%",
-            objectFit: "cover"
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "20px"
           }}
+          src={
+            catalog?.attachment
+            ? assetsURL(catalog.attachment)
+            : CatalogContent1SVG
+          }
         />
         <CustomButton
           text={buttonText}
@@ -71,4 +79,4 @@ function TailorCatalogListTile({
   );
 }
 
-export default TailorCatalogListTile;
+export default CatalogListTile;

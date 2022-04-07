@@ -13,6 +13,7 @@
   flex-direction: row;
   height: 100%;
   width: 100%;
+  background: rgb(248, 244, 239);
 }
 
 .appbar_row1 {
@@ -47,8 +48,6 @@
 }
 
 .appbar_row2_user_img {
-  max-width: 6vh;
-  width: 6vh;
   vertical-align: top;
   cursor: pointer;
 }
@@ -77,3 +76,25 @@
   border-color: transparent;
   border-radius: 10px;
 }
+
+
+/* mobileview */
+.mobile-nav{
+position: fixed;
+height: 25%;
+top: 7%;
+background: #DFDFDF;
+width: 100%;
+text-align: center;
+z-index: 9;
+}
+.mobile-nav>*{
+  padding: 2% 0%;
+}
+
+@media only screen and (max-width: 768px) {
+  .appbar_row2_input{
+    width: 46vw;
+  }
+}
+

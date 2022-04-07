@@ -13,7 +13,7 @@ import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
-import TailorCatalogListTile from "../../components/TailorCatalogListTile";
+import CatalogListTile from "../../components/CatalogListTile";
 import OrderListTile from "../../components/OrderListTile";
 
 import { getUser } from "../../utils/Auth";
@@ -21,6 +21,8 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
 import { useNavigate, useParams } from "react-router-dom";
+
+import assetsURL from "../../utils/Assets";
 
 function ClientViewTailorScreen(){
 
@@ -100,26 +102,31 @@ function ClientViewTailorScreen(){
             color="#FCFCFC"
             activeTab={0}
           />
+         
           <div
             className="client_profile_screen_top"
             style={{
               background: "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
             }}
           >
+             <div className="designer-prof"><p className="D-profile">Designer Profile</p>  <CustomButton
+           padding={"15px 37px"}
+           style={{borderRadius:"15px", boxShadow:"none"}}
+            text="Send Message"
+          />
+            
+            </div>
             <div
               className="tailor_profile_screen_row1"
               style={{
                 borderBottomColor: "#DBDBDB",
                 borderBottomStyle: "solid",
                 borderBottomWidth: "1.5px",
-                height: "20%"
               }}
             >
               <div className="tailor_profile_screen_row1_column1">
                 <div className="tailor_profile_screen_row1_column1_header_text">
-                  <p className="client_profile_screen_row1_text" style={{paddingLeft: "3%"}}>
-                    Designer Profile
-                  </p>
+                 
                 </div>
                 <div
                   className="tailor_profile_screen_row1_column1_img"
@@ -127,7 +134,18 @@ function ClientViewTailorScreen(){
                     "paddingBottom": "5%"
                   }}
                 >
-                  <img style={{ width: "30%" }} src={UserSVG} />
+                  <img
+                    className="image_container"
+                    style={{
+                      height: "80pt",
+                      width: "80pt"
+                    }}
+                    src={
+                      tailor.avatar
+                      ? assetsURL(tailor.avatar)
+                      : UserSVG
+                    }
+                  />
                 </div>
                 <p className="tailor_profile_screen_row1_column1_user_name_text">
                   {tailor.name}
@@ -160,23 +178,19 @@ function ClientViewTailorScreen(){
                   defaultValue={new Date(tailor.dob).toLocaleDateString("en-US")}
                   img={ProfileBirthdaySVG}
                   divStyle={{
-                    marginBottom: "3%"
+                    marginBottom: "3%",
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
                   }}
                 />
               </div>
               <div className="tailor_profile_screen_row1_column2">
-                <CustomButton
-                  type="submit"
-                  onClick={() => console.log("XYZ")}
-                  text="Send Message"
-                  style={{
-                    "alignSelf": "flex-end",
-                    "boxShadow": "none",
-                    "marginRight": "5%",
-                    "marginBottom": "4%"
-                  }}
-                />
+            
                 <ProfileInput
+                 divStyle={{
+                  borderTopLeftRadius: "10px",
+                  borderTopRightRadius: "10px"
+                }}
                   disabled
                   name="Country"
                   placeholder="Country"
@@ -211,11 +225,11 @@ function ClientViewTailorScreen(){
               }}
             >
               <div className="tailor_profile_screen_row2_list_container">
-                <div className="tailor_profile_screen_row2_column1">
+                {/* <div className="tailor_profile_screen_row2_column1">
                   <p className="tailor_profile_screen_row2_column1_text">
                     Hourly Rate
                   </p>
-                </div>
+                </div> */}
                 <div className="tailor_profile_screen_row2_column2">
                   <ProfileInput
                     disabled
@@ -227,6 +241,7 @@ function ClientViewTailorScreen(){
                       borderTopRightRadius: "10px",
                       padding: "1.0% 0"
                     }}
+                    alignText={"textend"}
                   />
                   <ProfileInput
                     disabled
@@ -240,16 +255,17 @@ function ClientViewTailorScreen(){
                       borderBottomRightRadius: "10px",
                       padding: "1.0% 0"
                     }}
+                    alignText={"textend"}
                     onChange={e => _setState("hourly_rate", e.target.value)}
                   />
                 </div>
               </div>
               <div className="tailor_profile_screen_row2_list_container">
-                <div className="tailor_profile_screen_row2_column1">
+                {/* <div className="tailor_profile_screen_row2_column1">
                   <p className="tailor_profile_screen_row2_column1_text">
                     Free Shipping
                   </p>
-                </div>
+                </div> */}
                 <div className="tailor_profile_screen_row2_column2">
                   <ProfileInput
                     disabled
@@ -261,11 +277,12 @@ function ClientViewTailorScreen(){
                       borderTopRightRadius: "10px",
                       padding: "1.0% 0"
                     }}
+                    alignText={"textend"}
                   />
                   <ProfileInput
                     disabled
                     name="Confection"
-                    placeholder="$500"
+                    placeholder="500$"
                     defaultValue={tailor.free_shipping_rate}
                     label="Confection"
                     inputType="number"
@@ -275,15 +292,13 @@ function ClientViewTailorScreen(){
                       padding: "1.0% 0"
                     }}
                     onChange={e => _setState("free_shipping_rate", e.target.value)}
+                    alignText={"textend"}
                   />
                 </div>
               </div>
             </div>
             <div
               className="tailor_profile_screen_row3"
-              style={{
-                height: "30%"
-              }}
             >
               <p
                 className="tailor_profile_screen_row3_text"
@@ -297,7 +312,7 @@ function ClientViewTailorScreen(){
                 {
                   catalogs.map(
                     _ =>
-                    <TailorCatalogListTile
+                    <CatalogListTile
                       catalog={_}
                       buttonText="View"
                       onClickButton={() => navToViewCatalog(_._id)}
@@ -312,9 +327,7 @@ function ClientViewTailorScreen(){
             </div>
             <div
               className="tailor_profile_screen_row3"
-              style={{
-                height: "25%"
-              }}
+              
             >
               <p
                 className="tailor_profile_screen_row3_text"
@@ -337,6 +350,7 @@ function ClientViewTailorScreen(){
                       mainDivStyle={{
                         width: "14%"
                       }}
+                      viewAs="client"
                     />
                   )
                 }
@@ -358,7 +372,8 @@ function ProfileInput({
   img,
   label,
   disabled,
-  divStyle
+  divStyle,
+  alignText
 }){
   return (
     <div
@@ -376,7 +391,7 @@ function ProfileInput({
       >
         <input
           disabled={disabled}
-          className="tps_profile_input_input"
+          className={ alignText == "textend"? "tps_profile_input_text_end":"tps_profile_input_input"}
           name={name}
           onChange={onChange}
           placeholder={placeholder}
@@ -421,11 +436,7 @@ function AddOrderListTile(props){
 
   return (
     <div
-      className="new_order_list_tile"
-      style={{
-        height: "100%",
-        width: "14%",
-      }}
+      className="new_order_list_tile order-now"
       onClick={navToCreateOrder}
     >
       <div className="new_order_list_tile_img">

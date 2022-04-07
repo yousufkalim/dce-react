@@ -1,27 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Api from "../api";
 
 import { handleLogout } from "../utils/Auth";
-
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function ClientAppBar({
-  activeTab,
-  color,
-  sticky = true,
-  divStyle
-}){
+import assetsURL from "../utils/Assets";
 
+import dotted from "../assets/dotted.svg";
+
+function useWindowSize() {
+  const [size, setSize] = useState([window.innerWidth]);
+  useEffect(() => {
+    const handleResize = () => {
+      setSize([window.innerWidth]);
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+  return size;
+}
+
+function ClientAppBar({ activeTab, color, sticky = true, divStyle }) {
+  const [width] = useWindowSize();
   const navigate = useNavigate();
-
+  const [toggle, setToggle] = useState(true);
   const handleClickNotifications = () => {
     toast.success("Coming soon!");
   };
@@ -39,11 +49,202 @@ function ClientAppBar({
     navigate("/home");
   };
 
+  const navToProfile = () => {
+    navigate("/profile");
+  };
+
+  const handleLogoutSubmit = () => {
+    handleCloseProfile();
+    handleLogout(navigate);
+  };
+
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile = async () => {
+    let response;
+    try {
+      response = await Api("get", `/auth`);
+      const userData = response.data.user;
+      setProfile(userData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const mobilemenu = () => {
+    setToggle(!toggle);
+  };
+
+  return (
+    <>
+      <div
+        className="appbar_container"
+        style={{
+          backgroundColor: color,
+          position: sticky ? "fixed" : "inherit",
+          ...divStyle,
+        }}
+      >
+        <div className="appbar_top">
+          <div className="appbar_row1">
+            <img
+              src={AppLogoSVG}
+              className="appbar_row1_img"
+              style={{ marginRight: "5%" }}
+              onClick={navToHome}
+            />
+            {width > 768 ? (
+              <>
+                <NavlinkDesktop activeTab={activeTab} />
+              </>
+            ) : (
+              <img
+                className="cursor-pointer"
+                onClick={mobilemenu}
+                src={dotted}
+              />
+            )}
+          </div>
+
+          <div className="appbar_row2">
+            <SearchInput />
+            <img
+              src={NotificationsSVG}
+              className="appbar_row2_notifications_img"
+              style={{ marginLeft: "3%" }}
+              onClick={handleClickNotifications}
+            />
+            <img
+              className="appbar_row2_user_img image_container"
+              style={{
+                width: "6vh",
+                height: "6vh",
+                marginLeft: "3%",
+              }}
+              src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
+              onClick={handleClickProfile}
+            />
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElProfile}
+              open={openProfile}
+              onClose={handleCloseProfile}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={navToProfile}>Profile</MenuItem>
+              <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
+            </Menu>
+          </div>
+        </div>
+      </div>
+      {width <= 768 && !toggle ? <NavlinkMobile /> : null}
+    </>
+  );
+}
+
+function SearchInput({}) {
+  const callback = () => {
+    toast.success("Coming soon!");
+  };
+
+  return (
+    <div>
+      <div
+        style={{
+          position: "relative",
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <input type="text" placeholder="Search" className="appbar_row2_input" />
+        <img
+          onClick={callback}
+          src={SearchSVG}
+          className="appbar_row2_search_img"
+        />
+      </div>
+    </div>
+  );
+}
+function NavlinkDesktop({ activeTab }) {
+  const navigate = useNavigate();
+
   const navToOrders = () => {
     navigate("/orders");
   };
 
-  const navToTailors = () => {
+  const navToDesigners = () => {
+    navigate("/tailors");
+  };
+
+  const navToMyAds = () => {
+    navigate("/my_ads");
+  };
+
+  const navToChat = () => {
+    navigate("/chat");
+  };
+  return (
+    <>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToDesigners}
+      >
+        Designers
+      </p>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToOrders}
+      >
+        Orders
+      </p>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToMyAds}
+      >
+        My Ads
+      </p>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToChat}
+      >
+        Chats
+      </p>
+    </>
+  );
+}
+
+function NavlinkMobile({ activeTab }) {
+  const navigate = useNavigate();
+
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
+  const navToDesigners = () => {
     navigate("/tailors");
   };
 
@@ -55,132 +256,49 @@ function ClientAppBar({
     navigate("/chat");
   };
 
-  const navToProfile = () => {
-    navigate("/profile");
-  };
-
-  const handleLogoutSubmit = () => {
-    handleCloseProfile();
-    handleLogout(navigate);
-  }
-
   return (
-    <div
-      className="appbar_container"
-      style={{
-        backgroundColor: color,
-        position: sticky ? "fixed" : "inherit",
-        ...divStyle
-      }}
-    >
-      <div className="appbar_top">
-        <div className="appbar_row1">
-          <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} onClick={navToHome} />
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToTailors}
-          >
-            Designers
-          </p>
-          {/*  */}
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToOrders}
-          >
-            Orders
-          </p>
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToMyAds}
-          >
-            My Ads
-          </p>
-          <p
-            className="appbar_row1_tab_text"
-            style={{
-              paddingRight: "5%",
-              color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`
-            }}
-            onClick={navToChat}
-          >
-            Chats
-          </p>
-        </div>
-        <div className="appbar_row2">
-          <SearchInput />
-          <img
-            src={NotificationsSVG}
-            className="appbar_row2_notifications_img"
-            style={{ marginLeft: "3%" }}
-            onClick={handleClickNotifications}
-          />
-          <img
-            src={UserSVG}
-            className="appbar_row2_user_img"
-            style={{ marginLeft: "3%" }}
-            onClick={handleClickProfile}
-          />
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorElProfile}
-            open={openProfile}
-            onClose={handleCloseProfile}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            <MenuItem onClick={navToProfile}>Profile</MenuItem>
-            <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
-          </Menu>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SearchInput({
-  
-}){
-
-  const callback = () => {
-    toast.success("Coming soon!");
-  };
-
-  return (
-    <div>
-      <div
+    <div className="mobile-nav">
+      <p
+        className="appbar_row1_tab_text"
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%"
+          paddingRight: "5%",
+          color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`,
         }}
+        onClick={navToDesigners}
       >
-        <input
-          type="text"
-          placeholder="Search"
-          className="appbar_row2_input"
-        />
-        <img
-          onClick={callback}
-          src={SearchSVG}
-          className="appbar_row2_search_img"
-        />
-      </div>
+        Designers
+      </p>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToOrders}
+      >
+        Orders
+      </p>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToMyAds}
+      >
+        My Ads
+      </p>
+      <p
+        className="appbar_row1_tab_text"
+        style={{
+          paddingRight: "5%",
+          color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`,
+        }}
+        onClick={navToChat}
+      >
+        Chats
+      </p>
     </div>
   );
-
 }
-
 export default ClientAppBar;

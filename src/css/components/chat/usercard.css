@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 .parent {
   display: flex;
   justify-content: space-between;
@@ -38,10 +39,11 @@
   flex-direction: column;
 }
 .user-name {
+  font-family: 'Montserrat' sans-serif;
+  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  margin-bottom: 5px;
 }
 .status {
   font-weight: 500;
@@ -49,8 +51,14 @@
   line-height: 15px;
   color: #149e7a;
 }
+.status-cont{
+  display: flex;
+}
+.writing{
+  margin-right: 5%;
+}
 .time {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   line-height: 134.02%;
   color: #a0a0a0;
@@ -62,14 +70,14 @@
 }
 .user-detail {
   font-weight: 500;
-  font-size: 12px;
-  line-height: 134.02%;
+  font-size: 13px;
+  line-height: 138.02%;
   color: #a0a0a0;
   width: 90%;
 }
 .dot {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background: #f7c9d0;
   justify-content: center;

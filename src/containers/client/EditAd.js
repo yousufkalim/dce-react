@@ -31,6 +31,7 @@ function ClientEditAdScreen(){
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [image, setImage] = useState(null);
 
   const [basicSection, setBasicSection] = useState({
     gender: "",
@@ -55,6 +56,11 @@ function ClientEditAdScreen(){
     max_price: "",
     note: "",
   });
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+  };
 
   useEffect(() => {
     getAd();
@@ -103,31 +109,31 @@ function ClientEditAdScreen(){
     try {
       setIsProcessing(true);
 
-      const body = {
-        "type": "ad",
-        "gender": basicSection.gender,
-        "category": basicSection.category,
-        "name": basicSection.name,
-        "cut": basicSection.cut,
-        "measurements": basicSection.measurements,
-        "color": basicSection.color,
-        "fabric": basicSection.fabric,
-        "delivery": {
-          "address": deliverySection.address,
-          "country": deliverySection.country,
-          "city": deliverySection.city,
-          "note": deliverySection.note,
-          "type": deliverySection.type,
-          "date": deliverySection.date
-        },
-        "note": notesSection.note,
-        "budget": {
-          "type": notesSection.type,
-          "min_price": notesSection.min_price,
-          "max_price": notesSection.max_price,
-          "note": notesSection.note
-        }
-      }
+      const body = new FormData();
+      body.append("type", "ad");
+      body.append("gender", basicSection.gender);
+      body.append("category", basicSection.category);
+      body.append("name", basicSection.name);
+      body.append("cut", basicSection.cut);
+      body.append("measurements", basicSection.measurements);
+      body.append("color", basicSection.color);
+      body.append("fabric", basicSection.fabric);
+      body.append("delivery", JSON.stringify({
+        "address": deliverySection.address,
+        "country": deliverySection.country,
+        "city": deliverySection.city,
+        "note": deliverySection.note,
+        "type": deliverySection.type,
+        "date": deliverySection.date
+      }));
+      body.append("note", notesSection.note);
+      body.append("budget", JSON.stringify({
+        "type": notesSection.type,
+        "min_price": notesSection.min_price,
+        "max_price": notesSection.max_price,
+        "note": notesSection.note
+      }));
+      body.append("image", image);
 
       response = await Api("put", `/orders/${params.id}`, body);
 
@@ -204,6 +210,7 @@ function ClientEditAdScreen(){
                       <ParseAd.BasicSection
                         state={basicSection}
                         setState={setBasicSection}
+                        handleImageSelect={handleImageSelect}
                       />
                     </div>
                   </div>
