@@ -106,8 +106,10 @@ function ClientCreateOrderScreen(){
     try {
       setIsProcessing(true);
 
+      const body = new FormData();
+
       body.append("type", "direct");
-      body.append("gender", params.id);
+      body.append("tailor", params.id);
       body.append("gender", basicSection.gender);
       body.append("category", basicSection.category);
       body.append("name", basicSection.name);

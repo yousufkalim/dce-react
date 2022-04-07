@@ -1,5 +1,5 @@
 import LoginScreen from "../containers/auth/Login";
-import SelectRoleScreen from "../containers/auth/selectRole";
+import SelectRoleScreen from "../containers/auth/SelectRole";
 import ClientRegisterScreen from "../containers/auth/ClientRegister";
 import ClientVerifyEmailScreen from "../containers/auth/ClientVerifyEmail";
 import ClientCreateAccountScreen from "../containers/auth/ClientCreateAccount";

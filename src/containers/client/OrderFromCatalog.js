@@ -32,6 +32,7 @@ function OrderFromCatalogScreen(){
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [image, setImage] = useState(null);
 
   const [catalog, setCatalog] = useState(null);
   const [basicSection, setBasicSection] = useState({
@@ -55,6 +56,11 @@ function OrderFromCatalogScreen(){
     note: "",
     price: "",
   });
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+  };
 
   const _setNotesSection = (key, value) => {
     const obj = {};
@@ -110,32 +116,32 @@ function OrderFromCatalogScreen(){
     try {
       setIsProcessing(true);
 
-      const body = {
-        "type": "direct",
-        "tailor": catalog.tailor._id,
-        "gender": basicSection.gender,
-        "category": basicSection.category,
-        "name": basicSection.name,
-        "cut": basicSection.cut,
-        "measurements": basicSection.measurements,
-        "color": basicSection.color,
-        "fabric": basicSection.fabric,
-        "delivery": {
-          "address": deliverySection.address,
-          "country": deliverySection.country,
-          "city": deliverySection.city,
-          "note": deliverySection.note,
-          "type": deliverySection.type,
-          "date": deliverySection.date
-        },
-        "note": notesSection.note,
-        "budget": {
-          "min_price": notesSection.price,
-          "max_price": notesSection.price
-        }
-      }
+      const body = new FormData();
 
-      console.log(body);
+      body.append("type", "direct");
+      body.append("tailor", catalog.tailor._id);
+      body.append("gender", basicSection.gender);
+      body.append("category", basicSection.category);
+      body.append("name", basicSection.name);
+      body.append("cut", basicSection.cut);
+      body.append("measurements", basicSection.measurements);
+      body.append("color", basicSection.color);
+      body.append("fabric", basicSection.fabric);
+      body.append("delivery", JSON.stringify({
+        "address": deliverySection.address,
+        "country": deliverySection.country,
+        "city": deliverySection.city,
+        "note": deliverySection.note,
+        "type": deliverySection.type,
+        "date": deliverySection.date
+      }));
+      body.append("note", notesSection.note);
+      body.append("budget", JSON.stringify({
+        "min_price": notesSection.price,
+        "max_price": notesSection.price,
+        "note": notesSection.note
+      }));
+      body.append("image", image);
 
       response = await Api("post", `/orders`, body);
 
@@ -213,6 +219,7 @@ function OrderFromCatalogScreen(){
                         state={basicSection}
                         setState={setBasicSection}
                         disables={["gender", "category", "name"]}
+                        handleImageSelect={handleImageSelect}
                       />
                     </div>
                   </div>
