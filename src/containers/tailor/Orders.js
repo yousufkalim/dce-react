@@ -503,7 +503,7 @@ function OrderCompletedListTile(props) {
 function OrderDiscardedListTile(props) {
   const navigate = useNavigate();
   const navtoClientProfile = () => {
-    navigate("/clientprofile");
+    navigate("/client_profile");
   };
 
   return (

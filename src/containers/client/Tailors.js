@@ -5,12 +5,13 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 
 import { useNavigate } from "react-router-dom";
-
+import CustomButton from "../../components/CustomButton";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
-import { toast } from "react-toastify";
 
 import assetsURL from "../../utils/Assets";
+
+import star from "../../assets/star.svg";
 
 function ClientTailorsScreen(){
 
@@ -88,17 +89,19 @@ function TailorListTile(props){
             className="image_container"
             style={{
               height: "80pt",
-              width: "80pt"
+              width: "80pt",
+              cursor: "pointer"
             }}
             src={
               props.avatar ?
               assetsURL(props.avatar) :
               UserSVG
             }
+            onClick={navToViewTailor}
           />
         </div>
       </div>
-      <div className="cds_tailor_list_tile_column1" style={{ alignItems: "flex-start" }}>
+      <div className="cds_tailor_list_tile_column1">
         <p style={{ fontSize: "16px", fontWeight: "bold", color: "#CC8E9C", paddingBottom: "5%" }}>
           {props.name}
         </p>
@@ -107,25 +110,33 @@ function TailorListTile(props){
         </p>
       </div>
       <div className="cds_tailor_list_tile_column3">
-        <p style={{ fontSize: "14px", fontWeight: "400", color: "#A0A0A0" }}>
-          {5} ({10})
+        <div style={{display:"flex"}}>
+        <Star/>
+       <Star/>
+       <Star/>
+       <Star/>
+       <Star/>
+        <p style={{ fontSize: "14px", fontWeight: "400", color: "#A0A0A0", whiteSpace:"nowrap", paddingLeft:"7%"}}>
+          4.5 (32K)
         </p>
+        
+        </div>
       </div>
       <div className="cds_tailor_list_tile_column1">
-        <p
-          style={{
-            fontSize: "16px",
-            fontWeight: "bold",
-            cursor: "pointer"
-          }}
-          onClick={navToViewTailor}
-        >
-          Order here
-        </p>
+        <CustomButton  text="Chat Here" style={{borderRadius:"20px"}}/>
       </div>
     </div>
     </>
   );
 }
+
+function Star(){
+  return(
+    <>
+     <img src={star}/>
+    </>
+  )
+}
+
 
 export default ClientTailorsScreen;

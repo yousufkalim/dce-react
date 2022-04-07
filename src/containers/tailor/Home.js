@@ -12,7 +12,6 @@ import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 function TailorHomeScreen() {
-  
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -28,12 +27,15 @@ function TailorHomeScreen() {
   const loadData = async () => {
     await getOrdersRequest();
     await getOrdersInProgress();
-  }
+  };
 
   const getOrdersRequest = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "direct" });
+      response = await Api("post", `/orders/byQuery`, {
+        tailor: user._id,
+        type: "direct",
+      });
       const ordersData = response.data.orders.splice(-4);
       setOrdersRequest(ordersData);
     } catch (e) {
@@ -46,7 +48,10 @@ function TailorHomeScreen() {
     let response;
     try {
       // response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "ad", status: "in_progress" });
-      response = await Api("post", `/orders/byQuery`, { tailor: user._id, status: "in_progress" }); // TODO: Remove it
+      response = await Api("post", `/orders/byQuery`, {
+        tailor: user._id,
+        status: "in_progress",
+      }); // TODO: Remove it
       const ordersData = response.data.orders.splice(-4);
       setOrdersInProgress(ordersData);
     } catch (e) {
@@ -119,15 +124,9 @@ function TailorHomeScreen() {
         >
           <p className="client_home_screen_row2_row1_text">Order Requests</p>
           <div className="client_home_screen_row2_row1_row_container">
-            {
-              ordersRequest.map(
-                _ =>
-                <OrderListTile
-                  order={_}
-                  viewAs="tailor"
-                />
-              )
-            }
+            {ordersRequest.map((_) => (
+              <OrderListTile order={_} viewAs="tailor" />
+            ))}
             <p
               style={{
                 color: "#CC8E9C",
@@ -143,15 +142,12 @@ function TailorHomeScreen() {
         <div className="client_home_screen_row2_row1">
           <p className="client_home_screen_row2_row1_text">Recent Orders</p>
           <div className="client_home_screen_row2_row1_row_container">
-            {
-              ordersInProgress.map(
-                _ =>
-                <OrderListTile
-                  order={_}
-                  quote={_.quotes.filter(__ => __.status == "accepted")[0]}
-                />
-              )
-            }
+            {ordersInProgress.map((_) => (
+              <OrderListTile
+                order={_}
+                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+              />
+            ))}
             <p
               style={{
                 color: "#CC8E9C",

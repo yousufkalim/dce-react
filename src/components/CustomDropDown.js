@@ -2,12 +2,14 @@ import React from "react";
 import Select from "@mui/material/Select";
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { makeStyles } from '@material-ui/core/styles';
+
 const useStyles = makeStyles((theme) => ({
   icon:{
      right:20,
    color:"#000000"
   },
 }));
+
 function CustomDropDown({
   labelText,
   selectID,
@@ -20,11 +22,7 @@ function CustomDropDown({
   divStyle,
   labelStyle,
   selectSX,
-}
-
-)
-
-{
+}){
   const classes = useStyles();
   return (
     <div

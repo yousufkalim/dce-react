@@ -1,4 +1,3 @@
-
 .tailor_profile_screen_row1 {
   height: 33.33%;
   width: 100%;
@@ -19,14 +18,14 @@
 }
 
 .tailor_profile_screen_row1_column1_header_text {
-  height: 20%;
+  /* height: 20%; */
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 11vh !important;
-  padding-bottom: 6vh !important; /* 11-7 = 4 */
+  /* padding-top: 11vh !important;
+  padding-bottom: 6vh !important; 11-7 = 4 */
   padding: 0 7vw;
 }
 
@@ -44,8 +43,8 @@
 }
 
 .tailor_profile_screen_row1_column2 {
-  height: 100%;
-  width: 40%;
+  /* height: 100%; */
+  width: 38%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,12 +73,12 @@
 .tailor_profile_screen_row2_column1_text {
   font-size: 24px;
   font-weight: 600;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .tailor_profile_screen_row2_column2 {
   height: 100%;
-  width: 80%;
+  width: 94%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,13 +95,16 @@
 }
 
 .tailor_profile_screen_row3 {
-  height: 40.00%;
-  width: 100%;
+  height: 40%;
+  width: 93%;
+  height: 30%;
+  margin: auto;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  padding: 2% 0%;
 }
 
 .tailor_profile_screen_row3_text {
@@ -111,7 +113,7 @@
   font-size: 18px;
   align-self: flex-end;
   letter-spacing: -0.5px;
-  color: #A0A0A0;
+  color: #a0a0a0;
   padding-top: 2%;
   padding-bottom: 2%;
 }
@@ -133,9 +135,9 @@
   align-items: center;
   justify-content: center;
   padding: 1.8% 0;
-  width: 90%;
+  width: 96%;
   background-color: transparent;
-  border-color: #DBDBDB;
+  border-color: #dbdbdb;
   border-style: solid;
   border-width: 0.5px;
 }
@@ -146,4 +148,57 @@
   width: 100%;
   height: 100%;
   background: transparent;
+}
+.tps_profile_input_text_end {
+  text-align: end;
+  border: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding: 0% 4%;
+}
+
+.img-designer {
+  width: 30%;
+}
+
+/* media queries */
+@media only screen and (max-width: 768px) {
+  .tailor_profile_screen_row1 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding-top: 14%;
+    overflow-y: unset;
+  }
+  .tailor_profile_screen_row2 {
+    margin: 7% 0%;
+  }
+  .tailor_profile_screen_row1_column1 {
+    width: 45%;
+  }
+  .img-designer {
+    width: 100%;
+  }
+  .designer-prof {
+    margin: 12% auto 3% auto;
+  }
+  .tailor_profile_screen_row1_column1_user_name_text {
+    margin: 5% 0%;
+  }
+  .tailor_profile_screen_row1_column2 {
+    width: 93%;
+  }
+  .tailor_profile_screen_row3 {
+    overflow-y: unset;
+    margin: 5% 0%;
+    height: auto;
+  }
+  .tailor_profile_screen_row3_list_container {
+    flex-direction: column;
+  }
+  .tailor_profile_screen_row3_text {
+    align-self: center;
+  }
 }

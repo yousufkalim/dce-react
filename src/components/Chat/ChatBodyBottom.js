@@ -9,7 +9,7 @@ import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import Picker from "emoji-picker-react";
 import chatemoji from "../../assets/chatemoji.svg";
 const ChatBodyBottom = ({ setFileName }) => {
-  const [iconsToggle, setIconsToggle] = useState(true);
+  const [iconsToggle, setIconsToggle] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
   const [values, setvalues] = useState({
@@ -42,10 +42,10 @@ const ChatBodyBottom = ({ setFileName }) => {
   return (
     <>
       <div className="send-msg-cont">
-        <div className="send-attachments">
+        <div className="send-attachments cursor-pointer">
           {
             <Box className={iconsToggle ? "inptwo" : "inp"}>
-              <div className="send-att-img">
+              <div className="send-att-img cursor-pointer">
                 <label htmlFor="videoPicker">
                   <input
                     type="file"
@@ -59,7 +59,7 @@ const ChatBodyBottom = ({ setFileName }) => {
                 </label>
               </div>
 
-              <div className="send-att-img">
+              <div className="send-att-img cursor-pointer">
                 <label htmlFor="imgPicker">
                   <input
                     type="file"
@@ -73,7 +73,7 @@ const ChatBodyBottom = ({ setFileName }) => {
                 </label>
               </div>
 
-              <div className="send-att-img">
+              <div className="send-att-img cursor-pointer">
                 <label htmlFor="filePicker">
                   <input
                     type="file"
@@ -88,9 +88,9 @@ const ChatBodyBottom = ({ setFileName }) => {
               </div>
             </Box>
           }
-          <div onClick={ToggleIcon} className="send-att-img add-icon">
+          <div onClick={ToggleIcon} className="toggle-icons">
             {iconsToggle ? (
-              <RemoveOutlinedIcon sx={{ height: "10px", width: "15px" }} />
+              <RemoveOutlinedIcon sx={{ height: "17px", width: "17px" }} />
             ) : (
               <img src={four} />
             )}
@@ -111,7 +111,7 @@ const ChatBodyBottom = ({ setFileName }) => {
             ) : null}
           </>
         }
-        <div className="send-btn">
+        <div className="send-btn cursor-pointer">
           <img src={send} />
         </div>
       </div>

@@ -1,0 +1,58 @@
+.measurements-container {
+  padding-top: 5%;
+  width: 90%;
+  margin: auto;
+}
+.m-cont img {
+  width: 40%;
+}
+.m-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.m-cont > * {
+  padding: 2% 0%;
+}
+.m-one-text {
+  width: 23%;
+  text-align: center;
+}
+.video-img{
+  width: 50% !important;
+}
+.measurements_create_ad_screen_top{
+ align-items: baseline !important;
+ min-height: 100vh !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .m-one-text{
+    width: 70%;
+  }
+  .m-cont img{
+    width: 75%;
+  }
+  .m-cont > *{
+    padding: 6% 0%;
+  }
+  .video-img{
+    width: 80% !important;
+  }
+  .measurement_profile_section{
+    font-size: 8px !important;
+  }
+}
+
+.utube-icon-container{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.utube-icon{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}

@@ -179,11 +179,12 @@ function ClientCreateAdScreen(){
           <div
             className="pa_container"
             style={{
-              marginTop: "10%"
+              marginTop: "8.5%"
             }}
           >
+          
             <div className="pa_steps_row">
-              <Stepper activeStep={activeStep} alternativeLabel>
+              <Stepper  activeStep={activeStep} alternativeLabel>
                 {steps.map((v, i) => (
                   <Step key={v}>
                     <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>
@@ -215,6 +216,7 @@ function ClientCreateAdScreen(){
                 : <></>
               }
             </div>
+      
           </div>
         </div>
       </div>
