@@ -20,7 +20,9 @@
 } */
 /* chatbody css */
 /* messages */
-
+.cursor-pointer{
+  cursor: pointer;
+}
 
 .inp{
     visibility: hidden;

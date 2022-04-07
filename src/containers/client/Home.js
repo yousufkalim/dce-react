@@ -4,13 +4,15 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
+
+import star from "../../assets/star.svg";
+
+import assetsURL from "../../utils/Assets";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
-
-function ClientHomeScreen(){
-
+function ClientHomeScreen() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -26,12 +28,15 @@ function ClientHomeScreen(){
   const loadData = async () => {
     await getOrders();
     await getTailors();
-  }
+  };
 
   const getOrders = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { client: user._id, status: "in_progress" });
+      response = await Api("post", `/orders/byQuery`, {
+        client: user._id,
+        status: "in_progress",
+      });
       const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);
     } catch (e) {
@@ -54,13 +59,11 @@ function ClientHomeScreen(){
 
   const navToCreateAd = () => {
     navigate("/create_ad");
-  }
+  };
 
   return (
     <div className="container-page">
-      <ClientAppBar
-        color="#F8F4EF"
-      />
+      <ClientAppBar color="#F8F4EF" />
       <div
         className="container"
         style={{
@@ -91,10 +94,7 @@ function ClientHomeScreen(){
             >
               at home!
             </p>
-            <button
-              className="client_home_screen_row1_column1_button"
-              onClick={navToCreateAd}
-            >
+            <button className="client_home_screen_row1_column1_button">
               Place your Ad
             </button>
           </div>
@@ -108,7 +108,8 @@ function ClientHomeScreen(){
       <div
         className="container"
         style={{
-          background: "linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          background:
+            "linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
         }}
       >
         <div
@@ -119,37 +120,32 @@ function ClientHomeScreen(){
             borderBottomWidth: "0.5px",
           }}
         >
-          <p className="client_home_screen_row2_row1_text">
-            Orders List
-          </p>
+          <p className="client_home_screen_row2_row1_text">Orders List</p>
           <div className="client_home_screen_row2_row1_row_container">
             <NewOrderListTile />
-            {
-              orders.map(
-                _ =>
-                <OrderListTile
-                  order={_}
-                  quote={_.quotes.filter(__ => __.status == "accepted")[0]}
-                />
-              )
-            }
-            <p style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}>See all</p>
+            {orders.map((_) => (
+              <OrderListTile
+                order={_}
+                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                viewAs="client"
+              />
+            ))}
+            <p
+              style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}
+            >
+              See all
+            </p>
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
-          <p className="client_home_screen_row2_row1_text">
-            Designers
-          </p>
+          <p className="client_home_screen_row2_row1_text">Designers</p>
           <div className="client_home_screen_row2_row1_row_container">
-            {
-              tailors.map(
-                _ =>
-                <DesignerListTile
-                  {..._}
-                />
-              )
-            }
-            <p style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}>See all</p>
+            {tailors.map((_) => (
+              <DesignerListTile {..._} />
+            ))}
+            <div style={{ paddingLeft: "2%" }}>
+              <p className="see-all-text">See all</p>
+            </div>
           </div>
         </div>
       </div>
@@ -157,8 +153,7 @@ function ClientHomeScreen(){
   );
 }
 
-function DesignerListTile(props){
-
+function DesignerListTile(props) {
   const navigate = useNavigate();
 
   const navToViewTailor = () => {
@@ -166,14 +161,11 @@ function DesignerListTile(props){
   };
 
   return (
-    <div
-      className="chs_designer_list_tile"
-      onClick={navToViewTailor}
-    >
+    <div className="chs_designer_list_tile" onClick={navToViewTailor}>
       <div
         className="order_list_tile_img"
         style={{
-          "paddingBottom": "5%"
+          paddingBottom: "5%",
         }}
       >
         <img style={{ width: "40%" }} src={UserSVG} />
@@ -181,7 +173,7 @@ function DesignerListTile(props){
       <p
         className="chs_designer_list_tile_title_text"
         style={{
-          paddingBottom: "2%"
+          paddingBottom: "2%",
         }}
       >
         {props.name}
@@ -189,16 +181,21 @@ function DesignerListTile(props){
       <p
         className="chs_designer_list_tile_location_text"
         style={{
-          paddingBottom: "6%"
+          paddingBottom: "6%",
         }}
       >
         {`${props.country}, ${props.city}`}
       </p>
-      <p
-        className="chs_designer_list_tile_rating_text"
-      >
-        4.5(32K)
-      </p>
+      <div className="stars">
+        <img src={star} />
+        <img src={star} />
+        <img src={star} />
+        <img src={star} />
+        <img src={star} />
+        <p className="chs_designer_list_tile_rating_text">
+          {5} ({10})
+        </p>
+      </div>
     </div>
   );
 }

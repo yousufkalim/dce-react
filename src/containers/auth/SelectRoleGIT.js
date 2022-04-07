@@ -8,8 +8,7 @@ import DesignerRole from "../../assets/DesignerRole.svg";
 
 import { useNavigate } from "react-router-dom";
 
-const selectRole = () => {
-
+const SelectRole = () => {
   const navigate = useNavigate();
 
   const navToClientRegister = () => {
@@ -49,7 +48,10 @@ const selectRole = () => {
               onClick={navToClientRegister}
             >
               <img src={ClientRole} style={{ height: "90%" }}></img>
-              <p className="select_role_screen_tile_text" style={{ marginTop: "16%" }}>
+              <p
+                className="select_role_screen_tile_text"
+                style={{ marginTop: "16%" }}
+              >
                 Client
               </p>
             </div>
@@ -58,7 +60,10 @@ const selectRole = () => {
               onClick={navToTailorRegister}
             >
               <img src={DesignerRole}></img>
-              <p className="select_role_screen_tile_text" style={{ marginTop: "16%" }}>
+              <p
+                className="select_role_screen_tile_text"
+                style={{ marginTop: "16%" }}
+              >
                 Designer
               </p>
             </div>
@@ -70,4 +75,4 @@ const selectRole = () => {
   );
 };
 
-export default selectRole;
+export default SelectRole;

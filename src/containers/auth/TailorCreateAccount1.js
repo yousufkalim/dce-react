@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Country, City }  from 'country-state-city';
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -21,9 +22,27 @@ function TailorCreateAccount1Screen(){
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [dateOfBirth, setDateOfBirth] = useState(null);
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+
+  const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
+
+  useEffect(() => {
+    const _countries = Country.getAllCountries();
+    setCountries(_countries);
+  }, [])
+
+  useEffect(() => {
+    if(country){
+      setCity("");
+
+      const countryObj = countries.find(_ => _.name == country);
+      const _cities = City.getCitiesOfCountry(countryObj.isoCode);
+      setCities(_cities);
+    }
+  }, [country])
 
   useEffect(() => {
     if(
@@ -78,6 +97,7 @@ function TailorCreateAccount1Screen(){
   }
 
   return (
+    <>
     <form
       noValidate={true}
       onSubmit={handleSubmit}
@@ -148,10 +168,11 @@ function TailorCreateAccount1Screen(){
                 selectNullValue="Country"
                 selectValue={country}
                 onChange={e => setCountry(e.target.value)}
-                menuItems={[
-                  <MenuItem value={"country_1"}>Country1</MenuItem>,
-                  <MenuItem value={"country_2"}>Country2</MenuItem>
-                ]}
+                menuItems={
+                  countries.map(
+                    _ => <MenuItem value={_.name}>{_.name}</MenuItem>
+                  )
+                }
                 inputName="Country"
                 divStyle={{
                   display: "flex",
@@ -172,10 +193,11 @@ function TailorCreateAccount1Screen(){
                 selectNullValue="City"
                 selectValue={city}
                 onChange={e => setCity(e.target.value)}
-                menuItems={[
-                  <MenuItem value={"city_1"}>City1</MenuItem>,
-                  <MenuItem value={"city_2"}>City2</MenuItem>
-                ]}
+                menuItems={
+                  cities.map(
+                    _ => <MenuItem value={_.name}>{_.name}</MenuItem>
+                  )
+                }
                 inputName="City"
                 divStyle={{
                   display: "flex",
@@ -202,6 +224,7 @@ function TailorCreateAccount1Screen(){
       </div>
     </div>
     </form>
+    </>
   );
 }
 

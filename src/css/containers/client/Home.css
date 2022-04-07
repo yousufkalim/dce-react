@@ -41,6 +41,7 @@
   border-radius: 10px;
   padding: 2% 3%;
   margin-top: 4%;
+  cursor: pointer;
 }
 
 .client_home_screen_row1_column2 {
@@ -73,7 +74,7 @@
 .client_home_screen_row2_row1_text {
   font-size: 20px;
   font-weight: 900;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
 }
 
 .client_home_screen_row2_row1_row_container {
@@ -89,6 +90,8 @@
   color: #CC8E9C;
   font-weight: 800; 
   border-bottom:1px solid #CC8E9C;
+  white-space: nowrap;
+  cursor: pointer;
 }
 /* Screen Components */
 
@@ -103,6 +106,7 @@
   border-right-color: #dbdbdb;
   border-right-style: solid;
   border-right-width: 1.5px;
+  cursor: pointer;
 }
 
 .chs_designer_list_tile_title_text {
@@ -121,8 +125,16 @@
   font-size: 11px;
   font-weight: 500;
   color: #ababaa;
+  margin-left: 2%;
 }
-
+.stars{
+  display: flex;
+  align-items: center;
+  
+}
+.stars>*{
+  margin-right: 1%;
+}
 
 /* media queries */
 
@@ -154,11 +166,29 @@
   }
   .client_home_screen_row1{
     height: 90vh;
+    white-space: nowrap;
   }
   .chs_designer_list_tile{
     width: 90%;
   }
   .client_home_screen_row2_row1{
     align-items: center;
+  }
+}
+.order-now{
+  height: 100%;
+  width: 17%;
+  padding: 3.5% 0% !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .client_home_screen_row1{
+    height: 70vh;
+    white-space: nowrap;
+  }
+  .order-now{
+    width: 90%;
+    margin: 2% 0%;
+    
   }
 }

@@ -287,7 +287,7 @@ function AdQuoteListTile(props){
             color: "#A0A0A0"
           }}
         >
-          4.5(32K)
+          {props.rating.value}({props.rating.count})
         </p>
       </div>
       <div className="cas_quote_list_tile_column1">

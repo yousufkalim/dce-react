@@ -30,6 +30,8 @@ function ClientCreateOrderScreen(){
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [image, setImage] = useState(null);
+
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -54,9 +56,18 @@ function ClientCreateOrderScreen(){
     note: "",
   });
 
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+  };
+
   const basicSectionCallback = () => {
     const isValidated = FormValidations.parseAdBasicSection(basicSection);
     if (!isValidated) {
+      return;
+    }
+    if(!image){
+      toast.error("Image must be selected");
       return;
     }
     setActiveStep(1);
@@ -81,6 +92,11 @@ function ClientCreateOrderScreen(){
       return;
     }
 
+    if(!image){
+      toast.error("Image must be selected");
+      return;
+    }
+
     if (isProcessing) {
       return;
     }
@@ -90,32 +106,33 @@ function ClientCreateOrderScreen(){
     try {
       setIsProcessing(true);
 
-      const body = {
-        "type": "direct",
-        "tailor": params.id,
-        "gender": basicSection.gender,
-        "category": basicSection.category,
-        "name": basicSection.name,
-        "cut": basicSection.cut,
-        "measurements": basicSection.measurements,
-        "color": basicSection.color,
-        "fabric": basicSection.fabric,
-        "delivery": {
-          "address": deliverySection.address,
-          "country": deliverySection.country,
-          "city": deliverySection.city,
-          "note": deliverySection.note,
-          "type": deliverySection.type,
-          "date": deliverySection.date
-        },
-        "note": notesSection.note,
-        "budget": {
-          "type": notesSection.type,
-          "min_price": notesSection.min_price,
-          "max_price": notesSection.max_price,
-          "note": notesSection.note
-        }
-      }
+      const body = new FormData();
+
+      body.append("type", "direct");
+      body.append("tailor", params.id);
+      body.append("gender", basicSection.gender);
+      body.append("category", basicSection.category);
+      body.append("name", basicSection.name);
+      body.append("cut", basicSection.cut);
+      body.append("measurements", basicSection.measurements);
+      body.append("color", basicSection.color);
+      body.append("fabric", basicSection.fabric);
+      body.append("delivery", JSON.stringify({
+        "address": deliverySection.address,
+        "country": deliverySection.country,
+        "city": deliverySection.city,
+        "note": deliverySection.note,
+        "type": deliverySection.type,
+        "date": deliverySection.date
+      }));
+      body.append("note", notesSection.note);
+      body.append("budget", JSON.stringify({
+        "type": notesSection.type,
+        "min_price": notesSection.min_price,
+        "max_price": notesSection.max_price,
+        "note": notesSection.note
+      }));
+      body.append("image", image);
 
       response = await Api("post", "/orders", body);
 
@@ -150,11 +167,11 @@ function ClientCreateOrderScreen(){
       >
         <div className="client_create_ad_screen_column1">
           <p
-            style={{
-              fontSize: "30px",
-              fontWeight: "900",
-              marginBottom: "8%"
-            }}
+           style={{
+            fontSize: "30px",
+            fontWeight: "900",
+            marginBottom: "8%"
+          }}
           >
             Place Your Order
           </p>
@@ -183,6 +200,7 @@ function ClientCreateOrderScreen(){
                     state={basicSection}
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
+                    handleImageSelect={handleImageSelect}
                   />
                 : activeStep == 1
                 ? <ParseAd.DeliverySection

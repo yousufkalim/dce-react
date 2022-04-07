@@ -11,129 +11,118 @@ import chatemoji from "../../assets/chatemoji.svg";
 import { Store } from "../../StoreContext";
 
 const ChatBodyBottom = ({ setFileName }) => {
-  const [iconsToggle, setIconsToggle] = useState(true);
-  const [chosenEmoji, setChosenEmoji] = useState(null);
-  const [Open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [values, setvalues] = useState({
-    video: "",
-    image: "",
-    file: "",
-  });
+	const [iconsToggle, setIconsToggle] = useState(false);
+	const [chosenEmoji, setChosenEmoji] = useState(null);
+	const [Open, setOpen] = useState(false);
+	const [message, setMessage] = useState("");
+	const [values, setvalues] = useState({
+		video: "",
+		image: "",
+		file: "",
+	});
 
-  const { socket } = Store();
+	const { socket } = Store();
 
-  const ToggleIcon = () => {
-    setIconsToggle(!iconsToggle);
-  };
+	const ToggleIcon = () => {
+		setIconsToggle(!iconsToggle);
+	};
 
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-  };
+	const onEmojiClick = (event, emojiObject) => {
+		setChosenEmoji(emojiObject);
+	};
 
-  const onChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.files[0];
-    setvalues((pre) => {
-      return {
-        ...pre,
-        [name]: value,
-      };
-    });
+	const onChange = (e) => {
+		const name = e.target.name;
+		const value = e.target.files[0];
+		setvalues((pre) => {
+			return {
+				...pre,
+				[name]: value,
+			};
+		});
 
-    setFileName((pre) => {
-      return [...pre, e.target.files[0].name];
-    });
-  };
+		setFileName((pre) => {
+			return [...pre, e.target.files[0].name];
+		});
+	};
 
-  const EmojiOpen = () => {
-    setOpen(!Open);
-  };
+	const EmojiOpen = () => {
+		setOpen(!Open);
+	};
 
-  const handleSend = () => {
-    socket?.emit("sendMessage", { message });
-  };
+	const handleSend = () => {
+		socket?.emit("sendMessage", { message });
+	};
 
-  return (
-    <>
-      <div className="send-msg-cont">
-        <div className="send-attachments">
-          {
-            <Box className={iconsToggle ? "inptwo" : "inp"}>
-              <div className="send-att-img">
-                <label htmlFor="videoPicker">
-                  <input
-                    type="file"
-                    accept=".mov, .mp4"
-                    hidden
-                    id="videoPicker"
-                    onChange={onChange}
-                    name="video"
-                  />
-                  <img src={one} />
-                </label>
-              </div>
+	return (
+		<>
+			<div className="send-msg-cont">
+				<div className="send-attachments cursor-pointer">
+					{
+						<Box className={iconsToggle ? "inptwo" : "inp"}>
+							<div className="send-att-img cursor-pointer">
+								<label htmlFor="videoPicker">
+									<input
+										type="file"
+										accept=".mov, .mp4"
+										hidden
+										id="videoPicker"
+										onChange={onChange}
+										name="video"
+									/>
+									<img src={one} />
+								</label>
+							</div>
 
-              <div className="send-att-img">
-                <label htmlFor="imgPicker">
-                  <input
-                    type="file"
-                    accept=".jpeg,.png,.svg,.gif, .jpg"
-                    hidden
-                    id="imgPicker"
-                    onChange={onChange}
-                    name="image"
-                  />
-                  <img src={two} />
-                </label>
-              </div>
+							<div className="send-att-img cursor-pointer">
+								<label htmlFor="imgPicker">
+									<input
+										type="file"
+										accept=".jpeg,.png,.svg,.gif, .jpg"
+										hidden
+										id="imgPicker"
+										onChange={onChange}
+										name="image"
+									/>
+									<img src={two} />
+								</label>
+							</div>
 
-              <div className="send-att-img">
-                <label htmlFor="filePicker">
-                  <input
-                    type="file"
-                    accept="*"
-                    hidden
-                    id="filePicker"
-                    onChange={onChange}
-                    name="file"
-                  />
-                  <img src={three} />
-                </label>
-              </div>
-            </Box>
-          }
-          <div onClick={ToggleIcon} className="send-att-img add-icon">
-            {iconsToggle ? (
-              <RemoveOutlinedIcon sx={{ height: "10px", width: "15px" }} />
-            ) : (
-              <img src={four} />
-            )}
-          </div>
-        </div>
-        <input
-          className="msg-input"
-          placeholder="Type a message here"
-          name="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        {
-          <>
-            <img className="emoji-init" onClick={EmojiOpen} src={chatemoji} />
-            {Open ? (
-              <div className="emoji-open">
-                <Picker onEmojiClick={onEmojiClick} />
-              </div>
-            ) : null}
-          </>
-        }
-        <div className="send-btn" onClick={handleSend}>
-          <img src={send} />
-        </div>
-      </div>
-    </>
-  );
+							<div className="send-att-img cursor-pointer">
+								<label htmlFor="filePicker">
+									<input type="file" accept="*" hidden id="filePicker" onChange={onChange} name="file" />
+									<img src={three} />
+								</label>
+							</div>
+						</Box>
+					}
+					<div onClick={ToggleIcon} className="toggle-icons">
+						{iconsToggle ? <RemoveOutlinedIcon sx={{ height: "17px", width: "17px" }} /> : <img src={four} />}
+					</div>
+				</div>
+				<input
+					className="msg-input"
+					placeholder="Type a message here"
+					name="message"
+					value={message}
+					onChange={(e) => setMessage(e.target.value)}
+				/>
+				{
+					<>
+						<img className="emoji-init" onClick={EmojiOpen} src={chatemoji} />
+						{Open ? (
+							<div className="emoji-open">
+								<Picker onEmojiClick={onEmojiClick} />
+							</div>
+						) : null}
+					</>
+				}
+				<div className="send-btn cursor-pointer">
+					<img src={send} />
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default ChatBodyBottom;

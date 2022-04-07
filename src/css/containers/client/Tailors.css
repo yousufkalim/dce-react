@@ -18,10 +18,11 @@
 .cds_tailor_list_tile_column1 {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 16.66vw;
   height: 100%;
+  
 }
 
 .cds_tailor_list_tile_column1_img {
@@ -39,11 +40,39 @@
   width: 50vw;
   height: 100%;
 }
-
+.tailors-img{
+  width: 50%;
+}
 .cos_order_list_tile_column3_item {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 10px;
+}
+/* media queries */
+@media only screen and (max-width: 768px) {
+  .cds_tailor_list_tile_container>*{
+    margin: 2% 0%;
+  }
+  .cds_tailor_list_tile_container{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    height: auto;
+  }
+  .cds_tailor_list_tile_column3{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .tailors-img{
+    width: 100%;
+  }
+
+.cds_tailor_list_tile_column1{
+  width: 35vw;
+  align-items: center;
+}
 }
