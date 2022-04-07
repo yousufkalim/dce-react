@@ -4,10 +4,9 @@ import FacebookIcon from "../assets/FacebookIcon.svg";
 import TwitterIcon from "../assets/TwitterIcon.svg";
 import LinkedinIcon from "../assets/LinkedinIcon.svg";
 
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
-
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -51,7 +50,11 @@ const Footer = () => {
           <div>
             <img src={FacebookIcon} className="footer_icon"></img>
             <img src={TwitterIcon} className="footer_icon"></img>
-            <img src={LinkedinIcon} className="footer_icon" style={{ padding: "0" }}></img>
+            <img
+              src={LinkedinIcon}
+              className="footer_icon"
+              style={{ padding: "0" }}
+            ></img>
           </div>
         </div>
       </div>

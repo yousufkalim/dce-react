@@ -44,9 +44,8 @@
   justify-content: flex-end;
 }
 
-
 @media only screen and (max-width: 768px) {
-  .client_edit_ad_screen_row1_column1{
+  .client_edit_ad_screen_row1_column1 {
     width: 100%;
     padding-top: 15%;
   }
@@ -54,7 +53,7 @@
     flex-direction: column;
     padding: 10% 0%;
   }
-  .client_edit_ad_screen_row1_column2{
+  .client_edit_ad_screen_row1_column2 {
     width: 100%;
     justify-content: center;
     align-items: center;

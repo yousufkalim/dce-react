@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 
 import AdElaborationSVG from "../../assets/AdElaboration.svg";
 
@@ -17,14 +17,9 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = [
-  'Basic',
-  'Delivery',
-  'Notes',
-];
+const steps = ["Basic", "Delivery", "Notes"];
 
-function ClientCreateAdScreen(){
-
+function ClientCreateAdScreen() {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -38,7 +33,7 @@ function ClientCreateAdScreen(){
     cut: "",
     measurements: "",
     color: "",
-    fabric: ""
+    fabric: "",
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
@@ -65,12 +60,12 @@ function ClientCreateAdScreen(){
     if (!isValidated) {
       return;
     }
-    if(!image){
+    if (!image) {
       toast.error("Image must be selected");
       return;
     }
     setActiveStep(1);
-  }
+  };
 
   const deliverySectionCallback = () => {
     const isValidated = FormValidations.parseAdDeliverySection(deliverySection);
@@ -78,20 +73,20 @@ function ClientCreateAdScreen(){
       return;
     }
     setActiveStep(2);
-  }
+  };
 
   const notesSectionCallback = async (event) => {
     event.preventDefault();
 
     const isValidated =
-    FormValidations.parseAdBasicSection(basicSection) &&
-    FormValidations.parseAdDeliverySection(deliverySection) &&
-    FormValidations.parseAdNotesSection(notesSection);
+      FormValidations.parseAdBasicSection(basicSection) &&
+      FormValidations.parseAdDeliverySection(deliverySection) &&
+      FormValidations.parseAdNotesSection(notesSection);
     if (!isValidated) {
       return;
     }
 
-    if(!image){
+    if (!image) {
       toast.error("Image must be selected");
       return;
     }
@@ -99,7 +94,7 @@ function ClientCreateAdScreen(){
     if (isProcessing) {
       return;
     }
-    
+
     let response;
 
     try {
@@ -115,21 +110,27 @@ function ClientCreateAdScreen(){
       body.append("measurements", basicSection.measurements);
       body.append("color", basicSection.color);
       body.append("fabric", basicSection.fabric);
-      body.append("delivery", JSON.stringify({
-        "address": deliverySection.address,
-        "country": deliverySection.country,
-        "city": deliverySection.city,
-        "note": deliverySection.note,
-        "type": deliverySection.type,
-        "date": deliverySection.date
-      }));
+      body.append(
+        "delivery",
+        JSON.stringify({
+          address: deliverySection.address,
+          country: deliverySection.country,
+          city: deliverySection.city,
+          note: deliverySection.note,
+          type: deliverySection.type,
+          date: deliverySection.date,
+        })
+      );
       body.append("note", notesSection.note);
-      body.append("budget", JSON.stringify({
-        "type": notesSection.type,
-        "min_price": notesSection.min_price,
-        "max_price": notesSection.max_price,
-        "note": notesSection.note
-      }));
+      body.append(
+        "budget",
+        JSON.stringify({
+          type: notesSection.type,
+          min_price: notesSection.min_price,
+          max_price: notesSection.max_price,
+          note: notesSection.note,
+        })
+      );
       body.append("image", image);
 
       response = await Api("post", "/orders", body);
@@ -143,87 +144,88 @@ function ClientCreateAdScreen(){
     }
 
     setIsProcessing(false);
-
-  }
+  };
 
   const navToMyAds = () => {
     navigate("/my_ads");
-  }
+  };
+
+  const navToCreateAd = () => {
+    navigate("/create_ad");
+  };
 
   return (
     <>
-    <div className="container">
-      <ClientAppBar
-        activeTab={2}
-        color="#FFFAF9"
-      />
-      <div
-        className="client_create_ad_screen_top"
-        style={{
-          background: "#FFEEEA",
-        }}
-      >
-        <div className="client_create_ad_screen_column1">
-          <p
-            style={{
-              fontSize: "30px",
-              fontWeight: "900",
-              marginBottom: "8%"
-            }}
-          >
-            Place Your Ad
-          </p>
-          <img style={{ width: "70%" }} src={AdElaborationSVG} />
-        </div>
-        <div className="client_create_ad_screen_column2">
-          <div
-            className="pa_container"
-            style={{
-              marginTop: "8.5%"
-            }}
-          >
-          
-            <div className="pa_steps_row">
-              <Stepper  activeStep={activeStep} alternativeLabel>
-                {steps.map((v, i) => (
-                  <Step key={v}>
-                    <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-            </div>
-            <div className="pa_content_row">
-              {
-                activeStep == 0
-                ? <ParseAd.BasicSection
+      <div className="container">
+        <ClientAppBar activeTab={2} color="#FFFAF9" />
+        <div
+          className="client_create_ad_screen_top"
+          style={{
+            background: "#FFEEEA",
+          }}
+        >
+          <div className="client_create_ad_screen_column1">
+            <p
+              style={{
+                fontSize: "30px",
+                fontWeight: "900",
+                marginBottom: "8%",
+              }}
+              onClick={navToCreateAd}
+            >
+              Place Your Ad
+            </p>
+            <img style={{ width: "70%" }} src={AdElaborationSVG} />
+          </div>
+          <div className="client_create_ad_screen_column2">
+            <div
+              className="pa_container"
+              style={{
+                marginTop: "8.5%",
+              }}
+            >
+              <div className="pa_steps_row">
+                <Stepper activeStep={activeStep} alternativeLabel>
+                  {steps.map((v, i) => (
+                    <Step key={v}>
+                      <StepLabel onClick={() => setActiveStep(i)}>
+                        {v}
+                      </StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </div>
+              <div className="pa_content_row">
+                {activeStep == 0 ? (
+                  <ParseAd.BasicSection
                     state={basicSection}
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
+                    image={image}
                     handleImageSelect={handleImageSelect}
                   />
-                : activeStep == 1
-                ? <ParseAd.DeliverySection
+                ) : activeStep == 1 ? (
+                  <ParseAd.DeliverySection
                     state={deliverySection}
                     setState={setDeliverySection}
                     onClick={deliverySectionCallback}
                   />
-                : activeStep == 2
-                ? <ParseAd.NotesSection
+                ) : activeStep == 2 ? (
+                  <ParseAd.NotesSection
                     state={notesSection}
                     setState={setNotesSection}
                     onClick={notesSectionCallback}
                   />
-                : <></>
-              }
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
-      
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
-
 
 export default ClientCreateAdScreen;

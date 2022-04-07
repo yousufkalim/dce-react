@@ -94,7 +94,10 @@ function ClientHomeScreen() {
             >
               at home!
             </p>
-            <button className="client_home_screen_row1_column1_button">
+            <button
+              className="client_home_screen_row1_column1_button"
+              onClick={navToCreateAd}
+            >
               Place your Ad
             </button>
           </div>

@@ -28,8 +28,7 @@ import * as FormValidations from "../../utils/Validations";
 
 import assetsURL from "../../utils/Assets";
 
-function TailorProfileScreen(){
-
+function TailorProfileScreen() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +48,7 @@ function TailorProfileScreen(){
     shop_name: "",
     hourly_rate: "",
     free_shipping_rate: "",
-    password: undefined
+    password: undefined,
   });
 
   const handleImageSelect = (event) => {
@@ -229,14 +228,14 @@ function TailorProfileScreen(){
                       className="image_container"
                       style={{
                         height: "80pt",
-                        width: "80pt"
+                        width: "80pt",
                       }}
                       src={
                         profileImage
-                        ? URL.createObjectURL(profileImage)
-                        : profile.avatar
-                        ? assetsURL(profile.avatar)
-                        : UserSVG
+                          ? URL.createObjectURL(profileImage)
+                          : profile.avatar
+                          ? assetsURL(profile.avatar)
+                          : UserSVG
                       }
                     />
                   </label>
@@ -321,9 +320,11 @@ function TailorProfileScreen(){
                   name="Last Password Changed"
                   placeholder="Last Password Changed"
                   defaultValue={
-                    profile.last_password_changed ?
-                    new Date(profile.last_password_changed).toLocaleDateString("en-US") :
-                    "N/A"
+                    profile.last_password_changed
+                      ? new Date(
+                          profile.last_password_changed
+                        ).toLocaleDateString("en-US")
+                      : "N/A"
                   }
                   label="Last Password Changed"
                   divStyle={{
@@ -336,7 +337,7 @@ function TailorProfileScreen(){
                   name="Password"
                   placeholder="**********"
                   label="Password"
-                  onChange={e => _setState("password", e.target.value)}
+                  onChange={(e) => _setState("password", e.target.value)}
                 />
                 <ProfileInput
                   disabled
@@ -470,20 +471,17 @@ function TailorProfileScreen(){
               </p>
               <div className="tailor_profile_screen_row3_list_container">
                 <AddCatalogListTile />
-                {
-                  catalogs.map(
-                    _ =>
-                    <CatalogListTile
-                      catalog={_}
-                      mainDivStyle={{
-                        width: "160pt"
-                      }}
-                      buttonText="Edit"
-                      onClick={() => navToViewCatalog(_._id)}
-                      onClickButton={() => navToEditCatalog(_._id)}
-                    />
-                  )
-                }
+                {catalogs.map((_) => (
+                  <CatalogListTile
+                    catalog={_}
+                    mainDivStyle={{
+                      width: "160pt",
+                    }}
+                    buttonText="Edit"
+                    onClick={() => navToViewCatalog(_._id)}
+                    onClickButton={() => navToEditCatalog(_._id)}
+                  />
+                ))}
               </div>
             </div>
           </div>

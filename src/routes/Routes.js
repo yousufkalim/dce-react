@@ -1,5 +1,5 @@
 import LoginScreen from "../containers/auth/Login";
-import SelectRoleScreen from "../containers/auth/SelectRoleGIT";
+import SelectRoleScreen from "../containers/auth/SelectRole";
 import ClientRegisterScreen from "../containers/auth/ClientRegister";
 import ClientVerifyEmailScreen from "../containers/auth/ClientVerifyEmail";
 import ClientCreateAccountScreen from "../containers/auth/ClientCreateAccount";
@@ -7,6 +7,7 @@ import TailorRegisterScreen from "../containers/auth/TailorRegister";
 import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
 import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
+
 import ClientHomeScreen from "../containers/client/Home";
 import Chat from "../components/Chat/Chat";
 import ClientOrdersScreen from "../containers/client/Orders";
@@ -21,6 +22,7 @@ import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
+
 import TailorHomeScreen from "../containers/tailor/Home";
 import TailorCatalogScreen from "../containers/tailor/Catalog";
 import TailorViewCatalogScreen from "../containers/tailor/ViewCatalog";

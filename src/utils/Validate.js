@@ -1,4 +1,3 @@
-
 import { toast } from "react-toastify";
 import {
   kRegExpEmail,
@@ -8,31 +7,29 @@ import {
 } from "./Constants";
 
 function isEmpty(str) {
-  return (!str || str.length === 0 );
+  return !str || str.length === 0;
 }
 
-class Validators{
-
-  static noValidator(){
+class Validators {
+  static noValidator() {
     return null;
   }
 
-  static nullValidator(name, value){
+  static nullValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;
     }
     return null;
   }
 
-  static selectValidator(name, value){
+  static selectValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} must be selected`;
     }
     return null;
   }
 
-  static lengthValidator(name, value, length){
-
+  static lengthValidator(name, value, length) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;
     }
@@ -42,93 +39,78 @@ class Validators{
     }
 
     return null;
-
   }
 
-  static emailValidator(name, value){
-
+  static emailValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;
     }
 
     const regexMatch = value.match(kRegExpEmail);
 
-    if(!regexMatch){
+    if (!regexMatch) {
       return `${name} is invalid`;
     }
 
     return null;
   }
 
-  static passwordValidator(name, value){
-
+  static passwordValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;
     }
 
     const regexMatch = value.match(kRegExpPassword);
 
-    if(!regexMatch){
+    if (!regexMatch) {
       return `${name} must be 8 characters and include uppercase, lowercase, special character and number`;
     }
 
     return null;
   }
 
-  static phoneNoValidator(name, value){
-
+  static phoneNoValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;
     }
 
     const regexMatch = value.match(kRegExpPhone);
 
-    if(!regexMatch){
+    if (!regexMatch) {
       return `${name} is invalid`;
     }
 
     return null;
-
   }
 
-  static userNameValidator(name, value){
-
+  static userNameValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;
     }
 
     const regexMatch = value.match(kRegExpUserName);
 
-    if(!regexMatch){
+    if (!regexMatch) {
       return `${name} can only contain alphabets, numbers or underscore`;
     }
 
     return null;
   }
-
 }
 
-function formValidator(data, objsArr){
+function formValidator(data, objsArr) {
+  for (let i = 0; i < objsArr.length; i++) {
+    const objDataValidationError = objsArr[i].validationFunction
+      ? objsArr[i].validationFunction()
+      : Validators.nullValidator(objsArr[i].name, data.get(objsArr[i].name));
 
-  for( let i = 0; i < objsArr.length; i++ ){
-
-    const objDataValidationError =
-    objsArr[i].validationFunction
-    ? objsArr[i].validationFunction()
-    : Validators.nullValidator(objsArr[i].name, data.get(objsArr[i].name));
-
-    if(objDataValidationError){
+    if (objDataValidationError) {
       toast.error(objDataValidationError);
       return false;
     }
-
   }
 
   return true;
-
 }
 
-export {
-  Validators,
-  formValidator
-}
+export { Validators, formValidator };

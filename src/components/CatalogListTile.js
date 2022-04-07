@@ -15,23 +15,22 @@ function CatalogListTile({
   buttonText,
   onClickButton,
   onClick,
-  mainDivStyle
-}){
-
+  mainDivStyle,
+}) {
   const [value, setValue] = React.useState(catalog.rating.value);
 
   return (
     <div
       className="tailor_catalog_list_tile_container"
       style={{
-        ...mainDivStyle
+        ...mainDivStyle,
       }}
     >
       <div
         style={{
           position: "relative",
           height: "100%",
-          width: "100%"
+          width: "100%",
         }}
         onClick={onClick}
       >
@@ -40,12 +39,12 @@ function CatalogListTile({
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            borderRadius: "20px"
+            borderRadius: "20px",
           }}
           src={
             catalog?.attachment
-            ? assetsURL(catalog.attachment)
-            : CatalogContent1SVG
+              ? assetsURL(catalog.attachment)
+              : CatalogContent1SVG
           }
         />
         <CustomButton
@@ -67,7 +66,9 @@ function CatalogListTile({
         />
         <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
         <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">Stitching Price</p>
+          <p className="tailor_catalog_list_tile_price_detail">
+            Stitching Price
+          </p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
         <div className="tailor_catalog_list_tile_details">

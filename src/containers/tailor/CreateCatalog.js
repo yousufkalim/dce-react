@@ -19,13 +19,10 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-function TailorCreateCatalogScreen(){
+function TailorCreateCatalogScreen() {
   return (
     <div className="container-page">
-      <TailorAppBar
-        color="#FFFAF9"
-        activeTab={1}
-      />
+      <TailorAppBar color="#FFFAF9" activeTab={1} />
       <div
         className="container"
         style={{
@@ -42,17 +39,12 @@ function TailorCreateCatalogScreen(){
                 marginTop: "10%",
                 marginBottom: "2.5%",
                 fontSize: "18px",
-                fontWeight: "900"
+                fontWeight: "900",
               }}
             >
               Add Catalog
             </p>
-            <div
-              className="tccs_input_section_container"
-              style={{
-                
-              }}
-            >
+            <div className="tccs_input_section_container" style={{}}>
               <div className="pa_content_row">
                 <InputSection />
               </div>
@@ -65,8 +57,7 @@ function TailorCreateCatalogScreen(){
   );
 }
 
-function InputSection(){
-
+function InputSection() {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -77,7 +68,7 @@ function InputSection(){
     gender: "",
     category: "",
     price: "",
-    description: ""
+    description: "",
   });
 
   const handleImageSelect = (event) => {
@@ -90,9 +81,9 @@ function InputSection(){
     obj[key] = value;
     setState({
       ...state,
-      ...obj
+      ...obj,
     });
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -102,7 +93,7 @@ function InputSection(){
       return;
     }
 
-    if(!image){
+    if (!image) {
       toast.error("Image must be selected");
       return;
     }
@@ -110,7 +101,7 @@ function InputSection(){
     if (isProcessing) {
       return;
     }
-    
+
     let response;
 
     try {
@@ -136,12 +127,11 @@ function InputSection(){
     }
 
     setIsProcessing(false);
-
-  }
+  };
 
   const navToCatalogs = () => {
     navigate("/catalog");
-  }
+  };
 
   return (
     <>
@@ -154,21 +144,19 @@ function InputSection(){
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              Name
-            </p>
+            <p className="pa_profile_section_input_text">Name</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
               labelStyle={{
-                display: "none"
+                display: "none",
               }}
               inputStyle={{
                 border: "none",
-                fontSize: "12px"
+                fontSize: "12px",
               }}
               inputPlaceholder="Name of your Creation"
-              onChange={e => _setState("name", e.target.value)}
+              onChange={(e) => _setState("name", e.target.value)}
             />
           </div>
         </div>
@@ -176,50 +164,46 @@ function InputSection(){
           className="pa_profile_section_input_container"
           style={{
             borderTopLeftRadius: "20px",
-            borderTopRightRadius: "20px"
+            borderTopRightRadius: "20px",
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              Gender
-            </p>
+            <p className="pa_profile_section_input_text">Gender</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
               labelStyle={{
-                display: "none"
+                display: "none",
               }}
               selectID="gender"
               selectName="gender"
               selectNullValue="Select gender"
               selectValue={state.gender}
-              onChange={e => _setState("gender", e.target.value)}
+              onChange={(e) => _setState("gender", e.target.value)}
               menuItems={[
                 <MenuItem value={"male"}>Male</MenuItem>,
-                <MenuItem value={"female"}>Female</MenuItem>
+                <MenuItem value={"female"}>Female</MenuItem>,
               ]}
               selectSX={{
-                fontSize: "12px"
+                fontSize: "12px",
               }}
             />
           </div>
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              Category
-            </p>
+            <p className="pa_profile_section_input_text">Category</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
               labelStyle={{
-                display: "none"
+                display: "none",
               }}
               selectID="category"
               selectName="category"
               selectNullValue="Select category"
               selectValue={state.category}
-              onChange={e => _setState("category", e.target.value)}
+              onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
                 <MenuItem value={"MAN"}>MAN</MenuItem>,
@@ -233,26 +217,24 @@ function InputSection(){
           style={{
             borderBottomLeftRadius: "20px",
             borderBottomRightRadius: "20px",
-            marginBottom: "2%"
+            marginBottom: "2%",
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              Price
-            </p>
+            <p className="pa_profile_section_input_text">Price</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
               inputType="number"
               labelStyle={{
-                display: "none"
+                display: "none",
               }}
               inputStyle={{
                 border: "none",
-                fontSize: "12px"
+                fontSize: "12px",
               }}
               inputPlaceholder="Set your Price"
-              onChange={e => _setState("price", e.target.value)}
+              onChange={(e) => _setState("price", e.target.value)}
             />
           </div>
         </div>
@@ -261,43 +243,38 @@ function InputSection(){
           style={{
             height: "30%",
             borderRadius: "20px",
-            marginBottom: "2%"
+            marginBottom: "2%",
           }}
         >
           <div className="pa_payment_section_textarea_label">
-            <p className="pa_profile_section_input_text">
-              Description
-            </p>
+            <p className="pa_profile_section_input_text">Description</p>
           </div>
           <div className="pa_profile_section_input_input">
             <textarea
               className="pa_profile_section_textarea_textarea"
               placeholder="Tell us about your service"
-              onChange={e => _setState("description", e.target.value)}
-            >
-            </textarea>
+              onChange={(e) => _setState("description", e.target.value)}
+            ></textarea>
           </div>
         </div>
         <div
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
-            marginTop: "2%"
+            marginTop: "2%",
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              Attachments
-            </p>
+            <p className="pa_profile_section_input_text">Attachments</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
               labelStyle={{
-                display: "none"
+                display: "none",
               }}
               inputStyle={{
                 border: "none",
-                fontSize: "12px"
+                fontSize: "12px",
               }}
               inputPlaceholder="Upload Drawing, Photo, Document, etc."
               inputType="file"
@@ -313,7 +290,7 @@ function InputSection(){
             marginTop: "3%",
             marginBottom: "2%",
             padding: "1.2% 5%",
-            boxShadow: "none"
+            boxShadow: "none",
           }}
         />
       </div>
