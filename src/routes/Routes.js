@@ -318,7 +318,7 @@ const TailorRoutes = [
     element: TailorSupportCentreScreen,
   },
   {
-    path: "/client_profile",
+    path: "/client_profile/:id",
     name: "clientprofile",
     icon: <TailorClientProfileIcon />,
     element: TailorClientProfileScreen,

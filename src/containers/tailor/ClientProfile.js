@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TailorAppBar from "../../components/TailorAppBar";
 import UserSVG from "../../assets/supportpic.png";
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
@@ -8,153 +8,183 @@ import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import Background from "../../assets/backgroung1.svg";
-import { toDate } from "date-fns";
 
-function ClientProfile() {
-  const [toEdit, setToEdit] = useState(false);
-  let profile = {
-    name: "Shasha",
-    phone: "+92 312 4567890",
-    address: "Johar Town",
-    country: "Pakistan",
-    city: "Lahore",
-    dob: Date.now(),
-    email: "Ali@gmail.com",
+import { getUser } from "../../utils/Auth";
+
+import Api from "../../api";
+
+import { useNavigate, useParams } from "react-router-dom";
+
+import assetsURL from "../../utils/Assets";
+
+function TailorClientProfileScreen() {
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
+  const [client, setClient] = useState(null);
+
+  const user = getUser();
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    await getOrders();
+    await getClient();
   };
-  let OrderData = [
-    {
-      name: "Shasha Designs",
-      Order: "Shirt,Pant",
-      OrderDate: "Augest 10, 2022",
-      DeliveryDate: "Augest 25, 2022",
-      bill: "$500",
-      status: "In Process",
-    },
-    {
-      name: "Shasha Designs",
-      Order: "Shirt,Pant",
-      OrderDate: "Augest 10, 2022",
-      DeliveryDate: "Augest 25, 2022",
-      bill: "$500",
-      status: "Completed",
-    },
-    {
-      name: "Shasha Designs",
-      Order: "Shirt,Pant",
-      OrderDate: "Augest 10, 2022",
-      DeliveryDate: "Augest 25, 2022",
-      bill: "$500",
-      status: "Completed",
-    },
-  ];
+
+  const getOrders = async () => {
+    let response;
+    try {
+      response = await Api("post", `/orders/byQuery`, {
+        client: params.id,
+        tailor: user._id,
+      });
+      const ordersData = response.data.orders.splice(-4);
+      setOrders(ordersData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const getClient = async () => {
+    let response;
+    try {
+      response = await Api("get", `/clients/${params.id}`);
+      const userData = response.data.user;
+      setClient(userData);
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
 
   return (
-    <div className="container-page-vertical">
-      <TailorAppBar color="#FDFDFC" />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <img src={Background} className="backgrounimg" />
-        <div className="thiw_qna_standard_screen_row1">
-          <div className="clientProfilediv">Client Profile</div>
-          <div className="clientProfileRow">
-            <div className="clientProfilePic">
-              <img style={{ width: "100%" }} src={UserSVG} />
-
-              <p
-                className="tailor_profile_screen_row1_column1_user_name_text"
-                style={{ padding: "10px" }}
-              >
-                Shasha
-              </p>
+    <>
+      {isLoading ? (
+        <></>
+      ) : (
+        <div className="container-page-vertical">
+          <TailorAppBar color="#FDFDFC" />
+          <div
+            className="client_orders_screen_top"
+            style={{
+              background:
+                "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+            }}
+          >
+            <img src={Background} className="backgrounimg" />
+            <div className="thiw_qna_standard_screen_row1">
+              <div className="clientProfilediv">Client Profile</div>
+              <div className="clientProfileRow">
+                <div className="clientProfilePic">
+                  <img
+                    className="image_container"
+                    style={{
+                      height: "80pt",
+                      width: "80pt",
+                    }}
+                    src={client.avatar ? assetsURL(client.avatar) : UserSVG}
+                  />
+                  <p
+                    className="tailor_profile_screen_row1_column1_user_name_text"
+                    style={{ padding: "10px" }}
+                  >
+                    {client.name}
+                  </p>
+                </div>
+                <div className="clientInfoleftdiv orderclientinfo">
+                  <ProfileInput
+                    disabled
+                    name="Phone"
+                    placeholder="Phone"
+                    defaultValue={client.phone}
+                    img={ProfilePhoneSVG}
+                    divStyle={{
+                      borderTopLeftRadius: "20px",
+                      borderTopRightRadius: "20px",
+                    }}
+                    onChange={(e) => _setState("phone", e.target.value)}
+                  />
+                  <ProfileInput
+                    disabled
+                    name="Email"
+                    placeholder="Email"
+                    defaultValue={client.email}
+                    img={ProfileEmailSVG}
+                  />
+                  <ProfileInput
+                    disabled
+                    name="Date Of Birth"
+                    placeholder="Date Of Birth"
+                    defaultValue={new Date(client.dob).toLocaleDateString(
+                      "en-US"
+                    )}
+                    img={ProfileBirthdaySVG}
+                    divStyle={{
+                      marginBottom: "3%",
+                      borderBottomLeftRadius: "20px",
+                      borderBottomRightRadius: "20px",
+                    }}
+                  />
+                </div>
+                <div className="clientinfoRightDiv orderclientinfo">
+                  <ProfileInput
+                    disabled
+                    name="Country"
+                    placeholder="Country"
+                    defaultValue={client.country}
+                    img={ProfileCountrySVG}
+                    divStyle={{
+                      borderTopLeftRadius: "20px",
+                      borderTopRightRadius: "20px",
+                    }}
+                  />
+                  <ProfileInput
+                    disabled
+                    name="City"
+                    placeholder="City"
+                    defaultValue={client.city}
+                    img={ProfileCitySVG}
+                  />
+                  <ProfileInput
+                    disabled
+                    name="Location"
+                    placeholder="Location"
+                    defaultValue={client.address}
+                    img={ProfileLocationSVG}
+                    divStyle={{
+                      borderBottomLeftRadius: "20px",
+                      borderBottomRightRadius: "20px",
+                      marginBottom: "3%",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="clientInfoleftdiv orderclientinfo">
-              <ProfileInput
-                disabled={!toEdit}
-                name="Phone"
-                placeholder="Phone"
-                defaultValue={profile.phone}
-                img={ProfilePhoneSVG}
-                divStyle={{
-                  borderTopLeftRadius: "20px",
-                  borderTopRightRadius: "20px",
-                }}
-                onChange={(e) => _setState("phone", e.target.value)}
-              />
-              <ProfileInput
-                disabled
-                name="Email"
-                placeholder="Email"
-                defaultValue={profile.email}
-                img={ProfileEmailSVG}
-              />
-              <ProfileInput
-                disabled
-                name="Date Of Birth"
-                placeholder="Date Of Birth"
-                defaultValue={new Date(profile.dob).toLocaleDateString("en-US")}
-                img={ProfileBirthdaySVG}
-                divStyle={{
-                  marginBottom: "3%",
-                  borderBottomLeftRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                }}
-              />
-            </div>
-            <div className="clientinfoRightDiv orderclientinfo">
-              <ProfileInput
-                disabled
-                name="Country"
-                placeholder="Country"
-                defaultValue={profile.country}
-                img={ProfileCountrySVG}
-                divStyle={{
-                  borderTopLeftRadius: "20px",
-                  borderTopRightRadius: "20px",
-                }}
-              />
-              <ProfileInput
-                disabled
-                name="City"
-                placeholder="City"
-                defaultValue={profile.city}
-                img={ProfileCitySVG}
-              />
-              <ProfileInput
-                disabled
-                name="Location"
-                placeholder="Location"
-                defaultValue={profile.address}
-                img={ProfileLocationSVG}
-                divStyle={{
-                  borderBottomLeftRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  marginBottom: "3%",
-                }}
-              />
+            <div
+              style={{
+                background: "grey",
+                width: "100%",
+                height: "1px",
+                opacity: "0.2",
+              }}
+            ></div>
+            <div className="ClientOrder">
+              <div className="clientorderdiv">Client Orders</div>
+              {orders.map((_) => (
+                <ClientProfileOrderListTile {..._} />
+              ))}
             </div>
           </div>
         </div>
-        <div
-          style={{
-            background: "grey",
-            width: "100%",
-            height: "1px",
-            opacity: "0.2",
-          }}
-        ></div>
-        <div className="ClientOrder">
-          <div className="clientorderdiv">Client Orders</div>
-          {OrderData.map((order) => (
-            <ClientOrder order={order} />
-          ))}
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 function ProfileInput({
@@ -219,43 +249,55 @@ function ProfileInput({
     </div>
   );
 }
-function ClientOrder({ order }) {
+
+function ClientProfileOrderListTile(props) {
   return (
     <div className="ordermainDiv">
       <div className="ordercol1">
         <div className="orderimgdiv">
-          <img src={UserSVG} />
-          <p className="clientName">{order.name}</p>
+          <img
+            className="image_container"
+            style={{
+              height: "80pt",
+              width: "80pt",
+            }}
+            src={props.client.avatar ? assetsURL(props.client.avatar) : UserSVG}
+          />
+          <p className="clientName">{props.client.name}</p>
         </div>
         <div className="orderLine"></div>
         <div className="orderabovediv">
           <div className="orderDiv">
             <p className="ordername">Order</p>
-            <p className="ordername2">{order.Order}</p>
+            <p className="ordername2">{props.name}</p>
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
             <p className="ordername">Order Date</p>
-            <p className="ordername2">{order.OrderDate}</p>
+            <p className="ordername2">
+              {new Date(props.createdAt).toLocaleDateString("en-US")}
+            </p>
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
             <p className="ordername">Delivery Date</p>
-            <p className="ordername2">{order.DeliveryDate}</p>
+            <p className="ordername2">
+              {new Date(props.delivery.date).toLocaleDateString("en-US")}
+            </p>
           </div>
         </div>
         <div className="orderLine"></div>
         <div className="orderofferDiv">
-          <h3 className="orderofferPrice"> {order.bill}</h3>
+          <h3 className="orderofferPrice">{props.budget.min_price}$</h3>
           <h3 className="orderofferheading">Bill</h3>
         </div>
         <div className="orderLine"></div>
         <div>
-          <h1 className="ordercompleteStatus">{order.status}</h1>
+          <h1 className="ordercompleteStatus">{props.status}</h1>
         </div>
       </div>
     </div>
   );
 }
 
-export default ClientProfile;
+export default TailorClientProfileScreen;
