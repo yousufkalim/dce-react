@@ -208,6 +208,7 @@ function InputSection() {
                 <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
                 <MenuItem value={"MAN"}>MAN</MenuItem>,
                 <MenuItem value={"CHILD"}>CHILD</MenuItem>,
+                <MenuItem value={"Other"}>Other</MenuItem>,
               ]}
             />
           </div>

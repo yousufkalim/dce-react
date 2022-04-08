@@ -17,11 +17,13 @@ import ClientViewCatalogScreen from "../containers/client/ViewCatalog";
 import ClientOrderFromCatalogScreen from "../containers/client/OrderFromCatalog";
 import ClientCreateOrderScreen from "../containers/client/CreateOrder";
 import ClientProfileScreen from "../containers/client/Profile";
+import ClientTermsAndConditionsScreen from "../containers/client/TermsAndConditions";
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
+import ClientSearchResultsScreen from "../containers/client/SearchResults";
 
 import TailorHomeScreen from "../containers/tailor/Home";
 import TailorCatalogScreen from "../containers/tailor/Catalog";
@@ -34,7 +36,7 @@ import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
 import TailorProfileScreen from "../containers/tailor/Profile";
 import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
-import TailorSearchResultsScreen from "../containers/tailor/SearchResult";
+import TailorSearchResultsScreen from "../containers/tailor/SearchResults";
 import TailorSupportCentreScreen from "../containers/tailor/SupportCentre";
 import TailorClientProfileScreen from "../containers/tailor/ClientProfile";
 
@@ -55,6 +57,8 @@ import ClientViewCatalogIcon from "@mui/icons-material/AccountBox";
 import ClientOrderFromCatalogIcon from "@mui/icons-material/AccountBox";
 import ClientCreateOrderIcon from "@mui/icons-material/AccountBox";
 import ClientProfileIcon from "@mui/icons-material/AccountBox";
+import ClientTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
+import ClientSearchResultsIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
@@ -212,6 +216,18 @@ const ClientRoutes = [
     element: ClientProfileScreen,
   },
   {
+    path: "/terms_and_conditions",
+    name: "TailorTermsAndConditions",
+    icon: <ClientTermsAndConditionsIcon />,
+    element: ClientTermsAndConditionsScreen,
+  },
+  {
+    path: "/search_results",
+    name: "ClientSearchResults",
+    icon: <ClientSearchResultsIcon />,
+    element: ClientSearchResultsScreen,
+  },
+  {
     path: "/create_ad",
     name: "ClientCreateAd",
     icon: <ClientCreateAdIcon />,
@@ -306,8 +322,8 @@ const TailorRoutes = [
     element: TailorTermsAndConditionsScreen,
   },
   {
-    path: "/search_result",
-    name: "search_result",
+    path: "/search_results",
+    name: "TailorSearchResults",
     icon: <TailorSearchResultsIcon />,
     element: TailorSearchResultsScreen,
   },

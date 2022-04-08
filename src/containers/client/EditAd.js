@@ -36,6 +36,7 @@ function ClientEditAdScreen() {
     measurements: "",
     color: "",
     fabric: "",
+    includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
@@ -67,6 +68,7 @@ function ClientEditAdScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log(adData);
       setBasicSection({
         gender: adData.gender,
         category: adData.category,
@@ -75,6 +77,7 @@ function ClientEditAdScreen() {
         measurements: adData.measurements,
         color: adData.color,
         fabric: adData.fabric,
+        includes_alteration_services: adData.includes_alteration_services,
       });
       setDeliverySection(adData.delivery);
       setNotesSection(adData.budget);
@@ -113,6 +116,10 @@ function ClientEditAdScreen() {
       body.append("measurements", basicSection.measurements);
       body.append("color", basicSection.color);
       body.append("fabric", basicSection.fabric);
+      body.append(
+        "includes_alteration_services",
+        basicSection.includes_alteration_services
+      );
       body.append(
         "delivery",
         JSON.stringify({

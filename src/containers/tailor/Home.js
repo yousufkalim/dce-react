@@ -60,6 +60,10 @@ function TailorHomeScreen() {
     return;
   };
 
+  const navToQuotes = () => {
+    navigate("/quotes");
+  };
+
   return (
     <div className="container-page">
       <AppBar color="#F8F4EF" />
@@ -96,7 +100,10 @@ function TailorHomeScreen() {
             >
               order here
             </p>
-            <button className="client_home_screen_row1_column1_button">
+            <button
+              className="client_home_screen_row1_column1_button"
+              onClick={navToQuotes}
+            >
               Find Quotes
             </button>
           </div>

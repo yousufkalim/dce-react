@@ -28,7 +28,13 @@ function useWindowSize() {
   return size;
 }
 
-function ClientAppBar({ activeTab, color, sticky = true, divStyle }) {
+function ClientAppBar({
+  activeTab,
+  color,
+  sticky = true,
+  disableSearch = false,
+  divStyle,
+}) {
   const [width] = useWindowSize();
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
@@ -45,12 +51,32 @@ function ClientAppBar({ activeTab, color, sticky = true, divStyle }) {
     setAnchorElProfile(null);
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const navToHome = () => {
     navigate("/home");
   };
 
+  const navToSearch = () => {
+    if (!searchQuery) {
+      toast.error("Search Input can't be empty");
+      return;
+    }
+    navigate(`/search_results?query=${searchQuery}`);
+  };
+
   const navToProfile = () => {
     navigate("/profile");
+  };
+
+  const navToSupport = () => {
+    handleCloseProfile();
+    toast.success("Coming soon!");
+  };
+
+  const navToTermsAndConditions = () => {
+    handleCloseProfile();
+    navigate("/terms_and_conditions");
   };
 
   const handleLogoutSubmit = () => {
@@ -112,7 +138,14 @@ function ClientAppBar({ activeTab, color, sticky = true, divStyle }) {
           </div>
 
           <div className="appbar_row2">
-            <SearchInput />
+            {!disableSearch ? (
+              <SearchInput
+                setSearchQuery={setSearchQuery}
+                callback={navToSearch}
+              />
+            ) : (
+              <></>
+            )}
             <img
               src={NotificationsSVG}
               className="appbar_row2_notifications_img"
@@ -139,6 +172,10 @@ function ClientAppBar({ activeTab, color, sticky = true, divStyle }) {
               }}
             >
               <MenuItem onClick={navToProfile}>Profile</MenuItem>
+              <MenuItem onClick={navToSupport}>Support</MenuItem>
+              <MenuItem onClick={navToTermsAndConditions}>
+                Terms and Conditions
+              </MenuItem>
               <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
             </Menu>
           </div>
@@ -149,11 +186,7 @@ function ClientAppBar({ activeTab, color, sticky = true, divStyle }) {
   );
 }
 
-function SearchInput({}) {
-  const callback = () => {
-    toast.success("Coming soon!");
-  };
-
+function SearchInput({ setSearchQuery, callback }) {
   return (
     <div>
       <div
@@ -163,11 +196,16 @@ function SearchInput({}) {
           width: "100%",
         }}
       >
-        <input type="text" placeholder="Search" className="appbar_row2_input" />
+        <input
+          type="text"
+          placeholder="Search"
+          className="appbar_row2_input"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <img
-          onClick={callback}
           src={SearchSVG}
           className="appbar_row2_search_img"
+          onClick={callback}
         />
       </div>
     </div>

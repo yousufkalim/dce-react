@@ -72,6 +72,35 @@ function ClientAdsScreen() {
     setIsProcessing(false);
   };
 
+  const rejectQuote = async (event, id) => {
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        quote: id,
+      };
+
+      response = await Api("post", "/quotes/reject", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        getAds();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
+
   const navToCreateAd = () => {
     navigate("/create_ad");
   };
@@ -103,7 +132,11 @@ function ClientAdsScreen() {
         </div>
         <div className="client_ads_screen_row2">
           {ads.map((_) => (
-            <AdListTile {..._} acceptQuote={acceptQuote} />
+            <AdListTile
+              {..._}
+              acceptQuote={acceptQuote}
+              rejectQuote={rejectQuote}
+            />
           ))}
         </div>
       </div>
@@ -221,7 +254,11 @@ function AdListTile(props) {
       </div>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {props?.quotes?.map((_) => (
-          <AdQuoteListTile {..._} acceptQuote={props.acceptQuote} />
+          <AdQuoteListTile
+            {..._}
+            acceptQuote={props.acceptQuote}
+            rejectQuote={props.rejectQuote}
+          />
         ))}
       </Collapse>
     </div>
@@ -319,6 +356,7 @@ function AdQuoteListTile(props) {
               marginTop: "10px",
               cursor: "pointer",
             }}
+            onClick={(e) => props.rejectQuote(e, props._id)}
           >
             Discard
           </p>
