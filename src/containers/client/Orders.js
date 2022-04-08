@@ -26,7 +26,10 @@ function ClientOrdersScreen() {
   const getOrders = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { client: user._id });
+      response = await Api("post", `/orders/byQuery`, {
+        client: user._id,
+        status: ["in_progress", "discarded", "completed"], // As "pending" doesn't count as order
+      });
       const ordersData = response.data.orders;
       setOrders(ordersData);
       setIsLoading(false);

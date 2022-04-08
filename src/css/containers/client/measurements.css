@@ -20,38 +20,38 @@
   width: 23%;
   text-align: center;
 }
-.video-img{
+.video-img {
   width: 50% !important;
 }
-.measurements_create_ad_screen_top{
- align-items: baseline !important;
- min-height: 100vh !important;
+.measurements_create_ad_screen_top {
+  align-items: baseline !important;
+  min-height: 100vh !important;
 }
 
 @media only screen and (max-width: 768px) {
-  .m-one-text{
+  .m-one-text {
     width: 70%;
   }
-  .m-cont img{
+  .m-cont img {
     width: 75%;
   }
-  .m-cont > *{
+  .m-cont > * {
     padding: 6% 0%;
   }
-  .video-img{
+  .video-img {
     width: 80% !important;
   }
-  .measurement_profile_section{
+  .measurement_profile_section {
     font-size: 8px !important;
   }
 }
 
-.utube-icon-container{
-display: flex;
-justify-content: center;
-align-items: center;
+.utube-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.utube-icon{
+.utube-icon {
   position: absolute;
   width: 25px;
   height: 25px;

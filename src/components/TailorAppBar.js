@@ -5,8 +5,8 @@ import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import Api from "../api";
 
@@ -17,13 +17,7 @@ import { toast } from "react-toastify";
 
 import assetsURL from "../utils/Assets";
 
-function TailorAppBar({
-  activeTab,
-  color,
-  sticky = true,
-  divStyle
-}) {
-
+function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   const navigate = useNavigate();
 
   const handleClickNotifications = () => {
@@ -78,7 +72,7 @@ function TailorAppBar({
   const handleLogoutSubmit = () => {
     handleCloseProfile();
     handleLogout(navigate);
-  }
+  };
 
   const [profile, setProfile] = useState(null);
 
@@ -170,13 +164,9 @@ function TailorAppBar({
             style={{
               width: "6vh",
               height: "6vh",
-              marginLeft: "3%"
+              marginLeft: "3%",
             }}
-            src={
-              profile?.avatar
-              ? assetsURL(profile.avatar)
-              : UserSVG
-            }
+            src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
             onClick={handleClickProfile}
           />
           <Menu
@@ -185,12 +175,14 @@ function TailorAppBar({
             open={openProfile}
             onClose={handleCloseProfile}
             MenuListProps={{
-              'aria-labelledby': 'basic-button',
+              "aria-labelledby": "basic-button",
             }}
           >
             <MenuItem onClick={navToProfile}>Profile</MenuItem>
             <MenuItem onClick={navToSupport}>Support</MenuItem>
-            <MenuItem onClick={navToTermsAndConditions}>Terms and Conditions</MenuItem>
+            <MenuItem onClick={navToTermsAndConditions}>
+              Terms and Conditions
+            </MenuItem>
             <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
           </Menu>
         </div>
@@ -200,7 +192,6 @@ function TailorAppBar({
 }
 
 function SearchInput({}) {
-
   const callback = () => {
     toast.success("Coming soon!");
   };
@@ -215,11 +206,14 @@ function SearchInput({}) {
         }}
       >
         <input type="text" placeholder="Search" className="appbar_row2_input" />
-        <img onClick={callback} src={SearchSVG} className="appbar_row2_search_img" />
+        <img
+          onClick={callback}
+          src={SearchSVG}
+          className="appbar_row2_search_img"
+        />
       </div>
     </div>
   );
-  
 }
 
 export default TailorAppBar;

@@ -15,8 +15,7 @@ import { toast } from "react-toastify";
 
 import assetsURL from "../../utils/Assets";
 
-function TailorOrdersScreen(){
-
+function TailorOrdersScreen() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -223,12 +222,12 @@ function OrderRequestListTile(props) {
             className="image_container"
             style={{
               height: "65pt",
-              width: "65pt"
+              width: "65pt",
             }}
             src={
-              props.order.client.avatar ?
-              assetsURL(props.order.client.avatar) :
-              UserSVG
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
             }
           />
         </div>
@@ -326,12 +325,12 @@ function OrderInProgressListTile(props) {
             className="image_container"
             style={{
               height: "65pt",
-              width: "65pt"
+              width: "65pt",
             }}
             src={
-              props.order.client.avatar ?
-              assetsURL(props.order.client.avatar) :
-              UserSVG
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
             }
           />
         </div>
@@ -419,12 +418,12 @@ function OrderCompletedListTile(props) {
             className="image_container"
             style={{
               height: "50pt",
-              width: "50pt"
+              width: "50pt",
             }}
             src={
-              props.order.client.avatar ?
-              assetsURL(props.order.client.avatar) :
-              UserSVG
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
             }
           />
         </div>
@@ -503,7 +502,7 @@ function OrderCompletedListTile(props) {
 function OrderDiscardedListTile(props) {
   const navigate = useNavigate();
   const navtoClientProfile = () => {
-    navigate("/client_profile");
+    navigate(`/client_profile/${props.order.client._id}`);
   };
 
   return (
@@ -520,12 +519,12 @@ function OrderDiscardedListTile(props) {
             className="image_container"
             style={{
               height: "50pt",
-              width: "50pt"
+              width: "50pt",
             }}
             src={
-              props.order.client.avatar ?
-              assetsURL(props.order.client.avatar) :
-              UserSVG
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
             }
           />
         </div>
@@ -561,7 +560,8 @@ function OrderDiscardedListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {props.order.rating.value}({props.order.rating.count})
+          {props?.order?.rating?.value ?? "5"}(
+          {props?.order?.rating?.count ?? "10"})
         </p>
       </div>
       <div className="tcos_order_list_tile_column1">
@@ -576,7 +576,7 @@ function OrderDiscardedListTile(props) {
           Offer
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {`${props.quote.price}$`}
+          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}$`}
         </p>
       </div>
       <div

@@ -5,7 +5,7 @@ import arrow from "../../assets/recentdown.svg";
 import UserCard from "./UserCard";
 import search from "../../assets/search.svg";
 import Box from "@mui/material/Box";
-import CustomDropDown from '../CustomDropDown'
+import CustomDropDown from "../CustomDropDown";
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
   useEffect(() => {
@@ -45,11 +45,11 @@ const Chat = () => {
               <div className="recentchats">
                 <p> Recent Chats</p>
                 <img className="recent-down-icon" src={arrow} />
-              </div> 
+              </div>
               <div className="search-msg-cont">
                 <img className="srch-icon" src={search} />
                 <input className="search-msg-input" placeholder="Search" />
-                <select  className="search-msg-dropdown">
+                <select className="search-msg-dropdown">
                   <option value="Messages">Messages</option>
                   <option value="saab">Saab</option>
                   <option value="mercedes">Mercedes</option>

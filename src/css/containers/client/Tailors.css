@@ -1,4 +1,3 @@
-
 /* Screen Components */
 
 .cds_tailor_list_tile_container {
@@ -10,7 +9,7 @@
   height: 20vh;
   margin-bottom: 2%;
   padding: 1.5% 0;
-  border-bottom-color: #DBDBDB;
+  border-bottom-color: #dbdbdb;
   border-bottom-style: solid;
   border-bottom-width: 1.5px;
 }
@@ -22,7 +21,6 @@
   justify-content: center;
   width: 16.66vw;
   height: 100%;
-  
 }
 
 .cds_tailor_list_tile_column1_img {
@@ -40,7 +38,7 @@
   width: 50vw;
   height: 100%;
 }
-.tailors-img{
+.tailors-img {
   width: 50%;
 }
 .cos_order_list_tile_column3_item {
@@ -52,27 +50,27 @@
 }
 /* media queries */
 @media only screen and (max-width: 768px) {
-  .cds_tailor_list_tile_container>*{
+  .cds_tailor_list_tile_container > * {
     margin: 2% 0%;
   }
-  .cds_tailor_list_tile_container{
+  .cds_tailor_list_tile_container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 10%;
     height: auto;
   }
-  .cds_tailor_list_tile_column3{
+  .cds_tailor_list_tile_column3 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  .tailors-img{
+  .tailors-img {
     width: 100%;
   }
 
-.cds_tailor_list_tile_column1{
-  width: 35vw;
-  align-items: center;
-}
+  .cds_tailor_list_tile_column1 {
+    width: 35vw;
+    align-items: center;
+  }
 }

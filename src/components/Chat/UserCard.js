@@ -1,6 +1,6 @@
 import React from "react";
 import ron from "../../assets/ron.jpeg";
-import writing from '../../assets/writing.svg'
+import writing from "../../assets/writing.svg";
 const UserCard = () => {
   const items = [
     {
@@ -68,9 +68,18 @@ const UserCard = () => {
               <div className="name-status">
                 <strong className="user-name">{val?.name}</strong>
                 <div className="status-cont">
-               {val?.status =="Writing"? 
-               <img className="writing" src={writing}/> : null}
-                <p style={{color:val?.status=="do not disturb"?"#FF3737":"#149E7A"}} className="status">{val?.status} </p>
+                  {val?.status == "Writing" ? (
+                    <img className="writing" src={writing} />
+                  ) : null}
+                  <p
+                    style={{
+                      color:
+                        val?.status == "do not disturb" ? "#FF3737" : "#149E7A",
+                    }}
+                    className="status"
+                  >
+                    {val?.status}{" "}
+                  </p>
                 </div>
               </div>
             </div>

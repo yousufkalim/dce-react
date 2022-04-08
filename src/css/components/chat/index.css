@@ -6,28 +6,28 @@
 @import url("./usercard.css");
 
 @media only screen and (max-width: 768px) {
-    .search-msg-cont{
-     padding: 4% 8%;
-    }
-    .chat-left-bar{
-      width: 80%;
-      margin: auto;
-    }
+  .search-msg-cont {
+    padding: 4% 8%;
   }
+  .chat-left-bar {
+    width: 80%;
+    margin: auto;
+  }
+}
 /* 
 .card-user p:first-of-type{
     background-color:Red;
 } */
 /* chatbody css */
 /* messages */
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 
-.inp{
-    visibility: hidden;
+.inp {
+  visibility: hidden;
 }
 
-.inptwo{
-    display: block;
+.inptwo {
+  display: block;
 }

@@ -1,4 +1,3 @@
-
 .client_ads_screen_row1 {
   height: 20%;
   width: 100%;
@@ -33,7 +32,7 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 2%;
-  background-color: #FCF4F3;
+  background-color: #fcf4f3;
   border-radius: 30px;
 }
 
@@ -46,7 +45,7 @@
   height: 20vh;
   margin-bottom: 2%;
   padding: 1.5% 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 30px;
 }
 
@@ -57,7 +56,7 @@
   justify-content: center;
   width: 50vw;
   height: 100%;
-  border-right-color: #DBDBDB;
+  border-right-color: #dbdbdb;
   border-right-style: solid;
   border-right-width: 1.5px;
 }
@@ -73,7 +72,7 @@
 .cas_ad_list_tile_column1_item_key {
   font-size: 14px;
   font-weight: 200;
-  color: #CC8E9C;
+  color: #cc8e9c;
 }
 
 .cas_ad_list_tile_column1_item_value {
@@ -82,10 +81,10 @@
 }
 
 .cas_ad_list_tile_column1_item_borders {
-  border-top-color: #DBDBDB;
+  border-top-color: #dbdbdb;
   border-top-style: solid;
   border-top-width: 1.5px;
-  border-bottom-color: #DBDBDB;
+  border-bottom-color: #dbdbdb;
   border-bottom-style: solid;
   border-bottom-width: 1.5px;
 }
@@ -97,7 +96,7 @@
   justify-content: center;
   width: 16.66vw;
   height: 100%;
-  border-right-color: #DBDBDB;
+  border-right-color: #dbdbdb;
   border-right-style: solid;
   border-right-width: 1.5px;
 }
@@ -112,7 +111,7 @@
 .cas_ad_list_tile_column2_title {
   font-size: 12px;
   font-weight: 600;
-  color: #A0A0A0;
+  color: #a0a0a0;
   padding-bottom: 1%;
 }
 
@@ -152,7 +151,7 @@
   height: 16vh;
   margin-bottom: 2%;
   padding: 1.5% 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 30px;
 }
 
@@ -175,7 +174,7 @@
 .cas_quote_list_tile_column1_title_text {
   font-size: 18px;
   font-weight: 400;
-  color: #CC8E9C;
+  color: #cc8e9c;
 }
 
 .cas_quote_list_tile_column1_description_text {
@@ -197,4 +196,3 @@
   align-items: center;
   justify-content: center;
 }
-

@@ -1,4 +1,3 @@
-
 .client_orders_screen_top {
   display: flex;
   flex-direction: column;
@@ -49,7 +48,7 @@
   height: 28vh;
   margin-bottom: 2%;
   padding: 1.5% 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 30px;
 }
 
@@ -60,7 +59,7 @@
   justify-content: center;
   width: 16.66vw;
   height: 100%;
-  border-right-color: #DBDBDB;
+  border-right-color: #dbdbdb;
   border-right-style: solid;
   border-right-width: 1.5px;
 }
@@ -75,7 +74,7 @@
 .cos_order_list_tile_column1_title_text {
   font-size: 16px;
   font-weight: 600;
-  color: #CC8E9C;
+  color: #cc8e9c;
 }
 
 .cos_order_list_tile_column2 {
@@ -85,7 +84,7 @@
   justify-content: center;
   width: 50vw;
   height: 100%;
-  border-right-color: #DBDBDB;
+  border-right-color: #dbdbdb;
   border-right-style: solid;
   border-right-width: 1.5px;
 }
@@ -101,7 +100,7 @@
 .cos_order_list_tile_column2_item_key {
   font-size: 14px;
   font-weight: 200;
-  color: #CC8E9C;
+  color: #cc8e9c;
 }
 
 .cos_order_list_tile_column2_item_value {
@@ -110,10 +109,10 @@
 }
 
 .cos_order_list_tile_column2_item_borders {
-  border-top-color: #DBDBDB;
+  border-top-color: #dbdbdb;
   border-top-style: solid;
   border-top-width: 1.5px;
-  border-bottom-color: #DBDBDB;
+  border-bottom-color: #dbdbdb;
   border-bottom-style: solid;
   border-bottom-width: 1.5px;
 }
@@ -127,8 +126,6 @@
   height: 100%;
 }
 
-
-
 @media only screen and (max-width: 768px) {
   .cos_order_list_tile_container {
     display: flex;
@@ -139,14 +136,14 @@
     height: 100%;
     margin-bottom: 2%;
     padding: 5.5% 0;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 30px;
-}
-.cos_order_list_tile_column1{
-  width: 100vw;
-  border: none;
-}
-.cos_order_list_tile_column2{
-  border: none;
-}
+  }
+  .cos_order_list_tile_column1 {
+    width: 100vw;
+    border: none;
+  }
+  .cos_order_list_tile_column2 {
+    border: none;
+  }
 }

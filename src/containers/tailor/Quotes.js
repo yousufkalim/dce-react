@@ -7,15 +7,16 @@ import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput";
 import Footer from "../../components/Footer";
 
-import Modal from '@mui/material/Modal';
+import Modal from "@mui/material/Modal";
 
 import { useNavigate } from "react-router-dom";
 
-import { getUser } from "../../utils/Auth"
+import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
-function TailorQuotesScreen(){
+import assetsURL from "../../utils/Assets";
 
+function TailorQuotesScreen() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +29,10 @@ function TailorQuotesScreen(){
   const getQuotes = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { status: "pending", tailor: null });
+      response = await Api("post", `/orders/byQuery`, {
+        status: "pending",
+        tailor: null,
+      });
       const quotesData = response.data.orders;
       setQuotes(quotesData);
       setIsLoading(false);
@@ -39,25 +43,19 @@ function TailorQuotesScreen(){
 
   return (
     <div className="container-page-vertical">
-      <TailorAppBar
-        activeTab={2}
-        color="#FCFCFC"
-      />
+      <TailorAppBar activeTab={2} color="#FCFCFC" />
       <div
         className="client_orders_screen_top"
         style={{
-          background: "linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          background:
+            "linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
         }}
       >
-        <div className="client_ads_screen_row1">
-        </div>
+        <div className="client_ads_screen_row1"></div>
         <div className="client_ads_screen_row2">
-          {
-            quotes.map(
-              _ =>
-              <QuoteListTile {..._} />
-            )
-          }
+          {quotes.map((_) => (
+            <QuoteListTile {..._} />
+          ))}
         </div>
       </div>
       <Footer />
@@ -65,18 +63,17 @@ function TailorQuotesScreen(){
   );
 }
 
-function QuoteListTile(props){
-
+function QuoteListTile(props) {
   const user = getUser();
   const [isSendOfferModal, setIsSendOfferModal] = useState(false);
   const handleSendOfferModalOpen = (e) => {
     // e.stopPropogation();
     // setIsSendOfferModal(true);
     navToViewQuote();
-  } 
+  };
   const handleSendOfferModalClose = (e) => {
     setIsSendOfferModal(false);
-  }
+  };
 
   const navigate = useNavigate();
 
@@ -85,18 +82,22 @@ function QuoteListTile(props){
   };
 
   return (
-    <div
-      className="cas_ad_list_tile_container"
-      onClick={navToViewQuote}
-    >
+    <div className="cas_ad_list_tile_container" onClick={navToViewQuote}>
       <div className="tqs_quote_list_tile_column0">
         <div
           className="tqs_quote_list_tile_column0_img"
           style={{
-            "paddingBottom": "5%"
+            paddingBottom: "5%",
           }}
         >
-          <img style={{ width: "30%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "65pt",
+              width: "65pt",
+            }}
+            src={props.client.avatar ? assetsURL(props.client.avatar) : UserSVG}
+          />
         </div>
         <p className="tqs_quote_list_tile_column0_title_text">
           {props.client.name}
@@ -114,13 +115,11 @@ function QuoteListTile(props){
             padding: "2% 0",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">
-            Name of Creation
-          </p>
+          <p className="cas_ad_list_tile_column1_item_key">Name of Creation</p>
           <p
             className="cas_ad_list_tile_column1_item_value"
             style={{
-              fontWeight: "900"
+              fontWeight: "900",
             }}
           >
             {props.name}
@@ -132,9 +131,7 @@ function QuoteListTile(props){
             padding: "2% 0",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">
-            Ad for
-          </p>
+          <p className="cas_ad_list_tile_column1_item_key">Ad for</p>
           <p className="cas_ad_list_tile_column1_item_value">
             {props.category}
           </p>
@@ -145,38 +142,38 @@ function QuoteListTile(props){
             padding: "2% 0",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">
-            Delivery Date
-          </p>
+          <p className="cas_ad_list_tile_column1_item_key">Delivery Date</p>
           <p className="cas_ad_list_tile_column1_item_value">
             {new Date(props.delivery.date).toLocaleDateString("en-US")}
           </p>
         </div>
       </div>
       <div className="cas_ad_list_tile_column2">
-        <p className="cas_ad_list_tile_column2_title">
-          min
-        </p>
+        <p className="cas_ad_list_tile_column2_title">min</p>
         <p className="cas_ad_list_tile_column2_description">
           {`${props.budget.min_price}$`}
         </p>
-        <p className="cas_ad_list_tile_column2_title">
-          max
-        </p>
+        <p className="cas_ad_list_tile_column2_title">max</p>
         <p className="cas_ad_list_tile_column2_description">
           {`${props.budget.max_price}$`}
         </p>
         <p
           style={{
             fontSize: "16px",
-            color: "#CC8E9C"
+            color: "#CC8E9C",
           }}
         >
           Range
         </p>
       </div>
       <div className="cas_ad_list_tile_column2">
-        <p style={{ fontSize: "40px", fontWeight: "bold", paddingBottom: "2.5%" }}>
+        <p
+          style={{
+            fontSize: "40px",
+            fontWeight: "bold",
+            paddingBottom: "2.5%",
+          }}
+        >
           {props.quotes.length}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
@@ -185,27 +182,31 @@ function QuoteListTile(props){
       </div>
       <div className="tqs_quote_list_tile_column5">
         <div className="tqs_quote_list_tile_column5_buttons">
-          {
-            props.quotes.some(_ => _.tailor._id == user._id)
-            ? <>
-                <p style={{ fontSize: "16px", fontWeight: "900" }}>
-                  Offer Sent
-                </p>
-              </>
-            : <>
-                <CustomButton
-                  text="Send Offer"
-                  style={{
-                    boxShadow: "none",
-                    marginBottom: "10px"
-                  }}
-                  onClick={handleSendOfferModalOpen}
-                />
-                <p style={{ fontSize: "12px", fontWeight: "600", color: "#CC8E9C" }}>
-                  Chat Here
-                </p>
-              </>
-          }
+          {props.quotes.some((_) => _.tailor._id == user._id) ? (
+            <>
+              <p style={{ fontSize: "16px", fontWeight: "900" }}>Offer Sent</p>
+            </>
+          ) : (
+            <>
+              <CustomButton
+                text="Send Offer"
+                style={{
+                  boxShadow: "none",
+                  marginBottom: "10px",
+                }}
+                onClick={handleSendOfferModalOpen}
+              />
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  color: "#CC8E9C",
+                }}
+              >
+                Chat Here
+              </p>
+            </>
+          )}
         </div>
       </div>
       <Modal
@@ -213,17 +214,13 @@ function QuoteListTile(props){
         onClose={handleSendOfferModalClose}
         aria-labelledby="Send Offer"
       >
-        <SendQuote
-          handleClose={handleSendOfferModalClose}
-        />
+        <SendQuote handleClose={handleSendOfferModalClose} />
       </Modal>
     </div>
   );
 }
 
-function SendQuote({
-  handleClose
-}){
+function SendQuote({ handleClose }) {
   return (
     <div className="tqs_sqm_container">
       <div
@@ -231,22 +228,20 @@ function SendQuote({
         style={{
           borderBottomLeftRadius: "20px",
           borderBottomRightRadius: "20px",
-          marginBottom: "2%"
+          marginBottom: "2%",
         }}
       >
         <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">
-            Price
-          </p>
+          <p className="tqs_sqm_input_text">Price</p>
         </div>
         <div className="tqs_sqm_input_input">
           <CustomInput
             labelStyle={{
-              display: "none"
+              display: "none",
             }}
             inputStyle={{
               border: "none",
-              fontSize: "12px"
+              fontSize: "12px",
             }}
             inputPlaceholder="Set Your Price"
           />
@@ -257,27 +252,24 @@ function SendQuote({
         style={{
           borderTopLeftRadius: "20px",
           borderTopRightRadius: "20px",
-          marginBottom: "10%"
+          marginBottom: "10%",
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">
-            Description
-          </p>
+          <p className="tqs_sqm_input_text">Description</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
             className="tqs_sqm_textarea_textarea"
             placeholder="Tell us"
-          >
-          </textarea>
+          ></textarea>
         </div>
       </div>
       <CustomButton
         text="Send Offer"
         style={{
           boxShadow: "none",
-          marginBottom: "10px"
+          marginBottom: "10px",
         }}
         onClick={handleClose}
       />
