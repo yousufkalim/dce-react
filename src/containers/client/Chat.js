@@ -7,10 +7,11 @@ import SearchSVG from "../../assets/search.svg";
 import Box from "@mui/material/Box";
 import CustomDropDown from "../../components/CustomDropDown";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { toast } from "react-toastify";
+import { Store, UpdateStore } from "../../StoreContext";
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
@@ -25,17 +26,29 @@ function useWindowSize() {
 
 const ClientChatScreen = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [chats, setChats] = useState([]);
-  const [chat, setChat] = useState(null);
+  const directUser = location?.state?.directUser;
+
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const user = getUser();
 
   useEffect(() => {
-    getChats();
+    if (store.chats.length == 0) {
+      loadData();
+    }
   }, []);
+
+  const loadData = async () => {
+    const chatID = await getChats();
+    if (chatID) {
+      getMessages(chatID);
+    }
+  };
 
   const getChats = async () => {
     let response;
@@ -44,8 +57,26 @@ const ClientChatScreen = () => {
         client: user._id,
       });
       const chatsData = response.data.chats;
-      setChats(chatsData);
-      setChat(chatsData[0]);
+      updateStore({
+        chats: chatsData,
+        chat: chatsData[0],
+      });
+      return chatsData[0];
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const getMessages = async (chatID) => {
+    let response;
+    try {
+      response = await Api("post", `/messages/byQuery`, {
+        chat: chatID,
+      });
+      const messagesData = response.data.messages;
+      updateStore({
+        messages: messagesData,
+      });
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
@@ -62,6 +93,7 @@ const ClientChatScreen = () => {
 
   return (
     <>
+      {console.log(store, "_store_")}
       <div
         style={{ background: "#DFDFDF" }}
         className="container-page-vertical"
@@ -92,13 +124,13 @@ const ClientChatScreen = () => {
                 </select>
               </div>
               <div className="user-card-container">
-                <ConversationsContainer chats={chats} />
+                <ConversationsContainer />
               </div>
             </Box>
             <MessagesContainer
               width={width}
               mobiletoggle={mobiletoggle}
-              chat={chat}
+              directUser={directUser}
             />
           </div>
         </div>

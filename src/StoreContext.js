@@ -17,7 +17,12 @@ export function UpdateStore() {
 // Initializing Store Provider
 export function StoreProvider({ children }) {
   // Initializing State
-  let [store, setStore] = useState({});
+  let [store, setStore] = useState({
+    socket: null,
+    chats: [],
+    chat: null,
+    messages: [],
+  });
 
   const updateStore = (data) => {
     setStore((prev) => {

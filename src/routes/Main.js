@@ -11,6 +11,7 @@ import RoutesObj from "../routes/Routes";
 import { getRoutes, initSocket } from "../utils/Auth";
 
 import { Store, UpdateStore } from "../StoreContext";
+import SS from "../utils/services/socket.io/utils/state";
 
 const Main = () => {
   const token = getToken();
@@ -27,15 +28,19 @@ const Main = () => {
     window.scroll({ top: 0 });
     document.querySelector("html").style.scrollBehavior = "";
     focusHandling("outline");
-    initSocket(store, updateStore);
+    initSocket(updateStore);
     if (token && isMyTokenExpired) {
       handleLogout(navigate, store, updateStore);
     }
   }, [location.pathname]); // triggered on route change
 
+  useEffect(() => {
+    Object.assign(SS, store);
+    console.log(SS, `_SS_`);
+  }, [store]);
+
   return (
     <>
-      {console.log(store)}
       <div className="main-container">
         <Routes>
           {token && isMyTokenExpired == false ? (

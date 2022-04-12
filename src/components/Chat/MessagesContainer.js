@@ -3,7 +3,13 @@ import ChatHeader from "./ChatHeader";
 import SendMessage from "./SendMessage";
 import Messages from "./Messages";
 import Box from "@mui/material/Box";
-const MessagesContainer = ({ width, mobiletoggle, chat }) => {
+
+import { Store, UpdateStore } from "../../StoreContext";
+
+const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
+  const store = Store();
+  const updateStore = UpdateStore();
+
   const [fileName, setFileName] = useState([]);
   return (
     <>
@@ -19,11 +25,11 @@ const MessagesContainer = ({ width, mobiletoggle, chat }) => {
         }}
         className="c-body"
       >
-        {chat ? (
+        {store.chat || directUser ? (
           <>
-            <ChatHeader />
-            <Messages fileName={fileName} />
-            <SendMessage fileName={fileName} setFileName={setFileName} />
+            <ChatHeader directUser={directUser} />
+            <Messages directUser={directUser} />
+            <SendMessage setFileName={setFileName} directUser={directUser} />
           </>
         ) : (
           <></>

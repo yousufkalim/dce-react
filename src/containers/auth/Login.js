@@ -61,12 +61,7 @@ function LoginScreen() {
 
       if (response?.data?.success) {
         toast.success("Logged In");
-        handleLogin(
-          response.data.token,
-          response.data.user,
-          store,
-          updateStore
-        );
+        handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
     } catch (e) {

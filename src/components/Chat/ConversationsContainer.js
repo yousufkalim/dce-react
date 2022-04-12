@@ -1,52 +1,22 @@
 import React from "react";
-import ron from "../../assets/ron.jpeg";
+import UserSVG from "../../assets/User.svg";
 import writing from "../../assets/writing.svg";
-const ConversationsContainer = ({ chats }) => {
-  const items = [
-    {
-      name: "Magazine",
-      status: "Writing",
-      time: "1 minute ago",
-      paragraph: `  Vestibulum eget augue consectetur, mattis turpis et, 
-      luctus eros. Aenean luctus varius lacus in imperdiet. Curabitur mi ligula, consequat venenatis nunc accumsan, ornare lobortis nibh. Duis consequat nibh non pulvinar 
-      rutrum. Nunc dignissim nibh ac augue feugiat tincidunt. Vestibulum iaculis nisi vitae te`,
-    },
-    {
-      name: "Emma",
-      status: "offline",
-      time: "35 minute ago",
-      paragraph: `  Vestibulum eget augue consectetur, mattis turpis et, 
-      luctus eros. Aenean luctus varius lacus in imperdiet. Curabitur mi ligula, consequat venenatis nunc accumsan, ornare lobortis nibh. Duis consequat nibh non pulvinar 
-      rutrum. Nunc dignissim nibh ac augue feugiat tincidunt. Vestibulum iaculis nisi vitae te`,
-    },
-    {
-      name: "Emma",
-      status: "Writing",
-      time: "45 minute ago",
-      paragraph: `  Vestibulum eget augue consectetur, mattis turpis et, 
-      luctus eros. Aenean luctus varius lacus in imperdiet. Curabitur mi ligula, consequat venenatis nunc accumsan, ornare lobortis nibh. Duis consequat nibh non pulvinar 
-      rutrum. Nunc dignissim nibh ac augue feugiat tincidunt. Vestibulum iaculis nisi vitae te`,
-    },
-    {
-      name: "Emma",
-      status: "offline",
-      time: "30 minute ago",
-      paragraph: `  Vestibulum eget augue consectetur, mattis turpis et, 
-      luctus eros. Aenean luctus varius lacus in imperdiet. Curabitur mi ligula, consequat venenatis nunc accumsan, ornare lobortis nibh. Duis consequat nibh non pulvinar 
-      rutrum. Nunc dignissim nibh ac augue feugiat tincidunt. Vestibulum iaculis nisi vitae te`,
-    },
-    {
-      name: "Emma",
-      status: "do not disturb",
-      time: "40 minute ago",
-      paragraph: `  Vestibulum eget augue consectetur, mattis turpis et, 
-      luctus eros. Aenean luctus varius lacus in imperdiet. Curabitur mi ligula, consequat venenatis nunc accumsan, ornare lobortis nibh. Duis consequat nibh non pulvinar 
-      rutrum. Nunc dignissim nibh ac augue feugiat tincidunt. Vestibulum iaculis nisi vitae te`,
-    },
-  ];
+
+import { Store, UpdateStore } from "../../StoreContext";
+import { getUser } from "../../utils/Auth";
+
+import assetsURL from "../../utils/Assets";
+
+const ConversationsContainer = ({}) => {
+  const store = Store();
+  const updateStore = UpdateStore();
+
+  const user = getUser();
+  const getReceiver = (_) => (user.role = "client" ? _.tailor : _.client);
+
   return (
     <>
-      {chats.map((val) => (
+      {store.chats.map((_) => (
         <div
           style={{
             padding: "24px",
@@ -57,36 +27,48 @@ const ConversationsContainer = ({ chats }) => {
         >
           <div className="parent">
             <div className="card-user">
-              {val.status === "Writing" ? (
+              {_.status === "Writing" ? (
                 <div className="online">
                   <div className="online-white">
                     <div className="online-green"> </div>
                   </div>
                 </div>
               ) : null}
-              <img className="user-img" src={ron} />
+              <img
+                className="image_container"
+                style={{
+                  height: "50pt",
+                  width: "50pt",
+                  marginRight: "20px",
+                }}
+                src={
+                  getReceiver(_).avatar
+                    ? assetsURL(getReceiver(_).avatar)
+                    : UserSVG
+                }
+              />
               <div className="name-status">
-                <strong className="user-name">{val?.name}</strong>
+                <strong className="user-name">{getReceiver(_).name}</strong>
                 <div className="status-cont">
-                  {val?.status == "Writing" ? (
+                  {_?.status == "Writing" ? (
                     <img className="writing" src={writing} />
                   ) : null}
                   <p
                     style={{
                       color:
-                        val?.status == "do not disturb" ? "#FF3737" : "#149E7A",
+                        _?.status == "do not disturb" ? "#FF3737" : "#149E7A",
                     }}
                     className="status"
                   >
-                    {val?.status}{" "}
+                    {_?.status}{" "}
                   </p>
                 </div>
               </div>
             </div>
-            <p className="time"> {val?.time}</p>
+            <p className="time"> {_?.time}</p>
           </div>
           <div className="user-detail-parent">
-            <p className="user-detail">{val.paragraph}</p>
+            <p className="user-detail">{_.last_message?.content ?? "N/A"}</p>
             <div className="dot">3</div>
           </div>
         </div>

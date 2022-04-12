@@ -81,12 +81,7 @@ function TailorCreateAccount2Screen() {
 
       if (response?.data?.success) {
         toast.success("Registered successfully!");
-        handleLogin(
-          response.data.token,
-          response.data.user,
-          store,
-          updateStore
-        );
+        handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
     } catch (e) {

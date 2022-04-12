@@ -2,121 +2,63 @@ import React, { useRef, useEffect } from "react";
 import Box from "@mui/material/Box";
 import dot from "../../assets/dot.svg";
 import seen from "../../assets/Seenicon.svg";
-const Messages = ({ fileName }) => {
+
+import { Store, UpdateStore } from "../../StoreContext";
+import { getUser } from "../../utils/Auth";
+
+const Messages = ({}) => {
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "auto" });
   };
+
   useEffect(() => {
     scrollToBottom();
   }, []);
-  const items = [
-    {
-      msg: `Mai nhi btaounga`,
-      role: "sender",
-      lastseen: `4 days ago`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "receiver",
-      lastseen: `5 days ago`,
-    },
-    {
-      msg: `Vestibulum eget Aenean luctus varius lacus in imperdiet.`,
-      role: "sender",
-      lastseen: `6 days ago`,
-    },
-    {
-      msg: `Vestibulum lacus in imperdiet.`,
-      role: "sender",
-      lastseen: `8 days ago`,
-    },
-    {
-      msg: `Vestibulum eget`,
-      role: "receiver",
-      lastseen: `10 days ggo`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "sender",
-      lastseen: `12 days ggo`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "sender",
-      lastseen: `2 days ago`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "sender",
-      lastseen: `9 days ago`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "receiver",
-      lastseen: `6 days ago`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "receiver",
-      lastseen: `6 days ago`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "sender",
-      lastseen: `6 days ago`,
-    },
-    {
-      msg: `Vestibulum eget luctus eros. Aenean luctus varius lacus in imperdiet.`,
-      role: "receiver",
-      lastseen: `6 days ago`,
-    },
-  ];
+
+  const store = Store();
+  const updateStore = UpdateStore();
+
+  const user = getUser();
+  const isUserSender = (_) => _.sender == user._id;
+
   return (
     <>
       <div className="message-cont">
-        {items.map((val) => (
+        {store.messages.map((_) => (
           <>
             <Box
-              sx={{ justifyContent: val.role === "sender" ? "right" : "left" }}
+              sx={{ justifyContent: isUserSender ? "right" : "left" }}
               className="message-width"
             >
-              {val.role === "sender" ? (
-                <img className="dot-msg" src={dot} />
-              ) : null}
+              {isUserSender ? <img className="dot-msg" src={dot} /> : null}
               <Box
                 sx={{
-                  background: val.role === "sender" ? " #ffffff" : "#F7C9D0",
-                  border: val.role === "sender" ? "1px solid #DBDBDB" : "none",
-                  boxShadow:
-                    val.role === "sender"
-                      ? "0px 4px 9px rgba(0, 0, 0, 0.04)"
-                      : "none",
-                  borderBottomRightRadius:
-                    val.role === "sender" ? "none" : "10px",
-                  borderTopLeftRadius: val.role === "sender" ? "10px" : "none",
+                  background: isUserSender ? " #ffffff" : "#F7C9D0",
+                  border: isUserSender ? "1px solid #DBDBDB" : "none",
+                  boxShadow: isUserSender
+                    ? "0px 4px 9px rgba(0, 0, 0, 0.04)"
+                    : "none",
+                  borderBottomRightRadius: isUserSender ? "none" : "10px",
+                  borderTopLeftRadius: isUserSender ? "10px" : "none",
                 }}
                 className="msg-text"
               >
-                <p>{val?.msg} </p>
+                <p>{_.content} </p>
               </Box>
-              {val.role === "receiver" ? (
+              {_.role === "receiver" ? (
                 <img className="dot-msg" src={dot} />
               ) : null}
-              {val.role === "sender" ? <img src={seen} /> : null}
+              {isUserSender ? <img src={seen} /> : null}
             </Box>
 
-            {val.role === "sender" ? (
+            {isUserSender ? (
               <p style={{ textAlign: "end", width: "95%", color: "#DBDBDB" }}>
-                {val?.lastseen}
+                {_?.lastseen}
               </p>
             ) : null}
           </>
         ))}
-        {fileName?.map((val) => (
-          <p> {val}</p>
-        ))}
-
         <div ref={messagesEndRef} />
       </div>
     </>

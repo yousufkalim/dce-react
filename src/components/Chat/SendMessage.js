@@ -8,7 +8,31 @@ import Box from "@mui/material/Box";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import Picker from "emoji-picker-react";
 import chatemoji from "../../assets/chatemoji.svg";
-const SendMessage = ({ setFileName }) => {
+
+import { Store, UpdateStore } from "../../StoreContext";
+
+import { toast } from "react-toastify";
+
+const SendMessage = ({ setFileName, directUser }) => {
+  const store = Store();
+  const updateStore = UpdateStore();
+
+  const [text, setText] = useState(null);
+
+  const sendMessage = () => {
+    if (!text) {
+      toast.error("Please type message to send.");
+    }
+
+    store.socket.emit("send_message", {
+      type: "text",
+      content: text,
+      direct_user: directUser,
+      chat: store.chat,
+    });
+  };
+
+  // Design
   const [iconsToggle, setIconsToggle] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
@@ -39,55 +63,55 @@ const SendMessage = ({ setFileName }) => {
   const EmojiOpen = () => {
     setOpen(!Open);
   };
+  // Design
+
   return (
     <>
       <div className="send-msg-cont">
         <div className="send-attachments cursor-pointer">
-          {
-            <Box className={iconsToggle ? "inptwo" : "inp"}>
-              <div className="send-att-img cursor-pointer">
-                <label htmlFor="videoPicker">
-                  <input
-                    type="file"
-                    accept=".mov, .mp4"
-                    hidden
-                    id="videoPicker"
-                    onChange={onChange}
-                    name="video"
-                  />
-                  <img src={one} />
-                </label>
-              </div>
+          <Box className={iconsToggle ? "inptwo" : "inp"}>
+            <div className="send-att-img cursor-pointer">
+              <label htmlFor="videoPicker">
+                <input
+                  type="file"
+                  accept=".mov, .mp4"
+                  hidden
+                  id="videoPicker"
+                  onChange={onChange}
+                  name="video"
+                />
+                <img src={one} />
+              </label>
+            </div>
 
-              <div className="send-att-img cursor-pointer">
-                <label htmlFor="imgPicker">
-                  <input
-                    type="file"
-                    accept=".jpeg,.png,.svg,.gif, .jpg"
-                    hidden
-                    id="imgPicker"
-                    onChange={onChange}
-                    name="image"
-                  />
-                  <img src={two} />
-                </label>
-              </div>
+            <div className="send-att-img cursor-pointer">
+              <label htmlFor="imgPicker">
+                <input
+                  type="file"
+                  accept=".jpeg,.png,.svg,.gif, .jpg"
+                  hidden
+                  id="imgPicker"
+                  onChange={onChange}
+                  name="image"
+                />
+                <img src={two} />
+              </label>
+            </div>
 
-              <div className="send-att-img cursor-pointer">
-                <label htmlFor="filePicker">
-                  <input
-                    type="file"
-                    accept="*"
-                    hidden
-                    id="filePicker"
-                    onChange={onChange}
-                    name="file"
-                  />
-                  <img src={three} />
-                </label>
-              </div>
-            </Box>
-          }
+            <div className="send-att-img cursor-pointer">
+              <label htmlFor="filePicker">
+                <input
+                  type="file"
+                  accept="*"
+                  hidden
+                  id="filePicker"
+                  onChange={onChange}
+                  name="file"
+                />
+                <img src={three} />
+              </label>
+            </div>
+          </Box>
           <div onClick={ToggleIcon} className="toggle-icons">
             {iconsToggle ? (
               <RemoveOutlinedIcon sx={{ height: "17px", width: "17px" }} />
@@ -100,6 +124,7 @@ const SendMessage = ({ setFileName }) => {
           className="msg-input"
           placeholder="Type a message here"
           value={chosenEmoji?.emoji}
+          onChange={(e) => setText(e.target.value)}
         />
         {
           <>
@@ -111,7 +136,7 @@ const SendMessage = ({ setFileName }) => {
             ) : null}
           </>
         }
-        <div className="send-btn cursor-pointer">
+        <div className="send-btn cursor-pointer" onClick={sendMessage}>
           <img src={send} />
         </div>
       </div>
