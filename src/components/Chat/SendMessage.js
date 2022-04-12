@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import Picker from "emoji-picker-react";
 import chatemoji from "../../assets/chatemoji.svg";
-const ChatBodyBottom = ({ setFileName }) => {
+const SendMessage = ({ setFileName }) => {
   const [iconsToggle, setIconsToggle] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
@@ -119,4 +119,4 @@ const ChatBodyBottom = ({ setFileName }) => {
   );
 };
 
-export default ChatBodyBottom;
+export default SendMessage;

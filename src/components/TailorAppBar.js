@@ -8,14 +8,14 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import Api from "../api";
-
 import { handleLogout } from "../utils/Auth";
-
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import Api from "../api";
 import assetsURL from "../utils/Assets";
+
+import { Store, UpdateStore } from "../StoreContext";
 
 function TailorAppBar({
   activeTab,
@@ -40,6 +40,8 @@ function TailorAppBar({
   };
 
   const [searchQuery, setSearchQuery] = useState("");
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navToHome = () => {
     navigate("/home");
@@ -58,8 +60,7 @@ function TailorAppBar({
   };
 
   const navToChat = () => {
-    handleCloseProfile();
-    toast.success("Coming soon!");
+    navigate("/chat");
   };
 
   const navToSearch = () => {
@@ -87,7 +88,7 @@ function TailorAppBar({
 
   const handleLogoutSubmit = () => {
     handleCloseProfile();
-    handleLogout(navigate);
+    handleLogout(navigate, store, updateStore);
   };
 
   const [profile, setProfile] = useState(null);

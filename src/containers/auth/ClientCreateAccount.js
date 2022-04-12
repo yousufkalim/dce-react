@@ -19,6 +19,8 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import { Store, UpdateStore } from "../../StoreContext";
+
 function ClientCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -30,6 +32,8 @@ function ClientCreateAccountScreen() {
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
+  const store = Store();
+  const updateStore = UpdateStore();
 
   useEffect(() => {
     const _countries = Country.getAllCountries();
@@ -101,7 +105,12 @@ function ClientCreateAccountScreen() {
 
       if (response?.data?.success) {
         toast.success("Registered successfully!");
-        handleLogin(response.data.token, response.data.user);
+        handleLogin(
+          response.data.token,
+          response.data.user,
+          store,
+          updateStore
+        );
         navToHome();
       }
     } catch (e) {

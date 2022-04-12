@@ -9,7 +9,6 @@ import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1"
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 
 import ClientHomeScreen from "../containers/client/Home";
-import Chat from "../components/Chat/Chat";
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
@@ -24,6 +23,7 @@ import ClientEditAdScreen from "../containers/client/EditAd";
 import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
 import ClientSearchResultsScreen from "../containers/client/SearchResults";
+import ClientChatScreen from "../containers/client/Chat";
 
 import TailorHomeScreen from "../containers/tailor/Home";
 import TailorCatalogScreen from "../containers/tailor/Catalog";
@@ -39,6 +39,7 @@ import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditi
 import TailorSearchResultsScreen from "../containers/tailor/SearchResults";
 import TailorSupportCentreScreen from "../containers/tailor/SupportCentre";
 import TailorClientProfileScreen from "../containers/tailor/ClientProfile";
+import TailorChatScreen from "../containers/tailor/Chat";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -62,6 +63,7 @@ import ClientSearchResultsIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
+import ClientChatIcon from "@mui/icons-material/AccountBox";
 import TailorHomeIcon from "@mui/icons-material/AccountBox";
 import TailorCatalogIcon from "@mui/icons-material/AccountBox";
 import TailorViewCatalogIcon from "@mui/icons-material/AccountBox";
@@ -76,6 +78,7 @@ import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 import TailorSearchResultsIcon from "@mui/icons-material/AccountBox";
 import TailorSupportCentreIcon from "@mui/icons-material/AccountBox";
 import TailorClientProfileIcon from "@mui/icons-material/AccountBox";
+import TailorChatIcon from "@mui/icons-material/AccountBox";
 
 // Routes for Auth
 const AuthRoutes = [
@@ -154,12 +157,6 @@ const ClientRoutes = [
     name: "ClientHome",
     icon: <ClientHomeIcon />,
     element: ClientHomeScreen,
-  },
-  {
-    path: "/chat",
-    name: "Chat",
-    icon: <ClientHomeIcon />,
-    element: Chat,
   },
   {
     path: "/orders",
@@ -244,6 +241,12 @@ const ClientRoutes = [
     name: "ClientEditAd",
     icon: <ClientEditAdIcon />,
     element: ClientEditAdScreen,
+  },
+  {
+    path: "/chat",
+    name: "ClientChat",
+    icon: <ClientChatIcon />,
+    element: ClientChatScreen,
   },
 ];
 
@@ -338,6 +341,12 @@ const TailorRoutes = [
     name: "clientprofile",
     icon: <TailorClientProfileIcon />,
     element: TailorClientProfileScreen,
+  },
+  {
+    path: "/chat",
+    name: "TailorChat",
+    icon: <TailorChatIcon />,
+    element: TailorChatScreen,
   },
 ];
 

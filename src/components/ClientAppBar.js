@@ -7,15 +7,14 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import Api from "../api";
-
 import { handleLogout } from "../utils/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
-import assetsURL from "../utils/Assets";
-
 import dotted from "../assets/dotted.svg";
+
+import Api from "../api";
+import assetsURL from "../utils/Assets";
+import { Store, UpdateStore } from "../StoreContext";
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
@@ -52,6 +51,8 @@ function ClientAppBar({
   };
 
   const [searchQuery, setSearchQuery] = useState("");
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navToHome = () => {
     navigate("/home");
@@ -81,7 +82,7 @@ function ClientAppBar({
 
   const handleLogoutSubmit = () => {
     handleCloseProfile();
-    handleLogout(navigate);
+    handleLogout(navigate, store, updateStore);
   };
 
   const [profile, setProfile] = useState(null);

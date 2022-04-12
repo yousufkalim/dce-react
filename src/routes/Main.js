@@ -8,7 +8,9 @@ import { focusHandling } from "cruip-js-toolkit";
 import { isExpired } from "react-jwt";
 
 import RoutesObj from "../routes/Routes";
-import { getRoutes } from "../utils/Auth";
+import { getRoutes, initSocket } from "../utils/Auth";
+
+import { Store, UpdateStore } from "../StoreContext";
 
 const Main = () => {
   const token = getToken();
@@ -17,33 +19,39 @@ const Main = () => {
   const isMyTokenExpired = isExpired(token);
 
   const navigate = useNavigate();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
     document.querySelector("html").style.scrollBehavior = "";
     focusHandling("outline");
+    initSocket(store, updateStore);
     if (token && isMyTokenExpired) {
-      handleLogout(navigate);
+      handleLogout(navigate, store, updateStore);
     }
   }, [location.pathname]); // triggered on route change
 
   return (
-    <div className="main-container">
-      <Routes>
-        {token && isMyTokenExpired == false ? (
-          <>
-            {user.role == "client" ? (
-              <>{getRoutes(RoutesObj.ClientRoutes)}</>
-            ) : (
-              <>{getRoutes(RoutesObj.TailorRoutes)}</>
-            )}
-          </>
-        ) : (
-          <>{getRoutes(RoutesObj.AuthRoutes)}</>
-        )}
-      </Routes>
-    </div>
+    <>
+      {console.log(store)}
+      <div className="main-container">
+        <Routes>
+          {token && isMyTokenExpired == false ? (
+            <>
+              {user.role == "client" ? (
+                <>{getRoutes(RoutesObj.ClientRoutes)}</>
+              ) : (
+                <>{getRoutes(RoutesObj.TailorRoutes)}</>
+              )}
+            </>
+          ) : (
+            <>{getRoutes(RoutesObj.AuthRoutes)}</>
+          )}
+        </Routes>
+      </div>
+    </>
   );
 };
 

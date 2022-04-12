@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { toast } from "react-toastify";
-
 import assetsURL from "../../utils/Assets";
 
 function ClientAdsScreen() {

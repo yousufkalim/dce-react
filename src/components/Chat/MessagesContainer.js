@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ChatBodyHeader from "./ChatBodyHeader";
-import ChatBodyBottom from "./ChatBodyBottom";
+import ChatHeader from "./ChatHeader";
+import SendMessage from "./SendMessage";
 import Messages from "./Messages";
 import Box from "@mui/material/Box";
-const ChatBody = ({ width, mobiletoggle }) => {
+const MessagesContainer = ({ width, mobiletoggle, chat }) => {
   const [fileName, setFileName] = useState([]);
   return (
     <>
@@ -19,12 +19,18 @@ const ChatBody = ({ width, mobiletoggle }) => {
         }}
         className="c-body"
       >
-        <ChatBodyHeader />
-        <Messages fileName={fileName} />
-        <ChatBodyBottom fileName={fileName} setFileName={setFileName} />
+        {chat ? (
+          <>
+            <ChatHeader />
+            <Messages fileName={fileName} />
+            <SendMessage fileName={fileName} setFileName={setFileName} />
+          </>
+        ) : (
+          <></>
+        )}
       </Box>
     </>
   );
 };
 
-export default ChatBody;
+export default MessagesContainer;

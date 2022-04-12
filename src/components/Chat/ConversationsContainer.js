@@ -1,7 +1,7 @@
 import React from "react";
 import ron from "../../assets/ron.jpeg";
 import writing from "../../assets/writing.svg";
-const UserCard = () => {
+const ConversationsContainer = ({ chats }) => {
   const items = [
     {
       name: "Magazine",
@@ -46,7 +46,7 @@ const UserCard = () => {
   ];
   return (
     <>
-      {items.map((val) => (
+      {chats.map((val) => (
         <div
           style={{
             padding: "24px",
@@ -95,4 +95,4 @@ const UserCard = () => {
   );
 };
 
-export default UserCard;
+export default ConversationsContainer;

@@ -1,15 +1,37 @@
 import { Route } from "react-router-dom";
 
-export const handleLogin = (token, user) => {
+export const initSocket = (store, updateStore) => {
+  if (!store.socket) {
+    const token = localStorage.getItem("token");
+    const socket = require("socket.io-client")("http://localhost:5000", {
+      query: {
+        token: `Bearer ${token}`,
+      },
+    });
+    socket.on("connect", function () {
+      updateStore({
+        socket: socket,
+      });
+    });
+    socket.on("disconnect", function () {});
+  }
+};
+
+export const handleLogin = (token, user, store, updateStore) => {
   localStorage.setItem("token", token);
   localStorage.setItem("user", JSON.stringify(user));
+  initSocket(store, updateStore);
   return true;
 };
 
-export const handleLogout = (navigate) => {
+export const handleLogout = (navigate, store, updateStore) => {
   localStorage.clear();
   navigate("/login");
-};
+  store.socket.disconnect();
+  updateStore({
+    socket: null,
+  });
+}; // Handle here.
 
 export const getUser = () => {
   let cookie = localStorage.getItem("user");

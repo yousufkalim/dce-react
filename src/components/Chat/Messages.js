@@ -72,8 +72,6 @@ const Messages = ({ fileName }) => {
       lastseen: `6 days ago`,
     },
   ];
-
-  console.log(fileName, "fileName");
   return (
     <>
       <div className="message-cont">

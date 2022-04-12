@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ClientAppBar from "../ClientAppBar";
-import ChatBody from "./ChatBody";
-import arrow from "../../assets/recentdown.svg";
-import UserCard from "./UserCard";
-import search from "../../assets/search.svg";
+import ClientAppBar from "../../components/ClientAppBar";
+import MessagesContainer from "../../components/Chat/MessagesContainer";
+import ArrowSVG from "../../assets/recentdown.svg";
+import ConversationsContainer from "../../components/Chat/ConversationsContainer";
+import SearchSVG from "../../assets/search.svg";
 import Box from "@mui/material/Box";
-import CustomDropDown from "../CustomDropDown";
+import CustomDropDown from "../../components/CustomDropDown";
+
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
   useEffect(() => {
@@ -17,7 +18,7 @@ function useWindowSize() {
   return size;
 }
 
-const Chat = () => {
+const TailorChatScreen = () => {
   const [width] = useWindowSize();
   const [mobiletoggle, setMobiletoggle] = useState(false);
   const OpenChat = () => {
@@ -44,10 +45,10 @@ const Chat = () => {
               <h4>Chats</h4>
               <div className="recentchats">
                 <p> Recent Chats</p>
-                <img className="recent-down-icon" src={arrow} />
+                <img className="recent-down-icon" src={ArrowSVG} />
               </div>
               <div className="search-msg-cont">
-                <img className="srch-icon" src={search} />
+                <img className="srch-icon" src={SearchSVG} />
                 <input className="search-msg-input" placeholder="Search" />
                 <select className="search-msg-dropdown">
                   <option value="Messages">Messages</option>
@@ -57,10 +58,10 @@ const Chat = () => {
                 </select>
               </div>
               <div className="user-card-container">
-                <UserCard />
+                <ConversationsContainer />
               </div>
             </Box>
-            <ChatBody width={width} mobiletoggle={mobiletoggle} />
+            <MessagesContainer width={width} mobiletoggle={mobiletoggle} />
           </div>
         </div>
       </div>
@@ -68,4 +69,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default TailorChatScreen;

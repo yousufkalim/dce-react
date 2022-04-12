@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ron from "../../assets/ron.jpeg";
 import attachment from "../../assets/attachment.svg";
 import threedots from "../../assets/dotted.svg";
-const ChatBodyHeader = () => {
+const ChatHeader = () => {
   const [inputData, setInputData] = useState("");
   const onChange = (e) => {
     const name = e.target.name;
@@ -38,4 +38,4 @@ const ChatBodyHeader = () => {
   );
 };
 
-export default ChatBodyHeader;
+export default ChatHeader;
