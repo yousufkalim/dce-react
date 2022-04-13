@@ -42,10 +42,21 @@ function ClientAdsScreen() {
       console.trace(e);
     }
   };
+  const getSessionUrl = async (quote, line_items) => {
+    try {
+      let id = quote._id;
+      let response = await Api("post", `/payments/Checkout`, {
+        line_items: line_items,
+        metaData: { id },
+      });
+      window.location = response.data.url;
+    } catch (e) {
+      console.trace(e);
+    }
+  };
 
-  const acceptQuote = async (event, id) => {
+  const acceptQuote = async (event, quote) => {
     event.preventDefault();
-
     if (isProcessing) {
       return;
     }
@@ -54,21 +65,22 @@ function ClientAdsScreen() {
 
     try {
       setIsProcessing(true);
-
-      const body = {
-        quote: id,
-      };
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        getAds();
-      }
+      let line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getSessionUrl(quote, line_items);
     } catch (e) {
       console.trace(e);
     }
-
     setIsProcessing(false);
   };
 
@@ -307,7 +319,7 @@ function AdQuoteListTile(props) {
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
             text="Accept"
-            onClick={(e) => props.acceptQuote(e, props._id)}
+            onClick={(e) => props.acceptQuote(e, props)}
             style={{
               boxShadow: "none",
             }}
