@@ -36,7 +36,7 @@ const Main = () => {
 
   useEffect(() => {
     Object.assign(SS, store);
-    console.log(SS, `_SS_`);
+    // console.log(SS, `_SS_`);
   }, [store]);
 
   return (

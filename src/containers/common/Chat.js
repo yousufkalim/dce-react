@@ -39,7 +39,7 @@ const ChatScreen = () => {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const directUser = location?.state?.directUser;
+  const [directUser, setDirectUser] = useState(location?.state?.directUser);
 
   const store = Store();
   const updateStore = UpdateStore();
@@ -47,9 +47,10 @@ const ChatScreen = () => {
   const user = getUser();
 
   useEffect(() => {
-    if (store.chats.length == 0) {
-      loadData();
-    }
+    // if (store.chats.length == 0) {
+    //   loadData();
+    // }
+    loadData();
   }, []);
 
   const loadData = async () => {
@@ -76,7 +77,24 @@ const ChatScreen = () => {
         chats: chatsData,
         chat: chatsData[0],
       });
-      return chatsData[0];
+      if (directUser) {
+        if (
+          chatsData.some(
+            (_) =>
+              _.tailor._id == directUser._id || _.client._id == directUser._id
+          )
+        ) {
+          setDirectUser(null);
+          updateStore({
+            chat: chatsData[0],
+          });
+          return chatsData[0];
+        }
+      } else {
+        // If there is indeed a valid direct user then we don't set chat as it will get priority at server.
+        // In that case, don't do anything. Let the directUser be. Return null and don't load messages for chat.
+        return null;
+      }
     } catch (e) {
       console.trace(e);
     }
@@ -100,7 +118,8 @@ const ChatScreen = () => {
 
   return (
     <>
-      {console.log(store, "_store_")}
+      {console.log(directUser)}
+      {/* {console.log(store, "_store_")} */}
       <div
         style={{ background: "#DFDFDF" }}
         className="container-page-vertical"
