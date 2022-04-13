@@ -18,9 +18,10 @@ export function UpdateStore() {
 export function StoreProvider({ children }) {
   // Initializing State
   let [store, setStore] = useState({
-    loggedIn: false,
-    user: {},
     socket: null,
+    chats: [],
+    chat: null,
+    messages: [],
   });
 
   const updateStore = (data) => {

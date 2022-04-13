@@ -15,11 +15,15 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import { Store, UpdateStore } from "../../StoreContext";
+
 function TailorCreateAccount2Screen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const store = Store();
+  const updateStore = UpdateStore();
 
   useEffect(() => {
     if (
@@ -77,7 +81,7 @@ function TailorCreateAccount2Screen() {
 
       if (response?.data?.success) {
         toast.success("Registered successfully!");
-        handleLogin(response.data.token, response.data.user);
+        handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
     } catch (e) {

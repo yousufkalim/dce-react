@@ -69,6 +69,10 @@ function TailorListTile(props) {
     navigate(`/view_tailor/${props._id}`);
   };
 
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props } });
+  };
+
   return (
     <>
       <div className="cds_tailor_list_tile_container">
@@ -127,7 +131,11 @@ function TailorListTile(props) {
           </div>
         </div>
         <div className="cds_tailor_list_tile_column1">
-          <CustomButton text="Chat Here" style={{ borderRadius: "20px" }} />
+          <CustomButton
+            text="Chat Here"
+            style={{ borderRadius: "20px" }}
+            onClick={navToChat}
+          />
         </div>
       </div>
     </>

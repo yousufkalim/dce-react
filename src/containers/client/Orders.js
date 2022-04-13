@@ -38,6 +38,10 @@ function ClientOrdersScreen() {
     }
   };
 
+  const navToCreateAd = () => {
+    navigate("/create_ad");
+  };
+
   return (
     <div className="container-page-vertical">
       <ClientAppBar activeTab={1} color="#FCFCFC" />
@@ -54,6 +58,7 @@ function ClientOrdersScreen() {
             padding={"15px 45px"}
             style={{ borderRadius: "15px", boxShadow: "none" }}
             text="Place your order"
+            onClick={navToCreateAd}
           />
         </div>
         <div className="client_orders_screen_row2">

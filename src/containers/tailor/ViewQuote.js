@@ -41,6 +41,7 @@ function TailorViewQuoteScreen() {
     measurements: "",
     color: "",
     fabric: "",
+    includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
@@ -78,6 +79,7 @@ function TailorViewQuoteScreen() {
         measurements: adData.measurements,
         color: adData.color,
         fabric: adData.fabric,
+        includes_alteration_services: adData.includes_alteration_services,
       });
       setDeliverySection(adData.delivery);
       setNotesSection(adData.budget);

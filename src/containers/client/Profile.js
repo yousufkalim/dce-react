@@ -103,7 +103,9 @@ function ClientProfileScreen() {
       const body = new FormData();
 
       body.append("phone", state.phone);
-      body.append("password", state.password);
+      if (state.password) {
+        body.append("password", state.password);
+      }
       body.append("image", profileImage);
 
       response = await Api("put", "/clients", body);

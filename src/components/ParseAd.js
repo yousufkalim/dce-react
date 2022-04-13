@@ -102,6 +102,7 @@ function BasicSection({
                 <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
                 <MenuItem value={"MAN"}>MAN</MenuItem>,
                 <MenuItem value={"CHILD"}>CHILD</MenuItem>,
+                <MenuItem value={"Other"}>Other</MenuItem>,
               ]}
             />
           </div>
@@ -319,13 +320,17 @@ function BasicSection({
         <div className="checkbox-container">
           <Checkbox
             {...label}
-            defaultChecked
+            disabled={disabled}
+            checked={state.includes_alteration_services}
             sx={{
               color: grey[900],
               "&.Mui-checked": {
                 color: grey[900],
               },
             }}
+            onChange={(e) =>
+              _setState("includes_alteration_services", e.target.checked)
+            }
           />
           <label>
             {" "}

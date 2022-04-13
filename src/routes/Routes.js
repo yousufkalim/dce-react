@@ -1,3 +1,4 @@
+// Auth Screens
 import LoginScreen from "../containers/auth/Login";
 import SelectRoleScreen from "../containers/auth/SelectRole";
 import ClientRegisterScreen from "../containers/auth/ClientRegister";
@@ -8,8 +9,8 @@ import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
 import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
 import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
 
+// Client Screens
 import ClientHomeScreen from "../containers/client/Home";
-import Chat from "../components/Chat/Chat";
 import ClientOrdersScreen from "../containers/client/Orders";
 import ClientTailorsScreen from "../containers/client/Tailors";
 import ClientViewTailorScreen from "../containers/client/ViewTailor";
@@ -17,12 +18,15 @@ import ClientViewCatalogScreen from "../containers/client/ViewCatalog";
 import ClientOrderFromCatalogScreen from "../containers/client/OrderFromCatalog";
 import ClientCreateOrderScreen from "../containers/client/CreateOrder";
 import ClientProfileScreen from "../containers/client/Profile";
+import ClientTermsAndConditionsScreen from "../containers/client/TermsAndConditions";
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
+import ClientSearchResultsScreen from "../containers/client/SearchResults";
 
+// Tailor Screens
 import TailorHomeScreen from "../containers/tailor/Home";
 import TailorCatalogScreen from "../containers/tailor/Catalog";
 import TailorViewCatalogScreen from "../containers/tailor/ViewCatalog";
@@ -34,9 +38,12 @@ import TailorViewQuoteScreen from "../containers/tailor/ViewQuote";
 import TailorProfileScreen from "../containers/tailor/Profile";
 import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
-import TailorSearchResultsScreen from "../containers/tailor/SearchResult";
+import TailorSearchResultsScreen from "../containers/tailor/SearchResults";
 import TailorSupportCentreScreen from "../containers/tailor/SupportCentre";
 import TailorClientProfileScreen from "../containers/tailor/ClientProfile";
+
+// Common Screens
+import ChatScreen from "../containers/common/Chat";
 
 import LoginIcon from "@mui/icons-material/Login";
 import SelectRoleIcon from "@mui/icons-material/AccountBox";
@@ -55,6 +62,8 @@ import ClientViewCatalogIcon from "@mui/icons-material/AccountBox";
 import ClientOrderFromCatalogIcon from "@mui/icons-material/AccountBox";
 import ClientCreateOrderIcon from "@mui/icons-material/AccountBox";
 import ClientProfileIcon from "@mui/icons-material/AccountBox";
+import ClientTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
+import ClientSearchResultsIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
@@ -72,6 +81,7 @@ import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 import TailorSearchResultsIcon from "@mui/icons-material/AccountBox";
 import TailorSupportCentreIcon from "@mui/icons-material/AccountBox";
 import TailorClientProfileIcon from "@mui/icons-material/AccountBox";
+import ChatIcon from "@mui/icons-material/AccountBox";
 
 // Routes for Auth
 const AuthRoutes = [
@@ -152,12 +162,6 @@ const ClientRoutes = [
     element: ClientHomeScreen,
   },
   {
-    path: "/chat",
-    name: "Chat",
-    icon: <ClientHomeIcon />,
-    element: Chat,
-  },
-  {
     path: "/orders",
     name: "ClientOrders",
     icon: <ClientOrdersIcon />,
@@ -212,6 +216,18 @@ const ClientRoutes = [
     element: ClientProfileScreen,
   },
   {
+    path: "/terms_and_conditions",
+    name: "TailorTermsAndConditions",
+    icon: <ClientTermsAndConditionsIcon />,
+    element: ClientTermsAndConditionsScreen,
+  },
+  {
+    path: "/search_results",
+    name: "ClientSearchResults",
+    icon: <ClientSearchResultsIcon />,
+    element: ClientSearchResultsScreen,
+  },
+  {
     path: "/create_ad",
     name: "ClientCreateAd",
     icon: <ClientCreateAdIcon />,
@@ -228,6 +244,12 @@ const ClientRoutes = [
     name: "ClientEditAd",
     icon: <ClientEditAdIcon />,
     element: ClientEditAdScreen,
+  },
+  {
+    path: "/chat",
+    name: "ClientChat",
+    icon: <ChatIcon />,
+    element: ChatScreen,
   },
 ];
 
@@ -306,8 +328,8 @@ const TailorRoutes = [
     element: TailorTermsAndConditionsScreen,
   },
   {
-    path: "/search_result",
-    name: "search_result",
+    path: "/search_results",
+    name: "TailorSearchResults",
     icon: <TailorSearchResultsIcon />,
     element: TailorSearchResultsScreen,
   },
@@ -322,6 +344,12 @@ const TailorRoutes = [
     name: "clientprofile",
     icon: <TailorClientProfileIcon />,
     element: TailorClientProfileScreen,
+  },
+  {
+    path: "/chat",
+    name: "TailorChat",
+    icon: <ChatIcon />,
+    element: ChatScreen,
   },
 ];
 

@@ -15,10 +15,14 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import { Store, UpdateStore } from "../../StoreContext";
+
 function LoginScreen() {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navToHome = () => {
     navigate("/home");
@@ -57,7 +61,7 @@ function LoginScreen() {
 
       if (response?.data?.success) {
         toast.success("Logged In");
-        handleLogin(response.data.token, response.data.user);
+        handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
     } catch (e) {
