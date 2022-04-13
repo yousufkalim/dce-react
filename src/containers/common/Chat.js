@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import ClientAppBar from "../../components/ClientAppBar";
+import TailorAppBar from "../../components/TailorAppBar";
 import MessagesContainer from "../../components/Chat/MessagesContainer";
 import ArrowSVG from "../../assets/recentdown.svg";
 import ConversationsContainer from "../../components/Chat/ConversationsContainer";
 import SearchSVG from "../../assets/search.svg";
 import Box from "@mui/material/Box";
 import CustomDropDown from "../../components/CustomDropDown";
+
+import { useNavigate, useLocation } from "react-router-dom";
+import { getUser } from "../../utils/Auth";
+import Api from "../../api";
+import { toast } from "react-toastify";
+import { Store, UpdateStore } from "../../StoreContext";
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
@@ -18,7 +25,7 @@ function useWindowSize() {
   return size;
 }
 
-const TailorChatScreen = () => {
+const ChatScreen = () => {
   const [width] = useWindowSize();
   const [mobiletoggle, setMobiletoggle] = useState(false);
   const OpenChat = () => {
@@ -26,13 +33,83 @@ const TailorChatScreen = () => {
       setMobiletoggle(true);
     }
   };
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const directUser = location?.state?.directUser;
+
+  const store = Store();
+  const updateStore = UpdateStore();
+
+  const user = getUser();
+
+  useEffect(() => {
+    if (store.chats.length == 0) {
+      loadData();
+    }
+  }, []);
+
+  const loadData = async () => {
+    const chatID = await getChats();
+    if (chatID) {
+      getMessages(chatID);
+    }
+  };
+
+  const getChats = async () => {
+    let response;
+    try {
+      const body = {};
+
+      if (user.role == "client") {
+        body["client"] = user._id;
+      } else {
+        body["tailor"] = user._id;
+      }
+
+      response = await Api("post", `/chats/byQuery`, body);
+      const chatsData = response.data.chats;
+      updateStore({
+        chats: chatsData,
+        chat: chatsData[0],
+      });
+      return chatsData[0];
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const getMessages = async (chatID) => {
+    let response;
+    try {
+      response = await Api("post", `/messages/byQuery`, {
+        chat: chatID,
+      });
+      const messagesData = response.data.messages;
+      updateStore({
+        messages: messagesData,
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
   return (
     <>
+      {console.log(store, "_store_")}
       <div
         style={{ background: "#DFDFDF" }}
         className="container-page-vertical"
       >
-        <ClientAppBar activeTab={3} color="#FCFCFC" />
+        {user.role == "client" ? (
+          <ClientAppBar activeTab={3} color="#FCFCFC" />
+        ) : (
+          <TailorAppBar activeTab={3} color="#FCFCFC" />
+        )}
         <div className="client_orders_screen_top">
           <div className="chat">
             <Box
@@ -61,7 +138,11 @@ const TailorChatScreen = () => {
                 <ConversationsContainer />
               </div>
             </Box>
-            <MessagesContainer width={width} mobiletoggle={mobiletoggle} />
+            <MessagesContainer
+              width={width}
+              mobiletoggle={mobiletoggle}
+              directUser={directUser}
+            />
           </div>
         </div>
       </div>
@@ -69,4 +150,4 @@ const TailorChatScreen = () => {
   );
 };
 
-export default TailorChatScreen;
+export default ChatScreen;

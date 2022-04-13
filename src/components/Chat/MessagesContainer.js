@@ -9,8 +9,6 @@ import { Store, UpdateStore } from "../../StoreContext";
 const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
   const store = Store();
   const updateStore = UpdateStore();
-
-  const [fileName, setFileName] = useState([]);
   return (
     <>
       <Box
@@ -29,7 +27,7 @@ const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
           <>
             <ChatHeader directUser={directUser} />
             <Messages directUser={directUser} />
-            <SendMessage setFileName={setFileName} directUser={directUser} />
+            <SendMessage directUser={directUser} />
           </>
         ) : (
           <></>
