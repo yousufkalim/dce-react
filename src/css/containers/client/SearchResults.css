@@ -1,0 +1,65 @@
+.client_search_results_screen_row1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 11vh !important;
+  padding-bottom: 4vh !important; /* 11-7 = 4 */
+  padding: 0 5vw;
+}
+
+.client_search_results_screen_row2 {
+  min-height: 40vh;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.csrs_single_result_list_tile_container {
+  height: 100%;
+  width: 20%;
+  background: white;
+  margin: 0 auto;
+  border-radius: 40px;
+  margin-bottom: 25px;
+}
+
+.csrs_single_result_list_tile_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0px;
+}
+
+.csrs_single_result_list_tile_column_item {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.csrs_single_result_list_tile_column_key {
+  font-size: 14px;
+  font-weight: 200;
+  color: #cc8e9c;
+}
+
+.csrs_single_result_list_tile_column_value {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.csrs_single_result_list_tile_column_borders {
+  border-top-color: #dbdbdb;
+  border-top-style: solid;
+  border-top-width: 1.5px;
+  border-bottom-color: #dbdbdb;
+  border-bottom-style: solid;
+  border-bottom-width: 1.5px;
+}

@@ -8,16 +8,22 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import Api from "../api";
-
 import { handleLogout } from "../utils/Auth";
-
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import Api from "../api";
 import assetsURL from "../utils/Assets";
 
-function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
+import { Store, UpdateStore } from "../StoreContext";
+
+function TailorAppBar({
+  activeTab,
+  color,
+  sticky = true,
+  disableSearch = false,
+  divStyle,
+}) {
   const navigate = useNavigate();
 
   const handleClickNotifications = () => {
@@ -32,6 +38,10 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   const handleCloseProfile = () => {
     setAnchorElProfile(null);
   };
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navToHome = () => {
     navigate("/home");
@@ -50,8 +60,15 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   };
 
   const navToChat = () => {
-    handleCloseProfile();
-    toast.success("Coming soon!");
+    navigate("/chat");
+  };
+
+  const navToSearch = () => {
+    if (!searchQuery) {
+      toast.error("Search Input can't be empty");
+      return;
+    }
+    navigate(`/search_results?query=${searchQuery}`);
   };
 
   const navToProfile = () => {
@@ -71,7 +88,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
 
   const handleLogoutSubmit = () => {
     handleCloseProfile();
-    handleLogout(navigate);
+    handleLogout(navigate, store, updateStore);
   };
 
   const [profile, setProfile] = useState(null);
@@ -152,7 +169,14 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
           </p>
         </div>
         <div className="appbar_row2">
-          <SearchInput />
+          {!disableSearch ? (
+            <SearchInput
+              setSearchQuery={setSearchQuery}
+              callback={navToSearch}
+            />
+          ) : (
+            <></>
+          )}
           <img
             src={NotificationsSVG}
             className="appbar_row2_notifications_img"
@@ -191,11 +215,7 @@ function TailorAppBar({ activeTab, color, sticky = true, divStyle }) {
   );
 }
 
-function SearchInput({}) {
-  const callback = () => {
-    toast.success("Coming soon!");
-  };
-
+function SearchInput({ setSearchQuery, callback }) {
   return (
     <div>
       <div
@@ -205,11 +225,16 @@ function SearchInput({}) {
           width: "100%",
         }}
       >
-        <input type="text" placeholder="Search" className="appbar_row2_input" />
+        <input
+          type="text"
+          placeholder="Search"
+          className="appbar_row2_input"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <img
-          onClick={callback}
           src={SearchSVG}
           className="appbar_row2_search_img"
+          onClick={callback}
         />
       </div>
     </div>

@@ -78,7 +78,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            Order {order.status}
+            Order
           </p>
           <p
             style={{

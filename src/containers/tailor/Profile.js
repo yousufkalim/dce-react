@@ -143,7 +143,9 @@ function TailorProfileScreen() {
       body.append("shop_name", state.shop_name);
       body.append("hourly_rate", state.hourly_rate);
       body.append("free_shipping_rate", state.free_shipping_rate);
-      body.append("password", state.password);
+      if (state.password) {
+        body.append("password", state.password);
+      }
       body.append("image", profileImage);
 
       response = await Api("put", "/tailors", body);

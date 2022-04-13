@@ -38,6 +38,7 @@ function OrderFromCatalogScreen() {
     measurements: "",
     color: "",
     fabric: "",
+    includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
@@ -122,6 +123,10 @@ function OrderFromCatalogScreen() {
       body.append("measurements", basicSection.measurements);
       body.append("color", basicSection.color);
       body.append("fabric", basicSection.fabric);
+      body.append(
+        "includes_alteration_services",
+        basicSection.includes_alteration_services
+      );
       body.append(
         "delivery",
         JSON.stringify({

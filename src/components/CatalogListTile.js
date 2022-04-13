@@ -19,6 +19,11 @@ function CatalogListTile({
 }) {
   const [value, setValue] = React.useState(catalog.rating.value);
 
+  const onClickButtonCallback = (e) => {
+    e.stopPropagation();
+    onClickButton?.();
+  };
+
   return (
     <div
       className="tailor_catalog_list_tile_container"
@@ -50,7 +55,7 @@ function CatalogListTile({
         <CustomButton
           text={buttonText}
           type="submit"
-          onClick={onClickButton}
+          onClick={onClickButtonCallback}
           style={{
             background: "#fff",
             color: "#CC8E9C",

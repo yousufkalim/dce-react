@@ -35,7 +35,7 @@ function ClientHomeScreen() {
     try {
       response = await Api("post", `/orders/byQuery`, {
         client: user._id,
-        status: "in_progress",
+        status: ["in_progress", "discarded", "completed"], // As "pending" doesn't count as order
       });
       const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);
@@ -171,7 +171,16 @@ function DesignerListTile(props) {
           paddingBottom: "5%",
         }}
       >
-        <img style={{ width: "40%" }} src={UserSVG} />
+        <img
+          className="image_container"
+          style={{
+            height: "80pt",
+            width: "80pt",
+            cursor: "pointer",
+            marginBottom: "4%",
+          }}
+          src={props.avatar ? assetsURL(props.avatar) : UserSVG}
+        />
       </div>
       <p
         className="chs_designer_list_tile_title_text"
