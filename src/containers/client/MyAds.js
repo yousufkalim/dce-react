@@ -13,6 +13,7 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { toast } from "react-toastify";
 import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function ClientAdsScreen() {
   const navigate = useNavigate();
@@ -265,6 +266,15 @@ function AdListTile(props) {
 }
 
 function AdQuoteListTile(props) {
+  const rating = calculateRating(props.tailor.ratings);
+  const ratingsCount = calculateRatingsCount(props.tailor.ratings);
+
+  const navigate = useNavigate();
+
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props.tailor } });
+  };
+
   return (
     <div className="cas_quote_list_tile_container">
       <div className="cas_quote_list_tile_column1">
@@ -315,8 +325,7 @@ function AdQuoteListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {props?.tailor?.rating?.value ?? "5"}(
-          {props?.tailor?.rating?.count ?? "10"})
+          {rating}({ratingsCount})
         </p>
       </div>
       <div className="cas_quote_list_tile_column1">
@@ -362,7 +371,12 @@ function AdQuoteListTile(props) {
         </div>
       </div>
       <div className="cas_quote_list_tile_column1">
-        <p style={{ fontSize: "14px", fontWeight: "900" }}>Chat Here</p>
+        <p
+          style={{ fontSize: "14px", fontWeight: "900", cursor: "pointer" }}
+          onClick={navToChat}
+        >
+          Chat Here
+        </p>
       </div>
     </div>
   );

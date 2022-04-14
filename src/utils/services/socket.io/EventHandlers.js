@@ -11,7 +11,7 @@ export const disconnectHandler = (socket, updateStore) => {
 };
 
 export const receiveChatHandler = (socket, updateStore, _) => {
-  const chats = [...store.chats];
+  const chats = [...SS.chats];
   chats.push(_);
 
   updateStore({

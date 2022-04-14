@@ -89,6 +89,10 @@ function ClientViewTailorScreen() {
     navigate(`/view_catalog/${id}`);
   };
 
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: tailor } });
+  };
+
   return (
     <>
       {isLoading ? (
@@ -115,6 +119,7 @@ function ClientViewTailorScreen() {
                 padding={"15px 37px"}
                 style={{ borderRadius: "15px", boxShadow: "none" }}
                 text="Send Message"
+                onClick={navToChat}
               />
             </div>
             <div

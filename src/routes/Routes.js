@@ -25,6 +25,7 @@ import ClientEditAdScreen from "../containers/client/EditAd";
 import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
 import ClientSearchResultsScreen from "../containers/client/SearchResults";
+import ClientViewOrderScreen from "../containers/client/ViewOrder";
 
 // Tailor Screens
 import TailorHomeScreen from "../containers/tailor/Home";
@@ -41,6 +42,7 @@ import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditi
 import TailorSearchResultsScreen from "../containers/tailor/SearchResults";
 import TailorSupportCentreScreen from "../containers/tailor/SupportCentre";
 import TailorClientProfileScreen from "../containers/tailor/ClientProfile";
+import TailorViewOrderScreen from "../containers/tailor/ViewOrder";
 
 // Common Screens
 import ChatScreen from "../containers/common/Chat";
@@ -67,6 +69,7 @@ import ClientSearchResultsIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
+import ClientViewOrderIcon from "@mui/icons-material/AccountBox";
 import TailorHomeIcon from "@mui/icons-material/AccountBox";
 import TailorCatalogIcon from "@mui/icons-material/AccountBox";
 import TailorViewCatalogIcon from "@mui/icons-material/AccountBox";
@@ -81,6 +84,7 @@ import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 import TailorSearchResultsIcon from "@mui/icons-material/AccountBox";
 import TailorSupportCentreIcon from "@mui/icons-material/AccountBox";
 import TailorClientProfileIcon from "@mui/icons-material/AccountBox";
+import TailorViewOrderIcon from "@mui/icons-material/AccountBox";
 import ChatIcon from "@mui/icons-material/AccountBox";
 
 // Routes for Auth
@@ -251,6 +255,12 @@ const ClientRoutes = [
     icon: <ChatIcon />,
     element: ChatScreen,
   },
+  {
+    path: "/view_order/:id",
+    name: "ClientViewOrder",
+    icon: <ClientViewOrderIcon />,
+    element: ClientViewOrderScreen,
+  },
 ];
 
 // Routes for Tailor
@@ -350,6 +360,12 @@ const TailorRoutes = [
     name: "TailorChat",
     icon: <ChatIcon />,
     element: ChatScreen,
+  },
+  {
+    path: "/view_order/:id",
+    name: "TailorViewOrder",
+    icon: <TailorViewOrderIcon />,
+    element: TailorViewOrderScreen,
   },
 ];
 

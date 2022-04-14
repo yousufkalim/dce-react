@@ -115,6 +115,7 @@ function OrderFromCatalogScreen() {
       const body = new FormData();
 
       body.append("type", "direct");
+      body.append("catalog", params.id);
       body.append("tailor", catalog.tailor._id);
       body.append("gender", basicSection.gender);
       body.append("category", basicSection.category);

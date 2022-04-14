@@ -312,6 +312,40 @@ function clientEditProfile(data) {
   return validated;
 }
 
+function tailorCompleteOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Rating", data["rating"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
+function clientFeedbackOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Rating", data["rating"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
 export {
   login,
   clientRegister,
@@ -328,4 +362,6 @@ export {
   tailorCreateCatalog,
   tailorEditProfile,
   clientEditProfile,
+  tailorCompleteOrder,
+  clientFeedbackOrder,
 };

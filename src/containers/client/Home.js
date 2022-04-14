@@ -35,7 +35,6 @@ function ClientHomeScreen() {
     try {
       response = await Api("post", `/orders/byQuery`, {
         client: user._id,
-        status: ["in_progress", "discarded", "completed"], // As "pending" doesn't count as order
       });
       const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);
@@ -59,6 +58,14 @@ function ClientHomeScreen() {
 
   const navToCreateAd = () => {
     navigate("/create_ad");
+  };
+
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
+  const navToTailors = () => {
+    navigate("/tailors");
   };
 
   return (
@@ -134,7 +141,13 @@ function ClientHomeScreen() {
               />
             ))}
             <p
-              style={{ color: "#CC8E9C", fontWeight: "800", paddingLeft: "2%" }}
+              style={{
+                color: "#CC8E9C",
+                fontWeight: "800",
+                paddingLeft: "2%",
+                cursor: "pointer",
+              }}
+              onClick={navToOrders}
             >
               See all
             </p>
@@ -147,7 +160,9 @@ function ClientHomeScreen() {
               <DesignerListTile {..._} />
             ))}
             <div style={{ paddingLeft: "2%" }}>
-              <p className="see-all-text">See all</p>
+              <p className="see-all-text" onClick={navToTailors}>
+                See all
+              </p>
             </div>
           </div>
         </div>

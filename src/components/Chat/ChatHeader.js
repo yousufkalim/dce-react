@@ -21,11 +21,9 @@ const ChatHeader = ({ directUser }) => {
 
   const getReceiver = () => {
     if (user.role == "client") {
-      return store.chat?.tailor;
-    } else if (user.role == "tailor") {
-      return store.chat?.client;
+      return store.chat?.tailor ?? directUser;
     } else {
-      return directUser;
+      return store.chat?.client ?? directUser;
     }
   };
 

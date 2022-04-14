@@ -138,6 +138,10 @@ function TailorViewQuoteScreen() {
     navigate("/quotes");
   };
 
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: ad.client } });
+  };
+
   return (
     <>
       {isLoading ? (
@@ -381,6 +385,7 @@ function TailorViewQuoteScreen() {
                     style={{
                       boxShadow: "none",
                     }}
+                    onClick={navToChat}
                   />
                 </div>
               </div>
