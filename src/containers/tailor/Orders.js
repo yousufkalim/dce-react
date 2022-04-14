@@ -14,6 +14,7 @@ import Api from "../../api";
 import { toast } from "react-toastify";
 
 import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorOrdersScreen() {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ function TailorOrdersScreen() {
         .filter((_) => _.status == "discarded")
         .splice(-4);
       setOrdersDiscarded(_ordersDiscarded);
+      setIsLoading(false);
     } catch (e) {
       console.trace(e);
     }
@@ -64,6 +66,7 @@ function TailorOrdersScreen() {
 
   const acceptOrder = async (event, id) => {
     event.preventDefault();
+    event.stopPropagation();
 
     if (isProcessing) {
       return;
@@ -93,6 +96,7 @@ function TailorOrdersScreen() {
 
   const discardOrder = async (event, id) => {
     event.preventDefault();
+    event.stopPropagation();
 
     if (isProcessing) {
       return;
@@ -120,6 +124,10 @@ function TailorOrdersScreen() {
     setIsProcessing(false);
   };
 
+  const navToViewOrder = (_) => {
+    navigate(`/view_order/${_}`);
+  };
+
   return (
     <>
       <div className="container-page-vertical">
@@ -140,6 +148,7 @@ function TailorOrdersScreen() {
                 order={_}
                 acceptOrder={acceptOrder}
                 discardOrder={discardOrder}
+                navToViewOrder={navToViewOrder}
               />
             ))}
           </div>
@@ -160,6 +169,7 @@ function TailorOrdersScreen() {
                 order={_}
                 quote={_.quotes.filter((__) => __.status == "accepted")[0]}
                 discardOrder={discardOrder}
+                navToViewOrder={navToViewOrder}
               />
             ))}
           </div>
@@ -179,6 +189,7 @@ function TailorOrdersScreen() {
               <OrderCompletedListTile
                 order={_}
                 quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                navToViewOrder={navToViewOrder}
               />
             ))}
           </div>
@@ -198,6 +209,7 @@ function TailorOrdersScreen() {
               <OrderDiscardedListTile
                 order={_}
                 quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                navToViewOrder={navToViewOrder}
               />
             ))}
           </div>
@@ -209,8 +221,16 @@ function TailorOrdersScreen() {
 }
 
 function OrderRequestListTile(props) {
+  const navigate = useNavigate();
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props.order.client } });
+  };
+
   return (
-    <div className="cos_order_list_tile_container">
+    <div
+      className="cos_order_list_tile_container"
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className="cos_order_list_tile_column1">
         <div
           className="cos_order_list_tile_column1_img"
@@ -305,15 +325,28 @@ function OrderRequestListTile(props) {
             onClick={(e) => props.discardOrder(e, props.order._id)}
           />
         </div>
-        <p style={{ fontSize: "16px", fontWeight: "900" }}>Chat Here</p>
+        <p
+          style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }}
+          onClick={navToChat}
+        >
+          Chat Here
+        </p>
       </div>
     </div>
   );
 }
 
 function OrderInProgressListTile(props) {
+  const navigate = useNavigate();
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props.order.client } });
+  };
+
   return (
-    <div className="cos_order_list_tile_container">
+    <div
+      className="cos_order_list_tile_container"
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className="cos_order_list_tile_column1">
         <div
           className="cos_order_list_tile_column1_img"
@@ -391,7 +424,12 @@ function OrderInProgressListTile(props) {
         </p>
       </div>
       <div className="tos_order_list_tile_column4">
-        <p style={{ fontSize: "16px", fontWeight: "900" }}>Chat Here</p>
+        <p
+          style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }}
+          onClick={navToChat}
+        >
+          Chat Here
+        </p>
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
             text="Discard"
@@ -407,8 +445,13 @@ function OrderInProgressListTile(props) {
 }
 
 function OrderCompletedListTile(props) {
+  const rating = calculateRating(props.order.client.ratings);
+  const ratingsCount = calculateRatingsCount(props.order.client.ratings);
   return (
-    <div className="tcos_order_list_tile_container">
+    <div
+      className="tcos_order_list_tile_container"
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className="tcos_order_list_tile_column1">
         <div
           className="tcos_order_list_tile_column1_img"
@@ -461,7 +504,7 @@ function OrderCompletedListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {props.order.rating.value}({props.order.rating.count})
+          {rating}({ratingsCount})
         </p>
       </div>
       <div className="tcos_order_list_tile_column1">
@@ -504,13 +547,19 @@ function OrderCompletedListTile(props) {
 }
 
 function OrderDiscardedListTile(props) {
+  const rating = calculateRating(props.order.client.ratings);
+  const ratingsCount = calculateRatingsCount(props.order.client.ratings);
+
   const navigate = useNavigate();
   const navtoClientProfile = () => {
     navigate(`/client_profile/${props.order.client._id}`);
   };
 
   return (
-    <div className="tcos_order_list_tile_container">
+    <div
+      className="tcos_order_list_tile_container"
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className="tcos_order_list_tile_column1">
         <div
           className="tcos_order_list_tile_column1_img"
@@ -564,8 +613,7 @@ function OrderDiscardedListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {props?.order?.rating?.value ?? "5"}(
-          {props?.order?.rating?.count ?? "10"})
+          {rating}({ratingsCount})
         </p>
       </div>
       <div className="tcos_order_list_tile_column1">

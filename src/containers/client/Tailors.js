@@ -10,6 +10,7 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
 import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 import star from "../../assets/star.svg";
 
@@ -63,6 +64,9 @@ function ClientTailorsScreen() {
 }
 
 function TailorListTile(props) {
+  const rating = calculateRating(props.ratings);
+  const ratingsCount = calculateRatingsCount(props.ratings);
+
   const navigate = useNavigate();
 
   const navToViewTailor = () => {
@@ -126,7 +130,7 @@ function TailorListTile(props) {
                 paddingLeft: "7%",
               }}
             >
-              4.5 (32K)
+              {rating} ({ratingsCount})
             </p>
           </div>
         </div>

@@ -11,8 +11,7 @@ import dotted from "../assets/dottedblack.svg";
 import { grey } from "@mui/material/colors";
 
 import { materialFabrics, colors } from "../utils/Constants";
-
-import upload from "../assets/upload.svg";
+import UploadSVG from "../assets/upload.svg";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -301,6 +300,7 @@ function BasicSection({
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
               <input
+                disabled={disabled}
                 type="file"
                 accept="image/*"
                 hidden
@@ -312,7 +312,7 @@ function BasicSection({
                 <span className="upload-img-text">
                   {image?.name ?? "Upload Drawing, Photo, Document, etc"}
                 </span>
-                <img src={upload} />
+                <img src={UploadSVG} />
               </div>
             </label>
           </div>

@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Api from "../../api";
 
 import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorViewCatalogScreen() {
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ function TailorViewCatalogScreen() {
                     Review & rating
                   </p>
                   <p className="view_catalog_screen_row1_column1_text_2">
-                    {catalog.rating.value}
+                    {calculateRating(catalog.ratings)}
                   </p>
                 </div>
                 <CustomButton

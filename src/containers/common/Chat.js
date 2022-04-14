@@ -75,26 +75,23 @@ const ChatScreen = () => {
       const chatsData = response.data.chats;
       updateStore({
         chats: chatsData,
-        chat: chatsData[0],
       });
       if (directUser) {
-        if (
-          chatsData.some(
-            (_) =>
-              _.tailor._id == directUser._id || _.client._id == directUser._id
-          )
-        ) {
+        const isDirectUserInvalid = chatsData.some(
+          (_) =>
+            _.tailor._id == directUser._id || _.client._id == directUser._id
+        );
+        if (isDirectUserInvalid) {
           setDirectUser(null);
-          updateStore({
-            chat: chatsData[0],
-          });
-          return chatsData[0];
+        } else {
+          // If direct user is valid then don't set chat as it will get a priority at the server.
+          return null;
         }
-      } else {
-        // If there is indeed a valid direct user then we don't set chat as it will get priority at server.
-        // In that case, don't do anything. Let the directUser be. Return null and don't load messages for chat.
-        return null;
       }
+      updateStore({
+        chat: chatsData[0],
+      });
+      return chatsData[0];
     } catch (e) {
       console.trace(e);
     }

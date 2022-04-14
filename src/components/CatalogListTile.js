@@ -9,6 +9,7 @@ import Rating from "@mui/material/Rating";
 import { useNavigate } from "react-router-dom";
 
 import assetsURL from "../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../utils/Helpers";
 
 function CatalogListTile({
   catalog,
@@ -17,7 +18,8 @@ function CatalogListTile({
   onClick,
   mainDivStyle,
 }) {
-  const [value, setValue] = React.useState(catalog.rating.value);
+  const rating = calculateRating(catalog.ratings);
+  const [value, setValue] = React.useState(rating ?? 0);
 
   const onClickButtonCallback = (e) => {
     e.stopPropagation();

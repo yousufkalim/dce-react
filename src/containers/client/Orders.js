@@ -5,12 +5,19 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
-import { useNavigate } from "react-router-dom";
+import { Modal } from "@mui/material";
+import Rating from "@mui/material/Rating";
 
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
 import assetsURL from "../../utils/Assets";
+
+import { useNavigate, useParams } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+import * as FormValidations from "../../utils/Validations";
 
 function ClientOrdersScreen() {
   const navigate = useNavigate();
@@ -28,7 +35,6 @@ function ClientOrdersScreen() {
     try {
       response = await Api("post", `/orders/byQuery`, {
         client: user._id,
-        status: ["in_progress", "discarded", "completed"], // As "pending" doesn't count as order
       });
       const ordersData = response.data.orders;
       setOrders(ordersData);
@@ -40,6 +46,10 @@ function ClientOrdersScreen() {
 
   const navToCreateAd = () => {
     navigate("/create_ad");
+  };
+
+  const navToViewOrder = (_) => {
+    navigate(`/view_order/${_}`);
   };
 
   return (
@@ -66,6 +76,7 @@ function ClientOrdersScreen() {
             <OrderListTile
               order={_}
               quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+              navToViewOrder={navToViewOrder}
             />
           ))}
         </div>
@@ -75,8 +86,26 @@ function ClientOrdersScreen() {
 }
 
 function OrderListTile(props) {
+  const [isFeedbackOrderModal, setIsFeedbackOrderModal] = useState(false);
+
+  const handleFeedbackOrderModalClose = (e) => {
+    setIsFeedbackOrderModal(false);
+  };
+
+  const handleFeedbackOrderModalOpen = (e) => {
+    e.stopPropagation();
+    setIsFeedbackOrderModal(true);
+  };
+
   return (
-    <div className="cos_order_list_tile_container">
+    <div
+      className="cos_order_list_tile_container"
+      onClick={() => {
+        if (!isFeedbackOrderModal) {
+          props.navToViewOrder(props.order._id);
+        }
+      }}
+    >
       <div className="cos_order_list_tile_column1">
         <div
           className="cos_order_list_tile_column1_img"
@@ -154,17 +183,169 @@ function OrderListTile(props) {
         </p>
       </div>
       <div className="cos_order_list_tile_column4">
-        <CustomButton
-          text="Support"
-          padding={"10px 14px"}
-          style={{ borderRadius: "15px", margin: "8px 0px", boxShadow: "none" }}
-        />
+        {props.order.status == "completed" && props.order.client_submission ? (
+          <CustomButton
+            text="Support"
+            padding={"10px 14px"}
+            style={{
+              borderRadius: "15px",
+              margin: "8px 0px",
+              boxShadow: "none",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              toast.success("Coming soon!");
+            }}
+          />
+        ) : (
+          <CustomButton
+            text="Feedback"
+            padding={"10px 14px"}
+            style={{
+              borderRadius: "15px",
+              margin: "8px 0px",
+              boxShadow: "none",
+            }}
+            onClick={handleFeedbackOrderModalOpen}
+          />
+        )}
+
         <p style={{ fontSize: "15px", fontWeight: "600" }}>
           {props.order.status.replace("_", " ")}
         </p>
       </div>
+      <Modal
+        open={isFeedbackOrderModal}
+        onClose={handleFeedbackOrderModalClose}
+        aria-labelledby="Feedback Order"
+        onBackdropClick="false"
+      >
+        <FeedbackOrderModal
+          handleClose={handleFeedbackOrderModalClose}
+          order={props.order}
+        />
+      </Modal>
     </div>
   );
 }
+
+const FeedbackOrderModal = (props) => {
+  const navigate = useNavigate();
+
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const [rating, setRating] = useState(5);
+  const [details, setDetails] = useState("");
+
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const isValidated = FormValidations.clientFeedbackOrder({
+      rating,
+      details,
+    });
+    if (!isValidated) {
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        id: props.order._id,
+        rating: rating,
+        details: details,
+      };
+
+      console.log(body);
+
+      response = await Api("post", "/orders/feedback", body);
+
+      if (response?.data?.success) {
+        toast.success("Feedback provided successfully.");
+        props.handleClose();
+        navToOrders();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
+
+  return (
+    <div className="tqs_sqm_container">
+      <div
+        className="tqs_sqm_input_container"
+        style={{
+          borderBottomLeftRadius: "20px",
+          borderBottomRightRadius: "20px",
+          marginBottom: "2%",
+          padding: "1.6% 0",
+        }}
+      >
+        <div className="tqs_sqm_input_label">
+          <p className="tqs_sqm_input_text">Rating</p>
+        </div>
+        <div className="tqs_sqm_input_input">
+          <Rating
+            name="rating"
+            value={rating}
+            onChange={(_, __) => {
+              setRating(__);
+            }}
+          />
+        </div>
+      </div>
+      <div
+        className="tqs_sqm_textarea_container"
+        style={{
+          borderTopLeftRadius: "20px",
+          borderTopRightRadius: "20px",
+          marginBottom: "2%",
+        }}
+      >
+        <div className="tqs_sqm_textarea_label">
+          <p className="tqs_sqm_input_text">Details</p>
+        </div>
+        <div className="tqs_sqm_input_input">
+          <textarea
+            className="tqs_sqm_textarea_textarea"
+            placeholder="Describe about submit report"
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="tvqs_sq_buttons">
+        <CustomButton
+          text="Cancel"
+          style={{
+            boxShadow: "none",
+            marginRight: "10pt",
+          }}
+          onClick={props.handleClose}
+        />
+        <CustomButton
+          text="Feedback"
+          style={{
+            boxShadow: "none",
+          }}
+          onClick={handleSubmit}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default ClientOrdersScreen;

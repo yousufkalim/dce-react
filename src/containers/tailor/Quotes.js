@@ -81,6 +81,10 @@ function QuoteListTile(props) {
     navigate(`/view_quote/${props._id}`);
   };
 
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props.client } });
+  };
+
   return (
     <div className="cas_ad_list_tile_container" onClick={navToViewQuote}>
       <div className="tqs_quote_list_tile_column0">
@@ -201,7 +205,9 @@ function QuoteListTile(props) {
                   fontSize: "12px",
                   fontWeight: "600",
                   color: "#CC8E9C",
+                  cursor: "pointer",
                 }}
+                onClick={navToChat}
               >
                 Chat Here
               </p>

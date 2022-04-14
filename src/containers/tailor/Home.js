@@ -64,6 +64,10 @@ function TailorHomeScreen() {
     navigate("/quotes");
   };
 
+  const navToOrders = () => {
+    navigate("/orders");
+  };
+
   return (
     <div className="container-page">
       <AppBar color="#F8F4EF" />
@@ -140,7 +144,9 @@ function TailorHomeScreen() {
                 fontWeight: "800",
                 paddingLeft: "2%",
                 textDecoration: "underline",
+                cursor: "pointer",
               }}
+              onClick={navToOrders}
             >
               See all
             </p>
@@ -161,7 +167,9 @@ function TailorHomeScreen() {
                 fontWeight: "800",
                 paddingLeft: "2%",
                 textDecoration: "underline",
+                cursor: "pointer",
               }}
+              onClick={navToOrders}
             >
               See all
             </p>
