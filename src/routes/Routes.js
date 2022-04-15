@@ -22,10 +22,10 @@ import ClientTermsAndConditionsScreen from "../containers/client/TermsAndConditi
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
-import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
 import ClientSearchResultsScreen from "../containers/client/SearchResults";
 import ClientViewOrderScreen from "../containers/client/ViewOrder";
+import ClientTapeMeasurementScreen from "../containers/client/TapeMeasurement";
 
 // Tailor Screens
 import TailorHomeScreen from "../containers/tailor/Home";
@@ -70,6 +70,7 @@ import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
 import ClientViewOrderIcon from "@mui/icons-material/AccountBox";
+import ClientTapeMeasurementIcon from "@mui/icons-material/AccountBox";
 import TailorHomeIcon from "@mui/icons-material/AccountBox";
 import TailorCatalogIcon from "@mui/icons-material/AccountBox";
 import TailorViewCatalogIcon from "@mui/icons-material/AccountBox";
@@ -178,12 +179,6 @@ const ClientRoutes = [
     element: ClientTailorsScreen,
   },
   {
-    path: "/measurements",
-    name: "Measurements",
-    icon: <ClientTailorsIcon />,
-    element: ClientMeasurementsScreen,
-  },
-  {
     path: "/faqs",
     name: "Faqs",
     icon: <ClientTailorsIcon />,
@@ -260,6 +255,12 @@ const ClientRoutes = [
     name: "ClientViewOrder",
     icon: <ClientViewOrderIcon />,
     element: ClientViewOrderScreen,
+  },
+  {
+    path: "/tape_measurement",
+    name: "ClientTapeMeasurement",
+    icon: <ClientTapeMeasurementIcon />,
+    element: ClientTapeMeasurementScreen,
   },
 ];
 

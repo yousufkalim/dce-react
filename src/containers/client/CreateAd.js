@@ -31,7 +31,10 @@ function ClientCreateAdScreen() {
     category: "",
     name: "",
     cut: "",
-    measurements: "",
+    measurements: {
+      type: "static",
+      value: "",
+    },
     color: "",
     fabric: "",
     includes_alteration_services: false,

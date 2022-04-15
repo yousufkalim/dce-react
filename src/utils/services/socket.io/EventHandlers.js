@@ -17,7 +17,7 @@ export const receiveChatHandler = (socket, updateStore, _) => {
   updateStore({
     chats: chats,
     chat: _,
-    messages: [], // Fetch and display real messages
+    messages: [], // TODO: Fetch and display real messages
   });
 };
 

@@ -154,10 +154,6 @@ function parseAdBasicSection(data) {
     },
     {
       validationFunction: () =>
-        Validators.nullValidator("Measurements", data["measurements"]),
-    },
-    {
-      validationFunction: () =>
         Validators.selectValidator("Color", data["color"]),
     },
     {
@@ -165,6 +161,13 @@ function parseAdBasicSection(data) {
         Validators.selectValidator("Fabric", data["fabric"]),
     },
   ];
+
+  if (data["measurements"].type == "static") {
+    valArr.push({
+      validationFunction: () =>
+        Validators.nullValidator("Measurements", data["measurements"].value),
+    });
+  }
 
   const validated = formValidator(null, valArr);
 
@@ -346,6 +349,72 @@ function clientFeedbackOrder(data) {
   return validated;
 }
 
+function parseMeasurementCircumferenceSection(data) {
+  const valArr = [
+    {
+      validationFunction: () => Validators.nullValidator("Arm", data["arm"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Chest", data["chest"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Waist", data["waist"]),
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Hip", data["hip"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Thigh", data["thigh"]),
+    },
+    {
+      validationFunction: () => Validators.nullValidator("Calf", data["calf"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Ankle", data["ankle"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
+function parseMeasurementLengthSection(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Head to floor height", data["head_to_floor"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator(
+          "From shoulder to floot",
+          data["shoulder_to_floor"]
+        ),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("From waist to floor", data["waist_to_floor"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Arm length", data["arm_length"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Leg length", data["leg_length"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
 export {
   login,
   clientRegister,
@@ -364,4 +433,6 @@ export {
   clientEditProfile,
   tailorCompleteOrder,
   clientFeedbackOrder,
+  parseMeasurementCircumferenceSection,
+  parseMeasurementLengthSection,
 };

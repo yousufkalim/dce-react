@@ -35,6 +35,7 @@ function ClientHomeScreen() {
     try {
       response = await Api("post", `/orders/byQuery`, {
         client: user._id,
+        tailor: { $ne: null },
       });
       const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);

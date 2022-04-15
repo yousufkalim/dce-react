@@ -11,6 +11,7 @@ function CustomInput({
   accept,
   onChange,
   disabled,
+  ref,
   divStyle,
   labelStyle,
   inputStyle,
@@ -46,6 +47,7 @@ function CustomInput({
       >
         <input
           disabled={disabled}
+          ref={ref}
           type={
             enableEyes
               ? !isPasswordVisible

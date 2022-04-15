@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
-import UserSVG from "../../assets/User.svg";
-
+import { Checkbox, Modal } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
+
+import UserSVG from "../../assets/User.svg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -43,64 +44,6 @@ function ClientAdsScreen() {
     }
   };
 
-  const acceptQuote = async (event, id) => {
-    event.preventDefault();
-
-    if (isProcessing) {
-      return;
-    }
-
-    let response;
-
-    try {
-      setIsProcessing(true);
-
-      const body = {
-        quote: id,
-      };
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        getAds();
-      }
-    } catch (e) {
-      console.trace(e);
-    }
-
-    setIsProcessing(false);
-  };
-
-  const rejectQuote = async (event, id) => {
-    event.preventDefault();
-
-    if (isProcessing) {
-      return;
-    }
-
-    let response;
-
-    try {
-      setIsProcessing(true);
-
-      const body = {
-        quote: id,
-      };
-
-      response = await Api("post", "/quotes/reject", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        getAds();
-      }
-    } catch (e) {
-      console.trace(e);
-    }
-
-    setIsProcessing(false);
-  };
-
   const navToCreateAd = () => {
     navigate("/create_ad");
   };
@@ -132,11 +75,7 @@ function ClientAdsScreen() {
         </div>
         <div className="client_ads_screen_row2">
           {ads.map((_) => (
-            <AdListTile
-              {..._}
-              acceptQuote={acceptQuote}
-              rejectQuote={rejectQuote}
-            />
+            <AdListTile {..._} />
           ))}
         </div>
       </div>
@@ -254,11 +193,7 @@ function AdListTile(props) {
       </div>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {props?.quotes?.map((_) => (
-          <AdQuoteListTile
-            {..._}
-            acceptQuote={props.acceptQuote}
-            rejectQuote={props.rejectQuote}
-          />
+          <AdQuoteListTile order={props} quote={_} />
         ))}
       </Collapse>
     </div>
@@ -266,13 +201,88 @@ function AdListTile(props) {
 }
 
 function AdQuoteListTile(props) {
-  const rating = calculateRating(props.tailor.ratings);
-  const ratingsCount = calculateRatingsCount(props.tailor.ratings);
+  const rating = calculateRating(props.quote.tailor.ratings);
+  const ratingsCount = calculateRatingsCount(props.quote.tailor.ratings);
 
   const navigate = useNavigate();
 
+  const [isAcceptQuoteModal, setIsAcceptQuoteModal] = useState(false);
+
+  const handleIsAcceptQuoteModalClose = (e) => {
+    setIsAcceptQuoteModal(false);
+  };
+
+  const handleIsAcceptQuoteModalOpen = (e) => {
+    e.stopPropagation();
+    setIsAcceptQuoteModal(true);
+  };
+
+  const acceptQuote = async (e) => {
+    handleIsAcceptQuoteModalOpen(e);
+  };
+
+  // const _acceptQuote = async (event, id) => {
+  //   event.preventDefault();
+
+  //   if (isProcessing) {
+  //     return;
+  //   }
+
+  //   let response;
+
+  //   try {
+  //     setIsProcessing(true);
+
+  //     const body = {
+  //       quote: id,
+  //     };
+
+  //     response = await Api("post", "/quotes/accept", body);
+
+  //     if (response?.data?.success) {
+  //       toast.success(response.data.message);
+  //       getAds();
+  //     }
+  //   } catch (e) {
+  //     console.trace(e);
+  //   }
+
+  //   setIsProcessing(false);
+  // };
+
+  const rejectQuote = async (event, id) => {};
+
+  // const _rejectQuote = async (event, id) => {
+  //   event.preventDefault();
+
+  //   if (isProcessing) {
+  //     return;
+  //   }
+
+  //   let response;
+
+  //   try {
+  //     setIsProcessing(true);
+
+  //     const body = {
+  //       quote: id,
+  //     };
+
+  //     response = await Api("post", "/quotes/reject", body);
+
+  //     if (response?.data?.success) {
+  //       toast.success(response.data.message);
+  //       getAds();
+  //     }
+  //   } catch (e) {
+  //     console.trace(e);
+  //   }
+
+  //   setIsProcessing(false);
+  // };
+
   const navToChat = () => {
-    navigate(`/chat`, { state: { directUser: props.tailor } });
+    navigate(`/chat`, { state: { directUser: props.quote.tailor } });
   };
 
   return (
@@ -290,7 +300,11 @@ function AdQuoteListTile(props) {
               height: "65pt",
               width: "65pt",
             }}
-            src={props.tailor.avatar ? assetsURL(props.tailor.avatar) : UserSVG}
+            src={
+              props.quote.tailor.avatar
+                ? assetsURL(props.quote.tailor.avatar)
+                : UserSVG
+            }
           />
         </div>
       </div>
@@ -307,10 +321,10 @@ function AdQuoteListTile(props) {
             paddingBottom: "10px",
           }}
         >
-          {props.tailor.name}
+          {props.quote.tailor.name}
         </p>
         <p className="cas_quote_list_tile_column1_description_text">
-          {props.tailor.speciality}
+          {props.quote.tailor.speciality}
         </p>
       </div>
       <div
@@ -340,7 +354,7 @@ function AdQuoteListTile(props) {
           Offer
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {`${props.price}$`}
+          {`${props.quote.price}$`}
         </p>
       </div>
       <div
@@ -352,7 +366,7 @@ function AdQuoteListTile(props) {
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
             text="Accept"
-            onClick={(e) => props.acceptQuote(e, props._id)}
+            onClick={acceptQuote}
             style={{
               boxShadow: "none",
             }}
@@ -364,7 +378,7 @@ function AdQuoteListTile(props) {
               marginTop: "10px",
               cursor: "pointer",
             }}
-            onClick={(e) => props.rejectQuote(e, props._id)}
+            onClick={rejectQuote}
           >
             Discard
           </p>
@@ -378,8 +392,97 @@ function AdQuoteListTile(props) {
           Chat Here
         </p>
       </div>
+      <Modal
+        open={isAcceptQuoteModal}
+        onClose={handleIsAcceptQuoteModalClose}
+        aria-labelledby="Accept Quote"
+        onBackdropClick="false"
+      >
+        <AcceptQuoteModal
+          order={props.order}
+          quote={props.quote}
+          handleClose={handleIsAcceptQuoteModalClose}
+        />
+      </Modal>
     </div>
   );
 }
+
+const AcceptQuoteModal = (props) => {
+  const [isChecked, setIsChecked] = useState(true);
+
+  const navigate = useNavigate();
+
+  const navToTapeMeasurement = () => {
+    props.handleClose();
+    navigate("/tape_measurement", {
+      state: { order: props.order, quote: props.quote },
+    });
+  };
+
+  return (
+    <div
+      className="tqs_sqm_container"
+      style={{
+        height: "40vh",
+      }}
+    >
+      <p
+        style={{
+          color: "#ACACAC",
+          fontSize: "16px",
+          fontWeight: "100",
+          marginBottom: "5%",
+        }}
+      >
+        I also understand that any incomplete address, altered date of birth,
+        use of an identity different from mine, or any falsified document will
+        lead to the immediate and definitive suspension of my account and that I
+        will therefore no longer be able to become a service provider on DCE.
+      </p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          marginBottom: "5%",
+        }}
+      >
+        <Checkbox
+          checked={isChecked}
+          onChange={(e) => setIsChecked(e.target.checked)}
+        />
+        <p
+          style={{
+            fontSize: "13px",
+            fontWeight: "100",
+          }}
+        >
+          I declare on my honor that the information provided is accurate, as
+          well as the identity document attached above is authentic, belongs to
+          me, and meets all the required conditions
+        </p>
+      </div>
+      <div className="tvqs_sq_buttons">
+        <CustomButton
+          text="Cancel"
+          style={{
+            boxShadow: "none",
+            marginRight: "10pt",
+          }}
+          onClick={props.handleClose}
+        />
+        <CustomButton
+          text="I agree"
+          style={{
+            boxShadow: "none",
+          }}
+          onClick={navToTapeMeasurement}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default ClientAdsScreen;
