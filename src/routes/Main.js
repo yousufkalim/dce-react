@@ -20,6 +20,7 @@ const Main = () => {
   const isMyTokenExpired = isExpired(token);
 
   const navigate = useNavigate();
+
   const store = Store();
   const updateStore = UpdateStore();
 
