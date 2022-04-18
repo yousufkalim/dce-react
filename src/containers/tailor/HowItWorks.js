@@ -22,7 +22,7 @@ function TailorHowItWorksScreen() {
               paddingBottom: "1%",
             }}
           >
-            HOW ITS WORKS ?
+            HOW IT WORKS ?
           </p>
           <p
             style={{
@@ -92,7 +92,7 @@ function TailorHowItWorksScreen() {
               "Prepare detailed quotes",
               "Meet deadlines",
               "Have knowledge of management",
-              "Know how to handle computers, in particular the Design CREATION site",
+              "Know how to handle computers in particular the Design CREATION site",
             ]}
           />
         </div>

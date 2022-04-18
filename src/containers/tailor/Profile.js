@@ -469,7 +469,7 @@ function TailorProfileScreen() {
                   marginRight: "2%",
                 }}
               >
-                Catalog
+                Catalogue
               </p>
               <div className="tailor_profile_screen_row3_list_container">
                 <AddCatalogListTile />
@@ -575,7 +575,7 @@ function AddCatalogListTile() {
       <div className="new_order_list_tile_img">
         <img style={{ width: "40%" }} src={AddCatalogSVG} />
       </div>
-      <p className="new_order_list_tile_text">Add Catalog</p>
+      <p className="new_order_list_tile_text">Add Catalogue</p>
     </div>
   );
 }

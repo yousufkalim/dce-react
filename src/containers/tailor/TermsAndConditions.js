@@ -37,7 +37,7 @@ function TailorTermsAndConditionsScreen() {
             question="requiring the services of a designer"
             answers={[
               "Your responsibilities if you breach these Terms",
-              "As a seamstress, you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.",
+              "As a seamstress you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.",
               "The seamstress is also required to provide neat and quality work with selected quality materials.The seamstress must reside in France in order to respect the “made in France” label.",
             ]}
           />

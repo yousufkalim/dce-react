@@ -67,7 +67,7 @@ function TailorEditCatalogScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Edit Catalog
+                  Edit Catalogue
                 </p>
                 <div className="tccs_input_section_container" style={{}}>
                   <div className="pa_content_row">

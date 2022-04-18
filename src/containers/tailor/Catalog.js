@@ -73,7 +73,7 @@ const TailorCatalogScreen = () => {
         </div>
       </div>
       <div className="tailor_catalog_screen_row2">
-        <p className="tailor_catalog_screen_row2_text">My Catalog</p>
+        <p className="tailor_catalog_screen_row2_text">My Catalogue</p>
         <div className="tailor_catalog_screen_row2_list_container">
           {catalogs.map((_) => (
             <CatalogListTile
