@@ -4,6 +4,7 @@ import UserSVG from "../../assets/User.svg";
 import AppBar from "../../components/TailorAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import { getUser } from "../../utils/Auth";
 
@@ -13,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function TailorHomeScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [ordersRequest, setOrdersRequest] = useState([]);

@@ -4,6 +4,7 @@ import AddCatalogSVG from "../../assets/AddCatalog.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import CustomDropDown from "../../components/CustomDropDown";
 import CustomInput from "../../components/CustomInput";
@@ -20,6 +21,8 @@ import { toast } from "react-toastify";
 import * as FormValidations from "../../utils/Validations";
 
 function TailorEditCatalogScreen() {
+  const { t } = useTranslation();
+
   const params = useParams();
 
   const [isLoading, setIsLoading] = useState(true);

@@ -4,6 +4,7 @@ import ViewCatalogSVG from "../../assets/ViewCatalog.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import CustomButton from "../../components/CustomButton";
 
@@ -15,6 +16,8 @@ import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorViewCatalogScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 

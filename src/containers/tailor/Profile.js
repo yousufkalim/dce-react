@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import UserSVG from "../../assets/User.svg";
 import AddCatalogSVG from "../../assets/AddOrder.svg";
+import { useTranslation } from "react-i18next";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
 import ProfileCitySVG from "../../assets/ProfileCity.svg";
@@ -40,6 +41,7 @@ function TailorProfileScreen() {
   const user = getUser();
 
   const [toEdit, setToEdit] = useState(false);
+  const { t } = useTranslation();
 
   const [state, setState] = useState({
     phone: "",

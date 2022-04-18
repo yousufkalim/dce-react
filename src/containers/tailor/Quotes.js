@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import CustomButton from "../../components/CustomButton";
@@ -18,6 +19,7 @@ import assetsURL from "../../utils/Assets";
 
 function TailorQuotesScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [quotes, setQuotes] = useState([]);

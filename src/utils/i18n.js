@@ -266,6 +266,13 @@ i18n
 
           //viewOrder
           "Want to complete this order": "Want to complete this order",
+
+          //placeholders
+          "Name of your Creation": "Name of your Creation",
+          "Select gender": "Select gender",
+          "Select category": "Select category",
+          "Set your Price": "Set your Price",
+          "Tell us about your service": "Tell us about your service",
         },
       },
       fr: {
@@ -379,6 +386,7 @@ i18n
 
           //catalogue
           "My Catalogue": "Mon catalogue",
+          "Create Catalogue": "Create Catalogue",
 
           //clientProfile
           Order: "Commande",
@@ -522,6 +530,14 @@ i18n
           //viewOrder
           "Want to complete this order":
             "Vous souhaitez finaliser cette commande",
+
+          //placeholders
+          "Name of your Creation": "Nom de votre Création",
+          "Select gender": "Sélectionnez le sexe",
+          "Select category": "Choisir une catégorie",
+          "Set your Price": "Fixez votre prix",
+          "Tell us about your service": "Parlez-nous de votre prestation",
+          "Create Catalogue": "Créer un catalogue",
         },
       },
     },

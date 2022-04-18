@@ -1,8 +1,11 @@
 import React from "react";
 import TailorAppBar from "../../components/TailorAppBar";
 import UserSVG from "../../assets/supportpic.png";
+import { useTranslation } from "react-i18next";
 
 function SupportCentre() {
+  const { t } = useTranslation();
+
   let data = [
     {
       name: "Kurta Shalwar",

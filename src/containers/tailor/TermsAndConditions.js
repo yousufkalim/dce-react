@@ -3,8 +3,11 @@ import React from "react";
 import TailorAppBar from "../../components/TailorAppBar";
 import Terms from "../../assets/terms.png";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 function TailorTermsAndConditionsScreen() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-page-vertical">
       <TailorAppBar color="#FDFDFC" />

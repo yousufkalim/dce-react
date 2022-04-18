@@ -5,6 +5,7 @@ import UserSVG from "../../assets/User.svg";
 import TailorAppBar from "../../components/TailorAppBar";
 import CustomButton from "../../components/CustomButton";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorOrdersScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);

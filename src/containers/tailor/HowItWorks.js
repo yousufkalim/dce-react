@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import Machine from "../../assets/machine.png";
 
 function TailorHowItWorksScreen() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-page-vertical">
       <TailorAppBar color="#FDFDFC" />

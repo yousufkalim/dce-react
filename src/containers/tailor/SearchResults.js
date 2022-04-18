@@ -6,6 +6,7 @@ import UserSVG from "../../assets/resultimg1.svg";
 import Footer from "../../components/Footer";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import { useTranslation } from "react-i18next";
 
 import CustomButton from "../../components/CustomButton";
 
@@ -21,6 +22,7 @@ import { toast } from "react-toastify";
 function TailorSearchResultsScreen() {
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
