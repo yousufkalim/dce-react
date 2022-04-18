@@ -126,6 +126,7 @@ i18n
 
           //catalogue
           "My Catalogue": "My Catalogue",
+          Diploma: "Diploma",
 
           //clientProfile
           Order: "Order",
@@ -148,6 +149,7 @@ i18n
           Other: "Other",
           Price: "Price",
           Attachments: "Attachments",
+          "Fixed price": "Fixed price",
 
           //home
           Fabric: "Fabric",
@@ -234,6 +236,9 @@ i18n
           Completed: "Completed",
           "Support Center": "Support Center",
           "Chat With Us": "Chat With Us",
+          "Certain Amount": "Certain Amount",
+          "Any Confection": "Any Confection",
+          "Shop Name": "Shop Name",
 
           // terms n conditions
           "General informations": "General informations",
@@ -547,6 +552,11 @@ i18n
           "See All Requests": "Voir toutes les demandes",
           "Send Offer": "Envoyer une offre",
           "Tell us": "Dites-nous",
+          "Certain Amount": "Certain Montant",
+          "Any Confection": "N'importe quelle confiserie",
+          Diploma: "Diplôme",
+          "Shop Name": "Nom de la boutique",
+          "Fixed price": "Prix fixe",
         },
       },
     },
