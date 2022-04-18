@@ -116,6 +116,8 @@ i18n
 
           //viewOrder
           "Client Basic": "Client Basic",
+          "See All Orders": "See All Orders",
+          "See All Requests": "See All Requests",
 
           //view tailor
           "Designer Profile": "Designer Profile",
@@ -538,6 +540,9 @@ i18n
           "Set your Price": "Fixez votre prix",
           "Tell us about your service": "Parlez-nous de votre prestation",
           "Create Catalogue": "Créer un catalogue",
+
+          "See All Orders": "Voir toutes les commandes",
+          "See All Requests": "Voir toutes les demandes",
         },
       },
     },
