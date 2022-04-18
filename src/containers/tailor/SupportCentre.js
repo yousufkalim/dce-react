@@ -46,7 +46,7 @@ function SupportCentre() {
         }}
       >
         <div className="thiw_qna_standard_screen_row1">
-          <h1 className="supportheading">Support Center</h1>
+          <h1 className="supportheading">{t("Support Center")}</h1>
           <p className="suppordesc">
             {t(
               "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen."
