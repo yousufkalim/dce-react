@@ -212,6 +212,7 @@ i18n
           Completed: "Completed",
           Discarded: "Discarded",
           Offer: "Offer",
+          "Send Offer": "Send Offer",
 
           //profile
           "Hourly Rate": "Hourly Rate",
@@ -275,6 +276,7 @@ i18n
           "Select category": "Select category",
           "Set your Price": "Set your Price",
           "Tell us about your service": "Tell us about your service",
+          "Tell us": "Tell us",
         },
       },
       fr: {
@@ -543,6 +545,8 @@ i18n
 
           "See All Orders": "Voir toutes les commandes",
           "See All Requests": "Voir toutes les demandes",
+          "Send Offer": "Envoyer une offre",
+          "Tell us": "Dites-nous",
         },
       },
     },
