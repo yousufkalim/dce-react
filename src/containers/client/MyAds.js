@@ -410,18 +410,38 @@ const AcceptQuoteModal = (props) => {
       const body = {
         quote: props.quote._id,
       };
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        navToOrders();
-      }
+      let line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: props.quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getSessionUrl(props.quote, line_items);
     } catch (e) {
       console.trace(e);
     }
 
     setIsProcessing(false);
+  };
+
+  const getSessionUrl = async (quote, line_items) => {
+    try {
+      let id = quote._id;
+      let type = "static";
+      let response = await Api("post", "/payments/Checkout", {
+        line_items: line_items,
+        metaData: { id, type },
+      });
+      window.location = response.data.url;
+    } catch (e) {
+      console.trace(e);
+    }
   };
 
   const navToTapeMeasurement = () => {
