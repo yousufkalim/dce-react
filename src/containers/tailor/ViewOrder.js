@@ -108,7 +108,7 @@ function TailorViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Client Basic
+                  {t("Client Basic")}
                 </p>
                 <p
                   style={{
@@ -117,7 +117,7 @@ function TailorViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "55%" }} src={AdEdit1SVG} />
               </div>
@@ -191,7 +191,7 @@ function TailorViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Delivery
+                  {t("Delivery")}
                 </p>
                 <p
                   style={{
@@ -200,7 +200,7 @@ function TailorViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "70%" }} src={AdEdit2SVG} />
               </div>
@@ -220,7 +220,7 @@ function TailorViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Payment
+                  {t("Payment")}
                 </p>
                 <p
                   style={{
@@ -229,7 +229,7 @@ function TailorViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "20%" }} src={AdEdit3SVG} />
               </div>
@@ -299,7 +299,7 @@ const CompleteOrderSection = (props) => {
           }}
           onClick={() => setIsCompleteOrderModal(true)}
         >
-          Want to complete this order
+          {t("Want to complete this order")}
         </p>
         <Modal
           open={isCompleteOrderModal}
@@ -393,7 +393,7 @@ const CompleteOrderModal = (props) => {
         }}
       >
         <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">Rating</p>
+          <p className="tqs_sqm_input_text">{t("Rating")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <Rating
@@ -414,7 +414,7 @@ const CompleteOrderModal = (props) => {
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">Details</p>
+          <p className="tqs_sqm_input_text">{t("Details")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
@@ -435,7 +435,7 @@ const CompleteOrderModal = (props) => {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Attachments</p>
+          <p className="pa_profile_section_input_text">{t("Attachments")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">

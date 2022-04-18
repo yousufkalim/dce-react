@@ -63,7 +63,7 @@ function TailorViewCatalogScreen() {
                   {catalog.name}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_2">
-                  Description
+                  {t("Description")}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_3">
                   {catalog.description}
@@ -75,7 +75,7 @@ function TailorViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Charges
+                    {t("Charges")}
                   </p>
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
@@ -93,7 +93,7 @@ function TailorViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Review & rating
+                    {t("Review & rating")}
                   </p>
                   <p className="view_catalog_screen_row1_column1_text_2">
                     {calculateRating(catalog.ratings)}

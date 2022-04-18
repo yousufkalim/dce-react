@@ -121,6 +121,7 @@ i18n
 
           //view tailor
           "Designer Profile": "Designer Profile",
+          "Quote sent successfully.": "Quote sent successfully.",
 
           //--------------------------------------------------------------Designer--------------------------------------------------
 
@@ -433,6 +434,7 @@ i18n
           "Order Requests": "Demandes de commande",
           "See all": "Voir tout",
           "Recent Orders": "Dernières commandes",
+          "Quote sent successfully.": "Devis envoyé avec succès.",
 
           //HOW IT WORKS ?
           "HOW IT WORKS ?": "COMMENT ÇA FONCTIONNE ?",
