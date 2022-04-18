@@ -613,7 +613,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           <></>
         ) : (
           <CustomButton
-            text="Write Here"
+            text="Next"
             style={{
               marginTop: "3%",
               marginBottom: "10%",

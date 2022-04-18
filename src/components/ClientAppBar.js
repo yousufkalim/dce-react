@@ -7,6 +7,8 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
+import NotificationsListTile from "./NotificationsListTile";
+
 import { handleLogout } from "../utils/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -37,9 +39,6 @@ function ClientAppBar({
   const [width] = useWindowSize();
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
-  const handleClickNotifications = () => {
-    toast.success("Coming soon!");
-  };
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const openProfile = Boolean(anchorElProfile);
@@ -48,6 +47,16 @@ function ClientAppBar({
   };
   const handleCloseProfile = () => {
     setAnchorElProfile(null);
+  };
+
+  const [anchorElNotifications, setAnchorElNotifications] =
+    React.useState(null);
+  const openNotifications = Boolean(anchorElNotifications);
+  const handleClickNotifications = (event) => {
+    setAnchorElNotifications(event.currentTarget);
+  };
+  const handleCloseNotifications = () => {
+    setAnchorElNotifications(null);
   };
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -86,9 +95,11 @@ function ClientAppBar({
   };
 
   const [profile, setProfile] = useState(null);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     getProfile();
+    getNotifications();
   }, []);
 
   const getProfile = async () => {
@@ -97,6 +108,19 @@ function ClientAppBar({
       response = await Api("get", `/auth`);
       const userData = response.data.user;
       setProfile(userData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const getNotifications = async () => {
+    let response;
+    try {
+      response = await Api("get", `/notifications`);
+      console.log(response.data);
+      const notificationsData = response.data.notifications;
+      setNotifications(notificationsData);
     } catch (e) {
       console.trace(e);
     }
@@ -153,6 +177,19 @@ function ClientAppBar({
               style={{ marginLeft: "3%" }}
               onClick={handleClickNotifications}
             />
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElNotifications}
+              open={openNotifications}
+              onClose={handleCloseNotifications}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              {notifications.map((_) => (
+                <NotificationsListTile {..._} />
+              ))}
+            </Menu>
             <img
               className="appbar_row2_user_img image_container"
               style={{
