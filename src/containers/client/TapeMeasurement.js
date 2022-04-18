@@ -101,14 +101,6 @@ function ClientTapeMeasurementScreen() {
       ];
       let measurements = JSON.stringify(body.measurements);
       getSessionUrl(state.quote, line_items, measurements);
-      // console.log(body);
-
-      // response = await Api("post", "/quotes/accept", body);
-
-      // if (response?.data?.success) {
-      //   toast.success("Quote accepted successfully.");
-      //   navToOrders();
-      // }
     } catch (e) {
       console.trace(e);
     }
