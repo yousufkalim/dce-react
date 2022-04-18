@@ -86,7 +86,6 @@ function ClientTapeMeasurementScreen() {
       const body = {
         measurements: measurmentsObjMaker(),
       }; // TODO: Change this to string of measurements field and call accept quote API here.
-
       let line_items = [
         {
           price_data: {
