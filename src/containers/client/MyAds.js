@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
+import CustomDatePicker from "../../components/CustomDatePicker";
+import CustomTimePicker from "../../components/CustomTimePicker";
 
 import { Checkbox, Modal } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
@@ -207,6 +209,7 @@ function AdQuoteListTile(props) {
   const navigate = useNavigate();
 
   const [isAcceptQuoteModal, setIsAcceptQuoteModal] = useState(false);
+  const [isRejectQuoteModal, setIsRejectQuoteModal] = useState(false);
 
   const handleIsAcceptQuoteModalClose = (e) => {
     setIsAcceptQuoteModal(false);
@@ -217,40 +220,22 @@ function AdQuoteListTile(props) {
     setIsAcceptQuoteModal(true);
   };
 
+  const handleIsRejectQuoteModalClose = (e) => {
+    setIsRejectQuoteModal(false);
+  };
+
+  const handleIsRejectQuoteModalOpen = (e) => {
+    e.stopPropagation();
+    setIsRejectQuoteModal(true);
+  };
+
   const acceptQuote = async (e) => {
     handleIsAcceptQuoteModalOpen(e);
   };
 
-  const rejectQuote = async (event, id) => {};
-
-  // const _rejectQuote = async (event, id) => {
-  //   event.preventDefault();
-
-  //   if (isProcessing) {
-  //     return;
-  //   }
-
-  //   let response;
-
-  //   try {
-  //     setIsProcessing(true);
-
-  //     const body = {
-  //       quote: id,
-  //     };
-
-  //     response = await Api("post", "/quotes/reject", body);
-
-  //     if (response?.data?.success) {
-  //       toast.success(response.data.message);
-  //       getAds();
-  //     }
-  //   } catch (e) {
-  //     console.trace(e);
-  //   }
-
-  //   setIsProcessing(false);
-  // };
+  const rejectQuote = async (e) => {
+    handleIsRejectQuoteModalOpen(e);
+  };
 
   const navToChat = () => {
     navigate(`/chat`, { state: { directUser: props.quote.tailor } });
@@ -375,6 +360,18 @@ function AdQuoteListTile(props) {
           handleClose={handleIsAcceptQuoteModalClose}
         />
       </Modal>
+      <Modal
+        open={isRejectQuoteModal}
+        onClose={handleIsRejectQuoteModalClose}
+        aria-labelledby="Reject Quote"
+        onBackdropClick="false"
+      >
+        <RejectQuoteModal
+          order={props.order}
+          quote={props.quote}
+          handleClose={handleIsRejectQuoteModalClose}
+        />
+      </Modal>
     </div>
   );
 }
@@ -383,17 +380,29 @@ const AcceptQuoteModal = (props) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
 
+  const [isScheduleCallModal, setIsScheduleCallModal] = useState(false);
+
+  const handleIsScheduleCallModalClose = (e) => {
+    setIsScheduleCallModal(false);
+  };
+
+  const handleIsScheduleCallModalOpen = (e) => {
+    e.stopPropagation();
+    setIsScheduleCallModal(true);
+  };
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(props.order);
     if (props.order.measurements.type == "static") {
       handleStaticMeasurements();
     } else if (props.order.measurements.type == "tape") {
-      navToTapeMeasurement();
+      handleTapeMeasurements();
+    } else if (props.order.measurements.type == "call") {
+      handleCallMeasurements(event);
     } else {
-      // TODO: Do something here.
+      // TODO: This should never happen.
     }
   };
 
@@ -424,11 +433,15 @@ const AcceptQuoteModal = (props) => {
     setIsProcessing(false);
   };
 
-  const navToTapeMeasurement = () => {
+  const handleTapeMeasurements = () => {
     props.handleClose();
     navigate("/tape_measurement", {
       state: { order: props.order, quote: props.quote },
     });
+  };
+
+  const handleCallMeasurements = async (e) => {
+    handleIsScheduleCallModalOpen(e);
   };
 
   const navToOrders = () => {
@@ -480,6 +493,230 @@ const AcceptQuoteModal = (props) => {
           me, and meets all the required conditions
         </p>
       </div>
+      <div className="tvqs_sq_buttons">
+        <CustomButton
+          text="Cancel"
+          style={{
+            boxShadow: "none",
+            marginRight: "10pt",
+          }}
+          onClick={props.handleClose}
+        />
+        <CustomButton
+          text="I agree"
+          style={{
+            boxShadow: "none",
+          }}
+          onClick={handleSubmit}
+        />
+      </div>
+      <Modal
+        open={isScheduleCallModal}
+        onClose={handleIsScheduleCallModalClose}
+        aria-labelledby="Schedule Call"
+        onBackdropClick="false"
+      >
+        <ScheduleCallModal
+          order={props.order}
+          quote={props.quote}
+          handleClose={handleIsScheduleCallModalClose}
+        />
+      </Modal>
+    </div>
+  );
+};
+
+const ScheduleCallModal = (props) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      const parsedDate = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        time.getHours(),
+        time.getMinutes(),
+        0,
+        0
+      );
+
+      const body = {
+        quote: props.quote._id,
+        call_at: parsedDate,
+      };
+
+      setIsProcessing(true);
+
+      response = await Api("post", "/quotes/accept", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToOrders();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
+
+  const navToOrders = () => {
+    props.handleClose();
+    navigate("/orders");
+  };
+
+  return (
+    <div
+      className="tqs_sqm_container"
+      style={{
+        height: "40vh",
+      }}
+    >
+      <p
+        style={{
+          fontSize: "20px",
+          fontWeight: "900",
+          marginBottom: "5%",
+        }}
+      >
+        Book call (on schedule) for measurement
+      </p>
+      <div
+        className="pa_profile_section_input_container"
+        style={{
+          borderRadius: "20px",
+          marginTop: "2%",
+          marginBottom: "1%",
+        }}
+      >
+        <div className="pa_profile_section_input_label">
+          <p className="pa_profile_section_input_text">Set Date</p>
+        </div>
+        <div className="pa_profile_section_input_input">
+          <CustomDatePicker
+            disablePast
+            labelStyle={{
+              display: "none",
+            }}
+            value={date}
+            onChange={(e) => setDate(e)}
+          />
+        </div>
+      </div>
+      <div
+        className="pa_profile_section_input_container"
+        style={{
+          borderRadius: "20px",
+          marginTop: "2%",
+          marginBottom: "1%",
+        }}
+      >
+        <div className="pa_profile_section_input_label">
+          <p className="pa_profile_section_input_text">Set a Time</p>
+        </div>
+        <div className="pa_profile_section_input_input">
+          <CustomTimePicker
+            labelStyle={{
+              display: "none",
+            }}
+            value={time}
+            onChange={(e) => setTime(e)}
+          />
+        </div>
+      </div>
+      <div
+        className="tvqs_sq_buttons"
+        style={{
+          marginTop: "2%",
+        }}
+      >
+        <CustomButton
+          text="Cancel"
+          style={{
+            boxShadow: "none",
+            marginRight: "10pt",
+          }}
+          onClick={props.handleClose}
+        />
+        <CustomButton
+          text="I agree"
+          style={{
+            boxShadow: "none",
+          }}
+          onClick={handleSubmit}
+        />
+      </div>
+    </div>
+  );
+};
+
+const RejectQuoteModal = (props) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        quote: props.quote._id,
+      };
+
+      response = await Api("post", "/quotes/reject", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToAds();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
+
+  const navToAds = () => {
+    props.handleClose();
+    navigate("/my_ads");
+  };
+
+  return (
+    <div
+      className="tqs_sqm_container"
+      style={{
+        height: "40vh",
+      }}
+    >
+      <p
+        style={{
+          color: "#ACACAC",
+          fontSize: "16px",
+          fontWeight: "100",
+          marginBottom: "5%",
+        }}
+      >
+        Voulez-vous vraiment supprimer ce devis de paiement ?
+      </p>
       <div className="tvqs_sq_buttons">
         <CustomButton
           text="Cancel"
