@@ -87,7 +87,7 @@ function TailorSearchResultsScreen() {
           />
         ))}
         <CustomButton
-          text="View All"
+          text={t("See All")}
           style={{
             alignSelf: "center",
             boxShadow: "none",
@@ -109,7 +109,7 @@ function SearchInput({ setSearchQuery, callback }) {
     >
       <input
         type="text"
-        placeholder="Search"
+        placeholder={t("Search")}
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />

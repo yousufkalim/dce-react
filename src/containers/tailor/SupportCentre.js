@@ -9,27 +9,31 @@ function SupportCentre() {
   let data = [
     {
       name: "Kurta Shalwar",
-      description:
-        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
-      review: "Review",
+      description: t(
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments "
+      ),
+      review: t("Review"),
     },
     {
-      name: "Bride Dress",
-      description:
-        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
-      review: "Pending",
+      name: t("Bride Dress"),
+      description: t(
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments "
+      ),
+      review: t("Pending"),
     },
     {
       name: "T-Shirt",
-      description:
-        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
-      review: "Completed",
+      description: t(
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments "
+      ),
+      review: t("Completed"),
     },
     {
       name: "Trouser",
-      description:
-        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
-      review: "Completed",
+      description: t(
+        "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments "
+      ),
+      review: t("Completed"),
     },
   ];
   return (
@@ -44,9 +48,9 @@ function SupportCentre() {
         <div className="thiw_qna_standard_screen_row1">
           <h1 className="supportheading">Support Center</h1>
           <p className="suppordesc">
-            In just a few clicks, Design Créations allows you to find one-off
-            assignments in the production and manufacture of clothing,
-            decorative elements or household linen.
+            {t(
+              "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen."
+            )}
           </p>
         </div>
         {data.map((item) => (
@@ -69,7 +73,7 @@ function Support({ item }) {
         </div>
 
         <div className="supportReview">
-          <button className="chatBtn">Chat With Us</button>
+          <button className="chatBtn">{t("Chat With Us")}</button>
 
           <h1 className="supportR">{item.review}</h1>
         </div>

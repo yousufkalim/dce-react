@@ -170,8 +170,9 @@ i18n
           discarded: "discarded",
           "In just a few clicks, Design Créations allows you to find one-off assignments in":
             "In just a few clicks, Design Créations allows you to find one-off assignments in",
-          "in the production and manufacture of clothing, decorative elements":
-            "in the production and manufacture of clothing, decorative elements",
+
+          "in the production and manufacture of clothing, decorative elements.":
+            "in the production and manufacture of clothing, decorative elements.",
 
           "or household linen.": "or household linen.",
           "1 . Find the right clients for you":
@@ -271,6 +272,8 @@ i18n
           "Cancellation of contract": "Cancellation of contract",
           "The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.":
             "The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.",
+          "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ":
+            "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ",
 
           //viewOrder
           "Want to complete this order": "Want to complete this order",
@@ -439,10 +442,13 @@ i18n
           "In just a few clicks, Design Créations allows you to find one-off assignments in":
             "En quelques clics, Design Créations vous permet de trouver des missions ponctuelles dans",
 
-          "in the production and manufacture of clothing, decorative elements":
-            "dans la production et la fabrication de vêtements, d'éléments décoratifs",
+          "in the production and manufacture of clothing, decorative elements.":
+            "dans la production et la fabrication de vêtements, d'éléments décoratifs.",
 
           "or household linen.": "ou linge de maison.",
+
+          "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ":
+            "En quelques clics, Design Créations vous permet de trouver des missions ponctuelles dans la production et la confection de vêtements, d'éléments de décoration ou de linge de maison. En quelques clics, Design Créations vous permet de trouver des missions ponctuelles",
           "1 . Find the right clients for you":
             "1 . Trouvez les bons clients pour vous",
           "Design creation puts you in touch with potential customers suited to your profile":
