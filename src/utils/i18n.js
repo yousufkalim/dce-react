@@ -27,6 +27,7 @@ i18n
           Designers: "Designers",
           Orders: "Orders",
           "My Ads": "My Ads",
+          Quotes: "Quotes",
           Chats: "Chats",
           "Terms and Conditions": "Terms and Conditions",
           Profile: "Profile",
@@ -240,6 +241,8 @@ i18n
           "Chat With Us": "Chat With Us",
           "Certain Amount": "Certain Amount",
           "Any Confection": "Any Confection",
+          "Search Input can't be empty": "Search Input can't be empty",
+
           "Shop Name": "Shop Name",
 
           // terms n conditions
@@ -309,6 +312,8 @@ i18n
           Chats: "Chats",
           "Terms and Conditions": "Termes et conditions",
           Profile: "Profil",
+          Quotes: "Devis",
+
           Support: "Soutien",
           Logout: "Se déconnecter",
 
@@ -356,6 +361,9 @@ i18n
           "Last Online": "Dernière connexion",
           Chats: "Chats",
           "Recent Chats": "Chats récents",
+          "Search Input can't be empty":
+            "L'entrée de recherche ne peut pas être vide",
+
           Messages: "messages",
           Delete: "Supprimer",
 
