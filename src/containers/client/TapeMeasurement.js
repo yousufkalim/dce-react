@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -14,7 +14,7 @@ import * as ParseMeasurement from "../../components/ParseMeasurement";
 
 import Api from "../../api/index";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
@@ -24,6 +24,9 @@ const steps = ["Circumference", "Length"];
 
 function ClientTapeMeasurementScreen() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const state = location.state;
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -44,6 +47,10 @@ function ClientTapeMeasurementScreen() {
     arm_length: "",
     leg_length: "",
   });
+
+  useEffect(() => {
+    // TODO: Ad the check for state here.
+  }, []);
 
   const circumferenceSectionCallback = () => {
     const isValidated =
@@ -77,18 +84,17 @@ function ClientTapeMeasurementScreen() {
       setIsProcessing(true);
 
       const body = {
-        circumference: circumferenceSection,
-        lenght: lengthSection,
-      }; // Change this to string of measurement field and call accept quote API here.
+        quote: state.quote._id,
+        measurements: measurmentsObjMaker(),
+      }; // TODO: Change this to string of measurements field and call accept quote API here.
 
       console.log(body);
-      return;
 
-      response = await Api("post", "/orders", body);
+      response = await Api("post", "/quotes/accept", body);
 
       if (response?.data?.success) {
-        toast.success("Ad created successfully.");
-        navToMyAds();
+        toast.success("Quote accepted successfully.");
+        navToOrders();
       }
     } catch (e) {
       console.trace(e);
@@ -97,8 +103,34 @@ function ClientTapeMeasurementScreen() {
     setIsProcessing(false);
   };
 
-  const navToMyAds = () => {
-    navigate("/my_ads");
+  const measurmentsObjMaker = () => {
+    let str = `
+    Arm Cirmunference: ${circumferenceSection.arm},
+    Chest Cirmunference: ${circumferenceSection.chest},
+    Waist Cirmunference: ${circumferenceSection.waist},
+    Hip Cirmunference: ${circumferenceSection.hip},
+    Thigh Cirmunference: ${circumferenceSection.thigh},
+    Calf Cirmunference: ${circumferenceSection.calf},
+    Ankle Cirmunference: ${circumferenceSection.ankle},
+    Head To Floor Length: ${lengthSection.head_to_floor},
+    Shoulder To Floor Length: ${lengthSection.shoulder_to_floor},
+    Waist To Floor Length: ${lengthSection.waist_to_floor},
+    Arm Length: ${lengthSection.arm_length},
+    Leg Length: ${lengthSection.leg_length}
+    `;
+
+    str.replace("\n", " ");
+
+    const obj = {
+      type: "tape",
+      value: str,
+    };
+
+    return obj;
+  };
+
+  const navToOrders = () => {
+    navigate("/orders");
   };
 
   return (

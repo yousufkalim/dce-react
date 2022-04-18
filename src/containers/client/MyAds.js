@@ -221,35 +221,6 @@ function AdQuoteListTile(props) {
     handleIsAcceptQuoteModalOpen(e);
   };
 
-  // const _acceptQuote = async (event, id) => {
-  //   event.preventDefault();
-
-  //   if (isProcessing) {
-  //     return;
-  //   }
-
-  //   let response;
-
-  //   try {
-  //     setIsProcessing(true);
-
-  //     const body = {
-  //       quote: id,
-  //     };
-
-  //     response = await Api("post", "/quotes/accept", body);
-
-  //     if (response?.data?.success) {
-  //       toast.success(response.data.message);
-  //       getAds();
-  //     }
-  //   } catch (e) {
-  //     console.trace(e);
-  //   }
-
-  //   setIsProcessing(false);
-  // };
-
   const rejectQuote = async (event, id) => {};
 
   // const _rejectQuote = async (event, id) => {
@@ -409,15 +380,60 @@ function AdQuoteListTile(props) {
 }
 
 const AcceptQuoteModal = (props) => {
+  const [isProcessing, setIsProcessing] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
 
   const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(props.order);
+    if (props.order.measurements.type == "static") {
+      handleStaticMeasurements();
+    } else if (props.order.measurements.type == "tape") {
+      navToTapeMeasurement();
+    } else {
+      // TODO: Do something here.
+    }
+  };
+
+  const handleStaticMeasurements = async () => {
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        quote: props.quote._id,
+      };
+
+      response = await Api("post", "/quotes/accept", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToOrders();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
 
   const navToTapeMeasurement = () => {
     props.handleClose();
     navigate("/tape_measurement", {
       state: { order: props.order, quote: props.quote },
     });
+  };
+
+  const navToOrders = () => {
+    props.handleClose();
+    navigate("/orders");
   };
 
   return (
@@ -478,7 +494,7 @@ const AcceptQuoteModal = (props) => {
           style={{
             boxShadow: "none",
           }}
-          onClick={navToTapeMeasurement}
+          onClick={handleSubmit}
         />
       </div>
     </div>

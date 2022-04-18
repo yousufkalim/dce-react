@@ -80,6 +80,7 @@ function ClientViewOrderScreen() {
 
   return (
     <>
+      {console.log(ad)}
       {isLoading ? (
         <></>
       ) : (
