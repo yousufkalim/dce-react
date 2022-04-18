@@ -105,7 +105,7 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Phone"
-                    placeholder="Phone"
+                    placeholder={t("Phone")}
                     defaultValue={client.phone}
                     img={ProfilePhoneSVG}
                     divStyle={{
@@ -124,7 +124,7 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Date Of Birth"
-                    placeholder="Date Of Birth"
+                    placeholder={t("Date Of Birth")}
                     defaultValue={new Date(client.dob).toLocaleDateString(
                       "en-US"
                     )}
@@ -140,7 +140,7 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Country"
-                    placeholder="Country"
+                    placeholder={t("Country")}
                     defaultValue={client.country}
                     img={ProfileCountrySVG}
                     divStyle={{
@@ -151,14 +151,14 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="City"
-                    placeholder="City"
+                    placeholder={t("City")}
                     defaultValue={client.city}
                     img={ProfileCitySVG}
                   />
                   <ProfileInput
                     disabled
                     name="Location"
-                    placeholder="Location"
+                    placeholder={t("Location")}
                     defaultValue={client.address}
                     img={ProfileLocationSVG}
                     divStyle={{
@@ -220,7 +220,7 @@ function ProfileInput({
           className="tps_profile_input_input"
           name={name}
           onChange={onChange}
-          placeholder={placeholder}
+          placeholder={t(placeholder)}
           defaultValue={defaultValue}
           type={inputType}
           style={{ color: "black" }}

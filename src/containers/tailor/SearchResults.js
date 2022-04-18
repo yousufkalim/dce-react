@@ -76,7 +76,9 @@ function TailorSearchResultsScreen() {
             color: "gray",
           }}
         >
-          <p>{orders.length} Orders Found</p>
+          <p>
+            {orders.length} {t("Orders Found")}
+          </p>
         </div>
         {orders.map((_) => (
           <SingleResult
