@@ -113,7 +113,7 @@ function ClientCreateOrderScreen() {
       body.append("category", basicSection.category);
       body.append("name", basicSection.name);
       body.append("cut", basicSection.cut);
-      body.append("measurements", basicSection.measurements);
+      body.append("measurements", JSON.stringify(basicSection.measurements));
       body.append("color", basicSection.color);
       body.append("fabric", basicSection.fabric);
       body.append(

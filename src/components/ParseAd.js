@@ -226,7 +226,11 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled}
+              disabled={
+                disabled ||
+                state.measurements.type == "tape" ||
+                state.measurements.type == "call"
+              }
               labelStyle={{
                 display: "none",
               }}
