@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 
 import Api from "../api";
 import assetsURL from "../utils/Assets";
+import { useTranslation } from "react-i18next";
 
 import { Store, UpdateStore } from "../StoreContext";
 
@@ -109,6 +110,12 @@ function TailorAppBar({
     return;
   };
 
+  const { i18n } = useTranslation();
+  const { language } = i18n;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <div
       className="appbar_container"
@@ -193,6 +200,7 @@ function TailorAppBar({
             src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
             onClick={handleClickProfile}
           />
+
           <Menu
             id="basic-menu"
             anchorEl={anchorElProfile}
@@ -202,6 +210,13 @@ function TailorAppBar({
               "aria-labelledby": "basic-button",
             }}
           >
+            <MenuItem
+              onClick={() =>
+                changeLanguage(`${language == "en" ? "fr" : "en"}`)
+              }
+            >
+              {language == "fr" ? "French" : "English"}
+            </MenuItem>
             <MenuItem onClick={navToProfile}>Profile</MenuItem>
             <MenuItem onClick={navToSupport}>Support</MenuItem>
             <MenuItem onClick={navToTermsAndConditions}>
