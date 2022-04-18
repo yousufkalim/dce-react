@@ -70,7 +70,7 @@ function TailorEditCatalogScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Edit Catalogue
+                  {t("Edit Catalogue")}
                 </p>
                 <div className="tccs_input_section_container" style={{}}>
                   <div className="pa_content_row">
@@ -158,6 +158,7 @@ function InputSection(props) {
   const navToCatalogs = () => {
     navigate("/catalog");
   };
+  const { t } = useTranslation();
 
   return (
     <>
@@ -170,7 +171,7 @@ function InputSection(props) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Name</p>
+            <p className="pa_profile_section_input_text">{t("Name")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -181,7 +182,7 @@ function InputSection(props) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Name of your Creation"
+              inputPlaceholder={t("Name of your Creation")}
               inputDefaultValue={state.name}
               onChange={(e) => _setState("name", e.target.value)}
             />
@@ -195,7 +196,7 @@ function InputSection(props) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Gender</p>
+            <p className="pa_profile_section_input_text">{t("Gender")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -204,12 +205,12 @@ function InputSection(props) {
               }}
               selectID="gender"
               selectName="gender"
-              selectNullValue="Select gender"
+              selectNullValue={t("Select gender")}
               selectValue={state.gender}
               onChange={(e) => _setState("gender", e.target.value)}
               menuItems={[
-                <MenuItem value={"male"}>Male</MenuItem>,
-                <MenuItem value={"female"}>Female</MenuItem>,
+                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: "12px",
@@ -219,7 +220,7 @@ function InputSection(props) {
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Category</p>
+            <p className="pa_profile_section_input_text">{t("Category")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -228,14 +229,14 @@ function InputSection(props) {
               }}
               selectID="category"
               selectName="category"
-              selectNullValue="Select category"
+              selectNullValue={t("Select category")}
               selectValue={state.category}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
-                <MenuItem value={"MAN"}>MAN</MenuItem>,
-                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
-                <MenuItem value={"Other"}>Other</MenuItem>,
+                <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
+                <MenuItem value={"MAN"}>{t("MAN")}</MenuItem>,
+                <MenuItem value={"CHILD"}>{t("CHILD")}</MenuItem>,
+                <MenuItem value={"Other"}>{t("Other")}</MenuItem>,
               ]}
             />
           </div>
@@ -249,7 +250,7 @@ function InputSection(props) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Price</p>
+            <p className="pa_profile_section_input_text">{t("Price")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -260,7 +261,7 @@ function InputSection(props) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Set your Price"
+              inputPlaceholder={t("Set your Price")}
               inputDefaultValue={state.price}
               onChange={(e) => _setState("price", e.target.value)}
             />
@@ -275,12 +276,12 @@ function InputSection(props) {
           }}
         >
           <div className="pa_payment_section_textarea_label">
-            <p className="pa_profile_section_input_text">Description</p>
+            <p className="pa_profile_section_input_text">{t("Description")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <textarea
               className="pa_profile_section_textarea_textarea"
-              placeholder="Tell us about your service"
+              placeholder={t("Tell us about your service")}
               onChange={(e) => _setState("description", e.target.value)}
             >
               {state.description}
@@ -295,7 +296,7 @@ function InputSection(props) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Attachments</p>
+            <p className="pa_profile_section_input_text">{t("Attachments")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -314,7 +315,7 @@ function InputSection(props) {
           </div>
         </div>
         <CustomButton
-          text="Edit Catalog"
+          text={t("Edit Catalogue")}
           onClick={handleSubmit}
           style={{
             marginTop: "3%",
