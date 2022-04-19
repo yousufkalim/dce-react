@@ -53,7 +53,7 @@ function ClientTailorsScreen() {
             className="client_orders_screen_row1_text"
             style={{ paddingLeft: "3%" }}
           >
-            Designers
+            {t("Designers")}
           </p>
         </div>
         <div className="client_orders_screen_row2">
@@ -67,6 +67,8 @@ function ClientTailorsScreen() {
 }
 
 function TailorListTile(props) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(props.ratings);
   const ratingsCount = calculateRatingsCount(props.ratings);
 
@@ -139,7 +141,7 @@ function TailorListTile(props) {
         </div>
         <div className="cds_tailor_list_tile_column1">
           <CustomButton
-            text="Chat Here"
+            text={t("Chat Here")}
             style={{ borderRadius: "20px" }}
             onClick={navToChat}
           />
