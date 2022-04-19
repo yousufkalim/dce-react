@@ -197,7 +197,7 @@ function ClientCreateAdScreen() {
                   {steps.map((v, i) => (
                     <Step key={v}>
                       <StepLabel onClick={() => setActiveStep(i)}>
-                        {v}
+                        {t(v)}
                       </StepLabel>
                     </Step>
                   ))}

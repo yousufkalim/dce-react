@@ -55,7 +55,9 @@ function Measurements() {
               <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map((v, i) => (
                   <Step key={v}>
-                    <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>
+                    <StepLabel onClick={() => setActiveStep(i)}>
+                      {t(v)}
+                    </StepLabel>
                   </Step>
                 ))}
               </Stepper>

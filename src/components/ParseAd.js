@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import dotted from "../assets/dottedblack.svg";
 import { grey } from "@mui/material/colors";
+import { useTranslation } from "react-i18next";
 
 import { materialFabrics, colors } from "../utils/Constants";
 import UploadSVG from "../assets/upload.svg";
@@ -25,7 +26,7 @@ const items = [
     measurements: "36,38,40",
   },
   {
-    size: "smaill",
+    size: "large",
     measurements: "42,44,46",
   },
 ];
@@ -39,6 +40,8 @@ function BasicSection({
   image,
   handleImageSelect,
 }) {
+  const { t } = useTranslation();
+
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -59,7 +62,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Gender</p>
+            <p className="pa_profile_section_input_text">{t("Gender")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -69,12 +72,12 @@ function BasicSection({
               }}
               selectID="gender"
               selectName="gender"
-              selectNullValue="Select gender for your creation"
+              selectNullValue={t("Select gender for your creation")}
               selectValue={state.gender}
               onChange={(e) => _setState("gender", e.target.value)}
               menuItems={[
-                <MenuItem value={"male"}>Male</MenuItem>,
-                <MenuItem value={"female"}>Female</MenuItem>,
+                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: "12px",
@@ -84,7 +87,7 @@ function BasicSection({
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Category</p>
+            <p className="pa_profile_section_input_text">{t("Category")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -94,14 +97,14 @@ function BasicSection({
               }}
               selectID="category"
               selectName="category"
-              selectNullValue="Select one category for your ad"
+              selectNullValue={t("Select one category for your ad")}
               selectValue={state.category}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
-                <MenuItem value={"MAN"}>MAN</MenuItem>,
-                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
-                <MenuItem value={"Other"}>Other</MenuItem>,
+                <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
+                <MenuItem value={"MAN"}>{t("MAN")}</MenuItem>,
+                <MenuItem value={"CHILD"}>{t("CHILD")}</MenuItem>,
+                <MenuItem value={"Other"}>{t("Other")}</MenuItem>,
               ]}
             />
           </div>
@@ -115,7 +118,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Name</p>
+            <p className="pa_profile_section_input_text">{t("Name")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -127,7 +130,7 @@ function BasicSection({
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Name of your creation"
+              inputPlaceholder={t("Name of your creation")}
               inputDefaultValue={state.name}
               onChange={(e) => _setState("name", e.target.value)}
             />
@@ -141,7 +144,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Cut</p>
+            <p className="pa_profile_section_input_text">{t("Cut")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -151,7 +154,7 @@ function BasicSection({
               }}
               selectID="cut"
               selectName="cut"
-              selectNullValue="Select size"
+              selectNullValue={t("Select size")}
               selectValue={state.cut}
               onChange={(e) => _setState("cut", e.target.value)}
               menuItems={[
@@ -183,12 +186,12 @@ function BasicSection({
           }}
         >
           <div>
-            <span className="measurements"> Standard size</span>{" "}
+            <span className="measurements"> {t("Standard size")}</span>{" "}
           </div>
           <div className="size-measurement-cont">
             {items.map((val) => (
               <div>
-                <span className="size">{val?.size} </span>{" "}
+                <span className="size">{t(val?.size)} </span>{" "}
                 <span className="measurements">{val?.measurements}</span>{" "}
               </div>
             ))}
@@ -203,7 +206,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Measurements</p>
+            <p className="pa_profile_section_input_text">{t("Measurements")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -215,7 +218,7 @@ function BasicSection({
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Write Measurement here"
+              inputPlaceholder={t("Write Measurement here")}
               inputDefaultValue={state.measurements}
               onChange={(e) => _setState("measurements", e.target.value)}
             />
@@ -223,11 +226,12 @@ function BasicSection({
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
-          *Bring a tape measure
+          {t("*Bring a tape measure")}
         </p>
         <p className="pa_profile_section_input_instructions_text">
-          *Measure either the circumference or the length depending on the part
-          of the body.
+          {t(
+            "*Measure either the circumference or the length depending on the part of the body."
+          )}
         </p>
         <div
           className="pa_profile_section_input_container"
@@ -241,7 +245,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Colour</p>
+            <p className="pa_profile_section_input_text">{t("Colour")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -251,7 +255,7 @@ function BasicSection({
               }}
               selectID="colour"
               selectName="colour"
-              selectNullValue="Select one colour for your Creations"
+              selectNullValue={t("Select one colour for your Creations")}
               selectValue={state.color}
               onChange={(e) => _setState("color", e.target.value)}
               menuItems={colors.map((_) => (
@@ -268,7 +272,9 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Material Fabrics</p>
+            <p className="pa_profile_section_input_text">
+              {t("Material Fabrics")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -278,7 +284,7 @@ function BasicSection({
               }}
               selectID="materialFabrics"
               selectName="materialFabrics"
-              selectNullValue="Select Fabric Style"
+              selectNullValue={t("Select Fabric Style")}
               selectValue={state.fabric}
               onChange={(e) => _setState("fabric", e.target.value)}
               menuItems={materialFabrics.map((_) => (
@@ -295,7 +301,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Attachments</p>
+            <p className="pa_profile_section_input_text">{t("Attachments")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
@@ -334,8 +340,8 @@ function BasicSection({
           />
           <label>
             {" "}
-            <span className="duw-text">Do you Want</span>{" "}
-            <span className="alteration-txt">ALTREATION SERVICE </span>
+            <span className="duw-text">{t("Do you Want")}</span>{" "}
+            <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
           </label>
         </div>
         {!onClick ? (
@@ -357,6 +363,8 @@ function BasicSection({
 }
 
 function DeliverySection({ state, setState, onClick, disabled }) {
+  const { t } = useTranslation();
+
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
 
@@ -396,7 +404,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Address</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Address")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -408,7 +418,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Delivery Address"
+              inputPlaceholder={t("Delivery Address")}
               inputDefaultValue={state.address}
               onChange={(e) => _setState("address", e.target.value)}
             />
@@ -416,7 +426,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Country</p>
+            <p className="pa_profile_section_input_text">{t("Country")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -426,7 +436,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               }}
               selectID="country"
               selectName="country"
-              selectNullValue="Country"
+              selectNullValue={t("Country")}
               selectValue={state.country}
               onChange={(e) => _setState("country", e.target.value)}
               menuItems={countries.map((_) => (
@@ -444,7 +454,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">City</p>
+            <p className="pa_profile_section_input_text">{t("City")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -454,7 +464,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               }}
               selectID="city"
               selectName="city"
-              selectNullValue="City"
+              selectNullValue={t("City")}
               selectValue={state.city}
               onChange={(e) => _setState("city", e.target.value)}
               menuItems={cities.map((_) => (
@@ -471,7 +481,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Note</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Note")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -483,7 +495,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Write any note regarding Delivery (Optional)"
+              inputPlaceholder={t(
+                "Write any note regarding Delivery (Optional)"
+              )}
               inputDefaultValue={state.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
@@ -497,7 +511,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Type</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Type")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -518,7 +534,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
-          *Select Delivery Type according to your Demands
+          {t("*Select Delivery Type according to your Demands")}
         </p>
         <div
           className="pa_profile_section_input_container"
@@ -529,7 +545,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Date</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Date")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
@@ -544,13 +562,13 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
-          *Select Date for delivery
+          {t("*Select Date for delivery")}
         </p>
         {!onClick ? (
           <></>
         ) : (
           <CustomButton
-            text="Write Here"
+            text={t("Write Here")}
             style={{
               marginTop: "3%",
               marginBottom: "10%",
@@ -566,6 +584,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
 }
 
 function NotesSection({ state, setState, buttonText, onClick, disabled }) {
+  const { t } = useTranslation();
+
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -586,7 +606,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Choose Method</p>
+            <p className="pa_profile_section_input_text">
+              {t("Choose Method")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -596,12 +618,12 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               }}
               selectID="payment_type"
               selectName="payment_type"
-              selectNullValue="Fixed Price"
+              selectNullValue={t("Fixed price")}
               selectValue={state.type}
-              onChange={(e) => _setState("type", e.target.value)}
+              onChange={(e) => _setState("type", t(e.target.value))}
               menuItems={[
-                <MenuItem value={"fixed"}>Fixed Price</MenuItem>,
-                <MenuItem value={"hourly"}>Hourly Rate</MenuItem>,
+                <MenuItem value={"fixed"}>{t("Fixed price")}</MenuItem>,
+                <MenuItem value={"hourly"}>{t("Hourly Rate")}</MenuItem>,
               ]}
             />
           </div>
@@ -614,7 +636,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">Set Minimum Price</p>
+            <p className="pa_payment_section_input_text">
+              {t("Set Minimum Price")}
+            </p>
           </div>
           <div className="pa_payment_section_input_input_container">
             <input
@@ -635,7 +659,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">Set Maximum Price</p>
+            <p className="pa_payment_section_input_text">
+              {t("Set Maximum Price")}
+            </p>
           </div>
           <div className="pa_payment_section_input_input_container">
             <input
@@ -656,7 +682,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Payment Note</p>
+            <p className="pa_profile_section_input_text">{t("Payment Note")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -668,7 +694,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Write any note regarding Payment (Optional)"
+              inputPlaceholder={t(
+                "Write any note regarding Payment (Optional)"
+              )}
               inputDefaultValue={state.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
@@ -692,7 +720,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              I agree to the design Confection Ethiques
+              {t("I agree to the design Confection Ethiques")}
             </p>
             <p
               className="terms-text"
@@ -701,7 +729,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 color: "#CC8E9C",
               }}
             >
-              Terms of Services
+              {t("Terms of Services")}
             </p>
             <p
               className="terms-text"
@@ -709,7 +737,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              and
+              {t("and")}
             </p>
             <p
               className="terms-text"
@@ -717,7 +745,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 color: "#CC8E9C",
               }}
             >
-              Privacy Policy
+              {t("Privacy Policy")}
             </p>
           </div>
         )}
@@ -725,7 +753,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           <></>
         ) : (
           <CustomButton
-            text={buttonText ?? "Publish Ad"}
+            text={buttonText ?? t("Publish Ad")}
             onClick={onClick}
             style={{
               margin: "7%",
@@ -739,6 +767,8 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
   );
 }
 function Circumference({ disabled }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div
@@ -749,7 +779,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Arm</p>
+          <p className="pa_profile_section_input_text">{t("Arm")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -761,7 +791,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("armSize", e.target.value)}
           />
         </div>
@@ -774,7 +804,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Chest size</p>
+          <p className="pa_profile_section_input_text">{t("Chest size")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -786,7 +816,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("chestSize", e.target.value)}
           />
         </div>
@@ -799,7 +829,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Waist size</p>
+          <p className="pa_profile_section_input_text">{t("Waist size")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -811,7 +841,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("waistSize", e.target.value)}
           />
         </div>
@@ -824,7 +854,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Hip</p>
+          <p className="pa_profile_section_input_text">{t("Hip")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -836,7 +866,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("hipSize", e.target.value)}
           />
         </div>
@@ -849,7 +879,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Thigh</p>
+          <p className="pa_profile_section_input_text">{t("Thigh")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -861,7 +891,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("thighSize", e.target.value)}
           />
         </div>
@@ -874,7 +904,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Calf</p>
+          <p className="pa_profile_section_input_text">{t("Calf")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -886,7 +916,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("calfSize", e.target.value)}
           />
         </div>
@@ -899,7 +929,7 @@ function Circumference({ disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Ankle</p>
+          <p className="pa_profile_section_input_text">{t("Ankle")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -911,7 +941,7 @@ function Circumference({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("ankleSize", e.target.value)}
           />
         </div>
@@ -930,6 +960,8 @@ function Circumference({ disabled }) {
   );
 }
 function Length({ disabled }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div
@@ -941,7 +973,7 @@ function Length({ disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            Head to floor height
+            {t("Head to floor height")}
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -954,7 +986,7 @@ function Length({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("headtofloorheight", e.target.value)}
           />
         </div>
@@ -968,7 +1000,7 @@ function Length({ disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            From shoulder to floor
+            {t("From shoulder to floor")}
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -981,7 +1013,7 @@ function Length({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("shouldertofloorheight", e.target.value)}
           />
         </div>
@@ -995,7 +1027,7 @@ function Length({ disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            From waist to floor
+            t{"From waist to floor"}
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -1008,7 +1040,7 @@ function Length({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("waisttofloorheight", e.target.value)}
           />
         </div>
@@ -1022,7 +1054,8 @@ function Length({ disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            Arm length <span style={{ color: "#A0A0A0" }}> (handle) </span>
+            {t("Arm length")}{" "}
+            <span style={{ color: "#A0A0A0" }}> {t("(handle)")} </span>
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -1035,7 +1068,7 @@ function Length({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("armlength", e.target.value)}
           />
         </div>
@@ -1049,7 +1082,7 @@ function Length({ disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            Leg length
+            {t("Leg length")}
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -1062,13 +1095,13 @@ function Length({ disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             onChange={(e) => _setState("leglength", e.target.value)}
           />
         </div>
       </div>
       <CustomButton
-        text={"Next"}
+        text={t("Next")}
         style={{
           marginTop: "2%",
           marginBottom: "7%",

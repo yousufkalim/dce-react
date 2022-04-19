@@ -209,7 +209,7 @@ function ClientEditAdScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
@@ -246,7 +246,7 @@ function ClientEditAdScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
@@ -321,7 +321,7 @@ function ClientEditAdScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
