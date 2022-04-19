@@ -4,6 +4,7 @@ import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import CatalogListTile from "../../components/CatalogListTile";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +12,7 @@ import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 
 const TailorCatalogScreen = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +60,7 @@ const TailorCatalogScreen = () => {
             industry.
           </p>
           <CustomButton
-            text="Add Catalog"
+            text={t("Add Catalogue")}
             type="submit"
             style={{
               background: "#fff",
@@ -73,12 +75,12 @@ const TailorCatalogScreen = () => {
         </div>
       </div>
       <div className="tailor_catalog_screen_row2">
-        <p className="tailor_catalog_screen_row2_text">My Catalog</p>
+        <p className="tailor_catalog_screen_row2_text">{t("My Catalogue")}</p>
         <div className="tailor_catalog_screen_row2_list_container">
           {catalogs.map((_) => (
             <CatalogListTile
               catalog={_}
-              buttonText="Edit"
+              buttonText={t("Edit")}
               onClick={() => navToViewCatalog(_._id)}
               onClickButton={() => navToEditCatalog(_._id)}
             />

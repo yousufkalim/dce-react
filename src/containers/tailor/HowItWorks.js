@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import Machine from "../../assets/machine.png";
 
 function TailorHowItWorksScreen() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-page-vertical">
       <TailorAppBar color="#FDFDFC" />
@@ -22,7 +25,7 @@ function TailorHowItWorksScreen() {
               paddingBottom: "1%",
             }}
           >
-            HOW ITS WORKS ?
+            {t("HOW IT WORKS ?")}
           </p>
           <p
             style={{
@@ -32,8 +35,9 @@ function TailorHowItWorksScreen() {
               paddingBottom: "5pt",
             }}
           >
-            In just a few clicks, Design Créations allows you to find one-off
-            assignments in
+            {t(
+              "In just a few clicks, Design Créations allows you to find one-off assignments in"
+            )}
           </p>
           <p
             style={{
@@ -43,7 +47,9 @@ function TailorHowItWorksScreen() {
               paddingBottom: "5pt",
             }}
           >
-            in the production and manufacture of clothing, decorative elements.
+            {t(
+              "in the production and manufacture of clothing, decorative elements."
+            )}
           </p>
           <p
             style={{
@@ -52,47 +58,57 @@ function TailorHowItWorksScreen() {
               color: "#A0A0A0",
             }}
           >
-            or household linen.
+            {t("or household linen.")}
           </p>
         </div>
         <div className="thiw_qna_standard_screen_row2">
           <QNAStandardListTile
-            question="1 . Find the right clients for you"
-            answer="Design creation puts you in touch with potential customers suited to your profile"
+            question={t("1 . Find the right clients for you")}
+            answer={t(
+              "Design creation puts you in touch with potential customers suited to your profile"
+            )}
           />
           <QNAStandardListTile
-            question="2 . Focus on the essentials"
-            answer="Design creation manages all the formalities relating to the provision of services"
+            question={t("2 . Focus on the essentials")}
+            answer={t(
+              "Design creation manages all the formalities relating to the provision of services"
+            )}
           />
           <QNAStandardListTile
-            question="3 . Post your ad (offer) in just a few clicks"
-            answer="Post your add in 3 steps"
+            question={t("3 . Post your ad (offer) in just a few clicks")}
+            answer={t("Post your add in 3 steps")}
           />
           <QNAListListTile
-            question="Seamstress selection based on the following criteria:"
+            question={t(
+              "Seamstress selection based on the following criteria:"
+            )}
             answers={[
-              "Reliability / Seriousness",
-              "Rating on the site",
-              "Customers' opinion",
-              "Tailoring time",
-              "Passionate",
-              "Enthusiastic",
-              "Available",
-              "Skills",
-              "Know how",
+              t("Reliability / Seriousness"),
+              t("Rating on the site"),
+              t("Customers' opinion"),
+              t("Tailoring time"),
+              t("Passionate"),
+              t("Enthusiastic"),
+              t("Available"),
+              t("Skills"),
+              t("Know how"),
             ]}
           />
           <QNAListListTile
-            question="General skills"
+            question={t("General skills")}
             answers={[
-              "Know and master the techniques of making a garment (cutting, stitching, etc.)",
-              "Have knowledge of the different fabrics, materials, colors",
-              "Make drawings, sketches",
-              "Operate the right machinery",
-              "Prepare detailed quotes",
-              "Meet deadlines",
-              "Have knowledge of management",
-              "Know how to handle computers, in particular the Design CREATION site",
+              t(
+                "Know and master the techniques of making a garment (cutting, stitching, etc.)"
+              ),
+              t("Have knowledge of the different fabrics, materials, colors"),
+              t("Make drawings, sketches"),
+              t("Operate the right machinery"),
+              t("Prepare detailed quotes"),
+              t("Meet deadlines"),
+              t("Have knowledge of management"),
+              t(
+                "Know how to handle computers in particular the Design CREATION site"
+              ),
             ]}
           />
         </div>

@@ -7,6 +7,7 @@ import ConversationsContainer from "../../components/Chat/ConversationsContainer
 import SearchSVG from "../../assets/search.svg";
 import Box from "@mui/material/Box";
 import CustomDropDown from "../../components/CustomDropDown";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
@@ -26,6 +27,8 @@ function useWindowSize() {
 }
 
 const ChatScreen = () => {
+  const { t } = useTranslation();
+
   const [width] = useWindowSize();
   const [mobiletoggle, setMobiletoggle] = useState(false);
   const OpenChat = () => {
@@ -135,16 +138,16 @@ const ChatScreen = () => {
               onClick={OpenChat}
               className="chat-left-bar"
             >
-              <h4>Chats</h4>
+              <h4>{t("Chats")}</h4>
               <div className="recentchats">
-                <p> Recent Chats</p>
+                <p> {t("Recent Chats")}</p>
                 <img className="recent-down-icon" src={ArrowSVG} />
               </div>
               <div className="search-msg-cont">
                 <img className="srch-icon" src={SearchSVG} />
-                <input className="search-msg-input" placeholder="Search" />
+                <input className="search-msg-input" placeholder={t("Search")} />
                 <select className="search-msg-dropdown">
-                  <option value="Messages">Messages</option>
+                  <option value="Messages">{t("Messages")}</option>
                   <option value="saab">Saab</option>
                   <option value="mercedes">Mercedes</option>
                   <option value="audi">Audi</option>

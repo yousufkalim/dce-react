@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import CustomButton from "../../components/CustomButton";
@@ -18,6 +19,7 @@ import assetsURL from "../../utils/Assets";
 
 function TailorQuotesScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [quotes, setQuotes] = useState([]);
@@ -119,7 +121,9 @@ function QuoteListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">Name of Creation</p>
+          <p className="cas_ad_list_tile_column1_item_key">
+            {t("Name of Creation")}
+          </p>
           <p
             className="cas_ad_list_tile_column1_item_value"
             style={{
@@ -135,7 +139,7 @@ function QuoteListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">Ad for</p>
+          <p className="cas_ad_list_tile_column1_item_key">{t("Ad for")}</p>
           <p className="cas_ad_list_tile_column1_item_value">
             {props.category}
           </p>
@@ -146,18 +150,20 @@ function QuoteListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">Delivery Date</p>
+          <p className="cas_ad_list_tile_column1_item_key">
+            {t("Delivery Date")}
+          </p>
           <p className="cas_ad_list_tile_column1_item_value">
             {new Date(props.delivery.date).toLocaleDateString("en-US")}
           </p>
         </div>
       </div>
       <div className="cas_ad_list_tile_column2">
-        <p className="cas_ad_list_tile_column2_title">min</p>
+        <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
         <p className="cas_ad_list_tile_column2_description">
           {`${props.budget.min_price}$`}
         </p>
-        <p className="cas_ad_list_tile_column2_title">max</p>
+        <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
         <p className="cas_ad_list_tile_column2_description">
           {`${props.budget.max_price}$`}
         </p>
@@ -167,7 +173,7 @@ function QuoteListTile(props) {
             color: "#CC8E9C",
           }}
         >
-          Range
+          {t("Range")}
         </p>
       </div>
       <div className="cas_ad_list_tile_column2">
@@ -181,19 +187,21 @@ function QuoteListTile(props) {
           {props.quotes.length}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-          Responses
+          {t("Responses")}
         </p>
       </div>
       <div className="tqs_quote_list_tile_column5">
         <div className="tqs_quote_list_tile_column5_buttons">
           {props.quotes.some((_) => _.tailor._id == user._id) ? (
             <>
-              <p style={{ fontSize: "16px", fontWeight: "900" }}>Offer Sent</p>
+              <p style={{ fontSize: "16px", fontWeight: "900" }}>
+                {t("Offer Sent")}
+              </p>
             </>
           ) : (
             <>
               <CustomButton
-                text="Send Offer"
+                text={t("Send Offer")}
                 style={{
                   boxShadow: "none",
                   marginBottom: "10px",
@@ -209,7 +217,7 @@ function QuoteListTile(props) {
                 }}
                 onClick={navToChat}
               >
-                Chat Here
+                {t("Chat Here")}
               </p>
             </>
           )}
@@ -218,7 +226,7 @@ function QuoteListTile(props) {
       <Modal
         open={isSendOfferModal}
         onClose={handleSendOfferModalClose}
-        aria-labelledby="Send Offer"
+        aria-labelledby={t("Send Offer")}
       >
         <SendQuote handleClose={handleSendOfferModalClose} />
       </Modal>
@@ -238,7 +246,7 @@ function SendQuote({ handleClose }) {
         }}
       >
         <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">Price</p>
+          <p className="tqs_sqm_input_text">{t("Price")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <CustomInput
@@ -249,7 +257,7 @@ function SendQuote({ handleClose }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Set Your Price"
+            inputPlaceholder={t("Set Your Price")}
           />
         </div>
       </div>
@@ -262,17 +270,17 @@ function SendQuote({ handleClose }) {
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">Description</p>
+          <p className="tqs_sqm_input_text">{t("Description")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
             className="tqs_sqm_textarea_textarea"
-            placeholder="Tell us"
+            placeholder={"Tell us"}
           ></textarea>
         </div>
       </div>
       <CustomButton
-        text="Send Offer"
+        text={t("Send Offer")}
         style={{
           boxShadow: "none",
           marginBottom: "10px",

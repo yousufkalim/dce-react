@@ -5,6 +5,7 @@ import UserSVG from "../../assets/User.svg";
 import TailorAppBar from "../../components/TailorAppBar";
 import CustomButton from "../../components/CustomButton";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorOrdersScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -139,8 +141,10 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">Orders Requests</p>
-            <CustomButton text="See All Requests" />
+            <p className="client_orders_screen_row1_text">
+              {t("Orders Requests")}
+            </p>
+            <CustomButton text={t("See All Requests")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersRequest.map((_) => (
@@ -160,8 +164,8 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">In Progress</p>
-            <CustomButton text="See All Orders" />
+            <p className="client_orders_screen_row1_text">{t("In Progress")}</p>
+            <CustomButton text={t("See All Orders")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersInProgress.map((_) => (
@@ -181,8 +185,8 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">Completed</p>
-            <CustomButton text="See All Orders" />
+            <p className="client_orders_screen_row1_text">{t("Completed")}</p>
+            <CustomButton text={t("See All Orders")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersCompleted.map((_) => (
@@ -201,8 +205,8 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">Discarded</p>
-            <CustomButton text="See All Orders" />
+            <p className="client_orders_screen_row1_text">{t("Discarded")}</p>
+            <CustomButton text={t("See All Orders")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersDiscarded.map((_) => (

@@ -307,7 +307,7 @@ function ClientViewTailorScreen() {
                   marginRight: "2%",
                 }}
               >
-                Catalog
+                Catalogue
               </p>
               <div className="tailor_profile_screen_row3_list_container">
                 {catalogs.map((_) => (

@@ -15,9 +15,11 @@ import dotted from "../assets/dotted.svg";
 import Api from "../api";
 import assetsURL from "../utils/Assets";
 import { Store, UpdateStore } from "../StoreContext";
+import { useTranslation } from "react-i18next";
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
+
   useEffect(() => {
     const handleResize = () => {
       setSize([window.innerWidth]);
@@ -106,7 +108,11 @@ function ClientAppBar({
   const mobilemenu = () => {
     setToggle(!toggle);
   };
-
+  const { i18n } = useTranslation();
+  const { language } = i18n;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <>
       <div
@@ -172,6 +178,13 @@ function ClientAppBar({
                 "aria-labelledby": "basic-button",
               }}
             >
+              <MenuItem
+                onClick={() =>
+                  changeLanguage(`${language == "en" ? "fr" : "en"}`)
+                }
+              >
+                {language == "fr" ? "French" : "English"}
+              </MenuItem>
               <MenuItem onClick={navToProfile}>Profile</MenuItem>
               <MenuItem onClick={navToSupport}>Support</MenuItem>
               <MenuItem onClick={navToTermsAndConditions}>
