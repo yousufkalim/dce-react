@@ -23,6 +23,7 @@ i18n
           "See all": "See all",
           Search: "Search",
           "Place New Ad": "Place New Ad",
+          "Place this Order": "Place this Order",
 
           //client navbar
           Designers: "Designers",
@@ -334,6 +335,7 @@ i18n
           Password: "Mot de passe",
           "Account Created": "Compte créé",
           "Ad updated successfully.": "Annonce mise à jour avec succès.",
+          "Place this Order": "Passer cette commande",
 
           //order
           "Orders List": "Liste des commandes",
