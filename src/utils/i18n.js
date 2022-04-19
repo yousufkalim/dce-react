@@ -103,7 +103,7 @@ i18n
           Measure: "Measure",
 
           //orderFromCatalog
-          "Catalog Price": "Catalog Price",
+          "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
           "Place Order": "Place Order",
 
@@ -134,7 +134,7 @@ i18n
           //catalogue
           "My Catalogue": "My Catalogue",
           Diploma: "Diploma",
-
+          Feedback: "Feedback",
           //clientProfile
           Order: "Order",
           Bill: "Bill",
@@ -247,6 +247,7 @@ i18n
           "Certain Amount": "Certain Amount",
           "Any Confection": "Any Confection",
           "Search Input can't be empty": "Search Input can't be empty",
+          "Feedback provided successfully.": "Feedback provided successfully.",
 
           "Shop Name": "Shop Name",
           "Ad created successfully.": "Ad created successfully.",
@@ -310,6 +311,7 @@ i18n
           "Orders List": "Liste des commandes",
           "See all": "Voir tout",
           Search: "Recherche",
+          Feedback: "Retour",
 
           //client navbar
           Designers: "Créateurs",
@@ -347,6 +349,8 @@ i18n
           Cancel: "Annuler",
           Details: "Des détails",
           "Place Your Order": "Passer votre commande",
+          "Feedback provided successfully.":
+            "Commentaires fournis avec succès.",
 
           //my ads
           Ads: "Les publicités",
@@ -388,7 +392,7 @@ i18n
           Measure: "Mesure",
 
           //orderFromCatalog
-          "Catalog Price": "Prix ​​catalogue",
+          "Catalogue Price": "Prix ​​catalogue",
           "Extra Note": "Remarque supplémentaire",
           "Place Order": "Passer la commande",
 

@@ -66,11 +66,11 @@ function ClientOrdersScreen() {
         }}
       >
         <div className="client_orders_screen_row1">
-          <p className="client_orders_screen_row1_text">Orders List</p>
+          <p className="client_orders_screen_row1_text">{t("Orders Lis")}t</p>
           <CustomButton
             padding={"15px 45px"}
             style={{ borderRadius: "15px", boxShadow: "none" }}
-            text="Place your order"
+            text={t("Place Your Order")}
             onClick={navToCreateAd}
           />
         </div>
@@ -89,6 +89,8 @@ function ClientOrdersScreen() {
 }
 
 function OrderListTile(props) {
+  const { t } = useTranslation();
+
   const [isFeedbackOrderModal, setIsFeedbackOrderModal] = useState(false);
 
   const handleFeedbackOrderModalClose = (e) => {
@@ -147,7 +149,7 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order</p>
+          <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
           <p className="cos_order_list_tile_column2_item_value">
             {props.order.name}
           </p>
@@ -158,7 +160,9 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Order Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
@@ -169,7 +173,9 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Delivery Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Delivery Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
@@ -182,13 +188,13 @@ function OrderListTile(props) {
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}$`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-          Bill
+          {t("Bill")}
         </p>
       </div>
       <div className="cos_order_list_tile_column4">
         {props.order.status == "completed" && props.order.client_submission ? (
           <CustomButton
-            text="Support"
+            text={t("Support")}
             padding={"10px 14px"}
             style={{
               borderRadius: "15px",
@@ -197,12 +203,12 @@ function OrderListTile(props) {
             }}
             onClick={(e) => {
               e.stopPropagation();
-              toast.success("Coming soon!");
+              toast.success(t("Coming soon!"));
             }}
           />
         ) : (
           <CustomButton
-            text="Feedback"
+            text={t("Feedback")}
             padding={"10px 14px"}
             style={{
               borderRadius: "15px",
@@ -233,6 +239,8 @@ function OrderListTile(props) {
 }
 
 const FeedbackOrderModal = (props) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -275,7 +283,7 @@ const FeedbackOrderModal = (props) => {
       response = await Api("post", "/orders/feedback", body);
 
       if (response?.data?.success) {
-        toast.success("Feedback provided successfully.");
+        toast.success(t("Feedback provided successfully."));
         props.handleClose();
         navToOrders();
       }
@@ -298,7 +306,7 @@ const FeedbackOrderModal = (props) => {
         }}
       >
         <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">Rating</p>
+          <p className="tqs_sqm_input_text">{t("Rating")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <Rating
@@ -319,7 +327,7 @@ const FeedbackOrderModal = (props) => {
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">Details</p>
+          <p className="tqs_sqm_input_text">{t("Details")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
@@ -332,7 +340,7 @@ const FeedbackOrderModal = (props) => {
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton
-          text="Cancel"
+          text={t("Cancel")}
           style={{
             boxShadow: "none",
             marginRight: "10pt",
@@ -340,7 +348,7 @@ const FeedbackOrderModal = (props) => {
           onClick={props.handleClose}
         />
         <CustomButton
-          text="Feedback"
+          text={t("Feedback")}
           style={{
             boxShadow: "none",
           }}
