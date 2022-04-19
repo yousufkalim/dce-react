@@ -66,7 +66,7 @@ function ClientCreateOrderScreen() {
       return;
     }
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
     setActiveStep(1);
@@ -92,7 +92,7 @@ function ClientCreateOrderScreen() {
     }
 
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
 
@@ -146,7 +146,7 @@ function ClientCreateOrderScreen() {
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
-        toast.success("Order created successfully.");
+        toast.success(t("Order created successfully."));
         navToMyAds();
       }
     } catch (e) {
@@ -178,7 +178,7 @@ function ClientCreateOrderScreen() {
                 marginBottom: "8%",
               }}
             >
-              Place Your Order
+              {t("Place Your Order")}
             </p>
             <img style={{ width: "70%" }} src={AdElaborationSVG} />
           </div>

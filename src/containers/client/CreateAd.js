@@ -65,7 +65,7 @@ function ClientCreateAdScreen() {
       return;
     }
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
     setActiveStep(1);
@@ -91,7 +91,7 @@ function ClientCreateAdScreen() {
     }
 
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
 
@@ -144,7 +144,7 @@ function ClientCreateAdScreen() {
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
-        toast.success("Ad created successfully.");
+        toast.success(t("Ad created successfully."));
         navToMyAds();
       }
     } catch (e) {

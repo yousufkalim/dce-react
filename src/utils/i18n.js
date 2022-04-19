@@ -33,6 +33,7 @@ i18n
           Profile: "Profile",
           Support: "Support",
           Logout: "Logout",
+          "Order created successfully.": "Order created successfully.",
 
           //Profile
           Edit: "Edit",
@@ -56,6 +57,7 @@ i18n
           Cancel: "Cancel",
           Details: "Details",
           "Place Your Order": "Place Your Order",
+          "Image must be selected": "Image must be selected",
 
           //my ads
           Ads: "Ads",
@@ -244,6 +246,7 @@ i18n
           "Search Input can't be empty": "Search Input can't be empty",
 
           "Shop Name": "Shop Name",
+          "Ad created successfully.": "Ad created successfully.",
 
           // terms n conditions
           "General informations": "General informations",
@@ -520,6 +523,9 @@ i18n
           Completed: "Terminé",
           "Support Center": "Centre de soutien",
           "Chat With Us": "Discute avec nous",
+          "Image must be selected": "L'image doit être sélectionnée",
+          "Ad created successfully.": "Annonce créée avec succès.",
+          "Order created successfully.": "Commande créée avec succès.",
 
           // terms n conditions
           "General informations": "Informations générales",
