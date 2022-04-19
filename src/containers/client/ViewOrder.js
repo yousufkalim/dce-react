@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import { useTranslation } from "react-i18next";
 
 import AdEdit1SVG from "../../assets/AdEdit1.svg";
 import AdEdit2SVG from "../../assets/AdEdit2.svg";
@@ -17,6 +18,8 @@ import { useParams } from "react-router-dom";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function ClientViewOrderScreen() {
+  const { t } = useTranslation();
+
   const params = useParams();
 
   const [isLoading, setIsLoading] = useState(true);

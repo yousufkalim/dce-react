@@ -181,7 +181,7 @@ function ClientCreateAdScreen() {
               }}
               onClick={navToCreateAd}
             >
-              Place Your Ad
+              {t("Place Your Ad")}
             </p>
             <img style={{ width: "70%" }} src={AdElaborationSVG} />
           </div>

@@ -25,6 +25,8 @@ import * as FormValidations from "../../utils/Validations";
 import assetsURL from "../../utils/Assets";
 
 function ClientProfileScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);

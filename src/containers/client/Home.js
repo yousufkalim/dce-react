@@ -14,6 +14,8 @@ import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 function ClientHomeScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);

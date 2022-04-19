@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 
 import error from "../../assets/errorfaqs.svg";
 function Faqs() {
+  const { t } = useTranslation();
+
   const [faqImage, setfaqImage] = useState(false);
   return (
     <>

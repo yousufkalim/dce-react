@@ -5,6 +5,7 @@ import ViewCatalogSVG from "../../assets/ViewCatalog.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 
 import CustomButton from "../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -14,6 +15,8 @@ import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function ClientViewCatalogScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 

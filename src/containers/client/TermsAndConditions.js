@@ -6,6 +6,8 @@ import Footer from "../../components/Footer";
 import { useTranslation } from "react-i18next";
 
 function ClientTermsAndConditionsScreen() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-page-vertical">
       <ClientAppBar color="#FDFDFC" />

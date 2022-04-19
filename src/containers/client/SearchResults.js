@@ -16,6 +16,8 @@ import assetsURL from "../../utils/Assets";
 import { toast } from "react-toastify";
 
 function ClientSearchResultsScreen() {
+  const { t } = useTranslation();
+
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
 

@@ -23,6 +23,8 @@ import * as FormValidations from "../../utils/Validations";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function OrderFromCatalogScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 

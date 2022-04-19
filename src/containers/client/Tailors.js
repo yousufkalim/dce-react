@@ -16,6 +16,8 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 import star from "../../assets/star.svg";
 
 function ClientTailorsScreen() {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(true);
   const [tailors, setTailors] = useState([]);
   const user = getUser();

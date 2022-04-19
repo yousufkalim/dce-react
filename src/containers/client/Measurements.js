@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 
 import * as ParseAd from "../../components/ParseAd";
 function Measurements() {
+  const { t } = useTranslation();
+
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["Circumference", "Length"];
 

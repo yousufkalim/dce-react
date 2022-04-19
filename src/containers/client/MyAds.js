@@ -17,6 +17,8 @@ import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function ClientAdsScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);

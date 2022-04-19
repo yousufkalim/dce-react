@@ -21,6 +21,8 @@ import { toast } from "react-toastify";
 import * as FormValidations from "../../utils/Validations";
 
 function ClientOrdersScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);

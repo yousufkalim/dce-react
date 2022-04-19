@@ -9,6 +9,7 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
@@ -25,6 +26,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import assetsURL from "../../utils/Assets";
 
 function ClientViewTailorScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
