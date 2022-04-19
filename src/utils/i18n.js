@@ -24,12 +24,14 @@ i18n
           Search: "Search",
           "Place New Ad": "Place New Ad",
           "Place this Order": "Place this Order",
+          "Privacy Policy": "Privacy Policy",
 
           //client navbar
           Designers: "Designers",
           Orders: "Orders",
           "My Ads": "My Ads",
           Quotes: "Quotes",
+          Help: "Help",
           Chats: "Chats",
           "Terms and Conditions": "Terms and Conditions",
           Profile: "Profile",
@@ -38,6 +40,8 @@ i18n
           "Order created successfully.": "Order created successfully.",
           "Ad updated successfully.": "Ad updated successfully.",
           Reviews: "Reviews",
+          ", Developed by Falcon Consulting. All rights reserved.":
+            ", Developed by Falcon Consulting. All rights reserved.",
 
           //Profile
           Edit: "Edit",
@@ -52,7 +56,6 @@ i18n
           "Account Created": "Account Created",
 
           //order
-          "Orders List": "Orders List",
           Order: "Order",
           "Order Date": "Order Date",
           "Delivery Date": "Delivery Date",
@@ -350,7 +353,6 @@ i18n
           "Place this Order": "Passer cette commande",
 
           //order
-          "Orders List": "Liste des commandes",
           Order: "Commande",
           "Order Date": "Date de commande",
           "Delivery Date": "La date de livraison",
@@ -415,7 +417,7 @@ i18n
           Speciality: "Spécialité",
 
           //Terms & Conditions
-          "Terms & Conditions": "termes et conditions",
+          "Terms & Conditions": "Termes et conditions",
 
           //ViewCatalog
           Description: "La description",
@@ -455,6 +457,8 @@ i18n
           Other: "Autre",
           Price: "Prix",
           Attachments: "Pièces jointes",
+          ", Developed by Falcon Consulting. All rights reserved.":
+            ", Développé par Falcon Consulting. Tous droits réservés.",
 
           //home
           Fabric: "Tissu",
@@ -474,6 +478,8 @@ i18n
           in_progress: "en cours",
           completed: "terminé",
           discarded: "mis au rebut",
+          Help: "Aider",
+          "Privacy Policy": "Politique de confidentialité",
           "In just a few clicks, Design Créations allows you to find one-off assignments in":
             "En quelques clics, Design Créations vous permet de trouver des missions ponctuelles dans",
 

@@ -66,7 +66,7 @@ function ClientOrdersScreen() {
         }}
       >
         <div className="client_orders_screen_row1">
-          <p className="client_orders_screen_row1_text">{t("Orders Lis")}t</p>
+          <p className="client_orders_screen_row1_text">{t("Orders List")}</p>
           <CustomButton
             padding={"15px 45px"}
             style={{ borderRadius: "15px", boxShadow: "none" }}
