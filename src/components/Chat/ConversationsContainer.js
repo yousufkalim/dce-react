@@ -5,6 +5,7 @@ import WritingSVG from "../../assets/writing.svg";
 import { Store, UpdateStore } from "../../StoreContext";
 import { getUser } from "../../utils/Auth";
 
+import Api from "../../api/index";
 import assetsURL from "../../utils/Assets";
 
 const ConversationsContainer = (props) => {
@@ -42,6 +43,23 @@ const ConversationListTile = (props) => {
 
   receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
 
+  const handleSelect = async () => {
+    let response;
+    try {
+      response = await Api("post", `/messages/byQuery`, {
+        chat: props._id,
+      });
+      const messagesData = response.data.messages;
+      updateStore({
+        chat: props,
+        messages: messagesData,
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
   return (
     <>
       <div
@@ -50,7 +68,9 @@ const ConversationListTile = (props) => {
           background: "#ffffff",
           borderRadius: "10px",
           marginBottom: "10px",
+          cursor: "pointer",
         }}
+        onClick={handleSelect}
       >
         <div className="parent">
           <div className="card-user">
@@ -91,7 +111,8 @@ const ConversationListTile = (props) => {
         </div>
         <div className="user-detail-parent">
           <p className="user-detail">{props.last_message?.content ?? "N/A"}</p>
-          {props.client_unread_messages || props.tailor_unread_messages ? (
+          {(user.role == "client" && props.client_unread_messages) ||
+          (user.role == "tailor" && props.tailor_unread_messages) ? (
             <div className="dot">
               {user.role == "client"
                 ? props.client_unread_messages

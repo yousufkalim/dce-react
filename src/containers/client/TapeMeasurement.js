@@ -86,7 +86,7 @@ function ClientTapeMeasurementScreen() {
       const body = {
         quote: state.quote._id,
         measurements: measurmentsObjMaker(),
-      }; // TODO: Change this to string of measurements field and call accept quote API here.
+      };
 
       console.log(body);
 

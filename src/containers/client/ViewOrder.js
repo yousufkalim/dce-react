@@ -80,12 +80,11 @@ function ClientViewOrderScreen() {
 
   return (
     <>
-      {console.log(ad)}
       {isLoading ? (
         <></>
       ) : (
         <div className="container-page">
-          <ClientAppBar color="#F8F4EF" activeTab={2} />
+          <ClientAppBar color="#F8F4EF" activeTab={1} />
           <div
             className="container"
             style={{

@@ -8,8 +8,8 @@ function NotificationsListTile(props) {
   const navigate = useNavigate();
 
   const navToLink = () => {
-    console.log("CSL", props.link);
     navigate(`/${props.link}`);
+    props.handleClose();
   };
 
   return (
@@ -42,7 +42,7 @@ function NotificationsListTile(props) {
           alignItems: "flex-start",
           justifyContent: "flex-start",
           marginLeft: "5pt",
-          marginRight: "30pt",
+          width: "13vw",
         }}
       >
         <p
@@ -59,7 +59,9 @@ function NotificationsListTile(props) {
             fontSize: "13px",
           }}
         >
-          {props.text}
+          {props.text.length < 35
+            ? props.text
+            : props.text.slice(0, 34) + "..."}
         </p>
       </div>
       <p

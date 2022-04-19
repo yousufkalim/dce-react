@@ -187,7 +187,10 @@ function ClientAppBar({
               }}
             >
               {notifications.map((_) => (
-                <NotificationsListTile {..._} />
+                <NotificationsListTile
+                  {..._}
+                  handleClose={handleCloseNotifications}
+                />
               ))}
             </Menu>
             <img

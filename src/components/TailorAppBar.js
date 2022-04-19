@@ -124,7 +124,7 @@ function TailorAppBar({
     try {
       response = await Api("get", `/notifications`);
       console.log(response.data);
-      const notificationsData = response.data.notifications;
+      const notificationsData = response.data.notifications.splice(-10);
       setNotifications(notificationsData);
     } catch (e) {
       console.trace(e);
@@ -216,7 +216,10 @@ function TailorAppBar({
             }}
           >
             {notifications.map((_) => (
-              <NotificationsListTile {..._} />
+              <NotificationsListTile
+                {..._}
+                handleClose={handleCloseNotifications}
+              />
             ))}
           </Menu>
           <img
