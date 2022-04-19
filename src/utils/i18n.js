@@ -106,6 +106,7 @@ i18n
           "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
           "Place Order": "Place Order",
+          "Send Message": "Send Message",
 
           //search results
           "Designers Found": "Designers Found",
@@ -215,6 +216,7 @@ i18n
           "Have knowledge of management": "Have knowledge of management",
           "Know how to handle computers in particular the Design CREATION site":
             "Know how to handle computers in particular the Design CREATION site",
+          View: "View",
 
           //order
           "Orders Requests": "Orders Requests",
@@ -326,6 +328,8 @@ i18n
           "Place New Ad": "Placer une nouvelle annonce",
           Support: "Soutien",
           Logout: "Se déconnecter",
+          "Send Message": "Envoyer le message",
+          View: "Voir",
 
           //Profile
           Edit: "Modifier",

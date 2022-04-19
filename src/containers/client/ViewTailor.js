@@ -121,7 +121,7 @@ function ClientViewTailorScreen() {
               <CustomButton
                 padding={"15px 37px"}
                 style={{ borderRadius: "15px", boxShadow: "none" }}
-                text="Send Message"
+                text={t("Send Message")}
                 onClick={navToChat}
               />
             </div>
@@ -158,7 +158,7 @@ function ClientViewTailorScreen() {
                 <ProfileInput
                   disabled
                   name="Phone"
-                  placeholder="Phone"
+                  placeholder={t("Phone")}
                   defaultValue={tailor.phone}
                   img={ProfilePhoneSVG}
                   divStyle={{
@@ -170,14 +170,14 @@ function ClientViewTailorScreen() {
                 <ProfileInput
                   disabled
                   name="Email"
-                  placeholder="Email"
+                  placeholder={t("Email")}
                   defaultValue={tailor.email}
                   img={ProfileEmailSVG}
                 />
                 <ProfileInput
                   disabled
                   name="Date Of Birth"
-                  placeholder="Date Of Birth"
+                  placeholder={t("Date Of Birth")}
                   defaultValue={new Date(tailor.dob).toLocaleDateString(
                     "en-US"
                   )}
@@ -197,21 +197,21 @@ function ClientViewTailorScreen() {
                   }}
                   disabled
                   name="Country"
-                  placeholder="Country"
+                  placeholder={t("Country")}
                   defaultValue={tailor.country}
                   img={ProfileCountrySVG}
                 />
                 <ProfileInput
                   disabled
                   name="City"
-                  placeholder="City"
+                  placeholder={t("City")}
                   defaultValue={tailor.city}
                   img={ProfileCitySVG}
                 />
                 <ProfileInput
                   disabled
                   name="Location"
-                  placeholder="Location"
+                  placeholder={t("Location")}
                   defaultValue={tailor.address}
                   img={ProfileLocationSVG}
                   divStyle={{
@@ -238,8 +238,8 @@ function ClientViewTailorScreen() {
                   <ProfileInput
                     disabled
                     name="Fixed price"
-                    placeholder="Certain Amount"
-                    label="Fixed price"
+                    placeholder={t("Certain Amount")}
+                    label={t("Fixed price")}
                     divStyle={{
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
@@ -252,7 +252,7 @@ function ClientViewTailorScreen() {
                     name="Any Confection"
                     placeholder="$120"
                     defaultValue={tailor.hourly_rate}
-                    label="Any Confection"
+                    label={t("Any Confection")}
                     inputType="number"
                     divStyle={{
                       borderBottomLeftRadius: "10px",
@@ -274,8 +274,8 @@ function ClientViewTailorScreen() {
                   <ProfileInput
                     disabled
                     name="Free Shipping"
-                    placeholder="Certain Amount"
-                    label="Free Shipping"
+                    placeholder={t("Certain Amount")}
+                    label={t("Free Shipping")}
                     divStyle={{
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
@@ -310,13 +310,13 @@ function ClientViewTailorScreen() {
                   marginRight: "2%",
                 }}
               >
-                Catalogue
+                {t("Catalogue")}
               </p>
               <div className="tailor_profile_screen_row3_list_container">
                 {catalogs.map((_) => (
                   <CatalogListTile
                     catalog={_}
-                    buttonText="View"
+                    buttonText={t("View")}
                     onClickButton={() => navToViewCatalog(_._id)}
                     onClick={console.log("XYZZ")}
                     mainDivStyle={{
@@ -333,7 +333,7 @@ function ClientViewTailorScreen() {
                   marginRight: "2%",
                 }}
               >
-                Orders
+                {t("Orders")}
               </p>
               <div className="tailor_profile_screen_row3_list_container">
                 <AddOrderListTile id={params.id} />
@@ -368,6 +368,8 @@ function ProfileInput({
   divStyle,
   alignText,
 }) {
+  const { t } = useTranslation();
+
   return (
     <div
       className="tps_profile_input_container"
@@ -424,6 +426,8 @@ function ProfileInput({
 }
 
 function AddOrderListTile(props) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToCreateOrder = () => {
@@ -435,7 +439,7 @@ function AddOrderListTile(props) {
       <div className="new_order_list_tile_img">
         <img style={{ width: "40%" }} src={AddCatalogSVG} />
       </div>
-      <p className="new_order_list_tile_text">Place Order</p>
+      <p className="new_order_list_tile_text">{t("Place Order")}</p>
     </div>
   );
 }
