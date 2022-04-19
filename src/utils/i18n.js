@@ -236,6 +236,7 @@ i18n
           //searchResults
           "Orders Found": "Orders Found",
           offer: "offer",
+          "Profile updated successfully.": "Profile updated successfully.",
 
           //support center
           Review: "Review",
@@ -296,6 +297,7 @@ i18n
           "Set your Price": "Set your Price",
           "Tell us about your service": "Tell us about your service",
           "Tell us": "Tell us",
+          Save: "Save",
         },
       },
       fr: {
@@ -367,6 +369,7 @@ i18n
           "Ad Basic": "Annonce de base",
           Delivery: "Livraison",
           Payment: "Paiement",
+          "Profile updated successfully.": "Mise à jour du profil réussie.",
 
           //chats
           Online: "En ligne",
@@ -491,6 +494,7 @@ i18n
           Enthusiastic: "Enthousiaste",
           Available: "Disponible",
           Skills: "Compétences",
+          Save: "Sauver",
           "Know how": "Savoir-faire",
           "General skills": "Compétences générales",
           "Know and master the techniques of making a garment (cutting, stitching, etc.)":
