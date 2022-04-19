@@ -100,22 +100,7 @@ function tailorVerifyEmail(data) {
   return validated;
 }
 
-function tailorCreateAccount1(data) {
-  const valArr = [
-    {
-      name: "Full Name",
-    },
-    {
-      name: "Address",
-    },
-  ];
-
-  const validated = formValidator(data, valArr);
-
-  return validated;
-}
-
-function tailorCreateAccount2(data) {
+function tailorCreateAccount(data) {
   const valArr = [
     {
       name: "Experience",
@@ -422,8 +407,7 @@ export {
   clientCreateAccount,
   tailorRegister,
   tailorVerifyEmail,
-  tailorCreateAccount1,
-  tailorCreateAccount2,
+  tailorCreateAccount,
   parseAdBasicSection,
   parseAdDeliverySection,
   parseAdNotesSection,

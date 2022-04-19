@@ -5,6 +5,10 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
+import CustomDatePicker from "../../components/CustomDatePicker";
+
+import Checkbox from "@mui/icons-material/CheckBox";
+import { grey } from "@mui/material/colors";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
@@ -17,24 +21,20 @@ import * as FormValidations from "../../utils/Validations";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
-function TailorCreateAccount2Screen() {
+function TailorCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [hasPhysicalStore, setHasPhysicalStore] = useState(false);
+  const [storeName, setStoreName] = useState("");
+
   const store = Store();
   const updateStore = UpdateStore();
 
   useEffect(() => {
-    if (
-      !state?.["Email"] ||
-      !state?.["Password"] ||
-      !state?.["Full Name"] ||
-      !state?.["Date of Birth"] ||
-      !state?.["Address"] ||
-      !state?.["Country"] ||
-      !state?.["City"]
-    ) {
+    if (!state?.["Email"] || !state?.["Password"]) {
       navigate("/login");
     }
   }, []);
@@ -52,7 +52,7 @@ function TailorCreateAccount2Screen() {
 
     const data = new FormData(event.currentTarget);
 
-    const isValidated = FormValidations.tailorCreateAccount2(data);
+    const isValidated = FormValidations.tailorCreateAccount(data);
 
     if (!isValidated) {
       return;
@@ -66,11 +66,6 @@ function TailorCreateAccount2Screen() {
       const body = {
         email: state["Email"],
         password: state["Password"],
-        name: state["Full Name"],
-        dob: state["Date of Birth"],
-        address: state["Address"],
-        country: state["Country"],
-        city: state["City"],
         experience: data.get("Experience"),
         area_of_experience: data.get("Area of Experience"),
         diploma: data.get("Diploma"),
@@ -131,35 +126,110 @@ function TailorCreateAccount2Screen() {
           <div className="login_screen_row2">
             <div className="create_account_screen_row2_container">
               <CustomInput
-                labelText="Experience"
-                inputName="Experience"
-                inputPlaceholder="Experience"
+                labelText="Name of your company"
+                inputName="Name of your company"
+                inputPlaceholder="Name of your company"
                 divStyle={{
                   marginBottom: "6%",
                 }}
               />
               <CustomInput
-                labelText="Area of Experience"
-                inputName="Area of Experience"
-                inputPlaceholder="Area of Experience"
+                labelText="Name"
+                inputName="Name"
+                inputPlaceholder="Name"
+                divStyle={{
+                  marginBottom: "6%",
+                }}
+              />
+              <CustomDatePicker
+                disableFuture
+                labelText="Date of Birth"
+                value={dateOfBirth}
+                onChange={setDateOfBirth}
                 divStyle={{
                   marginBottom: "6%",
                 }}
               />
               <CustomInput
-                labelText="Diploma"
-                inputName="Diploma"
-                inputPlaceholder="Diploma"
+                labelText="Address"
+                inputName="Address"
+                inputPlaceholder="Address"
                 divStyle={{
                   marginBottom: "6%",
                 }}
               />
+              <div className="create_account_screen_row2_row1">
+                <CustomInput
+                  disabled
+                  labelText="Zip Code"
+                  inputName="Zip Code"
+                  inputPlaceholder="Zip Code"
+                  divStyle={{
+                    display: "flex",
+                    width: "48%",
+                    marginBottom: "6%",
+                  }}
+                />
+                <CustomInput
+                  disabled
+                  labelText="City"
+                  inputName="City"
+                  inputPlaceholder="City"
+                  divStyle={{
+                    display: "flex",
+                    width: "48%",
+                    marginBottom: "6%",
+                  }}
+                />
+              </div>
               <CustomInput
-                labelText="Speciality"
-                inputName="Speciality"
-                inputPlaceholder="Speciality"
+                labelText="Phone No"
+                inputName="Phone No"
+                inputPlaceholder="Phone No"
                 divStyle={{
                   marginBottom: "6%",
+                }}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "6%",
+                }}
+              >
+                <Checkbox
+                  checked={hasPhysicalStore}
+                  sx={{
+                    color: grey[900],
+                    "&.Mui-checked": {
+                      color: grey[900],
+                    },
+                  }}
+                  onChange={(e) => setHasPhysicalStore(e.target.checked)}
+                />
+                <p
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "400",
+                    color: "#A0A0A0",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  I Have Physical Store
+                </p>
+              </div>
+              <CustomInput
+                labelText="Store Name"
+                inputName="Store Name"
+                inputPlaceholder="Store Name"
+                labelStyle={{
+                  display: "none",
+                }}
+                divStyle={{
+                  marginBottom: "6%",
+                  width: "48%",
                 }}
               />
               <CustomButton
@@ -177,4 +247,4 @@ function TailorCreateAccount2Screen() {
   );
 }
 
-export default TailorCreateAccount2Screen;
+export default TailorCreateAccountScreen;
