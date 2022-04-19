@@ -148,6 +148,8 @@ function ClientAdsScreen() {
 }
 
 function AdListTile(props) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -271,6 +273,8 @@ function AdListTile(props) {
 }
 
 function AdQuoteListTile(props) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(props.tailor.ratings);
   const ratingsCount = calculateRatingsCount(props.tailor.ratings);
 

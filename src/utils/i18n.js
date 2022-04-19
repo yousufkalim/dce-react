@@ -37,6 +37,7 @@ i18n
           Logout: "Logout",
           "Order created successfully.": "Order created successfully.",
           "Ad updated successfully.": "Ad updated successfully.",
+          Reviews: "Reviews",
 
           //Profile
           Edit: "Edit",
@@ -120,6 +121,7 @@ i18n
           Description: "Description",
           Charges: "Charges",
           "Review & rating": "Review & rating",
+          "Stitching Price": "Stitching Price",
 
           //viewOrder
           "Client Basic": "Client Basic",
@@ -273,6 +275,8 @@ i18n
           "Orders are made directly by the customer via the Design CONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.":
             "Orders are made directly by the customer via the DesignCONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.",
           Delivery: "Delivery",
+          offline: "offline",
+
           "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.":
             "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.",
           "The customer pays his entire order (+ delivery costs) directly online. The seamstress is paid (24 hours later) up to 30% (order - 20% commission) at the start of the mission and 70% (order - 20% commission) 48 hours after the end of the mission.":
@@ -385,6 +389,8 @@ i18n
 
           Messages: "messages",
           Delete: "Supprimer",
+          "Stitching Price": "Prix ​​de couture",
+          Reviews: "Commentaires",
 
           //faq
           "Frequently Asked Question": "Question fréquemment posée",
@@ -596,6 +602,7 @@ i18n
           Diploma: "Diplôme",
           "Shop Name": "Nom de la boutique",
           "Fixed price": "Prix fixe",
+          offline: "hors ligne",
         },
       },
     },
