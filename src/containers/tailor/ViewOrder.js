@@ -347,7 +347,7 @@ const CompleteOrderModal = (props) => {
     }
 
     if (!attachment) {
-      toast.error("Attachment must be selected");
+      toast.error(t("Attachment must be selected"));
       return;
     }
 
@@ -370,7 +370,7 @@ const CompleteOrderModal = (props) => {
       response = await Api("post", "/orders/complete", body);
 
       if (response?.data?.success) {
-        toast.success("Order completed successfully.");
+        toast.success(t("Order completed successfully."));
         props.handleClose();
         navToOrders();
       }
@@ -419,7 +419,7 @@ const CompleteOrderModal = (props) => {
         <div className="tqs_sqm_input_input">
           <textarea
             className="tqs_sqm_textarea_textarea"
-            placeholder="Describe about submit report"
+            placeholder={t("Describe about submit report")}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
           />
@@ -458,7 +458,7 @@ const CompleteOrderModal = (props) => {
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton
-          text="Cancel"
+          text={t("Cancel")}
           style={{
             boxShadow: "none",
             marginRight: "10pt",
@@ -466,7 +466,7 @@ const CompleteOrderModal = (props) => {
           onClick={props.handleClose}
         />
         <CustomButton
-          text="Complete"
+          text={t("Complete")}
           style={{
             boxShadow: "none",
           }}

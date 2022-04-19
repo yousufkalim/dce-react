@@ -154,7 +154,7 @@ function TailorProfileScreen() {
       response = await Api("put", "/tailors", body);
 
       if (response?.data?.success) {
-        toast.success("Profile updated successfully.");
+        toast.success(t("Profile updated successfully."));
         navToHome();
       }
     } catch (e) {

@@ -96,7 +96,7 @@ function TailorViewQuoteScreen() {
     event.preventDefault();
 
     if (ad.quotes.some((_) => _.tailor._id == user._id)) {
-      toast.error("You have already sent quote for this ad.");
+      toast.error(t("You have already sent quote for this ad."));
       return;
     }
 
@@ -350,7 +350,7 @@ function TailorViewQuoteScreen() {
                         border: "none",
                         fontSize: "12px",
                       }}
-                      inputPlaceholder="Set Your Price"
+                      inputPlaceholder={t("Set Your Price")}
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
@@ -369,14 +369,14 @@ function TailorViewQuoteScreen() {
                   <div className="tqs_sqm_input_input">
                     <textarea
                       className="tqs_sqm_textarea_textarea"
-                      placeholder="Tell us"
+                      placeholder={t("Tell us")}
                       onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                   </div>
                 </div>
                 <div className="tvqs_sq_buttons">
                   <CustomButton
-                    text="Send Offer"
+                    text={"Send Offer"}
                     style={{
                       boxShadow: "none",
                       marginRight: "10pt",

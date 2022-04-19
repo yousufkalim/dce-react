@@ -275,7 +275,7 @@ function SendQuote({ handleClose }) {
         <div className="tqs_sqm_input_input">
           <textarea
             className="tqs_sqm_textarea_textarea"
-            placeholder={"Tell us"}
+            placeholder={t("Tell us")}
           ></textarea>
         </div>
       </div>

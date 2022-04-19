@@ -43,6 +43,7 @@ i18n
           Reviews: "Reviews",
           ", Developed by Falcon Consulting. All rights reserved.":
             ", Developed by Falcon Consulting. All rights reserved.",
+          "Describe about submit report": "Describe about submit report",
 
           //Profile
           Edit: "Edit",
@@ -67,6 +68,7 @@ i18n
           "Place Your Order": "Place Your Order",
           "Image must be selected": "Image must be selected",
           "Delivery Note": "Delivery Note",
+          "Catalogue created successfully.": "Catalogue created successfully.",
 
           //my ads
           Ads: "Ads",
@@ -246,6 +248,8 @@ i18n
           "Hourly Rate": "Hourly Rate",
           Offer: "Offer",
           "Send Offer": "Send Offer",
+          "You have already sent quote for this ad.":
+            "You have already sent quote for this ad.",
 
           //profile
           "Hourly Rate": "Hourly Rate",
@@ -274,9 +278,11 @@ i18n
           "Any Confection": "Any Confection",
           "Search Input can't be empty": "Search Input can't be empty",
           "Feedback provided successfully.": "Feedback provided successfully.",
+          "Attachment must be selected": "Attachment must be selected",
 
           "Shop Name": "Shop Name",
           "Ad created successfully.": "Ad created successfully.",
+          "Order completed successfully.": "Order completed successfully.",
 
           // terms n conditions
           "General informations": "General informations",
@@ -326,6 +332,8 @@ i18n
           "Select category": "Select category",
           "Set your Price": "Set your Price",
           "Tell us about your service": "Tell us about your service",
+          "Upload Drawing, Photo, Document, etc.":
+            "Upload Drawing, Photo, Document, etc.",
           "Tell us": "Tell us",
           Save: "Save",
           "Write Measurement here": "Write Measurement here",
@@ -487,6 +495,9 @@ i18n
           //Terms & Conditions
           "Terms & Conditions": "Termes et conditions",
           "Select size": "Sélectionnez la taille",
+          "You have already sent quote for this ad.":
+            "Vous avez déjà envoyé un devis pour cette annonce.",
+
           //ViewCatalog
           Description: "La description",
           Charges: "Des charges",
@@ -532,7 +543,7 @@ i18n
           "Select gender for your creation":
             "Sélectionnez le sexe pour votre création",
           "Write Measurement here": "Écrivez la mesure ici",
-
+          "Order completed successfully.": "Commande terminée avec succès.",
           //home
           Fabric: "Tissu",
           Date: "Date",
@@ -545,6 +556,8 @@ i18n
           "See all": "Voir tout",
           "Recent Orders": "Dernières commandes",
           "Quote sent successfully.": "Devis envoyé avec succès.",
+          "Describe about submit report":
+            "Décrivez à propos de la soumission du rapport",
 
           //HOW IT WORKS ?
           "HOW IT WORKS ?": "COMMENT ÇA FONCTIONNE ?",
@@ -573,6 +586,9 @@ i18n
           "3 . Post your ad (offer) in just a few clicks":
             "3 . Déposez votre annonce (offre) en quelques clics",
           "Post your add in 3 steps": "Publiez votre annonce en 3 étapes",
+          "Upload Drawing, Photo, Document, etc.":
+            "Télécharger un dessin, une photo, un document, etc.",
+
           "Seamstress selection based on the following criteria:":
             "Sélection des couturières selon les critères suivants :",
           "Reliability / Seriousness": "Fiabilité / Sérieux",
@@ -585,6 +601,8 @@ i18n
           Skills: "Compétences",
           "Delivery Type": "Type de livraison",
           small: "petit",
+          "Attachment must be selected":
+            "La pièce jointe doit être sélectionnée",
 
           Save: "Sauver",
           "Know how": "Savoir-faire",
@@ -739,6 +757,7 @@ i18n
           Basic: "Basique",
           Delivery: "Livraison",
           Notes: "Remarques",
+          "Catalogue created successfully.": "Catalogue créé avec succès.",
         },
       },
     },
