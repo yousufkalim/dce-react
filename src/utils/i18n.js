@@ -22,6 +22,7 @@ i18n
           "Orders List": "Orders List",
           "See all": "See all",
           Search: "Search",
+          "Place New Ad": "Place New Ad",
 
           //client navbar
           Designers: "Designers",
@@ -317,7 +318,7 @@ i18n
           "Terms and Conditions": "Termes et conditions",
           Profile: "Profil",
           Quotes: "Devis",
-
+          "Place New Ad": "Placer une nouvelle annonce",
           Support: "Soutien",
           Logout: "Se déconnecter",
 

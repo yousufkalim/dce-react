@@ -119,9 +119,9 @@ function ClientAdsScreen() {
         }}
       >
         <div className="client_ads_screen_row1">
-          <p className="client_orders_screen_row1_text">Ads</p>
+          <p className="client_orders_screen_row1_text">{t("Ads")}</p>
           <CustomButton
-            text="Place New Ad"
+            text={t("Place New Ad")}
             padding="8px 20px"
             style={{
               backgroundColor: "#FFFFFF",
@@ -175,7 +175,7 @@ function AdListTile(props) {
             }}
           >
             <p className="cas_ad_list_tile_column1_item_key">
-              Name of Creation
+              {t("Name of Creation")}
             </p>
             <p
               className="cas_ad_list_tile_column1_item_value"
@@ -192,7 +192,7 @@ function AdListTile(props) {
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">Ad for</p>
+            <p className="cas_ad_list_tile_column1_item_key">{t("Ad for")}</p>
             <p className="cas_ad_list_tile_column1_item_value">
               {props.category}
             </p>
@@ -203,18 +203,20 @@ function AdListTile(props) {
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">Delivery Date</p>
+            <p className="cas_ad_list_tile_column1_item_key">
+              {t("Delivery Date")}
+            </p>
             <p className="cas_ad_list_tile_column1_item_value">
               {new Date(props.delivery.date).toLocaleDateString("en-US")}
             </p>
           </div>
         </div>
         <div className="cas_ad_list_tile_column2">
-          <p className="cas_ad_list_tile_column2_title">min</p>
+          <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
           <p className="cas_ad_list_tile_column2_description">
             {`${props.budget.min_price}$`}
           </p>
-          <p className="cas_ad_list_tile_column2_title">max</p>
+          <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
           <p className="cas_ad_list_tile_column2_description">
             {`${props.budget.max_price}$`}
           </p>
@@ -224,7 +226,7 @@ function AdListTile(props) {
               color: "#CC8E9C",
             }}
           >
-            Range
+            {t("Range")}
           </p>
         </div>
         <div className="cas_ad_list_tile_column2">
@@ -238,7 +240,7 @@ function AdListTile(props) {
             {props.quotes.length}
           </p>
           <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-            Responses
+            {t("Responses")}
           </p>
         </div>
         <div className="cas_ad_list_tile_column4">
@@ -251,7 +253,7 @@ function AdListTile(props) {
               cursor: "pointer",
             }}
           >
-            Edit
+            {t("Edit")}
           </p>
         </div>
       </div>
@@ -340,7 +342,7 @@ function AdQuoteListTile(props) {
             paddingBottom: "3%",
           }}
         >
-          Offer
+          {t("Offer")}
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${props.price}$`}
@@ -354,7 +356,7 @@ function AdQuoteListTile(props) {
       >
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
-            text="Accept"
+            text={t("Accept")}
             onClick={(e) => props.acceptQuote(e, props._id)}
             style={{
               boxShadow: "none",
@@ -369,7 +371,7 @@ function AdQuoteListTile(props) {
             }}
             onClick={(e) => props.rejectQuote(e, props._id)}
           >
-            Discard
+            {t("Discard")}
           </p>
         </div>
       </div>
@@ -378,7 +380,7 @@ function AdQuoteListTile(props) {
           style={{ fontSize: "14px", fontWeight: "900", cursor: "pointer" }}
           onClick={navToChat}
         >
-          Chat Here
+          {t("Chat Here")}
         </p>
       </div>
     </div>
