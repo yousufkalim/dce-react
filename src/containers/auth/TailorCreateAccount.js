@@ -7,7 +7,7 @@ import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 
-import Checkbox from "@mui/icons-material/CheckBox";
+import Checkbox from "@mui/material/Checkbox";
 import { grey } from "@mui/material/colors";
 
 import { handleLogin } from "../../utils/Auth";
@@ -28,7 +28,6 @@ function TailorCreateAccountScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [hasPhysicalStore, setHasPhysicalStore] = useState(false);
-  const [storeName, setStoreName] = useState("");
 
   const store = Store();
   const updateStore = UpdateStore();
@@ -58,6 +57,11 @@ function TailorCreateAccountScreen() {
       return;
     }
 
+    if (dateOfBirth == null) {
+      toast.error("Date of Birth must be selected.");
+      return;
+    }
+
     let response;
 
     try {
@@ -66,11 +70,22 @@ function TailorCreateAccountScreen() {
       const body = {
         email: state["Email"],
         password: state["Password"],
-        experience: data.get("Experience"),
-        area_of_experience: data.get("Area of Experience"),
-        diploma: data.get("Diploma"),
-        speciality: data.get("Speciality"),
+        shop_name: data.get("Name of your company"),
+        name: data.get("Name"),
+        dob: dateOfBirth,
+        address: data.get("Address"),
+        zip_code: data.get("Zip Code"),
+        city: data.get("City"),
+        phone: data.get("Phone No"),
       };
+
+      if (hasPhysicalStore) {
+        if (!data.get("Store Name")) {
+          toast.error("Store Name can't be empty.");
+          return;
+        }
+        body["store_name"] = data.get("Store Name");
+      }
 
       response = await Api("post", "/tailors", body);
 
@@ -160,7 +175,7 @@ function TailorCreateAccountScreen() {
               />
               <div className="create_account_screen_row2_row1">
                 <CustomInput
-                  disabled
+                  // disabled
                   labelText="Zip Code"
                   inputName="Zip Code"
                   inputPlaceholder="Zip Code"
@@ -171,7 +186,7 @@ function TailorCreateAccountScreen() {
                   }}
                 />
                 <CustomInput
-                  disabled
+                  // disabled
                   labelText="City"
                   inputName="City"
                   inputPlaceholder="City"
@@ -187,7 +202,7 @@ function TailorCreateAccountScreen() {
                 inputName="Phone No"
                 inputPlaceholder="Phone No"
                 divStyle={{
-                  marginBottom: "6%",
+                  marginBottom: "2%",
                 }}
               />
               <div
@@ -196,7 +211,7 @@ function TailorCreateAccountScreen() {
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: "6%",
+                  marginBottom: "2%",
                 }}
               >
                 <Checkbox
@@ -220,18 +235,23 @@ function TailorCreateAccountScreen() {
                   I Have Physical Store
                 </p>
               </div>
-              <CustomInput
-                labelText="Store Name"
-                inputName="Store Name"
-                inputPlaceholder="Store Name"
-                labelStyle={{
-                  display: "none",
-                }}
-                divStyle={{
-                  marginBottom: "6%",
-                  width: "48%",
-                }}
-              />
+              {hasPhysicalStore ? (
+                <CustomInput
+                  labelText="Store Name"
+                  inputName="Store Name"
+                  inputPlaceholder="Store Name"
+                  labelStyle={{
+                    display: "none",
+                  }}
+                  divStyle={{
+                    marginBottom: "6%",
+                    width: "48%",
+                  }}
+                />
+              ) : (
+                <></>
+              )}
+
               <CustomButton
                 text="Save"
                 type="submit"

@@ -59,6 +59,12 @@ function clientCreateAccount(data) {
     {
       name: "Address",
     },
+    {
+      name: "Zip Code",
+    },
+    {
+      name: "City",
+    },
   ];
 
   const validated = formValidator(data, valArr);
@@ -103,16 +109,22 @@ function tailorVerifyEmail(data) {
 function tailorCreateAccount(data) {
   const valArr = [
     {
-      name: "Experience",
+      name: "Name of your company",
     },
     {
-      name: "Area of Experience",
+      name: "Name",
     },
     {
-      name: "Diploma",
+      name: "Address",
     },
     {
-      name: "Speciality",
+      name: "Zip Code",
+    },
+    {
+      name: "City",
+    },
+    {
+      name: "Phone No",
     },
   ];
 
