@@ -40,7 +40,7 @@ function Measurements() {
               marginBottom: "8%",
             }}
           >
-            Get a tape <br /> <span> Measure </span>
+            {t("Get a tape")} <br /> <span> {t("Measure")} </span>
           </p>
           <img style={{ width: "70%" }} />
         </div>
@@ -86,16 +86,18 @@ function Measurements() {
         <div> </div>
         <div className="m-cont">
           <p className="m-one-text">
-            Important: If you hesitate between two sizes, take the larger one.
+            {t(
+              "Important: If you hesitate between two sizes, take the larger one."
+            )}
           </p>
           <img src={measurementone} />
         </div>
         <div className="m-cont">
-          <p>Standard Size Chart</p>
+          <p>{t("Standard Size Chart")}</p>
           <img src={measurementtwo} />
         </div>
         <div className="m-cont">
-          <p>Video Tutorial</p>
+          <p>{t("Video Tutorial")}</p>
           <div className="utube-icon-container">
             <img className="utube-icon" src={youtubeicon} />
             <img className="video-img" src={videotut} />
