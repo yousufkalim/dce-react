@@ -99,7 +99,7 @@ function ClientViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Client Basic
+                  {t("Client Basic")}
                 </p>
                 <p
                   style={{
@@ -108,7 +108,7 @@ function ClientViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "55%" }} src={AdEdit1SVG} />
               </div>
@@ -182,7 +182,7 @@ function ClientViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Delivery
+                  {t("Delivery")}
                 </p>
                 <p
                   style={{
@@ -191,7 +191,7 @@ function ClientViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "70%" }} src={AdEdit2SVG} />
               </div>
@@ -211,7 +211,7 @@ function ClientViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Payment
+                  {t("Payment")}
                 </p>
                 <p
                   style={{
@@ -220,7 +220,7 @@ function ClientViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "20%" }} src={AdEdit3SVG} />
               </div>
