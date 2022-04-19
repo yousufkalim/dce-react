@@ -149,7 +149,7 @@ function ClientEditAdScreen() {
       response = await Api("put", `/orders/${params.id}`, body);
 
       if (response?.data?.success) {
-        toast.success("Ad updated successfully.");
+        toast.success(t("Ad updated successfully."));
         navToMyAds();
       }
     } catch (e) {
@@ -184,7 +184,7 @@ function ClientEditAdScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Ad Basic
+                  {t("Ad Basic")}
                 </p>
                 <p
                   style={{
@@ -193,7 +193,7 @@ function ClientEditAdScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "55%" }} src={AdEdit1SVG} />
               </div>
@@ -267,7 +267,7 @@ function ClientEditAdScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Delivery
+                  {t("Delivery")}
                 </p>
                 <p
                   style={{
@@ -276,7 +276,7 @@ function ClientEditAdScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "70%" }} src={AdEdit2SVG} />
               </div>
@@ -296,7 +296,7 @@ function ClientEditAdScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Payment
+                  {t("Payment")}
                 </p>
                 <p
                   style={{
@@ -305,7 +305,7 @@ function ClientEditAdScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "20%" }} src={AdEdit3SVG} />
               </div>

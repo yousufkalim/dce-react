@@ -14,11 +14,11 @@ function Faqs() {
       <ClientAppBar />
       <div style={{ background: "#DFDFDF" }} className="container">
         <div style={{ height: "100vh" }} className="faq-container">
-          <p className="frequently-asked-q">Frequently Asked Question</p>
+          <p className="frequently-asked-q">{t("Frequently Asked Question")}</p>
           <p className="freq-asked-text">
-            A frequently asked questions list is often used in articles,
-            websites, email lists, and online forums where common questions tend
-            to recur, for example through posts or queries
+            {t(
+              "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries"
+            )}
           </p>
           <SearchInput />
           <div className="faq-q-container">
@@ -41,6 +41,8 @@ function Faqs() {
 }
 
 function SearchInput({}) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div
