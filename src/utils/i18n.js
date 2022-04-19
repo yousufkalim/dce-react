@@ -34,6 +34,7 @@ i18n
           Support: "Support",
           Logout: "Logout",
           "Order created successfully.": "Order created successfully.",
+          "Ad updated successfully.": "Ad updated successfully.",
 
           //Profile
           Edit: "Edit",
@@ -331,6 +332,7 @@ i18n
           "Last Password Changed": "Dernier mot de passe modifié",
           Password: "Mot de passe",
           "Account Created": "Compte créé",
+          "Ad updated successfully.": "Annonce mise à jour avec succès.",
 
           //order
           "Orders List": "Liste des commandes",

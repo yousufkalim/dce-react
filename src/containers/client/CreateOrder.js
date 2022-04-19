@@ -219,7 +219,7 @@ function ClientCreateOrderScreen() {
                   <ParseAd.NotesSection
                     state={notesSection}
                     setState={setNotesSection}
-                    buttonText="Place Order"
+                    buttonText={t("Place Order")}
                     onClick={notesSectionCallback}
                   />
                 ) : (
