@@ -27,7 +27,10 @@ function ClientViewOrderScreen() {
     category: "",
     name: "",
     cut: "",
-    measurements: "",
+    measurements: {
+      type: "static",
+      value: "",
+    },
     color: "",
     fabric: "",
     includes_alteration_services: false,
@@ -81,7 +84,7 @@ function ClientViewOrderScreen() {
         <></>
       ) : (
         <div className="container-page">
-          <ClientAppBar color="#F8F4EF" activeTab={2} />
+          <ClientAppBar color="#F8F4EF" activeTab={1} />
           <div
             className="container"
             style={{

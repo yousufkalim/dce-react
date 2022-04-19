@@ -79,6 +79,7 @@
 }
 .dots-measurement {
   margin: 0px 7%;
+  cursor: pointer;
 }
 
 .pa_profile_section_input_label {

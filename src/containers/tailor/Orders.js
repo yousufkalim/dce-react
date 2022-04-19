@@ -83,7 +83,7 @@ function TailorOrdersScreen() {
         id: id,
       };
 
-      response = await Api("post", "/orders/acceptRequest", body);
+      response = await Api("post", "/orders/accept", body);
 
       if (response?.data?.success) {
         toast.success(response.data.message);

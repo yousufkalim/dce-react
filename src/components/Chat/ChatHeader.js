@@ -46,7 +46,7 @@ const ChatHeader = ({ directUser }) => {
               width: "50pt",
               marginRight: "20px",
             }}
-            src={receiver ? assetsURL(receiver.avatar) : UserSVG}
+            src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
           />
           <div>
             <p className="usr">{receiver?.name ?? "N/A"}</p>

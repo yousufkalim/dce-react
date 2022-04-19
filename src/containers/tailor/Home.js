@@ -49,11 +49,10 @@ function TailorHomeScreen() {
   const getOrdersInProgress = async () => {
     let response;
     try {
-      // response = await Api("post", `/orders/byQuery`, { tailor: user._id, type: "ad", status: "in_progress" });
       response = await Api("post", `/orders/byQuery`, {
         tailor: user._id,
         status: "in_progress",
-      }); // TODO: Remove it
+      });
       const ordersData = response.data.orders.splice(-4);
       setOrdersInProgress(ordersData);
     } catch (e) {

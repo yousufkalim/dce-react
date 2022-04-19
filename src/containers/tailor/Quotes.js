@@ -228,13 +228,13 @@ function QuoteListTile(props) {
         onClose={handleSendOfferModalClose}
         aria-labelledby={t("Send Offer")}
       >
-        <SendQuote handleClose={handleSendOfferModalClose} />
+        <SendQuoteModal handleClose={handleSendOfferModalClose} />
       </Modal>
     </div>
   );
 }
 
-function SendQuote({ handleClose }) {
+function SendQuoteModal({ handleClose }) {
   return (
     <div className="tqs_sqm_container">
       <div

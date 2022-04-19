@@ -8,6 +8,8 @@ import SearchSVG from "../assets/AppBarSearch.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
+import NotificationsListTile from "./NotificationsListTile";
+
 import { handleLogout } from "../utils/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -27,8 +29,10 @@ function TailorAppBar({
 }) {
   const navigate = useNavigate();
 
-  const handleClickNotifications = () => {
-    toast.success(t("Coming soon!"));
+  const { i18n, t } = useTranslation();
+  const { language } = i18n;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
   };
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
@@ -38,6 +42,16 @@ function TailorAppBar({
   };
   const handleCloseProfile = () => {
     setAnchorElProfile(null);
+  };
+
+  const [anchorElNotifications, setAnchorElNotifications] =
+    React.useState(null);
+  const openNotifications = Boolean(anchorElNotifications);
+  const handleClickNotifications = (event) => {
+    setAnchorElNotifications(event.currentTarget);
+  };
+  const handleCloseNotifications = () => {
+    setAnchorElNotifications(null);
   };
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -93,9 +107,11 @@ function TailorAppBar({
   };
 
   const [profile, setProfile] = useState(null);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     getProfile();
+    getNotifications();
   }, []);
 
   const getProfile = async () => {
@@ -110,10 +126,17 @@ function TailorAppBar({
     return;
   };
 
-  const { i18n, t } = useTranslation();
-  const { language } = i18n;
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+  const getNotifications = async () => {
+    let response;
+    try {
+      response = await Api("get", `/notifications`);
+      console.log(response.data);
+      const notificationsData = response.data.notifications.splice(-10);
+      setNotifications(notificationsData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
   };
 
   return (
@@ -190,6 +213,22 @@ function TailorAppBar({
             style={{ marginLeft: "3%" }}
             onClick={handleClickNotifications}
           />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElNotifications}
+            open={openNotifications}
+            onClose={handleCloseNotifications}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            {notifications.map((_) => (
+              <NotificationsListTile
+                {..._}
+                handleClose={handleCloseNotifications}
+              />
+            ))}
+          </Menu>
           <img
             className="appbar_row2_user_img image_container"
             style={{
