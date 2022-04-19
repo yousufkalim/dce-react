@@ -62,7 +62,7 @@ function ClientViewCatalogScreen() {
                   {catalog.name}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_2">
-                  Description
+                  {t("Description")}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_3">
                   {catalog.description}
@@ -74,7 +74,7 @@ function ClientViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Charges
+                    {t("Charges")}
                   </p>
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
@@ -92,14 +92,14 @@ function ClientViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Review & rating
+                    {t("Review & rating")}
                   </p>
                   <p className="view_catalog_screen_row1_column1_text_2">
                     {calculateRating(catalog.ratings)}
                   </p>
                 </div>
                 <CustomButton
-                  text="Place Order"
+                  text={t("Place Order")}
                   onClick={navToOrderFromCatalog}
                   padding="1.6% 8%"
                   style={{
