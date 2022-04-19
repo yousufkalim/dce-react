@@ -36,11 +36,13 @@ function ClientAppBar({
   disableSearch = false,
   divStyle,
 }) {
+  const { t } = useTranslation();
+
   const [width] = useWindowSize();
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
   const handleClickNotifications = () => {
-    toast.success("Coming soon!");
+    toast.success(t("Coming soon!"));
   };
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
@@ -62,7 +64,7 @@ function ClientAppBar({
 
   const navToSearch = () => {
     if (!searchQuery) {
-      toast.error("Search Input can't be empty");
+      toast.error(t("Search Input can't be empty"));
       return;
     }
     navigate(`/search_results?query=${searchQuery}`);
@@ -74,7 +76,7 @@ function ClientAppBar({
 
   const navToSupport = () => {
     handleCloseProfile();
-    toast.success("Coming soon!");
+    toast.success(t("Coming soon!"));
   };
 
   const navToTermsAndConditions = () => {
@@ -185,12 +187,12 @@ function ClientAppBar({
               >
                 {language == "fr" ? "French" : "English"}
               </MenuItem>
-              <MenuItem onClick={navToProfile}>Profile</MenuItem>
-              <MenuItem onClick={navToSupport}>Support</MenuItem>
+              <MenuItem onClick={navToProfile}>{t("Profile")}</MenuItem>
+              <MenuItem onClick={navToSupport}>{t("Support")}</MenuItem>
               <MenuItem onClick={navToTermsAndConditions}>
-                Terms and Conditions
+                {t("Terms and Conditions")}
               </MenuItem>
-              <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
+              <MenuItem onClick={handleLogoutSubmit}>{t("Logout")}</MenuItem>
             </Menu>
           </div>
         </div>
@@ -201,6 +203,8 @@ function ClientAppBar({
 }
 
 function SearchInput({ setSearchQuery, callback }) {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div
@@ -212,7 +216,7 @@ function SearchInput({ setSearchQuery, callback }) {
       >
         <input
           type="text"
-          placeholder="Search"
+          placeholder={t("Search")}
           className="appbar_row2_input"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -226,6 +230,8 @@ function SearchInput({ setSearchQuery, callback }) {
   );
 }
 function NavlinkDesktop({ activeTab }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -253,7 +259,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToDesigners}
       >
-        Designers
+        {t("Designers")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -263,7 +269,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToOrders}
       >
-        Orders
+        {t("Orders")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -273,7 +279,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToMyAds}
       >
-        My Ads
+        {t("My Ads")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -283,13 +289,15 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToChat}
       >
-        Chats
+        {t("Chats")}
       </p>
     </>
   );
 }
 
 function NavlinkMobile({ activeTab }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -318,7 +326,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToDesigners}
       >
-        Designers
+        {t("Designers")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -328,7 +336,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToOrders}
       >
-        Orders
+        {t("Orders")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -338,7 +346,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToMyAds}
       >
-        My Ads
+        {t("My Ads")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -348,7 +356,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToChat}
       >
-        Chats
+        {t("Chats")}
       </p>
     </div>
   );
