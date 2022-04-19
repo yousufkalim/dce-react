@@ -6,6 +6,7 @@ import UserSVG from "../../assets/resultimg1.svg";
 import Footer from "../../components/Footer";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import { useTranslation } from "react-i18next";
 
 import CustomButton from "../../components/CustomButton";
 
@@ -21,6 +22,7 @@ import { toast } from "react-toastify";
 function TailorSearchResultsScreen() {
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -74,7 +76,9 @@ function TailorSearchResultsScreen() {
             color: "gray",
           }}
         >
-          <p>{orders.length} Orders Found</p>
+          <p>
+            {orders.length} {t("Orders Found")}
+          </p>
         </div>
         {orders.map((_) => (
           <SingleResult
@@ -83,7 +87,7 @@ function TailorSearchResultsScreen() {
           />
         ))}
         <CustomButton
-          text="View All"
+          text={t("See All")}
           style={{
             alignSelf: "center",
             boxShadow: "none",
@@ -105,7 +109,7 @@ function SearchInput({ setSearchQuery, callback }) {
     >
       <input
         type="text"
-        placeholder="Search"
+        placeholder={t("Search")}
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />

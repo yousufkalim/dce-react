@@ -4,6 +4,7 @@ import ViewCatalogSVG from "../../assets/ViewCatalog.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import CustomButton from "../../components/CustomButton";
 
@@ -15,6 +16,8 @@ import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorViewCatalogScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -60,7 +63,7 @@ function TailorViewCatalogScreen() {
                   {catalog.name}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_2">
-                  Description
+                  {t("Description")}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_3">
                   {catalog.description}
@@ -72,7 +75,7 @@ function TailorViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Charges
+                    {t("Charges")}
                   </p>
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
@@ -90,7 +93,7 @@ function TailorViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Review & rating
+                    {t("Review & rating")}
                   </p>
                   <p className="view_catalog_screen_row1_column1_text_2">
                     {calculateRating(catalog.ratings)}

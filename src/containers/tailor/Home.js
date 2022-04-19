@@ -4,6 +4,7 @@ import UserSVG from "../../assets/User.svg";
 import AppBar from "../../components/TailorAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import { getUser } from "../../utils/Auth";
 
@@ -13,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function TailorHomeScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [ordersRequest, setOrdersRequest] = useState([]);
@@ -82,7 +84,7 @@ function TailorHomeScreen() {
               className="client_home_screen_row1_column1_text_1"
               style={{ color: "#CC8E9C" }}
             >
-              Welcome to the
+              {t("Welcome to the")}
             </p>
             <p className="tailor_home_screen_row1_column1_text_2">
               Design Confection Ethiques
@@ -93,7 +95,7 @@ function TailorHomeScreen() {
                 color: "#A0805A",
               }}
             >
-              Now You receive your
+              {t("Now You receive your")}
             </p>
             <p
               className="client_home_screen_row1_column1_text_1"
@@ -101,13 +103,13 @@ function TailorHomeScreen() {
                 color: "#857B6F",
               }}
             >
-              order here
+              {t("order here")}
             </p>
             <button
               className="client_home_screen_row1_column1_button"
               onClick={navToQuotes}
             >
-              Find Quotes
+              {t("Find Quotes")}
             </button>
           </div>
           <div className="client_home_screen_row1_column2">
@@ -132,7 +134,9 @@ function TailorHomeScreen() {
             borderBottomWidth: "0.5px",
           }}
         >
-          <p className="client_home_screen_row2_row1_text">Order Requests</p>
+          <p className="client_home_screen_row2_row1_text">
+            {t("Order Requests")}
+          </p>
           <div className="client_home_screen_row2_row1_row_container">
             {ordersRequest.map((_) => (
               <OrderListTile order={_} viewAs="tailor" />
@@ -147,12 +151,14 @@ function TailorHomeScreen() {
               }}
               onClick={navToOrders}
             >
-              See all
+              {t("See all")}
             </p>
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
-          <p className="client_home_screen_row2_row1_text">Recent Orders</p>
+          <p className="client_home_screen_row2_row1_text">
+            {t("Recent Orders")}
+          </p>
           <div className="client_home_screen_row2_row1_row_container">
             {ordersInProgress.map((_) => (
               <OrderListTile
@@ -170,7 +176,7 @@ function TailorHomeScreen() {
               }}
               onClick={navToOrders}
             >
-              See all
+              {t("See all")}
             </p>
           </div>
         </div>

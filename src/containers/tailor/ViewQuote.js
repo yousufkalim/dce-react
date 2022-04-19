@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import { useTranslation } from "react-i18next";
 
 import AdEdit1SVG from "../../assets/AdEdit1.svg";
 import AdEdit2SVG from "../../assets/AdEdit2.svg";
@@ -25,6 +26,8 @@ import * as FormValidations from "../../utils/Validations";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function TailorViewQuoteScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -127,7 +130,7 @@ function TailorViewQuoteScreen() {
       response = await Api("post", `/quotes`, body);
 
       if (response?.data?.success) {
-        toast.success("Quote sent successfully.");
+        toast.success(t("Quote sent successfully."));
         navToQuotes();
       }
     } catch (e) {
@@ -166,7 +169,7 @@ function TailorViewQuoteScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Client Basic
+                  {t("Client Basic")}
                 </p>
                 <p
                   style={{
@@ -175,7 +178,7 @@ function TailorViewQuoteScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "55%" }} src={AdEdit1SVG} />
               </div>
@@ -249,7 +252,7 @@ function TailorViewQuoteScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Delivery
+                  {t("Delivery")}
                 </p>
                 <p
                   style={{
@@ -258,7 +261,7 @@ function TailorViewQuoteScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "70%" }} src={AdEdit2SVG} />
               </div>
@@ -278,7 +281,7 @@ function TailorViewQuoteScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Payment
+                  {t("Payment")}
                 </p>
                 <p
                   style={{
@@ -287,7 +290,7 @@ function TailorViewQuoteScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "20%" }} src={AdEdit3SVG} />
               </div>
@@ -338,7 +341,7 @@ function TailorViewQuoteScreen() {
                   }}
                 >
                   <div className="tqs_sqm_input_label">
-                    <p className="tqs_sqm_input_text">Price</p>
+                    <p className="tqs_sqm_input_text">{t("Price")}</p>
                   </div>
                   <div className="tqs_sqm_input_input">
                     <CustomInput
@@ -364,7 +367,7 @@ function TailorViewQuoteScreen() {
                   }}
                 >
                   <div className="tqs_sqm_textarea_label">
-                    <p className="tqs_sqm_input_text">Description</p>
+                    <p className="tqs_sqm_input_text">{t("Description")}</p>
                   </div>
                   <div className="tqs_sqm_input_input">
                     <textarea
@@ -384,7 +387,7 @@ function TailorViewQuoteScreen() {
                     onClick={handleSubmit}
                   />
                   <CustomButton
-                    text="Chat Here"
+                    text={t("Chat Here")}
                     style={{
                       boxShadow: "none",
                     }}

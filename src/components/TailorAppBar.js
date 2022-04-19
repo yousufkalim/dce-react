@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 
 import Api from "../api";
 import assetsURL from "../utils/Assets";
+import { useTranslation } from "react-i18next";
 
 import { Store, UpdateStore } from "../StoreContext";
 
@@ -27,6 +28,12 @@ function TailorAppBar({
   divStyle,
 }) {
   const navigate = useNavigate();
+
+  const { i18n, t } = useTranslation();
+  const { language } = i18n;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const openProfile = Boolean(anchorElProfile);
@@ -73,7 +80,7 @@ function TailorAppBar({
 
   const navToSearch = () => {
     if (!searchQuery) {
-      toast.error("Search Input can't be empty");
+      toast.error(t("Search Input can't be empty"));
       return;
     }
     navigate(`/search_results?query=${searchQuery}`);
@@ -86,7 +93,7 @@ function TailorAppBar({
 
   const navToSupport = () => {
     handleCloseProfile();
-    toast.success("Coming soon!");
+    toast.success(t("Coming soon!"));
   };
 
   const navToTermsAndConditions = () => {
@@ -157,7 +164,7 @@ function TailorAppBar({
             }}
             onClick={navToOrders}
           >
-            Orders
+            {t("Orders")}
           </p>
           {/*  */}
           <p
@@ -168,7 +175,7 @@ function TailorAppBar({
             }}
             onClick={navToCatalog}
           >
-            Catalog
+            {t("Catalogue")}
           </p>
           <p
             className="appbar_row1_tab_text"
@@ -178,7 +185,7 @@ function TailorAppBar({
             }}
             onClick={navToQuotes}
           >
-            Quotes
+            {t("Quotes")}
           </p>
           <p
             className="appbar_row1_tab_text"
@@ -188,7 +195,7 @@ function TailorAppBar({
             }}
             onClick={navToChat}
           >
-            Chats
+            {t("Chats")}
           </p>
         </div>
         <div className="appbar_row2">
@@ -232,6 +239,7 @@ function TailorAppBar({
             src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
             onClick={handleClickProfile}
           />
+
           <Menu
             id="basic-menu"
             anchorEl={anchorElProfile}
@@ -241,12 +249,19 @@ function TailorAppBar({
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={navToProfile}>Profile</MenuItem>
-            <MenuItem onClick={navToSupport}>Support</MenuItem>
-            <MenuItem onClick={navToTermsAndConditions}>
-              Terms and Conditions
+            <MenuItem
+              onClick={() =>
+                changeLanguage(`${language == "en" ? "fr" : "en"}`)
+              }
+            >
+              {language == "fr" ? "French" : "English"}
             </MenuItem>
-            <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
+            <MenuItem onClick={navToProfile}>{t("Profile")}</MenuItem>
+            <MenuItem onClick={navToSupport}>{t("Support")}</MenuItem>
+            <MenuItem onClick={navToTermsAndConditions}>
+              {t("Terms and Conditions")}
+            </MenuItem>
+            <MenuItem onClick={handleLogoutSubmit}>{t("Logout")}</MenuItem>
           </Menu>
         </div>
       </div>
@@ -255,6 +270,8 @@ function TailorAppBar({
 }
 
 function SearchInput({ setSearchQuery, callback }) {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div
@@ -266,7 +283,7 @@ function SearchInput({ setSearchQuery, callback }) {
       >
         <input
           type="text"
-          placeholder="Search"
+          placeholder={t("Search")}
           className="appbar_row2_input"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
