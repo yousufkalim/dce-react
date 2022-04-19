@@ -27,7 +27,7 @@ function TailorVerifyEmailScreen() {
   }, []);
 
   const navToCreateAccount = (_state) => {
-    navigate("/tailor_create_account_1", { state: _state });
+    navigate("/tailor_create_account", { state: _state });
   };
 
   const handleSubmit = async (event) => {

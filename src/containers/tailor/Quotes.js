@@ -19,7 +19,6 @@ import assetsURL from "../../utils/Assets";
 
 function TailorQuotesScreen() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [quotes, setQuotes] = useState([]);
@@ -66,11 +65,11 @@ function TailorQuotesScreen() {
 }
 
 function QuoteListTile(props) {
+  const { t } = useTranslation();
+
   const user = getUser();
   const [isSendOfferModal, setIsSendOfferModal] = useState(false);
   const handleSendOfferModalOpen = (e) => {
-    // e.stopPropogation();
-    // setIsSendOfferModal(true);
     navToViewQuote();
   };
   const handleSendOfferModalClose = (e) => {
@@ -235,6 +234,8 @@ function QuoteListTile(props) {
 }
 
 function SendQuoteModal({ handleClose }) {
+  const { t } = useTranslation();
+
   return (
     <div className="tqs_sqm_container">
       <div
