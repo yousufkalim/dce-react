@@ -14,7 +14,6 @@ function ClientHomeScreen(){
       <ClientAppBar
         color="#F8F4EF"
       />
-     <ModalComp open={open} setOpen={setOpen}/>
       <div
         className="container"
         style={{
