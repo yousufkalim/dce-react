@@ -1,18 +1,12 @@
 import React from "react";
 
-function CustomButton({
-  text,
-  type,
-  onClick,
-  padding,
-  style,
-}){
+function CustomButton({ text, type, onClick, padding, style }) {
   return (
     <button
       className="custom_button"
       style={{
         padding: padding ? padding : "8px 16px",
-        ...style
+        ...style,
       }}
       type={type}
       onClick={onClick}

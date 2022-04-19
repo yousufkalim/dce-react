@@ -22,7 +22,13 @@
   font-size: 24px;
   line-height: 29px;
 }
-.last-online {
+.is-online {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #14a4a1;
+}
+.is-offline {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;

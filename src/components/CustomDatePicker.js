@@ -14,19 +14,19 @@ function CustomDatePicker({
   disabled,
   divStyle,
   labelStyle,
-}){
+}) {
   return (
     <div
       className="custom_input_container"
       style={{
-        ...divStyle
+        ...divStyle,
       }}
     >
       <label
         htmlFor={labelText}
         className="custom_input_label"
         style={{
-          ...labelStyle
+          ...labelStyle,
         }}
       >
         {labelText}
@@ -35,7 +35,7 @@ function CustomDatePicker({
         style={{
           position: "relative",
           height: "100%",
-          width: "100%"
+          width: "100%",
         }}
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>

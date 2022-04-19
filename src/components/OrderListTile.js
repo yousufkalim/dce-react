@@ -1,130 +1,168 @@
 import UserSVG from "../assets/User.svg";
 
-function OrderListTile(props) {
-  const items=[
-    {
-    designer:"Sasha Designs",
-    dress:"Shirt, Pant",
-    orderdate:"june 10, 2022",
-    deliverydate:"August 10, 2022",
-    price:"$500",
-    status:"In Process"
-  },
-]
-const Color = (status)=>{
-  let color=""
- if(status=="In Process"){
-      color="#000000"
- }
- if(status=="Completed"){
-   color="#A0A0A0"
- }
- return color
-}
-const Opacity = (status)=>{
-  let opacity=""
-  if(status=="Completed"){
-    opacity="0.5"
-  }
-  if(status=="In Process"){
-    opacity="1"
-}
-  return opacity
-}
+import assetsURL from "../utils/Assets";
+
+function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
+  const Color = (status) => {
+    let color = "";
+    if (status == "in_process") {
+      color = "#000000";
+    }
+    if (status == "completed") {
+      color = "#A0A0A0";
+    }
+    return color;
+  };
+
+  const Opacity = (status) => {
+    let opacity = "";
+    if (status == "completed") {
+      opacity = "0.5";
+    }
+    if (status == "in_process") {
+      opacity = "1";
+    }
+    return opacity;
+  };
+
   return (
     <>
-    
-    {
-      items.map((val)=>(
-        <div className="order_list_tile">
       <div
-        className="order_list_tile_img"
+        className="order_list_tile"
         style={{
-          paddingBottom: "5%",
+          ...mainDivStyle,
         }}
       >
-        <img style={{ width: "30%" }} src={UserSVG} />
-      </div>
-      <p
-        className="order_list_tile_title_text"
-        style={{
-          paddingBottom: "8%",
-        }}
-      >
-       {val?.designer}
-      </p>
-      <div className="order_list_tile_divider" />
-      <div className="order_list_tile_item">
-        <p style={{
-            opacity:Opacity(props.detail)
-        }}
-    className="order_list_tile_item_key">
-      Order {props.detail}
-      </p>
-        <p  style={{
-          color:Color(props.detail)
-          }} className="order_list_tile_item_value">{val.dress}</p>
-      </div>
-      <div className="order_list_tile_item">
-        <p style={{
-            opacity:Opacity(props.detail),
-           
-        }} className="order_list_tile_item_key">Order Date</p>
-        <p style={{
-        color:Color(props.detail)
-      }}  
-        className="order_list_tile_item_value">{val?.orderdate}</p>
-      </div>
-      <div className="order_list_tile_item">
-        <p style={{
-            opacity:Opacity(props.detail),
-          
-        }} 
-        className="order_list_tile_item_key">Delivery Date</p>
-        <p style={{
-          color:Color(props.detail)
-          }}  className="order_list_tile_item_value">{val?.deliverydate}</p>
-      </div>
-      <div
-        className="order_list_tile_item"
-        style={{
-          paddingTop: "6%",
-          paddingBottom:"4%"
-        }}
-      >
-        <p style={{
-            opacity:Opacity(props.detail),
-        }} className="order_list_tile_item_key">Bill</p>
-        <p
-          className="order_list_tile_item_value"
+        <div
+          className="order_list_tile_img"
           style={{
-            fontSize: "15px",
-            fontWeight: "700",
-            color:Color(props.detail)
+            paddingBottom: "5%",
           }}
         >
-          {val.price}
+          <img
+            className="image_container"
+            style={{
+              height: "50pt",
+              width: "50pt",
+            }}
+            src={
+              viewAs == "client"
+                ? order?.tailor?.avatar
+                  ? assetsURL(order.tailor.avatar)
+                  : UserSVG
+                : viewAs == "tailor"
+                ? order?.client?.avatar
+                  ? assetsURL(order.client.avatar)
+                  : UserSVG
+                : UserSVG
+            }
+          />
+        </div>
+        <p
+          className="order_list_tile_title_text"
+          style={{
+            paddingBottom: "8%",
+          }}
+        >
+          {viewAs == "client"
+            ? order?.tailor?.name ?? ""
+            : viewAs == "tailor"
+            ? order?.client?.name ?? ""
+            : ""}
+        </p>
+        <div className="order_list_tile_divider" />
+        <div className="order_list_tile_item">
+          <p
+            style={{
+              opacity: Opacity(order.status),
+            }}
+            className="order_list_tile_item_key"
+          >
+            Order
+          </p>
+          <p
+            style={{
+              color: Color(order.status),
+            }}
+            className="order_list_tile_item_value"
+          >
+            {order.name}
+          </p>
+        </div>
+        <div className="order_list_tile_item">
+          <p
+            style={{
+              opacity: Opacity(order.status),
+            }}
+            className="order_list_tile_item_key"
+          >
+            Order Date
+          </p>
+          <p
+            style={{
+              color: Color(order.status),
+            }}
+            className="order_list_tile_item_value"
+          >
+            {new Date(order.createdAt).toLocaleDateString("en-US")}
+          </p>
+        </div>
+        <div className="order_list_tile_item">
+          <p
+            style={{
+              opacity: Opacity(order.status),
+            }}
+            className="order_list_tile_item_key"
+          >
+            Delivery Date
+          </p>
+          <p
+            style={{
+              color: Color(order.status),
+            }}
+            className="order_list_tile_item_value"
+          >
+            {new Date(order.delivery.date).toLocaleDateString("en-US")}
+          </p>
+        </div>
+        <div
+          className="order_list_tile_item"
+          style={{
+            paddingTop: "6%",
+            paddingBottom: "4%",
+          }}
+        >
+          <p
+            style={{
+              opacity: Opacity(order.status),
+            }}
+            className="order_list_tile_item_key"
+          >
+            Bill
+          </p>
+          <p
+            className="order_list_tile_item_value"
+            style={{
+              fontSize: "15px",
+              fontWeight: "700",
+              color: Color(order.status),
+            }}
+          >
+            {quote?.price ?? order.budget.min_price}$
+          </p>
+        </div>
+        <div className="order_list_tile_divider" />
+        <p
+          className="order_list_tile_title_text_bottom"
+          style={{
+            padding: "4% 0",
+            color: Color(order.status),
+          }}
+        >
+          {order?.status?.replace("_", " ")}
         </p>
       </div>
-      <div className="order_list_tile_divider"/>
-      <p
-        className="order_list_tile_title_text_bottom"
-        style={{
-          padding: "4% 0",
-      
-          color:Color(props.detail)
-        }}
-      >
-        {props.detail}
-       
-      </p>
-    </div>
-
-      ))
-    }
     </>
-    
-    
   );
 }
 

@@ -1,104 +1,57 @@
-
 import { Validators, formValidator } from "../utils/Validate";
 
-function login(data){
-
+function login(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.emailValidator("Email", data.get("Email"))
+      validationFunction: () =>
+        Validators.emailValidator("Email", data.get("Email")),
     },
     {
-      validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
-    }
-  ];
-
-  const validated = formValidator(data, valArr)
-
-  return validated;
-
-}
-
-function clientRegister(data){
-
-  const valArr = [
-    {
-      validationFunction: () => Validators.emailValidator("Email", data.get("Email"))
-    },
-    {
-      validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
-    }
-  ];
-
-  const validated = formValidator(data, valArr)
-
-  return validated;
-
-}
-
-function clientVerifyEmail(data){
-
-  const valArr = [
-    {
-      validationFunction: () => Validators.lengthValidator("Verification Code", data.get("Verification Code"), 6)
-    }
-  ];
-
-  const validated = formValidator(data, valArr)
-
-  return validated;
-
-}
-
-function clientCreateAccount(data){
-
-  const valArr = [
-    {
-      name: "Full Name",
-    },
-    {
-      name: "Address",
+      validationFunction: () =>
+        Validators.lengthValidator("Password", data.get("Password"), 8),
     },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
-
 }
 
-function tailorRegister(data){
-
+function clientRegister(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.emailValidator("Email", data.get("Email"))
+      validationFunction: () =>
+        Validators.emailValidator("Email", data.get("Email")),
     },
     {
-      validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
-    }
+      validationFunction: () =>
+        Validators.lengthValidator("Password", data.get("Password"), 8),
+    },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
-
 }
 
-function tailorVerifyEmail(data){
-
+function clientVerifyEmail(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.lengthValidator("Verification Code", data.get("Verification Code"), 6)
-    }
+      validationFunction: () =>
+        Validators.lengthValidator(
+          "Verification Code",
+          data.get("Verification Code"),
+          6
+        ),
+    },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
-
 }
 
-function tailorCreateAccount1(data){
-
+function clientCreateAccount(data) {
   const valArr = [
     {
       name: "Full Name",
@@ -108,14 +61,61 @@ function tailorCreateAccount1(data){
     },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
-
 }
 
-function tailorCreateAccount2(data){
+function tailorRegister(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.emailValidator("Email", data.get("Email")),
+    },
+    {
+      validationFunction: () =>
+        Validators.lengthValidator("Password", data.get("Password"), 8),
+    },
+  ];
 
+  const validated = formValidator(data, valArr);
+
+  return validated;
+}
+
+function tailorVerifyEmail(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.lengthValidator(
+          "Verification Code",
+          data.get("Verification Code"),
+          6
+        ),
+    },
+  ];
+
+  const validated = formValidator(data, valArr);
+
+  return validated;
+}
+
+function tailorCreateAccount1(data) {
+  const valArr = [
+    {
+      name: "Full Name",
+    },
+    {
+      name: "Address",
+    },
+  ];
+
+  const validated = formValidator(data, valArr);
+
+  return validated;
+}
+
+function tailorCreateAccount2(data) {
   const valArr = [
     {
       name: "Experience",
@@ -131,174 +131,219 @@ function tailorCreateAccount2(data){
     },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
-
 }
 
-function parseAdBasicSection(data){
-
+function parseAdBasicSection(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.selectValidator("Gender", data["gender"])
+      validationFunction: () =>
+        Validators.selectValidator("Gender", data["gender"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Category", data["category"])
+      validationFunction: () =>
+        Validators.selectValidator("Category", data["category"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Name", data["name"])
+      validationFunction: () => Validators.nullValidator("Name", data["name"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Cut", data["cut"])
+      validationFunction: () => Validators.selectValidator("Cut", data["cut"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Measurements", data["measurements"])
+      validationFunction: () =>
+        Validators.nullValidator("Measurements", data["measurements"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Color", data["color"])
+      validationFunction: () =>
+        Validators.selectValidator("Color", data["color"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Fabric", data["fabric"])
+      validationFunction: () =>
+        Validators.selectValidator("Fabric", data["fabric"]),
     },
   ];
 
-  const validated = formValidator(null, valArr)
+  const validated = formValidator(null, valArr);
 
   return validated;
-
 }
 
-function parseAdDeliverySection(data){
-
+function parseAdDeliverySection(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.nullValidator("Delivery Address", data["address"])
+      validationFunction: () =>
+        Validators.nullValidator("Delivery Address", data["address"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Country", data["country"])
+      validationFunction: () =>
+        Validators.selectValidator("Country", data["country"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("City", data["city"])
+      validationFunction: () =>
+        Validators.selectValidator("City", data["city"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Delivery Type", data["type"])
+      validationFunction: () =>
+        Validators.selectValidator("Delivery Type", data["type"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Delivery Date", data["date"])
+      validationFunction: () =>
+        Validators.selectValidator("Delivery Date", data["date"]),
     },
   ];
 
-  const validated = formValidator(null, valArr)
+  const validated = formValidator(null, valArr);
 
   return validated;
-
 }
 
-function parseAdNotesSection(data){
-
+function parseAdNotesSection(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.selectValidator("Choose Method", data["type"])
+      validationFunction: () =>
+        Validators.selectValidator("Choose Method", data["type"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Minimum Price", data["min_price"])
+      validationFunction: () =>
+        Validators.nullValidator("Minimum Price", data["min_price"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Maximum Price", data["max_price"])
+      validationFunction: () =>
+        Validators.nullValidator("Maximum Price", data["max_price"]),
     },
   ];
 
-  const validated = formValidator(null, valArr)
+  const validated = formValidator(null, valArr);
 
   return validated;
-
 }
 
-function sendQuote(data){
-
+function sendQuote(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.nullValidator("Price", data["price"])
+      validationFunction: () =>
+        Validators.nullValidator("Price", data["price"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Description", data["description"])
+      validationFunction: () =>
+        Validators.nullValidator("Description", data["description"]),
     },
   ];
 
-  const validated = formValidator(null, valArr)
+  const validated = formValidator(null, valArr);
 
   return validated;
-
 }
 
-function tailorCreateCatalog(data){
-
+function tailorCreateCatalog(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.nullValidator("Name", data["name"])
+      validationFunction: () => Validators.nullValidator("Name", data["name"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Gender", data["gender"])
+      validationFunction: () =>
+        Validators.selectValidator("Gender", data["gender"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Category", data["category"])
+      validationFunction: () =>
+        Validators.selectValidator("Category", data["category"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Price", data["price"])
+      validationFunction: () =>
+        Validators.selectValidator("Price", data["price"]),
     },
     {
-      validationFunction: () => Validators.selectValidator("Description", data["description"])
+      validationFunction: () =>
+        Validators.selectValidator("Description", data["description"]),
     },
   ];
 
-  const validated = formValidator(null, valArr)
+  const validated = formValidator(null, valArr);
 
   return validated;
-
 }
 
-function tailorEditProfile(data){
-
+function tailorEditProfile(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.nullValidator("Phone", data["phone"])
+      validationFunction: () =>
+        Validators.nullValidator("Phone", data["phone"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Experience", data["experience"])
+      validationFunction: () =>
+        Validators.nullValidator("Experience", data["experience"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Diploma", data["diploma"])
+      validationFunction: () =>
+        Validators.nullValidator("Diploma", data["diploma"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Shop Name", data["shop_name"])
+      validationFunction: () =>
+        Validators.nullValidator("Shop Name", data["shop_name"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Hourly Rate", data["hourly_rate"])
+      validationFunction: () =>
+        Validators.nullValidator("Hourly Rate", data["hourly_rate"]),
     },
     {
-      validationFunction: () => Validators.nullValidator("Free Shipping", data["free_shipping_rate"])
+      validationFunction: () =>
+        Validators.nullValidator("Free Shipping", data["free_shipping_rate"]),
     },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
-
 }
 
-function clientEditProfile(data){
-
+function clientEditProfile(data) {
   const valArr = [
     {
-      validationFunction: () => Validators.nullValidator("Phone", data["phone"])
-    }
+      validationFunction: () =>
+        Validators.nullValidator("Phone", data["phone"]),
+    },
   ];
 
-  const validated = formValidator(data, valArr)
+  const validated = formValidator(data, valArr);
 
   return validated;
+}
 
+function tailorCompleteOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Rating", data["rating"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
+function clientFeedbackOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Rating", data["rating"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
 }
 
 export {
@@ -316,5 +361,7 @@ export {
   sendQuote,
   tailorCreateCatalog,
   tailorEditProfile,
-  clientEditProfile
-}
+  clientEditProfile,
+  tailorCompleteOrder,
+  clientFeedbackOrder,
+};

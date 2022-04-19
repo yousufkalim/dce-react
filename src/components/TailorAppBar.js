@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import { handleLogout } from "../utils/Auth";
-
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import Api from "../api";
+import assetsURL from "../utils/Assets";
+
+import { Store, UpdateStore } from "../StoreContext";
 
 function TailorAppBar({
   activeTab,
   color,
   sticky = true,
-  divStyle
+  disableSearch = false,
+  divStyle,
 }) {
-
   const navigate = useNavigate();
 
   const handleClickNotifications = () => {
@@ -34,6 +38,10 @@ function TailorAppBar({
   const handleCloseProfile = () => {
     setAnchorElProfile(null);
   };
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navToHome = () => {
     navigate("/home");
@@ -52,8 +60,15 @@ function TailorAppBar({
   };
 
   const navToChat = () => {
-    handleCloseProfile();
-    toast.success("Coming soon!");
+    navigate("/chat");
+  };
+
+  const navToSearch = () => {
+    if (!searchQuery) {
+      toast.error("Search Input can't be empty");
+      return;
+    }
+    navigate(`/search_results?query=${searchQuery}`);
   };
 
   const navToProfile = () => {
@@ -73,8 +88,26 @@ function TailorAppBar({
 
   const handleLogoutSubmit = () => {
     handleCloseProfile();
-    handleLogout(navigate);
-  }
+    handleLogout(navigate, store, updateStore);
+  };
+
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile = async () => {
+    let response;
+    try {
+      response = await Api("get", `/auth`);
+      const userData = response.data.user;
+      setProfile(userData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
 
   return (
     <div
@@ -136,7 +169,14 @@ function TailorAppBar({
           </p>
         </div>
         <div className="appbar_row2">
-          <SearchInput />
+          {!disableSearch ? (
+            <SearchInput
+              setSearchQuery={setSearchQuery}
+              callback={navToSearch}
+            />
+          ) : (
+            <></>
+          )}
           <img
             src={NotificationsSVG}
             className="appbar_row2_notifications_img"
@@ -144,9 +184,13 @@ function TailorAppBar({
             onClick={handleClickNotifications}
           />
           <img
-            src={UserSVG}
-            className="appbar_row2_user_img"
-            style={{ marginLeft: "3%" }}
+            className="appbar_row2_user_img image_container"
+            style={{
+              width: "6vh",
+              height: "6vh",
+              marginLeft: "3%",
+            }}
+            src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
             onClick={handleClickProfile}
           />
           <Menu
@@ -155,12 +199,14 @@ function TailorAppBar({
             open={openProfile}
             onClose={handleCloseProfile}
             MenuListProps={{
-              'aria-labelledby': 'basic-button',
+              "aria-labelledby": "basic-button",
             }}
           >
             <MenuItem onClick={navToProfile}>Profile</MenuItem>
             <MenuItem onClick={navToSupport}>Support</MenuItem>
-            <MenuItem onClick={navToTermsAndConditions}>Terms and Conditions</MenuItem>
+            <MenuItem onClick={navToTermsAndConditions}>
+              Terms and Conditions
+            </MenuItem>
             <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
           </Menu>
         </div>
@@ -169,12 +215,7 @@ function TailorAppBar({
   );
 }
 
-function SearchInput({}) {
-
-  const callback = () => {
-    toast.success("Coming soon!");
-  };
-
+function SearchInput({ setSearchQuery, callback }) {
   return (
     <div>
       <div
@@ -184,12 +225,20 @@ function SearchInput({}) {
           width: "100%",
         }}
       >
-        <input type="text" placeholder="Search" className="appbar_row2_input" />
-        <img onClick={callback} src={SearchSVG} className="appbar_row2_search_img" />
+        <input
+          type="text"
+          placeholder="Search"
+          className="appbar_row2_input"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <img
+          src={SearchSVG}
+          className="appbar_row2_search_img"
+          onClick={callback}
+        />
       </div>
     </div>
   );
-  
 }
 
 export default TailorAppBar;

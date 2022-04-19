@@ -8,10 +8,13 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
-import { toast } from "react-toastify";
-import star from '../../assets/star.svg'
-function ClientTailorsScreen(){
 
+import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
+
+import star from "../../assets/star.svg";
+
+function ClientTailorsScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [tailors, setTailors] = useState([]);
   const user = getUser();
@@ -34,37 +37,35 @@ function ClientTailorsScreen(){
 
   return (
     <div className="container-page-vertical">
-      <ClientAppBar
-        activeTab={0}
-        color="#FCFCFC"
-      />
+      <ClientAppBar activeTab={0} color="#FCFCFC" />
       <div
         className="client_orders_screen_top"
         style={{
-          background: "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          background:
+            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
         }}
       >
         <div className="client_orders_screen_row1">
-          <p className="client_orders_screen_row1_text" style={{paddingLeft: "3%"}}>
+          <p
+            className="client_orders_screen_row1_text"
+            style={{ paddingLeft: "3%" }}
+          >
             Designers
           </p>
         </div>
         <div className="client_orders_screen_row2">
-          {
-            tailors.map(
-              _ =>
-              <TailorListTile
-                {..._}
-              />
-            )
-          }
+          {tailors.map((_) => (
+            <TailorListTile {..._} />
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function TailorListTile(props){
+function TailorListTile(props) {
+  const rating = calculateRating(props.ratings);
+  const ratingsCount = calculateRatingsCount(props.ratings);
 
   const navigate = useNavigate();
 
@@ -72,65 +73,85 @@ function TailorListTile(props){
     navigate(`/view_tailor/${props._id}`);
   };
 
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props } });
+  };
+
   return (
     <>
-    <div className="cds_tailor_list_tile_container">
-      <div className="cds_tailor_list_tile_column1">
-        <div
-          className="cds_tailor_list_tile_column1_img"
-          style={{
-            "paddingBottom": "5%"
-          }}
-        >
-          <img onClick={navToViewTailor} className="tailors-img cursor-pointer" src={UserSVG} />
+      <div className="cds_tailor_list_tile_container">
+        <div className="cds_tailor_list_tile_column1">
+          <div
+            className="cds_tailor_list_tile_column1_img"
+            style={{
+              paddingBottom: "5%",
+            }}
+          >
+            <img
+              className="image_container"
+              style={{
+                height: "80pt",
+                width: "80pt",
+                cursor: "pointer",
+              }}
+              src={props.avatar ? assetsURL(props.avatar) : UserSVG}
+              onClick={navToViewTailor}
+            />
+          </div>
+        </div>
+        <div className="cds_tailor_list_tile_column1">
+          <p
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              color: "#CC8E9C",
+              paddingBottom: "5%",
+            }}
+          >
+            {props.name}
+          </p>
+          <p style={{ fontSize: "10px", fontWeight: "200", color: "#A0A0A0" }}>
+            {props.city}, {props.country}
+          </p>
+        </div>
+        <div className="cds_tailor_list_tile_column3">
+          <div style={{ display: "flex" }}>
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <p
+              style={{
+                fontSize: "14px",
+                fontWeight: "400",
+                color: "#A0A0A0",
+                whiteSpace: "nowrap",
+                paddingLeft: "7%",
+              }}
+            >
+              {rating} ({ratingsCount})
+            </p>
+          </div>
+        </div>
+        <div className="cds_tailor_list_tile_column1">
+          <CustomButton
+            text="Chat Here"
+            style={{ borderRadius: "20px" }}
+            onClick={navToChat}
+          />
         </div>
       </div>
-      <div className="cds_tailor_list_tile_column1">
-        <p style={{ fontSize: "16px", fontWeight: "bold", color: "#CC8E9C", paddingBottom: "5%" }}>
-          {props.name}
-        </p>
-        <p style={{ fontSize: "10px", fontWeight: "200", color: "#A0A0A0" }}>
-          {props.city}, {props.country}
-        </p>
-      </div>
-      <div className="cds_tailor_list_tile_column3">
-        <div style={{display:"flex"}}>
-        <Star/>
-       <Star/>
-       <Star/>
-       <Star/>
-       <Star/>
-        <p style={{ fontSize: "14px", fontWeight: "400", color: "#A0A0A0", whiteSpace:"nowrap", paddingLeft:"7%"}}>
-          4.5 (32K)
-        </p>
-        
-        </div>
-      </div>
-      <div className="cds_tailor_list_tile_column1">
-        {/* <p
-          style={{
-            fontSize: "16px",
-            fontWeight: "bold",
-            cursor: "pointer"
-          }}
-          onClick={navToViewTailor}
-        >
-          Order here
-        </p> */}
-        <CustomButton  text="Chat Here" style={{borderRadius:"20px"}}/>
-      </div>
-    </div>
     </>
   );
 }
 
-function Star(){
-  return(
+function Star() {
+  return (
     <>
-     <img src={star}/>
+      <img src={star} />
     </>
-  )
+  );
 }
-
 
 export default ClientTailorsScreen;

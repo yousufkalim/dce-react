@@ -47,9 +47,9 @@
   height: 100%;
   border-right: 1px solid #dbdbdb;
 }
-.search-msg-input::placeholder{
+.search-msg-input::placeholder {
   color: #000000;
-font-weight: 500;
+  font-weight: 500;
 }
 .search-msg-dropdown {
   border: none;
@@ -62,8 +62,7 @@ font-weight: 500;
 }
 .search-msg-cont select {
   color: #a0a0a0;
-  
 }
-.recent-down-icon{
+.recent-down-icon {
   margin-left: 1%;
 }

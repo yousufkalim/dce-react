@@ -1,8 +1,7 @@
-
 /* Development */
 
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
-  background: #CC8E9C !important;
+  background: #cc8e9c !important;
 }
 
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
@@ -16,7 +15,15 @@
 
 /* Production */
 
+.css-1km1ehz.Mui-selected {
+  background: #cc8e9c !important;
+}
+
 .css-qiwgdb {
   padding: 5px 10px !important;
+  font-size: 12px !important;
+}
+
+.css-1km1ehz {
   font-size: 12px !important;
 }

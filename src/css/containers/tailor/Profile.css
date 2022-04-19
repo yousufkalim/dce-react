@@ -1,4 +1,3 @@
-
 .tailor_profile_screen_row1 {
   height: 33.33%;
   width: 100%;
@@ -7,7 +6,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 12%;
+  margin-top: 9vh;
 }
 
 .tailor_profile_screen_row1_column1 {
@@ -75,7 +74,7 @@
 .tailor_profile_screen_row2_column1_text {
   font-size: 24px;
   font-weight: 600;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .tailor_profile_screen_row2_column2 {
@@ -97,7 +96,7 @@
 }
 
 .tailor_profile_screen_row3 {
-  height: 40.00%;
+  height: 40%;
   width: 93%;
   height: 30%;
   margin: auto;
@@ -115,7 +114,7 @@
   font-size: 18px;
   align-self: flex-end;
   letter-spacing: -0.5px;
-  color: #A0A0A0;
+  color: #a0a0a0;
   padding-top: 2%;
   padding-bottom: 2%;
 }
@@ -139,7 +138,7 @@
   padding: 1.8% 0;
   width: 96%;
   background-color: transparent;
-  border-color: #DBDBDB;
+  border-color: #dbdbdb;
   border-style: solid;
   border-width: 0.5px;
 }
@@ -160,13 +159,13 @@
   padding: 0% 4%;
 }
 
-.img-designer{
-width: 30%;
+.img-designer {
+  width: 30%;
 }
 
 /* media queries */
 @media only screen and (max-width: 768px) {
-  .tailor_profile_screen_row1{
+  .tailor_profile_screen_row1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -174,30 +173,30 @@ width: 30%;
     padding-top: 14%;
     overflow-y: unset;
   }
-  .tailor_profile_screen_row2{
+  .tailor_profile_screen_row2 {
     margin: 7% 0%;
   }
   .tailor_profile_screen_row1_column1 {
-width: 45%;
+    width: 45%;
   }
-  .img-designer{
-width: 100%;
+  .img-designer {
+    width: 100%;
   }
-  .designer-prof{
+  .designer-prof {
     margin: 12% auto 3% auto;
   }
-  .tailor_profile_screen_row1_column1_user_name_text{
+  .tailor_profile_screen_row1_column1_user_name_text {
     margin: 5% 0%;
   }
   .tailor_profile_screen_row1_column2 {
     width: 93%;
   }
-  .tailor_profile_screen_row3{
-    overflow-y:unset;
+  .tailor_profile_screen_row3 {
+    overflow-y: unset;
     margin: 5% 0%;
     height: auto;
   }
-  .tailor_profile_screen_row3_list_container{
+  .tailor_profile_screen_row3_list_container {
     flex-direction: column;
   }
   .tailor_profile_screen_row3_text {

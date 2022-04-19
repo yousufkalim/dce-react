@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 
 import AdEdit1SVG from "../../assets/AdEdit1.svg";
 import AdEdit2SVG from "../../assets/AdEdit2.svg";
@@ -18,19 +18,15 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = [
-  'Basic',
-  'Delivery',
-  'Notes',
-];
+const steps = ["Basic", "Delivery", "Notes"];
 
-function ClientEditAdScreen(){
-
+function ClientEditAdScreen() {
   const navigate = useNavigate();
   const params = useParams();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [image, setImage] = useState(null);
 
   const [basicSection, setBasicSection] = useState({
     gender: "",
@@ -39,7 +35,8 @@ function ClientEditAdScreen(){
     cut: "",
     measurements: "",
     color: "",
-    fabric: ""
+    fabric: "",
+    includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
@@ -56,6 +53,11 @@ function ClientEditAdScreen(){
     note: "",
   });
 
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+  };
+
   useEffect(() => {
     getAd();
   }, []);
@@ -66,6 +68,7 @@ function ClientEditAdScreen(){
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log(adData);
       setBasicSection({
         gender: adData.gender,
         category: adData.category,
@@ -73,7 +76,8 @@ function ClientEditAdScreen(){
         cut: adData.cut,
         measurements: adData.measurements,
         color: adData.color,
-        fabric: adData.fabric
+        fabric: adData.fabric,
+        includes_alteration_services: adData.includes_alteration_services,
       });
       setDeliverySection(adData.delivery);
       setNotesSection(adData.budget);
@@ -87,9 +91,9 @@ function ClientEditAdScreen(){
     event.preventDefault();
 
     const isValidated =
-    FormValidations.parseAdBasicSection(basicSection) &&
-    FormValidations.parseAdDeliverySection(deliverySection) &&
-    FormValidations.parseAdNotesSection(notesSection);
+      FormValidations.parseAdBasicSection(basicSection) &&
+      FormValidations.parseAdDeliverySection(deliverySection) &&
+      FormValidations.parseAdNotesSection(notesSection);
     if (!isValidated) {
       return;
     }
@@ -97,37 +101,47 @@ function ClientEditAdScreen(){
     if (isProcessing) {
       return;
     }
-    
+
     let response;
 
     try {
       setIsProcessing(true);
 
-      const body = {
-        "type": "ad",
-        "gender": basicSection.gender,
-        "category": basicSection.category,
-        "name": basicSection.name,
-        "cut": basicSection.cut,
-        "measurements": basicSection.measurements,
-        "color": basicSection.color,
-        "fabric": basicSection.fabric,
-        "delivery": {
-          "address": deliverySection.address,
-          "country": deliverySection.country,
-          "city": deliverySection.city,
-          "note": deliverySection.note,
-          "type": deliverySection.type,
-          "date": deliverySection.date
-        },
-        "note": notesSection.note,
-        "budget": {
-          "type": notesSection.type,
-          "min_price": notesSection.min_price,
-          "max_price": notesSection.max_price,
-          "note": notesSection.note
-        }
-      }
+      const body = new FormData();
+      body.append("type", "ad");
+      body.append("gender", basicSection.gender);
+      body.append("category", basicSection.category);
+      body.append("name", basicSection.name);
+      body.append("cut", basicSection.cut);
+      body.append("measurements", basicSection.measurements);
+      body.append("color", basicSection.color);
+      body.append("fabric", basicSection.fabric);
+      body.append(
+        "includes_alteration_services",
+        basicSection.includes_alteration_services
+      );
+      body.append(
+        "delivery",
+        JSON.stringify({
+          address: deliverySection.address,
+          country: deliverySection.country,
+          city: deliverySection.city,
+          note: deliverySection.note,
+          type: deliverySection.type,
+          date: deliverySection.date,
+        })
+      );
+      body.append("note", notesSection.note);
+      body.append(
+        "budget",
+        JSON.stringify({
+          type: notesSection.type,
+          min_price: notesSection.min_price,
+          max_price: notesSection.max_price,
+          note: notesSection.note,
+        })
+      );
+      body.append("image", image);
 
       response = await Api("put", `/orders/${params.id}`, body);
 
@@ -140,187 +154,190 @@ function ClientEditAdScreen(){
     }
 
     setIsProcessing(false);
-
-  }
+  };
 
   const navToMyAds = () => {
     navigate("/my_ads");
-  }
+  };
 
   return (
     <>
-      {
-        isLoading
-        ? <></>
-        : <div className="container-page">
-            <ClientAppBar
-              color="#F8F4EF"
-              activeTab={2}
-            />
-            <div
-              className="container"
-              style={{
-                background: "#FFE9A0",
-              }}
-            >
-              <div className="client_edit_ad_screen_row1">
-                <div className="client_edit_ad_screen_row1_column1">
-                  <p
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "900",
-                    }}
-                  >
-                    Ad Basic
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "900",
-                      marginBottom: "20%",
-                    }}
-                  >
-                    Details
-                  </p>
-                  <img style={{ width: "55%" }} src={AdEdit1SVG} />
-                </div>
-                <div className="client_edit_ad_screen_row1_column2">
-                  <div
-                    className="pa_container"
-                    style={{
-                      marginTop: "10%"
-                    }}
-                  >
-                    <div className="pa_steps_row">
-                      <Stepper activeStep={0} alternativeLabel>
-                        {steps.map((label, index) => (
-                          <Step key={label}>
-                            <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
-                          </Step>
-                        ))}
-                      </Stepper>
-                    </div>
-                    <div className="pa_content_row">
-                      <ParseAd.BasicSection
-                        state={basicSection}
-                        setState={setBasicSection}
-                      />
-                    </div>
-                  </div>
-                </div>
+      {isLoading ? (
+        <></>
+      ) : (
+        <div className="container-page">
+          <ClientAppBar color="#F8F4EF" activeTab={2} />
+          <div
+            className="container"
+            style={{
+              background: "#FFE9A0",
+            }}
+          >
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
+                <p
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "900",
+                  }}
+                >
+                  Ad Basic
+                </p>
+                <p
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "900",
+                    marginBottom: "20%",
+                  }}
+                >
+                  Details
+                </p>
+                <img style={{ width: "55%" }} src={AdEdit1SVG} />
               </div>
-            </div>
-            <div
-              className="container"
-              style={{
-                background: "#FFC396",
-              }}
-            >
-              <div className="client_edit_ad_screen_row1">
-                <div className="client_edit_ad_screen_row2_column1">
-                  <div
-                    className="pa_container"
-                    style={{
-                      marginTop: "10%"
-                    }}
-                  >
-                    <div className="pa_steps_row">
-                      <Stepper activeStep={1} alternativeLabel>
-                        {steps.map((label, index) => (
-                          <Step key={label}>
-                            <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
-                          </Step>
-                        ))}
-                      </Stepper>
-                    </div>
-                    <div className="pa_content_row">
-                      <ParseAd.DeliverySection
-                        state={deliverySection}
-                        setState={setDeliverySection}
-                      />
-                    </div>
+              <div className="client_edit_ad_screen_row1_column2">
+                <div
+                  className="pa_container"
+                  style={{
+                    marginTop: "10%",
+                  }}
+                >
+                  <div className="pa_steps_row">
+                    <Stepper activeStep={0} alternativeLabel>
+                      {steps.map((label, index) => (
+                        <Step key={label}>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {label}
+                          </StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
                   </div>
-                </div>
-                <div className="client_edit_ad_screen_row2_column2">
-                  <p
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "900",
-                    }}
-                  >
-                    Delivery
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "900",
-                      marginBottom: "20%",
-                    }}
-                  >
-                    Details
-                  </p>
-                  <img style={{ width: "70%" }} src={AdEdit2SVG} />
-                </div>
-              </div>
-            </div>
-            <div
-              className="container"
-              style={{
-                background: "#FFFCFB",
-              }}
-            >
-              <div className="client_edit_ad_screen_row1">
-                <div className="client_edit_ad_screen_row1_column1">
-                  <p
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "900",
-                    }}
-                  >
-                    Payment
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "900",
-                      marginBottom: "20%",
-                    }}
-                  >
-                    Details
-                  </p>
-                  <img style={{ width: "20%" }} src={AdEdit3SVG} />
-                </div>
-                <div className="client_edit_ad_screen_row1_column2">
-                  <div
-                    className="pa_container"
-                    style={{
-                      marginTop: "10%"
-                    }}
-                  >
-                    <div className="pa_steps_row">
-                      <Stepper activeStep={2} alternativeLabel>
-                        {steps.map((label, index) => (
-                          <Step key={label}>
-                            <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
-                          </Step>
-                        ))}
-                      </Stepper>
-                    </div>
-                    <div className="pa_content_row">
-                      <ParseAd.NotesSection
-                        state={notesSection}
-                        setState={setNotesSection}
-                        onClick={handleSubmit}
-                      />
-                    </div>
+                  <div className="pa_content_row">
+                    <ParseAd.BasicSection
+                      state={basicSection}
+                      setState={setBasicSection}
+                      image={image}
+                      handleImageSelect={handleImageSelect}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-      }
+          <div
+            className="container"
+            style={{
+              background: "#FFC396",
+            }}
+          >
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row2_column1">
+                <div
+                  className="pa_container"
+                  style={{
+                    marginTop: "10%",
+                  }}
+                >
+                  <div className="pa_steps_row">
+                    <Stepper activeStep={1} alternativeLabel>
+                      {steps.map((label, index) => (
+                        <Step key={label}>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {label}
+                          </StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </div>
+                  <div className="pa_content_row">
+                    <ParseAd.DeliverySection
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="client_edit_ad_screen_row2_column2">
+                <p
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "900",
+                  }}
+                >
+                  Delivery
+                </p>
+                <p
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "900",
+                    marginBottom: "20%",
+                  }}
+                >
+                  Details
+                </p>
+                <img style={{ width: "70%" }} src={AdEdit2SVG} />
+              </div>
+            </div>
+          </div>
+          <div
+            className="container"
+            style={{
+              background: "#FFFCFB",
+            }}
+          >
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
+                <p
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "900",
+                  }}
+                >
+                  Payment
+                </p>
+                <p
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "900",
+                    marginBottom: "20%",
+                  }}
+                >
+                  Details
+                </p>
+                <img style={{ width: "20%" }} src={AdEdit3SVG} />
+              </div>
+              <div className="client_edit_ad_screen_row1_column2">
+                <div
+                  className="pa_container"
+                  style={{
+                    marginTop: "10%",
+                  }}
+                >
+                  <div className="pa_steps_row">
+                    <Stepper activeStep={2} alternativeLabel>
+                      {steps.map((label, index) => (
+                        <Step key={label}>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {label}
+                          </StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </div>
+                  <div className="pa_content_row">
+                    <ParseAd.NotesSection
+                      state={notesSection}
+                      setState={setNotesSection}
+                      onClick={handleSubmit}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
-    
   );
 }
 

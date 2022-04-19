@@ -1,5 +1,4 @@
 /* Importing all CSS files */
-@import url("./Tailors.css");
 @import url("./EditAd.css");
 @import url("./Home.css");
 @import url("./MyAd.css");
@@ -8,5 +7,10 @@
 @import url("./Profile.css");
 @import url("./faq.css");
 @import url("./measurements.css");
+<<<<<<< HEAD
 @import url("./Gettape.css");
 @import url("./orderacceptform.css");
+=======
+@import url("./SearchResults.css");
+@import url("./Tailors.css");
+>>>>>>> ec88ac00dd6c775849948ae3051632a1f65d661a

@@ -8,13 +8,13 @@ function CustomInput({
   inputPlaceholder,
   inputDefaultValue,
   enableEyes,
+  accept,
   onChange,
   disabled,
   divStyle,
   labelStyle,
-  inputStyle
-}){
-
+  inputStyle,
+}) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handlePasswordVisible = () => {
@@ -25,14 +25,14 @@ function CustomInput({
     <div
       className="custom_input_container"
       style={{
-        ...divStyle
+        ...divStyle,
       }}
     >
       <label
         htmlFor={labelText}
         className="custom_input_label"
         style={{
-          ...labelStyle
+          ...labelStyle,
         }}
       >
         {labelText}
@@ -41,41 +41,43 @@ function CustomInput({
         style={{
           position: "relative",
           height: "100%",
-          width: "100%"
+          width: "100%",
         }}
       >
         <input
           disabled={disabled}
           type={
             enableEyes
-            ? !isPasswordVisible
-              ? "password"
+              ? !isPasswordVisible
+                ? "password"
+                : "text"
+              : inputType
+              ? inputType
               : "text"
-            :
-            inputType ? inputType : "text"
           }
           name={inputName}
+          accept={accept}
           onChange={onChange}
           placeholder={inputPlaceholder}
           defaultValue={inputDefaultValue}
           className="custom_input_input"
           style={{
-            ...inputStyle
+            ...inputStyle,
           }}
         />
-        {
-          enableEyes
-          ? <img
-              onClick={handlePasswordVisible}
-              src={InputEyeSVG}
-              style={{
-                position: "absolute",
-                right: "10px",
-                top: "12px"
-              }}
-            />
-          : <></>
-        }
+        {enableEyes ? (
+          <img
+            onClick={handlePasswordVisible}
+            src={InputEyeSVG}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "12px",
+            }}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

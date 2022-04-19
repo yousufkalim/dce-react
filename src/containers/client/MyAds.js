@@ -12,9 +12,10 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { toast } from "react-toastify";
+import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
-function ClientAdsScreen(){
-
+function ClientAdsScreen() {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -29,7 +30,11 @@ function ClientAdsScreen(){
   const getAds = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { client: user._id, type: "ad", status: "pending" });
+      response = await Api("post", `/orders/byQuery`, {
+        client: user._id,
+        type: "ad",
+        status: "pending",
+      });
       const adsData = response.data.orders;
       setAds(adsData);
       setIsLoading(false);
@@ -51,7 +56,7 @@ function ClientAdsScreen(){
       setIsProcessing(true);
 
       const body = {
-        "quote": id,
+        quote: id,
       };
 
       response = await Api("post", "/quotes/accept", body);
@@ -65,8 +70,36 @@ function ClientAdsScreen(){
     }
 
     setIsProcessing(false);
+  };
 
-  }
+  const rejectQuote = async (event, id) => {
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        quote: id,
+      };
+
+      response = await Api("post", "/quotes/reject", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        getAds();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
 
   const navToCreateAd = () => {
     navigate("/create_ad");
@@ -74,20 +107,16 @@ function ClientAdsScreen(){
 
   return (
     <div className="container-page-vertical">
-      <ClientAppBar
-        activeTab={2}
-        color="#FCFCFC"
-      />
+      <ClientAppBar activeTab={2} color="#FCFCFC" />
       <div
         className="client_orders_screen_top"
         style={{
-          background: "linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          background:
+            "linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
         }}
       >
         <div className="client_ads_screen_row1">
-          <p className="client_orders_screen_row1_text">
-            Ads
-          </p>
+          <p className="client_orders_screen_row1_text">Ads</p>
           <CustomButton
             text="Place New Ad"
             padding="8px 20px"
@@ -96,29 +125,26 @@ function ClientAdsScreen(){
               color: "#000000",
               boxShadow: "none",
               fontSize: "12px",
-              fontWeight: "600"
+              fontWeight: "600",
             }}
             onClick={navToCreateAd}
           />
         </div>
         <div className="client_ads_screen_row2">
-          {
-            ads.map(
-              _ =>
-              <AdListTile
-                {..._}
-                acceptQuote={acceptQuote}
-              />
-            )
-          }
+          {ads.map((_) => (
+            <AdListTile
+              {..._}
+              acceptQuote={acceptQuote}
+              rejectQuote={rejectQuote}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function AdListTile(props){
-
+function AdListTile(props) {
   const navigate = useNavigate();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -151,7 +177,7 @@ function AdListTile(props){
             <p
               className="cas_ad_list_tile_column1_item_value"
               style={{
-                fontWeight: "900"
+                fontWeight: "900",
               }}
             >
               {props.name}
@@ -163,9 +189,7 @@ function AdListTile(props){
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">
-              Ad for
-            </p>
+            <p className="cas_ad_list_tile_column1_item_key">Ad for</p>
             <p className="cas_ad_list_tile_column1_item_value">
               {props.category}
             </p>
@@ -176,38 +200,38 @@ function AdListTile(props){
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">
-              Delivery Date
-            </p>
+            <p className="cas_ad_list_tile_column1_item_key">Delivery Date</p>
             <p className="cas_ad_list_tile_column1_item_value">
               {new Date(props.delivery.date).toLocaleDateString("en-US")}
             </p>
           </div>
         </div>
         <div className="cas_ad_list_tile_column2">
-          <p className="cas_ad_list_tile_column2_title">
-            min
-          </p>
+          <p className="cas_ad_list_tile_column2_title">min</p>
           <p className="cas_ad_list_tile_column2_description">
             {`${props.budget.min_price}$`}
           </p>
-          <p className="cas_ad_list_tile_column2_title">
-            max
-          </p>
+          <p className="cas_ad_list_tile_column2_title">max</p>
           <p className="cas_ad_list_tile_column2_description">
             {`${props.budget.max_price}$`}
           </p>
           <p
             style={{
               fontSize: "16px",
-              color: "#CC8E9C"
+              color: "#CC8E9C",
             }}
           >
             Range
           </p>
         </div>
         <div className="cas_ad_list_tile_column2">
-          <p style={{ fontSize: "40px", fontWeight: "bold", paddingBottom: "2.5%" }}>
+          <p
+            style={{
+              fontSize: "40px",
+              fontWeight: "bold",
+              paddingBottom: "2.5%",
+            }}
+          >
             {props.quotes.length}
           </p>
           <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
@@ -221,7 +245,7 @@ function AdListTile(props){
               fontSize: "16px",
               fontWeight: "bold",
               color: "#CC8E9C",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
             Edit
@@ -229,44 +253,58 @@ function AdListTile(props){
         </div>
       </div>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {
-          props?.quotes?.map(
-            _ =>
-            <AdQuoteListTile
-              {..._}
-              acceptQuote={props.acceptQuote}
-            />
-          )
-        }
+        {props?.quotes?.map((_) => (
+          <AdQuoteListTile
+            {..._}
+            acceptQuote={props.acceptQuote}
+            rejectQuote={props.rejectQuote}
+          />
+        ))}
       </Collapse>
     </div>
   );
 }
 
-function AdQuoteListTile(props){
+function AdQuoteListTile(props) {
+  const rating = calculateRating(props.tailor.ratings);
+  const ratingsCount = calculateRatingsCount(props.tailor.ratings);
+
+  const navigate = useNavigate();
+
+  const navToChat = () => {
+    navigate(`/chat`, { state: { directUser: props.tailor } });
+  };
+
   return (
     <div className="cas_quote_list_tile_container">
       <div className="cas_quote_list_tile_column1">
         <div
           className="cas_quote_list_tile_column1_img"
           style={{
-            "paddingBottom": "5%"
+            paddingBottom: "5%",
           }}
         >
-          <img style={{ width: "40%" }} src={UserSVG} />
+          <img
+            className="image_container"
+            style={{
+              height: "65pt",
+              width: "65pt",
+            }}
+            src={props.tailor.avatar ? assetsURL(props.tailor.avatar) : UserSVG}
+          />
         </div>
       </div>
       <div
         className="cas_quote_list_tile_column1"
         style={{
           padding: "3%",
-          alignItems: "flex-start"
+          alignItems: "flex-start",
         }}
       >
         <p
           className="cas_quote_list_tile_column1_title_text"
           style={{
-            paddingBottom: "10px"
+            paddingBottom: "10px",
           }}
         >
           {props.tailor.name}
@@ -284,14 +322,21 @@ function AdQuoteListTile(props){
         <p
           style={{
             fontSize: "12px",
-            color: "#A0A0A0"
+            color: "#A0A0A0",
           }}
         >
-          4.5(32K)
+          {rating}({ratingsCount})
         </p>
       </div>
       <div className="cas_quote_list_tile_column1">
-        <p style={{ fontSize: "12px", fontWeight: "200", color: "#A0A0A0", paddingBottom: "3%" }}>
+        <p
+          style={{
+            fontSize: "12px",
+            fontWeight: "200",
+            color: "#A0A0A0",
+            paddingBottom: "3%",
+          }}
+        >
           Offer
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
@@ -301,24 +346,35 @@ function AdQuoteListTile(props){
       <div
         className="cas_quote_list_tile_column5"
         style={{
-          marginRight: "5vw"
+          marginRight: "5vw",
         }}
       >
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
             text="Accept"
-            onClick={e => props.acceptQuote(e, props._id)}
+            onClick={(e) => props.acceptQuote(e, props._id)}
             style={{
-              boxShadow: "none"
+              boxShadow: "none",
             }}
           />
-          <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px", "cursor": "pointer" }}>
+          <p
+            style={{
+              fontSize: "13px",
+              fontWeight: "900",
+              marginTop: "10px",
+              cursor: "pointer",
+            }}
+            onClick={(e) => props.rejectQuote(e, props._id)}
+          >
             Discard
           </p>
         </div>
       </div>
       <div className="cas_quote_list_tile_column1">
-        <p style={{ fontSize: "14px", fontWeight: "900" }}>
+        <p
+          style={{ fontSize: "14px", fontWeight: "900", cursor: "pointer" }}
+          onClick={navToChat}
+        >
           Chat Here
         </p>
       </div>
