@@ -4,6 +4,7 @@ import UserSVG from "../../assets/User.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 import { Modal } from "@mui/material";
 import Rating from "@mui/material/Rating";

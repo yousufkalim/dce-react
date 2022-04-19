@@ -4,6 +4,7 @@ import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
 
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
 
 import Collapse from "@mui/material/Collapse";
 

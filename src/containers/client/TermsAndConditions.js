@@ -3,6 +3,7 @@ import React from "react";
 import ClientAppBar from "../../components/ClientAppBar";
 import Terms from "../../assets/terms.png";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 function ClientTermsAndConditionsScreen() {
   return (

@@ -5,6 +5,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
 import AdElaborationSVG from "../../assets/AdElaboration.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import * as ParseAd from "../../components/ParseAd";
@@ -20,6 +21,8 @@ import * as FormValidations from "../../utils/Validations";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function ClientCreateAdScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);

@@ -4,6 +4,7 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
+import { useTranslation } from "react-i18next";
 
 import star from "../../assets/star.svg";
 

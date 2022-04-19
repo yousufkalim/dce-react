@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 

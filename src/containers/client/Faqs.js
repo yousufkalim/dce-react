@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ClientAppBar from "../../components/ClientAppBar";
 import addicon from "../../assets/addicon.svg";
 import SearchIcon from "../../assets/search1.svg";
+import { useTranslation } from "react-i18next";
+
 import error from "../../assets/errorfaqs.svg";
 function Faqs() {
   const [faqImage, setfaqImage] = useState(false);

@@ -4,6 +4,7 @@ import ClientAppBar from "../../components/ClientAppBar";
 import SearchIcon from "../../assets/search1.svg";
 import UserSVG from "../../assets/resultimg1.svg";
 import CustomButton from "../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
