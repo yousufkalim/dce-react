@@ -115,15 +115,6 @@ function tailorCreateAccount(data) {
       name: "Name",
     },
     {
-      name: "Address",
-    },
-    {
-      name: "Zip Code",
-    },
-    {
-      name: "City",
-    },
-    {
       name: "Phone No",
     },
   ];

@@ -100,7 +100,7 @@ function ClientViewTailorScreen() {
       ) : (
         <div
           style={{
-            height: "170vh",
+            height: "190vh",
             width: "100vw",
           }}
         >
