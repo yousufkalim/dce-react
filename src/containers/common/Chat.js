@@ -145,12 +145,6 @@ const ChatScreen = () => {
               <div className="search-msg-cont">
                 <img className="srch-icon" src={SearchSVG} />
                 <input className="search-msg-input" placeholder={t("Search")} />
-                <select className="search-msg-dropdown">
-                  <option value="Messages">{t("Messages")}</option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
-                </select>
               </div>
               <div className="user-card-container">
                 <ConversationsContainer />

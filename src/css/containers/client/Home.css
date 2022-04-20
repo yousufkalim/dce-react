@@ -127,6 +127,8 @@
 }
 .stars {
   display: flex;
+  width: 100%;
+  justify-content: center;
   align-items: center;
 }
 .stars > * {
@@ -187,4 +189,5 @@
     width: 90%;
     margin: 2% 0%;
   }
+
 }

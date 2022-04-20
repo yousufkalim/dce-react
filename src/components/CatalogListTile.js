@@ -7,7 +7,7 @@ import CatalogContent1SVG from "../assets/CatalogContent1.svg";
 import Rating from "@mui/material/Rating";
 
 import { useNavigate } from "react-router-dom";
-
+import dummy from '../assets/dummy.jpeg'
 import assetsURL from "../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../utils/Helpers";
 
@@ -25,7 +25,7 @@ function CatalogListTile({
     e.stopPropagation();
     onClickButton?.();
   };
-
+console.log(catalog,"catalog");
   return (
     <div
       className="tailor_catalog_list_tile_container"
@@ -48,11 +48,12 @@ function CatalogListTile({
             objectFit: "cover",
             borderRadius: "20px",
           }}
-          src={
-            catalog?.attachment
-              ? assetsURL(catalog.attachment)
-              : CatalogContent1SVG
-          }
+          // src={
+          //   catalog?.attachment
+          //     ? assetsURL(catalog.attachment)
+          //     : CatalogContent1SVG
+          // }
+          src={dummy}
         />
         <CustomButton
           text={buttonText}

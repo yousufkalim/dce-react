@@ -7,6 +7,7 @@ function CustomInput({
   inputName,
   inputPlaceholder,
   inputDefaultValue,
+  Inputvalue,
   enableEyes,
   accept,
   onChange,
@@ -15,13 +16,13 @@ function CustomInput({
   divStyle,
   labelStyle,
   inputStyle,
+  dobinput
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handlePasswordVisible = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
-
   return (
     <div
       className="custom_input_container"
@@ -62,6 +63,7 @@ function CustomInput({
           onChange={onChange}
           placeholder={inputPlaceholder}
           defaultValue={inputDefaultValue}
+          value={Inputvalue}
           className="custom_input_input"
           style={{
             ...inputStyle,

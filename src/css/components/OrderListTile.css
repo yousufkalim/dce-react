@@ -73,7 +73,7 @@
 }
 @media only screen and (max-width: 768px) {
   .order_list_tile {
-    width: 90%;
+    width: 90% !important;
     padding: 5%;
   }
   .order_list_tile_item_key {

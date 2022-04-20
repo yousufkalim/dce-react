@@ -1,0 +1,26 @@
+.MuiAutocomplete-hasPopupIcon.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root, .MuiAutocomplete-hasClearIcon.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root{
+    padding-right: 0px !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-dqx39s-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
+    padding-right: 0px !important;
+}
+.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root{
+    padding: 0px !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.css-dqx39s-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
+    padding-right: 0px !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root{
+    padding-right: 0px !important;
+}
+
+.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-endAdornment{
+    visibility: hidden !important;
+}
+
+.css-ptiqhd-MuiSvgIcon-root{
+    display: none !important;
+}

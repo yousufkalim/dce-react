@@ -6,13 +6,14 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
+import AutoComplete from '../../components/AutoComplete'
 
 import Checkbox from "@mui/material/Checkbox";
 import { grey } from "@mui/material/colors";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
-
+import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { toast } from "react-toastify";
@@ -28,7 +29,10 @@ function TailorCreateAccountScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [hasPhysicalStore, setHasPhysicalStore] = useState(false);
-
+  const [addresses, setAddresses] = useState([]);
+  const [AdressDetail, setAdressDetails] = useState({
+    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+  });
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -36,23 +40,29 @@ function TailorCreateAccountScreen() {
     if (!state?.["Email"] || !state?.["Password"]) {
       navigate("/login");
     }
+    getDropdownValues()
   }, []);
 
   const navToHome = () => {
     navigate("/home");
   };
-
+  const getDropdownValues = async () => {
+    let response;
+    try {
+      response = await Api("get", `https://adresse.data.gouv.fr/api-doc/adresse`);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
   const handleSubmit = async (event) => {
+    console.log(AdressDetail?.Address?.label);
     event.preventDefault();
-
     if (isProcessing) {
       return;
     }
-
     const data = new FormData(event.currentTarget);
 
     const isValidated = FormValidations.tailorCreateAccount(data);
-
     if (!isValidated) {
       return;
     }
@@ -65,20 +75,20 @@ function TailorCreateAccountScreen() {
     let response;
 
     try {
-      setIsProcessing(true);
-
+     
       const body = {
         email: state["Email"],
         password: state["Password"],
         shop_name: data.get("Name of your company"),
         name: data.get("Name"),
         dob: dateOfBirth,
-        address: data.get("Address"),
-        zip_code: data.get("Zip Code"),
-        city: data.get("City"),
+        address: AdressDetail?.Address?.label,
+        zip_code: AdressDetail?.Address?.zip,
+        city: AdressDetail?.Address?.city,
         phone: data.get("Phone No"),
       };
-
+      console.log(body);
+      setIsProcessing(true);
       if (hasPhysicalStore) {
         if (!data.get("Store Name")) {
           toast.error("Store Name can't be empty.");
@@ -86,7 +96,7 @@ function TailorCreateAccountScreen() {
         }
         body["store_name"] = data.get("Store Name");
       }
-
+      console.log("body", body);
       response = await Api("post", "/tailors", body);
 
       if (response?.data?.success) {
@@ -99,8 +109,65 @@ function TailorCreateAccountScreen() {
     }
 
     setIsProcessing(false);
+  };  
+  const handleStudent = (name, value) => {
+    setAdressDetails({ ...AdressDetail, [name]: value });
   };
-
+  const handleSelectAddress = (e) => {
+    if (e) {
+    handleStudent("Address", {
+      label: e.label,
+      zip: e.PostalCode,
+      city: e.city,
+      lat: e.lat,
+      lng: e.lng,
+    });
+  } else {
+    handleStudent("Address", {
+      label: "",
+      zip: "",
+      city: "",
+      lat: "",
+      lng: "",
+    });
+  }
+  };
+  const handleAddress = async (e) => {
+    if (e.target.value === "") {
+      handleStudent("Address", {
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+      setAddresses([]);
+    } else {
+      handleStudent("Address", { ...AdressDetail.Address, label: e.target.value });
+    var config = {
+      method: "get",
+      url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+    };
+    axios.defaults.headers =null;
+    await axios(config)
+      .then((res) => {
+        let addressToSet = [];
+        res.data.features.map((item) => {
+          addressToSet.push({
+            label: item.properties.label,
+            city: item.properties.city,
+            PostalCode: item.properties.postcode,
+            lat: item.geometry.coordinates[1],
+            lng: item.geometry.coordinates[0],
+          });
+        });
+        setAddresses(addressToSet);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  };
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -164,15 +231,26 @@ function TailorCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "6%",
                 }}
+                dobinput="dob"
               />
-              <CustomInput
-                labelText="Address"
-                inputName="Address"
-                inputPlaceholder="Address"
-                divStyle={{
-                  marginBottom: "6%",
+              <div style={{width:"100%"}}>
+                <label className="custom_input_label">
+                  Address
+                </label>
+              <AutoComplete
+                name="Address"
+                required={true}
+                label={"Address"}
+                value={AdressDetail.Address.label}
+                options={addresses}
+                placeholder={"Address"}
+                onChangeAddress={(e) => {
+                  handleAddress(e);
                 }}
+                onAddressSelect={(e) => handleSelectAddress(e)}
               />
+              </div>
+               
               <div className="create_account_screen_row2_row1">
                 <CustomInput
                   // disabled
@@ -184,6 +262,7 @@ function TailorCreateAccountScreen() {
                     width: "48%",
                     marginBottom: "6%",
                   }}
+                  Inputvalue={AdressDetail?.Address?.zip}
                 />
                 <CustomInput
                   // disabled
@@ -195,6 +274,7 @@ function TailorCreateAccountScreen() {
                     width: "48%",
                     marginBottom: "6%",
                   }}
+                  Inputvalue={AdressDetail?.Address?.city}
                 />
               </div>
               <CustomInput

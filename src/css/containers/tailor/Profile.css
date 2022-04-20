@@ -1,14 +1,21 @@
+.tailor-profile-edit-container{
+margin-top: 6%;
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
+
 .tailor_profile_screen_row1 {
-  height: 33.33%;
   width: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-top: 9vh;
+  padding:2% 0%;
 }
-
+.tailor-client_profile_screen_top{
+  height: 170vh;
+}
 .tailor_profile_screen_row1_column1 {
   height: 100%;
   width: 20%;
@@ -53,13 +60,12 @@
 }
 
 .tailor_profile_screen_row2 {
-  height: 26.66%;
   width: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  padding:2% 0%;
 }
 
 .tailor_profile_screen_row2_column1 {
@@ -93,19 +99,18 @@
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 1% 0%;
 }
 
 .tailor_profile_screen_row3 {
   height: 40%;
   width: 93%;
   height: 30%;
-  margin: auto;
-  overflow-y: auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 2% 0%;
 }
 
 .tailor_profile_screen_row3_text {
@@ -124,7 +129,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  
   width: 100%;
 }
 
@@ -150,6 +155,7 @@
   height: 100%;
   background: transparent;
 }
+
 .tps_profile_input_text_end {
   text-align: end;
   border: none;
@@ -162,6 +168,12 @@
 .img-designer {
   width: 30%;
 }
+.tailor-new_order_list_tile{
+  padding: 8% 0%;
+  width: 15%;
+  height: 19px;
+
+}
 
 /* media queries */
 @media only screen and (max-width: 768px) {
@@ -173,6 +185,12 @@
     padding-top: 14%;
     overflow-y: unset;
   }
+  .tailor-profile-edit-container{
+    margin-top: 15%;
+  }
+  .tailor-client_profile_screen_top{
+    height: auto;
+  }
   .tailor_profile_screen_row2 {
     margin: 7% 0%;
   }
@@ -183,7 +201,7 @@
     width: 100%;
   }
   .designer-prof {
-    margin: 12% auto 3% auto;
+    margin: 7% auto 3% auto;
   }
   .tailor_profile_screen_row1_column1_user_name_text {
     margin: 5% 0%;
@@ -202,4 +220,8 @@
   .tailor_profile_screen_row3_text {
     align-self: center;
   }
+  .tailor-new_order_list_tile {
+ width: 79%;
+ height: auto;
+}
 }
