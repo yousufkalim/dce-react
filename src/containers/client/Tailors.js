@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 
@@ -15,6 +16,8 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 import star from "../../assets/star.svg";
 
 function ClientTailorsScreen() {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(true);
   const [tailors, setTailors] = useState([]);
   const user = getUser();
@@ -50,7 +53,7 @@ function ClientTailorsScreen() {
             className="client_orders_screen_row1_text"
             style={{ paddingLeft: "3%" }}
           >
-            Designers
+            {t("Designers")}
           </p>
         </div>
         <div className="client_orders_screen_row2">
@@ -64,6 +67,8 @@ function ClientTailorsScreen() {
 }
 
 function TailorListTile(props) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(props.ratings);
   const ratingsCount = calculateRatingsCount(props.ratings);
 
@@ -136,7 +141,7 @@ function TailorListTile(props) {
         </div>
         <div className="cds_tailor_list_tile_column1">
           <CustomButton
-            text="Chat Here"
+            text={t("Chat Here")}
             style={{ borderRadius: "20px" }}
             onClick={navToChat}
           />

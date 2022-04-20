@@ -100,7 +100,7 @@ function TailorViewCatalogScreen() {
                   </p>
                 </div>
                 <CustomButton
-                  text="Edit"
+                  text={t("Edit")}
                   onClick={navToEditCatalog}
                   padding="1.6% 8%"
                   style={{
