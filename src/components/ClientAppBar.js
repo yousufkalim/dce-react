@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 
+import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
+import Nock from "../assets/Nock.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
-import Menu from "@mui/material/Menu";
+import EditIcon from "../assets/Edit.svg";
+import SupportIcon from "../assets/Support.svg";
+import TermsConditionsIcon from "../assets/TermsConditions.svg";
+import PrivacyPolicyIcon from "../assets/PrivacyPolicy.svg";
+import SignOutIcon from "../assets/SignOut.svg";
+import dotted from "../assets/dotted.svg";
+
+import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 import NotificationsListTile from "./NotificationsListTile";
@@ -12,13 +21,52 @@ import NotificationsListTile from "./NotificationsListTile";
 import { handleLogout } from "../utils/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import dotted from "../assets/dotted.svg";
+
 
 import Api from "../api";
 import assetsURL from "../utils/Assets";
 import { Store, UpdateStore } from "../StoreContext";
 import { useTranslation } from "react-i18next";
 
+const StyledMenu = styled((MenuProps) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "right",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+    {...MenuProps}
+  />
+))(({ theme }) => ({
+  "& .MuiPaper-root": {
+    borderRadius: 12,
+    marginTop: theme.spacing(3),
+    padding: "2% 2% 1% 2%",
+    minWidth: 230,
+    color:
+      theme.palette.mode === "light"
+        ? "rgb(55, 65, 81)"
+        : theme.palette.grey[300],
+    boxShadow: "0px 4px 20px rgba(160, 160, 160, 0.33)",
+
+    "& .MuiMenuItem-root": {
+      "& .MuiSvgIcon-root": {
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      // '&:active': {
+      //   backgroundColor: alpha(
+      //     theme.palette.primary.main,
+      //     theme.palette.action.selectedOpacity,
+      //   ),
+      // },
+    },
+  },
+}));
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
   useEffect(() => {
@@ -40,6 +88,8 @@ function ClientAppBar({
   const [width] = useWindowSize();
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
+  const [profileImage, setProfileImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const openProfile = Boolean(anchorElProfile);
@@ -61,6 +111,7 @@ function ClientAppBar({
   };
 
   const [searchQuery, setSearchQuery] = useState("");
+
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -127,7 +178,6 @@ function ClientAppBar({
     }
     return;
   };
-
   const mobilemenu = () => {
     setToggle(!toggle);
   };
@@ -210,29 +260,79 @@ function ClientAppBar({
               src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
               onClick={handleClickProfile}
             />
-            <Menu
-              id="basic-menu"
+
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                "aria-labelledby": "demo-customized-button",
+              }}
               anchorEl={anchorElProfile}
               open={openProfile}
               onClose={handleCloseProfile}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
             >
-              <MenuItem
+              <img className="nock" src={Nock} />
+              {/* <Menu
+            className={classes.root}
+              anchorEl={anchorElProfile}
+              open={openProfile}
+              onClose={handleCloseProfile}
+            > */}
+              {/* <MenuItem
                 onClick={() =>
                   changeLanguage(`${language == "en" ? "fr" : "en"}`)
                 }
               >
                 {language == "fr" ? "French" : "English"}
+              </MenuItem> */}
+              <div className="user-detail-conatiner">
+                <img
+                  className="image_container"
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : profile?.avatar
+                      ? assetsURL(profile?.avatar)
+                      : UserSVG
+                  }
+                />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <p className="user-name">{profile?.name} </p>
+                  <p className="user-email">{profile?.email}</p>
+                </div>
+              </div>
+              <MenuItem
+                style={{ borderBottom: "1px solid #DBDBDB" }}
+                className="menu-item"
+                onClick={navToProfile}
+              >
+                <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
+                <p> Edit Profile </p>
               </MenuItem>
-              <MenuItem onClick={navToProfile}>Profile</MenuItem>
-              <MenuItem onClick={navToSupport}>Support</MenuItem>
-              <MenuItem onClick={navToTermsAndConditions}>
-                Terms and Conditions
+              <MenuItem
+                className="menu-item support-padding"
+                onClick={navToSupport}
+              >
+                <img style={{ width: "16px" }} src={SupportIcon} />
+                <p> Support </p>
               </MenuItem>
-              <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
-            </Menu>
+              <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
+                <img src={TermsConditionsIcon} /> <p>Terms and Conditions</p>
+              </MenuItem>
+              <MenuItem
+                style={{ borderBottom: "1px solid #DBDBDB" }}
+                className="menu-item privacy-padding"
+                onClick={handleLogoutSubmit}
+              >
+                <img src={PrivacyPolicyIcon} /> <p>Privacy Policy </p>
+              </MenuItem>
+              <MenuItem
+                className="menu-item sign-out-padding"
+                onClick={handleLogoutSubmit}
+              >
+                <img style={{ width: "16px" }} src={SignOutIcon} />{" "}
+                <p> Sign out</p>
+              </MenuItem>
+            </StyledMenu>
           </div>
         </div>
       </div>

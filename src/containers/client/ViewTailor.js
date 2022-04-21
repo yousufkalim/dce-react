@@ -11,6 +11,7 @@ import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import CustomButton from "../../components/CustomButton";
 
 import CatalogListTile from "../../components/CatalogListTile";
@@ -349,6 +350,7 @@ function ClientViewTailorScreen() {
           </div>
         </div>
       )}
+      <Footer/>
     </>
   );
 }

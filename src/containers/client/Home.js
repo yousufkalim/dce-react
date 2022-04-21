@@ -4,7 +4,7 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
-
+import Footer from '../../components/Footer'
 import star from "../../assets/star.svg";
 
 import assetsURL from "../../utils/Assets";
@@ -70,6 +70,7 @@ function ClientHomeScreen() {
   };
 
   return (
+    <>
     <div className="container-page">
       <ClientAppBar color="#F8F4EF" />
       <div
@@ -169,6 +170,8 @@ function ClientHomeScreen() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import SearchIcon from "../../assets/search1.svg";
 import UserSVG from "../../assets/resultimg1.svg";
 import CustomButton from "../../components/CustomButton";
@@ -51,6 +52,7 @@ function ClientSearchResultsScreen() {
   };
 
   return (
+    <>
     <div className="container-page-vertical">
       <ClientAppBar color="#FDFDFC" disableSearch />
       <div
@@ -88,6 +90,8 @@ function ClientSearchResultsScreen() {
         />
       </div>
     </div>
+    <Footer/>
+</>
   );
 }
 

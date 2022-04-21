@@ -28,7 +28,6 @@ const Footer = () => {
   return (
     <div className="footer_main_div">
       <img src={FooterLogo} style={{ height: "50%" }}></img>
-      <p style={{ paddingTop: "1%" }}>Terms & conditions</p>
       <div>
         <ul className="footer_list">
           <li onClick={navToOrders}>Orders</li>
@@ -36,6 +35,7 @@ const Footer = () => {
           <li onClick={navToCatalog}>Catalog</li>
           <li onClick={navToHowItWorks}>Help</li>
           <li>Privacy Policy</li>
+          <li>Terms & conditions</li>
         </ul>
         <div className="footer_icon_div">
           <div>
