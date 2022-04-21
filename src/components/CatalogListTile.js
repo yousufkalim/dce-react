@@ -5,6 +5,7 @@ import CustomButton from "./CustomButton";
 import CatalogContent1SVG from "../assets/CatalogContent1.svg";
 
 import Rating from "@mui/material/Rating";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 import dummy from '../assets/dummy.jpeg'
@@ -18,6 +19,8 @@ function CatalogListTile({
   onClick,
   mainDivStyle,
 }) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(catalog.ratings);
   const [value, setValue] = React.useState(rating ?? 0);
 
@@ -75,12 +78,14 @@ console.log(catalog,"catalog");
         <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
         <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">
-            Stitching Price
+            {t("Stitching Price")}
           </p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
         <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">Reviews</p>
+          <p className="tailor_catalog_list_tile_price_detail">
+            {t("Reviews")}
+          </p>
           <Rating name="read-only" value={value} size="small" readOnly />
         </div>
       </div>

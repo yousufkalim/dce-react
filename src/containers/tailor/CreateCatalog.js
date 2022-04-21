@@ -98,7 +98,7 @@ function InputSection() {
     }
 
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
 
@@ -123,7 +123,7 @@ function InputSection() {
       response = await Api("post", "/catalogs", body);
 
       if (response?.data?.success) {
-        toast.success("Catalogue created successfully.");
+        toast.success(t("Catalogue created successfully."));
         navToCatalogs();
       }
     } catch (e) {
@@ -282,7 +282,7 @@ function InputSection() {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Upload Drawing, Photo, Document, etc."
+              inputPlaceholder={t("Upload Drawing, Photo, Document, etc.")}
               inputType="file"
               accept="image/*"
               onChange={handleImageSelect}

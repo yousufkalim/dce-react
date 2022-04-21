@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import { useTranslation } from "react-i18next";
 
 import AdEdit1SVG from "../../assets/AdEdit1.svg";
 import AdEdit2SVG from "../../assets/AdEdit2.svg";
@@ -22,6 +23,8 @@ import * as FormValidations from "../../utils/Validations";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function OrderFromCatalogScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -156,7 +159,7 @@ function OrderFromCatalogScreen() {
       response = await Api("post", `/orders`, body);
 
       if (response?.data?.success) {
-        toast.success("Order created successfully.");
+        toast.success(t("Order created successfully."));
         navToMyAds();
       }
     } catch (e) {
@@ -191,7 +194,7 @@ function OrderFromCatalogScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Place Order
+                  {t("Place Order")}
                 </p>
                 <p
                   style={{
@@ -216,7 +219,7 @@ function OrderFromCatalogScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
@@ -254,7 +257,7 @@ function OrderFromCatalogScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
@@ -275,7 +278,7 @@ function OrderFromCatalogScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Delivery
+                  {t("Delivery")}
                 </p>
                 <p
                   style={{
@@ -284,7 +287,7 @@ function OrderFromCatalogScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "70%" }} src={AdEdit2SVG} />
               </div>
@@ -304,7 +307,7 @@ function OrderFromCatalogScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Payment
+                  {t("Payment")}
                 </p>
                 <p
                   style={{
@@ -313,7 +316,7 @@ function OrderFromCatalogScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "20%" }} src={AdEdit3SVG} />
               </div>
@@ -329,7 +332,7 @@ function OrderFromCatalogScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
@@ -346,7 +349,7 @@ function OrderFromCatalogScreen() {
                       >
                         <div className="pa_payment_section_textarea_label">
                           <p className="pa_profile_section_input_text">
-                            Extra Note
+                            {t("Extra Note")}
                           </p>
                         </div>
                         <div className="pa_profile_section_input_input">
@@ -368,7 +371,7 @@ function OrderFromCatalogScreen() {
                       >
                         <div className="pa_payment_section_input_label">
                           <p className="pa_payment_section_input_text">
-                            Catalog Price
+                            {t("Catalogue Price")}
                           </p>
                         </div>
                         <div className="pa_payment_section_input_input_container">
@@ -384,7 +387,7 @@ function OrderFromCatalogScreen() {
                         </div>
                       </div>
                       <CustomButton
-                        text="Place this Order"
+                        text={t("Place this Order")}
                         onClick={handleSubmit}
                         style={{
                           marginBottom: "2%",

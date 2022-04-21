@@ -3,10 +3,13 @@ import FooterLogo from "../assets/FooterLogo.svg";
 import FacebookIcon from "../assets/FacebookIcon.svg";
 import TwitterIcon from "../assets/TwitterIcon.svg";
 import LinkedinIcon from "../assets/LinkedinIcon.svg";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -28,23 +31,23 @@ const Footer = () => {
   return (
     <div className="footer_main_div">
       <img src={FooterLogo} style={{ height: "50%" }}></img>
+      <p style={{ paddingTop: "1%" }}>{t("Terms & Conditions")}</p>
       <div>
         <ul className="footer_list">
-          <li onClick={navToOrders}>Orders</li>
-          <li onClick={navToQuotes}>Quotes</li>
-          <li onClick={navToCatalog}>Catalog</li>
-          <li onClick={navToHowItWorks}>Help</li>
-          <li>Privacy Policy</li>
-          <li>Terms & conditions</li>
+          <li onClick={navToOrders}>{t("Orders")}</li>
+          <li onClick={navToQuotes}>{t("Quotes")}</li>
+          <li onClick={navToCatalog}>{t("Catalogue")}</li>
+          <li onClick={navToHowItWorks}>{t("Help")}</li>
+          <li>{t("Privacy Policy")}</li>
         </ul>
         <div className="footer_icon_div">
           <div>
             <p>
-              © 2022
+              © 2022{" "}
               <span className="footer_bottom_text">
                 Design Confection Ethiques
               </span>
-              , Developed by Falcon Consulting. All rights reserved.
+              {t(", Developed by Falcon Consulting. All rights reserved.")}
             </p>
           </div>
           <div>

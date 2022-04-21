@@ -146,7 +146,7 @@ function InputSection(props) {
       response = await Api("put", `/catalogs/${params.id}`, body);
 
       if (response?.data?.success) {
-        toast.success("Catalog created successfully.");
+        toast.success(t("Catalogue created successfully."));
         navToCatalogs();
       }
     } catch (e) {
@@ -338,7 +338,7 @@ function InputSection(props) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Upload Drawing, Photo, Document, etc."
+              inputPlaceholder={t("Upload Drawing, Photo, Document, etc.")}
               inputType="file"
               accept="image/*"
               onChange={handleImageSelect}

@@ -9,11 +9,14 @@ import * as EventHandlers from "./services/socket.io/EventHandlers";
 export const initSocket = (updateStore) => {
   const token = localStorage.getItem("token");
   if (!SS.socket && token) {
-    const socket = require("socket.io-client")("http://localhost:5000", {
-      query: {
-        token: `Bearer ${token}`,
-      },
-    });
+    const socket = require("socket.io-client")(
+      process.env.REACT_APP_SOCKET_URL,
+      {
+        query: {
+          token: `Bearer ${token}`,
+        },
+      }
+    );
     Helpers.registerEvent(socket, Constants.E_CONNECTION, () =>
       EventHandlers.connectHandler(socket, updateStore)
     );
