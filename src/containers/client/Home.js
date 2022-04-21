@@ -4,6 +4,7 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
+import { useTranslation } from "react-i18next";
 
 import star from "../../assets/star.svg";
 
@@ -13,6 +14,8 @@ import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 function ClientHomeScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -81,10 +84,10 @@ function ClientHomeScreen() {
         <div className="client_home_screen_row1">
           <div className="client_home_screen_row1_column1">
             <p className="client_home_screen_row1_column1_text_1">
-              Submit your idea,
+              {t("Submit your idea,")}
             </p>
             <p className="client_home_screen_row1_column1_text_2">
-              We make it real,
+              {t("We make it real,")}
             </p>
             <p
               className="client_home_screen_row1_column1_text_1"
@@ -92,7 +95,7 @@ function ClientHomeScreen() {
                 color: "#A0805A",
               }}
             >
-              You receive your creation
+              {t("You receive your creation")}
             </p>
             <p
               className="client_home_screen_row1_column1_text_1"
@@ -100,13 +103,13 @@ function ClientHomeScreen() {
                 color: "#857B6F",
               }}
             >
-              at home!
+              {t("at home!")}
             </p>
             <button
               className="client_home_screen_row1_column1_button"
               onClick={navToCreateAd}
             >
-              Place your Ad
+              {t("Place Your Ad")}
             </button>
           </div>
           <div className="client_home_screen_row1_column2">
@@ -131,7 +134,9 @@ function ClientHomeScreen() {
             borderBottomWidth: "0.5px",
           }}
         >
-          <p className="client_home_screen_row2_row1_text">Orders List</p>
+          <p className="client_home_screen_row2_row1_text">
+            {t("Orders List")}
+          </p>
           <div className="client_home_screen_row2_row1_row_container">
             <NewOrderListTile />
             {orders.map((_) => (
@@ -150,19 +155,19 @@ function ClientHomeScreen() {
               }}
               onClick={navToOrders}
             >
-              See all
+              {t("See all")}
             </p>
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
-          <p className="client_home_screen_row2_row1_text">Designers</p>
+          <p className="client_home_screen_row2_row1_text">{t("Designers")}</p>
           <div className="client_home_screen_row2_row1_row_container">
             {tailors.map((_) => (
               <DesignerListTile {..._} />
             ))}
             <div style={{ paddingLeft: "2%" }}>
               <p className="see-all-text" onClick={navToTailors}>
-                See all
+                {t("See all")}
               </p>
             </div>
           </div>
@@ -173,6 +178,8 @@ function ClientHomeScreen() {
 }
 
 function DesignerListTile(props) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToViewTailor = () => {

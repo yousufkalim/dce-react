@@ -50,7 +50,7 @@ function TailorSearchResultsScreen() {
 
   const callback = () => {
     if (!searchQuery) {
-      toast.error("Search Input can't be empty");
+      toast.error(t("Search Input can't be empty"));
       return;
     }
     getOrders(searchQuery);
