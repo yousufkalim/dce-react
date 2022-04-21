@@ -9,6 +9,7 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import CustomButton from "../../components/CustomButton";
@@ -24,6 +25,8 @@ import * as FormValidations from "../../utils/Validations";
 import assetsURL from "../../utils/Assets";
 
 function ClientProfileScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -111,7 +114,7 @@ function ClientProfileScreen() {
       response = await Api("put", "/clients", body);
 
       if (response?.data?.success) {
-        toast.success("Profile updated successfully.");
+        toast.success(t("Profile updated successfully."));
         navToHome();
       }
     } catch (e) {
@@ -144,12 +147,12 @@ function ClientProfileScreen() {
                 className="client_profile_screen_row1_text"
                 style={{ paddingLeft: "3%" }}
               >
-                Profile
+                {t("Profile")}
               </p>
               <CustomButton
                 type="submit"
                 onClick={toEditCallback}
-                text={toEdit ? "Save" : "Edit"}
+                text={toEdit ? t("Save") : t("Edit")}
                 style={{
                   boxShadow: "none",
                   marginRight: "5%",
@@ -204,7 +207,7 @@ function ClientProfileScreen() {
                   <ProfileInput
                     disabled={!toEdit}
                     name="Phone"
-                    placeholder="Phone"
+                    placeholder={t("Phone")}
                     defaultValue={profile.phone}
                     img={ProfilePhoneSVG}
                     divStyle={{
@@ -216,14 +219,14 @@ function ClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Email"
-                    placeholder="Email"
+                    placeholder={t("Email")}
                     defaultValue={profile.email}
                     img={ProfileEmailSVG}
                   />
                   <ProfileInput
                     disabled
                     name="Date Of Birth"
-                    placeholder="Date Of Birth"
+                    placeholder={t("Date Of Birth")}
                     defaultValue={new Date(profile.dob).toLocaleDateString(
                       "en-US"
                     )}
@@ -232,21 +235,21 @@ function ClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Country"
-                    placeholder="Country"
+                    placeholder={t("Country")}
                     defaultValue={profile.country}
                     img={ProfileCountrySVG}
                   />
                   <ProfileInput
                     disabled
                     name="City"
-                    placeholder="City"
+                    placeholder={t("City")}
                     defaultValue={profile.city}
                     img={ProfileCitySVG}
                   />
                   <ProfileInput
                     disabled
                     name="Location"
-                    placeholder="Location"
+                    placeholder={t("Location")}
                     defaultValue={profile.location}
                     img={ProfileLocationSVG}
                     divStyle={{
@@ -258,7 +261,7 @@ function ClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Last Password Changed"
-                    placeholder="Last Password Changed"
+                    placeholder={t("Last Password Changed")}
                     defaultValue={
                       profile.last_password_changed
                         ? new Date(
@@ -266,7 +269,7 @@ function ClientProfileScreen() {
                           ).toLocaleDateString("en-US")
                         : "N/A"
                     }
-                    label="Last Password Changed"
+                    label={t("Last Password Changed")}
                     divStyle={{
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
@@ -283,11 +286,11 @@ function ClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Account Created"
-                    placeholder="Account Created"
+                    placeholder={t("Account Created")}
                     defaultValue={new Date(
                       profile.createdAt
                     ).toLocaleDateString("en-US")}
-                    label="Account Created"
+                    label={t("Account Created")}
                     divStyle={{
                       borderBottomLeftRadius: "10px",
                       borderBottomRightRadius: "10px",
