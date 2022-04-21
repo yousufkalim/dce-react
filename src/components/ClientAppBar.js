@@ -22,7 +22,6 @@ import { handleLogout } from "../utils/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
 import Api from "../api";
 import assetsURL from "../utils/Assets";
 import { Store, UpdateStore } from "../StoreContext";
@@ -182,7 +181,7 @@ function ClientAppBar({
     setToggle(!toggle);
   };
 
-  const { i18n } = useTranslation();
+  const { i18n,t } = useTranslation();
   const { language } = i18n;
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -316,7 +315,8 @@ function ClientAppBar({
                 <p> {t("Support")}</p>
               </MenuItem>
               <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
-                <img src={TermsConditionsIcon} /> <p>{t("Terms and Conditions")}</p>
+                <img src={TermsConditionsIcon} />{" "}
+                <p>{t("Terms and Conditions")}</p>
               </MenuItem>
               <MenuItem
                 style={{ borderBottom: "1px solid #DBDBDB" }}
