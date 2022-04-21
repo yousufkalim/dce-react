@@ -306,31 +306,31 @@ function ClientAppBar({
                 onClick={navToProfile}
               >
                 <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
-                <p> Edit Profile </p>
+                <p> {t("Profile")} </p>
               </MenuItem>
               <MenuItem
                 className="menu-item support-padding"
                 onClick={navToSupport}
               >
                 <img style={{ width: "16px" }} src={SupportIcon} />
-                <p> Support </p>
+                <p> {t("Support")}</p>
               </MenuItem>
               <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
-                <img src={TermsConditionsIcon} /> <p>Terms and Conditions</p>
+                <img src={TermsConditionsIcon} /> <p>{t("Terms and Conditions")}</p>
               </MenuItem>
               <MenuItem
                 style={{ borderBottom: "1px solid #DBDBDB" }}
                 className="menu-item privacy-padding"
                 onClick={handleLogoutSubmit}
               >
-                <img src={PrivacyPolicyIcon} /> <p>Privacy Policy </p>
+                <img src={PrivacyPolicyIcon} /> <p>{t("Privacy Policy")}</p>
               </MenuItem>
               <MenuItem
                 className="menu-item sign-out-padding"
                 onClick={handleLogoutSubmit}
               >
                 <img style={{ width: "16px" }} src={SignOutIcon} />{" "}
-                <p> Sign out</p>
+                <p> {t("Sign out")}</p>
               </MenuItem>
             </StyledMenu>
           </div>

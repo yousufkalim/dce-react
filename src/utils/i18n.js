@@ -33,7 +33,7 @@ i18n
           Profile: "Profile",
           Support: "Support",
           Logout: "Logout",
-
+          "Privacy Policy":"Privacy Policy",
           //Profile
           Edit: "Edit",
           Phone: "Phone",
@@ -313,7 +313,7 @@ i18n
           "Terms and Conditions": "Termes et conditions",
           Profile: "Profil",
           Quotes: "Devis",
-
+          "Privacy Policy":"Politique de confidentialité",
           Support: "Soutien",
           Logout: "Se déconnecter",
 
