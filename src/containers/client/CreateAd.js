@@ -8,6 +8,7 @@ import AdElaborationSVG from "../../assets/AdElaboration.svg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api/index";
@@ -235,6 +236,7 @@ function ClientCreateAdScreen() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

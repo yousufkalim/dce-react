@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import AddCatalogSVG from "../../assets/AddCatalog.svg";
+import UploadSVG from "../../assets/upload.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
@@ -262,7 +263,7 @@ function InputSection() {
             ></textarea>
           </div>
         </div>
-        <div
+        {/* <div
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
@@ -287,7 +288,42 @@ function InputSection() {
               onChange={handleImageSelect}
             />
           </div>
+        </div> */}
+        {/* start */}
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+            borderRadius: "20px",
+            marginTop: "2%",
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">Attachments</p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <label className="upload-pic-label" htmlFor="filePicker">
+              <input
+                
+                type="file"
+                accept="image/*"
+                hidden
+                id="filePicker"
+                name="file"
+                onChange={handleImageSelect}
+              />
+              <div className="upload-img-text-cont">
+                <span className="upload-img-text">
+                  {image?.name ?? "Upload Drawing, Photo, Document, etc"}
+                </span>
+                <img src={UploadSVG} />
+              </div>
+            </label>
+          </div>
         </div>
+
+
+
+       {/* end */}
         <CustomButton
           text={t("Create Catalogue")}
           onClick={handleSubmit}

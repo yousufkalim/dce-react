@@ -4,6 +4,7 @@ import UserSVG from "../../assets/User.svg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
@@ -39,6 +40,7 @@ function ClientTailorsScreen() {
   };
 
   return (
+    <>
     <div className="container-page-vertical">
       <ClientAppBar activeTab={0} color="#FCFCFC" />
       <div
@@ -63,6 +65,8 @@ function ClientTailorsScreen() {
         </div>
       </div>
     </div>
+     <Footer/>
+     </>
   );
 }
 

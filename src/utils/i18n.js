@@ -38,14 +38,13 @@ i18n
           Profile: "Profile",
           Support: "Support",
           Logout: "Logout",
+          "Privacy Policy":"Privacy Policy",
           "Order created successfully.": "Order created successfully.",
           "Ad updated successfully.": "Ad updated successfully.",
           Reviews: "Reviews",
           ", Developed by Falcon Consulting. All rights reserved.":
             ", Developed by Falcon Consulting. All rights reserved.",
           "Describe about submit report": "Describe about submit report",
-
-          //Profile
           Edit: "Edit",
           Phone: "Phone",
           Email: "Email",
@@ -406,6 +405,7 @@ i18n
           "Terms and Conditions": "Termes et conditions",
           Profile: "Profil",
           Quotes: "Devis",
+          "Privacy Policy":"Politique de confidentialité",
           "Place New Ad": "Placer une nouvelle annonce",
           Support: "Soutien",
           Logout: "Se déconnecter",

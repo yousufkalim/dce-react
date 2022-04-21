@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import UserSVG from "../../assets/User.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from "react-i18next";
 
@@ -57,6 +58,7 @@ function ClientOrdersScreen() {
   };
 
   return (
+    <>
     <div className="container-page-vertical">
       <ClientAppBar activeTab={1} color="#FCFCFC" />
       <div
@@ -86,6 +88,8 @@ function ClientOrdersScreen() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

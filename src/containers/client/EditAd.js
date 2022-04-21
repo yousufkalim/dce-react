@@ -10,6 +10,7 @@ import AdEdit2SVG from "../../assets/AdEdit2.svg";
 import AdEdit3SVG from "../../assets/AdEdit3.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api";
@@ -343,6 +344,7 @@ function ClientEditAdScreen() {
           </div>
         </div>
       )}
+      <Footer/>
     </>
   );
 }

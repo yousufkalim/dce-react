@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import AddCatalogSVG from "../../assets/AddCatalog.svg";
+import UploadSVG from "../../assets/upload.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
@@ -296,6 +297,36 @@ function InputSection(props) {
           }}
         >
           <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">Attachments</p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <label className="upload-pic-label" htmlFor="filePicker">
+              <input
+                
+                type="file"
+                accept="image/*"
+                hidden
+                id="filePicker"
+                name="file"
+                onChange={handleImageSelect}
+              />
+              <div className="upload-img-text-cont">
+                <span className="upload-img-text">
+                  {image?.name ?? "Upload Drawing, Photo, Document, etc"}
+                </span>
+                <img src={UploadSVG} />
+              </div>
+            </label>
+          </div>
+        </div>
+        {/* <div
+          className="pa_profile_section_input_container"
+          style={{
+            borderRadius: "20px",
+            marginTop: "2%",
+          }}
+        >
+          <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t("Attachments")}</p>
           </div>
           <div className="pa_profile_section_input_input">
@@ -313,7 +344,7 @@ function InputSection(props) {
               onChange={handleImageSelect}
             />
           </div>
-        </div>
+        </div> */}
         <CustomButton
           text={t("Edit Catalogue")}
           onClick={handleSubmit}

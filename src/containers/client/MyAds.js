@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
@@ -125,6 +126,7 @@ function ClientAdsScreen() {
   };
 
   return (
+    <>
     <div className="container-page-vertical">
       <ClientAppBar activeTab={2} color="#FCFCFC" />
       <div
@@ -156,6 +158,8 @@ function ClientAdsScreen() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

@@ -12,6 +12,7 @@ import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import CustomButton from "../../components/CustomButton";
 
 import Api from "../../api";
@@ -21,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
-
 import assetsURL from "../../utils/Assets";
 
 function ClientProfileScreen() {
@@ -302,6 +302,7 @@ function ClientProfileScreen() {
           </div>
         </div>
       )}
+      <Footer/>
     </>
   );
 }

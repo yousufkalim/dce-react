@@ -1,26 +1,32 @@
-.MuiAutocomplete-hasPopupIcon.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root, .MuiAutocomplete-hasClearIcon.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root{
+.MuiAutocomplete-hasPopupIcon.css-2x6lsi-MuiAutocomplete-root .MuiOutlinedInput-root{
     padding-right: 0px !important;
 }
-
-.MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-dqx39s-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
-    padding-right: 0px !important;
-}
-.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root{
+.css-2x6lsi-MuiAutocomplete-root .MuiOutlinedInput-root{
     padding: 0px !important;
 }
-
-.MuiAutocomplete-hasPopupIcon.css-dqx39s-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
-    padding-right: 0px !important;
-}
-
-.MuiAutocomplete-hasPopupIcon.css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root{
-    padding-right: 0px !important;
-}
-
 .css-dqx39s-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-endAdornment{
     visibility: hidden !important;
 }
 
 .css-ptiqhd-MuiSvgIcon-root{
     display: none !important;
+}
+/* .css-p2adox-MuiAutocomplete-root .MuiOutlinedInput-root{
+padding: 0px !important;
+} */
+/* build */
+.MuiAutocomplete-hasPopupIcon.css-13fro92 .MuiOutlinedInput-root{
+    padding-right: 0px !important;
+}
+
+.MuiAutocomplete-hasPopupIcon.css-13fro92 .MuiAutocomplete-inputRoot{
+    padding-right: 0px !important;
+}
+
+.css-13fro92 .MuiOutlinedInput-root{
+    padding: 0px !important;
+}
+
+.css-segi59{
+    padding-right: 0px !important;
 }

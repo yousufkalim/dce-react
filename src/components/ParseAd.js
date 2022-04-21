@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Country, City } from "country-state-city";
 
+import axios from "axios";
+
+import AutoComplete from '../components/AutoComplete'
+
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
@@ -28,7 +32,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
       ...obj,
     });
   };
-
+  
   const [anchorElMeasurements, setAnchorElMeasurements] = React.useState(null);
   const openMeasurements = Boolean(anchorElMeasurements);
   const handleClickMeasurements = (event) => {
@@ -48,7 +52,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
     });
     handleCloseMeasurements();
   };
-
+  
   return (
     <>
       <div className="pa_profile_section_container">
@@ -392,7 +396,10 @@ function DeliverySection({ state, setState, onClick, disabled }) {
 
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
-
+  const [addresses, setAddresses] = useState([]);
+  const [AdressDetail, setAdressDetails] = useState({
+    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+  });
   useEffect(() => {
     const _countries = Country.getAllCountries();
     setCountries(_countries);
@@ -415,9 +422,69 @@ function DeliverySection({ state, setState, onClick, disabled }) {
     setState({
       ...state,
       ...obj,
+      Adress:AdressDetail.Address.label,
+      zipcode:AdressDetail?.Address?.zip,
+      city:AdressDetail?.Address?.city
     });
   };
-
+  const handleStudent = (name, value) => {
+    setAdressDetails({ ...AdressDetail, [name]: value });
+  };
+  const handleSelectAddress = (e) => {
+    if (e) {
+    handleStudent("Address", {
+      label: e.label,
+      zip: e.PostalCode,
+      city: e.city,
+      lat: e.lat,
+      lng: e.lng,
+    });
+  } else {
+    handleStudent("Address", {
+      label: "",
+      zip: "",
+      city: "",
+      lat: "",
+      lng: "",
+    });
+  }
+  };
+  const handleAddress = async (e) => {
+    if (e.target.value === "") {
+      handleStudent("Address", {
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+      setAddresses([]);
+    } else {
+      handleStudent("Address", { ...AdressDetail.Address, label: e.target.value });
+    var config = {
+      method: "get",
+      url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+    };
+    axios.defaults.headers =null;
+    await axios(config)
+      .then((res) => {
+        let addressToSet = [];
+        res.data.features.map((item) => {
+          addressToSet.push({
+            label: item.properties.label,
+            city: item.properties.city,
+            PostalCode: item.properties.postcode,
+            lat: item.geometry.coordinates[1],
+            lng: item.geometry.coordinates[0],
+          });
+        });
+        setAddresses(addressToSet);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  };
   return (
     <>
       <div className="pa_profile_section_container">
@@ -432,7 +499,22 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             <p className="pa_profile_section_input_text">{t("Delivery Address")}</p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomInput
+          <div style={{width:"100%"}}>
+              <AutoComplete
+                name="Address"
+                required={true}
+                label={"Address"}
+                value={AdressDetail.Address.label}
+                options={addresses}
+                placeholder={"Address"}
+                componenet="parseaddress"
+                onChangeAddress={(e) => {
+                  handleAddress(e);
+                }}
+                onAddressSelect={(e) => handleSelectAddress(e)}
+              />
+              </div>
+            {/* <CustomInput
               disabled={disabled}
               labelStyle={{
                 display: "none",
@@ -444,27 +526,27 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               inputPlaceholder={t("Delivery Address")}
               inputDefaultValue={state.address}
               onChange={(e) => _setState("address", e.target.value)}
-            />
+            /> */}
+
           </div>
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">Zip code</p>
             <p className="pa_profile_section_input_text">{t("Country")}</p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomDropDown
+          <CustomInput
               disabled={disabled}
               labelStyle={{
                 display: "none",
               }}
-              selectID="country"
-              selectName="country"
-              selectNullValue={t("Country")}
-              selectValue={state.country}
-              onChange={(e) => _setState("country", e.target.value)}
-              menuItems={countries.map((_) => (
-                <MenuItem value={_.name}>{_.name}</MenuItem>
-              ))}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px",
+              }}
+              inputPlaceholder="Zip code"
+              Inputvalue={AdressDetail?.Address?.zip}
             />
           </div>
         </div>
@@ -480,19 +562,18 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             <p className="pa_profile_section_input_text">{t("City")}</p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomDropDown
+          <CustomInput
               disabled={disabled}
               labelStyle={{
                 display: "none",
               }}
-              selectID="city"
-              selectName="city"
-              selectNullValue={t("City")}
-              selectValue={state.city}
-              onChange={(e) => _setState("city", e.target.value)}
-              menuItems={cities.map((_) => (
-                <MenuItem value={_.name}>{_.name}</MenuItem>
-              ))}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px",
+              }}
+              inputPlaceholder="City"
+              Inputvalue={AdressDetail?.Address?.city}
+              //onChange={(e) => _setState("address", e.target.value)}
             />
           </div>
         </div>

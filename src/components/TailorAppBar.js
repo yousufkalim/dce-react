@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 
+import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
+import Nock from "../assets/Nock.svg";
+import EditIcon from "../assets/Edit.svg";
+import SupportIcon from "../assets/Support.svg";
+import TermsConditionsIcon from "../assets/TermsConditions.svg";
+import SignOutIcon from "../assets/SignOut.svg";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -19,7 +25,45 @@ import assetsURL from "../utils/Assets";
 import { useTranslation } from "react-i18next";
 
 import { Store, UpdateStore } from "../StoreContext";
+const StyledMenu = styled((MenuProps) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "right",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+    {...MenuProps}
+  />
+))(({ theme }) => ({
+  "& .MuiPaper-root": {
+    borderRadius: 12,
+    marginTop: theme.spacing(3),
+    padding: "2% 2% 1% 2%",
+    minWidth: 230,
+    color:
+      theme.palette.mode === "light"
+        ? "rgb(55, 65, 81)"
+        : theme.palette.grey[300],
+    boxShadow: "0px 4px 20px rgba(160, 160, 160, 0.33)",
 
+    "& .MuiMenuItem-root": {
+      "& .MuiSvgIcon-root": {
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      // '&:active': {
+      //   backgroundColor: alpha(
+      //     theme.palette.primary.main,
+      //     theme.palette.action.selectedOpacity,
+      //   ),
+      // },
+    },
+  },
+}));
 function TailorAppBar({
   activeTab,
   color,
@@ -36,6 +80,7 @@ function TailorAppBar({
   };
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+  const [profileImage, setProfileImage] = useState(null);
   const openProfile = Boolean(anchorElProfile);
   const handleClickProfile = (event) => {
     setAnchorElProfile(event.currentTarget);
@@ -240,7 +285,7 @@ function TailorAppBar({
             onClick={handleClickProfile}
           />
 
-          <Menu
+          {/* <Menu
             id="basic-menu"
             anchorEl={anchorElProfile}
             open={openProfile}
@@ -248,21 +293,65 @@ function TailorAppBar({
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
-          >
-            <MenuItem
+          > */}
+          <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                "aria-labelledby": "demo-customized-button",
+              }}
+              anchorEl={anchorElProfile}
+              open={openProfile}
+              onClose={handleCloseProfile}
+            >
+               <img className="nock" src={Nock} />
+               <div className="user-detail-conatiner">
+                <img
+                  className="image_container"
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : profile?.avatar
+                      ? assetsURL(profile?.avatar)
+                      : UserSVG
+                  }
+                />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <p className="user-name">{profile?.name} </p>
+                  <p className="user-email">{profile?.email}</p>
+                </div>
+              </div>
+            {/* <MenuItem
               onClick={() =>
                 changeLanguage(`${language == "en" ? "fr" : "en"}`)
               }
             >
               {language == "fr" ? "French" : "English"}
+            </MenuItem> */}
+            <MenuItem
+             style={{ borderBottom: "1px solid #DBDBDB" }}
+             className="menu-item"
+            onClick={navToProfile}>
+                 <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
+              <p>{t("Profile")} </p>
             </MenuItem>
-            <MenuItem onClick={navToProfile}>{t("Profile")}</MenuItem>
-            <MenuItem onClick={navToSupport}>{t("Support")}</MenuItem>
-            <MenuItem onClick={navToTermsAndConditions}>
-              {t("Terms and Conditions")}
+            <MenuItem  
+            className="menu-item support-padding" 
+            onClick={navToSupport}>
+                <img style={{ width: "16px" }} src={SupportIcon} />
+              <p>{t("Support")}</p>
+              </MenuItem>
+            <MenuItem className="menu-item"  onClick={navToTermsAndConditions}>
+            <img src={TermsConditionsIcon} />
+             <p>{t("Terms and Conditions")}</p> 
             </MenuItem>
-            <MenuItem onClick={handleLogoutSubmit}>{t("Logout")}</MenuItem>
-          </Menu>
+            <MenuItem
+            className="menu-item sign-out-padding"
+            onClick={handleLogoutSubmit}
+            >
+               <img style={{ width: "16px" }} src={SignOutIcon} />{" "}
+              <p> {t("Sign out")} </p>
+            </MenuItem>
+            </StyledMenu>
         </div>
       </div>
     </div>
