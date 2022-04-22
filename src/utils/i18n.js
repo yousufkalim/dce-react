@@ -81,6 +81,7 @@ i18n
           Offer: "Offer",
           Discard: "Discard",
           "Standard size": "Standard size",
+          "No Ads Yet":"No Ads Yet",
 
           "Chat Here": "Chat Here",
           "Ad Basic": "Ad Basic",
@@ -258,7 +259,7 @@ i18n
           //quotes
           "Name of Creation": "Name of Creation",
           "Ad for": "Ad for",
-
+          "No quotes yet":"No quotes yet",
           //searchResults
           "Orders Found": "Orders Found",
           offer: "offer",
@@ -441,6 +442,7 @@ i18n
             "No Orders":"Aucune commande",
           //my ads
           Ads: "Les publicités",
+          "No Ads Yet":"Aucune annonce pour le moment",
           "Name of Creation": "Nom de la création",
           "Ad for": "Annonce pour",
           "Delivery Date": "La date de livraison",
@@ -455,7 +457,7 @@ i18n
           Delivery: "Livraison",
           Payment: "Paiement",
           "Profile updated successfully.": "Mise à jour du profil réussie.",
-
+          
           //chats
           Online: "En ligne",
           "Last Online": "Dernière connexion",
@@ -635,7 +637,7 @@ i18n
           //quotes
           "Name of Creation": "Nom de la création",
           "Ad for": "Annonce pour",
-
+          "No quotes yet":"Pas encore de devis",
           //searchResults
           "Orders Found": "Commandes trouvées",
           offer: "offre",

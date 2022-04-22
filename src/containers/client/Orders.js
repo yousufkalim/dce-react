@@ -99,7 +99,7 @@ function ClientOrdersScreen() {
               >
                 {t("No Orders")}
               </div> */}
-              <NoOrders/>
+              <NoOrders RenderText="No Orders"/>
               )
             </>
           ) : null}
