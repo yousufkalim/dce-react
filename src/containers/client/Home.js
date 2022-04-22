@@ -4,18 +4,19 @@ import UserSVG from "../../assets/User.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
+import Rating from "@mui/material/Rating";
 import Footer from '../../components/Footer'
 import { useTranslation } from "react-i18next";
 import star from "../../assets/star.svg";
 
 import assetsURL from "../../utils/Assets";
+import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 function ClientHomeScreen() {
   const { t } = useTranslation();
-
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -181,8 +182,10 @@ function ClientHomeScreen() {
 }
 
 function DesignerListTile(props) {
+  console.log(props);
   const { t } = useTranslation();
 
+  const rating = calculateRating(props.ratings);
   const navigate = useNavigate();
 
   const navToViewTailor = () => {
@@ -222,17 +225,10 @@ function DesignerListTile(props) {
           paddingBottom: "6%",
         }}
       >
-        {`${props.country}, ${props.city}`}
+        {`${props.city}`}
       </p>
       <div className="stars">
-        <img src={star} />
-        <img src={star} />
-        <img src={star} />
-        <img src={star} />
-        <img src={star} />
-        <p className="chs_designer_list_tile_rating_text">
-          {5} ({10})
-        </p>
+        <Rating value={rating} size="small"/>
       </div>
     </div>
   );

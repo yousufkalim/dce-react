@@ -11,8 +11,6 @@ import { useTranslation } from "react-i18next";
 
 import Collapse from "@mui/material/Collapse";
 
-import UserSVG from "../../assets/User.svg";
-
 import { useNavigate } from "react-router-dom";
 
 import { getUser } from "../../utils/Auth";
@@ -124,7 +122,6 @@ function ClientAdsScreen() {
   const navToCreateAd = () => {
     navigate("/create_ad");
   };
-
   return (
     <>
     <div className="container-page-vertical">

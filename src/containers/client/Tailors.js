@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from '../../components/Footer'
+import Rating from "@mui/material/Rating";
+
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
@@ -124,12 +126,11 @@ function TailorListTile(props) {
           </p>
         </div>
         <div className="cds_tailor_list_tile_column3">
-          <div style={{ display: "flex" }}>
-            <Star />
-            <Star />
-            <Star />
-            <Star />
-            <Star />
+          <div style={{ display: "flex", justifyContent:"center", alignItemsL:"center" }}>
+          <Rating
+          value={rating}
+          size="small"
+         />
             <p
               style={{
                 fontSize: "14px",
@@ -151,14 +152,6 @@ function TailorListTile(props) {
           />
         </div>
       </div>
-    </>
-  );
-}
-
-function Star() {
-  return (
-    <>
-      <img src={star} />
     </>
   );
 }

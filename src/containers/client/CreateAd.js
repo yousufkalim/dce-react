@@ -45,7 +45,7 @@ function ClientCreateAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
-    country: "",
+    zipcode: "",
     city: "",
     note: "",
     type: "",
@@ -127,6 +127,7 @@ function ClientCreateAdScreen() {
         JSON.stringify({
           address: deliverySection.address,
           country: deliverySection.country,
+          zipcode:deliverySection.zipcode,
           city: deliverySection.city,
           note: deliverySection.note,
           type: deliverySection.type,

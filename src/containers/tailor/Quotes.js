@@ -54,7 +54,7 @@ function TailorQuotesScreen() {
       >
         <div className="client_ads_screen_row1"></div>
         <div className="client_ads_screen_row2">
-          {quotes.map((_) => (
+          {quotes?.map((_) => (
             <QuoteListTile {..._} />
           ))}
         </div>
@@ -79,10 +79,12 @@ function QuoteListTile(props) {
   const navigate = useNavigate();
 
   const navToViewQuote = (e) => {
+    e.stopPropagation();
     navigate(`/view_quote/${props._id}`);
   };
 
-  const navToChat = () => {
+  const navToChat = (e) => {
+    e.stopPropagation();
     navigate(`/chat`, { state: { directUser: props.client } });
   };
 
@@ -191,7 +193,7 @@ function QuoteListTile(props) {
       </div>
       <div className="tqs_quote_list_tile_column5">
         <div className="tqs_quote_list_tile_column5_buttons">
-          {props.quotes.some((_) => _.tailor._id == user._id) ? (
+          {props?.quotes?.some((_) => _.tailor._id == user._id) ? (
             <>
               <p style={{ fontSize: "16px", fontWeight: "900" }}>
                 {t("Offer Sent")}

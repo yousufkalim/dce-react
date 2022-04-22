@@ -28,7 +28,6 @@ function CatalogListTile({
     e.stopPropagation();
     onClickButton?.();
   };
-console.log(catalog,"catalog");
   return (
     <div
       className="tailor_catalog_list_tile_container"
@@ -86,7 +85,7 @@ console.log(catalog,"catalog");
           <p className="tailor_catalog_list_tile_price_detail">
             {t("Reviews")}
           </p>
-          <Rating name="read-only" value={value} size="small" readOnly />
+          <Rating name="read-only" value={rating} size="small" readOnly />
         </div>
       </div>
     </div>

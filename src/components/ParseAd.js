@@ -280,7 +280,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Colour")}</p>
+            <p style={{color:state.color?"#ffffff":""}} className="pa_profile_section_input_text">{t("Colour")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -294,8 +294,9 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
               selectValue={state.color}
               onChange={(e) => _setState("color", e.target.value)}
               menuItems={colors.map((_) => (
-                <MenuItem value={_.name}>{_.name}</MenuItem>
+                <MenuItem  value={_.name}> {_.name}</MenuItem>
               ))}
+              valuecolor={state.color? "on":"off"}
             />
           </div>
         </div>
@@ -392,29 +393,13 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
 }
 
 function DeliverySection({ state, setState, onClick, disabled }) {
+  console.log(state,"state");
   const { t } = useTranslation();
 
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
   const [addresses, setAddresses] = useState([]);
   const [AdressDetail, setAdressDetails] = useState({
     Address: { zip: "", label: "", city: "", lat: "", lng: "" },
-  });
-  useEffect(() => {
-    const _countries = Country.getAllCountries();
-    setCountries(_countries);
-  }, []);
-
-  useEffect(() => {
-    if (state.country) {
-      const countryObj = countries.find((_) => _.name == state.country);
-      if (countryObj) {
-        _setState("city", "");
-        const _cities = City.getCitiesOfCountry(countryObj.isoCode);
-        setCities(_cities);
-      }
-    }
-  }, [state.country]);
+  }); // TODO: This needs to be removed in the future.
 
   const _setState = (key, value) => {
     const obj = {};
@@ -422,9 +407,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
     setState({
       ...state,
       ...obj,
-      Adress:AdressDetail.Address.label,
-      zipcode:AdressDetail?.Address?.zip,
-      city:AdressDetail?.Address?.city
+      address: AdressDetail.Address.label,
+      zipcode: AdressDetail?.Address?.zip,
+      city: AdressDetail?.Address?.city
     });
   };
   const handleStudent = (name, value) => {
@@ -504,7 +489,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 name="Address"
                 required={true}
                 label={"Address"}
-                value={AdressDetail.Address.label}
+                value={AdressDetail?.Address?.label}
                 options={addresses}
                 placeholder={"Address"}
                 componenet="parseaddress"
@@ -533,7 +518,6 @@ function DeliverySection({ state, setState, onClick, disabled }) {
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">Zip code</p>
-            <p className="pa_profile_section_input_text">{t("Country")}</p>
           </div>
           <div className="pa_profile_section_input_input">
           <CustomInput
@@ -547,6 +531,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               }}
               inputPlaceholder="Zip code"
               Inputvalue={AdressDetail?.Address?.zip}
+              //onChange={(e) => _setState("address", e.target.value)}
             />
           </div>
         </div>
@@ -732,7 +717,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               type="number"
               defaultValue={state.min_price}
               onChange={(e) => _setState("min_price", e.target.value)}
-              placeholder="$50"
+              placeholder="$0"
             />
           </div>
         </div>
@@ -753,7 +738,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               type="number"
               defaultValue={state.max_price}
               onChange={(e) => _setState("max_price", e.target.value)}
-              placeholder="$80"
+              placeholder="$0"
             />
           </div>
         </div>

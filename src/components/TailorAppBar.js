@@ -11,6 +11,11 @@ import SupportIcon from "../assets/Support.svg";
 import TermsConditionsIcon from "../assets/TermsConditions.svg";
 import SignOutIcon from "../assets/SignOut.svg";
 
+import EditIcon from "../assets/Edit.svg";
+import SupportIcon from "../assets/Support.svg";
+import TermsConditionsIcon from "../assets/TermsConditions.svg";
+import SignOutIcon from "../assets/SignOut.svg";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -303,7 +308,7 @@ function TailorAppBar({
               open={openProfile}
               onClose={handleCloseProfile}
             >
-               <img className="nock" src={Nock} />
+               {/* <img className="nock" src={Nock} /> */}
                <div className="user-detail-conatiner">
                 <img
                   className="image_container"

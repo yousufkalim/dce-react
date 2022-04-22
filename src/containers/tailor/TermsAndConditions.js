@@ -120,7 +120,7 @@ function QNAStandardListTile({ question, answers }) {
       >
         {question}
       </p>
-      {answers.map((_) => (
+      {answers?.map((_) => (
         <p
           style={{
             fontSize: "16px",

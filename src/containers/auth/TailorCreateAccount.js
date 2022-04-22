@@ -40,7 +40,7 @@ function TailorCreateAccountScreen() {
     if (!state?.["Email"] || !state?.["Password"]) {
       navigate("/login");
     }
-    getDropdownValues()
+    // getDropdownValues()
   }, []);
 
   const navToHome = () => {

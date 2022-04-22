@@ -235,7 +235,6 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
               onClick={handleClickProfile}
             />
-
             <StyledMenu
               id="demo-customized-menu"
               MenuListProps={{
