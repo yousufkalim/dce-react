@@ -25,10 +25,12 @@ function LoginScreen() {
   const updateStore = UpdateStore();
 
   const navToHome = () => {
-    navigate("/home");
+    e.stopPropagation()
+    // navigate("/home");
   };
 
-  const navToSelectRole = () => {
+  const navToSelectRole = (e) => {
+    e.stopPropagation()
     navigate("/select_role");
   };
 
@@ -125,7 +127,7 @@ function LoginScreen() {
               </p>
               <CustomButton
                 text="Login"
-                type="submit"
+                // type="submit"
                 onClick={navToHome}
                 style={{
                   marginBottom: "10%",
