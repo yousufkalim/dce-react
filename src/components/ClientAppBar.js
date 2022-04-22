@@ -78,7 +78,9 @@ function useWindowSize() {
 }
 
 function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, divStyle }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
 
   const [width] = useWindowSize();
   const navigate = useNavigate();
@@ -176,8 +178,6 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
     setToggle(!toggle);
   };
 
-  const { i18n,t } = useTranslation();
-  const { language } = i18n;
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
