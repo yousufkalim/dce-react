@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from "react-i18next";
-const NoOrders = () => {
+const NoOrders = ({RenderText}) => {
     const { t } = useTranslation();
   return (
    <>
@@ -13,7 +13,7 @@ const NoOrders = () => {
                   width: "100%",
                 }}
               >
-                {t("No Orders")}
+                {t(RenderText)}
               </div>
    </>
   )

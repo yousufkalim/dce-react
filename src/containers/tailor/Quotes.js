@@ -65,7 +65,7 @@ function TailorQuotesScreen() {
         </div>
       
          </>
-       ):<NoOrders/> 
+       ):<NoOrders RenderText="No quotes yet"/> 
       }
       </div>
       <Footer />

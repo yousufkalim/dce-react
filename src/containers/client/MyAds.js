@@ -168,7 +168,7 @@ function ClientAdsScreen() {
               >
                 {t("No Orders")}
               </div> */}
-               <NoOrders/>
+               <NoOrders RenderText="No Ads Yet"/>
             </>
           ) : null}
         </div>
