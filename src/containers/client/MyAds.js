@@ -489,6 +489,7 @@ const AcceptQuoteModal = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(props.order, "Tap");
     if (props.order.measurements.type == "static") {
       handleStaticMeasurements();
     } else if (props.order.measurements.type == "tape") {
@@ -513,18 +514,38 @@ const AcceptQuoteModal = (props) => {
       const body = {
         quote: props.quote._id,
       };
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        navToOrders();
-      }
+      let line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: props.quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getSessionUrl(props.quote, line_items);
     } catch (e) {
       console.trace(e);
     }
 
     setIsProcessing(false);
+  };
+
+  const getSessionUrl = async (quote, line_items) => {
+    try {
+      let id = quote._id;
+      let type = "static";
+      let response = await Api("post", "/payments/Checkout", {
+        line_items: line_items,
+        metaData: { id, type },
+      });
+      window.location = response.data.url;
+    } catch (e) {
+      console.trace(e);
+    }
   };
 
   const handleTapeMeasurements = () => {
@@ -649,20 +670,40 @@ const ScheduleCallModal = (props) => {
         quote: props.quote._id,
         call_at: parsedDate,
       };
-
       setIsProcessing(true);
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        navToOrders();
-      }
+      const call = body.call_at;
+      let line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Call Payment",
+            },
+            unit_amount: 8 * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getTapeUrl(props.quote, line_items, call);
     } catch (e) {
       console.trace(e);
     }
 
     setIsProcessing(false);
+  };
+
+  const getTapeUrl = async (quote, line_items, call) => {
+    try {
+      let id = quote._id;
+      let type = "call";
+      let response = await Api("post", "/payments/Checkout", {
+        line_items: line_items,
+        metaData: { id, type, call },
+      });
+      window.location = response.data.url;
+    } catch (e) {
+      console.trace(e);
+    }
   };
 
   const navToOrders = () => {

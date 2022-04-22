@@ -10,7 +10,7 @@ import VideotutSVG from "../../assets/videotut.svg";
 import YoutubeIconSVG from "../../assets/youtubeicon.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 
 import * as ParseMeasurement from "../../components/ParseMeasurement";
 
@@ -86,23 +86,41 @@ function ClientTapeMeasurementScreen() {
       setIsProcessing(true);
 
       const body = {
-        quote: state.quote._id,
         measurements: measurmentsObjMaker(),
-      };
-
-      console.log(body);
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success("Quote accepted successfully.");
-        navToOrders();
-      }
+      }; // TODO: Change this to string of measurements field and call accept quote API here.
+      let line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: state.quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      let measurements = JSON.stringify(body.measurements);
+      getSessionUrl(state.quote, line_items, measurements);
     } catch (e) {
       console.trace(e);
     }
 
     setIsProcessing(false);
+  };
+
+  const getSessionUrl = async (quote, line_items, measurements) => {
+    try {
+      let id = quote._id;
+      let type = "tape";
+      let response = await Api("post", "/payments/Checkout", {
+        line_items: line_items,
+        metaData: { id, type, measurements },
+      });
+      window.location = response.data.url;
+    } catch (e) {
+      console.trace(e);
+    }
   };
 
   const measurmentsObjMaker = () => {
@@ -234,7 +252,7 @@ function ClientTapeMeasurementScreen() {
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
