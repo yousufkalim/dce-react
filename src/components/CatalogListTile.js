@@ -5,9 +5,10 @@ import CustomButton from "./CustomButton";
 import CatalogContent1SVG from "../assets/CatalogContent1.svg";
 
 import Rating from "@mui/material/Rating";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
-
+import dummy from '../assets/dummy.jpeg'
 import assetsURL from "../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../utils/Helpers";
 
@@ -18,6 +19,8 @@ function CatalogListTile({
   onClick,
   mainDivStyle,
 }) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(catalog.ratings);
   const [value, setValue] = React.useState(rating ?? 0);
 
@@ -25,7 +28,6 @@ function CatalogListTile({
     e.stopPropagation();
     onClickButton?.();
   };
-
   return (
     <div
       className="tailor_catalog_list_tile_container"
@@ -48,11 +50,12 @@ function CatalogListTile({
             objectFit: "cover",
             borderRadius: "20px",
           }}
-          src={
-            catalog?.attachment
-              ? assetsURL(catalog.attachment)
-              : CatalogContent1SVG
-          }
+          // src={
+          //   catalog?.attachment
+          //     ? assetsURL(catalog.attachment)
+          //     : CatalogContent1SVG
+          // }
+          src={dummy}
         />
         <CustomButton
           text={buttonText}
@@ -74,13 +77,15 @@ function CatalogListTile({
         <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
         <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">
-            Stitching Price
+            {t("Stitching Price")}
           </p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
         <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">Reviews</p>
-          <Rating name="read-only" value={value} size="small" readOnly />
+          <p className="tailor_catalog_list_tile_price_detail">
+            {t("Reviews")}
+          </p>
+          <Rating name="read-only" value={rating} size="small" readOnly />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import UserSVG from "../../assets/User.svg";
 import TailorAppBar from "../../components/TailorAppBar";
 import CustomButton from "../../components/CustomButton";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function TailorOrdersScreen() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -81,7 +83,7 @@ function TailorOrdersScreen() {
         id: id,
       };
 
-      response = await Api("post", "/orders/acceptRequest", body);
+      response = await Api("post", "/orders/accept", body);
 
       if (response?.data?.success) {
         toast.success(response.data.message);
@@ -139,8 +141,10 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">Orders Requests</p>
-            <CustomButton text="See All Requests" />
+            <p className="client_orders_screen_row1_text">
+              {t("Orders Requests")}
+            </p>
+            <CustomButton text={t("See All Requests")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersRequest.map((_) => (
@@ -160,8 +164,8 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">In Progress</p>
-            <CustomButton text="See All Orders" />
+            <p className="client_orders_screen_row1_text">{t("In Progress")}</p>
+            <CustomButton text={t("See All Orders")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersInProgress.map((_) => (
@@ -181,8 +185,8 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">Completed</p>
-            <CustomButton text="See All Orders" />
+            <p className="client_orders_screen_row1_text">{t("Completed")}</p>
+            <CustomButton text={t("See All Orders")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersCompleted.map((_) => (
@@ -201,8 +205,8 @@ function TailorOrdersScreen() {
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">Discarded</p>
-            <CustomButton text="See All Orders" />
+            <p className="client_orders_screen_row1_text">{t("Discarded")}</p>
+            <CustomButton text={t("See All Orders")} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersDiscarded.map((_) => (
@@ -221,6 +225,8 @@ function TailorOrdersScreen() {
 }
 
 function OrderRequestListTile(props) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const navToChat = () => {
     navigate(`/chat`, { state: { directUser: props.order.client } });
@@ -267,7 +273,7 @@ function OrderRequestListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order</p>
+          <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
           <p className="cos_order_list_tile_column2_item_value">
             {props.order.name}
           </p>
@@ -278,7 +284,9 @@ function OrderRequestListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Order Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
@@ -289,7 +297,9 @@ function OrderRequestListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Delivery Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Delivery Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
@@ -302,13 +312,13 @@ function OrderRequestListTile(props) {
           {props.order.budget.min_price ?? props.order.budget.max_price}$
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-          Bill
+          {t("Bill")}
         </p>
       </div>
       <div className="tos_order_list_tile_column4">
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
-            text="Accept"
+            text={t("Accept")}
             onClick={(e) => props.acceptOrder(e, props.order._id)}
             style={{
               boxShadow: "none",
@@ -316,7 +326,7 @@ function OrderRequestListTile(props) {
             }}
           />
           <CustomButton
-            text="Discard"
+            text={t("Discard")}
             style={{
               boxShadow: "none",
               backgroundColor: "transparent",
@@ -329,7 +339,7 @@ function OrderRequestListTile(props) {
           style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }}
           onClick={navToChat}
         >
-          Chat Here
+          {t("Chat Here")}
         </p>
       </div>
     </div>
@@ -337,6 +347,8 @@ function OrderRequestListTile(props) {
 }
 
 function OrderInProgressListTile(props) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const navToChat = () => {
     navigate(`/chat`, { state: { directUser: props.order.client } });
@@ -383,7 +395,7 @@ function OrderInProgressListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order</p>
+          <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
           <p className="cos_order_list_tile_column2_item_value">
             {props.order.name}
           </p>
@@ -394,7 +406,9 @@ function OrderInProgressListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Order Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
@@ -405,7 +419,9 @@ function OrderInProgressListTile(props) {
             padding: "2% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Delivery Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Delivery Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
@@ -420,7 +436,7 @@ function OrderInProgressListTile(props) {
           }$`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-          Bill
+          {t("Bill")}
         </p>
       </div>
       <div className="tos_order_list_tile_column4">
@@ -428,11 +444,11 @@ function OrderInProgressListTile(props) {
           style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }}
           onClick={navToChat}
         >
-          Chat Here
+          {t("Chat Here")}
         </p>
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
-            text="Discard"
+            text={t("Discard")}
             style={{
               boxShadow: "none",
             }}
@@ -445,6 +461,8 @@ function OrderInProgressListTile(props) {
 }
 
 function OrderCompletedListTile(props) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(props.order.client.ratings);
   const ratingsCount = calculateRatingsCount(props.order.client.ratings);
   return (
@@ -516,7 +534,7 @@ function OrderCompletedListTile(props) {
             paddingBottom: "3%",
           }}
         >
-          Offer
+          {t("Offer")}
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${
@@ -532,7 +550,7 @@ function OrderCompletedListTile(props) {
       >
         <div className="tcos_order_list_tile_column5_buttons">
           <CustomButton
-            text="Support"
+            text={t("Support")}
             style={{
               boxShadow: "none",
             }}
@@ -547,6 +565,7 @@ function OrderCompletedListTile(props) {
 }
 
 function OrderDiscardedListTile(props) {
+  const { t } = useTranslation();
   const rating = calculateRating(props.order.client.ratings);
   const ratingsCount = calculateRatingsCount(props.order.client.ratings);
 
@@ -625,7 +644,7 @@ function OrderDiscardedListTile(props) {
             paddingBottom: "3%",
           }}
         >
-          Offer
+          {t("Offer")}
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}$`}
@@ -639,7 +658,7 @@ function OrderDiscardedListTile(props) {
       >
         <div className="tcos_order_list_tile_column5_buttons">
           <CustomButton
-            text="Support"
+            text={t("Support")}
             style={{
               boxShadow: "none",
             }}

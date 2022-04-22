@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Country, City } from "country-state-city";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -7,8 +6,6 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
-import CustomDropDown from "../../components/CustomDropDown";
-import MenuItem from "@mui/material/MenuItem";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
@@ -25,30 +22,11 @@ function ClientCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
-
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
+
   const store = Store();
   const updateStore = UpdateStore();
-
-  useEffect(() => {
-    const _countries = Country.getAllCountries();
-    setCountries(_countries);
-  }, []);
-
-  useEffect(() => {
-    if (country) {
-      setCity("");
-
-      const countryObj = countries.find((_) => _.name == country);
-      const _cities = City.getCitiesOfCountry(countryObj.isoCode);
-      setCities(_cities);
-    }
-  }, [country]);
 
   useEffect(() => {
     if (!state?.["Email"] || !state?.["Password"]) {
@@ -78,12 +56,6 @@ function ClientCreateAccountScreen() {
     if (dateOfBirth == null) {
       toast.error("Date of Birth must be selected.");
       return;
-    } else if (country == "") {
-      toast.error("Country must be selected.");
-      return;
-    } else if (city == "") {
-      toast.error("City must be selected.");
-      return;
     }
 
     let response;
@@ -97,8 +69,8 @@ function ClientCreateAccountScreen() {
         name: data.get("Full Name"),
         dob: dateOfBirth,
         address: data.get("Address"),
-        country: country,
-        city: city,
+        zip_code: data.get("Address"),
+        city: data.get("City"),
       };
 
       response = await Api("post", "/clients", body);
@@ -170,6 +142,7 @@ function ClientCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "6%",
                 }}
+                dobinput="dob"
               />
               <CustomInput
                 labelText="Address"
@@ -180,50 +153,26 @@ function ClientCreateAccountScreen() {
                 }}
               />
               <div className="create_account_screen_row2_row1">
-                <CustomDropDown
-                  labelText="Country"
-                  selectID="country"
-                  selectName="Country"
-                  selectNullValue="Country"
-                  selectValue={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  menuItems={countries.map((_) => (
-                    <MenuItem value={_.name}>{_.name}</MenuItem>
-                  ))}
-                  inputName="Country"
+                <CustomInput
+                  // disabled
+                  labelText="Zip Code"
+                  inputName="Zip Code"
+                  inputPlaceholder="Zip Code"
                   divStyle={{
                     display: "flex",
                     width: "48%",
                     marginBottom: "6%",
-                  }}
-                  selectSX={{
-                    borderColor: "#CC8E9C",
-                    borderStyle: "solid",
-                    borderWidth: "1.5px",
-                    borderRadius: "10px",
                   }}
                 />
-                <CustomDropDown
+                <CustomInput
+                  // disabled
                   labelText="City"
-                  selectID="city"
-                  selectName="City"
-                  selectNullValue="City"
-                  selectValue={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  menuItems={cities.map((_) => (
-                    <MenuItem value={_.name}>{_.name}</MenuItem>
-                  ))}
                   inputName="City"
+                  inputPlaceholder="City"
                   divStyle={{
                     display: "flex",
                     width: "48%",
                     marginBottom: "6%",
-                  }}
-                  selectSX={{
-                    borderColor: "#CC8E9C",
-                    borderStyle: "solid",
-                    borderWidth: "1.5px",
-                    borderRadius: "10px",
                   }}
                 />
               </div>

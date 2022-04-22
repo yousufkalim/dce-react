@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
+import Rating from "@mui/material/Rating";
+
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
@@ -15,6 +19,8 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 import star from "../../assets/star.svg";
 
 function ClientTailorsScreen() {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(true);
   const [tailors, setTailors] = useState([]);
   const user = getUser();
@@ -36,6 +42,7 @@ function ClientTailorsScreen() {
   };
 
   return (
+    <>
     <div className="container-page-vertical">
       <ClientAppBar activeTab={0} color="#FCFCFC" />
       <div
@@ -50,7 +57,7 @@ function ClientTailorsScreen() {
             className="client_orders_screen_row1_text"
             style={{ paddingLeft: "3%" }}
           >
-            Designers
+            {t("Designers")}
           </p>
         </div>
         <div className="client_orders_screen_row2">
@@ -60,10 +67,14 @@ function ClientTailorsScreen() {
         </div>
       </div>
     </div>
+     <Footer/>
+     </>
   );
 }
 
 function TailorListTile(props) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(props.ratings);
   const ratingsCount = calculateRatingsCount(props.ratings);
 
@@ -115,12 +126,11 @@ function TailorListTile(props) {
           </p>
         </div>
         <div className="cds_tailor_list_tile_column3">
-          <div style={{ display: "flex" }}>
-            <Star />
-            <Star />
-            <Star />
-            <Star />
-            <Star />
+          <div style={{ display: "flex", justifyContent:"center", alignItemsL:"center" }}>
+          <Rating
+          value={rating}
+          size="small"
+         />
             <p
               style={{
                 fontSize: "14px",
@@ -136,20 +146,12 @@ function TailorListTile(props) {
         </div>
         <div className="cds_tailor_list_tile_column1">
           <CustomButton
-            text="Chat Here"
+            text={t("Chat Here")}
             style={{ borderRadius: "20px" }}
             onClick={navToChat}
           />
         </div>
       </div>
-    </>
-  );
-}
-
-function Star() {
-  return (
-    <>
-      <img src={star} />
     </>
   );
 }

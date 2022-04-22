@@ -8,6 +8,7 @@ import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import Background from "../../assets/backgroung1.svg";
+import { useTranslation } from "react-i18next";
 
 import { getUser } from "../../utils/Auth";
 
@@ -18,6 +19,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import assetsURL from "../../utils/Assets";
 
 function TailorClientProfileScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -80,7 +83,7 @@ function TailorClientProfileScreen() {
           >
             <img src={Background} className="backgrounimg" />
             <div className="thiw_qna_standard_screen_row1">
-              <div className="clientProfilediv">Client Profile</div>
+              <div className="clientProfilediv">{t("Client Profile")}</div>
               <div className="clientProfileRow">
                 <div className="clientProfilePic">
                   <img
@@ -102,7 +105,7 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Phone"
-                    placeholder="Phone"
+                    placeholder={t("Phone")}
                     defaultValue={client.phone}
                     img={ProfilePhoneSVG}
                     divStyle={{
@@ -121,7 +124,7 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Date Of Birth"
-                    placeholder="Date Of Birth"
+                    placeholder={t("Date Of Birth")}
                     defaultValue={new Date(client.dob).toLocaleDateString(
                       "en-US"
                     )}
@@ -137,7 +140,7 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Country"
-                    placeholder="Country"
+                    placeholder={t("Country")}
                     defaultValue={client.country}
                     img={ProfileCountrySVG}
                     divStyle={{
@@ -148,14 +151,14 @@ function TailorClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="City"
-                    placeholder="City"
+                    placeholder={t("City")}
                     defaultValue={client.city}
                     img={ProfileCitySVG}
                   />
                   <ProfileInput
                     disabled
                     name="Location"
-                    placeholder="Location"
+                    placeholder={t("Location")}
                     defaultValue={client.address}
                     img={ProfileLocationSVG}
                     divStyle={{
@@ -176,7 +179,7 @@ function TailorClientProfileScreen() {
               }}
             ></div>
             <div className="ClientOrder">
-              <div className="clientorderdiv">Client Orders</div>
+              <div className="clientorderdiv">{t("Client Orders")}</div>
               {orders.map((_) => (
                 <ClientProfileOrderListTile {..._} />
               ))}
@@ -217,7 +220,7 @@ function ProfileInput({
           className="tps_profile_input_input"
           name={name}
           onChange={onChange}
-          placeholder={placeholder}
+          placeholder={t(placeholder)}
           defaultValue={defaultValue}
           type={inputType}
           style={{ color: "black" }}
@@ -268,19 +271,19 @@ function ClientProfileOrderListTile(props) {
         <div className="orderLine"></div>
         <div className="orderabovediv">
           <div className="orderDiv">
-            <p className="ordername">Order</p>
+            <p className="ordername">{t("Order")}</p>
             <p className="ordername2">{props.name}</p>
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
-            <p className="ordername">Order Date</p>
+            <p className="ordername">{t("Order Date")}</p>
             <p className="ordername2">
               {new Date(props.createdAt).toLocaleDateString("en-US")}
             </p>
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
-            <p className="ordername">Delivery Date</p>
+            <p className="ordername">{t("Delivery Date")}</p>
             <p className="ordername2">
               {new Date(props.delivery.date).toLocaleDateString("en-US")}
             </p>
@@ -289,7 +292,7 @@ function ClientProfileOrderListTile(props) {
         <div className="orderLine"></div>
         <div className="orderofferDiv">
           <h3 className="orderofferPrice">{props.budget.min_price}$</h3>
-          <h3 className="orderofferheading">Bill</h3>
+          <h3 className="orderofferheading">{t("Bill")}</h3>
         </div>
         <div className="orderLine"></div>
         <div>

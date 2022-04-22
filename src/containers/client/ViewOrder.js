@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import { useTranslation } from "react-i18next";
 
 import AdEdit1SVG from "../../assets/AdEdit1.svg";
 import AdEdit2SVG from "../../assets/AdEdit2.svg";
 import AdEdit3SVG from "../../assets/AdEdit3.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api";
@@ -17,6 +19,8 @@ import { useParams } from "react-router-dom";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function ClientViewOrderScreen() {
+  const { t } = useTranslation();
+
   const params = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -80,12 +84,11 @@ function ClientViewOrderScreen() {
 
   return (
     <>
-      {console.log(ad)}
       {isLoading ? (
         <></>
       ) : (
         <div className="container-page">
-          <ClientAppBar color="#F8F4EF" activeTab={2} />
+          <ClientAppBar color="#F8F4EF" activeTab={1} />
           <div
             className="container"
             style={{
@@ -100,7 +103,7 @@ function ClientViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Client Basic
+                  {t("Client Basic")}
                 </p>
                 <p
                   style={{
@@ -109,7 +112,7 @@ function ClientViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "55%" }} src={AdEdit1SVG} />
               </div>
@@ -183,7 +186,7 @@ function ClientViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Delivery
+                  {t("Delivery")}
                 </p>
                 <p
                   style={{
@@ -192,7 +195,7 @@ function ClientViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "70%" }} src={AdEdit2SVG} />
               </div>
@@ -212,7 +215,7 @@ function ClientViewOrderScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  Payment
+                  {t("Payment")}
                 </p>
                 <p
                   style={{
@@ -221,7 +224,7 @@ function ClientViewOrderScreen() {
                     marginBottom: "20%",
                   }}
                 >
-                  Details
+                  {t("Details")}
                 </p>
                 <img style={{ width: "20%" }} src={AdEdit3SVG} />
               </div>
@@ -256,6 +259,7 @@ function ClientViewOrderScreen() {
           </div>
         </div>
       )}
+  <Footer/>
     </>
   );
 }

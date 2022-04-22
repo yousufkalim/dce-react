@@ -6,8 +6,7 @@ import ClientVerifyEmailScreen from "../containers/auth/ClientVerifyEmail";
 import ClientCreateAccountScreen from "../containers/auth/ClientCreateAccount";
 import TailorRegisterScreen from "../containers/auth/TailorRegister";
 import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
-import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
-import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
+import TailorCreateAccountScreen from "../containers/auth/TailorCreateAccount";
 
 // Client Screens
 import ClientHomeScreen from "../containers/client/Home";
@@ -54,8 +53,7 @@ import ClientVerifyEmailIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAccountIcon from "@mui/icons-material/AccountBox";
 import TailorRegisterIcon from "@mui/icons-material/AccountBox";
 import TailorVerifyEmailIcon from "@mui/icons-material/AccountBox";
-import TailorCreateAccount1Icon from "@mui/icons-material/AccountBox";
-import TailorCreateAccount2Icon from "@mui/icons-material/AccountBox";
+import TailorCreateAccountIcon from "@mui/icons-material/AccountBox";
 import ClientHomeIcon from "@mui/icons-material/AccountBox";
 import ClientOrdersIcon from "@mui/icons-material/AccountBox";
 import ClientTailorsIcon from "@mui/icons-material/AccountBox";
@@ -139,16 +137,10 @@ const AuthRoutes = [
     element: TailorVerifyEmailScreen,
   },
   {
-    path: "/tailor_create_account_1",
-    name: "TailorCreateAccount1",
-    icon: <TailorCreateAccount1Icon />,
-    element: TailorCreateAccount1Screen,
-  },
-  {
-    path: "/tailor_create_account_2",
-    name: "TailorCreateAccount2",
-    icon: <TailorCreateAccount2Icon />,
-    element: TailorCreateAccount2Screen,
+    path: "/tailor_create_account",
+    name: "TailorCreateAccount",
+    icon: <TailorCreateAccountIcon />,
+    element: TailorCreateAccountScreen,
   },
 ];
 

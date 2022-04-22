@@ -59,6 +59,12 @@ function clientCreateAccount(data) {
     {
       name: "Address",
     },
+    {
+      name: "Zip Code",
+    },
+    {
+      name: "City",
+    },
   ];
 
   const validated = formValidator(data, valArr);
@@ -100,34 +106,16 @@ function tailorVerifyEmail(data) {
   return validated;
 }
 
-function tailorCreateAccount1(data) {
+function tailorCreateAccount(data) {
   const valArr = [
     {
-      name: "Full Name",
+      name: "Name of your company",
     },
     {
-      name: "Address",
-    },
-  ];
-
-  const validated = formValidator(data, valArr);
-
-  return validated;
-}
-
-function tailorCreateAccount2(data) {
-  const valArr = [
-    {
-      name: "Experience",
+      name: "Name",
     },
     {
-      name: "Area of Experience",
-    },
-    {
-      name: "Diploma",
-    },
-    {
-      name: "Speciality",
+      name: "Phone No",
     },
   ];
 
@@ -182,7 +170,7 @@ function parseAdDeliverySection(data) {
     },
     {
       validationFunction: () =>
-        Validators.selectValidator("Country", data["country"]),
+        Validators.selectValidator("Zip Code", data["zipcode"]),
     },
     {
       validationFunction: () =>
@@ -422,8 +410,7 @@ export {
   clientCreateAccount,
   tailorRegister,
   tailorVerifyEmail,
-  tailorCreateAccount1,
-  tailorCreateAccount2,
+  tailorCreateAccount,
   parseAdBasicSection,
   parseAdDeliverySection,
   parseAdNotesSection,

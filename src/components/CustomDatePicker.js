@@ -14,6 +14,7 @@ function CustomDatePicker({
   disabled,
   divStyle,
   labelStyle,
+  dobinput
 }) {
   return (
     <div
@@ -36,6 +37,9 @@ function CustomDatePicker({
           position: "relative",
           height: "100%",
           width: "100%",
+          border:dobinput=="dob"? "1px solid #CC8E9C":"",
+          borderRadius:dobinput=="dob"?"10px":"",
+          borderWidth:dobinput=="dob"? "1.5px":"",
         }}
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>

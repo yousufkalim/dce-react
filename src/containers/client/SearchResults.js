@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import SearchIcon from "../../assets/search1.svg";
 import UserSVG from "../../assets/resultimg1.svg";
 import CustomButton from "../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +17,8 @@ import assetsURL from "../../utils/Assets";
 import { toast } from "react-toastify";
 
 function ClientSearchResultsScreen() {
+  const { t } = useTranslation();
+
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
 
@@ -44,13 +48,14 @@ function ClientSearchResultsScreen() {
 
   const callback = () => {
     if (!searchQuery) {
-      toast.error("Search Input can't be empty");
+      toast.error(t("Search Input can't be empty"));
       return;
     }
     getTailors(searchQuery);
   };
 
   return (
+    <>
     <div className="container-page-vertical">
       <ClientAppBar color="#FDFDFC" disableSearch />
       <div
@@ -70,7 +75,9 @@ function ClientSearchResultsScreen() {
             color: "gray",
           }}
         >
-          <p>{tailors.length} Designers Found</p>
+          <p>
+            {tailors.length} {t("Designers Found")}
+          </p>
         </div>
         <div className="client_search_results_screen_row2">
           {tailors.map((_) => (
@@ -78,7 +85,7 @@ function ClientSearchResultsScreen() {
           ))}
         </div>
         <CustomButton
-          text="View All"
+          text={t("See All")}
           style={{
             alignSelf: "center",
             boxShadow: "none",
@@ -88,6 +95,8 @@ function ClientSearchResultsScreen() {
         />
       </div>
     </div>
+    <Footer/>
+</>
   );
 }
 
@@ -113,6 +122,8 @@ function SearchInput({ setSearchQuery, callback }) {
   );
 }
 function SingleResult(props) {
+  const { t } = useTranslation();
+
   return (
     <div className="csrs_single_result_list_tile_container">
       <div className="csrs_single_result_list_tile_column">
@@ -143,7 +154,7 @@ function SingleResult(props) {
           }}
         >
           <p className="csrs_single_result_list_tile_column_key">
-            Total Orders
+            {t("Total Orders")}
           </p>
           <p className="csrs_single_result_list_tile_column_value">N/A</p>
         </div>
@@ -153,7 +164,9 @@ function SingleResult(props) {
             padding: "3% 0",
           }}
         >
-          <p className="csrs_single_result_list_tile_column_key">Experience</p>
+          <p className="csrs_single_result_list_tile_column_key">
+            {t("Experience")}
+          </p>
           <p className="csrs_single_result_list_tile_column_value">
             {props.experience}
           </p>
@@ -164,7 +177,9 @@ function SingleResult(props) {
             padding: "3% 0",
           }}
         >
-          <p className="csrs_single_result_list_tile_column_key">Speciality</p>
+          <p className="csrs_single_result_list_tile_column_key">
+            {t("Speciality")}
+          </p>
           <p className="csrs_single_result_list_tile_column_value">
             {props.speciality}
           </p>

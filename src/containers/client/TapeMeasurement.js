@@ -10,6 +10,8 @@ import VideotutSVG from "../../assets/videotut.svg";
 import YoutubeIconSVG from "../../assets/youtubeicon.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from "../../components/Footer";
+
 import * as ParseMeasurement from "../../components/ParseMeasurement";
 
 import Api from "../../api/index";
@@ -250,6 +252,7 @@ function ClientTapeMeasurementScreen() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

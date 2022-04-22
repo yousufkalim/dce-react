@@ -5,8 +5,10 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
 import AdElaborationSVG from "../../assets/AdElaboration.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api/index";
@@ -20,6 +22,8 @@ import * as FormValidations from "../../utils/Validations";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function ClientCreateAdScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -41,7 +45,7 @@ function ClientCreateAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     address: "",
-    country: "",
+    zipcode: "",
     city: "",
     note: "",
     type: "",
@@ -65,7 +69,7 @@ function ClientCreateAdScreen() {
       return;
     }
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
     setActiveStep(1);
@@ -91,7 +95,7 @@ function ClientCreateAdScreen() {
     }
 
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
 
@@ -123,6 +127,7 @@ function ClientCreateAdScreen() {
         JSON.stringify({
           address: deliverySection.address,
           country: deliverySection.country,
+          zipcode:deliverySection.zipcode,
           city: deliverySection.city,
           note: deliverySection.note,
           type: deliverySection.type,
@@ -144,7 +149,7 @@ function ClientCreateAdScreen() {
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
-        toast.success("Ad created successfully.");
+        toast.success(t("Ad created successfully."));
         navToMyAds();
       }
     } catch (e) {
@@ -181,7 +186,7 @@ function ClientCreateAdScreen() {
               }}
               onClick={navToCreateAd}
             >
-              Place Your Ad
+              {t("Place Your Ad")}
             </p>
             <img style={{ width: "70%" }} src={AdElaborationSVG} />
           </div>
@@ -197,7 +202,7 @@ function ClientCreateAdScreen() {
                   {steps.map((v, i) => (
                     <Step key={v}>
                       <StepLabel onClick={() => setActiveStep(i)}>
-                        {v}
+                        {t(v)}
                       </StepLabel>
                     </Step>
                   ))}
@@ -232,6 +237,7 @@ function ClientCreateAdScreen() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
