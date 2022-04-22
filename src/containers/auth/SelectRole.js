@@ -7,7 +7,6 @@ import ClientRole from "../../assets/ClientRole.svg";
 import DesignerRole from "../../assets/DesignerRole.svg";
 
 import { useNavigate } from "react-router-dom";
-
 const SelectRole = () => {
   const navigate = useNavigate();
 
@@ -27,6 +26,7 @@ const SelectRole = () => {
           "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
       }}
     >
+
       <div className="login_screen_top">
         <div className="login_screen_row1">
           <div className="login_screen_row1_img">
@@ -70,7 +70,7 @@ const SelectRole = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 };
