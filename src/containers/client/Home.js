@@ -7,7 +7,6 @@ import NewOrderListTile from "../../components/NewOrderListTile";
 import Rating from "@mui/material/Rating";
 import Footer from '../../components/Footer'
 import { useTranslation } from "react-i18next";
-
 import star from "../../assets/star.svg";
 
 import assetsURL from "../../utils/Assets";

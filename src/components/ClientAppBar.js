@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
-
+import Nock from "../assets/Nock.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 import EditIcon from "../assets/Edit.svg";
@@ -176,7 +176,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
     setToggle(!toggle);
   };
 
-  const { i18n } = useTranslation();
+  const { i18n,t } = useTranslation();
   const { language } = i18n;
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -244,6 +244,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               open={openProfile}
               onClose={handleCloseProfile}
             >
+              <img className="nock" src={Nock} />
               <MenuItem onClick={() => changeLanguage(`${language == "en" ? "fr" : "en"}`)}>
                 {language == "fr" ? "French" : "English"}
               </MenuItem>

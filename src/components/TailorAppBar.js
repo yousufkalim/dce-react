@@ -5,6 +5,11 @@ import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
+import Nock from "../assets/Nock.svg";
+import EditIcon from "../assets/Edit.svg";
+import SupportIcon from "../assets/Support.svg";
+import TermsConditionsIcon from "../assets/TermsConditions.svg";
+import SignOutIcon from "../assets/SignOut.svg";
 
 import EditIcon from "../assets/Edit.svg";
 import SupportIcon from "../assets/Support.svg";
