@@ -44,12 +44,10 @@ function ClientCreateAdScreen() {
     includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    address: "",
-    zipcode: "",
-    city: "",
     note: "",
     type: "",
     date: "",
+    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     type: "",
@@ -76,6 +74,7 @@ function ClientCreateAdScreen() {
   };
 
   const deliverySectionCallback = () => {
+    console.log(deliverySection,"deliverySection");
     const isValidated = FormValidations.parseAdDeliverySection(deliverySection);
     if (!isValidated) {
       return;
@@ -125,10 +124,10 @@ function ClientCreateAdScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.address,
+          address: deliverySection.Address.label,
           country: deliverySection.country,
-          zipcode:deliverySection.zipcode,
-          city: deliverySection.city,
+          zipcode:deliverySection.Address.zip,
+          city: deliverySection.Address.city,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,

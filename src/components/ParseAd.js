@@ -396,26 +396,19 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
 function DeliverySection({ state, setState, onClick, disabled }) {
   console.log(state,"state");
   const { t } = useTranslation();
-
   const [addresses, setAddresses] = useState([]);
-  const [AdressDetail, setAdressDetails] = useState({
-    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
-  }); // TODO: This needs to be removed in the future.
-
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
     setState({
       ...state,
       ...obj,
-      address: AdressDetail.Address.label,
-      zipcode: AdressDetail?.Address?.zip,
-      city: AdressDetail?.Address?.city
     });
   };
   const handleStudent = (name, value) => {
-    setAdressDetails({ ...AdressDetail, [name]: value });
+    setState({ ...state, [name]: value });
   };
+
   const handleSelectAddress = (e) => {
     if (e) {
     handleStudent("Address", {
@@ -446,7 +439,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
       });
       setAddresses([]);
     } else {
-      handleStudent("Address", { ...AdressDetail.Address, label: e.target.value });
+      handleStudent("Address", { ...state.Address, label: e.target.value });
     var config = {
       method: "get",
       url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
@@ -490,7 +483,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 name="Address"
                 required={true}
                 label={"Address"}
-                value={AdressDetail?.Address?.label}
+                value={state?.Address?.label}
                 options={addresses}
                 placeholder={"Address"}
                 componenet="parseaddress"
@@ -500,20 +493,6 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 onAddressSelect={(e) => handleSelectAddress(e)}
               />
               </div>
-            {/* <CustomInput
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder={t("Delivery Address")}
-              inputDefaultValue={state.address}
-              onChange={(e) => _setState("address", e.target.value)}
-            /> */}
-
           </div>
         </div>
         <div className="pa_profile_section_input_container">
@@ -531,8 +510,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 fontSize: "12px",
               }}
               inputPlaceholder="Zip code"
-              Inputvalue={AdressDetail?.Address?.zip}
-              //onChange={(e) => _setState("address", e.target.value)}
+              Inputvalue={state?.Address?.zip}
             />
           </div>
         </div>
@@ -558,8 +536,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 fontSize: "12px",
               }}
               inputPlaceholder="City"
-              Inputvalue={AdressDetail?.Address?.city}
-              //onChange={(e) => _setState("address", e.target.value)}
+              Inputvalue={state?.Address?.city}
             />
           </div>
         </div>
@@ -584,7 +561,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 fontSize: "12px",
               }}
               inputPlaceholder={t("Write any note regarding Delivery (Optional)")}
-              inputDefaultValue={state.note}
+              inputDefaultValue={state?.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
           </div>
@@ -633,7 +610,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               labelStyle={{
                 display: "none",
               }}
-              value={state.date}
+              value={state?.date}
               onChange={(e) => _setState("date", e)}
             />
           </div>

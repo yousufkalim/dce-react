@@ -163,15 +163,15 @@ function parseAdDeliverySection(data) {
   const valArr = [
     {
       validationFunction: () =>
-        Validators.nullValidator("Delivery Address", data["address"]),
+        Validators.nullValidator("Delivery Address", data.Address["label"]),
     },
     {
       validationFunction: () =>
-        Validators.selectValidator("Zip Code", data["zipcode"]),
+        Validators.selectValidator("Zip Code", data.Address["zip"]),
     },
     {
       validationFunction: () =>
-        Validators.selectValidator("City", data["city"]),
+        Validators.selectValidator("City", data.Address["city"]),
     },
     {
       validationFunction: () =>
