@@ -46,12 +46,10 @@ function ClientEditAdScreen() {
     includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    address: "",
-    country: "",
-    city: "",
     note: "",
     type: "",
     date: "",
+    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     type: "",
@@ -86,7 +84,12 @@ function ClientEditAdScreen() {
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
       });
-      setDeliverySection(adData.delivery);
+      setDeliverySection({
+        date: adData.delivery.date,
+        note: adData.delivery.note,
+         type: adData.delivery.type,
+         Address:{zip: adData.delivery.zipcode, label: adData.delivery.address, city:adData.delivery.city}
+      });
       setNotesSection(adData.budget);
     } catch (e) {
       console.trace(e);
@@ -130,9 +133,10 @@ function ClientEditAdScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.address,
+          address: deliverySection.Address.label,
           country: deliverySection.country,
-          city: deliverySection.city,
+          city: deliverySection.Address.city,
+          zipcode:deliverySection.Address.zip,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,
