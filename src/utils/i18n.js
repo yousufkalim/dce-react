@@ -45,8 +45,6 @@ i18n
           ", Developed by Falcon Consulting. All rights reserved.":
             ", Developed by Falcon Consulting. All rights reserved.",
           "Describe about submit report": "Describe about submit report",
-
-          //Profile
           Edit: "Edit",
           Phone: "Phone",
           Email: "Email",

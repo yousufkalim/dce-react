@@ -462,8 +462,6 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             lat: item.geometry.coordinates[1],
             lng: item.geometry.coordinates[0],
           });
-
-          
         });
         setAddresses(addressToSet);
       })

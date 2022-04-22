@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from '../../components/Footer'
-
 import Rating from "@mui/material/Rating";
+
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
