@@ -40,20 +40,12 @@ function TailorCreateAccountScreen() {
     if (!state?.["Email"] || !state?.["Password"]) {
       navigate("/login");
     }
-    // getDropdownValues()
   }, []);
 
   const navToHome = () => {
     navigate("/home");
   };
-  const getDropdownValues = async () => {
-    let response;
-    try {
-      response = await Api("get", `https://adresse.data.gouv.fr/api-doc/adresse`);
-    } catch (e) {
-      console.trace(e);
-    }
-  };
+ 
   const handleSubmit = async (event) => {
     console.log(AdressDetail?.Address?.label);
     event.preventDefault();

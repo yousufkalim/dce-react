@@ -57,9 +57,6 @@ function clientCreateAccount(data) {
       name: "Full Name",
     },
     {
-      name: "Address",
-    },
-    {
       name: "Zip Code",
     },
     {
