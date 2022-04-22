@@ -26,7 +26,7 @@ function LoginScreen() {
 
   const navToHome = () => {
     e.stopPropagation()
-    // navigate("/home");
+     navigate("/home");
   };
 
   const navToSelectRole = (e) => {
