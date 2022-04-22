@@ -5,6 +5,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
 import AdElaborationSVG from "../../assets/AdElaboration.svg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from '../../components/Footer'
@@ -22,6 +23,8 @@ import * as FormValidations from "../../utils/Validations";
 const steps = ["Basic", "Delivery", "Notes"];
 
 function ClientCreateOrderScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -68,7 +71,7 @@ function ClientCreateOrderScreen() {
       return;
     }
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
     setActiveStep(1);
@@ -94,7 +97,7 @@ function ClientCreateOrderScreen() {
     }
 
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
 
@@ -148,7 +151,7 @@ function ClientCreateOrderScreen() {
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
-        toast.success("Order created successfully.");
+        toast.success(t("Order created successfully."));
         navToMyAds();
       }
     } catch (e) {
@@ -180,7 +183,7 @@ function ClientCreateOrderScreen() {
                 marginBottom: "8%",
               }}
             >
-              Place Your Order
+              {t("Place Your Order")}
             </p>
             <img style={{ width: "70%" }} src={AdElaborationSVG} />
           </div>
@@ -196,7 +199,7 @@ function ClientCreateOrderScreen() {
                   {steps.map((v, i) => (
                     <Step key={v}>
                       <StepLabel onClick={() => setActiveStep(i)}>
-                        {v}
+                        {t(v)}
                       </StepLabel>
                     </Step>
                   ))}
@@ -221,7 +224,7 @@ function ClientCreateOrderScreen() {
                   <ParseAd.NotesSection
                     state={notesSection}
                     setState={setNotesSection}
-                    buttonText="Place Order"
+                    buttonText={t("Place Order")}
                     onClick={notesSectionCallback}
                   />
                 ) : (

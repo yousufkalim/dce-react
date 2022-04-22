@@ -7,9 +7,10 @@ import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
 
 import { Checkbox, Modal } from "@mui/material";
-import Collapse from "@mui/material/Collapse";
-
 import UserSVG from "../../assets/User.svg";
+import { useTranslation } from "react-i18next";
+
+import Collapse from "@mui/material/Collapse";
 
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +21,8 @@ import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function ClientAdsScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -46,11 +49,80 @@ function ClientAdsScreen() {
       console.trace(e);
     }
   };
+  const getSessionUrl = async (quote, line_items) => {
+    try {
+      let id = quote._id;
+      let response = await Api("post", `/payments/Checkout`, {
+        line_items: line_items,
+        metaData: { id },
+      });
+      window.location = response.data.url;
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const acceptQuote = async (event, quote) => {
+    event.preventDefault();
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+      let line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getSessionUrl(quote, line_items);
+    } catch (e) {
+      console.trace(e);
+    }
+    setIsProcessing(false);
+  };
+
+  const rejectQuote = async (event, id) => {
+    event.preventDefault();
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        quote: id,
+      };
+
+      response = await Api("post", "/quotes/reject", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        getAds();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
 
   const navToCreateAd = () => {
     navigate("/create_ad");
   };
-
   return (
     <>
     <div className="container-page-vertical">
@@ -63,9 +135,9 @@ function ClientAdsScreen() {
         }}
       >
         <div className="client_ads_screen_row1">
-          <p className="client_orders_screen_row1_text">Ads</p>
+          <p className="client_orders_screen_row1_text">{t("Ads")}</p>
           <CustomButton
-            text="Place New Ad"
+            text={t("Place New Ad")}
             padding="8px 20px"
             style={{
               backgroundColor: "#FFFFFF",
@@ -90,6 +162,8 @@ function ClientAdsScreen() {
 }
 
 function AdListTile(props) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -100,10 +174,7 @@ function AdListTile(props) {
 
   return (
     <div className="cas_ad_list_tile_container_collapsible">
-      <div
-        className="cas_ad_list_tile_container"
-        onClick={() => setExpanded(!expanded)}
-      >
+      <div className="cas_ad_list_tile_container" onClick={() => setExpanded(!expanded)}>
         <div
           className="cas_ad_list_tile_column1"
           style={{
@@ -116,9 +187,7 @@ function AdListTile(props) {
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">
-              Name of Creation
-            </p>
+            <p className="cas_ad_list_tile_column1_item_key">{t("Name of Creation")}</p>
             <p
               className="cas_ad_list_tile_column1_item_value"
               style={{
@@ -134,10 +203,8 @@ function AdListTile(props) {
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">Ad for</p>
-            <p className="cas_ad_list_tile_column1_item_value">
-              {props.category}
-            </p>
+            <p className="cas_ad_list_tile_column1_item_key">{t("Ad for")}</p>
+            <p className="cas_ad_list_tile_column1_item_value">{props.category}</p>
           </div>
           <div
             className="cas_ad_list_tile_column1_item"
@@ -145,28 +212,22 @@ function AdListTile(props) {
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">Delivery Date</p>
-            <p className="cas_ad_list_tile_column1_item_value">
-              {new Date(props.delivery.date).toLocaleDateString("en-US")}
-            </p>
+            <p className="cas_ad_list_tile_column1_item_key">{t("Delivery Date")}</p>
+            <p className="cas_ad_list_tile_column1_item_value">{new Date(props.delivery.date).toLocaleDateString("en-US")}</p>
           </div>
         </div>
         <div className="cas_ad_list_tile_column2">
-          <p className="cas_ad_list_tile_column2_title">min</p>
-          <p className="cas_ad_list_tile_column2_description">
-            {`${props.budget.min_price}$`}
-          </p>
-          <p className="cas_ad_list_tile_column2_title">max</p>
-          <p className="cas_ad_list_tile_column2_description">
-            {`${props.budget.max_price}$`}
-          </p>
+          <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}$`}</p>
+          <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props.budget.max_price}$`}</p>
           <p
             style={{
               fontSize: "16px",
               color: "#CC8E9C",
             }}
           >
-            Range
+            {t("Range")}
           </p>
         </div>
         <div className="cas_ad_list_tile_column2">
@@ -179,9 +240,7 @@ function AdListTile(props) {
           >
             {props.quotes.length}
           </p>
-          <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-            Responses
-          </p>
+          <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Responses")}</p>
         </div>
         <div className="cas_ad_list_tile_column4">
           <p
@@ -193,7 +252,7 @@ function AdListTile(props) {
               cursor: "pointer",
             }}
           >
-            Edit
+            {t("Edit")}
           </p>
         </div>
       </div>
@@ -207,8 +266,10 @@ function AdListTile(props) {
 }
 
 function AdQuoteListTile(props) {
-  const rating = calculateRating(props.quote.tailor.ratings);
-  const ratingsCount = calculateRatingsCount(props.quote.tailor.ratings);
+  const { t } = useTranslation();
+
+  const rating = calculateRating(props.tailor.ratings);
+  const ratingsCount = calculateRatingsCount(props.tailor.ratings);
 
   const navigate = useNavigate();
 
@@ -260,11 +321,7 @@ function AdQuoteListTile(props) {
               height: "65pt",
               width: "65pt",
             }}
-            src={
-              props.quote.tailor.avatar
-                ? assetsURL(props.quote.tailor.avatar)
-                : UserSVG
-            }
+            src={props.quote.tailor.avatar ? assetsURL(props.quote.tailor.avatar) : UserSVG}
           />
         </div>
       </div>
@@ -283,9 +340,7 @@ function AdQuoteListTile(props) {
         >
           {props.quote.tailor.name}
         </p>
-        <p className="cas_quote_list_tile_column1_description_text">
-          {props.quote.tailor.speciality}
-        </p>
+        <p className="cas_quote_list_tile_column1_description_text">{props.quote.tailor.speciality}</p>
       </div>
       <div
         className="cas_quote_list_tile_column1"
@@ -311,11 +366,9 @@ function AdQuoteListTile(props) {
             paddingBottom: "3%",
           }}
         >
-          Offer
+          {t("Offer")}
         </p>
-        <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {`${props.quote.price}$`}
-        </p>
+        <p style={{ fontSize: "20px", fontWeight: "bold" }}>{`${props.quote.price}$`}</p>
       </div>
       <div
         className="cas_quote_list_tile_column5"
@@ -325,8 +378,8 @@ function AdQuoteListTile(props) {
       >
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
-            text="Accept"
-            onClick={acceptQuote}
+            text={t("Accept")}
+            onClick={(e) => props.acceptQuote(e, props)}
             style={{
               boxShadow: "none",
             }}
@@ -340,16 +393,13 @@ function AdQuoteListTile(props) {
             }}
             onClick={rejectQuote}
           >
-            Discard
+            {t("Discard")}
           </p>
         </div>
       </div>
       <div className="cas_quote_list_tile_column1">
-        <p
-          style={{ fontSize: "14px", fontWeight: "900", cursor: "pointer" }}
-          onClick={navToChat}
-        >
-          Chat Here
+        <p style={{ fontSize: "14px", fontWeight: "900", cursor: "pointer" }} onClick={navToChat}>
+          {t("Chat Here")}
         </p>
       </div>
       <Modal
@@ -358,11 +408,7 @@ function AdQuoteListTile(props) {
         aria-labelledby="Accept Quote"
         onBackdropClick="false"
       >
-        <AcceptQuoteModal
-          order={props.order}
-          quote={props.quote}
-          handleClose={handleIsAcceptQuoteModalClose}
-        />
+        <AcceptQuoteModal order={props.order} quote={props.quote} handleClose={handleIsAcceptQuoteModalClose} />
       </Modal>
       <Modal
         open={isRejectQuoteModal}
@@ -370,11 +416,7 @@ function AdQuoteListTile(props) {
         aria-labelledby="Reject Quote"
         onBackdropClick="false"
       >
-        <RejectQuoteModal
-          order={props.order}
-          quote={props.quote}
-          handleClose={handleIsRejectQuoteModalClose}
-        />
+        <RejectQuoteModal order={props.order} quote={props.quote} handleClose={handleIsRejectQuoteModalClose} />
       </Modal>
     </div>
   );
@@ -468,10 +510,9 @@ const AcceptQuoteModal = (props) => {
           marginBottom: "5%",
         }}
       >
-        I also understand that any incomplete address, altered date of birth,
-        use of an identity different from mine, or any falsified document will
-        lead to the immediate and definitive suspension of my account and that I
-        will therefore no longer be able to become a service provider on DCE.
+        I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any
+        falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer
+        be able to become a service provider on DCE.
       </p>
       <div
         style={{
@@ -482,19 +523,15 @@ const AcceptQuoteModal = (props) => {
           marginBottom: "5%",
         }}
       >
-        <Checkbox
-          checked={isChecked}
-          onChange={(e) => setIsChecked(e.target.checked)}
-        />
+        <Checkbox checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} />
         <p
           style={{
             fontSize: "13px",
             fontWeight: "100",
           }}
         >
-          I declare on my honor that the information provided is accurate, as
-          well as the identity document attached above is authentic, belongs to
-          me, and meets all the required conditions
+          I declare on my honor that the information provided is accurate, as well as the identity document attached above is
+          authentic, belongs to me, and meets all the required conditions
         </p>
       </div>
       <div className="tvqs_sq_buttons">
@@ -520,11 +557,7 @@ const AcceptQuoteModal = (props) => {
         aria-labelledby="Schedule Call"
         onBackdropClick="false"
       >
-        <ScheduleCallModal
-          order={props.order}
-          quote={props.quote}
-          handleClose={handleIsScheduleCallModalClose}
-        />
+        <ScheduleCallModal order={props.order} quote={props.quote} handleClose={handleIsScheduleCallModalClose} />
       </Modal>
     </div>
   );
@@ -545,15 +578,7 @@ const ScheduleCallModal = (props) => {
     let response;
 
     try {
-      const parsedDate = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        time.getHours(),
-        time.getMinutes(),
-        0,
-        0
-      );
+      const parsedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), 0, 0);
 
       const body = {
         quote: props.quote._id,

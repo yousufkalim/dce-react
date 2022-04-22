@@ -170,7 +170,7 @@ function parseAdDeliverySection(data) {
     },
     {
       validationFunction: () =>
-        Validators.selectValidator("Country", data["country"]),
+        Validators.selectValidator("Zip Code", data["zipcode"]),
     },
     {
       validationFunction: () =>

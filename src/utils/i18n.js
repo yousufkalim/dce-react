@@ -18,22 +18,34 @@ i18n
           "We make it real,": "We make it real,",
           "You receive your creation": "You receive your creation",
           "at home!": "at home!",
-          "Place your Ad": "Place your Ad",
+          "Place Your Ad": "Place Your Ad",
           "Orders List": "Orders List",
           "See all": "See all",
           Search: "Search",
+          "Place New Ad": "Place New Ad",
+          "Place this Order": "Place this Order",
+          "Privacy Policy": "Privacy Policy",
+          "Select gender for your creation": "Select gender for your creation",
 
           //client navbar
           Designers: "Designers",
           Orders: "Orders",
           "My Ads": "My Ads",
           Quotes: "Quotes",
+          Help: "Help",
           Chats: "Chats",
           "Terms and Conditions": "Terms and Conditions",
           Profile: "Profile",
           Support: "Support",
           Logout: "Logout",
           "Privacy Policy":"Privacy Policy",
+          "Order created successfully.": "Order created successfully.",
+          "Ad updated successfully.": "Ad updated successfully.",
+          Reviews: "Reviews",
+          ", Developed by Falcon Consulting. All rights reserved.":
+            ", Developed by Falcon Consulting. All rights reserved.",
+          "Describe about submit report": "Describe about submit report",
+
           //Profile
           Edit: "Edit",
           Phone: "Phone",
@@ -47,7 +59,6 @@ i18n
           "Account Created": "Account Created",
 
           //order
-          "Orders List": "Orders List",
           Order: "Order",
           "Order Date": "Order Date",
           "Delivery Date": "Delivery Date",
@@ -56,6 +67,9 @@ i18n
           Cancel: "Cancel",
           Details: "Details",
           "Place Your Order": "Place Your Order",
+          "Image must be selected": "Image must be selected",
+          "Delivery Note": "Delivery Note",
+          "Catalogue created successfully.": "Catalogue created successfully.",
 
           //my ads
           Ads: "Ads",
@@ -68,10 +82,15 @@ i18n
           Responses: "Responses",
           Offer: "Offer",
           Discard: "Discard",
+          "Standard size": "Standard size",
+
           "Chat Here": "Chat Here",
           "Ad Basic": "Ad Basic",
           Delivery: "Delivery",
           Payment: "Payment",
+          Basic: "Basic",
+          Notes: "Notes",
+          Delivery: "Delivery",
 
           //chats
           Online: "Online",
@@ -98,9 +117,10 @@ i18n
           Measure: "Measure",
 
           //orderFromCatalog
-          "Catalog Price": "Catalog Price",
+          "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
           "Place Order": "Place Order",
+          "Send Message": "Send Message",
 
           //search results
           "Designers Found": "Designers Found",
@@ -114,6 +134,7 @@ i18n
           Description: "Description",
           Charges: "Charges",
           "Review & rating": "Review & rating",
+          "Stitching Price": "Stitching Price",
 
           //viewOrder
           "Client Basic": "Client Basic",
@@ -129,7 +150,7 @@ i18n
           //catalogue
           "My Catalogue": "My Catalogue",
           Diploma: "Diploma",
-
+          Feedback: "Feedback",
           //clientProfile
           Order: "Order",
           Bill: "Bill",
@@ -152,6 +173,7 @@ i18n
           Price: "Price",
           Attachments: "Attachments",
           "Fixed price": "Fixed price",
+          "Select one category for your ad": "Select one category for your ad",
 
           //home
           Fabric: "Fabric",
@@ -177,6 +199,9 @@ i18n
             "in the production and manufacture of clothing, decorative elements.",
 
           "or household linen.": "or household linen.",
+          "Write any note regarding Payment (Optional)":
+            "Write any note regarding Payment (Optional)",
+
           "1 . Find the right clients for you":
             "1 . Find the right clients for you",
           "Design creation puts you in touch with potential customers suited to your profile":
@@ -197,6 +222,8 @@ i18n
           Enthusiastic: "Enthusiastic",
           Available: "Available",
           Skills: "Skills",
+          "Material Fabrics": "Material Fabrics",
+
           "Know how": "Know how",
           "General skills": "General skills",
           "Know and master the techniques of making a garment (cutting, stitching, etc.)":
@@ -210,14 +237,20 @@ i18n
           "Have knowledge of management": "Have knowledge of management",
           "Know how to handle computers in particular the Design CREATION site":
             "Know how to handle computers in particular the Design CREATION site",
+          View: "View",
+          "Select one colour for your Creations":
+            "Select one colour for your Creations",
 
           //order
           "Orders Requests": "Orders Requests",
           "In Progress": "In Progress",
           Completed: "Completed",
           Discarded: "Discarded",
+          "Hourly Rate": "Hourly Rate",
           Offer: "Offer",
           "Send Offer": "Send Offer",
+          "You have already sent quote for this ad.":
+            "You have already sent quote for this ad.",
 
           //profile
           "Hourly Rate": "Hourly Rate",
@@ -231,6 +264,9 @@ i18n
           //searchResults
           "Orders Found": "Orders Found",
           offer: "offer",
+          "Select size": "Select size",
+
+          "Profile updated successfully.": "Profile updated successfully.",
 
           //support center
           Review: "Review",
@@ -242,8 +278,12 @@ i18n
           "Certain Amount": "Certain Amount",
           "Any Confection": "Any Confection",
           "Search Input can't be empty": "Search Input can't be empty",
+          "Feedback provided successfully.": "Feedback provided successfully.",
+          "Attachment must be selected": "Attachment must be selected",
 
           "Shop Name": "Shop Name",
+          "Ad created successfully.": "Ad created successfully.",
+          "Order completed successfully.": "Order completed successfully.",
 
           // terms n conditions
           "General informations": "General informations",
@@ -255,6 +295,9 @@ i18n
             "requiring the services of a designer",
           "Your responsibilities if you breach these Terms":
             "Your responsibilities if you breach these Terms",
+          "Delivery Address": "Delivery Address",
+          "Write any note regarding Delivery (Optional)":
+            "Write any note regarding Delivery (Optional)",
           "As a seamstress you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.":
             "As a seamstress you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.",
 
@@ -263,6 +306,8 @@ i18n
           "Orders are made directly by the customer via the Design CONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.":
             "Orders are made directly by the customer via the DesignCONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.",
           Delivery: "Delivery",
+          offline: "offline",
+
           "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.":
             "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.",
           "The customer pays his entire order (+ delivery costs) directly online. The seamstress is paid (24 hours later) up to 30% (order - 20% commission) at the start of the mission and 70% (order - 20% commission) 48 hours after the end of the mission.":
@@ -288,7 +333,55 @@ i18n
           "Select category": "Select category",
           "Set your Price": "Set your Price",
           "Tell us about your service": "Tell us about your service",
+          "Upload Drawing, Photo, Document, etc.":
+            "Upload Drawing, Photo, Document, etc.",
           "Tell us": "Tell us",
+          Save: "Save",
+          "Write Measurement here": "Write Measurement here",
+
+          //other
+          "*Bring a tape measure": "*Bring a tape measure",
+          "*Measure either the circumference or the length depending on the part of the body.":
+            "*Measure either the circumference or the length depending on the part of the body.",
+          Colour: "Colour",
+          "Select Fabric Style": "Select Fabric Style",
+          "Do you Want": "Do you Want",
+          "ALTREATION SERVICE ?": "ALTREATION SERVICE ?",
+          "*Select Delivery Type according to your Demands":
+            "*Select Delivery Type according to your Demands",
+          "*Select Date for delivery": "*Select Date for delivery",
+          "Write Here": "Write Here",
+          "Choose Method": "Choose Method",
+          "Set Minimum Price": "Set Minimum Price",
+          "Set Maximum Price": "Set Maximum Price",
+          "Delivery Type": "Delivery Type",
+
+          "Payment Note": "Payment Note",
+          "I agree to the design Confection Ethiques":
+            "I agree to the design Confection Ethiques",
+          "Terms of Services": "Terms of Services",
+          "Privacy Policy": "Privacy Policy",
+          and: "and",
+          "Publish Ad": "Publish Ad",
+          Arm: "Arm",
+          "Chest size": "Chest size",
+          "Waist size": "Waist size",
+          Hip: "Hip",
+          Thigh: "Thigh",
+          Calf: "Calf",
+          Ankle: "Ankle",
+          "Head to floor height": "Head to floor height",
+          "From shoulder to floor": "From shoulder to floor",
+          "From waist to floor": "From waist to floor",
+          "Arm length": "Arm length",
+          "(handle)": "(handle)",
+          Next: "Next",
+          Cut: "Cut",
+          small: "small",
+          large: "large",
+          medium: "medium",
+
+          "Leg length": "Leg length",
         },
       },
       fr: {
@@ -300,10 +393,11 @@ i18n
           "We make it real,": "Nous le rendons réel,",
           "You receive your creation": "Vous recevez votre création",
           "at home!": "à la maison!",
-          "Place your Ad": "Placez votre annonce",
+          "Place Your Ad": "Placez votre annonce",
           "Orders List": "Liste des commandes",
           "See all": "Voir tout",
           Search: "Recherche",
+          Feedback: "Retour",
 
           //client navbar
           Designers: "Créateurs",
@@ -314,8 +408,12 @@ i18n
           Profile: "Profil",
           Quotes: "Devis",
           "Privacy Policy":"Politique de confidentialité",
+          "Place New Ad": "Placer une nouvelle annonce",
           Support: "Soutien",
           Logout: "Se déconnecter",
+          "Send Message": "Envoyer le message",
+          View: "Voir",
+          "Delivery Note": "Bon de livraison",
 
           //Profile
           Edit: "Modifier",
@@ -328,9 +426,10 @@ i18n
           "Last Password Changed": "Dernier mot de passe modifié",
           Password: "Mot de passe",
           "Account Created": "Compte créé",
+          "Ad updated successfully.": "Annonce mise à jour avec succès.",
+          "Place this Order": "Passer cette commande",
 
           //order
-          "Orders List": "Liste des commandes",
           Order: "Commande",
           "Order Date": "Date de commande",
           "Delivery Date": "La date de livraison",
@@ -339,6 +438,8 @@ i18n
           Cancel: "Annuler",
           Details: "Des détails",
           "Place Your Order": "Passer votre commande",
+          "Feedback provided successfully.":
+            "Commentaires fournis avec succès.",
 
           //my ads
           Ads: "Les publicités",
@@ -355,6 +456,7 @@ i18n
           "Ad Basic": "Annonce de base",
           Delivery: "Livraison",
           Payment: "Paiement",
+          "Profile updated successfully.": "Mise à jour du profil réussie.",
 
           //chats
           Online: "En ligne",
@@ -366,6 +468,8 @@ i18n
 
           Messages: "messages",
           Delete: "Supprimer",
+          "Stitching Price": "Prix ​​de couture",
+          Reviews: "Commentaires",
 
           //faq
           "Frequently Asked Question": "Question fréquemment posée",
@@ -376,11 +480,12 @@ i18n
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important : Si vous hésitez entre deux tailles, prenez la plus grande.",
           "Standard Size Chart": "Tableau des tailles standard",
+          "Standard size": "Taille standard",
           "Video Tutorial": "Didacticiel vidéo",
           Measure: "Mesure",
 
           //orderFromCatalog
-          "Catalog Price": "Prix ​​catalogue",
+          "Catalogue Price": "Prix ​​catalogue",
           "Extra Note": "Remarque supplémentaire",
           "Place Order": "Passer la commande",
 
@@ -390,12 +495,17 @@ i18n
           Speciality: "Spécialité",
 
           //Terms & Conditions
-          "Terms & Conditions": "termes et conditions",
+          "Terms & Conditions": "Termes et conditions",
+          "Select size": "Sélectionnez la taille",
+          "You have already sent quote for this ad.":
+            "Vous avez déjà envoyé un devis pour cette annonce.",
 
           //ViewCatalog
           Description: "La description",
           Charges: "Des charges",
           "Review & rating": "Examen et évaluation",
+          "Select one category for your ad":
+            "Sélectionnez une catégorie pour votre annonce",
 
           //viewOrder
           "Client Basic": "Client de base",
@@ -430,7 +540,12 @@ i18n
           Other: "Autre",
           Price: "Prix",
           Attachments: "Pièces jointes",
-
+          ", Developed by Falcon Consulting. All rights reserved.":
+            ", Développé par Falcon Consulting. Tous droits réservés.",
+          "Select gender for your creation":
+            "Sélectionnez le sexe pour votre création",
+          "Write Measurement here": "Écrivez la mesure ici",
+          "Order completed successfully.": "Commande terminée avec succès.",
           //home
           Fabric: "Tissu",
           Date: "Date",
@@ -443,12 +558,16 @@ i18n
           "See all": "Voir tout",
           "Recent Orders": "Dernières commandes",
           "Quote sent successfully.": "Devis envoyé avec succès.",
+          "Describe about submit report":
+            "Décrivez à propos de la soumission du rapport",
 
           //HOW IT WORKS ?
           "HOW IT WORKS ?": "COMMENT ÇA FONCTIONNE ?",
           in_progress: "en cours",
           completed: "terminé",
           discarded: "mis au rebut",
+          Help: "Aider",
+          "Privacy Policy": "Politique de confidentialité",
           "In just a few clicks, Design Créations allows you to find one-off assignments in":
             "En quelques clics, Design Créations vous permet de trouver des missions ponctuelles dans",
 
@@ -469,6 +588,9 @@ i18n
           "3 . Post your ad (offer) in just a few clicks":
             "3 . Déposez votre annonce (offre) en quelques clics",
           "Post your add in 3 steps": "Publiez votre annonce en 3 étapes",
+          "Upload Drawing, Photo, Document, etc.":
+            "Télécharger un dessin, une photo, un document, etc.",
+
           "Seamstress selection based on the following criteria:":
             "Sélection des couturières selon les critères suivants :",
           "Reliability / Seriousness": "Fiabilité / Sérieux",
@@ -479,6 +601,12 @@ i18n
           Enthusiastic: "Enthousiaste",
           Available: "Disponible",
           Skills: "Compétences",
+          "Delivery Type": "Type de livraison",
+          small: "petit",
+          "Attachment must be selected":
+            "La pièce jointe doit être sélectionnée",
+
+          Save: "Sauver",
           "Know how": "Savoir-faire",
           "General skills": "Compétences générales",
           "Know and master the techniques of making a garment (cutting, stitching, etc.)":
@@ -492,6 +620,7 @@ i18n
           "Have knowledge of management": "Avoir des connaissances en gestion",
           "Know how to handle computers in particular the Design CREATION site":
             "Savoir manier l'informatique notamment le site Design CREATION",
+          Cut: "Couper",
 
           //order
           "Orders Requests": "Demandes de commandes",
@@ -512,7 +641,10 @@ i18n
           //searchResults
           "Orders Found": "Commandes trouvées",
           offer: "offre",
-
+          "Write any note regarding Delivery (Optional)":
+            "Écrivez toute note concernant la livraison (facultatif)",
+          "Write any note regarding Payment (Optional)":
+            "Écrivez toute note concernant le paiement (facultatif)",
           //support center
           Review: "La revue",
           "Bride Dress": "Robe de mariée",
@@ -520,6 +652,9 @@ i18n
           Completed: "Terminé",
           "Support Center": "Centre de soutien",
           "Chat With Us": "Discute avec nous",
+          "Image must be selected": "L'image doit être sélectionnée",
+          "Ad created successfully.": "Annonce créée avec succès.",
+          "Order created successfully.": "Commande créée avec succès.",
 
           // terms n conditions
           "General informations": "Informations générales",
@@ -538,6 +673,7 @@ i18n
           "Orders are made directly by the customer via the Design CONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.":
             "Les commandes sont passées directement par le client via le site DesignCONFECTIONS ETHIQUES, où ce dernier a sélectionné les différents choix qui lui sont proposés quant à sa création (type, tissu, délai, etc.). Puis sa création est acheminée vers l'interface professionnelle de les couturières où différents devis lui seront proposés.",
           Delivery: "Livraison",
+          "Delivery Address": "Adresse de livraison",
           "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.":
             "Le client a le choix entre différents délais de livraison : 2 semaines, 1 mois ou saisir un délai de livraison. Il peut cocher la case indifférent s'il n'est pas trop pressé.",
           "The customer pays his entire order (+ delivery costs) directly online. The seamstress is paid (24 hours later) up to 30% (order - 20% commission) at the start of the mission and 70% (order - 20% commission) 48 hours after the end of the mission.":
@@ -573,6 +709,57 @@ i18n
           Diploma: "Diplôme",
           "Shop Name": "Nom de la boutique",
           "Fixed price": "Prix fixe",
+          offline: "hors ligne",
+
+          //others
+          "*Measure either the circumference or the length depending on the part of the body.":
+            "*Mesurer soit la circonférence soit la longueur selon la partie du corps.",
+          "*Bring a tape measure": "*Apportez un mètre ruban",
+          Colour: "Couleur",
+
+          "Select one colour for your Creations":
+            "Sélectionnez une couleur pour vos Créations",
+          "Material Fabrics": "Matériaux Tissus",
+          "Select Fabric Style": "Sélectionnez le style de tissu",
+
+          "Do you Want": "Veux-tu",
+          "ALTREATION SERVICE ?": "SERVICE DE MODIFICATION ?",
+          "*Select Delivery Type according to your Demands":
+            "*Sélectionnez le type de livraison en fonction de vos demandes",
+          "*Select Date for delivery": "*Sélectionnez la date de livraison",
+          "Write Here": "Écrivez ici",
+          "Choose Method": "Choisir la méthode",
+          "Hourly Rate": "Tarif horaire",
+          "Set Minimum Price": "Définir le prix minimum",
+          "Set Maximum Price": "Définir le prix maximum",
+          "Payment Note": "Bulletin de paiement",
+
+          "I agree to the design Confection Ethiques":
+            "J'accepte le design Confection Ethiques",
+          "Terms of Services": "Conditions de services",
+          and: "et",
+          "Privacy Policy": "Politique de confidentialité",
+          "Publish Ad": "Publier l'annonce",
+          Hip: "Hanche",
+          Thigh: "La cuisse",
+          "Head to floor height": "Hauteur de la tête au sol",
+          Ankle: "La cheville",
+          Calf: "Veau",
+          "Waist size": "Tour de taille",
+          "Chest size": "Tour de poitrine",
+          Arm: "Bras",
+          "From shoulder to floor": "De l'épaule au sol",
+          "From waist to floor": "De la taille au sol",
+          "Arm length": "Longueur de bras",
+          "(handle)": "(manipuler)",
+          "Leg length": "Longueur de jambe",
+          Next: "Suivant",
+          large: "grand",
+          medium: "moyen",
+          Basic: "Basique",
+          Delivery: "Livraison",
+          Notes: "Remarques",
+          "Catalogue created successfully.": "Catalogue créé avec succès.",
         },
       },
     },

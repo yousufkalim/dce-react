@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
-import Nock from "../assets/Nock.svg";
+
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 import EditIcon from "../assets/Edit.svg";
@@ -77,13 +77,9 @@ function useWindowSize() {
   return size;
 }
 
-function ClientAppBar({
-  activeTab,
-  color,
-  sticky = true,
-  disableSearch = false,
-  divStyle,
-}) {
+function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, divStyle }) {
+  const { t } = useTranslation();
+
   const [width] = useWindowSize();
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
@@ -99,8 +95,7 @@ function ClientAppBar({
     setAnchorElProfile(null);
   };
 
-  const [anchorElNotifications, setAnchorElNotifications] =
-    React.useState(null);
+  const [anchorElNotifications, setAnchorElNotifications] = React.useState(null);
   const openNotifications = Boolean(anchorElNotifications);
   const handleClickNotifications = (event) => {
     setAnchorElNotifications(event.currentTarget);
@@ -120,7 +115,7 @@ function ClientAppBar({
 
   const navToSearch = () => {
     if (!searchQuery) {
-      toast.error("Search Input can't be empty");
+      toast.error(t("Search Input can't be empty"));
       return;
     }
     navigate(`/search_results?query=${searchQuery}`);
@@ -132,7 +127,7 @@ function ClientAppBar({
 
   const navToSupport = () => {
     handleCloseProfile();
-    toast.success("Coming soon!");
+    toast.success(t("Coming soon!"));
   };
 
   const navToTermsAndConditions = () => {
@@ -181,7 +176,7 @@ function ClientAppBar({
     setToggle(!toggle);
   };
 
-  const { i18n,t } = useTranslation();
+  const { i18n } = useTranslation();
   const { language } = i18n;
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -199,34 +194,18 @@ function ClientAppBar({
       >
         <div className="appbar_top">
           <div className="appbar_row1">
-            <img
-              src={AppLogoSVG}
-              className="appbar_row1_img"
-              style={{ marginRight: "5%" }}
-              onClick={navToHome}
-            />
+            <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} onClick={navToHome} />
             {width > 768 ? (
               <>
                 <NavlinkDesktop activeTab={activeTab} />
               </>
             ) : (
-              <img
-                className="cursor-pointer"
-                onClick={mobilemenu}
-                src={dotted}
-              />
+              <img className="cursor-pointer" onClick={mobilemenu} src={dotted} />
             )}
           </div>
 
           <div className="appbar_row2">
-            {!disableSearch ? (
-              <SearchInput
-                setSearchQuery={setSearchQuery}
-                callback={navToSearch}
-              />
-            ) : (
-              <></>
-            )}
+            {!disableSearch ? <SearchInput setSearchQuery={setSearchQuery} callback={navToSearch} /> : <></>}
             <img
               src={NotificationsSVG}
               className="appbar_row2_notifications_img"
@@ -243,10 +222,7 @@ function ClientAppBar({
               }}
             >
               {notifications.map((_) => (
-                <NotificationsListTile
-                  {..._}
-                  handleClose={handleCloseNotifications}
-                />
+                <NotificationsListTile {..._} handleClose={handleCloseNotifications} />
               ))}
             </Menu>
             <img
@@ -259,7 +235,6 @@ function ClientAppBar({
               src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
               onClick={handleClickProfile}
             />
-
             <StyledMenu
               id="demo-customized-menu"
               MenuListProps={{
@@ -269,20 +244,9 @@ function ClientAppBar({
               open={openProfile}
               onClose={handleCloseProfile}
             >
-              <img className="nock" src={Nock} />
-              {/* <Menu
-            className={classes.root}
-              anchorEl={anchorElProfile}
-              open={openProfile}
-              onClose={handleCloseProfile}
-            > */}
-              {/* <MenuItem
-                onClick={() =>
-                  changeLanguage(`${language == "en" ? "fr" : "en"}`)
-                }
-              >
+              <MenuItem onClick={() => changeLanguage(`${language == "en" ? "fr" : "en"}`)}>
                 {language == "fr" ? "French" : "English"}
-              </MenuItem> */}
+              </MenuItem>
               <div className="user-detail-conatiner">
                 <img
                   className="image_container"
@@ -342,6 +306,8 @@ function ClientAppBar({
 }
 
 function SearchInput({ setSearchQuery, callback }) {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div
@@ -353,20 +319,18 @@ function SearchInput({ setSearchQuery, callback }) {
       >
         <input
           type="text"
-          placeholder="Search"
+          placeholder={t("Search")}
           className="appbar_row2_input"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <img
-          src={SearchSVG}
-          className="appbar_row2_search_img"
-          onClick={callback}
-        />
+        <img src={SearchSVG} className="appbar_row2_search_img" onClick={callback} />
       </div>
     </div>
   );
 }
 function NavlinkDesktop({ activeTab }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -394,7 +358,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToDesigners}
       >
-        Designers
+        {t("Designers")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -404,7 +368,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToOrders}
       >
-        Orders
+        {t("Orders")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -414,7 +378,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToMyAds}
       >
-        My Ads
+        {t("My Ads")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -424,13 +388,15 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToChat}
       >
-        Chats
+        {t("Chats")}
       </p>
     </>
   );
 }
 
 function NavlinkMobile({ activeTab }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -459,7 +425,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToDesigners}
       >
-        Designers
+        {t("Designers")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -469,7 +435,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToOrders}
       >
-        Orders
+        {t("Orders")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -479,7 +445,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToMyAds}
       >
-        My Ads
+        {t("My Ads")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -489,7 +455,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToChat}
       >
-        Chats
+        {t("Chats")}
       </p>
     </div>
   );

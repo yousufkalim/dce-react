@@ -142,6 +142,7 @@ function ClientCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "6%",
                 }}
+                dobinput="dob"
               />
               <CustomInput
                 labelText="Address"

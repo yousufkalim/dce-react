@@ -22,6 +22,7 @@ function CustomDropDown({
   divStyle,
   labelStyle,
   selectSX,
+  valuecolor
 }) {
   const classes = useStyles();
   return (
@@ -59,7 +60,7 @@ function CustomDropDown({
           IconComponent={KeyboardArrowDownRoundedIcon}
           classes={{ icon: classes.icon }}
           sx={{
-            color: "#A0A0A0",
+            color: valuecolor==="on"?"#ffffff":"#A0A0A0",
             minWidth: "100%",
             background: "transparent",
             ...selectSX,

@@ -4,11 +4,14 @@ import WritingSVG from "../../assets/writing.svg";
 
 import { Store, UpdateStore } from "../../StoreContext";
 import { getUser } from "../../utils/Auth";
+import { useTranslation } from "react-i18next";
 
 import Api from "../../api/index";
 import assetsURL from "../../utils/Assets";
 
 const ConversationsContainer = (props) => {
+  const { t } = useTranslation();
+
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -102,7 +105,7 @@ const ConversationListTile = (props) => {
                   }}
                   className="status"
                 >
-                  {receiver.status}{" "}
+                  {t(receiver.status)}{" "}
                 </p>
               </div>
             </div>
