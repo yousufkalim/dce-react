@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ClientHomeSVG from "../../assets/ClientHome.svg";
 import UserSVG from "../../assets/User.svg";
+
+import dummy from '../../assets/dummy.jpeg'
+
 import ClientAppBar from "../../components/ClientAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import NewOrderListTile from "../../components/NewOrderListTile";
@@ -72,7 +75,7 @@ function ClientHomeScreen() {
   const navToTailors = () => {
     navigate("/tailors");
   };
-
+ console.log(orders,"<>><><");
   return (
     <>
     <div className="container-page">
@@ -208,7 +211,7 @@ function DesignerListTile(props) {
             cursor: "pointer",
             marginBottom: "4%",
           }}
-          src={props.avatar ? assetsURL(props.avatar) : UserSVG}
+          src={props.avatar ? assetsURL(props.avatar) : dummy}
         />
       </div>
       <p

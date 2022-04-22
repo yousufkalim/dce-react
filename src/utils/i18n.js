@@ -68,7 +68,7 @@ i18n
           "Image must be selected": "Image must be selected",
           "Delivery Note": "Delivery Note",
           "Catalogue created successfully.": "Catalogue created successfully.",
-
+           "No Orders":"No Orders",
           //my ads
           Ads: "Ads",
           "Name of Creation": "Name of Creation",
@@ -438,7 +438,7 @@ i18n
           "Place Your Order": "Passer votre commande",
           "Feedback provided successfully.":
             "Commentaires fournis avec succès.",
-
+            "No Orders":"Aucune commande",
           //my ads
           Ads: "Les publicités",
           "Name of Creation": "Nom de la création",

@@ -2,6 +2,7 @@ import React from "react";
 import TailorAppBar from "../../components/TailorAppBar";
 import UserSVG from "../../assets/supportpic.png";
 import { useTranslation } from "react-i18next";
+import Footer from '../../components/Footer'
 
 function SupportCentre() {
   const { t } = useTranslation();
@@ -57,11 +58,14 @@ function SupportCentre() {
           <Support item={item} />
         ))}
       </div>
+      <Footer/>
     </div>
+    
   );
 }
 
 function Support({ item }) {
+  const { t } = useTranslation();
   return (
     <div className="supportmainDiv">
       <div className="supportcol1">

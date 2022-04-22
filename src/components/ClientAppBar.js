@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
+import dummy from '../assets/dummy.jpeg'
 import Nock from "../assets/Nock.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
@@ -12,6 +13,8 @@ import TermsConditionsIcon from "../assets/TermsConditions.svg";
 import PrivacyPolicyIcon from "../assets/PrivacyPolicy.svg";
 import SignOutIcon from "../assets/SignOut.svg";
 import dotted from "../assets/dotted.svg";
+
+import GTranslateIcon from '@mui/icons-material/GTranslate';
 
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -129,7 +132,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
 
   const navToSupport = () => {
     handleCloseProfile();
-    toast.success(t("Coming soon!"));
+    navigate("/support_centre");
   };
 
   const navToTermsAndConditions = () => {
@@ -232,7 +235,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
                 height: "6vh",
                 marginLeft: "3%",
               }}
-              src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
+              src={profile?.avatar ? assetsURL(profile.avatar) : dummy}
               onClick={handleClickProfile}
             />
             <StyledMenu
@@ -245,9 +248,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               onClose={handleCloseProfile}
             >
               <img className="nock" src={Nock} />
-              <MenuItem onClick={() => changeLanguage(`${language == "en" ? "fr" : "en"}`)}>
-                {language == "fr" ? "French" : "English"}
-              </MenuItem>
+             
               <div className="user-detail-conatiner">
                 <img
                   className="image_container"
@@ -256,7 +257,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
                       ? URL.createObjectURL(profileImage)
                       : profile?.avatar
                       ? assetsURL(profile?.avatar)
-                      : UserSVG
+                      : dummy
                   }
                 />
                 <div style={{ display: "flex", flexDirection: "column" }}>
@@ -264,6 +265,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
                   <p className="user-email">{profile?.email}</p>
                 </div>
               </div>
+             
               <MenuItem
                 style={{ borderBottom: "1px solid #DBDBDB" }}
                 className="menu-item"
@@ -272,8 +274,12 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
                 <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
                 <p> {t("Profile")} </p>
               </MenuItem>
+              <MenuItem  className="menu-item support-padding" onClick={() => changeLanguage(`${language == "en" ? "fr" : "en"}`)}>
+                <GTranslateIcon sx={{width:"20px"}}/>
+                {language == "fr" ? "French" : "English"}
+              </MenuItem>
               <MenuItem
-                className="menu-item support-padding"
+                className="menu-item"
                 onClick={navToSupport}
               >
                 <img style={{ width: "16px" }} src={SupportIcon} />

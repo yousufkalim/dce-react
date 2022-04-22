@@ -9,6 +9,7 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
+import dummy from '../../assets/dummy.jpeg'
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
@@ -148,7 +149,7 @@ function ClientViewTailorScreen() {
                       height: "80pt",
                       width: "80pt",
                     }}
-                    src={tailor.avatar ? assetsURL(tailor.avatar) : UserSVG}
+                    src={tailor?.avatar ? assetsURL(tailor?.avatar) : dummy}
                   />
                 </div>
                 <p className="tailor_profile_screen_row1_column1_user_name_text">

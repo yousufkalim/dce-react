@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
+import NoOrders from '../../components/NoOrders'
+import UserSVG from "../../assets/User.svg";
 
 import { Checkbox, Modal } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -124,38 +126,54 @@ function ClientAdsScreen() {
   };
   return (
     <>
-    <div className="container-page-vertical">
-      <ClientAppBar activeTab={2} color="#FCFCFC" />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background:
-            "linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <div className="client_ads_screen_row1">
-          <p className="client_orders_screen_row1_text">{t("Ads")}</p>
-          <CustomButton
-            text={t("Place New Ad")}
-            padding="8px 20px"
-            style={{
-              backgroundColor: "#FFFFFF",
-              color: "#000000",
-              boxShadow: "none",
-              fontSize: "12px",
-              fontWeight: "600",
-            }}
-            onClick={navToCreateAd}
-          />
-        </div>
-        <div className="client_ads_screen_row2">
-          {ads.map((_) => (
-            <AdListTile {..._} />
-          ))}
+      <div className="container-page-vertical">
+        <ClientAppBar activeTab={2} color="#FCFCFC" />
+        <div
+          className="client_orders_screen_top"
+          style={{
+            background:
+              "linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          }}
+        >
+          <div className="client_ads_screen_row1">
+            <p className="client_orders_screen_row1_text">{t("Ads")}</p>
+            <CustomButton
+              text={t("Place New Ad")}
+              padding="8px 20px"
+              style={{
+                backgroundColor: "#FFFFFF",
+                color: "#000000",
+                boxShadow: "none",
+                fontSize: "12px",
+                fontWeight: "600",
+              }}
+              onClick={navToCreateAd}
+            />
+          </div>
+          <div className="client_ads_screen_row2">
+            {ads.map((_) => (
+              <AdListTile {..._} />
+            ))}
+          </div>
+          {ads.length === 0 ? (
+            <>
+              {/* <div
+                style={{
+                  marginTop: "10%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                {t("No Orders")}
+              </div> */}
+               <NoOrders/>
+            </>
+          ) : null}
         </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }
@@ -279,9 +297,8 @@ function AdListTile(props) {
 
 function AdQuoteListTile(props) {
   const { t } = useTranslation();
-
-  const rating = calculateRating(props.tailor.ratings);
-  const ratingsCount = calculateRatingsCount(props.tailor.ratings);
+  const rating = calculateRating(props.quote.tailor?.ratings);
+  const ratingsCount = calculateRatingsCount(props.quote.tailor?.ratings);
 
   const navigate = useNavigate();
 
@@ -354,10 +371,10 @@ function AdQuoteListTile(props) {
             paddingBottom: "10px",
           }}
         >
-          {props.quote.tailor.name}
+          {props.quote?.tailor?.name}
         </p>
         <p className="cas_quote_list_tile_column1_description_text">
-          {props.quote.tailor.speciality}
+          {props.quote?.tailor?.speciality}
         </p>
       </div>
       <div
@@ -399,7 +416,7 @@ function AdQuoteListTile(props) {
         <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
             text={t("Accept")}
-            onClick={(e) => props.acceptQuote(e, props)}
+            onClick={(e) => acceptQuote(e, props)}
             style={{
               boxShadow: "none",
             }}
