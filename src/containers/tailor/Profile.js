@@ -11,6 +11,8 @@ import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
+import dummy from '../../assets/dummy.jpeg'
+
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
@@ -257,7 +259,7 @@ function TailorProfileScreen() {
                           ? URL.createObjectURL(profileImage)
                           : profile.avatar
                           ? assetsURL(profile.avatar)
-                          : UserSVG
+                          : dummy
                       }
                     />
                   </label>

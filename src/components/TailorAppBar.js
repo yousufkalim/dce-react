@@ -5,11 +5,14 @@ import AppLogoSVG from "../assets/AppLogo.svg";
 import UserSVG from "../assets/User.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
+import dummy from '../assets/dummy.jpeg'
 import Nock from "../assets/Nock.svg";
 import EditIcon from "../assets/Edit.svg";
 import SupportIcon from "../assets/Support.svg";
 import TermsConditionsIcon from "../assets/TermsConditions.svg";
 import SignOutIcon from "../assets/SignOut.svg";
+
+import GTranslateIcon from '@mui/icons-material/GTranslate';
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -138,7 +141,7 @@ function TailorAppBar({
 
   const navToSupport = () => {
     handleCloseProfile();
-    toast.success(t("Coming soon!"));
+    navigate("/support_centre");
   };
 
   const navToTermsAndConditions = () => {
@@ -281,7 +284,7 @@ function TailorAppBar({
               height: "6vh",
               marginLeft: "3%",
             }}
-            src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
+            src={profile?.avatar ? assetsURL(profile.avatar) : dummy}
             onClick={handleClickProfile}
           />
 
@@ -312,7 +315,7 @@ function TailorAppBar({
                       ? URL.createObjectURL(profileImage)
                       : profile?.avatar
                       ? assetsURL(profile?.avatar)
-                      : UserSVG
+                      : dummy
                   }
                 />
                 <div style={{ display: "flex", flexDirection: "column" }}>
@@ -320,19 +323,23 @@ function TailorAppBar({
                   <p className="user-email">{profile?.email}</p>
                 </div>
               </div>
-            {/* <MenuItem
-              onClick={() =>
-                changeLanguage(`${language == "en" ? "fr" : "en"}`)
-              }
-            >
-              {language == "fr" ? "French" : "English"}
-            </MenuItem> */}
+            
+
             <MenuItem
              style={{ borderBottom: "1px solid #DBDBDB" }}
              className="menu-item"
             onClick={navToProfile}>
                  <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
               <p>{t("Profile")} </p>
+            </MenuItem>
+            <MenuItem
+             className="menu-item"
+              onClick={() =>
+                changeLanguage(`${language == "en" ? "fr" : "en"}`)
+              }
+            >
+               <GTranslateIcon sx={{width:"20px"}}/>
+              {language == "fr" ? "French" : "English"}
             </MenuItem>
             <MenuItem  
             className="menu-item support-padding" 

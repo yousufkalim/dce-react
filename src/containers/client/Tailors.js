@@ -7,6 +7,8 @@ import ClientAppBar from "../../components/ClientAppBar";
 import Footer from '../../components/Footer'
 import Rating from "@mui/material/Rating";
 
+import dummy from '../../assets/dummy.jpeg'
+
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
@@ -105,7 +107,7 @@ function TailorListTile(props) {
                 width: "80pt",
                 cursor: "pointer",
               }}
-              src={props.avatar ? assetsURL(props.avatar) : UserSVG}
+              src={props.avatar ? assetsURL(props.avatar) : dummy}
               onClick={navToViewTailor}
             />
           </div>

@@ -201,6 +201,12 @@ const ClientRoutes = [
     element: ClientCreateOrderScreen,
   },
   {
+    path: "/support_centre",
+    name: "support_centre",
+    icon: <TailorSupportCentreIcon />,
+    element: TailorSupportCentreScreen,
+  },
+  {
     path: "/profile",
     name: "ClientProfile",
     icon: <ClientProfileIcon />,

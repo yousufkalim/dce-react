@@ -35,6 +35,12 @@ const Footer = () => {
   const navToTermsAndConditions = () => {
     navigate("/terms_and_conditions");
   };
+  const navToMyAds = () => {
+    navigate("/my_ads");
+  };
+  const navToDesigner = () => {
+    navigate("/tailors");
+  };
   const getProfile = async () => {
     let response;
     try {
@@ -54,8 +60,10 @@ const Footer = () => {
       <div>
         <ul className="footer_list">
           <li onClick={navToOrders}>{t("Orders")}</li>
-          <li onClick={navToQuotes}>{t("Quotes")}</li>
-          <li onClick={navToCatalog}>{t("Catalogue")}</li>
+          { profile?.role==="client"? <li onClick={navToMyAds}>{t("My Ads")}</li> : null}
+          { profile?.role==="client"? <li onClick={navToDesigner}>{t("Designers")}</li> : null}
+          {profile?.role==="tailor"?<li onClick={navToQuotes}>{t("Quotes")}</li>:null}
+          {profile?.role==="tailor"?<li onClick={navToCatalog}>{t("Catalogue")}</li>:null}
           <li onClick={navToSupport}>{t("Support")}</li>
           {/* <li>{t("Privacy Policy")}</li> */}
           <li onClick={navToTermsAndConditions}>{t("Terms and Conditions")}</li>

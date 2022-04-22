@@ -279,7 +279,7 @@ function TailorViewOrderScreen() {
 
 const CompleteOrderSection = (props) => {
   const [isCompleteOrderModal, setIsCompleteOrderModal] = useState(false);
-
+  const { t } = useTranslation();
   const handleCompleteOrderModalClose = (e) => {
     setIsCompleteOrderModal(false);
   };
@@ -328,7 +328,7 @@ const CompleteOrderModal = (props) => {
   const [rating, setRating] = useState(5);
   const [details, setDetails] = useState("");
   const [attachment, setAttachment] = useState(null);
-
+  const { t } = useTranslation();
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
     setAttachment(file);

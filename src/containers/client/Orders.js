@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import UserSVG from "../../assets/User.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
+import NoOrders from '../../components/NoOrders'
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from "react-i18next";
 
@@ -56,39 +57,55 @@ function ClientOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-
   return (
     <>
-    <div className="container-page-vertical">
-      <ClientAppBar activeTab={1} color="#FCFCFC" />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <div className="client_orders_screen_row1">
-          <p className="client_orders_screen_row1_text">{t("Orders List")}</p>
-          <CustomButton
-            padding={"15px 45px"}
-            style={{ borderRadius: "15px", boxShadow: "none" }}
-            text={t("Place Your Order")}
-            onClick={navToCreateAd}
-          />
-        </div>
-        <div className="client_orders_screen_row2">
-          {orders.map((_) => (
-            <OrderListTile
-              order={_}
-              quote={_.quotes.filter((__) => __.status == "accepted")[0]}
-              navToViewOrder={navToViewOrder}
+      <div className="container-page-vertical">
+        <ClientAppBar activeTab={1} color="#FCFCFC" />
+        <div
+          className="client_orders_screen_top"
+          style={{
+            background:
+              "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          }}
+        >
+          <div className="client_orders_screen_row1">
+            <p className="client_orders_screen_row1_text">{t("Orders List")}</p>
+            <CustomButton
+              padding={"15px 45px"}
+              style={{ borderRadius: "15px", boxShadow: "none" }}
+              text={t("Place Your Order")}
+              onClick={navToCreateAd}
             />
-          ))}
+          </div>
+          <div className="client_orders_screen_row2">
+            {orders.map((_) => (
+              <OrderListTile
+                order={_}
+                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                navToViewOrder={navToViewOrder}
+              />
+            ))}
+          </div>
+          {orders?.length === 0 ? (
+            <>
+              {/* <div
+                style={{
+                  marginTop: "10%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                {t("No Orders")}
+              </div> */}
+              <NoOrders/>
+              )
+            </>
+          ) : null}
         </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }

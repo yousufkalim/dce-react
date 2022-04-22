@@ -25,12 +25,10 @@ function LoginScreen() {
   const updateStore = UpdateStore();
 
   const navToHome = () => {
-    e.stopPropagation()
      navigate("/home");
   };
 
   const navToSelectRole = (e) => {
-    e.stopPropagation()
     navigate("/select_role");
   };
 

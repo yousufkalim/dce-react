@@ -9,6 +9,7 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
+import dummy from '../../assets/dummy.jpeg'
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
@@ -193,7 +194,7 @@ function ClientProfileScreen() {
                             ? URL.createObjectURL(profileImage)
                             : profile.avatar
                             ? assetsURL(profile.avatar)
-                            : UserSVG
+                            : dummy
                         }
                       />
                     </label>

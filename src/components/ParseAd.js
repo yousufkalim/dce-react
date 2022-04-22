@@ -279,6 +279,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
             backgroundColor: state.color ? colors.filter((_) => _.name == state.color)[0].value : null,
           }}
         >
+          {console.log(state.color)}
           <div className="pa_profile_section_input_label">
             <p style={{color:state.color?"#ffffff":""}} className="pa_profile_section_input_text">{t("Colour")}</p>
           </div>
@@ -378,7 +379,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, image, han
           <></>
         ) : (
           <CustomButton
-            text="Next"
+            text={t("Next")}
             style={{
               marginBottom: "6%",
               padding: "1.7% 5%",
@@ -642,7 +643,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           <></>
         ) : (
           <CustomButton
-            text={t("Write Here")}
+            text={t("Next")}
             style={{
               marginTop: "3%",
               marginBottom: "10%",
