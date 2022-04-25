@@ -185,9 +185,13 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
+              height: "106vh",
             }}
           >
-            <div className="client_edit_ad_screen_row1">
+            <div
+              style={{ height: "auto" }}
+              className="client_edit_ad_screen_row1"
+            >
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
@@ -242,6 +246,7 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFC396",
+              paddingBottom: "1%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -297,6 +302,7 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFFCFB",
+              paddingBottom: "2%",
             }}
           >
             <div className="client_edit_ad_screen_row1">

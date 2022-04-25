@@ -4,10 +4,10 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    right: 20,
-    color: "#000000",
-  },
+  // icon: {
+  //   right: 20,
+  //   color: "#000000",
+  // },
 }));
 
 function CustomDropDown({
@@ -45,7 +45,7 @@ function CustomDropDown({
         style={{
           position: "relative",
           height: "100%",
-          width: "100%",
+           width: "100%",
         }}
       >
         <Select
@@ -58,7 +58,6 @@ function CustomDropDown({
           onChange={onChange}
           renderValue={(value) => (value.length > 0 ? value : selectNullValue)}
           IconComponent={KeyboardArrowDownRoundedIcon}
-          classes={{ icon: classes.icon }}
           sx={{
             color: valuecolor==="on"?"#ffffff":"#A0A0A0",
             minWidth: "100%",

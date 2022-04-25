@@ -1,0 +1,22 @@
+.orderform-container{
+    margin: 5% auto;
+    width:90%;
+}
+
+.checkbox-text-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.terms{
+color: #A0A0A0;
+letter-spacing: -0.5px;
+letter-spacing: -0.5px;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+}
+.declaration{
+    line-height: 22px;
+}
