@@ -10,7 +10,7 @@ import AdEdit2SVG from "../../assets/AdEdit2.svg";
 import AdEdit3SVG from "../../assets/AdEdit3.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api";
@@ -40,12 +40,10 @@ function ClientViewOrderScreen() {
     includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    address: "",
-    country: "",
-    city: "",
     note: "",
     type: "",
     date: "",
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     note: "",
@@ -74,7 +72,16 @@ function ClientViewOrderScreen() {
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
       });
-      setDeliverySection(adData.delivery);
+      setDeliverySection({
+        date: adData.delivery.date,
+        note: adData.delivery.note,
+        type: adData.delivery.type,
+        address: {
+          zip: adData.delivery.zipcode,
+          label: adData.delivery.address,
+          city: adData.delivery.city,
+        },
+      });
       setNotesSection(adData.budget);
     } catch (e) {
       console.trace(e);
@@ -259,7 +266,7 @@ function ClientViewOrderScreen() {
           </div>
         </div>
       )}
-  <Footer/>
+      <Footer />
     </>
   );
 }

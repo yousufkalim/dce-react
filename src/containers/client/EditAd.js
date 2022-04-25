@@ -10,7 +10,7 @@ import AdEdit2SVG from "../../assets/AdEdit2.svg";
 import AdEdit3SVG from "../../assets/AdEdit3.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api";
@@ -49,7 +49,7 @@ function ClientEditAdScreen() {
     note: "",
     type: "",
     date: "",
-    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     type: "",
@@ -73,7 +73,6 @@ function ClientEditAdScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
-      console.log(adData);
       setBasicSection({
         gender: adData.gender,
         category: adData.category,
@@ -87,8 +86,12 @@ function ClientEditAdScreen() {
       setDeliverySection({
         date: adData.delivery.date,
         note: adData.delivery.note,
-         type: adData.delivery.type,
-         Address:{zip: adData.delivery.zipcode, label: adData.delivery.address, city:adData.delivery.city}
+        type: adData.delivery.type,
+        address: {
+          zip: adData.delivery.zipcode,
+          label: adData.delivery.address,
+          city: adData.delivery.city,
+        },
       });
       setNotesSection(adData.budget);
     } catch (e) {
@@ -133,10 +136,10 @@ function ClientEditAdScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.Address.label,
+          address: deliverySection.address.label,
           country: deliverySection.country,
-          city: deliverySection.Address.city,
-          zipcode:deliverySection.Address.zip,
+          zipcode: deliverySection.address.zip,
+          city: deliverySection.address.city,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,
@@ -348,7 +351,7 @@ function ClientEditAdScreen() {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }

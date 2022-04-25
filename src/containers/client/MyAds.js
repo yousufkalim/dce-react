@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
-import NoOrders from '../../components/NoOrders'
+import NoOrders from "../../components/NoOrders";
 import UserSVG from "../../assets/User.svg";
 
 import { Checkbox, Modal } from "@mui/material";
@@ -168,7 +168,7 @@ function ClientAdsScreen() {
               >
                 {t("No Orders")}
               </div> */}
-               <NoOrders RenderText="No Ads Yet"/>
+              <NoOrders RenderText="No Ads Yet" />
             </>
           ) : null}
         </div>
@@ -489,7 +489,6 @@ const AcceptQuoteModal = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(props.order, "Tap");
     if (props.order.measurements.type == "static") {
       handleStaticMeasurements();
     } else if (props.order.measurements.type == "tape") {
@@ -514,19 +513,28 @@ const AcceptQuoteModal = (props) => {
       const body = {
         quote: props.quote._id,
       };
-      let line_items = [
-        {
-          price_data: {
-            currency: "eur",
-            product_data: {
-              name: "Order",
-            },
-            unit_amount: props.quote.price * 100,
-          },
-          quantity: 1,
-        },
-      ];
-      getSessionUrl(props.quote, line_items);
+
+      response = await Api("post", "/quotes/accept", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToOrders();
+      }
+
+      // Stripe
+      // const line_items = [
+      //   {
+      //     price_data: {
+      //       currency: "eur",
+      //       product_data: {
+      //         name: "Order",
+      //       },
+      //       unit_amount: props.quote.price * 100,
+      //     },
+      //     quantity: 1,
+      //   },
+      // ];
+      // getSessionUrl(props.quote, line_items);
     } catch (e) {
       console.trace(e);
     }
