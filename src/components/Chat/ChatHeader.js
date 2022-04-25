@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import attachment from "../../assets/attachment.svg";
 import threedots from "../../assets/dotted.svg";
 import { useTranslation } from "react-i18next";
