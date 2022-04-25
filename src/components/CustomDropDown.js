@@ -59,6 +59,9 @@ function CustomDropDown({
           renderValue={(value) => (value.length > 0 ? value : selectNullValue)}
           IconComponent={KeyboardArrowDownRoundedIcon}
           sx={{
+            '& .Mui-disabled': {
+              borderRadius: '1px',
+            },
             color: valuecolor==="on"?"#ffffff":"#A0A0A0",
             minWidth: "100%",
             background: "transparent",
