@@ -8,7 +8,7 @@ import AdElaborationSVG from "../../assets/AdElaboration.svg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 
 import * as ParseAd from "../../components/ParseAd";
 
@@ -46,12 +46,10 @@ function ClientCreateOrderScreen() {
     includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    address: "",
-    country: "",
-    city: "",
     note: "",
     type: "",
     date: "",
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     type: "",
@@ -128,9 +126,10 @@ function ClientCreateOrderScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.address,
+          address: deliverySection.address.label,
           country: deliverySection.country,
-          city: deliverySection.city,
+          zipcode: deliverySection.address.zip,
+          city: deliverySection.address.city,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,
@@ -235,7 +234,7 @@ function ClientCreateOrderScreen() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
