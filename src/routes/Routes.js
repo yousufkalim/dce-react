@@ -6,8 +6,7 @@ import ClientVerifyEmailScreen from "../containers/auth/ClientVerifyEmail";
 import ClientCreateAccountScreen from "../containers/auth/ClientCreateAccount";
 import TailorRegisterScreen from "../containers/auth/TailorRegister";
 import TailorVerifyEmailScreen from "../containers/auth/TailorVerifyEmail";
-import TailorCreateAccount1Screen from "../containers/auth/TailorCreateAccount1";
-import TailorCreateAccount2Screen from "../containers/auth/TailorCreateAccount2";
+import TailorCreateAccountScreen from "../containers/auth/TailorCreateAccount";
 
 // Client Screens
 import ClientHomeScreen from "../containers/client/Home";
@@ -22,10 +21,10 @@ import ClientTermsAndConditionsScreen from "../containers/client/TermsAndConditi
 import ClientAdsScreen from "../containers/client/MyAds";
 import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
-import ClientMeasurementsScreen from "../containers/client/Measurements";
 import ClientFaqsScreen from "../containers/client/Faqs";
 import ClientSearchResultsScreen from "../containers/client/SearchResults";
 import ClientViewOrderScreen from "../containers/client/ViewOrder";
+import ClientTapeMeasurementScreen from "../containers/client/TapeMeasurement";
 
 // Tailor Screens
 import TailorHomeScreen from "../containers/tailor/Home";
@@ -54,8 +53,7 @@ import ClientVerifyEmailIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAccountIcon from "@mui/icons-material/AccountBox";
 import TailorRegisterIcon from "@mui/icons-material/AccountBox";
 import TailorVerifyEmailIcon from "@mui/icons-material/AccountBox";
-import TailorCreateAccount1Icon from "@mui/icons-material/AccountBox";
-import TailorCreateAccount2Icon from "@mui/icons-material/AccountBox";
+import TailorCreateAccountIcon from "@mui/icons-material/AccountBox";
 import ClientHomeIcon from "@mui/icons-material/AccountBox";
 import ClientOrdersIcon from "@mui/icons-material/AccountBox";
 import ClientTailorsIcon from "@mui/icons-material/AccountBox";
@@ -70,6 +68,7 @@ import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
 import ClientViewOrderIcon from "@mui/icons-material/AccountBox";
+import ClientTapeMeasurementIcon from "@mui/icons-material/AccountBox";
 import TailorHomeIcon from "@mui/icons-material/AccountBox";
 import TailorCatalogIcon from "@mui/icons-material/AccountBox";
 import TailorViewCatalogIcon from "@mui/icons-material/AccountBox";
@@ -138,16 +137,10 @@ const AuthRoutes = [
     element: TailorVerifyEmailScreen,
   },
   {
-    path: "/tailor_create_account_1",
-    name: "TailorCreateAccount1",
-    icon: <TailorCreateAccount1Icon />,
-    element: TailorCreateAccount1Screen,
-  },
-  {
-    path: "/tailor_create_account_2",
-    name: "TailorCreateAccount2",
-    icon: <TailorCreateAccount2Icon />,
-    element: TailorCreateAccount2Screen,
+    path: "/tailor_create_account",
+    name: "TailorCreateAccount",
+    icon: <TailorCreateAccountIcon />,
+    element: TailorCreateAccountScreen,
   },
 ];
 
@@ -178,24 +171,6 @@ const ClientRoutes = [
     element: ClientTailorsScreen,
   },
   {
-    path: "/measurements",
-    name: "Measurements",
-    icon: <ClientTailorsIcon />,
-    element: ClientMeasurementsScreen,
-  },
-  {
-    path: "/measurements/tape",
-    name: "GetTape",
-    icon: <ClientTailorsIcon />,
-    element: GetTape,
-  },
-  {
-    path: "/orderacceptform",
-    name: "OrderAcceptForm",
-    icon: <ClientTailorsIcon />,
-    element: OrderAcceptForm,
-  },
-  {
     path: "/faqs",
     name: "Faqs",
     icon: <ClientTailorsIcon />,
@@ -224,6 +199,12 @@ const ClientRoutes = [
     name: "ClientCreateOrder",
     icon: <ClientCreateOrderIcon />,
     element: ClientCreateOrderScreen,
+  },
+  {
+    path: "/support_centre",
+    name: "support_centre",
+    icon: <TailorSupportCentreIcon />,
+    element: TailorSupportCentreScreen,
   },
   {
     path: "/profile",
@@ -272,6 +253,12 @@ const ClientRoutes = [
     name: "ClientViewOrder",
     icon: <ClientViewOrderIcon />,
     element: ClientViewOrderScreen,
+  },
+  {
+    path: "/tape_measurement",
+    name: "ClientTapeMeasurement",
+    icon: <ClientTapeMeasurementIcon />,
+    element: ClientTapeMeasurementScreen,
   },
 ];
 

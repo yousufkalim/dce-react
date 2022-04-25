@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 import AddCatalogSVG from "../../assets/AddCatalog.svg";
+import UploadSVG from "../../assets/upload.svg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
 
 import CustomDropDown from "../../components/CustomDropDown";
 import CustomInput from "../../components/CustomInput";
@@ -20,6 +22,8 @@ import { toast } from "react-toastify";
 import * as FormValidations from "../../utils/Validations";
 
 function TailorCreateCatalogScreen() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-page">
       <TailorAppBar color="#FFFAF9" activeTab={1} />
@@ -42,7 +46,7 @@ function TailorCreateCatalogScreen() {
                 fontWeight: "900",
               }}
             >
-              Add Catalog
+              {t("Add Catalogue")}
             </p>
             <div className="tccs_input_section_container" style={{}}>
               <div className="pa_content_row">
@@ -94,7 +98,7 @@ function InputSection() {
     }
 
     if (!image) {
-      toast.error("Image must be selected");
+      toast.error(t("Image must be selected"));
       return;
     }
 
@@ -119,7 +123,7 @@ function InputSection() {
       response = await Api("post", "/catalogs", body);
 
       if (response?.data?.success) {
-        toast.success("Catalog created successfully.");
+        toast.success(t("Catalogue created successfully."));
         navToCatalogs();
       }
     } catch (e) {
@@ -132,6 +136,7 @@ function InputSection() {
   const navToCatalogs = () => {
     navigate("/catalog");
   };
+  const { t } = useTranslation();
 
   return (
     <>
@@ -144,7 +149,7 @@ function InputSection() {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Name</p>
+            <p className="pa_profile_section_input_text">{t("Name")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -155,7 +160,7 @@ function InputSection() {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Name of your Creation"
+              inputPlaceholder={t("Name of your Creation")}
               onChange={(e) => _setState("name", e.target.value)}
             />
           </div>
@@ -168,7 +173,7 @@ function InputSection() {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Gender</p>
+            <p className="pa_profile_section_input_text">{t("Gender")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -177,12 +182,12 @@ function InputSection() {
               }}
               selectID="gender"
               selectName="gender"
-              selectNullValue="Select gender"
+              selectNullValue={t("Select gender")}
               selectValue={state.gender}
               onChange={(e) => _setState("gender", e.target.value)}
               menuItems={[
-                <MenuItem value={"male"}>Male</MenuItem>,
-                <MenuItem value={"female"}>Female</MenuItem>,
+                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: "12px",
@@ -192,7 +197,7 @@ function InputSection() {
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Category</p>
+            <p className="pa_profile_section_input_text">{t("Category")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -201,14 +206,14 @@ function InputSection() {
               }}
               selectID="category"
               selectName="category"
-              selectNullValue="Select category"
+              selectNullValue={t("Select category")}
               selectValue={state.category}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
-                <MenuItem value={"MAN"}>MAN</MenuItem>,
-                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
-                <MenuItem value={"Other"}>Other</MenuItem>,
+                <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
+                <MenuItem value={"MAN"}>{t("MAN")}</MenuItem>,
+                <MenuItem value={"CHILD"}>{t("CHILD")}</MenuItem>,
+                <MenuItem value={"Other"}>{t("Other")}</MenuItem>,
               ]}
             />
           </div>
@@ -222,7 +227,7 @@ function InputSection() {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Price</p>
+            <p className="pa_profile_section_input_text">{t("Price")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -234,7 +239,7 @@ function InputSection() {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Set your Price"
+              inputPlaceholder={t("Set your Price")}
               onChange={(e) => _setState("price", e.target.value)}
             />
           </div>
@@ -248,16 +253,43 @@ function InputSection() {
           }}
         >
           <div className="pa_payment_section_textarea_label">
-            <p className="pa_profile_section_input_text">Description</p>
+            <p className="pa_profile_section_input_text">{t("Description")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <textarea
               className="pa_profile_section_textarea_textarea"
-              placeholder="Tell us about your service"
+              placeholder={t("Tell us about your service")}
               onChange={(e) => _setState("description", e.target.value)}
             ></textarea>
           </div>
         </div>
+        {/* <div
+          className="pa_profile_section_input_container"
+          style={{
+            borderRadius: "20px",
+            marginTop: "2%",
+          }}
+        >
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t("Attachments")}</p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              labelStyle={{
+                display: "none",
+              }}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px",
+              }}
+              inputPlaceholder={t("Upload Drawing, Photo, Document, etc.")}
+              inputType="file"
+              accept="image/*"
+              onChange={handleImageSelect}
+            />
+          </div>
+        </div> */}
+        {/* start */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -269,23 +301,31 @@ function InputSection() {
             <p className="pa_profile_section_input_text">Attachments</p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomInput
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder="Upload Drawing, Photo, Document, etc."
-              inputType="file"
-              accept="image/*"
-              onChange={handleImageSelect}
-            />
+            <label className="upload-pic-label" htmlFor="filePicker">
+              <input
+                
+                type="file"
+                accept="image/*"
+                hidden
+                id="filePicker"
+                name="file"
+                onChange={handleImageSelect}
+              />
+              <div className="upload-img-text-cont">
+                <span className="upload-img-text">
+                  {image?.name ?? "Upload Drawing, Photo, Document, etc"}
+                </span>
+                <img src={UploadSVG} />
+              </div>
+            </label>
           </div>
         </div>
+
+
+
+       {/* end */}
         <CustomButton
-          text="Create Catalog"
+          text={t("Create Catalogue")}
           onClick={handleSubmit}
           style={{
             marginTop: "3%",

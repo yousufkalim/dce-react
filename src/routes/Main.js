@@ -39,7 +39,7 @@ const Main = () => {
     Object.assign(SS, store);
     // console.log(SS, `_SS_`);
   }, [store]);
-
+console.log(user?.role);
   return (
     <>
       <div className="main-container">

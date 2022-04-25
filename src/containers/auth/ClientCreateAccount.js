@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Country, City } from "country-state-city";
 
 import AppLogoSVG from "../../assets/AppLogo.svg";
 import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
@@ -7,11 +6,12 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
-import CustomDropDown from "../../components/CustomDropDown";
-import MenuItem from "@mui/material/MenuItem";
+import AutoComplete from "../../components/AutoComplete";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
+
+import axios from "axios";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -25,30 +25,18 @@ function ClientCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
-
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
+  const [addresses, setAddresses] = useState([]);
+  const [address, setAddress] = useState({
+    zip: "",
+    label: "",
+    city: "",
+    lat: "",
+    lng: "",
+  });
   const store = Store();
   const updateStore = UpdateStore();
-
-  useEffect(() => {
-    const _countries = Country.getAllCountries();
-    setCountries(_countries);
-  }, []);
-
-  useEffect(() => {
-    if (country) {
-      setCity("");
-
-      const countryObj = countries.find((_) => _.name == country);
-      const _cities = City.getCitiesOfCountry(countryObj.isoCode);
-      setCities(_cities);
-    }
-  }, [country]);
 
   useEffect(() => {
     if (!state?.["Email"] || !state?.["Password"]) {
@@ -78,11 +66,10 @@ function ClientCreateAccountScreen() {
     if (dateOfBirth == null) {
       toast.error("Date of Birth must be selected.");
       return;
-    } else if (country == "") {
-      toast.error("Country must be selected.");
-      return;
-    } else if (city == "") {
-      toast.error("City must be selected.");
+    }
+
+    if (!address?.label) {
+      toast.error("Address can't be empty");
       return;
     }
 
@@ -96,9 +83,9 @@ function ClientCreateAccountScreen() {
         password: state["Password"],
         name: data.get("Full Name"),
         dob: dateOfBirth,
-        address: data.get("Address"),
-        country: country,
-        city: city,
+        address: address.label,
+        zip_code: address.zip,
+        city: address.city,
       };
 
       response = await Api("post", "/clients", body);
@@ -114,7 +101,65 @@ function ClientCreateAccountScreen() {
 
     setIsProcessing(false);
   };
-
+  const _setAddress = (_) => {
+    setAddress({ ...address, ..._ });
+  };
+  const handleSelectAddress = (e) => {
+    if (e) {
+      _setAddress({
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+    }
+  };
+  const handleInputAddress = async (e) => {
+    if (e.target.value === "") {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+      setAddresses([]);
+    } else {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+        method: "get",
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features.map((item) => {
+          addressToSet.push({
+            label: item.properties.label,
+            city: item.properties.city,
+            PostalCode: item.properties.postcode,
+            lat: item.geometry.coordinates[1],
+            lng: item.geometry.coordinates[0],
+          });
+        });
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
+    }
+  };
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -170,61 +215,47 @@ function ClientCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "6%",
                 }}
+                dobinput="dob"
               />
-              <CustomInput
-                labelText="Address"
-                inputName="Address"
-                inputPlaceholder="Address"
-                divStyle={{
-                  marginBottom: "6%",
-                }}
-              />
-              <div className="create_account_screen_row2_row1">
-                <CustomDropDown
-                  labelText="Country"
-                  selectID="country"
-                  selectName="Country"
-                  selectNullValue="Country"
-                  selectValue={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  menuItems={countries.map((_) => (
-                    <MenuItem value={_.name}>{_.name}</MenuItem>
-                  ))}
-                  inputName="Country"
-                  divStyle={{
-                    display: "flex",
-                    width: "48%",
-                    marginBottom: "6%",
+              <div style={{ width: "100%" }}>
+                <label className="custom_input_label">Address</label>
+                <AutoComplete
+                  name="Address"
+                  required={true}
+                  label={"Address"}
+                  value={address?.label}
+                  options={addresses}
+                  placeholder={"Address"}
+                  onChangeAddress={(e) => {
+                    handleInputAddress(e);
                   }}
-                  selectSX={{
-                    borderColor: "#CC8E9C",
-                    borderStyle: "solid",
-                    borderWidth: "1.5px",
-                    borderRadius: "10px",
-                  }}
+                  onAddressSelect={(e) => handleSelectAddress(e)}
                 />
-                <CustomDropDown
-                  labelText="City"
-                  selectID="city"
-                  selectName="City"
-                  selectNullValue="City"
-                  selectValue={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  menuItems={cities.map((_) => (
-                    <MenuItem value={_.name}>{_.name}</MenuItem>
-                  ))}
-                  inputName="City"
+              </div>
+              <div className="create_account_screen_row2_row1">
+                <CustomInput
+                  disabled
+                  labelText="Zip Code"
+                  inputName="Zip Code"
+                  inputPlaceholder="Zip Code"
                   divStyle={{
                     display: "flex",
                     width: "48%",
                     marginBottom: "6%",
                   }}
-                  selectSX={{
-                    borderColor: "#CC8E9C",
-                    borderStyle: "solid",
-                    borderWidth: "1.5px",
-                    borderRadius: "10px",
+                  Inputvalue={address?.zip}
+                />
+                <CustomInput
+                  disabled
+                  labelText="City"
+                  inputName="City"
+                  inputPlaceholder="City"
+                  divStyle={{
+                    display: "flex",
+                    width: "48%",
+                    marginBottom: "6%",
                   }}
+                  Inputvalue={address?.city}
                 />
               </div>
               <CustomButton

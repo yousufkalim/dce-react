@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from "../../components/Footer";
+import NoOrders from "../../components/NoOrders";
 import CustomButton from "../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 import { Modal } from "@mui/material";
 import Rating from "@mui/material/Rating";
@@ -20,6 +23,8 @@ import { toast } from "react-toastify";
 import * as FormValidations from "../../utils/Validations";
 
 function ClientOrdersScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +40,7 @@ function ClientOrdersScreen() {
     try {
       response = await Api("post", `/orders/byQuery`, {
         client: user._id,
+        tailor: { $ne: null },
       });
       const ordersData = response.data.orders;
       setOrders(ordersData);
@@ -51,41 +57,61 @@ function ClientOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-
   return (
-    <div className="container-page-vertical">
-      <ClientAppBar activeTab={1} color="#FCFCFC" />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <div className="client_orders_screen_row1">
-          <p className="client_orders_screen_row1_text">Orders List</p>
-          <CustomButton
-            padding={"15px 45px"}
-            style={{ borderRadius: "15px", boxShadow: "none" }}
-            text="Place your order"
-            onClick={navToCreateAd}
-          />
-        </div>
-        <div className="client_orders_screen_row2">
-          {orders.map((_) => (
-            <OrderListTile
-              order={_}
-              quote={_.quotes.filter((__) => __.status == "accepted")[0]}
-              navToViewOrder={navToViewOrder}
+    <>
+      <div className="container-page-vertical">
+        <ClientAppBar activeTab={1} color="#FCFCFC" />
+        <div
+          className="client_orders_screen_top"
+          style={{
+            background:
+              "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          }}
+        >
+          <div className="client_orders_screen_row1">
+            <p className="client_orders_screen_row1_text">{t("Orders List")}</p>
+            <CustomButton
+              padding={"15px 45px"}
+              style={{ borderRadius: "15px", boxShadow: "none" }}
+              text={t("Place Your Order")}
+              onClick={navToCreateAd}
             />
-          ))}
+          </div>
+          <div className="client_orders_screen_row2">
+            {orders.map((_) => (
+              <OrderListTile
+                order={_}
+                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                navToViewOrder={navToViewOrder}
+              />
+            ))}
+          </div>
+          {orders?.length === 0 ? (
+            <>
+              {/* <div
+                style={{
+                  marginTop: "10%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                {t("No Orders")}
+              </div> */}
+              <NoOrders RenderText="No Orders" />)
+            </>
+          ) : null}
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
 function OrderListTile(props) {
+  const { t } = useTranslation();
+
   const [isFeedbackOrderModal, setIsFeedbackOrderModal] = useState(false);
 
   const handleFeedbackOrderModalClose = (e) => {
@@ -144,7 +170,7 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order</p>
+          <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
           <p className="cos_order_list_tile_column2_item_value">
             {props.order.name}
           </p>
@@ -155,7 +181,9 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Order Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Order Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.createdAt).toLocaleDateString("en-US")}
           </p>
@@ -166,7 +194,9 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">Delivery Date</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t("Delivery Date")}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
@@ -179,13 +209,13 @@ function OrderListTile(props) {
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}$`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-          Bill
+          {t("Bill")}
         </p>
       </div>
       <div className="cos_order_list_tile_column4">
         {props.order.status == "completed" && props.order.client_submission ? (
           <CustomButton
-            text="Support"
+            text={t("Support")}
             padding={"10px 14px"}
             style={{
               borderRadius: "15px",
@@ -194,12 +224,12 @@ function OrderListTile(props) {
             }}
             onClick={(e) => {
               e.stopPropagation();
-              toast.success("Coming soon!");
+              toast.success(t("Coming soon!"));
             }}
           />
         ) : (
           <CustomButton
-            text="Feedback"
+            text={t("Feedback")}
             padding={"10px 14px"}
             style={{
               borderRadius: "15px",
@@ -230,6 +260,8 @@ function OrderListTile(props) {
 }
 
 const FeedbackOrderModal = (props) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -272,7 +304,7 @@ const FeedbackOrderModal = (props) => {
       response = await Api("post", "/orders/feedback", body);
 
       if (response?.data?.success) {
-        toast.success("Feedback provided successfully.");
+        toast.success(t("Feedback provided successfully."));
         props.handleClose();
         navToOrders();
       }
@@ -295,7 +327,7 @@ const FeedbackOrderModal = (props) => {
         }}
       >
         <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">Rating</p>
+          <p className="tqs_sqm_input_text">{t("Rating")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <Rating
@@ -316,7 +348,7 @@ const FeedbackOrderModal = (props) => {
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">Details</p>
+          <p className="tqs_sqm_input_text">{t("Details")}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
@@ -329,7 +361,7 @@ const FeedbackOrderModal = (props) => {
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton
-          text="Cancel"
+          text={t("Cancel")}
           style={{
             boxShadow: "none",
             marginRight: "10pt",
@@ -337,7 +369,7 @@ const FeedbackOrderModal = (props) => {
           onClick={props.handleClose}
         />
         <CustomButton
-          text="Feedback"
+          text={t("Feedback")}
           style={{
             boxShadow: "none",
           }}

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import attachment from "../../assets/attachment.svg";
 import threedots from "../../assets/dotted.svg";
+import { useTranslation } from "react-i18next";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
@@ -9,6 +10,8 @@ import assetsURL from "../../utils/Assets";
 import { getUser } from "../../utils/Auth";
 
 const ChatHeader = ({ directUser }) => {
+  const { t } = useTranslation();
+
   const [inputData, setInputData] = useState("");
   const onChange = (e) => {
     const name = e.target.name;
@@ -46,15 +49,15 @@ const ChatHeader = ({ directUser }) => {
               width: "50pt",
               marginRight: "20px",
             }}
-            src={receiver ? assetsURL(receiver.avatar) : UserSVG}
+            src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
           />
           <div>
             <p className="usr">{receiver?.name ?? "N/A"}</p>
             {receiver.status == "online" ? (
-              <p className="is-online">Online</p>
+              <p className="is-online">{t("Online")}</p>
             ) : (
               <p className="is-offline">
-                Last Online{" "}
+                {t("Last Online")}{" "}
                 {new Date(receiver.check_out).toLocaleDateString("en-US")}
               </p>
             )}

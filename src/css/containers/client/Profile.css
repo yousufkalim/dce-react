@@ -27,7 +27,6 @@
 .client_profile_screen_row2 {
   height: 80%;
   width: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

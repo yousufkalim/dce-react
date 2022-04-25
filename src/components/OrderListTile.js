@@ -1,8 +1,11 @@
-import UserSVG from "../assets/User.svg";
+import UserSVG from "../assets/dummy.jpeg";
+import { useTranslation } from "react-i18next";
 
 import assetsURL from "../utils/Assets";
 
 function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
+  const { t } = useTranslation();
+
   const Color = (status) => {
     let color = "";
     if (status == "in_process") {
@@ -78,7 +81,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            Order
+            {t("Order")}
           </p>
           <p
             style={{
@@ -96,7 +99,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            Order Date
+            {t("Order Date")}
           </p>
           <p
             style={{
@@ -114,7 +117,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            Delivery Date
+            {t("Delivery Date")}
           </p>
           <p
             style={{
@@ -138,7 +141,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            Bill
+            {t("Bill")}
           </p>
           <p
             className="order_list_tile_item_value"

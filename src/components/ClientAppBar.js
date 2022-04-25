@@ -1,21 +1,74 @@
 import React, { useState, useEffect } from "react";
 
+import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
-import UserSVG from "../assets/User.svg";
+import UserSVG from "../assets/dummy.jpeg";
+import dummy from "../assets/dummy.jpeg";
+import Nock from "../assets/Nock.svg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
-import Menu from "@mui/material/Menu";
+import EditIcon from "../assets/Edit.svg";
+import SupportIcon from "../assets/Support.svg";
+import TermsConditionsIcon from "../assets/TermsConditions.svg";
+import PrivacyPolicyIcon from "../assets/PrivacyPolicy.svg";
+import SignOutIcon from "../assets/SignOut.svg";
+import dotted from "../assets/dotted.svg";
+
+import GTranslateIcon from "@mui/icons-material/GTranslate";
+
+import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+
+import NotificationsListTile from "./NotificationsListTile";
 
 import { handleLogout } from "../utils/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import dotted from "../assets/dotted.svg";
 
 import Api from "../api";
 import assetsURL from "../utils/Assets";
 import { Store, UpdateStore } from "../StoreContext";
+import { useTranslation } from "react-i18next";
 
+const StyledMenu = styled((MenuProps) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "right",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+    {...MenuProps}
+  />
+))(({ theme }) => ({
+  "& .MuiPaper-root": {
+    borderRadius: 12,
+    marginTop: theme.spacing(3),
+    padding: "2% 2% 1% 2%",
+    minWidth: 230,
+    color:
+      theme.palette.mode === "light"
+        ? "rgb(55, 65, 81)"
+        : theme.palette.grey[300],
+    boxShadow: "0px 4px 20px rgba(160, 160, 160, 0.33)",
+
+    "& .MuiMenuItem-root": {
+      "& .MuiSvgIcon-root": {
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      // '&:active': {
+      //   backgroundColor: alpha(
+      //     theme.palette.primary.main,
+      //     theme.palette.action.selectedOpacity,
+      //   ),
+      // },
+    },
+  },
+}));
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
   useEffect(() => {
@@ -34,12 +87,14 @@ function ClientAppBar({
   disableSearch = false,
   divStyle,
 }) {
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
   const [width] = useWindowSize();
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
-  const handleClickNotifications = () => {
-    toast.success("Coming soon!");
-  };
+  const [profileImage, setProfileImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const openProfile = Boolean(anchorElProfile);
@@ -50,7 +105,18 @@ function ClientAppBar({
     setAnchorElProfile(null);
   };
 
+  const [anchorElNotifications, setAnchorElNotifications] =
+    React.useState(null);
+  const openNotifications = Boolean(anchorElNotifications);
+  const handleClickNotifications = (event) => {
+    setAnchorElNotifications(event.currentTarget);
+  };
+  const handleCloseNotifications = () => {
+    setAnchorElNotifications(null);
+  };
+
   const [searchQuery, setSearchQuery] = useState("");
+
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -60,7 +126,7 @@ function ClientAppBar({
 
   const navToSearch = () => {
     if (!searchQuery) {
-      toast.error("Search Input can't be empty");
+      toast.error(t("Search Input can't be empty"));
       return;
     }
     navigate(`/search_results?query=${searchQuery}`);
@@ -72,7 +138,7 @@ function ClientAppBar({
 
   const navToSupport = () => {
     handleCloseProfile();
-    toast.success("Coming soon!");
+    navigate("/support_centre");
   };
 
   const navToTermsAndConditions = () => {
@@ -86,9 +152,11 @@ function ClientAppBar({
   };
 
   const [profile, setProfile] = useState(null);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     getProfile();
+    getNotifications();
   }, []);
 
   const getProfile = async () => {
@@ -103,8 +171,24 @@ function ClientAppBar({
     return;
   };
 
+  const getNotifications = async () => {
+    let response;
+    try {
+      response = await Api("get", `/notifications`);
+      console.log(response.data);
+      const notificationsData = response.data.notifications.splice(-10);
+      setNotifications(notificationsData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
   const mobilemenu = () => {
     setToggle(!toggle);
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
   };
 
   return (
@@ -147,12 +231,41 @@ function ClientAppBar({
             ) : (
               <></>
             )}
-            <img
-              src={NotificationsSVG}
-              className="appbar_row2_notifications_img"
+            <div
+              className="notifications_count_container"
               style={{ marginLeft: "3%" }}
-              onClick={handleClickNotifications}
-            />
+            >
+              <img
+                src={NotificationsSVG}
+                className="appbar_row2_notifications_img"
+                onClick={handleClickNotifications}
+              />
+              <div className="notifications_count_pos">
+                <p
+                  style={{
+                    fontSize: "14px",
+                  }}
+                >
+                  {notifications.filter((_) => !_.is_read).length}
+                </p>
+              </div>
+            </div>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElNotifications}
+              open={openNotifications}
+              onClose={handleCloseNotifications}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              {notifications.map((_) => (
+                <NotificationsListTile
+                  {..._}
+                  handleClose={handleCloseNotifications}
+                />
+              ))}
+            </Menu>
             <img
               className="appbar_row2_user_img image_container"
               style={{
@@ -160,25 +273,76 @@ function ClientAppBar({
                 height: "6vh",
                 marginLeft: "3%",
               }}
-              src={profile?.avatar ? assetsURL(profile.avatar) : UserSVG}
+              src={profile?.avatar ? assetsURL(profile.avatar) : dummy}
               onClick={handleClickProfile}
             />
-            <Menu
-              id="basic-menu"
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                "aria-labelledby": "demo-customized-button",
+              }}
               anchorEl={anchorElProfile}
               open={openProfile}
               onClose={handleCloseProfile}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
             >
-              <MenuItem onClick={navToProfile}>Profile</MenuItem>
-              <MenuItem onClick={navToSupport}>Support</MenuItem>
-              <MenuItem onClick={navToTermsAndConditions}>
-                Terms and Conditions
+              <img className="nock" src={Nock} />
+
+              <div className="user-detail-conatiner">
+                <img
+                  className="image_container"
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : profile?.avatar
+                      ? assetsURL(profile?.avatar)
+                      : dummy
+                  }
+                />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <p className="user-name">{profile?.name} </p>
+                  <p className="user-email">{profile?.email}</p>
+                </div>
+              </div>
+
+              <MenuItem
+                style={{ borderBottom: "1px solid #DBDBDB" }}
+                className="menu-item"
+                onClick={navToProfile}
+              >
+                <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
+                <p> {t("Profile")} </p>
               </MenuItem>
-              <MenuItem onClick={handleLogoutSubmit}>Logout</MenuItem>
-            </Menu>
+              <MenuItem
+                className="menu-item support-padding"
+                onClick={() =>
+                  changeLanguage(`${language == "en" ? "fr" : "en"}`)
+                }
+              >
+                <GTranslateIcon sx={{ width: "20px" }} />
+                {language == "fr" ? "French" : "English"}
+              </MenuItem>
+              <MenuItem className="menu-item" onClick={navToSupport}>
+                <img style={{ width: "16px" }} src={SupportIcon} />
+                <p> {t("Support")}</p>
+              </MenuItem>
+              <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
+                <img src={TermsConditionsIcon} />{" "}
+                <p>{t("Terms and Conditions")}</p>
+              </MenuItem>
+              <MenuItem
+                style={{ borderBottom: "1px solid #DBDBDB" }}
+                className="menu-item privacy-padding"
+              >
+                <img src={PrivacyPolicyIcon} /> <p>{t("Privacy Policy")}</p>
+              </MenuItem>
+              <MenuItem
+                className="menu-item sign-out-padding"
+                onClick={handleLogoutSubmit}
+              >
+                <img style={{ width: "16px" }} src={SignOutIcon} />{" "}
+                <p> {t("Sign out")}</p>
+              </MenuItem>
+            </StyledMenu>
           </div>
         </div>
       </div>
@@ -188,6 +352,8 @@ function ClientAppBar({
 }
 
 function SearchInput({ setSearchQuery, callback }) {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div
@@ -199,7 +365,7 @@ function SearchInput({ setSearchQuery, callback }) {
       >
         <input
           type="text"
-          placeholder="Search"
+          placeholder={t("Search")}
           className="appbar_row2_input"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -213,6 +379,8 @@ function SearchInput({ setSearchQuery, callback }) {
   );
 }
 function NavlinkDesktop({ activeTab }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -240,7 +408,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToDesigners}
       >
-        Designers
+        {t("Designers")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -250,7 +418,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToOrders}
       >
-        Orders
+        {t("Orders")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -260,7 +428,7 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToMyAds}
       >
-        My Ads
+        {t("My Ads")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -270,13 +438,15 @@ function NavlinkDesktop({ activeTab }) {
         }}
         onClick={navToChat}
       >
-        Chats
+        {t("Chats")}
       </p>
     </>
   );
 }
 
 function NavlinkMobile({ activeTab }) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const navToOrders = () => {
@@ -305,7 +475,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToDesigners}
       >
-        Designers
+        {t("Designers")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -315,7 +485,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToOrders}
       >
-        Orders
+        {t("Orders")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -325,7 +495,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToMyAds}
       >
-        My Ads
+        {t("My Ads")}
       </p>
       <p
         className="appbar_row1_tab_text"
@@ -335,7 +505,7 @@ function NavlinkMobile({ activeTab }) {
         }}
         onClick={navToChat}
       >
-        Chats
+        {t("Chats")}
       </p>
     </div>
   );

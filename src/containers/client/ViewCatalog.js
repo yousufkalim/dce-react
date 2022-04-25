@@ -5,6 +5,7 @@ import ViewCatalogSVG from "../../assets/ViewCatalog.svg";
 import ClientAppBar from "../../components/ClientAppBar";
 
 import CustomButton from "../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -14,6 +15,8 @@ import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
 function ClientViewCatalogScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -59,7 +62,7 @@ function ClientViewCatalogScreen() {
                   {catalog.name}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_2">
-                  Description
+                  {t("Description")}
                 </p>
                 <p className="view_catalog_screen_row1_column1_text_3">
                   {catalog.description}
@@ -71,7 +74,7 @@ function ClientViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Charges
+                    {t("Charges")}
                   </p>
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
@@ -89,14 +92,14 @@ function ClientViewCatalogScreen() {
                       paddingRight: "10%",
                     }}
                   >
-                    Review & rating
+                    {t("Review & rating")}
                   </p>
                   <p className="view_catalog_screen_row1_column1_text_2">
                     {calculateRating(catalog.ratings)}
                   </p>
                 </div>
                 <CustomButton
-                  text="Place Order"
+                  text={t("Place Order")}
                   onClick={navToOrderFromCatalog}
                   padding="1.6% 8%"
                   style={{

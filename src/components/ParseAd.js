@@ -1,34 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Country, City } from "country-state-city";
+import React, { useState, useEffect, useRef } from "react";
+
+import axios from "axios";
+
+import AutoComplete from "../components/AutoComplete";
 
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
-import dotted from "../assets/dottedblack.svg";
+import DottedSVG from "../assets/dottedblack.svg";
 import { grey } from "@mui/material/colors";
+import { useTranslation } from "react-i18next";
 
 import { materialFabrics, colors } from "../utils/Constants";
 import UploadSVG from "../assets/upload.svg";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
-const items = [
-  {
-    size: "small",
-    measurements: "28,30,32",
-  },
-  {
-    size: "medium",
-    measurements: "36,38,40",
-  },
-  {
-    size: "smaill",
-    measurements: "42,44,46",
-  },
-];
 
 function BasicSection({
   state,
@@ -39,6 +29,8 @@ function BasicSection({
   image,
   handleImageSelect,
 }) {
+  const { t } = useTranslation();
+
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -46,6 +38,26 @@ function BasicSection({
       ...state,
       ...obj,
     });
+  };
+
+  const [anchorElMeasurements, setAnchorElMeasurements] = React.useState(null);
+  const openMeasurements = Boolean(anchorElMeasurements);
+  const handleClickMeasurements = (event) => {
+    setAnchorElMeasurements(event.currentTarget);
+  };
+  const handleCloseMeasurements = () => {
+    setAnchorElMeasurements(null);
+  };
+
+  const selectMeasurementsType = (_) => {
+    setState({
+      ...state,
+      measurements: {
+        type: _,
+        value: "",
+      },
+    });
+    handleCloseMeasurements();
   };
 
   return (
@@ -59,7 +71,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Gender</p>
+            <p className="pa_profile_section_input_text">{t("Gender")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -69,12 +81,12 @@ function BasicSection({
               }}
               selectID="gender"
               selectName="gender"
-              selectNullValue="Select gender for your creation"
+              selectNullValue={t("Select gender for your creation")}
               selectValue={state.gender}
               onChange={(e) => _setState("gender", e.target.value)}
               menuItems={[
-                <MenuItem value={"male"}>Male</MenuItem>,
-                <MenuItem value={"female"}>Female</MenuItem>,
+                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: "12px",
@@ -84,7 +96,7 @@ function BasicSection({
         </div>
         <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Category</p>
+            <p className="pa_profile_section_input_text">{t("Category")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -94,14 +106,14 @@ function BasicSection({
               }}
               selectID="category"
               selectName="category"
-              selectNullValue="Select one category for your ad"
+              selectNullValue={t("Select one category for your ad")}
               selectValue={state.category}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"WOMEN"}>WOMEN</MenuItem>,
-                <MenuItem value={"MAN"}>MAN</MenuItem>,
-                <MenuItem value={"CHILD"}>CHILD</MenuItem>,
-                <MenuItem value={"Other"}>Other</MenuItem>,
+                <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
+                <MenuItem value={"MAN"}>{t("MAN")}</MenuItem>,
+                <MenuItem value={"CHILD"}>{t("CHILD")}</MenuItem>,
+                <MenuItem value={"Other"}>{t("Other")}</MenuItem>,
               ]}
             />
           </div>
@@ -115,7 +127,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Name</p>
+            <p className="pa_profile_section_input_text">{t("Name")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -127,7 +139,7 @@ function BasicSection({
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Name of your creation"
+              inputPlaceholder={t("Name of your creation")}
               inputDefaultValue={state.name}
               onChange={(e) => _setState("name", e.target.value)}
             />
@@ -141,7 +153,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Cut</p>
+            <p className="pa_profile_section_input_text">{t("Cut")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -151,7 +163,7 @@ function BasicSection({
               }}
               selectID="cut"
               selectName="cut"
-              selectNullValue="Select size"
+              selectNullValue={t("Select size")}
               selectValue={state.cut}
               onChange={(e) => _setState("cut", e.target.value)}
               menuItems={[
@@ -183,13 +195,26 @@ function BasicSection({
           }}
         >
           <div>
-            <span className="measurements"> Standard size</span>{" "}
+            <span className="measurements"> {t("Standard size")}</span>{" "}
           </div>
           <div className="size-measurement-cont">
-            {items.map((val) => (
+            {[
+              {
+                size: "small",
+                measurements: "28,30,32",
+              },
+              {
+                size: "medium",
+                measurements: "36,38,40",
+              },
+              {
+                size: "large",
+                measurements: "42,44,46",
+              },
+            ].map((_) => (
               <div>
-                <span className="size">{val?.size} </span>{" "}
-                <span className="measurements">{val?.measurements}</span>{" "}
+                <span className="size">{t(_.size)} </span>{" "}
+                <span className="measurements">{_.measurements}</span>{" "}
               </div>
             ))}
           </div>
@@ -203,11 +228,15 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Measurements</p>
+            <p className="pa_profile_section_input_text">{t("Measurements")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled}
+              disabled={
+                disabled ||
+                state.measurements.type == "tape" ||
+                state.measurements.type == "call"
+              }
               labelStyle={{
                 display: "none",
               }}
@@ -215,19 +244,60 @@ function BasicSection({
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Write Measurement here"
-              inputDefaultValue={state.measurements}
-              onChange={(e) => _setState("measurements", e.target.value)}
+              inputPlaceholder={
+                state.measurements.type == "static"
+                  ? t("Write Measurement here")
+                  : state.measurements.type == "tape"
+                  ? "Measured by tape"
+                  : state.measurements.type == "call"
+                  ? "Discussed on call"
+                  : ""
+              }
+              inputDefaultValue={state.measurements.value}
+              onChange={(e) => {
+                setState({
+                  ...state,
+                  measurements: {
+                    type: "static",
+                    value: e.target.value,
+                  },
+                });
+              }}
+            />{" "}
+            {/* TODO: This should be cleared when other types selected. */}
+            <img
+              className="dots-measurement"
+              src={DottedSVG}
+              onClick={!disabled ? handleClickMeasurements : null}
             />
-            <img className="dots-measurement" src={dotted} />
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElMeasurements}
+              open={openMeasurements}
+              onClose={handleCloseMeasurements}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={(e) => selectMeasurementsType("static")}>
+                Static
+              </MenuItem>
+              <MenuItem onClick={(e) => selectMeasurementsType("tape")}>
+                Get a Tape
+              </MenuItem>
+              <MenuItem onClick={(e) => selectMeasurementsType("call")}>
+                Book Call
+              </MenuItem>
+            </Menu>
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
-          *Bring a tape measure
+          {t("*Bring a tape measure")}
         </p>
         <p className="pa_profile_section_input_instructions_text">
-          *Measure either the circumference or the length depending on the part
-          of the body.
+          {t(
+            "*Measure either the circumference or the length depending on the part of the body."
+          )}
         </p>
         <div
           className="pa_profile_section_input_container"
@@ -241,7 +311,12 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Colour</p>
+            <p
+              style={{ color: state.color ? "#ffffff" : "" }}
+              className="pa_profile_section_input_text"
+            >
+              {t("Colour")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -251,12 +326,13 @@ function BasicSection({
               }}
               selectID="colour"
               selectName="colour"
-              selectNullValue="Select one colour for your Creations"
+              selectNullValue={t("Select one colour for your Creations")}
               selectValue={state.color}
               onChange={(e) => _setState("color", e.target.value)}
               menuItems={colors.map((_) => (
-                <MenuItem value={_.name}>{_.name}</MenuItem>
+                <MenuItem value={_.name}> {_.name}</MenuItem>
               ))}
+              valuecolor={state.color ? "on" : "off"}
             />
           </div>
         </div>
@@ -268,7 +344,9 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Material Fabrics</p>
+            <p className="pa_profile_section_input_text">
+              {t("Material Fabrics")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -278,7 +356,7 @@ function BasicSection({
               }}
               selectID="materialFabrics"
               selectName="materialFabrics"
-              selectNullValue="Select Fabric Style"
+              selectNullValue={t("Select Fabric Style")}
               selectValue={state.fabric}
               onChange={(e) => _setState("fabric", e.target.value)}
               menuItems={materialFabrics.map((_) => (
@@ -295,7 +373,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Attachments</p>
+            <p className="pa_profile_section_input_text">{t("Attachments")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
@@ -334,15 +412,15 @@ function BasicSection({
           />
           <label>
             {" "}
-            <span className="duw-text">Do you Want</span>{" "}
-            <span className="alteration-txt">ALTREATION SERVICE </span>
+            <span className="duw-text">{t("Do you Want")}</span>{" "}
+            <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
           </label>
         </div>
         {!onClick ? (
           <></>
         ) : (
           <CustomButton
-            text="Next"
+            text={t("Next")}
             style={{
               marginBottom: "6%",
               padding: "1.7% 5%",
@@ -357,25 +435,8 @@ function BasicSection({
 }
 
 function DeliverySection({ state, setState, onClick, disabled }) {
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
-
-  useEffect(() => {
-    const _countries = Country.getAllCountries();
-    setCountries(_countries);
-  }, []);
-
-  useEffect(() => {
-    if (state.country) {
-      const countryObj = countries.find((_) => _.name == state.country);
-      if (countryObj) {
-        _setState("city", "");
-        const _cities = City.getCitiesOfCountry(countryObj.isoCode);
-        setCities(_cities);
-      }
-    }
-  }, [state.country]);
-
+  const { t } = useTranslation();
+  const [addresses, setAddresses] = useState([]);
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -384,7 +445,65 @@ function DeliverySection({ state, setState, onClick, disabled }) {
       ...obj,
     });
   };
-
+  const _setAddress = (_) => {
+    _setState("address", { ...state.address, ..._ });
+  };
+  const handleSelectAddress = (e) => {
+    if (e) {
+      _setAddress({
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+    }
+  };
+  const handleInputAddress = async (e) => {
+    if (e.target.value === "") {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+      setAddresses([]);
+    } else {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+        method: "get",
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features.map((item) => {
+          addressToSet.push({
+            label: item.properties.label,
+            city: item.properties.city,
+            PostalCode: item.properties.postcode,
+            lat: item.geometry.coordinates[1],
+            lng: item.geometry.coordinates[0],
+          });
+        });
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
+    }
+  };
   return (
     <>
       <div className="pa_profile_section_container">
@@ -396,11 +515,35 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Address</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Address")}
+            </p>
+          </div>
+          <div className="pa_profile_section_input_input">
+            <div style={{ width: "100%" }}>
+              <AutoComplete
+                name="Address"
+                required={true}
+                label={"Address"}
+                value={state?.address?.label}
+                options={addresses}
+                placeholder={"Address"}
+                componenet="parseaddress"
+                onChangeAddress={(e) => {
+                  handleInputAddress(e);
+                }}
+                onAddressSelect={(e) => handleSelectAddress(e)}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="pa_profile_section_input_container">
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">Zip code</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled}
+              disabled
               labelStyle={{
                 display: "none",
               }}
@@ -408,30 +551,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Delivery Address"
-              inputDefaultValue={state.address}
-              onChange={(e) => _setState("address", e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Country</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
-              }}
-              selectID="country"
-              selectName="country"
-              selectNullValue="Country"
-              selectValue={state.country}
-              onChange={(e) => _setState("country", e.target.value)}
-              menuItems={countries.map((_) => (
-                <MenuItem value={_.name}>{_.name}</MenuItem>
-              ))}
+              inputPlaceholder="Zip code"
+              Inputvalue={state?.address?.zip}
             />
           </div>
         </div>
@@ -444,22 +565,20 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">City</p>
+            <p className="pa_profile_section_input_text">{t("City")}</p>
           </div>
           <div className="pa_profile_section_input_input">
-            <CustomDropDown
-              disabled={disabled}
+            <CustomInput
+              disabled
               labelStyle={{
                 display: "none",
               }}
-              selectID="city"
-              selectName="city"
-              selectNullValue="City"
-              selectValue={state.city}
-              onChange={(e) => _setState("city", e.target.value)}
-              menuItems={cities.map((_) => (
-                <MenuItem value={_.name}>{_.name}</MenuItem>
-              ))}
+              inputStyle={{
+                border: "none",
+                fontSize: "12px",
+              }}
+              inputPlaceholder="City"
+              Inputvalue={state?.address?.city}
             />
           </div>
         </div>
@@ -471,7 +590,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Note</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Note")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -483,8 +604,10 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Write any note regarding Delivery (Optional)"
-              inputDefaultValue={state.note}
+              inputPlaceholder={t(
+                "Write any note regarding Delivery (Optional)"
+              )}
+              inputDefaultValue={state?.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
           </div>
@@ -497,7 +620,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Type</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Type")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -518,7 +643,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
-          *Select Delivery Type according to your Demands
+          {t("*Select Delivery Type according to your Demands")}
         </p>
         <div
           className="pa_profile_section_input_container"
@@ -529,7 +654,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Delivery Date</p>
+            <p className="pa_profile_section_input_text">
+              {t("Delivery Date")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
@@ -538,19 +665,19 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               labelStyle={{
                 display: "none",
               }}
-              value={state.date}
+              value={state?.date}
               onChange={(e) => _setState("date", e)}
             />
           </div>
         </div>
         <p className="pa_profile_section_input_instructions_text">
-          *Select Date for delivery
+          {t("*Select Date for delivery")}
         </p>
         {!onClick ? (
           <></>
         ) : (
           <CustomButton
-            text="Write Here"
+            text={t("Next")}
             style={{
               marginTop: "3%",
               marginBottom: "10%",
@@ -566,6 +693,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
 }
 
 function NotesSection({ state, setState, buttonText, onClick, disabled }) {
+  const { t } = useTranslation();
+
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -586,7 +715,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Choose Method</p>
+            <p className="pa_profile_section_input_text">
+              {t("Choose Method")}
+            </p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -596,12 +727,12 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               }}
               selectID="payment_type"
               selectName="payment_type"
-              selectNullValue="Fixed Price"
+              selectNullValue={t("Fixed price")}
               selectValue={state.type}
-              onChange={(e) => _setState("type", e.target.value)}
+              onChange={(e) => _setState("type", t(e.target.value))}
               menuItems={[
-                <MenuItem value={"fixed"}>Fixed Price</MenuItem>,
-                <MenuItem value={"hourly"}>Hourly Rate</MenuItem>,
+                <MenuItem value={"fixed"}>{t("Fixed price")}</MenuItem>,
+                <MenuItem value={"hourly"}>{t("Hourly Rate")}</MenuItem>,
               ]}
             />
           </div>
@@ -614,7 +745,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">Set Minimum Price</p>
+            <p className="pa_payment_section_input_text">
+              {t("Set Minimum Price")}
+            </p>
           </div>
           <div className="pa_payment_section_input_input_container">
             <input
@@ -623,7 +756,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               type="number"
               defaultValue={state.min_price}
               onChange={(e) => _setState("min_price", e.target.value)}
-              placeholder="$50"
+              placeholder="$0"
             />
           </div>
         </div>
@@ -635,7 +768,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">Set Maximum Price</p>
+            <p className="pa_payment_section_input_text">
+              {t("Set Maximum Price")}
+            </p>
           </div>
           <div className="pa_payment_section_input_input_container">
             <input
@@ -644,7 +779,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               type="number"
               defaultValue={state.max_price}
               onChange={(e) => _setState("max_price", e.target.value)}
-              placeholder="$80"
+              placeholder="$0"
             />
           </div>
         </div>
@@ -656,7 +791,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Payment Note</p>
+            <p className="pa_profile_section_input_text">{t("Payment Note")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -668,7 +803,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder="Write any note regarding Payment (Optional)"
+              inputPlaceholder={t(
+                "Write any note regarding Payment (Optional)"
+              )}
               inputDefaultValue={state.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
@@ -692,7 +829,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              I agree to the design Confection Ethiques
+              {t("I agree to the design Confection Ethiques")}
             </p>
             <p
               className="terms-text"
@@ -701,7 +838,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 color: "#CC8E9C",
               }}
             >
-              Terms of Services
+              {t("Terms of Services")}
             </p>
             <p
               className="terms-text"
@@ -709,7 +846,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              and
+              {t("and")}
             </p>
             <p
               className="terms-text"
@@ -717,7 +854,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 color: "#CC8E9C",
               }}
             >
-              Privacy Policy
+              {t("Privacy Policy")}
             </p>
           </div>
         )}
@@ -725,7 +862,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           <></>
         ) : (
           <CustomButton
-            text={buttonText ?? "Publish Ad"}
+            text={buttonText ?? t("Publish Ad")}
             onClick={onClick}
             style={{
               margin: "7%",
@@ -738,347 +875,5 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
     </>
   );
 }
-function Circumference({ disabled }) {
-  return (
-    <>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Arm</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("armSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Chest size</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("chestSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Waist size</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("waistSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Hip</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("hipSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Thigh</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("thighSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Calf</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("calfSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Ankle</p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("ankleSize", e.target.value)}
-          />
-        </div>
-      </div>
-      <CustomButton
-        text={"Save and Next"}
-        style={{
-          marginTop: "2%",
-          marginBottom: "7%",
-          padding: "1.5% 5%",
-          boxShadow: "none",
-          borderRadius: "10px",
-        }}
-      />
-    </>
-  );
-}
-function Length({ disabled }) {
-  return (
-    <>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            Head to floor height
-          </p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("headtofloorheight", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            From shoulder to floor
-          </p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("shouldertofloorheight", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            From waist to floor
-          </p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("waisttofloorheight", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            Arm length <span style={{ color: "#A0A0A0" }}> (handle) </span>
-          </p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("armlength", e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className="pa_profile_section_input_container"
-        style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-        }}
-      >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            Leg length
-          </p>
-        </div>
-        <div className="pa_profile_section_input_input">
-          <CustomInput
-            disabled={disabled}
-            labelStyle={{
-              display: "none",
-            }}
-            inputStyle={{
-              border: "none",
-              fontSize: "12px",
-            }}
-            inputPlaceholder="Select size"
-            onChange={(e) => _setState("leglength", e.target.value)}
-          />
-        </div>
-      </div>
-      <CustomButton
-        text={"Next"}
-        style={{
-          marginTop: "2%",
-          marginBottom: "7%",
-          padding: "1.5% 5%",
-          boxShadow: "none",
-          borderRadius: "10px",
-        }}
-      />
-    </>
-  );
-}
 
-export { BasicSection, DeliverySection, NotesSection, Circumference, Length };
+export { BasicSection, DeliverySection, NotesSection };

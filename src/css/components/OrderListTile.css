@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* height: 100%; */
   width: 18.66%;
   background-color: #ffffff;
   border-radius: 30px;
@@ -73,7 +72,7 @@
 }
 @media only screen and (max-width: 768px) {
   .order_list_tile {
-    width: 90%;
+    width: 90% !important;
     padding: 5%;
   }
   .order_list_tile_item_key {

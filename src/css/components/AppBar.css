@@ -76,7 +76,24 @@
   border-radius: 10px;
 }
 
+.notifications_count_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.notifications_count_pos {
+  position: absolute;
+  top: 3.5vh;
+  right: 7vw;
+  padding: 5px;
+  background-color: #e8dcca;
+  border-radius: 10px;
+}
+
 /* mobileview */
+
 .mobile-nav {
   position: fixed;
   height: 25%;
@@ -86,8 +103,73 @@
   text-align: center;
   z-index: 9;
 }
+
 .mobile-nav > * {
   padding: 2% 0%;
+}
+
+.menu-item {
+  color: #a0a0a0 !important;
+  display: flex !important;
+  padding: 2% 0 !important;
+  font-size: 200px;
+}
+
+.support-padding {
+  padding-top: 5% !important;
+}
+
+.privacy-padding {
+  padding-bottom: 5% !important;
+}
+
+.sign-out-padding {
+  padding-top: 5% !important;
+}
+
+.menu-item p {
+  font-size: 14px;
+}
+
+.menu-item img {
+  width: 15px;
+  margin-right: 8%;
+}
+
+.nock {
+  position: fixed;
+  top: 8.7%;
+  right: translate(475%, -150%);
+  right: 3.8%;
+  width: 23px;
+}
+
+.user-detail-conatiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb !important;
+  padding-bottom: 5%;
+}
+
+.user-detail-conatiner img {
+  height: 32pt;
+  width: 32pt;
+  margin-right: 5%;
+}
+
+.user-name {
+  color: #cc8e9c;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.user-email {
+  color: #cc8e9c;
+  font-size: 11px;
 }
 
 @media only screen and (max-width: 768px) {

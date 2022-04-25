@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
+import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from "../../components/Footer";
+import Rating from "@mui/material/Rating";
+
+import dummy from "../../assets/dummy.jpeg";
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
@@ -15,6 +20,8 @@ import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 import star from "../../assets/star.svg";
 
 function ClientTailorsScreen() {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(true);
   const [tailors, setTailors] = useState([]);
   const user = getUser();
@@ -36,34 +43,39 @@ function ClientTailorsScreen() {
   };
 
   return (
-    <div className="container-page-vertical">
-      <ClientAppBar activeTab={0} color="#FCFCFC" />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <div className="client_orders_screen_row1">
-          <p
-            className="client_orders_screen_row1_text"
-            style={{ paddingLeft: "3%" }}
-          >
-            Designers
-          </p>
-        </div>
-        <div className="client_orders_screen_row2">
-          {tailors.map((_) => (
-            <TailorListTile {..._} />
-          ))}
+    <>
+      <div className="container-page-vertical">
+        <ClientAppBar activeTab={0} color="#FCFCFC" />
+        <div
+          className="client_orders_screen_top"
+          style={{
+            background:
+              "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          }}
+        >
+          <div className="client_orders_screen_row1">
+            <p
+              className="client_orders_screen_row1_text"
+              style={{ paddingLeft: "3%" }}
+            >
+              {t("Designers")}
+            </p>
+          </div>
+          <div className="client_orders_screen_row2">
+            {tailors.map((_) => (
+              <TailorListTile {..._} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
 function TailorListTile(props) {
+  const { t } = useTranslation();
+
   const rating = calculateRating(props.ratings);
   const ratingsCount = calculateRatingsCount(props.ratings);
 
@@ -94,7 +106,7 @@ function TailorListTile(props) {
                 width: "80pt",
                 cursor: "pointer",
               }}
-              src={props.avatar ? assetsURL(props.avatar) : UserSVG}
+              src={props.avatar ? assetsURL(props.avatar) : dummy}
               onClick={navToViewTailor}
             />
           </div>
@@ -115,12 +127,14 @@ function TailorListTile(props) {
           </p>
         </div>
         <div className="cds_tailor_list_tile_column3">
-          <div style={{ display: "flex" }}>
-            <Star />
-            <Star />
-            <Star />
-            <Star />
-            <Star />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItemsL: "center",
+            }}
+          >
+            <Rating value={rating} size="small" />
             <p
               style={{
                 fontSize: "14px",
@@ -136,20 +150,12 @@ function TailorListTile(props) {
         </div>
         <div className="cds_tailor_list_tile_column1">
           <CustomButton
-            text="Chat Here"
+            text={t("Chat Here")}
             style={{ borderRadius: "20px" }}
             onClick={navToChat}
           />
         </div>
       </div>
-    </>
-  );
-}
-
-function Star() {
-  return (
-    <>
-      <img src={star} />
     </>
   );
 }

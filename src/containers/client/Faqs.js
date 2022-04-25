@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import ClientAppBar from "../../components/ClientAppBar";
+import Footer from '../../components/Footer'
 import addicon from "../../assets/addicon.svg";
 import SearchIcon from "../../assets/search1.svg";
+import { useTranslation } from "react-i18next";
+
 import error from "../../assets/errorfaqs.svg";
 function Faqs() {
+  const { t } = useTranslation();
+
   const [faqImage, setfaqImage] = useState(false);
   return (
     <>
       <ClientAppBar />
       <div style={{ background: "#DFDFDF" }} className="container">
         <div style={{ height: "100vh" }} className="faq-container">
-          <p className="frequently-asked-q">Frequently Asked Question</p>
+          <p className="frequently-asked-q">{t("Frequently Asked Question")}</p>
           <p className="freq-asked-text">
-            A frequently asked questions list is often used in articles,
-            websites, email lists, and online forums where common questions tend
-            to recur, for example through posts or queries
+            {t(
+              "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries"
+            )}
           </p>
           <SearchInput />
           <div className="faq-q-container">
@@ -32,11 +37,14 @@ function Faqs() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
 
 function SearchInput({}) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div
