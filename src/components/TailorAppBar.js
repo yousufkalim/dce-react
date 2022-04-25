@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
-import UserSVG from "../assets/User.svg";
+import UserSVG from "../assets/dummy.jpeg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
 import dummy from "../assets/dummy.jpeg";

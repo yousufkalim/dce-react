@@ -6,7 +6,7 @@ import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
 import NoOrders from "../../components/NoOrders";
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 
 import { Checkbox, Modal } from "@mui/material";
 import { useTranslation } from "react-i18next";

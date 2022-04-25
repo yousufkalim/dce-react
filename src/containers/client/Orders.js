@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from "../../components/Footer";
-import NoOrders from '../../components/NoOrders'
+import NoOrders from "../../components/NoOrders";
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from "react-i18next";
 
@@ -99,8 +99,7 @@ function ClientOrdersScreen() {
               >
                 {t("No Orders")}
               </div> */}
-              <NoOrders RenderText="No Orders"/>
-              )
+              <NoOrders RenderText="No Orders" />)
             </>
           ) : null}
         </div>

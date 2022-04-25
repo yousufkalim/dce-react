@@ -1,6 +1,6 @@
 import React from "react";
 
-import UserSVG from "../assets/User.svg";
+import UserSVG from "../assets/dummy.jpeg";
 import { useNavigate } from "react-router-dom";
 import assetsURL from "../utils/Assets";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import WritingSVG from "../../assets/writing.svg";
 
 import { Store, UpdateStore } from "../../StoreContext";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TailorHomeSVG from "../../assets/Tailorsvg.svg";
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import AppBar from "../../components/TailorAppBar";
 import OrderListTile from "../../components/OrderListTile";
 import Footer from "../../components/Footer";

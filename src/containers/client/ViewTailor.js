@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import AddCatalogSVG from "../../assets/AddOrder.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
@@ -9,11 +9,11 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
-import dummy from '../../assets/dummy.jpeg'
+import dummy from "../../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 
 import CatalogListTile from "../../components/CatalogListTile";
@@ -354,7 +354,7 @@ function ClientViewTailorScreen() {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }
