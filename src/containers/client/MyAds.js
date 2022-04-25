@@ -286,7 +286,12 @@ function AdListTile(props) {
           </p>
         </div>
       </div>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse
+        sx={{ paddingBottom: "2%" }}
+        in={expanded}
+        timeout="auto"
+        unmountOnExit
+      >
         {props?.quotes?.map((_) => (
           <AdQuoteListTile order={props} quote={_} />
         ))}
