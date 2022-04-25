@@ -202,7 +202,7 @@ function QuoteListTile(props) {
       </div>
       <div className="tqs_quote_list_tile_column5">
         <div className="tqs_quote_list_tile_column5_buttons">
-          {props?.quotes?.some((_) => _.tailor._id == user._id) ? (
+          {props?.quotes?.some((_) => _.tailor?._id == user?._id) ? (
             <>
               <p style={{ fontSize: "16px", fontWeight: "900" }}>
                 {t("Offer Sent")}

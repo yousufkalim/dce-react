@@ -286,7 +286,7 @@ function AdListTile(props) {
           </p>
         </div>
       </div>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse sx={{paddingBottom:"2%"}} in={expanded} timeout="auto" unmountOnExit>
         {props?.quotes?.map((_) => (
           <AdQuoteListTile order={props} quote={_} />
         ))}
@@ -490,6 +490,8 @@ const AcceptQuoteModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(props.order, "Tap");
+    console.log(props.order._id);
+    navigate(`/quotes/accept/`,{state:{id:props.order._id}})
     if (props.order.measurements.type == "static") {
       handleStaticMeasurements();
     } else if (props.order.measurements.type == "tape") {

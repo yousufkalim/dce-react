@@ -129,7 +129,10 @@ function TailorOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-
+console.log(ordersRequest,"ordersRequest");
+console.log(ordersInProgress,"ordersInProgress");
+console.log(ordersCompleted,"ordersCompleted");
+console.log(ordersDiscarded,"ordersDiscarded");
   return (
     <>
       <div className="container-page-vertical">
