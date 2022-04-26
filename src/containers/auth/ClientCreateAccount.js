@@ -6,7 +6,9 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
+import CustomDropDown from "../../components/CustomDropDown";
 import AutoComplete from "../../components/AutoComplete";
+import MenuItem from "@mui/material/MenuItem";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
@@ -21,12 +23,15 @@ import * as FormValidations from "../../utils/Validations";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
+import { useTranslation } from "react-i18next";
+
 function ClientCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [gender, setGender] = useState("")
   const [addresses, setAddresses] = useState([]);
   const [address, setAddress] = useState({
     zip: "",
@@ -35,6 +40,7 @@ function ClientCreateAccountScreen() {
     lat: "",
     lng: "",
   });
+  const { t } = useTranslation();
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -87,10 +93,11 @@ function ClientCreateAccountScreen() {
         address: address.label,
         zip_code: address.zip,
         city: address.city,
+        gender:gender
       };
-
+      console.log(body,"<>body");
       response = await Api("post", "/clients", body);
-
+     
       if (response?.data?.success) {
         toast.success("Registered successfully!");
         handleLogin(response.data.token, response.data.user, updateStore);
@@ -231,6 +238,32 @@ function ClientCreateAccountScreen() {
                 }}
                 dobinput="dob"
               />
+              <div style={{width:"100%", border:"none"}}> 
+              <div>
+            <p className="custom_input_label">{t("Category")}</p>
+          </div>
+              <CustomDropDown
+              labelStyle={{
+                display: "none",
+              }}
+              selectID="gender"
+              selectName="gender"
+              selectNullValue={t("Select gender for your creation")}
+              selectValue={gender}
+              onChange={(e) => setGender(e.target.value)}
+              menuItems={[
+                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
+              ]}
+              selectSX={{
+                fontSize: "12px",
+                border:"2px solid #CC8E9C",
+                padding:"2%",
+                borderRadius:"10px",
+                marginBottom:"3%"
+              }}
+            />
+            </div>
               <div style={{ width: "100%" }}>
                 <label className="custom_input_label">Address</label>
                 <AutoComplete
@@ -246,7 +279,7 @@ function ClientCreateAccountScreen() {
                   onAddressSelect={(e) => handleSelectAddress(e)}
                 />
               </div>
-              <div className="create_account_screen_row2_row1">
+              {/* <div className="create_account_screen_row2_row1">
                 <CustomInput
                   disabled
                   labelText="Zip Code"
@@ -271,7 +304,7 @@ function ClientCreateAccountScreen() {
                   }}
                   Inputvalue={address?.city}
                 />
-              </div>
+              </div> */}
               <CustomButton
                 text="Save"
                 type="submit"

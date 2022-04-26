@@ -345,7 +345,7 @@ function TailorAppBar({
               <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
               <p>{t("Profile")} </p>
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               className="menu-item"
               onClick={() =>
                 changeLanguage(`${language == "en" ? "fr" : "en"}`)
@@ -353,7 +353,7 @@ function TailorAppBar({
             >
               <GTranslateIcon sx={{ width: "20px" }} />
               {language == "fr" ? "French" : "English"}
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               className="menu-item support-padding"
               onClick={navToSupport}
@@ -361,10 +361,10 @@ function TailorAppBar({
               <img style={{ width: "16px" }} src={SupportIcon} />
               <p>{t("Support")}</p>
             </MenuItem>
-            <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
+            {/* <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
               <img src={TermsConditionsIcon} />
               <p>{t("Terms and Conditions")}</p>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               className="menu-item sign-out-padding"
               onClick={handleLogoutSubmit}

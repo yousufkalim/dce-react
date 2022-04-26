@@ -291,7 +291,7 @@ function TailorProfileScreen() {
                   name="Date Of Birth"
                   placeholder={t("Date Of Birth")}
                   defaultValue={new Date(profile.dob).toLocaleDateString(
-                    "en-US"
+                    "en-GB"
                   )}
                   img={ProfileBirthdaySVG}
                   divStyle={{
@@ -304,20 +304,20 @@ function TailorProfileScreen() {
                   disabled
                   name="Country"
                   placeholder={t("Country")}
-                  defaultValue={profile.country}
+                  defaultValue={"France"}
                   img={ProfileCountrySVG}
                   divStyle={{
                     borderTopLeftRadius: "10px",
                     borderTopRightRadius: "10px",
                   }}
                 />
-                <ProfileInput
+                {/* <ProfileInput
                   disabled
                   name="City"
                   placeholder={t("City")}
                   defaultValue={profile.city}
                   img={ProfileCitySVG}
-                />
+                /> */}
                 <ProfileInput
                   disabled
                   name="Location"
@@ -351,7 +351,7 @@ function TailorProfileScreen() {
                     profile.last_password_changed
                       ? new Date(
                           profile.last_password_changed
-                        ).toLocaleDateString("en-US")
+                        ).toLocaleDateString("en-GB")
                       : "N/A"
                   }
                   label={t("Last Password Changed")}
@@ -372,7 +372,7 @@ function TailorProfileScreen() {
                   name="Account Created"
                   placeholder={t("Account Created")}
                   defaultValue={new Date(profile.createdAt).toLocaleDateString(
-                    "en-US"
+                    "en-GB"
                   )}
                   label={t("Account Created")}
                   divStyle={{

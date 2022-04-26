@@ -379,6 +379,7 @@ function BasicSection({
             <label className="upload-pic-label" htmlFor="filePicker">
               <input
                 disabled={disabled}
+                // multiple
                 type="file"
                 accept="image/*"
                 hidden
@@ -515,8 +516,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
         <div
           className="pa_profile_section_input_container"
           style={{
-            borderTopLeftRadius: "20px",
-            borderTopRightRadius: "20px",
+            borderRadius: "20px",
+            marginBottom:"2%"
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -542,7 +543,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             </div>
           </div>
         </div>
-        <div className="pa_profile_section_input_container">
+        {/* <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">Zip code</p>
           </div>
@@ -560,8 +561,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               Inputvalue={state?.address?.zip}
             />
           </div>
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className="pa_profile_section_input_container"
           style={{
             borderBottomLeftRadius: "20px",
@@ -586,7 +587,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               Inputvalue={state?.address?.city}
             />
           </div>
-        </div>
+        </div> */}
         <div
           className="pa_profile_section_input_container"
           style={{

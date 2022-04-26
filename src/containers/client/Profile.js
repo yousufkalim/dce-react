@@ -25,6 +25,7 @@ import { toast } from "react-toastify";
 import * as FormValidations from "../../utils/Validations";
 import assetsURL from "../../utils/Assets";
 
+
 function ClientProfileScreen() {
   const { t } = useTranslation();
 
@@ -228,7 +229,7 @@ function ClientProfileScreen() {
                     name="Date Of Birth"
                     placeholder={t("Date Of Birth")}
                     defaultValue={new Date(profile.dob).toLocaleDateString(
-                      "en-US"
+                      "en-GB"
                     )}
                     img={ProfileBirthdaySVG}
                   />
@@ -291,7 +292,7 @@ function ClientProfileScreen() {
                     placeholder={t("Account Created")}
                     defaultValue={new Date(
                       profile.createdAt
-                    ).toLocaleDateString("en-US")}
+                    ).toLocaleDateString("en-GB")}
                     label={t("Account Created")}
                     divStyle={{
                       borderBottomLeftRadius: "10px",

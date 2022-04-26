@@ -28,8 +28,13 @@ function ClientCreateAdScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [image, setImage] = useState(null);
-
+   const [image, setImage] = useState();
+  // const [image, setImage] = useState({
+  //   files: [],
+  // });
+  // const [data, SetData] = useState({
+  //   files: [],
+  // });
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -57,6 +62,10 @@ function ClientCreateAdScreen() {
   });
 
   const handleImageSelect = (event) => {
+    // setImage({
+    //   ...image,
+    //   files: [...image.files, ...event.target.files],
+    // });
     const file = event.target.files[0];
     setImage(file);
   };
@@ -108,7 +117,6 @@ function ClientCreateAdScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
-
       body.append("type", "ad");
       body.append("gender", basicSection.gender);
       body.append("category", basicSection.category);
@@ -143,8 +151,10 @@ function ClientCreateAdScreen() {
           note: notesSection.note,
         })
       );
+      // for (let i = 0; i < image.files.length; i++) {
+      //   body.append("image", image.files[i]);
+      // }
       body.append("image", image);
-
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
