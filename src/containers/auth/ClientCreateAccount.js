@@ -107,11 +107,7 @@ function ClientCreateAccountScreen() {
   };
   const handleSelectAddress = (e) => {
     if (e) {
-<<<<<<< HEAD
-      handleStudent("Address", {
-=======
       _setAddress({
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         label: e.label,
         zip: e.PostalCode,
         city: e.city,
@@ -119,11 +115,7 @@ function ClientCreateAccountScreen() {
         lng: e.lng,
       });
     } else {
-<<<<<<< HEAD
-      handleStudent("Address", {
-=======
       _setAddress({
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         label: "",
         zip: "",
         city: "",
@@ -143,27 +135,19 @@ function ClientCreateAccountScreen() {
       });
       setAddresses([]);
     } else {
-<<<<<<< HEAD
-      handleStudent("Address", {
-        ...AdressDetail.Address,
-        label: e.target.value,
-      });
-      var config = {
-=======
       _setAddress({
         label: e.target.value,
       });
       const config = {
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         method: "get",
         url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
       };
       axios.defaults.headers = null;
-<<<<<<< HEAD
-      await axios(config)
-        .then((res) => {
-          let addressToSet = [];
-          res.data.features.map((item) => {
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features
+          .map((item) => {
             addressToSet.push({
               label: item.properties.label,
               city: item.properties.city,
@@ -171,36 +155,17 @@ function ClientCreateAccountScreen() {
               lat: item.geometry.coordinates[1],
               lng: item.geometry.coordinates[0],
             });
-=======
-      try {
-        const response = await axios(config);
-        const addressToSet = [];
-        response.data.features.map((item) => {
-          addressToSet.push({
-            label: item.properties.label,
-            city: item.properties.city,
-            PostalCode: item.properties.postcode,
-            lat: item.geometry.coordinates[1],
-            lng: item.geometry.coordinates[0],
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
+            setAddresses(addressToSet);
+          })
+          .catch(function (error) {
+            console.log(error);
           });
-          setAddresses(addressToSet);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-<<<<<<< HEAD
-    }
-  };
-
-=======
         setAddresses(addressToSet);
       } catch (e) {
         console.trace(e);
       }
     }
   };
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -272,19 +237,11 @@ function ClientCreateAccountScreen() {
                   name="Address"
                   required={true}
                   label={"Address"}
-<<<<<<< HEAD
-                  value={AdressDetail?.Address?.label}
-                  options={addresses}
-                  placeholder={"Address"}
-                  onChangeAddress={(e) => {
-                    handleAddress(e);
-=======
                   value={address?.label}
                   options={addresses}
                   placeholder={"Address"}
                   onChangeAddress={(e) => {
                     handleInputAddress(e);
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
                   }}
                   onAddressSelect={(e) => handleSelectAddress(e)}
                 />
