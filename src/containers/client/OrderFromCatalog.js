@@ -47,12 +47,10 @@ function OrderFromCatalogScreen() {
     includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    address: "",
-    country: "",
-    city: "",
     note: "",
     type: "",
     date: "",
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     note: "",
@@ -137,9 +135,10 @@ function OrderFromCatalogScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.address,
+          address: deliverySection.address.label,
           country: deliverySection.country,
-          city: deliverySection.city,
+          zipcode: deliverySection.address.zip,
+          city: deliverySection.address.city,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,

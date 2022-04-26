@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Country, City } from "country-state-city";
 
 import axios from "axios";
 
@@ -83,7 +82,7 @@ function BasicSection({
               selectID="gender"
               selectName="gender"
               selectNullValue={t("Select gender for your creation")}
-              selectValue={state.gender}
+              selectValue={state?.gender}
               onChange={(e) => _setState("gender", e.target.value)}
               menuItems={[
                 <MenuItem value={"male"}>{t("Male")}</MenuItem>,
@@ -311,7 +310,6 @@ function BasicSection({
               : null,
           }}
         >
-          {console.log(state.color)}
           <div className="pa_profile_section_input_label">
             <p
               style={{ color: state.color ? "#ffffff" : "" }}
@@ -437,7 +435,6 @@ function BasicSection({
 }
 
 function DeliverySection({ state, setState, onClick, disabled }) {
-  console.log(state, "state");
   const { t } = useTranslation();
   const [addresses, setAddresses] = useState([]);
   const _setState = (key, value) => {
@@ -448,13 +445,12 @@ function DeliverySection({ state, setState, onClick, disabled }) {
       ...obj,
     });
   };
-  const handleStudent = (name, value) => {
-    setState({ ...state, [name]: value });
+  const _setAddress = (_) => {
+    _setState("address", { ...state.address, ..._ });
   };
-
   const handleSelectAddress = (e) => {
     if (e) {
-      handleStudent("Address", {
+      _setAddress({
         label: e.label,
         zip: e.PostalCode,
         city: e.city,
@@ -462,7 +458,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
         lng: e.lng,
       });
     } else {
-      handleStudent("Address", {
+      _setAddress({
         label: "",
         zip: "",
         city: "",
@@ -471,9 +467,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
       });
     }
   };
-  const handleAddress = async (e) => {
+  const handleInputAddress = async (e) => {
     if (e.target.value === "") {
-      handleStudent("Address", {
+      _setAddress({
         label: "",
         zip: "",
         city: "",
@@ -482,16 +478,19 @@ function DeliverySection({ state, setState, onClick, disabled }) {
       });
       setAddresses([]);
     } else {
-      handleStudent("Address", { ...state.Address, label: e.target.value });
-      var config = {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
         method: "get",
         url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
       };
       axios.defaults.headers = null;
-      await axios(config)
-        .then((res) => {
-          let addressToSet = [];
-          res.data.features.map((item) => {
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features
+          .map((item) => {
             addressToSet.push({
               label: item.properties.label,
               city: item.properties.city,
@@ -499,12 +498,15 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               lat: item.geometry.coordinates[1],
               lng: item.geometry.coordinates[0],
             });
+            setAddresses(addressToSet);
+          })
+          .catch(function (error) {
+            console.log(error);
           });
-          setAddresses(addressToSet);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
     }
   };
   return (
@@ -528,12 +530,12 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 name="Address"
                 required={true}
                 label={"Address"}
-                value={state?.Address?.label}
+                value={state?.address?.label}
                 options={addresses}
                 placeholder={"Address"}
                 componenet="parseaddress"
                 onChangeAddress={(e) => {
-                  handleAddress(e);
+                  handleInputAddress(e);
                 }}
                 onAddressSelect={(e) => handleSelectAddress(e)}
               />
@@ -546,7 +548,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled}
+              disabled
               labelStyle={{
                 display: "none",
               }}
@@ -555,7 +557,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 fontSize: "12px",
               }}
               inputPlaceholder="Zip code"
-              Inputvalue={state?.Address?.zip}
+              Inputvalue={state?.address?.zip}
             />
           </div>
         </div>
@@ -572,7 +574,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={disabled}
+              disabled
               labelStyle={{
                 display: "none",
               }}
@@ -581,7 +583,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 fontSize: "12px",
               }}
               inputPlaceholder="City"
-              Inputvalue={state?.Address?.city}
+              Inputvalue={state?.address?.city}
             />
           </div>
         </div>

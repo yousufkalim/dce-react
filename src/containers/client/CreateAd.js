@@ -47,7 +47,7 @@ function ClientCreateAdScreen() {
     note: "",
     type: "",
     date: "",
-    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     type: "",
@@ -124,10 +124,10 @@ function ClientCreateAdScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.Address.label,
+          address: deliverySection.address.label,
           country: deliverySection.country,
-          zipcode: deliverySection.Address.zip,
-          city: deliverySection.Address.city,
+          zipcode: deliverySection.address.zip,
+          city: deliverySection.address.city,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import AddCatalogSVG from "../../assets/AddOrder.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";

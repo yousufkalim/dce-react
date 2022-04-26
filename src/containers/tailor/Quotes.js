@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
 
 import TailorAppBar from "../../components/TailorAppBar";
@@ -96,75 +96,119 @@ function QuoteListTile(props) {
   };
 
   return (
-    <div className="cas_ad_list_tile_container" onClick={navToViewQuote}>
-      <div className="tqs_quote_list_tile_column0">
-        <div
-          className="tqs_quote_list_tile_column0_img"
-          style={{
-            paddingBottom: "5%",
-          }}
-        >
-          <img
-            className="image_container"
+    <>
+      {console.log(props)}
+      <div className="cas_ad_list_tile_container" onClick={navToViewQuote}>
+        <div className="tqs_quote_list_tile_column0">
+          <div
+            className="tqs_quote_list_tile_column0_img"
             style={{
-              height: "65pt",
-              width: "65pt",
+              paddingBottom: "5%",
             }}
+<<<<<<< HEAD
             src={
               props?.client?.avatar ? assetsURL(props?.client?.avatar) : UserSVG
             }
           />
+=======
+          >
+            <img
+              className="image_container"
+              style={{
+                height: "65pt",
+                width: "65pt",
+              }}
+              src={
+                props?.client?.avatar
+                  ? assetsURL(props?.client?.avatar)
+                  : UserSVG
+              }
+            />
+          </div>
+          <p className="tqs_quote_list_tile_column0_title_text">
+            {props?.client?.name}
+          </p>
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         </div>
-        <p className="tqs_quote_list_tile_column0_title_text">
-          {props?.client?.name}
-        </p>
-      </div>
-      <div
-        className="tqs_quote_list_tile_column1"
-        style={{
-          padding: "3%",
-        }}
-      >
         <div
-          className="cas_ad_list_tile_column1_item"
+          className="tqs_quote_list_tile_column1"
           style={{
-            padding: "2% 0",
+            padding: "3%",
           }}
         >
-          <p className="cas_ad_list_tile_column1_item_key">
-            {t("Name of Creation")}
-          </p>
-          <p
-            className="cas_ad_list_tile_column1_item_value"
+          <div
+            className="cas_ad_list_tile_column1_item"
             style={{
-              fontWeight: "900",
+              padding: "2% 0",
             }}
           >
-            {props.name}
+            <p className="cas_ad_list_tile_column1_item_key">
+              {t("Name of Creation")}
+            </p>
+            <p
+              className="cas_ad_list_tile_column1_item_value"
+              style={{
+                fontWeight: "900",
+              }}
+            >
+              {props.name}
+            </p>
+          </div>
+          <div
+            className="cas_ad_list_tile_column1_item cas_ad_list_tile_column1_item_borders"
+            style={{
+              padding: "2% 0",
+            }}
+          >
+            <p className="cas_ad_list_tile_column1_item_key">{t("Ad for")}</p>
+            <p className="cas_ad_list_tile_column1_item_value">
+              {props.category}
+            </p>
+          </div>
+          <div
+            className="cas_ad_list_tile_column1_item"
+            style={{
+              padding: "2% 0",
+            }}
+          >
+            <p className="cas_ad_list_tile_column1_item_key">
+              {t("Delivery Date")}
+            </p>
+            <p className="cas_ad_list_tile_column1_item_value">
+              {new Date(props?.delivery?.date).toLocaleDateString("en-US")}
+            </p>
+          </div>
+        </div>
+        <div className="cas_ad_list_tile_column2">
+          <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
+          <p className="cas_ad_list_tile_column2_description">
+            {`${props?.budget?.min_price}$`}
+          </p>
+          <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
+          <p className="cas_ad_list_tile_column2_description">
+            {`${props?.budget?.max_price}$`}
+          </p>
+          <p
+            style={{
+              fontSize: "16px",
+              color: "#CC8E9C",
+            }}
+          >
+            {t("Range")}
           </p>
         </div>
-        <div
-          className="cas_ad_list_tile_column1_item cas_ad_list_tile_column1_item_borders"
-          style={{
-            padding: "2% 0",
-          }}
-        >
-          <p className="cas_ad_list_tile_column1_item_key">{t("Ad for")}</p>
-          <p className="cas_ad_list_tile_column1_item_value">
-            {props.category}
+        <div className="cas_ad_list_tile_column2">
+          <p
+            style={{
+              fontSize: "40px",
+              fontWeight: "bold",
+              paddingBottom: "2.5%",
+            }}
+          >
+            {props.quotes.length}
           </p>
-        </div>
-        <div
-          className="cas_ad_list_tile_column1_item"
-          style={{
-            padding: "2% 0",
-          }}
-        >
-          <p className="cas_ad_list_tile_column1_item_key">
-            {t("Delivery Date")}
-          </p>
-          <p className="cas_ad_list_tile_column1_item_value">
-            {new Date(props?.delivery?.date).toLocaleDateString("en-US")}
+          <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
+            {t("Responses")}
           </p>
         </div>
       </div>
@@ -202,7 +246,11 @@ function QuoteListTile(props) {
       </div>
       <div className="tqs_quote_list_tile_column5">
         <div className="tqs_quote_list_tile_column5_buttons">
+<<<<<<< HEAD
           {props?.quotes?.some((_) => _.tailor?._id == user?._id) ? (
+=======
+          {props?.quotes?.some((_) => _?.tailor?._id == user?._id) ? (
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
             <>
               <p style={{ fontSize: "16px", fontWeight: "900" }}>
                 {t("Offer Sent")}
@@ -232,15 +280,15 @@ function QuoteListTile(props) {
             </>
           )}
         </div>
+        <Modal
+          open={isSendOfferModal}
+          onClose={handleSendOfferModalClose}
+          aria-labelledby={t("Send Offer")}
+        >
+          <SendQuoteModal handleClose={handleSendOfferModalClose} />
+        </Modal>
       </div>
-      <Modal
-        open={isSendOfferModal}
-        onClose={handleSendOfferModalClose}
-        aria-labelledby={t("Send Offer")}
-      >
-        <SendQuoteModal handleClose={handleSendOfferModalClose} />
-      </Modal>
-    </div>
+    </>
   );
 }
 

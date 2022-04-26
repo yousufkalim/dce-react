@@ -29,9 +29,9 @@
   color: #cc8e9c;
   font-weight: 600;
 }
-.select_role_screen_tile:hover p{
-color: #ffffff;
-}
 .select_role_screen_tile:hover {
   background: #cc8e9c;
+}
+.select_role_screen_tile:hover p {
+  color: #ffffff;
 }

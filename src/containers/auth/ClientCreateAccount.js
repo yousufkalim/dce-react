@@ -28,8 +28,12 @@ function ClientCreateAccountScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [addresses, setAddresses] = useState([]);
-  const [AdressDetail, setAdressDetails] = useState({
-    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+  const [address, setAddress] = useState({
+    zip: "",
+    label: "",
+    city: "",
+    lat: "",
+    lng: "",
   });
   const store = Store();
   const updateStore = UpdateStore();
@@ -64,6 +68,11 @@ function ClientCreateAccountScreen() {
       return;
     }
 
+    if (!address?.label) {
+      toast.error("Address can't be empty");
+      return;
+    }
+
     let response;
 
     try {
@@ -75,9 +84,9 @@ function ClientCreateAccountScreen() {
         name: data.get("Full Name"),
         phone: data.get("Phone Number"),
         dob: dateOfBirth,
-        address: AdressDetail?.Address?.label,
-        zip_code: AdressDetail?.Address?.zip,
-        city: AdressDetail?.Address?.city,
+        address: address.label,
+        zip_code: address.zip,
+        city: address.city,
       };
 
       response = await Api("post", "/clients", body);
@@ -93,12 +102,16 @@ function ClientCreateAccountScreen() {
 
     setIsProcessing(false);
   };
-  const handleStudent = (name, value) => {
-    setAdressDetails({ ...AdressDetail, [name]: value });
+  const _setAddress = (_) => {
+    setAddress({ ...address, ..._ });
   };
   const handleSelectAddress = (e) => {
     if (e) {
+<<<<<<< HEAD
       handleStudent("Address", {
+=======
+      _setAddress({
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         label: e.label,
         zip: e.PostalCode,
         city: e.city,
@@ -106,7 +119,11 @@ function ClientCreateAccountScreen() {
         lng: e.lng,
       });
     } else {
+<<<<<<< HEAD
       handleStudent("Address", {
+=======
+      _setAddress({
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         label: "",
         zip: "",
         city: "",
@@ -115,9 +132,9 @@ function ClientCreateAccountScreen() {
       });
     }
   };
-  const handleAddress = async (e) => {
+  const handleInputAddress = async (e) => {
     if (e.target.value === "") {
-      handleStudent("Address", {
+      _setAddress({
         label: "",
         zip: "",
         city: "",
@@ -126,15 +143,23 @@ function ClientCreateAccountScreen() {
       });
       setAddresses([]);
     } else {
+<<<<<<< HEAD
       handleStudent("Address", {
         ...AdressDetail.Address,
         label: e.target.value,
       });
       var config = {
+=======
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         method: "get",
         url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
       };
       axios.defaults.headers = null;
+<<<<<<< HEAD
       await axios(config)
         .then((res) => {
           let addressToSet = [];
@@ -146,15 +171,36 @@ function ClientCreateAccountScreen() {
               lat: item.geometry.coordinates[1],
               lng: item.geometry.coordinates[0],
             });
+=======
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features.map((item) => {
+          addressToSet.push({
+            label: item.properties.label,
+            city: item.properties.city,
+            PostalCode: item.properties.postcode,
+            lat: item.geometry.coordinates[1],
+            lng: item.geometry.coordinates[0],
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
           });
           setAddresses(addressToSet);
         })
         .catch(function (error) {
           console.log(error);
         });
+<<<<<<< HEAD
     }
   };
 
+=======
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
+    }
+  };
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -226,18 +272,26 @@ function ClientCreateAccountScreen() {
                   name="Address"
                   required={true}
                   label={"Address"}
+<<<<<<< HEAD
                   value={AdressDetail?.Address?.label}
                   options={addresses}
                   placeholder={"Address"}
                   onChangeAddress={(e) => {
                     handleAddress(e);
+=======
+                  value={address?.label}
+                  options={addresses}
+                  placeholder={"Address"}
+                  onChangeAddress={(e) => {
+                    handleInputAddress(e);
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
                   }}
                   onAddressSelect={(e) => handleSelectAddress(e)}
                 />
               </div>
               <div className="create_account_screen_row2_row1">
                 <CustomInput
-                  // disabled
+                  disabled
                   labelText="Zip Code"
                   inputName="Zip Code"
                   inputPlaceholder="Zip Code"
@@ -246,10 +300,10 @@ function ClientCreateAccountScreen() {
                     width: "48%",
                     marginBottom: "6%",
                   }}
-                  Inputvalue={AdressDetail?.Address?.zip}
+                  Inputvalue={address?.zip}
                 />
                 <CustomInput
-                  // disabled
+                  disabled
                   labelText="City"
                   inputName="City"
                   inputPlaceholder="City"
@@ -258,7 +312,7 @@ function ClientCreateAccountScreen() {
                     width: "48%",
                     marginBottom: "6%",
                   }}
-                  Inputvalue={AdressDetail?.Address?.city}
+                  Inputvalue={address?.city}
                 />
               </div>
               <CustomButton

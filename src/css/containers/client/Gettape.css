@@ -1,0 +1,68 @@
+.getTape-container {
+  padding-top: 5%;
+  width: 95%;
+  margin: auto;
+}
+
+.measure-tape-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.measurement-text {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 44px;
+}
+
+.gettape-text {
+  color: #000000;
+  opacity: 0.5;
+  letter-spacing: -0.5px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  margin-bottom: 3%;
+}
+.example-text {
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 29px;
+  letter-spacing: -0.5px;
+}
+.example-text-container {
+  width: 95%;
+}
+.example-text-container > * {
+  padding: 1% 0%;
+}
+.example-text-container p {
+  color: #000000;
+  opacity: 0.5;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.5px;
+}
+
+.btn-container{
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .getTape-container{
+        margin-top: 15%;
+    }
+    .example-text-container p{
+        font-size: 17px;
+    }
+    .example-text-container{
+        margin-top: 5%;
+    }
+    .example-text-container > *{
+        padding: 3% 0%;
+    }
+}

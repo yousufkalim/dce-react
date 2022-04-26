@@ -6,7 +6,11 @@ import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
 import NoOrders from "../../components/NoOrders";
+<<<<<<< HEAD
 import UserSVG from "../../assets/User.svg";
+=======
+import UserSVG from "../../assets/dummy.jpeg";
+>>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
 
 import { Checkbox, Modal } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -286,7 +290,12 @@ function AdListTile(props) {
           </p>
         </div>
       </div>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse
+        sx={{ paddingBottom: "2%" }}
+        in={expanded}
+        timeout="auto"
+        unmountOnExit
+      >
         {props?.quotes?.map((_) => (
           <AdQuoteListTile order={props} quote={_} />
         ))}
@@ -489,7 +498,6 @@ const AcceptQuoteModal = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(props.order, "Tap");
     if (props.order.measurements.type == "static") {
       handleStaticMeasurements();
     } else if (props.order.measurements.type == "tape") {
@@ -514,19 +522,28 @@ const AcceptQuoteModal = (props) => {
       const body = {
         quote: props.quote._id,
       };
-      let line_items = [
-        {
-          price_data: {
-            currency: "eur",
-            product_data: {
-              name: "Order",
-            },
-            unit_amount: props.quote.price * 100,
-          },
-          quantity: 1,
-        },
-      ];
-      getSessionUrl(props.quote, line_items);
+
+      response = await Api("post", "/quotes/accept", body);
+
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        navToOrders();
+      }
+
+      // Stripe
+      // const line_items = [
+      //   {
+      //     price_data: {
+      //       currency: "eur",
+      //       product_data: {
+      //         name: "Order",
+      //       },
+      //       unit_amount: props.quote.price * 100,
+      //     },
+      //     quantity: 1,
+      //   },
+      // ];
+      // getSessionUrl(props.quote, line_items);
     } catch (e) {
       console.trace(e);
     }

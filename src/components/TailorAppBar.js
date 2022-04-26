@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import { styled } from "@mui/material/styles";
 import AppLogoSVG from "../assets/AppLogo.svg";
-import UserSVG from "../assets/User.svg";
+import UserSVG from "../assets/dummy.jpeg";
 import NotificationsSVG from "../assets/AppBarNotifications.svg";
 import SearchSVG from "../assets/AppBarSearch.svg";
-import dummy from '../assets/dummy.jpeg'
+import dummy from "../assets/dummy.jpeg";
 import Nock from "../assets/Nock.svg";
 import EditIcon from "../assets/Edit.svg";
 import SupportIcon from "../assets/Support.svg";
 import TermsConditionsIcon from "../assets/TermsConditions.svg";
 import SignOutIcon from "../assets/SignOut.svg";
 
-import GTranslateIcon from '@mui/icons-material/GTranslate';
+import GTranslateIcon from "@mui/icons-material/GTranslate";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -255,12 +255,25 @@ function TailorAppBar({
           ) : (
             <></>
           )}
-          <img
-            src={NotificationsSVG}
-            className="appbar_row2_notifications_img"
+          <div
+            className="notifications_count_container"
             style={{ marginLeft: "3%" }}
-            onClick={handleClickNotifications}
-          />
+          >
+            <img
+              src={NotificationsSVG}
+              className="appbar_row2_notifications_img"
+              onClick={handleClickNotifications}
+            />
+            <div className="notifications_count_pos">
+              <p
+                style={{
+                  fontSize: "14px",
+                }}
+              >
+                {notifications.filter((_) => !_.is_read).length}
+              </p>
+            </div>
+          </div>
           <Menu
             id="basic-menu"
             anchorEl={anchorElNotifications}
@@ -298,67 +311,68 @@ function TailorAppBar({
             }}
           > */}
           <StyledMenu
-              id="demo-customized-menu"
-              MenuListProps={{
-                "aria-labelledby": "demo-customized-button",
-              }}
-              anchorEl={anchorElProfile}
-              open={openProfile}
-              onClose={handleCloseProfile}
-            >
-               {/* <img className="nock" src={Nock} /> */}
-               <div className="user-detail-conatiner">
-                <img
-                  className="image_container"
-                  src={
-                    profileImage
-                      ? URL.createObjectURL(profileImage)
-                      : profile?.avatar
-                      ? assetsURL(profile?.avatar)
-                      : dummy
-                  }
-                />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <p className="user-name">{profile?.name} </p>
-                  <p className="user-email">{profile?.email}</p>
-                </div>
+            id="demo-customized-menu"
+            MenuListProps={{
+              "aria-labelledby": "demo-customized-button",
+            }}
+            anchorEl={anchorElProfile}
+            open={openProfile}
+            onClose={handleCloseProfile}
+          >
+            {/* <img className="nock" src={Nock} /> */}
+            <div className="user-detail-conatiner">
+              <img
+                className="image_container"
+                src={
+                  profileImage
+                    ? URL.createObjectURL(profileImage)
+                    : profile?.avatar
+                    ? assetsURL(profile?.avatar)
+                    : dummy
+                }
+              />
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <p className="user-name">{profile?.name} </p>
+                <p className="user-email">{profile?.email}</p>
               </div>
-            
+            </div>
 
             <MenuItem
-             style={{ borderBottom: "1px solid #DBDBDB" }}
-             className="menu-item"
-            onClick={navToProfile}>
-                 <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
+              style={{ borderBottom: "1px solid #DBDBDB" }}
+              className="menu-item"
+              onClick={navToProfile}
+            >
+              <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
               <p>{t("Profile")} </p>
             </MenuItem>
             <MenuItem
-             className="menu-item"
+              className="menu-item"
               onClick={() =>
                 changeLanguage(`${language == "en" ? "fr" : "en"}`)
               }
             >
-               <GTranslateIcon sx={{width:"20px"}}/>
+              <GTranslateIcon sx={{ width: "20px" }} />
               {language == "fr" ? "French" : "English"}
             </MenuItem>
-            <MenuItem  
-            className="menu-item support-padding" 
-            onClick={navToSupport}>
-                <img style={{ width: "16px" }} src={SupportIcon} />
+            <MenuItem
+              className="menu-item support-padding"
+              onClick={navToSupport}
+            >
+              <img style={{ width: "16px" }} src={SupportIcon} />
               <p>{t("Support")}</p>
-              </MenuItem>
-            <MenuItem className="menu-item"  onClick={navToTermsAndConditions}>
-            <img src={TermsConditionsIcon} />
-             <p>{t("Terms and Conditions")}</p> 
+            </MenuItem>
+            <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
+              <img src={TermsConditionsIcon} />
+              <p>{t("Terms and Conditions")}</p>
             </MenuItem>
             <MenuItem
-            className="menu-item sign-out-padding"
-            onClick={handleLogoutSubmit}
+              className="menu-item sign-out-padding"
+              onClick={handleLogoutSubmit}
             >
-               <img style={{ width: "16px" }} src={SignOutIcon} />{" "}
+              <img style={{ width: "16px" }} src={SignOutIcon} />{" "}
               <p> {t("Sign out")} </p>
             </MenuItem>
-            </StyledMenu>
+          </StyledMenu>
         </div>
       </div>
     </div>

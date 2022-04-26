@@ -1,4 +1,4 @@
-import UserSVG from "../assets/User.svg";
+import UserSVG from "../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
 
 import assetsURL from "../utils/Assets";

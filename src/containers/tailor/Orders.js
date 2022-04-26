@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import CustomButton from "../../components/CustomButton";
@@ -129,7 +129,10 @@ function TailorOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-
+console.log(ordersRequest,"ordersRequest");
+console.log(ordersInProgress,"ordersInProgress");
+console.log(ordersCompleted,"ordersCompleted");
+console.log(ordersDiscarded,"ordersDiscarded");
   return (
     <>
       <div className="container-page-vertical">
