@@ -174,11 +174,11 @@ function QuoteListTile(props) {
         <div className="cas_ad_list_tile_column2">
           <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
           <p className="cas_ad_list_tile_column2_description">
-            {`${props?.budget?.min_price}$`}
+            {`${props?.budget?.min_price}€`}
           </p>
           <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
           <p className="cas_ad_list_tile_column2_description">
-            {`${props?.budget?.max_price}$`}
+            {`${props?.budget?.max_price}€`}
           </p>
           <p
             style={{
@@ -203,7 +203,10 @@ function QuoteListTile(props) {
             {t("Responses")}
           </p>
         </div>
-        <div style={{width:"15%", paddingTop:"2%"}} className="tqs_quote_list_tile_column5_buttons">
+        <div
+          style={{ width: "15%", paddingTop: "2%" }}
+          className="tqs_quote_list_tile_column5_buttons"
+        >
           {props?.quotes?.some((_) => _?.tailor?._id == user?._id) ? (
             <>
               <p style={{ fontSize: "16px", fontWeight: "900" }}>
@@ -235,7 +238,7 @@ function QuoteListTile(props) {
           )}
         </div>
       </div>
-     
+
       {/* <div className="cas_ad_list_tile_column2">
         <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
         <p className="cas_ad_list_tile_column2_description">
@@ -269,7 +272,6 @@ function QuoteListTile(props) {
         </p>
       </div> */}
       <div className="tqs_quote_list_tile_column5">
-       
         <Modal
           open={isSendOfferModal}
           onClose={handleSendOfferModalClose}
