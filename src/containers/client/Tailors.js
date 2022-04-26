@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import Rating from "@mui/material/Rating";
 
-import dummy from '../../assets/dummy.jpeg'
-
+import dummy from "../../assets/dummy.jpeg";
 
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
@@ -45,32 +44,32 @@ function ClientTailorsScreen() {
 
   return (
     <>
-    <div className="container-page-vertical">
-      <ClientAppBar activeTab={0} color="#FCFCFC" />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
-        }}
-      >
-        <div className="client_orders_screen_row1">
-          <p
-            className="client_orders_screen_row1_text"
-            style={{ paddingLeft: "3%" }}
-          >
-            {t("Designers")}
-          </p>
-        </div>
-        <div className="client_orders_screen_row2">
-          {tailors.map((_) => (
-            <TailorListTile {..._} />
-          ))}
+      <div className="container-page-vertical">
+        <ClientAppBar activeTab={0} color="#FCFCFC" />
+        <div
+          className="client_orders_screen_top"
+          style={{
+            background:
+              "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+          }}
+        >
+          <div className="client_orders_screen_row1">
+            <p
+              className="client_orders_screen_row1_text"
+              style={{ paddingLeft: "3%" }}
+            >
+              {t("Designers")}
+            </p>
+          </div>
+          <div className="client_orders_screen_row2">
+            {tailors.map((_) => (
+              <TailorListTile {..._} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-     <Footer/>
-     </>
+      <Footer />
+    </>
   );
 }
 
@@ -128,11 +127,14 @@ function TailorListTile(props) {
           </p>
         </div>
         <div className="cds_tailor_list_tile_column3">
-          <div style={{ display: "flex", justifyContent:"center", alignItemsL:"center" }}>
-          <Rating
-          value={rating}
-          size="small"
-         />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItemsL: "center",
+            }}
+          >
+            <Rating value={rating} size="small" />
             <p
               style={{
                 fontSize: "14px",

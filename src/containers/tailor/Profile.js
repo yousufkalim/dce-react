@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import AddCatalogSVG from "../../assets/AddOrder.svg";
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +11,7 @@ import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
-import dummy from '../../assets/dummy.jpeg'
+import dummy from "../../assets/dummy.jpeg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
@@ -190,7 +190,7 @@ function TailorProfileScreen() {
           }}
         >
           <TailorAppBar color="#FCFCFC" />
-         
+
           <div
             className="client_profile_screen_top tailor-client_profile_screen_top"
             style={{
@@ -198,28 +198,27 @@ function TailorProfileScreen() {
                 "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
             }}
           >
-             <div className="tailor-profile-edit-container">
-             <div className="tailor_profile_screen_row1_column1_header_text">
-                  <p
-                    className="client_profile_screen_row1_text"
-                    style={{ paddingLeft: "3%" }}
-                  >
-                    {t("Profile")}
-                  </p>
-                   
-                </div> 
-                <CustomButton
-                  type="submit"
-                  onClick={toEditCallback}
-                  text={toEdit ? t("Save") : t("Edit")}
-                  style={{
-                    alignSelf: "flex-end",
-                    boxShadow: "none",
-                    marginRight: "5%",
-                    marginBottom: "2%",
-                    padding:"0.8% 4%"
-                  }}
-                /> 
+            <div className="tailor-profile-edit-container">
+              <div className="tailor_profile_screen_row1_column1_header_text">
+                <p
+                  className="client_profile_screen_row1_text"
+                  style={{ paddingLeft: "3%" }}
+                >
+                  {t("Profile")}
+                </p>
+              </div>
+              <CustomButton
+                type="submit"
+                onClick={toEditCallback}
+                text={toEdit ? t("Save") : t("Edit")}
+                style={{
+                  alignSelf: "flex-end",
+                  boxShadow: "none",
+                  marginRight: "5%",
+                  marginBottom: "2%",
+                  padding: "0.8% 4%",
+                }}
+              />
             </div>
             <div
               className="tailor_profile_screen_row1"
@@ -230,7 +229,6 @@ function TailorProfileScreen() {
               }}
             >
               <div className="tailor_profile_screen_row1_column1">
-               
                 <div
                   className="tailor_profile_screen_row1_column1_img"
                   style={{
@@ -293,33 +291,33 @@ function TailorProfileScreen() {
                   name="Date Of Birth"
                   placeholder={t("Date Of Birth")}
                   defaultValue={new Date(profile.dob).toLocaleDateString(
-                    "en-US"
+                    "en-GB"
                   )}
                   img={ProfileBirthdaySVG}
                   divStyle={{
                     marginBottom: "3%",
-                    borderBottomLeftRadius:"10px",
-                    borderBottomRightRadius:"10px"
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
                   }}
                 />
                 <ProfileInput
                   disabled
                   name="Country"
                   placeholder={t("Country")}
-                  defaultValue={profile.country}
+                  defaultValue={"France"}
                   img={ProfileCountrySVG}
                   divStyle={{
                     borderTopLeftRadius: "10px",
                     borderTopRightRadius: "10px",
                   }}
                 />
-                <ProfileInput
+                {/* <ProfileInput
                   disabled
                   name="City"
                   placeholder={t("City")}
                   defaultValue={profile.city}
                   img={ProfileCitySVG}
-                />
+                /> */}
                 <ProfileInput
                   disabled
                   name="Location"
@@ -353,7 +351,7 @@ function TailorProfileScreen() {
                     profile.last_password_changed
                       ? new Date(
                           profile.last_password_changed
-                        ).toLocaleDateString("en-US")
+                        ).toLocaleDateString("en-GB")
                       : "N/A"
                   }
                   label={t("Last Password Changed")}
@@ -374,7 +372,7 @@ function TailorProfileScreen() {
                   name="Account Created"
                   placeholder={t("Account Created")}
                   defaultValue={new Date(profile.createdAt).toLocaleDateString(
-                    "en-US"
+                    "en-GB"
                   )}
                   label={t("Account Created")}
                   divStyle={{
@@ -472,9 +470,8 @@ function TailorProfileScreen() {
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
                       padding: "1.0% 0",
-                     
                     }}
-                    sx={{ textAlign:"end"}}
+                    sx={{ textAlign: "end" }}
                   />
                   <ProfileInput
                     disabled={!toEdit}
@@ -496,7 +493,10 @@ function TailorProfileScreen() {
                 </div>
               </div>
             </div>
-            <div className="tailor_profile_screen_row3" style={{height:"20%"}}>
+            <div
+              className="tailor_profile_screen_row3"
+              style={{ height: "20%" }}
+            >
               <p
                 className="tailor_profile_screen_row3_text"
                 style={{
@@ -512,7 +512,6 @@ function TailorProfileScreen() {
                     catalog={_}
                     mainDivStyle={{
                       width: "160pt",
-                     
                     }}
                     buttonText={t("Edit")}
                     onClick={() => navToViewCatalog(_._id)}
@@ -539,7 +538,7 @@ function ProfileInput({
   label,
   disabled,
   divStyle,
-  alignText
+  alignText,
 }) {
   return (
     <div
@@ -568,7 +567,6 @@ function ProfileInput({
           placeholder={placeholder}
           defaultValue={defaultValue}
           type={inputType}
-          
         />
         {label ? (
           <p
@@ -609,7 +607,6 @@ function AddCatalogListTile() {
   return (
     <div
       className="new_order_list_tile tailor-new_order_list_tile"
-      
       onClick={navToCreateCatalog}
     >
       <div className="new_order_list_tile_img">

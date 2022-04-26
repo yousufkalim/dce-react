@@ -8,7 +8,7 @@ import AdElaborationSVG from "../../assets/AdElaboration.svg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api/index";
@@ -28,8 +28,13 @@ function ClientCreateAdScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [image, setImage] = useState(null);
-
+   const [image, setImage] = useState();
+  // const [image, setImage] = useState({
+  //   files: [],
+  // });
+  // const [data, SetData] = useState({
+  //   files: [],
+  // });
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -47,7 +52,7 @@ function ClientCreateAdScreen() {
     note: "",
     type: "",
     date: "",
-    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     type: "",
@@ -57,6 +62,10 @@ function ClientCreateAdScreen() {
   });
 
   const handleImageSelect = (event) => {
+    // setImage({
+    //   ...image,
+    //   files: [...image.files, ...event.target.files],
+    // });
     const file = event.target.files[0];
     setImage(file);
   };
@@ -74,7 +83,7 @@ function ClientCreateAdScreen() {
   };
 
   const deliverySectionCallback = () => {
-    console.log(deliverySection,"deliverySection");
+    console.log(deliverySection, "deliverySection");
     const isValidated = FormValidations.parseAdDeliverySection(deliverySection);
     if (!isValidated) {
       return;
@@ -108,7 +117,6 @@ function ClientCreateAdScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
-
       body.append("type", "ad");
       body.append("gender", basicSection.gender);
       body.append("category", basicSection.category);
@@ -124,10 +132,10 @@ function ClientCreateAdScreen() {
       body.append(
         "delivery",
         JSON.stringify({
-          address: deliverySection.Address.label,
+          address: deliverySection.address.label,
           country: deliverySection.country,
-          zipcode:deliverySection.Address.zip,
-          city: deliverySection.Address.city,
+          zipcode: deliverySection.address.zip,
+          city: deliverySection.address.city,
           note: deliverySection.note,
           type: deliverySection.type,
           date: deliverySection.date,
@@ -143,8 +151,10 @@ function ClientCreateAdScreen() {
           note: notesSection.note,
         })
       );
+      // for (let i = 0; i < image.files.length; i++) {
+      //   body.append("image", image.files[i]);
+      // }
       body.append("image", image);
-
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
@@ -236,7 +246,7 @@ function ClientCreateAdScreen() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

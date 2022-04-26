@@ -6,7 +6,9 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
-import AutoComplete from '../../components/AutoComplete'
+import CustomDropDown from "../../components/CustomDropDown";
+import AutoComplete from "../../components/AutoComplete";
+import MenuItem from "@mui/material/MenuItem";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
@@ -21,16 +23,24 @@ import * as FormValidations from "../../utils/Validations";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
+import { useTranslation } from "react-i18next";
+
 function ClientCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [gender, setGender] = useState("")
   const [addresses, setAddresses] = useState([]);
-  const [AdressDetail, setAdressDetails] = useState({
-    Address: { zip: "", label: "", city: "", lat: "", lng: "" },
+  const [address, setAddress] = useState({
+    zip: "",
+    label: "",
+    city: "",
+    lat: "",
+    lng: "",
   });
+  const { t } = useTranslation();
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -64,6 +74,11 @@ function ClientCreateAccountScreen() {
       return;
     }
 
+    if (!address?.label) {
+      toast.error("Address can't be empty");
+      return;
+    }
+
     let response;
 
     try {
@@ -74,13 +89,14 @@ function ClientCreateAccountScreen() {
         password: state["Password"],
         name: data.get("Full Name"),
         dob: dateOfBirth,
-        address: AdressDetail?.Address?.label,
-        zip_code: AdressDetail?.Address?.zip,
-        city: AdressDetail?.Address?.city,
+        address: address.label,
+        zip_code: address.zip,
+        city: address.city,
+        gender:gender
       };
-
+      console.log(body,"<>body");
       response = await Api("post", "/clients", body);
-
+     
       if (response?.data?.success) {
         toast.success("Registered successfully!");
         handleLogin(response.data.token, response.data.user, updateStore);
@@ -92,31 +108,31 @@ function ClientCreateAccountScreen() {
 
     setIsProcessing(false);
   };
-  const handleStudent = (name, value) => {
-    setAdressDetails({ ...AdressDetail, [name]: value });
+  const _setAddress = (_) => {
+    setAddress({ ...address, ..._ });
   };
   const handleSelectAddress = (e) => {
     if (e) {
-    handleStudent("Address", {
-      label: e.label,
-      zip: e.PostalCode,
-      city: e.city,
-      lat: e.lat,
-      lng: e.lng,
-    });
-  } else {
-    handleStudent("Address", {
-      label: "",
-      zip: "",
-      city: "",
-      lat: "",
-      lng: "",
-    });
-  }
+      _setAddress({
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+    }
   };
-  const handleAddress = async (e) => {
+  const handleInputAddress = async (e) => {
     if (e.target.value === "") {
-      handleStudent("Address", {
+      _setAddress({
         label: "",
         zip: "",
         city: "",
@@ -125,16 +141,18 @@ function ClientCreateAccountScreen() {
       });
       setAddresses([]);
     } else {
-      handleStudent("Address", { ...AdressDetail.Address, label: e.target.value });
-    var config = {
-      method: "get",
-      url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
-    };
-    axios.defaults.headers =null;
-    await axios(config)
-      .then((res) => {
-        let addressToSet = [];
-        res.data.features.map((item) => {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+        method: "get",
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features.map((item) => {
           addressToSet.push({
             label: item.properties.label,
             city: item.properties.city,
@@ -144,13 +162,11 @@ function ClientCreateAccountScreen() {
           });
         });
         setAddresses(addressToSet);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      } catch (e) {
+        console.trace(e);
+      }
     }
   };
-  console.log(AdressDetail);
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -208,26 +224,50 @@ function ClientCreateAccountScreen() {
                 }}
                 dobinput="dob"
               />
-               <div style={{width:"100%"}}>
-                <label className="custom_input_label">
-                  Address
-                </label>
+              <div style={{width:"100%", border:"none"}}> 
+              <div>
+            <p className="custom_input_label">{t("Category")}</p>
+          </div>
+              <CustomDropDown
+              labelStyle={{
+                display: "none",
+              }}
+              selectID="gender"
+              selectName="gender"
+              selectNullValue={t("Select gender for your creation")}
+              selectValue={gender}
+              onChange={(e) => setGender(e.target.value)}
+              menuItems={[
+                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
+              ]}
+              selectSX={{
+                fontSize: "12px",
+                border:"2px solid #CC8E9C",
+                padding:"2%",
+                borderRadius:"10px",
+                marginBottom:"3%"
+              }}
+            />
+            </div>
+              <div style={{ width: "100%" }}>
+                <label className="custom_input_label">Address</label>
                 <AutoComplete
-                name="Address"
-                required={true}
-                label={"Address"}
-                value={AdressDetail?.Address?.label}
-                options={addresses}
-                placeholder={"Address"}
-                onChangeAddress={(e) => {
-                  handleAddress(e);
-                }}
-                onAddressSelect={(e) => handleSelectAddress(e)}
-              />
+                  name="Address"
+                  required={true}
+                  label={"Address"}
+                  value={address?.label}
+                  options={addresses}
+                  placeholder={"Address"}
+                  onChangeAddress={(e) => {
+                    handleInputAddress(e);
+                  }}
+                  onAddressSelect={(e) => handleSelectAddress(e)}
+                />
               </div>
-              <div className="create_account_screen_row2_row1">
+              {/* <div className="create_account_screen_row2_row1">
                 <CustomInput
-                  // disabled
+                  disabled
                   labelText="Zip Code"
                   inputName="Zip Code"
                   inputPlaceholder="Zip Code"
@@ -236,10 +276,10 @@ function ClientCreateAccountScreen() {
                     width: "48%",
                     marginBottom: "6%",
                   }}
-                  Inputvalue={AdressDetail?.Address?.zip}
+                  Inputvalue={address?.zip}
                 />
                 <CustomInput
-                  // disabled
+                  disabled
                   labelText="City"
                   inputName="City"
                   inputPlaceholder="City"
@@ -248,9 +288,9 @@ function ClientCreateAccountScreen() {
                     width: "48%",
                     marginBottom: "6%",
                   }}
-                  Inputvalue={AdressDetail?.Address?.city}
+                  Inputvalue={address?.city}
                 />
-              </div>
+              </div> */}
               <CustomButton
                 text="Save"
                 type="submit"

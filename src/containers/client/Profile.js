@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import DesignElaborationSVG from "../../assets/profile.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
@@ -9,11 +9,11 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
-import dummy from '../../assets/dummy.jpeg'
+import dummy from "../../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 
 import Api from "../../api";
@@ -24,6 +24,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 import assetsURL from "../../utils/Assets";
+
 
 function ClientProfileScreen() {
   const { t } = useTranslation();
@@ -229,7 +230,7 @@ function ClientProfileScreen() {
                     name="Date Of Birth"
                     placeholder={t("Date Of Birth")}
                     defaultValue={new Date(profile.dob).toLocaleDateString(
-                      "en-US"
+                      "en-GB"
                     )}
                     img={ProfileBirthdaySVG}
                   />
@@ -290,7 +291,7 @@ function ClientProfileScreen() {
                     placeholder={t("Account Created")}
                     defaultValue={new Date(
                       profile.createdAt
-                    ).toLocaleDateString("en-US")}
+                    ).toLocaleDateString("en-GB")}
                     label={t("Account Created")}
                     divStyle={{
                       borderBottomLeftRadius: "10px",
@@ -303,7 +304,7 @@ function ClientProfileScreen() {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }

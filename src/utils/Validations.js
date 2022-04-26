@@ -56,12 +56,6 @@ function clientCreateAccount(data) {
     {
       name: "Full Name",
     },
-    {
-      name: "Zip Code",
-    },
-    {
-      name: "City",
-    },
   ];
 
   const validated = formValidator(data, valArr);
@@ -163,15 +157,7 @@ function parseAdDeliverySection(data) {
   const valArr = [
     {
       validationFunction: () =>
-        Validators.nullValidator("Delivery Address", data.Address["label"]),
-    },
-    {
-      validationFunction: () =>
-        Validators.selectValidator("Zip Code", data.Address["zip"]),
-    },
-    {
-      validationFunction: () =>
-        Validators.selectValidator("City", data.Address["city"]),
+        Validators.nullValidator("Delivery Address", data.address["label"]),
     },
     {
       validationFunction: () =>

@@ -1,11 +1,10 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import FooterLogo from "../assets/FooterLogo.svg";
-import FacebookIcon from "../assets/FacebookIcon.svg";
 import TwitterIcon from "../assets/TwitterIcon.svg";
-import LinkedinIcon from "../assets/LinkedinIcon.svg";
+import InstagramIcon from '../assets/Instagram.svg'
 import { useTranslation } from "react-i18next";
 
-import Api from '../api/index'
+import Api from "../api/index";
 
 import { useNavigate } from "react-router-dom";
 
@@ -46,13 +45,13 @@ const Footer = () => {
     try {
       response = await Api("get", `/auth`);
       const userData = response.data.user;
-       setProfile(userData);
+      setProfile(userData);
     } catch (e) {
       console.trace(e);
     }
     return;
   };
-  console.log(profile,"><>");
+  console.log(profile, "><>");
   return (
     <div className="footer_main_div">
       <img src={FooterLogo} style={{ height: "50%" }}></img>
@@ -60,14 +59,20 @@ const Footer = () => {
       <div>
         <ul className="footer_list">
           <li onClick={navToOrders}>{t("Orders")}</li>
-          { profile?.role==="client"? <li onClick={navToMyAds}>{t("My Ads")}</li> : null}
-          { profile?.role==="client"? <li onClick={navToDesigner}>{t("Designers")}</li> : null}
-          {profile?.role==="tailor"?<li onClick={navToQuotes}>{t("Quotes")}</li>:null}
-          {profile?.role==="tailor"?<li onClick={navToCatalog}>{t("Catalogue")}</li>:null}
+          {profile?.role === "client" ? (
+            <li onClick={navToMyAds}>{t("My Ads")}</li>
+          ) : null}
+          {profile?.role === "client" ? (
+            <li onClick={navToDesigner}>{t("Designers")}</li>
+          ) : null}
+          {profile?.role === "tailor" ? (
+            <li onClick={navToQuotes}>{t("Quotes")}</li>
+          ) : null}
+          {profile?.role === "tailor" ? (
+            <li onClick={navToCatalog}>{t("Catalogue")}</li>
+          ) : null}
           <li onClick={navToSupport}>{t("Support")}</li>
-          {/* <li>{t("Privacy Policy")}</li> */}
           <li onClick={navToTermsAndConditions}>{t("Terms and Conditions")}</li>
-
         </ul>
         <div className="footer_icon_div">
           <div>
@@ -80,13 +85,8 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <img src={FacebookIcon} className="footer_icon"></img>
+            <img src={InstagramIcon} className="footer_icon"></img>
             <img src={TwitterIcon} className="footer_icon"></img>
-            <img
-              src={LinkedinIcon}
-              className="footer_icon"
-              style={{ padding: "0" }}
-            ></img>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import UserSVG from "../../assets/User.svg";
+import UserSVG from "../../assets/dummy.jpeg";
 import WritingSVG from "../../assets/writing.svg";
 
 import { Store, UpdateStore } from "../../StoreContext";
@@ -10,8 +10,6 @@ import Api from "../../api/index";
 import assetsURL from "../../utils/Assets";
 
 const ConversationsContainer = (props) => {
-  const { t } = useTranslation();
-
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -25,6 +23,8 @@ const ConversationsContainer = (props) => {
 };
 
 const ConversationListTile = (props) => {
+  const { t } = useTranslation();
+
   const store = Store();
   const updateStore = UpdateStore();
 

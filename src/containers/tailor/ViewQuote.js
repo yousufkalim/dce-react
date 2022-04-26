@@ -50,12 +50,10 @@ function TailorViewQuoteScreen() {
     includes_alteration_services: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    address: "",
-    country: "",
-    city: "",
     note: "",
     type: "",
     date: "",
+    address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
   const [notesSection, setNotesSection] = useState({
     note: "",
@@ -87,7 +85,16 @@ function TailorViewQuoteScreen() {
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
       });
-      setDeliverySection(adData.delivery);
+      setDeliverySection({
+        date: adData.delivery.date,
+        note: adData.delivery.note,
+        type: adData.delivery.type,
+        address: {
+          zip: adData.delivery.zipcode,
+          label: adData.delivery.address,
+          city: adData.delivery.city,
+        },
+      });
       setNotesSection(adData.budget);
     } catch (e) {
       console.trace(e);
