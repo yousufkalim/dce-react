@@ -280,6 +280,7 @@ function TailorCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "2%",
                 }}
+                minmax="on"
               />
               <div
                 style={{
