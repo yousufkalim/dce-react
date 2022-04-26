@@ -105,12 +105,6 @@ function QuoteListTile(props) {
             style={{
               paddingBottom: "5%",
             }}
-<<<<<<< HEAD
-            src={
-              props?.client?.avatar ? assetsURL(props?.client?.avatar) : UserSVG
-            }
-          />
-=======
           >
             <img
               className="image_container"
@@ -128,7 +122,6 @@ function QuoteListTile(props) {
           <p className="tqs_quote_list_tile_column0_title_text">
             {props?.client?.name}
           </p>
->>>>>>> b05b58f64d927f926196b3fb2d54fbf4b2a4ecbd
         </div>
         <div
           className="tqs_quote_list_tile_column1"
