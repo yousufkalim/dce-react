@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/dummy.jpeg";
+import UserSVG from "../../assets/User.svg";
 import DesignElaborationSVG from "../../assets/profile.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
@@ -105,6 +105,7 @@ function ClientProfileScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
+      body.append("phone", state.phone);
       body.append("phone", state.phone);
       if (state.password) {
         body.append("password", state.password);
