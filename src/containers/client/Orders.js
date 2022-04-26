@@ -206,7 +206,7 @@ function OrderListTile(props) {
         <p
           style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}
         >
-          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}$`}
+          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           {t("Bill")}

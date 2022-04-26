@@ -291,7 +291,7 @@ function ClientProfileOrderListTile(props) {
         </div>
         <div className="orderLine"></div>
         <div className="orderofferDiv">
-          <h3 className="orderofferPrice">{props.budget.min_price}$</h3>
+          <h3 className="orderofferPrice">{props.budget.min_price}€</h3>
           <h3 className="orderofferheading">{t("Bill")}</h3>
         </div>
         <div className="orderLine"></div>

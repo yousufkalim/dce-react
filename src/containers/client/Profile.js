@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/dummy.jpeg";
+import UserSVG from "../../assets/User.svg";
 import DesignElaborationSVG from "../../assets/profile.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
@@ -105,14 +105,13 @@ function ClientProfileScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
-
+      body.append("phone", state.phone);
       body.append("phone", state.phone);
       if (state.password) {
         body.append("password", state.password);
       }
       body.append("image", profileImage);
-
-      response = await Api("put", "/clients", body);
+      response = await Api("put", `/clients/${profile?._id}`, body);
 
       if (response?.data?.success) {
         toast.success(t("Profile updated successfully."));
@@ -233,25 +232,27 @@ function ClientProfileScreen() {
                     )}
                     img={ProfileBirthdaySVG}
                   />
-                  <ProfileInput
-                    disabled
-                    name="Country"
-                    placeholder={t("Country")}
-                    defaultValue={profile.country}
-                    img={ProfileCountrySVG}
-                  />
-                  <ProfileInput
+                  {
+                    <ProfileInput
+                      disabled
+                      name="Country"
+                      placeholder={t("Country")}
+                      defaultValue={"France"}
+                      img={ProfileCountrySVG}
+                    />
+                  }
+                  {/*<ProfileInput
                     disabled
                     name="City"
                     placeholder={t("City")}
                     defaultValue={profile.city}
                     img={ProfileCitySVG}
-                  />
+                  /> */}
                   <ProfileInput
                     disabled
                     name="Location"
                     placeholder={t("Location")}
-                    defaultValue={profile.location}
+                    defaultValue={profile.address}
                     img={ProfileLocationSVG}
                     divStyle={{
                       borderBottomLeftRadius: "10px",
