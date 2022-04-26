@@ -83,7 +83,7 @@ function TailorViewCatalogScreen() {
                       color: "#CC8E9C",
                     }}
                   >
-                    $ {catalog.price}
+                    € {catalog.price}
                   </p>
                 </div>
                 <div className="view_catalog_screen_row1_column1_section">

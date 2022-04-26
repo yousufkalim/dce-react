@@ -440,7 +440,7 @@ function TailorProfileScreen() {
                     disabled={!toEdit}
                     name="Any Confection"
                     alignText={"textend"}
-                    placeholder="$120"
+                    placeholder="€120"
                     defaultValue={profile.hourly_rate}
                     label={t("Any Confection")}
                     inputType="number"
@@ -477,7 +477,7 @@ function TailorProfileScreen() {
                     disabled={!toEdit}
                     name="Confection"
                     alignText={"textend"}
-                    placeholder="$500"
+                    placeholder="€500"
                     defaultValue={profile.free_shipping_rate}
                     label="Confection"
                     inputType="number"

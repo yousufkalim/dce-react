@@ -35,7 +35,7 @@ function TailorQuotesScreen() {
         status: "pending",
         tailor: null,
       });
-      const quotesData = response.data.orders;
+      const quotesData = response?.data?.orders;
       setQuotes(quotesData);
       setIsLoading(false);
     } catch (e) {

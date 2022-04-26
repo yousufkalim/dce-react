@@ -762,7 +762,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               type="number"
               defaultValue={state.min_price}
               onChange={(e) => _setState("min_price", e.target.value)}
-              placeholder="$0"
+              placeholder="€0"
             />
           </div>
         </div>
@@ -785,7 +785,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               type="number"
               defaultValue={state.max_price}
               onChange={(e) => _setState("max_price", e.target.value)}
-              placeholder="$0"
+              placeholder="€0"
             />
           </div>
         </div>

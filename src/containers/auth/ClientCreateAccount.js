@@ -88,6 +88,7 @@ function ClientCreateAccountScreen() {
         email: state["Email"],
         password: state["Password"],
         name: data.get("Full Name"),
+        phone: data.get("Phone Number"),
         dob: dateOfBirth,
         address: address.label,
         zip_code: address.zip,
@@ -152,15 +153,20 @@ function ClientCreateAccountScreen() {
       try {
         const response = await axios(config);
         const addressToSet = [];
-        response.data.features.map((item) => {
-          addressToSet.push({
-            label: item.properties.label,
-            city: item.properties.city,
-            PostalCode: item.properties.postcode,
-            lat: item.geometry.coordinates[1],
-            lng: item.geometry.coordinates[0],
+        response.data.features
+          .map((item) => {
+            addressToSet.push({
+              label: item.properties.label,
+              city: item.properties.city,
+              PostalCode: item.properties.postcode,
+              lat: item.geometry.coordinates[1],
+              lng: item.geometry.coordinates[0],
+            });
+            setAddresses(addressToSet);
+          })
+          .catch(function (error) {
+            console.log(error);
           });
-        });
         setAddresses(addressToSet);
       } catch (e) {
         console.trace(e);
@@ -210,6 +216,14 @@ function ClientCreateAccountScreen() {
                 labelText="Full Name"
                 inputName="Full Name"
                 inputPlaceholder="Full Name"
+                divStyle={{
+                  marginBottom: "6%",
+                }}
+              />
+              <CustomInput
+                labelText="Phone Number"
+                inputName="Phone Number"
+                inputPlaceholder="Phone Number"
                 divStyle={{
                   marginBottom: "6%",
                 }}
