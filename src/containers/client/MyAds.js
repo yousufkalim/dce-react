@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
-import NoOrders from '../../components/NoOrders'
+import NoOrders from "../../components/NoOrders";
 import UserSVG from "../../assets/User.svg";
 
 import { Checkbox, Modal } from "@mui/material";
@@ -168,7 +168,7 @@ function ClientAdsScreen() {
               >
                 {t("No Orders")}
               </div> */}
-               <NoOrders RenderText="No Ads Yet"/>
+              <NoOrders RenderText="No Ads Yet" />
             </>
           ) : null}
         </div>
@@ -246,9 +246,9 @@ function AdListTile(props) {
         </div>
         <div className="cas_ad_list_tile_column2">
           <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}$`}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}€`}</p>
           <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props.budget.max_price}$`}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props.budget.max_price}€`}</p>
           <p
             style={{
               fontSize: "16px",
@@ -405,7 +405,7 @@ function AdQuoteListTile(props) {
         </p>
         <p
           style={{ fontSize: "20px", fontWeight: "bold" }}
-        >{`${props.quote.price}$`}</p>
+        >{`${props.quote.price}€`}</p>
       </div>
       <div
         className="cas_quote_list_tile_column5"

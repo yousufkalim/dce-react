@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const api = async (method = "get", uri, body) => {
   // API Call
-  const url = process.env.REACT_APP_SERVER_URL + uri;
+  const url = "http://localhost:5000/api" + uri;
   const token = localStorage.getItem("token");
   axios.defaults.headers = {
     Authorization: `Bearer ${token}`,
@@ -14,10 +14,8 @@ const api = async (method = "get", uri, body) => {
       .then((res) => resolve(res))
       .catch((err) => {
         // No internet
-        if(err.toJSON().message === 'Network Error'){
-          toast.error(
-            "No Internet."
-          );
+        if (err.toJSON().message === "Network Error") {
+          toast.error("No Internet.");
 
           reject(err);
         } else if (err?.response?.status === 403) {
@@ -25,9 +23,7 @@ const api = async (method = "get", uri, body) => {
         } else {
           console.log("API Error --------> ", err.response?.data?.message);
 
-          toast.error(
-            err.response?.data?.message ?? "Something went wrong."
-          );
+          toast.error(err.response?.data?.message ?? "Something went wrong.");
 
           reject(err);
         }

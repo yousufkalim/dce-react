@@ -11,7 +11,7 @@ import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 
-import dummy from '../../assets/dummy.jpeg'
+import dummy from "../../assets/dummy.jpeg";
 
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
@@ -190,7 +190,7 @@ function TailorProfileScreen() {
           }}
         >
           <TailorAppBar color="#FCFCFC" />
-         
+
           <div
             className="client_profile_screen_top tailor-client_profile_screen_top"
             style={{
@@ -198,28 +198,27 @@ function TailorProfileScreen() {
                 "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
             }}
           >
-             <div className="tailor-profile-edit-container">
-             <div className="tailor_profile_screen_row1_column1_header_text">
-                  <p
-                    className="client_profile_screen_row1_text"
-                    style={{ paddingLeft: "3%" }}
-                  >
-                    {t("Profile")}
-                  </p>
-                   
-                </div> 
-                <CustomButton
-                  type="submit"
-                  onClick={toEditCallback}
-                  text={toEdit ? t("Save") : t("Edit")}
-                  style={{
-                    alignSelf: "flex-end",
-                    boxShadow: "none",
-                    marginRight: "5%",
-                    marginBottom: "2%",
-                    padding:"0.8% 4%"
-                  }}
-                /> 
+            <div className="tailor-profile-edit-container">
+              <div className="tailor_profile_screen_row1_column1_header_text">
+                <p
+                  className="client_profile_screen_row1_text"
+                  style={{ paddingLeft: "3%" }}
+                >
+                  {t("Profile")}
+                </p>
+              </div>
+              <CustomButton
+                type="submit"
+                onClick={toEditCallback}
+                text={toEdit ? t("Save") : t("Edit")}
+                style={{
+                  alignSelf: "flex-end",
+                  boxShadow: "none",
+                  marginRight: "5%",
+                  marginBottom: "2%",
+                  padding: "0.8% 4%",
+                }}
+              />
             </div>
             <div
               className="tailor_profile_screen_row1"
@@ -230,7 +229,6 @@ function TailorProfileScreen() {
               }}
             >
               <div className="tailor_profile_screen_row1_column1">
-               
                 <div
                   className="tailor_profile_screen_row1_column1_img"
                   style={{
@@ -298,8 +296,8 @@ function TailorProfileScreen() {
                   img={ProfileBirthdaySVG}
                   divStyle={{
                     marginBottom: "3%",
-                    borderBottomLeftRadius:"10px",
-                    borderBottomRightRadius:"10px"
+                    borderBottomLeftRadius: "10px",
+                    borderBottomRightRadius: "10px",
                   }}
                 />
                 <ProfileInput
@@ -442,7 +440,7 @@ function TailorProfileScreen() {
                     disabled={!toEdit}
                     name="Any Confection"
                     alignText={"textend"}
-                    placeholder="$120"
+                    placeholder="€120"
                     defaultValue={profile.hourly_rate}
                     label={t("Any Confection")}
                     inputType="number"
@@ -472,15 +470,14 @@ function TailorProfileScreen() {
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
                       padding: "1.0% 0",
-                     
                     }}
-                    sx={{ textAlign:"end"}}
+                    sx={{ textAlign: "end" }}
                   />
                   <ProfileInput
                     disabled={!toEdit}
                     name="Confection"
                     alignText={"textend"}
-                    placeholder="$500"
+                    placeholder="€500"
                     defaultValue={profile.free_shipping_rate}
                     label="Confection"
                     inputType="number"
@@ -496,7 +493,10 @@ function TailorProfileScreen() {
                 </div>
               </div>
             </div>
-            <div className="tailor_profile_screen_row3" style={{height:"20%"}}>
+            <div
+              className="tailor_profile_screen_row3"
+              style={{ height: "20%" }}
+            >
               <p
                 className="tailor_profile_screen_row3_text"
                 style={{
@@ -512,7 +512,6 @@ function TailorProfileScreen() {
                     catalog={_}
                     mainDivStyle={{
                       width: "160pt",
-                     
                     }}
                     buttonText={t("Edit")}
                     onClick={() => navToViewCatalog(_._id)}
@@ -539,7 +538,7 @@ function ProfileInput({
   label,
   disabled,
   divStyle,
-  alignText
+  alignText,
 }) {
   return (
     <div
@@ -568,7 +567,6 @@ function ProfileInput({
           placeholder={placeholder}
           defaultValue={defaultValue}
           type={inputType}
-          
         />
         {label ? (
           <p
@@ -609,7 +607,6 @@ function AddCatalogListTile() {
   return (
     <div
       className="new_order_list_tile tailor-new_order_list_tile"
-      
       onClick={navToCreateCatalog}
     >
       <div className="new_order_list_tile_img">

@@ -151,7 +151,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
               color: Color(order.status),
             }}
           >
-            {quote?.price ?? order.budget.min_price}$
+            {quote?.price ?? order.budget.min_price}€
           </p>
         </div>
         <div className="order_list_tile_divider" />

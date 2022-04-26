@@ -6,7 +6,7 @@ import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
-import AutoComplete from '../../components/AutoComplete'
+import AutoComplete from "../../components/AutoComplete";
 
 import { handleLogin } from "../../utils/Auth";
 import Api from "../../api/index";
@@ -73,6 +73,7 @@ function ClientCreateAccountScreen() {
         email: state["Email"],
         password: state["Password"],
         name: data.get("Full Name"),
+        phone: data.get("Phone Number"),
         dob: dateOfBirth,
         address: AdressDetail?.Address?.label,
         zip_code: AdressDetail?.Address?.zip,
@@ -97,22 +98,22 @@ function ClientCreateAccountScreen() {
   };
   const handleSelectAddress = (e) => {
     if (e) {
-    handleStudent("Address", {
-      label: e.label,
-      zip: e.PostalCode,
-      city: e.city,
-      lat: e.lat,
-      lng: e.lng,
-    });
-  } else {
-    handleStudent("Address", {
-      label: "",
-      zip: "",
-      city: "",
-      lat: "",
-      lng: "",
-    });
-  }
+      handleStudent("Address", {
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      handleStudent("Address", {
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+    }
   };
   const handleAddress = async (e) => {
     if (e.target.value === "") {
@@ -125,32 +126,35 @@ function ClientCreateAccountScreen() {
       });
       setAddresses([]);
     } else {
-      handleStudent("Address", { ...AdressDetail.Address, label: e.target.value });
-    var config = {
-      method: "get",
-      url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
-    };
-    axios.defaults.headers =null;
-    await axios(config)
-      .then((res) => {
-        let addressToSet = [];
-        res.data.features.map((item) => {
-          addressToSet.push({
-            label: item.properties.label,
-            city: item.properties.city,
-            PostalCode: item.properties.postcode,
-            lat: item.geometry.coordinates[1],
-            lng: item.geometry.coordinates[0],
-          });
-        });
-        setAddresses(addressToSet);
-      })
-      .catch(function (error) {
-        console.log(error);
+      handleStudent("Address", {
+        ...AdressDetail.Address,
+        label: e.target.value,
       });
+      var config = {
+        method: "get",
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      await axios(config)
+        .then((res) => {
+          let addressToSet = [];
+          res.data.features.map((item) => {
+            addressToSet.push({
+              label: item.properties.label,
+              city: item.properties.city,
+              PostalCode: item.properties.postcode,
+              lat: item.geometry.coordinates[1],
+              lng: item.geometry.coordinates[0],
+            });
+          });
+          setAddresses(addressToSet);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
-  console.log(AdressDetail);
+
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -198,6 +202,14 @@ function ClientCreateAccountScreen() {
                   marginBottom: "6%",
                 }}
               />
+              <CustomInput
+                labelText="Phone Number"
+                inputName="Phone Number"
+                inputPlaceholder="Phone Number"
+                divStyle={{
+                  marginBottom: "6%",
+                }}
+              />
               <CustomDatePicker
                 disableFuture
                 labelText="Date of Birth"
@@ -208,22 +220,20 @@ function ClientCreateAccountScreen() {
                 }}
                 dobinput="dob"
               />
-               <div style={{width:"100%"}}>
-                <label className="custom_input_label">
-                  Address
-                </label>
+              <div style={{ width: "100%" }}>
+                <label className="custom_input_label">Address</label>
                 <AutoComplete
-                name="Address"
-                required={true}
-                label={"Address"}
-                value={AdressDetail?.Address?.label}
-                options={addresses}
-                placeholder={"Address"}
-                onChangeAddress={(e) => {
-                  handleAddress(e);
-                }}
-                onAddressSelect={(e) => handleSelectAddress(e)}
-              />
+                  name="Address"
+                  required={true}
+                  label={"Address"}
+                  value={AdressDetail?.Address?.label}
+                  options={addresses}
+                  placeholder={"Address"}
+                  onChangeAddress={(e) => {
+                    handleAddress(e);
+                  }}
+                  onAddressSelect={(e) => handleSelectAddress(e)}
+                />
               </div>
               <div className="create_account_screen_row2_row1">
                 <CustomInput

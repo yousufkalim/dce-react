@@ -8,7 +8,7 @@ import AdElaborationSVG from "../../assets/AdElaboration.svg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import * as ParseAd from "../../components/ParseAd";
 
 import Api from "../../api/index";
@@ -74,7 +74,7 @@ function ClientCreateAdScreen() {
   };
 
   const deliverySectionCallback = () => {
-    console.log(deliverySection,"deliverySection");
+    console.log(deliverySection, "deliverySection");
     const isValidated = FormValidations.parseAdDeliverySection(deliverySection);
     if (!isValidated) {
       return;
@@ -126,7 +126,7 @@ function ClientCreateAdScreen() {
         JSON.stringify({
           address: deliverySection.Address.label,
           country: deliverySection.country,
-          zipcode:deliverySection.Address.zip,
+          zipcode: deliverySection.Address.zip,
           city: deliverySection.Address.city,
           note: deliverySection.note,
           type: deliverySection.type,
@@ -236,7 +236,7 @@ function ClientCreateAdScreen() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

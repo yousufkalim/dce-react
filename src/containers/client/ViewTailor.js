@@ -9,11 +9,11 @@ import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
-import dummy from '../../assets/dummy.jpeg'
+import dummy from "../../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 
 import CatalogListTile from "../../components/CatalogListTile";
@@ -252,7 +252,7 @@ function ClientViewTailorScreen() {
                   <ProfileInput
                     disabled
                     name="Any Confection"
-                    placeholder="$120"
+                    placeholder="€120"
                     defaultValue={tailor.hourly_rate}
                     label={t("Any Confection")}
                     inputType="number"
@@ -288,7 +288,7 @@ function ClientViewTailorScreen() {
                   <ProfileInput
                     disabled
                     name="Confection"
-                    placeholder="500$"
+                    placeholder="500€"
                     defaultValue={tailor.free_shipping_rate}
                     label="Confection"
                     inputType="number"
@@ -354,7 +354,7 @@ function ClientViewTailorScreen() {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }

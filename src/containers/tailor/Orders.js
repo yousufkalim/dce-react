@@ -431,9 +431,9 @@ function OrderInProgressListTile(props) {
         <p
           style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}
         >
-          {`${
+          {`€{
             props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"
-          }$`}
+          }€`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           {t("Bill")}
@@ -537,9 +537,9 @@ function OrderCompletedListTile(props) {
           {t("Offer")}
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {`${
+          {`€{
             props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"
-          }$`}
+          }€`}
         </p>
       </div>
       <div
@@ -647,7 +647,7 @@ function OrderDiscardedListTile(props) {
           {t("Offer")}
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}$`}
+          {`€{props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}€`}
         </p>
       </div>
       <div
