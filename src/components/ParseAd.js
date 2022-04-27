@@ -98,7 +98,7 @@ function BasicSection({
               selectID="category"
               selectName="category"
               selectNullValue={t("Select one category for your ad")}
-              selectValue={state.category}
+              selectValue={t(state.category)}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
