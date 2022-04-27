@@ -126,18 +126,18 @@ function ClientTapeMeasurementScreen() {
 
   const measurmentsObjMaker = () => {
     let DATA = {
-      "Arm Cirmunference": circumferenceSection.arm,
-      "Chest Cirmunferenc": circumferenceSection.chest,
-      "Waist Cirmunferenc": circumferenceSection.waist,
-      "Hip Cirmunferenc": circumferenceSection.hip,
-      "Thigh Cirmunferenc": circumferenceSection.thigh,
-      "Calf Cirmunferenc": circumferenceSection.calf,
-      "Ankle Cirmunferenc": circumferenceSection.ankle,
-      "Head To Floor Lengt": lengthSection.head_to_floor,
-      "Shoulder To Floor Lengt": lengthSection.shoulder_to_floor,
-      "Waist To Floor Lengt": lengthSection.waist_to_floor,
-      "Arm Lengt": lengthSection.arm_length,
-      "Leg Lengt": lengthSection.leg_length,
+      ArmCirmunference: circumferenceSection.arm,
+      ChestCirmunferenc: circumferenceSection.chest,
+      WaistCirmunferenc: circumferenceSection.waist,
+      HipCirmunferenc: circumferenceSection.hip,
+      ThighCirmunferenc: circumferenceSection.thigh,
+      CalfCirmunferenc: circumferenceSection.calf,
+      AnkleCirmunferenc: circumferenceSection.ankle,
+      HeadToFloorLengt: lengthSection.head_to_floor,
+      ShoulderToFloorLengt: lengthSection.shoulder_to_floor,
+      WaistToFloorLengt: lengthSection.waist_to_floor,
+      ArmLengt: lengthSection.arm_length,
+      LegLengt: lengthSection.leg_length,
     };
     return DATA;
   };
