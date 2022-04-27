@@ -206,7 +206,7 @@ function InputSection() {
               selectID="category"
               selectName="category"
               selectNullValue={t("Select category")}
-              selectValue={state.category}
+              selectValue={t(state.category)}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
