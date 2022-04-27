@@ -277,6 +277,7 @@ function TailorProfileScreen() {
                     borderTopLeftRadius: "10px",
                     borderTopRightRadius: "10px",
                   }}
+                  minmax="on"
                   onChange={(e) => _setState("phone", e.target.value)}
                 />
                 <ProfileInput
@@ -538,6 +539,7 @@ function ProfileInput({
   label,
   disabled,
   divStyle,
+  minmax,
   alignText,
 }) {
   return (
@@ -565,6 +567,7 @@ function ProfileInput({
           name={name}
           onChange={onChange}
           placeholder={placeholder}
+          maxlength={minmax === "on" && "10"}
           defaultValue={defaultValue}
           type={inputType}
         />

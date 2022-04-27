@@ -517,7 +517,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
-            marginBottom:"2%"
+            marginBottom: "2%",
           }}
         >
           <div className="pa_profile_section_input_label">

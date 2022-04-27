@@ -122,7 +122,7 @@ function OrderListTile(props) {
     e.stopPropagation();
     setIsFeedbackOrderModal(true);
   };
-   console.log(props,"props");
+  console.log(props, "props");
   return (
     <div
       className="cos_order_list_tile_container"
