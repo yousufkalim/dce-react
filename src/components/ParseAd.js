@@ -285,10 +285,10 @@ function BasicSection({
               selectID="materialFabrics"
               selectName="materialFabrics"
               selectNullValue={t("Select Fabric Style")}
-              selectValue={state.fabric}
+              selectValue={t(state.fabric)}
               onChange={(e) => _setState("fabric", e.target.value)}
               menuItems={materialFabrics.map((_) => (
-                <MenuItem value={_.title}>{_.title}</MenuItem>
+                <MenuItem value={_.title}>{t(_.title)}</MenuItem>
               ))}
             />
           </div>
