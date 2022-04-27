@@ -513,32 +513,20 @@ const AcceptQuoteModal = (props) => {
 
     try {
       setIsProcessing(true);
-
-      const body = {
-        quote: props.quote._id,
-      };
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        navToOrders();
-      }
-
-      // Stripe
-      // const line_items = [
-      //   {
-      //     price_data: {
-      //       currency: "eur",
-      //       product_data: {
-      //         name: "Order",
-      //       },
-      //       unit_amount: props.quote.price * 100,
-      //     },
-      //     quantity: 1,
-      //   },
-      // ];
-      // getSessionUrl(props.quote, line_items);
+      //Stripe
+      const line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: props.quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getSessionUrl(props.quote, line_items);
     } catch (e) {
       console.trace(e);
     }
