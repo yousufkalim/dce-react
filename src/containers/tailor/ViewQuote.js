@@ -166,8 +166,8 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"110vh",
-              padding:"1% 0%"
+              height: "110vh",
+              padding: "1% 0%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -224,8 +224,8 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFC396",
-              height:"110vh",
-              padding:"1% 0%"
+              height: "110vh",
+              padding: "1% 0%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -282,8 +282,8 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFFCFB",
-              height:"108vh",
-              padding:"1% 0%"
+              height: "108vh",
+              padding: "1% 0%",
             }}
           >
             <div className="client_edit_ad_screen_row1">

@@ -69,6 +69,7 @@ function TailorViewOrderScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log(adData, "<><>adData");
       setAd(adData);
       setBasicSection({
         gender: adData.gender,
