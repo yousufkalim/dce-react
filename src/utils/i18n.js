@@ -325,6 +325,7 @@ i18n
 
           //viewOrder
           "Want to complete this order": "Want to complete this order",
+          "Create Catalogue": "Create Catalogue",
 
           //placeholders
           "Name of your Creation": "Name of your Creation",
@@ -515,7 +516,6 @@ i18n
 
           //catalogue
           "My Catalogue": "Mon catalogue",
-          "Create Catalogue": "Create Catalogue",
 
           //clientProfile
           Order: "Commande",
