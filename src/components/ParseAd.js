@@ -4,6 +4,8 @@ import axios from "axios";
 
 import AutoComplete from "../components/AutoComplete";
 
+import Modal from './Modal/ModalComp'
+
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
@@ -22,6 +24,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function BasicSection({
   state,
+  profile,
   setState,
   onClick,
   disabled,
@@ -32,6 +35,7 @@ function BasicSection({
   const { t } = useTranslation();
 
   const _setState = (key, value) => {
+    console.log(key, value);
     const obj = {};
     obj[key] = value;
     setState({
@@ -59,7 +63,7 @@ function BasicSection({
     });
     handleCloseMeasurements();
   };
-
+console.log(profile);
   return (
     <>
       <div className="pa_profile_section_container">
@@ -219,7 +223,9 @@ function BasicSection({
             ))}
           </div>
         </div>
+        <Modal _setState ={_setState }  RenderComp="tapemeasurements" state={state} open={state?.openModal}/>
         <div
+        onClick={()=>state?.measurements?.type=="tape"? (_setState("openModal",true)):""}
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
@@ -227,10 +233,11 @@ function BasicSection({
             marginBottom: "1%",
           }}
         >
-          <div className="pa_profile_section_input_label">
+          <div   className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t("Measurements")}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div  className="pa_profile_section_input_input">
+           
             <CustomInput
               disabled={
                 disabled ||

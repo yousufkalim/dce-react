@@ -37,6 +37,7 @@ function TailorViewQuoteScreen() {
 
   const [ad, setAd] = useState(null);
   const [basicSection, setBasicSection] = useState({
+    openModal:"false",
     gender: "",
     category: "",
     name: "",

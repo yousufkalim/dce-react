@@ -51,7 +51,6 @@ const Footer = () => {
     }
     return;
   };
-  console.log(profile, "><>");
   return (
     <div className="footer_main_div">
       <img src={FooterLogo} style={{ height: "50%" }}></img>

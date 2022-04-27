@@ -7,24 +7,29 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import GetTape from '../../containers/client/GetTape'
 import OrderAcceptForm from '../../containers/client/OrderAcceptForm'
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 900,
-    height:400,
-    bgcolor: 'background.paper',
-   borderRadius:"20px",
-    boxShadow: 24,
-    p: 4,
-  };
-const ModalComp = ({setOpen, open}) => {
+import TapeMeasurements from '../../containers/tailor/TapeMeasurements'
+
+const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => { 
+      _setState("openModal",false)
+      setOpen(false);
+    };
+    const style = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width:RenderComp =="tapemeasurements"?1100: 900,
+      height:RenderComp =="tapemeasurements"? 550:400,
+      bgcolor: 'background.paper',
+     borderRadius:"20px",
+      boxShadow: 24,
+      p: 4,
+    };
   return (
     <div>
-    <Button onClick={handleOpen}>Open modal</Button>
+    {/* <Button onClick={handleOpen}>Open modal</Button> */}
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
@@ -38,7 +43,16 @@ const ModalComp = ({setOpen, open}) => {
     >
       <Fade in={open}>
         <Box sx={style}>
-       <OrderAcceptForm/>
+          {
+            RenderComp =="tapemeasurements"? (
+            <TapeMeasurements 
+            state={state}
+            />
+            )
+            : 
+            <OrderAcceptForm/>
+          }
+      
         </Box>
       </Fade>
     </Modal>
