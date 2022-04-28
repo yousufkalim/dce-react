@@ -129,10 +129,10 @@ function TailorOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-console.log(ordersRequest,"ordersRequest");
-console.log(ordersInProgress,"ordersInProgress");
-console.log(ordersCompleted,"ordersCompleted");
-console.log(ordersDiscarded,"ordersDiscarded");
+  console.log(ordersRequest, "ordersRequest");
+  console.log(ordersInProgress, "ordersInProgress");
+  console.log(ordersCompleted, "ordersCompleted");
+  console.log(ordersDiscarded, "ordersDiscarded");
   return (
     <>
       <div className="container-page-vertical">
@@ -434,9 +434,9 @@ function OrderInProgressListTile(props) {
         <p
           style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}
         >
-          {`€{
-            props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"
-          }€`}
+         {`
+            ${props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"}
+          €`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           {t("Bill")}

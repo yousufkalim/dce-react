@@ -20,6 +20,8 @@ import { useTranslation } from "react-i18next";
 import { materialFabrics, colors } from "../utils/Constants";
 import UploadSVG from "../assets/upload.svg";
 
+import { Store } from "../StoreContext";
+
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function BasicSection({
@@ -63,7 +65,7 @@ function BasicSection({
     });
     handleCloseMeasurements();
   };
-console.log(profile);
+  const store = Store();
   return (
     <>
       <div className="pa_profile_section_container">
@@ -225,7 +227,7 @@ console.log(profile);
         </div>
         <Modal _setState ={_setState }  RenderComp="tapemeasurements" state={state} open={state?.openModal}/>
         <div
-        onClick={()=>state?.measurements?.type=="tape"? (_setState("openModal",true)):""}
+        onClick={()=>state?.measurements?.type=="tape" && store.userRole=="tailor"? (_setState("openModal",true)):""}
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
@@ -524,7 +526,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
-            marginBottom:"2%"
+            marginBottom: "2%",
           }}
         >
           <div className="pa_profile_section_input_label">

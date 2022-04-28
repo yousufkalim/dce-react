@@ -31,7 +31,7 @@ function ClientCreateAccountScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
-  const [gender, setGender] = useState("")
+  const [gender, setGender] = useState("");
   const [addresses, setAddresses] = useState([]);
   const [address, setAddress] = useState({
     zip: "",
@@ -93,11 +93,10 @@ function ClientCreateAccountScreen() {
         address: address.label,
         zip_code: address.zip,
         city: address.city,
-        gender:gender
+        gender: gender,
       };
-      console.log(body,"<>body");
       response = await Api("post", "/clients", body);
-     
+
       if (response?.data?.success) {
         toast.success("Registered successfully!");
         handleLogin(response.data.token, response.data.user, updateStore);
@@ -227,6 +226,7 @@ function ClientCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "6%",
                 }}
+                minmax="on"
               />
               <CustomDatePicker
                 disableFuture
@@ -238,32 +238,32 @@ function ClientCreateAccountScreen() {
                 }}
                 dobinput="dob"
               />
-              <div style={{width:"100%", border:"none"}}> 
-              <div>
-            <p className="custom_input_label">{t("Category")}</p>
-          </div>
-              <CustomDropDown
-              labelStyle={{
-                display: "none",
-              }}
-              selectID="gender"
-              selectName="gender"
-              selectNullValue={t("Select gender for your creation")}
-              selectValue={gender}
-              onChange={(e) => setGender(e.target.value)}
-              menuItems={[
-                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
-                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
-              ]}
-              selectSX={{
-                fontSize: "12px",
-                border:"2px solid #CC8E9C",
-                padding:"2%",
-                borderRadius:"10px",
-                marginBottom:"3%"
-              }}
-            />
-            </div>
+              <div style={{ width: "100%", border: "none" }}>
+                <div>
+                  <p className="custom_input_label">{t("Category")}</p>
+                </div>
+                <CustomDropDown
+                  labelStyle={{
+                    display: "none",
+                  }}
+                  selectID="gender"
+                  selectName="gender"
+                  selectNullValue={t("Select gender for your creation")}
+                  selectValue={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  menuItems={[
+                    <MenuItem value={"male"}>{t("Male")}</MenuItem>,
+                    <MenuItem value={"female"}>{t("Female")}</MenuItem>,
+                  ]}
+                  selectSX={{
+                    fontSize: "12px",
+                    border: "2px solid #CC8E9C",
+                    padding: "2%",
+                    borderRadius: "10px",
+                    marginBottom: "3%",
+                  }}
+                />
+              </div>
               <div style={{ width: "100%" }}>
                 <label className="custom_input_label">Address</label>
                 <AutoComplete

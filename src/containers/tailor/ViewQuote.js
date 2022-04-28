@@ -155,7 +155,6 @@ function TailorViewQuoteScreen() {
   const navToChat = () => {
     navigate(`/chat`, { state: { directUser: ad.client } });
   };
-
   return (
     <>
       {isLoading ? (
@@ -167,7 +166,7 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"110vh",
+              height:"100vh",
               padding:"1% 0%"
             }}
           >
@@ -225,7 +224,7 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFC396",
-              height:"110vh",
+              height:"100vh",
               padding:"1% 0%"
             }}
           >
@@ -283,7 +282,7 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFFCFB",
-              height:"108vh",
+              height:"100vh",
               padding:"1% 0%"
             }}
           >
@@ -411,7 +410,7 @@ function TailorViewQuoteScreen() {
               </div>
             </div>
           </div>
-          <Footer />
+          <Footer/>
         </div>
       )}
     </>

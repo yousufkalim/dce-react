@@ -25,7 +25,6 @@ import { toast } from "react-toastify";
 import * as FormValidations from "../../utils/Validations";
 import assetsURL from "../../utils/Assets";
 
-
 function ClientProfileScreen() {
   const { t } = useTranslation();
 
@@ -211,6 +210,7 @@ function ClientProfileScreen() {
                     placeholder={t("Phone")}
                     defaultValue={profile.phone}
                     img={ProfilePhoneSVG}
+                    minmax="on"
                     divStyle={{
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
@@ -319,6 +319,7 @@ function ProfileInput({
   img,
   label,
   divStyle,
+  minmax,
 }) {
   return (
     <div
@@ -338,6 +339,7 @@ function ProfileInput({
           disabled={disabled}
           className="cps_profile_input_input"
           name={name}
+          maxlength={minmax === "on" && "10"}
           onChange={onChange}
           placeholder={placeholder}
           defaultValue={defaultValue}

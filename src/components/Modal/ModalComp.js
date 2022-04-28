@@ -9,6 +9,8 @@ import GetTape from '../../containers/client/GetTape'
 import OrderAcceptForm from '../../containers/client/OrderAcceptForm'
 import TapeMeasurements from '../../containers/tailor/TapeMeasurements'
 
+import cross from "../../assets/Cross.svg";
+
 const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => { 
@@ -43,6 +45,9 @@ const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
     >
       <Fade in={open}>
         <Box sx={style}>
+        <div className="cross-img-container">
+        <img onClick={()=>handleClose()} src={cross}/>
+      </div>
           {
             RenderComp =="tapemeasurements"? (
             <TapeMeasurements 

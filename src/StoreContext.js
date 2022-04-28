@@ -22,6 +22,7 @@ export function StoreProvider({ children }) {
     chats: [],
     chat: null,
     messages: [],
+    userRole:""
   });
 
   const updateStore = (data) => {

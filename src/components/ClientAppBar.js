@@ -165,6 +165,8 @@ function ClientAppBar({
       response = await Api("get", `/auth`);
       const userData = response.data.user;
       setProfile(userData);
+      console.log(userData,"userData");
+      updateStore({userRole:userData.role})
     } catch (e) {
       console.trace(e);
     }
