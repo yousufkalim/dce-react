@@ -154,7 +154,6 @@ function TailorViewQuoteScreen() {
   const navToChat = () => {
     navigate(`/chat`, { state: { directUser: ad.client } });
   };
-
   return (
     <>
       {isLoading ? (
