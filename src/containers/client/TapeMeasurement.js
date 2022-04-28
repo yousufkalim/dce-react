@@ -101,6 +101,7 @@ function ClientTapeMeasurementScreen() {
         },
       ];
       let measurements = JSON.stringify(body.measurements);
+      console.log(measurements, "m");
       getSessionUrl(state.quote, line_items, measurements);
     } catch (e) {
       console.trace(e);
@@ -124,29 +125,21 @@ function ClientTapeMeasurementScreen() {
   };
 
   const measurmentsObjMaker = () => {
-    let str = `
-    Arm Cirmunference: ${circumferenceSection.arm},
-    Chest Cirmunference: ${circumferenceSection.chest},
-    Waist Cirmunference: ${circumferenceSection.waist},
-    Hip Cirmunference: ${circumferenceSection.hip},
-    Thigh Cirmunference: ${circumferenceSection.thigh},
-    Calf Cirmunference: ${circumferenceSection.calf},
-    Ankle Cirmunference: ${circumferenceSection.ankle},
-    Head To Floor Length: ${lengthSection.head_to_floor},
-    Shoulder To Floor Length: ${lengthSection.shoulder_to_floor},
-    Waist To Floor Length: ${lengthSection.waist_to_floor},
-    Arm Length: ${lengthSection.arm_length},
-    Leg Length: ${lengthSection.leg_length}
-    `;
-
-    str.replace("\n", " ");
-
-    const obj = {
-      type: "tape",
-      value: str,
+    let DATA = {
+      ArmCirmunference: circumferenceSection.arm,
+      ChestCirmunferenc: circumferenceSection.chest,
+      WaistCirmunferenc: circumferenceSection.waist,
+      HipCirmunferenc: circumferenceSection.hip,
+      ThighCirmunferenc: circumferenceSection.thigh,
+      CalfCirmunferenc: circumferenceSection.calf,
+      AnkleCirmunferenc: circumferenceSection.ankle,
+      HeadToFloorLengt: lengthSection.head_to_floor,
+      ShoulderToFloorLengt: lengthSection.shoulder_to_floor,
+      WaistToFloorLengt: lengthSection.waist_to_floor,
+      ArmLengt: lengthSection.arm_length,
+      LegLengt: lengthSection.leg_length,
     };
-
-    return obj;
+    return DATA;
   };
 
   const navToOrders = () => {
