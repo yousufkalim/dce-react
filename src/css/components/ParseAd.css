@@ -5,11 +5,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 88%;
+  /* height: 88%; */
   width: 70%;
   background-color: #fff8f7;
   border-radius: 20px;
   box-shadow: 4px 6px 10px #d1cbc6;
+  padding: 5% 0%;
 }
 
 .pa_steps_row {
@@ -19,7 +20,6 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding-top: 5%;
 }
 
 .pa_content_row {

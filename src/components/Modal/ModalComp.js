@@ -51,7 +51,7 @@ const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
           {
             RenderComp =="tapemeasurements"? (
             <TapeMeasurements 
-            state={state}
+            state={JSON.parse(state?.measurements?.value)}
             />
             )
             : 

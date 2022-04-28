@@ -724,10 +724,11 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
     });
   };
   const store = Store();
+  console.log(state,"state");
   return (
     <>
       <div className="pa_profile_section_container">
-        {store.userRole == "client" ? (
+        {state?.quotes?.length===0 || !state.quotes? (
           <>
             <div
               className="pa_profile_section_input_container"
@@ -836,11 +837,11 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           </div>
         </div>
 
-        {store.userRole == "tailor" ? (
+        {store.userRole == "tailor" || state?.quotes?.length>0 ? (
           <div
             className="pa_payment_section_input_container"
             style={{
-              borderRadius: "20px",
+              borderRadius: "25px",
               marginBottom: "2%",
             }}
           >
@@ -852,7 +853,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 disabled={disabled}
                 className="pa_payment_section_input_input"
                 type="number"
-                //defaultValue={state.min_price}
+                defaultValue={state?.quotes[0]?.price}
                 onChange={(e) => _setState("min_price", e.target.value)}
                 placeholder="€0"
               />

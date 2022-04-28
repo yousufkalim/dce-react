@@ -92,7 +92,12 @@ function TailorViewOrderScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({ 
+      note: adData?.budget.note,
+      min_price: adData?.budget.min_price,
+      max_price: adData?.budget.max_price,
+      quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+    });
       
     } catch (e) {
       console.trace(e);
@@ -111,6 +116,7 @@ function TailorViewOrderScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
+              height:"112vh"
             }}
           >
             <div className="client_edit_ad_screen_row1">
