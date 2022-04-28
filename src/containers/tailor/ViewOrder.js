@@ -34,6 +34,7 @@ function TailorViewOrderScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [ad, setAd] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -46,6 +47,7 @@ function TailorViewOrderScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    userRole:""
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -61,6 +63,7 @@ function TailorViewOrderScreen() {
 
   useEffect(() => {
     getAd();
+    getProfile();
   }, []);
 
   // func to get current project
@@ -80,6 +83,7 @@ function TailorViewOrderScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        userRole:userData?.user?.role
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -92,12 +96,23 @@ function TailorViewOrderScreen() {
         },
       });
       setNotesSection(adData.budget);
+      
     } catch (e) {
       console.trace(e);
     }
     setIsLoading(false);
   };
-
+  const getProfile = async () => {
+    let response;
+    try {
+      response = await Api("get", `/auth`);
+      const userData = response.data.user;
+      setProfile(userData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
   return (
     <>
       {isLoading ? (
@@ -136,7 +151,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "8%",
                   }}
                 >
                   <div className="pa_steps_row">
@@ -155,6 +170,7 @@ function TailorViewOrderScreen() {
                       disabled
                       state={basicSection}
                       setState={setBasicSection}
+                      profile={profile}
                     />
                   </div>
                 </div>
@@ -172,7 +188,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "7%",
                   }}
                 >
                   <div className="pa_steps_row">
@@ -248,7 +264,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "7%",
                   }}
                 >
                   <div className="pa_steps_row">
