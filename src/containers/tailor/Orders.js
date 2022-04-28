@@ -43,6 +43,7 @@ function TailorOrdersScreen() {
     try {
       response = await Api("post", `/orders/byQuery`, { tailor: user._id });
       const ordersData = response.data.orders;
+      console.log("ordersData",ordersData);
       const _ordersRequest = ordersData
         .filter((_) => _.type == "direct" && _.status == "pending")
         .splice(-4);
@@ -127,12 +128,9 @@ function TailorOrdersScreen() {
   };
 
   const navToViewOrder = (_) => {
+    console.log(_)
     navigate(`/view_order/${_}`);
   };
-  console.log(ordersRequest, "ordersRequest");
-  console.log(ordersInProgress, "ordersInProgress");
-  console.log(ordersCompleted, "ordersCompleted");
-  console.log(ordersDiscarded, "ordersDiscarded");
   return (
     <>
       <div className="container-page-vertical">
@@ -178,7 +176,7 @@ function TailorOrdersScreen() {
                 discardOrder={discardOrder}
                 navToViewOrder={navToViewOrder}
               />
-            ))}
+  ))}
           </div>
         </div>
         <div
@@ -350,6 +348,7 @@ function OrderRequestListTile(props) {
 }
 
 function OrderInProgressListTile(props) {
+  console.log(props,"nm");
   const { t } = useTranslation();
 
   const navigate = useNavigate();

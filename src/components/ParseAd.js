@@ -4,7 +4,7 @@ import axios from "axios";
 
 import AutoComplete from "../components/AutoComplete";
 
-import Modal from './Modal/ModalComp'
+import Modal from "./Modal/ModalComp";
 
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
@@ -26,7 +26,6 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function BasicSection({
   state,
-  profile,
   setState,
   onClick,
   disabled,
@@ -35,9 +34,7 @@ function BasicSection({
   handleImageSelect,
 }) {
   const { t } = useTranslation();
-
   const _setState = (key, value) => {
-    console.log(key, value);
     const obj = {};
     obj[key] = value;
     setState({
@@ -225,9 +222,18 @@ function BasicSection({
             ))}
           </div>
         </div>
-        <Modal _setState ={_setState }  RenderComp="tapemeasurements" state={state} open={state?.openModal}/>
+        <Modal
+          _setState={_setState}
+          RenderComp="tapemeasurements"
+          state={state}
+          open={state?.openModal}
+        />
         <div
-        onClick={()=>state?.measurements?.type=="tape" && store.userRole=="tailor"? (_setState("openModal",true)):""}
+          onClick={() =>
+            state?.measurements?.type == "tape" && store.userRole == "tailor"
+              ? _setState("openModal", true)
+              : ""
+          }
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
@@ -235,11 +241,10 @@ function BasicSection({
             marginBottom: "1%",
           }}
         >
-          <div   className="pa_profile_section_input_label">
+          <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t("Measurements")}</p>
           </div>
-          <div  className="pa_profile_section_input_input">
-           
+          <div className="pa_profile_section_input_input">
             <CustomInput
               disabled={
                 disabled ||
@@ -718,86 +723,90 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
       ...obj,
     });
   };
-
+  const store = Store();
   return (
     <>
       <div className="pa_profile_section_container">
-        <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Choose Method")}
-            </p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
+        {store.userRole == "client" ? (
+          <>
+            <div
+              className="pa_profile_section_input_container"
+              style={{
+                borderRadius: "20px",
+                marginBottom: "2%",
               }}
-              selectID="payment_type"
-              selectName="payment_type"
-              selectNullValue={t("Fixed price")}
-              selectValue={state.type}
-              onChange={(e) => _setState("type", t(e.target.value))}
-              menuItems={[
-                <MenuItem value={"fixed"}>{t("Fixed price")}</MenuItem>,
-                <MenuItem value={"hourly"}>{t("Hourly Rate")}</MenuItem>,
-              ]}
-            />
-          </div>
-        </div>
-        <div
-          className="pa_payment_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">
-              {t("Set Minimum Price")}
-            </p>
-          </div>
-          <div className="pa_payment_section_input_input_container">
-            <input
-              disabled={disabled}
-              className="pa_payment_section_input_input"
-              type="number"
-              defaultValue={state.min_price}
-              onChange={(e) => _setState("min_price", e.target.value)}
-              placeholder="€0"
-            />
-          </div>
-        </div>
-        <div
-          className="pa_payment_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">
-              {t("Set Maximum Price")}
-            </p>
-          </div>
-          <div className="pa_payment_section_input_input_container">
-            <input
-              disabled={disabled}
-              className="pa_payment_section_input_input"
-              type="number"
-              defaultValue={state.max_price}
-              onChange={(e) => _setState("max_price", e.target.value)}
-              placeholder="€0"
-            />
-          </div>
-        </div>
+            >
+              <div className="pa_profile_section_input_label">
+                <p className="pa_profile_section_input_text">
+                  {t("Choose Method")}
+                </p>
+              </div>
+              <div className="pa_profile_section_input_input">
+                <CustomDropDown
+                  disabled={disabled}
+                  labelStyle={{
+                    display: "none",
+                  }}
+                  selectID="payment_type"
+                  selectName="payment_type"
+                  selectNullValue={t("Fixed price")}
+                  selectValue={state.type}
+                  onChange={(e) => _setState("type", t(e.target.value))}
+                  menuItems={[
+                    <MenuItem value={"fixed"}>{t("Fixed price")}</MenuItem>,
+                    <MenuItem value={"hourly"}>{t("Hourly Rate")}</MenuItem>,
+                  ]}
+                />
+              </div>
+            </div>
+            <div
+              className="pa_payment_section_input_container"
+              style={{
+                borderRadius: "20px",
+                marginBottom: "2%",
+              }}
+            >
+              <div className="pa_payment_section_input_label">
+                <p className="pa_payment_section_input_text">
+                  {t("Set Minimum Price")}
+                </p>
+              </div>
+              <div className="pa_payment_section_input_input_container">
+                <input
+                  disabled={disabled}
+                  className="pa_payment_section_input_input"
+                  type="number"
+                  defaultValue={state.min_price}
+                  onChange={(e) => _setState("min_price", e.target.value)}
+                  placeholder="€0"
+                />
+              </div>
+            </div>
+            <div
+              className="pa_payment_section_input_container"
+              style={{
+                borderRadius: "20px",
+                marginBottom: "2%",
+              }}
+            >
+              <div className="pa_payment_section_input_label">
+                <p className="pa_payment_section_input_text">
+                  {t("Set Maximum Price")}
+                </p>
+              </div>
+              <div className="pa_payment_section_input_input_container">
+                <input
+                  disabled={disabled}
+                  className="pa_payment_section_input_input"
+                  type="number"
+                  defaultValue={state.max_price}
+                  onChange={(e) => _setState("max_price", e.target.value)}
+                  placeholder="€0"
+                />
+              </div>
+            </div>
+          </>
+        ) : null}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -826,6 +835,30 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             />
           </div>
         </div>
+
+        {store.userRole == "tailor" ? (
+          <div
+            className="pa_payment_section_input_container"
+            style={{
+              borderRadius: "20px",
+              marginBottom: "2%",
+            }}
+          >
+            <div className="pa_payment_section_input_label">
+              <p className="pa_payment_section_input_text">{t("Bill")}</p>
+            </div>
+            <div className="pa_payment_section_input_input_container">
+              <input
+                disabled={disabled}
+                className="pa_payment_section_input_input"
+                type="number"
+                //defaultValue={state.min_price}
+                onChange={(e) => _setState("min_price", e.target.value)}
+                placeholder="€0"
+              />
+            </div>
+          </div>
+        ) : null}
         {!onClick ? (
           <></>
         ) : (

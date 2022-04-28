@@ -166,7 +166,7 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"100vh",
+              height:"106vh",
               padding:"1% 0%"
             }}
           >
@@ -348,8 +348,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_input_container"
                   style={{
-                    borderBottomLeftRadius: "20px",
-                    borderBottomRightRadius: "20px",
+                   borderRadius:"15px",
                     marginBottom: "2%",
                   }}
                 >
@@ -374,8 +373,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_textarea_container"
                   style={{
-                    borderTopLeftRadius: "20px",
-                    borderTopRightRadius: "20px",
+                   borderRadius:"15px",
                     marginBottom: "10%",
                   }}
                 >
