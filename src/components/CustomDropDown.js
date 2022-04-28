@@ -57,7 +57,7 @@ function CustomDropDown({
           value={selectValue}
           className={classes.input}
           onChange={onChange}
-          renderValue={(value) => (value.length > 0 ? value : selectNullValue)}
+          renderValue={(value) => (value?.length > 0 ? value : selectNullValue)}
           IconComponent={KeyboardArrowDownRoundedIcon}
           sx={{
             color: valuecolor === "on" ? "#ffffff" : "#A0A0A0",
