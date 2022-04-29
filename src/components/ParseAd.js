@@ -63,6 +63,7 @@ function BasicSection({
     handleCloseMeasurements();
   };
   const store = Store();
+  console.log(image);
   return (
     <>
       <div className="pa_profile_section_container">
@@ -222,11 +223,11 @@ function BasicSection({
             ))}
           </div>
         </div>
-        <Modal
+          <Modal
           _setState={_setState}
           RenderComp="tapemeasurements"
-          state={state}
-          open={state?.openModal}
+             state={state}
+             open={state?.openModal}
         />
         <div
           onClick={() =>
@@ -267,7 +268,7 @@ function BasicSection({
                   ? "Discussed on call"
                   : ""
               }
-              inputDefaultValue={state.measurements.value}
+              inputDefaultValue={state?.measurements?.value}
               onChange={(e) => {
                 setState({
                   ...state,
@@ -393,7 +394,7 @@ function BasicSection({
             <label className="upload-pic-label" htmlFor="filePicker">
               <input
                 disabled={disabled}
-                // multiple
+                multiple
                 type="file"
                 accept="image/*"
                 hidden
@@ -409,6 +410,13 @@ function BasicSection({
               </div>
             </label>
           </div>
+        </div>
+        <div className="selected-images-container">
+          {
+            image?.files?.map((val)=>(
+            <span> {val?.name} </span>
+            ))
+          }
         </div>
         <div className="checkbox-container">
           <Checkbox
@@ -724,7 +732,6 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
     });
   };
   const store = Store();
-  console.log(state,"state");
   return (
     <>
       <div className="pa_profile_section_container">
@@ -777,10 +784,11 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   disabled={disabled}
                   className="pa_payment_section_input_input"
                   type="number"
-                  defaultValue={state.min_price}
-                  onChange={(e) => _setState("min_price", e.target.value)}
+                  defaultValue={`${state.min_price}`}
+                  onChange={(e) =>{ _setState("min_price", e.target.value)}}
                   placeholder="€0"
                 />
+                 {state.min_price?<span className="input-currency-sign">€</span>:null}
               </div>
             </div>
             <div
@@ -804,6 +812,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   onChange={(e) => _setState("max_price", e.target.value)}
                   placeholder="€0"
                 />
+                 {state.max_price?<span className="input-currency-sign">€</span>:null}
               </div>
             </div>
           </>
@@ -857,6 +866,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 onChange={(e) => _setState("min_price", e.target.value)}
                 placeholder="€0"
               />
+               {state?.quotes[0]?.price?<span className="input-currency-sign">€</span>:null}
             </div>
           </div>
         ) : null}

@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useEffect} from "react";
 import CustomInput from "../../components/CustomInput";
 
 const TapeMeasurements = ({state}) => {
+
+  console.log(state);
   return (
     <>
      

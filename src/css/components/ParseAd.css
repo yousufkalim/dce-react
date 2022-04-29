@@ -204,7 +204,7 @@
 }
 
 .pa_payment_section_input_input_container input::placeholder {
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 .pa_payment_section_input_input {
   text-align: end;
@@ -214,8 +214,8 @@
   font-size: 40px;
   font-weight: 900;
 }
-.pa_payment_section_input_input{
-color: #000000;
+.pa_payment_section_input_input {
+  color: #000000;
 }
 .pa_payment_section_consent_container {
   width: 90%;
@@ -235,11 +235,26 @@ color: #000000;
   font-size: 11px;
   font-weight: 600;
 }
-
-
+.input-currency-sign {
+  position: relative;
+  bottom: 13px;
+  font-size: 24px;
+}
+.selected-images-container{
+  padding: 2% 0%;
+  font-size: 10px;
+  width: 88%;
+  /* margin: 0% -1%; */
+  display: flex;
+  justify-content: flex-start;
+  margin: auto;
+}
+.selected-images-container>*{
+  padding: 0% 2%;
+}
 /* build */
-.css-i44wyl{
-  border:none !important;
+.css-i44wyl {
+  border: none !important;
 }
 /* media-queries */
 
