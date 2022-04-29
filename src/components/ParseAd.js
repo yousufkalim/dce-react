@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
 
 import AutoComplete from "../components/AutoComplete";
+
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 import Modal from "./Modal/ModalComp";
 
@@ -23,7 +26,6 @@ import UploadSVG from "../assets/upload.svg";
 import { Store } from "../StoreContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 function BasicSection({
   state,
   setState,
@@ -43,8 +45,9 @@ function BasicSection({
     });
   };
 
-  const [anchorElMeasurements, setAnchorElMeasurements] = React.useState(null);
+  const [anchorElMeasurements, setAnchorElMeasurements] = useState(null);
   const openMeasurements = Boolean(anchorElMeasurements);
+  const [inputValue, setInputValue] = useState("");
   const handleClickMeasurements = (event) => {
     setAnchorElMeasurements(event.currentTarget);
   };
@@ -63,7 +66,6 @@ function BasicSection({
     handleCloseMeasurements();
   };
   const store = Store();
-  console.log(image);
   return (
     <>
       <div className="pa_profile_section_container">
@@ -223,15 +225,15 @@ function BasicSection({
             ))}
           </div>
         </div>
-          <Modal
+        <Modal
           _setState={_setState}
           RenderComp="tapemeasurements"
-             state={state}
-             open={state?.openModal}
+          state={state}
+          open={state?.openModal}
         />
         <div
           onClick={() =>
-            state?.measurements?.type == "tape" && store.userRole == "tailor"
+            state?.measurements?.type == "tape"
               ? _setState("openModal", true)
               : ""
           }
@@ -321,11 +323,14 @@ function BasicSection({
             borderTopRightRadius: "20px",
             marginTop: "2%",
             backgroundColor: state.color
-              ? colors.filter((_) => _.name == state.color)[0].value
+              ? colors.filter((_) => _.name == state?.color)[0]?.value
               : null,
           }}
         >
-          <div className="pa_profile_section_input_label">
+          <div
+            style={{ width: "42%" }}
+            className="pa_profile_section_input_label"
+          >
             <p
               style={{ color: state.color ? "#ffffff" : "" }}
               className="pa_profile_section_input_text"
@@ -333,8 +338,11 @@ function BasicSection({
               {t("Colour")}
             </p>
           </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
+          <div
+            style={{ width: "100%" }}
+            className="pa_profile_section_input_input"
+          >
+            {/* <CustomDropDown
               disabled={disabled}
               labelStyle={{
                 display: "none",
@@ -348,6 +356,27 @@ function BasicSection({
                 <MenuItem value={_.name}> {_.name}</MenuItem>
               ))}
               valuecolor={state.color ? "on" : "off"}
+            /> */}
+            {/* <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={top100Films}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Movie" />}
+    /> */}
+            <Autocomplete
+              disabled={disabled}
+              value={state?.color}
+              onChange={(event, newValue) => {
+                _setState("color", newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              options={colors.map((val) => val?.name)}
+              sx={{ width: 390}}
+              renderInput={(params) => <TextField {...params} />}
             />
           </div>
         </div>
@@ -412,11 +441,9 @@ function BasicSection({
           </div>
         </div>
         <div className="selected-images-container">
-          {
-            image?.files?.map((val)=>(
+          {image?.files?.map((val) => (
             <span> {val?.name} </span>
-            ))
-          }
+          ))}
         </div>
         <div className="checkbox-container">
           <Checkbox
@@ -735,7 +762,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
   return (
     <>
       <div className="pa_profile_section_container">
-        {state?.quotes?.length===0 || !state.quotes? (
+        {state?.quotes?.length === 0 || !state.quotes ? (
           <>
             <div
               className="pa_profile_section_input_container"
@@ -785,10 +812,14 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   className="pa_payment_section_input_input"
                   type="number"
                   defaultValue={`${state.min_price}`}
-                  onChange={(e) =>{ _setState("min_price", e.target.value)}}
+                  onChange={(e) => {
+                    _setState("min_price", e.target.value);
+                  }}
                   placeholder="€0"
                 />
-                 {state.min_price?<span className="input-currency-sign">€</span>:null}
+                {state.min_price ? (
+                  <span className="input-currency-sign">€</span>
+                ) : null}
               </div>
             </div>
             <div
@@ -812,7 +843,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   onChange={(e) => _setState("max_price", e.target.value)}
                   placeholder="€0"
                 />
-                 {state.max_price?<span className="input-currency-sign">€</span>:null}
+                {state.max_price ? (
+                  <span className="input-currency-sign">€</span>
+                ) : null}
               </div>
             </div>
           </>
@@ -846,7 +879,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
           </div>
         </div>
 
-        {store.userRole == "tailor" || state?.quotes?.length>0 ? (
+        {store.userRole == "tailor" || state?.quotes?.length > 0 ? (
           <div
             className="pa_payment_section_input_container"
             style={{
@@ -866,7 +899,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 onChange={(e) => _setState("min_price", e.target.value)}
                 placeholder="€0"
               />
-               {state?.quotes[0]?.price?<span className="input-currency-sign">€</span>:null}
+              {state?.quotes[0]?.price ? (
+                <span className="input-currency-sign">€</span>
+              ) : null}
             </div>
           </div>
         ) : null}

@@ -190,7 +190,7 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"116vh"
+              height:"118vh"
             }}
           >
             <div style={{height:"100%"}} className="client_edit_ad_screen_row1">

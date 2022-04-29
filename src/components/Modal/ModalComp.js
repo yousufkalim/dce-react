@@ -60,12 +60,6 @@ const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
           {
             RenderComp =="tapemeasurements"? (
             <TapeMeasurements 
-            // state={
-            //   state?.measurements?.value!="" || typeof(state.measurements.value)!="string"?
-            //   JSON.parse(state?.measurements?.value)
-            //   :
-            //   state?.measurements?.value}
-            //state={state?.measurements?.value? JSON.parse(state?.measurements?.value): false}
             state={checkJson(state?.measurements?.value)}
             />
             )
