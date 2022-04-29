@@ -226,7 +226,7 @@ function ClientCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "6%",
                 }}
-                minmax="on"
+                minmax={true}
               />
               <CustomDatePicker
                 disableFuture

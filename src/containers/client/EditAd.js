@@ -93,7 +93,12 @@ function ClientEditAdScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({ 
+        note: adData?.budget.note,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+      });
     } catch (e) {
       console.trace(e);
     }
@@ -185,10 +190,10 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"106vh"
+              height:"118vh"
             }}
           >
-            <div style={{height:"auto"}} className="client_edit_ad_screen_row1">
+            <div style={{height:"100%"}} className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{

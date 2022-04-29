@@ -129,10 +129,6 @@ function TailorOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-  console.log(ordersRequest, "ordersRequest");
-  console.log(ordersInProgress, "ordersInProgress");
-  console.log(ordersCompleted, "ordersCompleted");
-  console.log(ordersDiscarded, "ordersDiscarded");
   return (
     <>
       <div className="container-page-vertical">
@@ -178,7 +174,7 @@ function TailorOrdersScreen() {
                 discardOrder={discardOrder}
                 navToViewOrder={navToViewOrder}
               />
-            ))}
+  ))}
           </div>
         </div>
         <div
@@ -350,6 +346,7 @@ function OrderRequestListTile(props) {
 }
 
 function OrderInProgressListTile(props) {
+  console.log(props,"nm");
   const { t } = useTranslation();
 
   const navigate = useNavigate();

@@ -34,7 +34,6 @@ function TailorViewOrderScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [ad, setAd] = useState(null);
-  const [profile, setProfile] = useState(null);
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -63,7 +62,6 @@ function TailorViewOrderScreen() {
 
   useEffect(() => {
     getAd();
-    getProfile();
   }, []);
 
   // func to get current project
@@ -72,7 +70,7 @@ function TailorViewOrderScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
-      console.log(adData, "<><>adData");
+      console.log("adData",adData);
       setAd(adData);
       setBasicSection({
         gender: adData.gender,
@@ -83,7 +81,6 @@ function TailorViewOrderScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
-        userRole:userData?.user?.role
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -95,24 +92,19 @@ function TailorViewOrderScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({ 
+      note: adData?.budget.note,
+      min_price: adData?.budget.min_price,
+      max_price: adData?.budget.max_price,
+      quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+    });
       
     } catch (e) {
       console.trace(e);
     }
     setIsLoading(false);
   };
-  const getProfile = async () => {
-    let response;
-    try {
-      response = await Api("get", `/auth`);
-      const userData = response.data.user;
-      setProfile(userData);
-    } catch (e) {
-      console.trace(e);
-    }
-    return;
-  };
+  
   return (
     <>
       {isLoading ? (
@@ -124,6 +116,7 @@ function TailorViewOrderScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
+              height:"112vh"
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -170,7 +163,6 @@ function TailorViewOrderScreen() {
                       disabled
                       state={basicSection}
                       setState={setBasicSection}
-                      profile={profile}
                     />
                   </div>
                 </div>

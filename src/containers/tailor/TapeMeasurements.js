@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useEffect} from "react";
 import CustomInput from "../../components/CustomInput";
 
-const TapeMeasurements = () => {
+const TapeMeasurements = ({state}) => {
+
+  console.log(state);
   return (
     <>
      
@@ -26,7 +28,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                //disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -35,8 +37,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                //inputDefaultValue={state?.measurements.arm}
-                //onChange={(e) => _setState("arm", e.target.value)}
+                inputDefaultValue={state?.ArmCirmunference}
               />
             </div>
           </div>
@@ -52,7 +53,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                // // disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -61,8 +62,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.chest}
-                // onChange={(e) => _setState("chest", e.target.value)}
+                inputDefaultValue={state?.ChestCirmunferenc}
               />
             </div>
           </div>
@@ -78,7 +78,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                // // disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -87,8 +87,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.waist}
-                // onChange={(e) => _setState("waist", e.target.value)}
+                 inputDefaultValue={state?.WaistCirmunferenc}
               />
             </div>
           </div>
@@ -104,7 +103,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                // // disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -113,8 +112,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.hip}
-                // onChange={(e) => _setState("hip", e.target.value)}
+                 inputDefaultValue={state?.HipCirmunferenc}
               />
             </div>
           </div>
@@ -130,7 +128,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                // // disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -139,8 +137,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.thigh}
-                // onChange={(e) => _setState("thigh", e.target.value)}
+                 inputDefaultValue={state?.ThighCirmunferenc}
               />
             </div>
           </div>
@@ -156,7 +153,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                // // disabled={disabled}
+               disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -165,9 +162,8 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.calf}
-                // onChange={(e) => _setState("calf", e.target.value)}
-              />
+                inputDefaultValue={state?.CalfCirmunferenc}
+                 />
             </div>
           </div>
           <div
@@ -182,7 +178,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                // // disabled={disabled}
+              disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -191,8 +187,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.ankle}
-                // onChange={(e) => _setState("ankle", e.target.value)}
+                inputDefaultValue={state?.AnkleCirmunferenc}
               />
             </div>
           </div>
@@ -223,8 +218,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.head_to_floor}
-                // onChange={(e) => _setState("head_to_floor", e.target.value)}
+                inputDefaultValue={state?.HeadToFloorLengt}
               />
             </div>
           </div>
@@ -242,7 +236,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                //disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -251,8 +245,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.shoulder_to_floor}
-                // onChange={(e) => _setState("shoulder_to_floor", e.target.value)}
+                inputDefaultValue={state?.ShoulderToFloorLengt}
               />
             </div>
           </div>
@@ -270,7 +263,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                //disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -279,8 +272,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.waist_to_floor}
-                // onChange={(e) => _setState("waist_to_floor", e.target.value)}
+                inputDefaultValue={state?.WaistToFloorLengt}
               />
             </div>
           </div>
@@ -298,7 +290,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                //disabled={disabled}
+                disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -307,8 +299,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.arm_length}
-                // onChange={(e) => _setState("arm_length", e.target.value)}
+                inputDefaultValue={state?.ArmLengt}
               />
             </div>
           </div>
@@ -326,7 +317,7 @@ const TapeMeasurements = () => {
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
-                //disabled={disabled}
+               disabled
                 labelStyle={{
                   display: "none",
                 }}
@@ -335,8 +326,7 @@ const TapeMeasurements = () => {
                   fontSize: "12px",
                 }}
                 inputPlaceholder="Select size"
-                // inputDefaultValue={state.leg_length}
-                // onChange={(e) => _setState("leg_length", e.target.value)}
+                inputDefaultValue={state?.LegLengt}
               />
             </div>
           </div>

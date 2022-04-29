@@ -8,9 +8,7 @@ import Typography from '@mui/material/Typography';
 import GetTape from '../../containers/client/GetTape'
 import OrderAcceptForm from '../../containers/client/OrderAcceptForm'
 import TapeMeasurements from '../../containers/tailor/TapeMeasurements'
-
-import cross from "../../assets/Cross.svg";
-
+import cross from '../../assets/Cross.svg'
 const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => { 
@@ -29,6 +27,17 @@ const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
       boxShadow: 24,
       p: 4,
     };
+    console.log(state.measurements.value);
+    console.log(typeof(state.measurements.value),"val");
+   const checkJson=(value)=>{
+     let parsedValue
+    try {
+      parsedValue = JSON.parse(value);
+  } catch (e) {
+      return false;
+  }
+  return parsedValue;
+   }
   return (
     <div>
     {/* <Button onClick={handleOpen}>Open modal</Button> */}
@@ -51,7 +60,7 @@ const ModalComp = ({setOpen,state, open,RenderComp,_setState}) => {
           {
             RenderComp =="tapemeasurements"? (
             <TapeMeasurements 
-            state={state}
+            state={checkJson(state?.measurements?.value)}
             />
             )
             : 
