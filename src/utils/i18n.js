@@ -379,8 +379,17 @@ i18n
           small: "small",
           large: "large",
           medium: "medium",
-
           "Leg length": "Leg length",
+          //colors
+          White:"White",
+          "Silver Grey":"Silver Grey",
+          "Pink Purple":"Pink Purple",
+          "Light Grey":"Light Grey",
+          "Cameo Brown":"Cameo Brown",
+          "Date Red":"Date Red",
+           Muave:"Muave",
+           "Bright Pink":"Bright Pink",
+           Red:"Red"
         },
       },
       fr: {
@@ -760,6 +769,16 @@ i18n
           Delivery: "Livraison",
           Notes: "Remarques",
           "Catalogue created successfully.": "Catalogue créé avec succès.",
+           //colors
+           White:"blanche",
+           "Silver Grey":"Gris Argenté",
+           "Pink Purple":"Rose-mauve",
+           "Light Grey":"Gris clair",
+           "Cameo Brown":"Brun camée",
+           "Date Red":"Date Rouge",
+            Muave:"Muave",
+            "Bright Pink":"Rose vif",
+            Red:"Rouge"
         },
       },
     },

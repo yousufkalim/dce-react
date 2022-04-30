@@ -366,7 +366,7 @@ function BasicSection({
     /> */}
             <Autocomplete
               disabled={disabled}
-              value={state?.color}
+              value={t(state?.color)}
               onChange={(event, newValue) => {
                 _setState("color", newValue);
               }}
