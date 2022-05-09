@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import UserSVG from "../../assets/dummy.jpeg";
-import attachment from "../../assets/attachment.svg";
 import threedots from "../../assets/dotted.svg";
 import { useTranslation } from "react-i18next";
+
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
 import assetsURL from "../../utils/Assets";
 import { getUser } from "../../utils/Auth";
 
-const ChatHeader = ({ directUser }) => {
-  const { t } = useTranslation();
+import { toast } from "react-toastify";
 
-  const [inputData, setInputData] = useState("");
-  const onChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.files[0];
-    setInputData(e.target.files[0]);
-  };
+import Api from "../../api/index";
+
+const ChatHeader = ({ directUser }) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const { t } = useTranslation();
 
   const store = Store();
   const updateStore = UpdateStore();
@@ -45,6 +46,75 @@ const ChatHeader = ({ directUser }) => {
   } else {
     receiver.status = "online";
   }
+
+  const [anchorElMenu, setAnchorElMenu] = React.useState(null);
+  const openMenu = Boolean(anchorElMenu);
+  const handleClickMenu = (event) => {
+    setAnchorElMenu(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorElMenu(null);
+  };
+
+  const handleDelete = async (e) => {
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      response = await Api("delete", `/chats/${store.chat._id}`);
+
+      if (response?.data?.success) {
+        handleCloseMenu();
+        toast.success("Chat deleted successfully");
+        _loadChats();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
+
+  const _loadChats = async () => {
+    let response;
+    try {
+      const body = {};
+      if (user.role == "client") {
+        body["client"] = user._id;
+      } else {
+        body["tailor"] = user._id;
+      }
+      response = await Api("post", `/chats/byQuery`, body);
+      const chatsData = response.data.chats;
+      updateStore({
+        chats: chatsData,
+        chat: chatsData[0],
+      });
+      _loadMessages(chatsData[0]._id);
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const _loadMessages = async (chatID) => {
+    let response;
+    try {
+      response = await Api("post", `/messages/byQuery`, {
+        chat: chatID,
+      });
+      const messagesData = response.data.messages ?? [];
+      updateStore({
+        messages: messagesData,
+      });
+    } catch (e) {
+      console.trace(e);
+    }
+  };
 
   return (
     <>
@@ -78,18 +148,28 @@ const ChatHeader = ({ directUser }) => {
           </div>
         </div>
         <div>
-          <label htmlFor="filePicker">
-            <input
-              type="file"
-              accept="*"
-              hidden
-              id="filePicker"
-              onChange={onChange}
-              name="attachment"
-            />
-            <img className="chat-header-icons" src={attachment} />
-          </label>
-          <img className="chat-header-icons-two" src={threedots} />
+          <img
+            className="chat-header-icons-two"
+            src={threedots}
+            onClick={handleClickMenu}
+          />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElMenu}
+            open={openMenu}
+            onClose={handleCloseMenu}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem
+              style={{ borderBottom: "1px solid #DBDBDB", margin: "5px 20px" }}
+              className="menu-item"
+              onClick={handleDelete}
+            >
+              <p>{t("Delete")}</p>
+            </MenuItem>
+          </Menu>
         </div>
       </div>
     </>

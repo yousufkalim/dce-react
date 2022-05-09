@@ -403,6 +403,23 @@ function clientContactSupportOrder(data) {
   return validated;
 }
 
+function tailorContactSupportOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Reason", data["reason"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
 export {
   login,
   clientRegister,
@@ -423,4 +440,5 @@ export {
   parseMeasurementCircumferenceSection,
   parseMeasurementLengthSection,
   clientContactSupportOrder,
+  tailorContactSupportOrder,
 };
