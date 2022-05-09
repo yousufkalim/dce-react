@@ -24,19 +24,27 @@ const ChatHeader = ({ directUser }) => {
 
   const getReceiver = () => {
     if (user.role == "client") {
-      return store.chat?.tailor ?? directUser;
+      return store.chat?.tailor ?? directUser ?? {};
     } else {
-      return store.chat?.client ?? directUser;
+      return store.chat?.client ?? directUser ?? {};
     }
   };
 
   const user = getUser();
   const receiver = getReceiver();
 
-  const receiverCheckIn = new Date(receiver.check_in);
-  const receiverCheckOut = new Date(receiver.check_out);
+  const receiverCheckIn = receiver.check_in
+    ? new Date(receiver.check_in)
+    : null;
+  const receiverCheckOut = receiver.check_out
+    ? new Date(receiver.check_out)
+    : null;
 
-  receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
+  if (receiverCheckIn && receiverCheckOut) {
+    receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
+  } else {
+    receiver.status = "online";
+  }
 
   return (
     <>
@@ -52,7 +60,13 @@ const ChatHeader = ({ directUser }) => {
             src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
           />
           <div>
-            <p className="usr">{receiver?.name ?? "N/A"}</p>
+            <p className="usr">
+              {receiver.name
+                ? receiver.name
+                : store.chat.is_admin
+                ? "Admin"
+                : "N/A"}
+            </p>
             {receiver.status == "online" ? (
               <p className="is-online">{t("Online")}</p>
             ) : (
