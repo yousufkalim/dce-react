@@ -141,11 +141,11 @@ function InputSection() {
   return (
     <>
       <div className="pa_profile_section_container">
-        <div
+      <div
           className="pa_profile_section_input_container"
           style={{
-            borderBottomLeftRadius: "20px",
-            borderBottomRightRadius: "20px",
+            borderTopLeftRadius: "20px",
+            borderTopRightRadius: "20px",
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -165,12 +165,9 @@ function InputSection() {
             />
           </div>
         </div>
+        
         <div
           className="pa_profile_section_input_container"
-          style={{
-            borderTopLeftRadius: "20px",
-            borderTopRightRadius: "20px",
-          }}
         >
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t("Gender")}</p>
@@ -207,7 +204,7 @@ function InputSection() {
               selectID="category"
               selectName="category"
               selectNullValue={t("Select category")}
-              selectValue={state.category}
+              selectValue={t(state.category)}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,

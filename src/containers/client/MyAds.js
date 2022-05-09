@@ -7,7 +7,6 @@ import CustomDatePicker from "../../components/CustomDatePicker";
 import CustomTimePicker from "../../components/CustomTimePicker";
 import NoOrders from "../../components/NoOrders";
 import UserSVG from "../../assets/dummy.jpeg";
-
 import { Checkbox, Modal } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -246,9 +245,9 @@ function AdListTile(props) {
         </div>
         <div className="cas_ad_list_tile_column2">
           <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}$`}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}€`}</p>
           <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props.budget.max_price}$`}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props.budget.max_price}€`}</p>
           <p
             style={{
               fontSize: "16px",
@@ -410,7 +409,7 @@ function AdQuoteListTile(props) {
         </p>
         <p
           style={{ fontSize: "20px", fontWeight: "bold" }}
-        >{`${props.quote.price}$`}</p>
+        >{`${props.quote.price}€`}</p>
       </div>
       <div
         className="cas_quote_list_tile_column5"
@@ -514,32 +513,20 @@ const AcceptQuoteModal = (props) => {
 
     try {
       setIsProcessing(true);
-
-      const body = {
-        quote: props.quote._id,
-      };
-
-      response = await Api("post", "/quotes/accept", body);
-
-      if (response?.data?.success) {
-        toast.success(response.data.message);
-        navToOrders();
-      }
-
-      // Stripe
-      // const line_items = [
-      //   {
-      //     price_data: {
-      //       currency: "eur",
-      //       product_data: {
-      //         name: "Order",
-      //       },
-      //       unit_amount: props.quote.price * 100,
-      //     },
-      //     quantity: 1,
-      //   },
-      // ];
-      // getSessionUrl(props.quote, line_items);
+      //Stripe
+      const line_items = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Order",
+            },
+            unit_amount: props.quote.price * 100,
+          },
+          quantity: 1,
+        },
+      ];
+      getSessionUrl(props.quote, line_items);
     } catch (e) {
       console.trace(e);
     }

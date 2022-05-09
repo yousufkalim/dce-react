@@ -277,6 +277,7 @@ function TailorProfileScreen() {
                     borderTopLeftRadius: "10px",
                     borderTopRightRadius: "10px",
                   }}
+                  minmax="on"
                   onChange={(e) => _setState("phone", e.target.value)}
                 />
                 <ProfileInput
@@ -291,7 +292,7 @@ function TailorProfileScreen() {
                   name="Date Of Birth"
                   placeholder={t("Date Of Birth")}
                   defaultValue={new Date(profile.dob).toLocaleDateString(
-                    "en-US"
+                    "en-GB"
                   )}
                   img={ProfileBirthdaySVG}
                   divStyle={{
@@ -304,20 +305,20 @@ function TailorProfileScreen() {
                   disabled
                   name="Country"
                   placeholder={t("Country")}
-                  defaultValue={profile.country}
+                  defaultValue={"France"}
                   img={ProfileCountrySVG}
                   divStyle={{
                     borderTopLeftRadius: "10px",
                     borderTopRightRadius: "10px",
                   }}
                 />
-                <ProfileInput
+                {/* <ProfileInput
                   disabled
                   name="City"
                   placeholder={t("City")}
                   defaultValue={profile.city}
                   img={ProfileCitySVG}
-                />
+                /> */}
                 <ProfileInput
                   disabled
                   name="Location"
@@ -351,7 +352,7 @@ function TailorProfileScreen() {
                     profile.last_password_changed
                       ? new Date(
                           profile.last_password_changed
-                        ).toLocaleDateString("en-US")
+                        ).toLocaleDateString("en-GB")
                       : "N/A"
                   }
                   label={t("Last Password Changed")}
@@ -372,7 +373,7 @@ function TailorProfileScreen() {
                   name="Account Created"
                   placeholder={t("Account Created")}
                   defaultValue={new Date(profile.createdAt).toLocaleDateString(
-                    "en-US"
+                    "en-GB"
                   )}
                   label={t("Account Created")}
                   divStyle={{
@@ -440,7 +441,7 @@ function TailorProfileScreen() {
                     disabled={!toEdit}
                     name="Any Confection"
                     alignText={"textend"}
-                    placeholder="$120"
+                    placeholder="€120"
                     defaultValue={profile.hourly_rate}
                     label={t("Any Confection")}
                     inputType="number"
@@ -477,7 +478,7 @@ function TailorProfileScreen() {
                     disabled={!toEdit}
                     name="Confection"
                     alignText={"textend"}
-                    placeholder="$500"
+                    placeholder="€500"
                     defaultValue={profile.free_shipping_rate}
                     label="Confection"
                     inputType="number"
@@ -538,6 +539,7 @@ function ProfileInput({
   label,
   disabled,
   divStyle,
+  minmax,
   alignText,
 }) {
   return (
@@ -565,6 +567,7 @@ function ProfileInput({
           name={name}
           onChange={onChange}
           placeholder={placeholder}
+          maxlength={minmax === "on" && "10"}
           defaultValue={defaultValue}
           type={inputType}
         />

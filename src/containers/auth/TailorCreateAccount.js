@@ -247,7 +247,7 @@ function TailorCreateAccountScreen() {
                 />
               </div>
 
-              <div className="create_account_screen_row2_row1">
+              {/* <div className="create_account_screen_row2_row1">
                 <CustomInput
                   disabled
                   labelText="Zip Code"
@@ -272,7 +272,7 @@ function TailorCreateAccountScreen() {
                   }}
                   Inputvalue={address?.city}
                 />
-              </div>
+              </div> */}
               <CustomInput
                 labelText="Phone No"
                 inputName="Phone No"
@@ -280,6 +280,7 @@ function TailorCreateAccountScreen() {
                 divStyle={{
                   marginBottom: "2%",
                 }}
+                minmax={true}
               />
               <div
                 style={{

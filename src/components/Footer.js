@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import FooterLogo from "../assets/FooterLogo.svg";
-import FacebookIcon from "../assets/FacebookIcon.svg";
 import TwitterIcon from "../assets/TwitterIcon.svg";
-import LinkedinIcon from "../assets/LinkedinIcon.svg";
+import InstagramIcon from '../assets/Instagram.svg'
 import { useTranslation } from "react-i18next";
-
 import Api from "../api/index";
 
 import { useNavigate } from "react-router-dom";
@@ -41,6 +39,7 @@ const Footer = () => {
   const navToDesigner = () => {
     navigate("/tailors");
   };
+
   const getProfile = async () => {
     let response;
     try {
@@ -52,7 +51,6 @@ const Footer = () => {
     }
     return;
   };
-  console.log(profile, "><>");
   return (
     <div className="footer_main_div">
       <img src={FooterLogo} style={{ height: "50%" }}></img>
@@ -86,13 +84,8 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <img src={FacebookIcon} className="footer_icon"></img>
+            <img src={InstagramIcon} className="footer_icon"></img>
             <img src={TwitterIcon} className="footer_icon"></img>
-            <img
-              src={LinkedinIcon}
-              className="footer_icon"
-              style={{ padding: "0" }}
-            ></img>
           </div>
         </div>
       </div>

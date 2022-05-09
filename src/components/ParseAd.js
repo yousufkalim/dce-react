@@ -1,8 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
 
 import AutoComplete from "../components/AutoComplete";
+
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+
+import Modal from "./Modal/ModalComp";
 
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
@@ -18,8 +23,9 @@ import { useTranslation } from "react-i18next";
 import { materialFabrics, colors } from "../utils/Constants";
 import UploadSVG from "../assets/upload.svg";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import { Store } from "../StoreContext";
 
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 function BasicSection({
   state,
   setState,
@@ -30,7 +36,6 @@ function BasicSection({
   handleImageSelect,
 }) {
   const { t } = useTranslation();
-
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -40,8 +45,9 @@ function BasicSection({
     });
   };
 
-  const [anchorElMeasurements, setAnchorElMeasurements] = React.useState(null);
+  const [anchorElMeasurements, setAnchorElMeasurements] = useState(null);
   const openMeasurements = Boolean(anchorElMeasurements);
+  const [inputValue, setInputValue] = useState("");
   const handleClickMeasurements = (event) => {
     setAnchorElMeasurements(event.currentTarget);
   };
@@ -59,7 +65,7 @@ function BasicSection({
     });
     handleCloseMeasurements();
   };
-
+  const store = Store();
   return (
     <>
       <div className="pa_profile_section_container">
@@ -107,7 +113,7 @@ function BasicSection({
               selectID="category"
               selectName="category"
               selectNullValue={t("Select one category for your ad")}
-              selectValue={state.category}
+              selectValue={t(state.category)}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
@@ -219,7 +225,18 @@ function BasicSection({
             ))}
           </div>
         </div>
+        <Modal
+          _setState={_setState}
+          RenderComp="tapemeasurements"
+          state={state}
+          open={state?.openModal}
+        />
         <div
+          onClick={() =>
+            state?.measurements?.type == "tape"
+              ? _setState("openModal", true)
+              : ""
+          }
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
@@ -253,7 +270,7 @@ function BasicSection({
                   ? "Discussed on call"
                   : ""
               }
-              inputDefaultValue={state.measurements.value}
+              inputDefaultValue={state?.measurements?.value}
               onChange={(e) => {
                 setState({
                   ...state,
@@ -306,11 +323,14 @@ function BasicSection({
             borderTopRightRadius: "20px",
             marginTop: "2%",
             backgroundColor: state.color
-              ? colors.filter((_) => _.name == state.color)[0].value
+              ? colors.filter((_) => _.name == state?.color)[0]?.value
               : null,
           }}
         >
-          <div className="pa_profile_section_input_label">
+          <div
+            style={{ width: "42%" }}
+            className="pa_profile_section_input_label"
+          >
             <p
               style={{ color: state.color ? "#ffffff" : "" }}
               className="pa_profile_section_input_text"
@@ -318,8 +338,11 @@ function BasicSection({
               {t("Colour")}
             </p>
           </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
+          <div
+            style={{ width: "100%" }}
+            className="pa_profile_section_input_input"
+          >
+            {/* <CustomDropDown
               disabled={disabled}
               labelStyle={{
                 display: "none",
@@ -333,6 +356,27 @@ function BasicSection({
                 <MenuItem value={_.name}> {_.name}</MenuItem>
               ))}
               valuecolor={state.color ? "on" : "off"}
+            /> */}
+            {/* <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={top100Films}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Movie" />}
+    /> */}
+            <Autocomplete
+              disabled={disabled}
+              value={state?.color}
+              onChange={(event, newValue) => {
+                _setState("color", newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              options={colors.map((val) => val?.name)}
+              sx={{ width: 390}}
+              renderInput={(params) => <TextField {...params} />}
             />
           </div>
         </div>
@@ -357,10 +401,10 @@ function BasicSection({
               selectID="materialFabrics"
               selectName="materialFabrics"
               selectNullValue={t("Select Fabric Style")}
-              selectValue={state.fabric}
+              selectValue={t(state.fabric)}
               onChange={(e) => _setState("fabric", e.target.value)}
               menuItems={materialFabrics.map((_) => (
-                <MenuItem value={_.title}>{_.title}</MenuItem>
+                <MenuItem value={_.title}>{t(_.title)}</MenuItem>
               ))}
             />
           </div>
@@ -379,6 +423,7 @@ function BasicSection({
             <label className="upload-pic-label" htmlFor="filePicker">
               <input
                 disabled={disabled}
+                multiple
                 type="file"
                 accept="image/*"
                 hidden
@@ -394,6 +439,11 @@ function BasicSection({
               </div>
             </label>
           </div>
+        </div>
+        <div className="selected-images-container">
+          {image?.files?.map((val) => (
+            <span> {val?.name} </span>
+          ))}
         </div>
         <div className="checkbox-container">
           <Checkbox
@@ -515,8 +565,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
         <div
           className="pa_profile_section_input_container"
           style={{
-            borderTopLeftRadius: "20px",
-            borderTopRightRadius: "20px",
+            borderRadius: "20px",
+            marginBottom: "2%",
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -542,7 +592,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             </div>
           </div>
         </div>
-        <div className="pa_profile_section_input_container">
+        {/* <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">Zip code</p>
           </div>
@@ -560,8 +610,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               Inputvalue={state?.address?.zip}
             />
           </div>
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className="pa_profile_section_input_container"
           style={{
             borderBottomLeftRadius: "20px",
@@ -586,7 +636,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               Inputvalue={state?.address?.city}
             />
           </div>
-        </div>
+        </div> */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -708,86 +758,98 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
       ...obj,
     });
   };
-
+  const store = Store();
   return (
     <>
       <div className="pa_profile_section_container">
-        <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Choose Method")}
-            </p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
+        {state?.quotes?.length === 0 || !state.quotes ? (
+          <>
+            <div
+              className="pa_profile_section_input_container"
+              style={{
+                borderRadius: "20px",
+                marginBottom: "2%",
               }}
-              selectID="payment_type"
-              selectName="payment_type"
-              selectNullValue={t("Fixed price")}
-              selectValue={state.type}
-              onChange={(e) => _setState("type", t(e.target.value))}
-              menuItems={[
-                <MenuItem value={"fixed"}>{t("Fixed price")}</MenuItem>,
-                <MenuItem value={"hourly"}>{t("Hourly Rate")}</MenuItem>,
-              ]}
-            />
-          </div>
-        </div>
-        <div
-          className="pa_payment_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">
-              {t("Set Minimum Price")}
-            </p>
-          </div>
-          <div className="pa_payment_section_input_input_container">
-            <input
-              disabled={disabled}
-              className="pa_payment_section_input_input"
-              type="number"
-              defaultValue={state.min_price}
-              onChange={(e) => _setState("min_price", e.target.value)}
-              placeholder="$0"
-            />
-          </div>
-        </div>
-        <div
-          className="pa_payment_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_payment_section_input_label">
-            <p className="pa_payment_section_input_text">
-              {t("Set Maximum Price")}
-            </p>
-          </div>
-          <div className="pa_payment_section_input_input_container">
-            <input
-              disabled={disabled}
-              className="pa_payment_section_input_input"
-              type="number"
-              defaultValue={state.max_price}
-              onChange={(e) => _setState("max_price", e.target.value)}
-              placeholder="$0"
-            />
-          </div>
-        </div>
+            >
+              <div className="pa_profile_section_input_label">
+                <p className="pa_profile_section_input_text">
+                  {t("Choose Method")}
+                </p>
+              </div>
+              <div className="pa_profile_section_input_input">
+                <CustomDropDown
+                  disabled={disabled}
+                  labelStyle={{
+                    display: "none",
+                  }}
+                  selectID="payment_type"
+                  selectName="payment_type"
+                  selectNullValue={t("Fixed price")}
+                  selectValue={state.type}
+                  onChange={(e) => _setState("type", t(e.target.value))}
+                  menuItems={[
+                    <MenuItem value={"fixed"}>{t("Fixed price")}</MenuItem>,
+                    <MenuItem value={"hourly"}>{t("Hourly Rate")}</MenuItem>,
+                  ]}
+                />
+              </div>
+            </div>
+            <div
+              className="pa_payment_section_input_container"
+              style={{
+                borderRadius: "20px",
+                marginBottom: "2%",
+              }}
+            >
+              <div className="pa_payment_section_input_label">
+                <p className="pa_payment_section_input_text">
+                  {t("Set Minimum Price")}
+                </p>
+              </div>
+              <div className="pa_payment_section_input_input_container">
+                <input
+                  disabled={disabled}
+                  className="pa_payment_section_input_input"
+                  type="number"
+                  defaultValue={`${state.min_price}`}
+                  onChange={(e) => {
+                    _setState("min_price", e.target.value);
+                  }}
+                  placeholder="€0"
+                />
+                {state.min_price ? (
+                  <span className="input-currency-sign">€</span>
+                ) : null}
+              </div>
+            </div>
+            <div
+              className="pa_payment_section_input_container"
+              style={{
+                borderRadius: "20px",
+                marginBottom: "2%",
+              }}
+            >
+              <div className="pa_payment_section_input_label">
+                <p className="pa_payment_section_input_text">
+                  {t("Set Maximum Price")}
+                </p>
+              </div>
+              <div className="pa_payment_section_input_input_container">
+                <input
+                  disabled={disabled}
+                  className="pa_payment_section_input_input"
+                  type="number"
+                  defaultValue={state.max_price}
+                  onChange={(e) => _setState("max_price", e.target.value)}
+                  placeholder="€0"
+                />
+                {state.max_price ? (
+                  <span className="input-currency-sign">€</span>
+                ) : null}
+              </div>
+            </div>
+          </>
+        ) : null}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -816,6 +878,33 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             />
           </div>
         </div>
+
+        {store.userRole == "tailor" || state?.quotes?.length > 0 ? (
+          <div
+            className="pa_payment_section_input_container"
+            style={{
+              borderRadius: "25px",
+              marginBottom: "2%",
+            }}
+          >
+            <div className="pa_payment_section_input_label">
+              <p className="pa_payment_section_input_text">{t("Bill")}</p>
+            </div>
+            <div className="pa_payment_section_input_input_container">
+              <input
+                disabled={disabled}
+                className="pa_payment_section_input_input"
+                type="number"
+                defaultValue={state?.quotes[0]?.price}
+                onChange={(e) => _setState("min_price", e.target.value)}
+                placeholder="€0"
+              />
+              {state?.quotes[0]?.price ? (
+                <span className="input-currency-sign">€</span>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
         {!onClick ? (
           <></>
         ) : (

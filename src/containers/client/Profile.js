@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/dummy.jpeg";
+import UserSVG from "../../assets/User.svg";
 import DesignElaborationSVG from "../../assets/profile.svg";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
@@ -105,14 +105,13 @@ function ClientProfileScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
-
+      body.append("phone", state.phone);
       body.append("phone", state.phone);
       if (state.password) {
         body.append("password", state.password);
       }
       body.append("image", profileImage);
-
-      response = await Api("put", "/clients", body);
+      response = await Api("put", `/clients/${profile?._id}`, body);
 
       if (response?.data?.success) {
         toast.success(t("Profile updated successfully."));
@@ -211,6 +210,7 @@ function ClientProfileScreen() {
                     placeholder={t("Phone")}
                     defaultValue={profile.phone}
                     img={ProfilePhoneSVG}
+                    minmax="on"
                     divStyle={{
                       borderTopLeftRadius: "10px",
                       borderTopRightRadius: "10px",
@@ -229,29 +229,31 @@ function ClientProfileScreen() {
                     name="Date Of Birth"
                     placeholder={t("Date Of Birth")}
                     defaultValue={new Date(profile.dob).toLocaleDateString(
-                      "en-US"
+                      "en-GB"
                     )}
                     img={ProfileBirthdaySVG}
                   />
-                  <ProfileInput
-                    disabled
-                    name="Country"
-                    placeholder={t("Country")}
-                    defaultValue={profile.country}
-                    img={ProfileCountrySVG}
-                  />
-                  <ProfileInput
+                  {
+                    <ProfileInput
+                      disabled
+                      name="Country"
+                      placeholder={t("Country")}
+                      defaultValue={"France"}
+                      img={ProfileCountrySVG}
+                    />
+                  }
+                  {/*<ProfileInput
                     disabled
                     name="City"
                     placeholder={t("City")}
                     defaultValue={profile.city}
                     img={ProfileCitySVG}
-                  />
+                  /> */}
                   <ProfileInput
                     disabled
                     name="Location"
                     placeholder={t("Location")}
-                    defaultValue={profile.location}
+                    defaultValue={profile.address}
                     img={ProfileLocationSVG}
                     divStyle={{
                       borderBottomLeftRadius: "10px",
@@ -290,7 +292,7 @@ function ClientProfileScreen() {
                     placeholder={t("Account Created")}
                     defaultValue={new Date(
                       profile.createdAt
-                    ).toLocaleDateString("en-US")}
+                    ).toLocaleDateString("en-GB")}
                     label={t("Account Created")}
                     divStyle={{
                       borderBottomLeftRadius: "10px",
@@ -317,6 +319,7 @@ function ProfileInput({
   img,
   label,
   divStyle,
+  minmax,
 }) {
   return (
     <div
@@ -336,6 +339,7 @@ function ProfileInput({
           disabled={disabled}
           className="cps_profile_input_input"
           name={name}
+          maxlength={minmax === "on" && "10"}
           onChange={onChange}
           placeholder={placeholder}
           defaultValue={defaultValue}

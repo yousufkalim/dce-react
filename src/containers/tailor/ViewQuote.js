@@ -37,6 +37,7 @@ function TailorViewQuoteScreen() {
 
   const [ad, setAd] = useState(null);
   const [basicSection, setBasicSection] = useState({
+    openModal: "false",
     gender: "",
     category: "",
     name: "",
@@ -95,7 +96,12 @@ function TailorViewQuoteScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({ 
+        note: adData?.budget.note,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+      });
     } catch (e) {
       console.trace(e);
     }
@@ -154,7 +160,6 @@ function TailorViewQuoteScreen() {
   const navToChat = () => {
     navigate(`/chat`, { state: { directUser: ad.client } });
   };
-
   return (
     <>
       {isLoading ? (
@@ -166,8 +171,8 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"110vh",
-              padding:"1% 0%"
+              height:"112vh",
+              padding: "1% 0%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -224,8 +229,8 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFC396",
-              height:"110vh",
-              padding:"1% 0%"
+              height: "100vh",
+              padding: "1% 0%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -282,8 +287,8 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFFCFB",
-              height:"108vh",
-              padding:"1% 0%"
+              height: "100vh",
+              padding: "1% 0%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -348,8 +353,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_input_container"
                   style={{
-                    borderBottomLeftRadius: "20px",
-                    borderBottomRightRadius: "20px",
+                   borderRadius:"15px",
                     marginBottom: "2%",
                   }}
                 >
@@ -374,8 +378,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_textarea_container"
                   style={{
-                    borderTopLeftRadius: "20px",
-                    borderTopRightRadius: "20px",
+                   borderRadius:"15px",
                     marginBottom: "10%",
                   }}
                 >

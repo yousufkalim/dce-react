@@ -129,10 +129,6 @@ function TailorOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
-console.log(ordersRequest,"ordersRequest");
-console.log(ordersInProgress,"ordersInProgress");
-console.log(ordersCompleted,"ordersCompleted");
-console.log(ordersDiscarded,"ordersDiscarded");
   return (
     <>
       <div className="container-page-vertical">
@@ -178,7 +174,7 @@ console.log(ordersDiscarded,"ordersDiscarded");
                 discardOrder={discardOrder}
                 navToViewOrder={navToViewOrder}
               />
-            ))}
+  ))}
           </div>
         </div>
         <div
@@ -350,6 +346,7 @@ function OrderRequestListTile(props) {
 }
 
 function OrderInProgressListTile(props) {
+  console.log(props,"nm");
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -436,7 +433,7 @@ function OrderInProgressListTile(props) {
         >
           {`${
             props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"
-          }$`}
+          }€`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           {t("Bill")}
@@ -542,7 +539,7 @@ function OrderCompletedListTile(props) {
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${
             props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"
-          }$`}
+          }€`}
         </p>
       </div>
       <div
@@ -650,7 +647,7 @@ function OrderDiscardedListTile(props) {
           {t("Offer")}
         </p>
         <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}$`}
+          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}€`}
         </p>
       </div>
       <div

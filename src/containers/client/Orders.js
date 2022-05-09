@@ -42,6 +42,7 @@ function ClientOrdersScreen() {
         client: user._id,
         tailor: { $ne: null },
       });
+      console.log(response,"response");
       const ordersData = response.data.orders;
       setOrders(ordersData);
       setIsLoading(false);
@@ -88,17 +89,6 @@ function ClientOrdersScreen() {
           </div>
           {orders?.length === 0 ? (
             <>
-              {/* <div
-                style={{
-                  marginTop: "10%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-              >
-                {t("No Orders")}
-              </div> */}
               <NoOrders RenderText="No Orders" />)
             </>
           ) : null}
@@ -122,7 +112,6 @@ function OrderListTile(props) {
     e.stopPropagation();
     setIsFeedbackOrderModal(true);
   };
-
   return (
     <div
       className="cos_order_list_tile_container"
@@ -206,7 +195,7 @@ function OrderListTile(props) {
         <p
           style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}
         >
-          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}$`}
+          {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
           {t("Bill")}

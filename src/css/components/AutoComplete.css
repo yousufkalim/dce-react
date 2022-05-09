@@ -11,6 +11,10 @@
 .css-ptiqhd-MuiSvgIcon-root{
     display: none !important;
 }
+
+.css-1vn6h6e-MuiAutocomplete-root .MuiOutlinedInput-root{
+    padding: 0 !important;
+}
 /* .css-p2adox-MuiAutocomplete-root .MuiOutlinedInput-root{
 padding: 0px !important;
 } */
@@ -32,4 +36,8 @@ padding: 0px !important;
 }
 .css-h9aa59 .MuiOutlinedInput-root{
     padding: 0px !important;
+}
+
+.css-1frk2v0 .MuiOutlinedInput-root{
+    padding: 0 !important;
 }

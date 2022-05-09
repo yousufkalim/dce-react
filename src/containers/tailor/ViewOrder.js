@@ -46,6 +46,7 @@ function TailorViewOrderScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    userRole:""
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -69,6 +70,7 @@ function TailorViewOrderScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log("adData",adData);
       setAd(adData);
       setBasicSection({
         gender: adData.gender,
@@ -90,13 +92,19 @@ function TailorViewOrderScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({ 
+      note: adData?.budget.note,
+      min_price: adData?.budget.min_price,
+      max_price: adData?.budget.max_price,
+      quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+    });
+      
     } catch (e) {
       console.trace(e);
     }
     setIsLoading(false);
   };
-
+  
   return (
     <>
       {isLoading ? (
@@ -108,6 +116,7 @@ function TailorViewOrderScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
+              height:"112vh"
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -135,7 +144,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "8%",
                   }}
                 >
                   <div className="pa_steps_row">
@@ -171,7 +180,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "7%",
                   }}
                 >
                   <div className="pa_steps_row">
@@ -247,7 +256,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "7%",
                   }}
                 >
                   <div className="pa_steps_row">

@@ -110,6 +110,9 @@ function ClientAppBar({
   const openNotifications = Boolean(anchorElNotifications);
   const handleClickNotifications = (event) => {
     setAnchorElNotifications(event.currentTarget);
+    if (notifications.filter((_) => !_.is_read).length > 0) {
+      _readNotifications();
+    }
   };
   const handleCloseNotifications = () => {
     setAnchorElNotifications(null);
@@ -165,6 +168,8 @@ function ClientAppBar({
       response = await Api("get", `/auth`);
       const userData = response.data.user;
       setProfile(userData);
+      console.log(userData, "userData");
+      updateStore({ userRole: userData.role });
     } catch (e) {
       console.trace(e);
     }
@@ -183,6 +188,18 @@ function ClientAppBar({
     }
     return;
   };
+
+  const _readNotifications = async () => {
+    let response;
+    try {
+      response = await Api("post", `/notifications/read`);
+      console.log(response.data);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
   const mobilemenu = () => {
     setToggle(!toggle);
   };
@@ -240,15 +257,19 @@ function ClientAppBar({
                 className="appbar_row2_notifications_img"
                 onClick={handleClickNotifications}
               />
-              <div className="notifications_count_pos">
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  {notifications.filter((_) => !_.is_read).length}
-                </p>
-              </div>
+              {notifications.filter((_) => !_.is_read).length > 0 ? (
+                <div className="notifications_count_pos">
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    {notifications.filter((_) => !_.is_read).length}
+                  </p>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             <Menu
               id="basic-menu"
@@ -312,7 +333,7 @@ function ClientAppBar({
                 <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
                 <p> {t("Profile")} </p>
               </MenuItem>
-              <MenuItem
+              {/* <MenuItem
                 className="menu-item support-padding"
                 onClick={() =>
                   changeLanguage(`${language == "en" ? "fr" : "en"}`)
@@ -320,21 +341,21 @@ function ClientAppBar({
               >
                 <GTranslateIcon sx={{ width: "20px" }} />
                 {language == "fr" ? "French" : "English"}
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem className="menu-item" onClick={navToSupport}>
                 <img style={{ width: "16px" }} src={SupportIcon} />
                 <p> {t("Support")}</p>
               </MenuItem>
-              <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
+              {/* <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
                 <img src={TermsConditionsIcon} />{" "}
                 <p>{t("Terms and Conditions")}</p>
-              </MenuItem>
-              <MenuItem
+              </MenuItem> */}
+              {/* <MenuItem
                 style={{ borderBottom: "1px solid #DBDBDB" }}
                 className="menu-item privacy-padding"
               >
                 <img src={PrivacyPolicyIcon} /> <p>{t("Privacy Policy")}</p>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem
                 className="menu-item sign-out-padding"
                 onClick={handleLogoutSubmit}

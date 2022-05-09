@@ -16,7 +16,8 @@ function CustomInput({
   divStyle,
   labelStyle,
   inputStyle,
-  dobinput
+  dobinput,
+  minmax,
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -64,6 +65,7 @@ function CustomInput({
           placeholder={inputPlaceholder}
           defaultValue={inputDefaultValue}
           value={Inputvalue}
+          maxlength={minmax?10:100}
           className="custom_input_input"
           style={{
             ...inputStyle,

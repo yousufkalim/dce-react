@@ -4,10 +4,11 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  // icon: {
-  //   right: 20,
-  //   color: "#000000",
-  // },
+  input: {
+    "& input.Mui-disabled": {
+      color: "green",
+    },
+  },
 }));
 
 function CustomDropDown({
@@ -22,7 +23,7 @@ function CustomDropDown({
   divStyle,
   labelStyle,
   selectSX,
-  valuecolor
+  valuecolor,
 }) {
   const classes = useStyles();
   return (
@@ -45,7 +46,7 @@ function CustomDropDown({
         style={{
           position: "relative",
           height: "100%",
-           width: "100%",
+          width: "100%",
         }}
       >
         <Select
@@ -54,18 +55,18 @@ function CustomDropDown({
           id={selectID}
           name={selectName}
           value={selectValue}
-          className="register_input_field"
+          className={classes.input}
           onChange={onChange}
-          renderValue={(value) => (value.length > 0 ? value : selectNullValue)}
+          renderValue={(value) => (value?.length > 0 ? value : selectNullValue)}
           IconComponent={KeyboardArrowDownRoundedIcon}
           sx={{
-            color: valuecolor==="on"?"#ffffff":"#A0A0A0",
+            color: valuecolor === "on" ? "#ffffff" :selectValue?"#000000": "#A0A0A0",
             minWidth: "100%",
             background: "transparent",
             ...selectSX,
           }}
         >
-  {menuItems}
+          {menuItems}
         </Select>
       </div>
     </div>

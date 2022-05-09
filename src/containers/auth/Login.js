@@ -58,9 +58,12 @@ function LoginScreen() {
       };
 
       response = await Api("post", "/auth/login", body);
-
+      // if (!response?.data?.success) {
+      //   toast.error("You have been blocked");
+      // } else
       if (response?.data?.success) {
         toast.success("Logged In");
+
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }

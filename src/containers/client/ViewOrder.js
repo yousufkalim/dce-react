@@ -82,7 +82,12 @@ function ClientViewOrderScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({ 
+        note: adData?.budget.note,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+      });
     } catch (e) {
       console.trace(e);
     }
@@ -100,6 +105,7 @@ function ClientViewOrderScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
+              height:"118vh"
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -156,6 +162,7 @@ function ClientViewOrderScreen() {
             className="container"
             style={{
               background: "#FFC396",
+              height:"80vh"
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -212,6 +219,7 @@ function ClientViewOrderScreen() {
             className="container"
             style={{
               background: "#FFFCFB",
+              height:"90vh"
             }}
           >
             <div className="client_edit_ad_screen_row1">
