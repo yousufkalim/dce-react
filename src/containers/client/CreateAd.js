@@ -32,6 +32,7 @@ function ClientCreateAdScreen() {
   const [image, setImage] = useState({
     files: [],
   });
+  const [Open, setOpen] = useState(false)
   // const [data, SetData] = useState({
   //   files: [],
   // });
@@ -67,7 +68,6 @@ function ClientCreateAdScreen() {
       files: [...image.files, ...event.target.files],
     });
   };
-
   const basicSectionCallback = () => {
     const isValidated = FormValidations.parseAdBasicSection(basicSection);
     if (!isValidated) {
@@ -228,6 +228,9 @@ function ClientCreateAdScreen() {
                     state={deliverySection}
                     setState={setDeliverySection}
                     onClick={deliverySectionCallback}
+                    image={image}
+                    Open={Open} 
+                    setOpen={setOpen}
                   />
                 ) : activeStep == 2 ? (
                   <ParseAd.NotesSection

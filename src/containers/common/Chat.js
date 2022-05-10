@@ -118,7 +118,6 @@ const ChatScreen = () => {
 
   return (
     <>
-      {console.log(store, "_store_")}
       <div
         style={{ background: "#DFDFDF" }}
         className="container-page-vertical"

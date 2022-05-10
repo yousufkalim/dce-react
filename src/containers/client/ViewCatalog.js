@@ -85,7 +85,7 @@ function ClientViewCatalogScreen() {
                     € {catalog.price}
                   </p>
                 </div>
-                <div className="view_catalog_screen_row1_column1_section">
+                {/* <div className="view_catalog_screen_row1_column1_section">
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
                     style={{
@@ -97,7 +97,7 @@ function ClientViewCatalogScreen() {
                   <p className="view_catalog_screen_row1_column1_text_2">
                     {calculateRating(catalog.ratings)}
                   </p>
-                </div>
+                </div> */}
                 <CustomButton
                   text={t("Place Order")}
                   onClick={navToOrderFromCatalog}
@@ -113,8 +113,7 @@ function ClientViewCatalogScreen() {
                   <img
                     style={{
                       height: "60%",
-                      width: "60%",
-                      objectFit: "cover",
+                      width: "75%",
                       borderTopLeftRadius: "20px",
                       borderBottomLeftRadius: "20px",
                     }}

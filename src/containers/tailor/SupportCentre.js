@@ -78,7 +78,6 @@ function Support({ item }) {
 
         <div className="supportReview">
           <button className="chatBtn">{t("Chat With Us")}</button>
-
           <h1 className="supportR">{item.review}</h1>
         </div>
       </div>

@@ -232,9 +232,9 @@ function DesignerListTile(props) {
       >
         {`${props.city}`}
       </p>
-      <div className="stars">
+      {/* <div className="stars">
         <Rating value={rating} size="small" />
-      </div>
+      </div> */}
     </div>
   );
 }
