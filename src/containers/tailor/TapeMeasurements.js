@@ -1,9 +1,9 @@
-import React,{useEffect} from "react";
+import React from "react";
 import CustomInput from "../../components/CustomInput";
+import { useTranslation } from "react-i18next";
 
 const TapeMeasurements = ({state}) => {
-
-  console.log(state);
+  const { t } = useTranslation();
   return (
     <>
      
@@ -11,11 +11,11 @@ const TapeMeasurements = ({state}) => {
         style={{ display: "flex", justifyContent: "center", padding: "2% 0%", marginBottom:"0%" }}
         className="custom_input_label"
       >
-        Tape Measurements
+        {t("Tape Measurements")}
       </div>
       <div className="measurement-container">
         <div className="container-circumference">
-          <p className="heading-measurements"> Circumference </p>
+          <p className="heading-measurements"> {t("Circumference")}</p>
           <div
             className="pa_profile_section_input_container"
             style={{
@@ -24,7 +24,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Arm</p>
+              <p className="pa_profile_section_input_text">{t("Arm")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -49,7 +49,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Chest size</p>
+              <p className="pa_profile_section_input_text">{t("Chest size")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -74,7 +74,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Waist size</p>
+              <p className="pa_profile_section_input_text">{t("Waist size")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -99,7 +99,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Hip</p>
+              <p className="pa_profile_section_input_text">{t("Hip")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -124,7 +124,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Thigh</p>
+              <p className="pa_profile_section_input_text">{t("Thigh")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -149,7 +149,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Calf</p>
+              <p className="pa_profile_section_input_text">{t("Calf")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -174,7 +174,7 @@ const TapeMeasurements = ({state}) => {
             }}
           >
             <div className="pa_profile_section_input_label">
-              <p className="pa_profile_section_input_text">Ankle</p>
+              <p className="pa_profile_section_input_text">{t("Ankle")}</p>
             </div>
             <div className="pa_profile_section_input_input">
               <CustomInput
@@ -194,7 +194,7 @@ const TapeMeasurements = ({state}) => {
         </div>
 
         <div className="container-length">
-          <p className="heading-measurements">Length</p>
+          <p className="heading-measurements">{t("Length")}</p>
           <div
             className="pa_profile_section_input_container"
             style={{
@@ -202,9 +202,9 @@ const TapeMeasurements = ({state}) => {
               marginBottom: "2%",
             }}
           >
-            <div className="pa_profile_section_input_label">
+            <div style={{width:"100%"}} className="pa_profile_section_input_label">
               <p className="pa_profile_section_input_text measurement_profile_section">
-                Head to floor height
+                {t("Head to floor height")}
               </p>
             </div>
             <div className="pa_profile_section_input_input">
@@ -231,7 +231,7 @@ const TapeMeasurements = ({state}) => {
           >
             <div className="pa_profile_section_input_label">
               <p className="pa_profile_section_input_text measurement_profile_section">
-                From shoulder to floor
+               {t("From shoulder to floor")}
               </p>
             </div>
             <div className="pa_profile_section_input_input">
@@ -256,9 +256,9 @@ const TapeMeasurements = ({state}) => {
               marginBottom: "2%",
             }}
           >
-            <div className="pa_profile_section_input_label">
+            <div style={{width:"100%"}} className="pa_profile_section_input_label">
               <p className="pa_profile_section_input_text measurement_profile_section">
-                From waist to floor
+                {t("From waist to floor")}
               </p>
             </div>
             <div className="pa_profile_section_input_input">
@@ -285,7 +285,7 @@ const TapeMeasurements = ({state}) => {
           >
             <div className="pa_profile_section_input_label">
               <p className="pa_profile_section_input_text measurement_profile_section">
-                Arm length <span style={{ color: "#A0A0A0" }}> (handle) </span>
+                {t("Arm length")} <span style={{ color: "#A0A0A0" }}> {t("(handle)")} </span>
               </p>
             </div>
             <div className="pa_profile_section_input_input">
@@ -312,7 +312,10 @@ const TapeMeasurements = ({state}) => {
           >
             <div className="pa_profile_section_input_label">
               <p className="pa_profile_section_input_text measurement_profile_section">
-                Leg length
+                {
+                
+                
+                t("Leg length")}
               </p>
             </div>
             <div className="pa_profile_section_input_input">

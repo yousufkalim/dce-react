@@ -5,13 +5,17 @@
   background: transparent !important;
   border-width: 0.5px !important;
   border-radius: 10px !important;
-}
+} 
 
 .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 10px 10px !important;
   font-size: 14px !important;
 }
 
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled
+{
+  -webkit-text-fill-color: black !important;
+}
 /* Production */
 
 .css-i44wyl {
@@ -31,3 +35,4 @@
 .css-igs3ac {
   border: none !important;
 }
+

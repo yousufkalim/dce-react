@@ -64,7 +64,7 @@ const ChatHeader = ({ directUser }) => {
           </div>
         </div>
         <div>
-          <label htmlFor="filePicker">
+          {/* <label htmlFor="filePicker">
             <input
               type="file"
               accept="*"
@@ -74,7 +74,7 @@ const ChatHeader = ({ directUser }) => {
               name="attachment"
             />
             <img className="chat-header-icons" src={attachment} />
-          </label>
+          </label> */}
           <img className="chat-header-icons-two" src={threedots} />
         </div>
       </div>

@@ -306,7 +306,7 @@ const FeedbackOrderModal = (props) => {
 
   return (
     <div className="tqs_sqm_container">
-      <div
+      {/* <div
         className="tqs_sqm_input_container"
         style={{
           borderBottomLeftRadius: "20px",
@@ -327,7 +327,7 @@ const FeedbackOrderModal = (props) => {
             }}
           />
         </div>
-      </div>
+      </div> */}
       <div
         className="tqs_sqm_textarea_container"
         style={{

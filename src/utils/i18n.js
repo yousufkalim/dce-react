@@ -114,7 +114,9 @@ i18n
           "Standard Size Chart": "Standard Size Chart",
           "Video Tutorial": "Video Tutorial",
           Measure: "Measure",
-
+          "Tape Measurements":"Tape Measurements",
+          "Circumference":"Circumference",
+          
           //orderFromCatalog
           "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
@@ -492,6 +494,8 @@ i18n
           "Standard size": "Taille standard",
           "Video Tutorial": "Didacticiel vidéo",
           Measure: "Mesure",
+          "Tape Measurements":"Mesures de bande",
+          "Circumference":"Circonférence",
 
           //orderFromCatalog
           "Catalogue Price": "Prix ​​catalogue",

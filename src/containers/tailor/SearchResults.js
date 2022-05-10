@@ -101,6 +101,8 @@ function TailorSearchResultsScreen() {
 }
 
 function SearchInput({ setSearchQuery, callback }) {
+  const { t } = useTranslation();
+
   return (
     <div
       style={{
@@ -109,7 +111,7 @@ function SearchInput({ setSearchQuery, callback }) {
     >
       <input
         type="text"
-        placeholder={t("Search")}
+        placeholder={t('Search')}
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
