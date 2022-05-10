@@ -384,11 +384,10 @@ function BasicSection({
               onChange={(event, newValue) => {
                 _setState("color", newValue);
               }}
-              inputValue={inputValue}
+              inputValue={t(inputValue)}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
-              }}
-              
+              }}  
               options={colors.map((val) => t(val?.name))}
               sx={{ width: 390}}
               renderInput={(params) => <TextField {...params} />}

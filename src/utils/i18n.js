@@ -38,7 +38,7 @@ i18n
           Profile: "Profile",
           Support: "Support",
           Logout: "Logout",
-          "Privacy Policy":"Privacy Policy",
+          "Privacy Policy": "Privacy Policy",
           "Order created successfully.": "Order created successfully.",
           "Ad updated successfully.": "Ad updated successfully.",
           Reviews: "Reviews",
@@ -68,7 +68,7 @@ i18n
           "Image must be selected": "Image must be selected",
           "Delivery Note": "Delivery Note",
           "Catalogue created successfully.": "Catalogue created successfully.",
-           "No Orders":"No Orders",
+          "No Orders": "No Orders",
           //my ads
           Ads: "Ads",
           "Name of Creation": "Name of Creation",
@@ -81,7 +81,7 @@ i18n
           Offer: "Offer",
           Discard: "Discard",
           "Standard size": "Standard size",
-          "No Ads Yet":"No Ads Yet",
+          "No Ads Yet": "No Ads Yet",
 
           "Chat Here": "Chat Here",
           "Ad Basic": "Ad Basic",
@@ -261,7 +261,7 @@ i18n
           //quotes
           "Name of Creation": "Name of Creation",
           "Ad for": "Ad for",
-          "No quotes yet":"No quotes yet",
+          "No quotes yet": "No quotes yet",
           //searchResults
           "Orders Found": "Orders Found",
           offer: "offer",
@@ -429,6 +429,17 @@ i18n
           Sponge: "Sponge",
           "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.":
             "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.",
+
+          //colors
+          White: "White",
+          "Silver Grey": "Silver Grey",
+          "Pink Purple": "Pink Purple",
+          "Light Grey": "Light Grey",
+          "Cameo Brown": "Cameo Brown",
+          "Date Red": "Date Red",
+          Muave: "Muave",
+          "Bright Pink": "Bright Pink",
+          Red: "Red",
         },
       },
       fr: {
@@ -454,7 +465,7 @@ i18n
           "Terms and Conditions": "Termes et conditions",
           Profile: "Profil",
           Quotes: "Devis",
-          "Privacy Policy":"Politique de confidentialité",
+          "Privacy Policy": "Politique de confidentialité",
           "Place New Ad": "Placer une nouvelle annonce",
           Support: "Soutien",
           Logout: "Se déconnecter",
@@ -487,10 +498,10 @@ i18n
           "Place Your Order": "Passer votre commande",
           "Feedback provided successfully.":
             "Commentaires fournis avec succès.",
-            "No Orders":"Aucune commande",
+          "No Orders": "Aucune commande",
           //my ads
           Ads: "Les publicités",
-          "No Ads Yet":"Aucune annonce pour le moment",
+          "No Ads Yet": "Aucune annonce pour le moment",
           "Name of Creation": "Nom de la création",
           "Ad for": "Annonce pour",
           "Delivery Date": "La date de livraison",
@@ -505,7 +516,7 @@ i18n
           Delivery: "Livraison",
           Payment: "Paiement",
           "Profile updated successfully.": "Mise à jour du profil réussie.",
-          
+
           //chats
           Online: "En ligne",
           "Last Online": "Dernière connexion",
@@ -686,7 +697,7 @@ i18n
           //quotes
           "Name of Creation": "Nom de la création",
           "Ad for": "Annonce pour",
-          "No quotes yet":"Pas encore de devis",
+          "No quotes yet": "Pas encore de devis",
           //searchResults
           "Orders Found": "Commandes trouvées",
           offer: "offre",
@@ -854,6 +865,17 @@ i18n
           Sponge: "Éponge",
           "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.":
             "",
+
+          //colors
+          White: "Blanche",
+          "Silver Grey": "Gris Argenté",
+          "Pink Purple": "Rose-mauve",
+          "Light Grey": "Gris clair",
+          "Cameo Brown": "Brun camée",
+          "Date Red": "Date Rouge",
+          Muave: "Mauve",
+          "Bright Pink": "Rose vif",
+          Red: "Rouge",
         },
       },
     },
