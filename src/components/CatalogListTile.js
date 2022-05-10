@@ -80,12 +80,12 @@ function CatalogListTile({
           </p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
-        <div className="tailor_catalog_list_tile_details">
+        {/* <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">
             {t("Reviews")}
           </p>
           <Rating name="read-only" value={rating} size="small" readOnly />
-        </div>
+        </div> */}
       </div>
     </div>
   );

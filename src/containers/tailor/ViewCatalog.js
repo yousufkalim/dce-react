@@ -86,7 +86,7 @@ function TailorViewCatalogScreen() {
                     € {catalog.price}
                   </p>
                 </div>
-                <div className="view_catalog_screen_row1_column1_section">
+                {/* <div className="view_catalog_screen_row1_column1_section">
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
                     style={{
@@ -98,7 +98,7 @@ function TailorViewCatalogScreen() {
                   <p className="view_catalog_screen_row1_column1_text_2">
                     {calculateRating(catalog.ratings)}
                   </p>
-                </div>
+                </div> */}
                 <CustomButton
                   text={t("Edit")}
                   onClick={navToEditCatalog}
@@ -113,9 +113,9 @@ function TailorViewCatalogScreen() {
                 <div className="view_catalog_screen_row1_column2_img">
                   <img
                     style={{
-                      width: "60%",
+                      width: "75%",
                       height: "60%",
-                      objectFit: "cover",
+                      //objectFit: "cover",
                       borderTopLeftRadius: "20px",
                       borderBottomLeftRadius: "20px",
                     }}

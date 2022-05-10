@@ -203,6 +203,8 @@ function TailorViewQuoteScreen() {
                   className="pa_container"
                   style={{
                     marginTop: "10%",
+                    paddingTop:"3%",
+                    paddingBottom:"1%"
                   }}
                 >
                   <div className="pa_steps_row">

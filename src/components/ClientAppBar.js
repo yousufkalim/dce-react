@@ -333,7 +333,7 @@ function ClientAppBar({
                 <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
                 <p> {t("Profile")} </p>
               </MenuItem>
-              {/* <MenuItem
+              <MenuItem
                 className="menu-item support-padding"
                 onClick={() =>
                   changeLanguage(`${language == "en" ? "fr" : "en"}`)
@@ -341,7 +341,7 @@ function ClientAppBar({
               >
                 <GTranslateIcon sx={{ width: "20px" }} />
                 {language == "fr" ? "French" : "English"}
-              </MenuItem> */}
+              </MenuItem>
               <MenuItem className="menu-item" onClick={navToSupport}>
                 <img style={{ width: "16px" }} src={SupportIcon} />
                 <p> {t("Support")}</p>
