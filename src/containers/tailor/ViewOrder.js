@@ -46,7 +46,8 @@ function TailorViewOrderScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
-    userRole:""
+    create_catalog_after_completion: false,
+    userRole: "",
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -70,7 +71,7 @@ function TailorViewOrderScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
-      console.log("adData",adData);
+      console.log("adData", adData);
       setAd(adData);
       setBasicSection({
         gender: adData.gender,
@@ -81,6 +82,7 @@ function TailorViewOrderScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        create_catalog_after_completion: adData.create_catalog_after_completion,
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -92,19 +94,18 @@ function TailorViewOrderScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection({ 
-      note: adData?.budget.note,
-      min_price: adData?.budget.min_price,
-      max_price: adData?.budget.max_price,
-      quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
-    });
-      
+      setNotesSection({
+        note: adData?.budget.note,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
+      });
     } catch (e) {
       console.trace(e);
     }
     setIsLoading(false);
   };
-  
+
   return (
     <>
       {isLoading ? (
@@ -116,7 +117,7 @@ function TailorViewOrderScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"112vh"
+              height: "112vh",
             }}
           >
             <div className="client_edit_ad_screen_row1">

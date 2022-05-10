@@ -30,7 +30,7 @@ function OrderFromCatalogScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
 
   const [catalog, setCatalog] = useState(null);
   const [basicSection, setBasicSection] = useState({
@@ -45,6 +45,7 @@ function OrderFromCatalogScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -57,9 +58,8 @@ function OrderFromCatalogScreen() {
     price: "",
   });
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+  const handleImagesSelect = (event) => {
+    setImages([...images, ...event.target.files]);
   };
 
   const _setNotesSection = (key, value) => {
@@ -107,6 +107,11 @@ function OrderFromCatalogScreen() {
       return;
     }
 
+    if (images.length == 0) {
+      toast.error(t("At least one image must be selected.")); // TODO: Trans
+      return;
+    }
+
     if (isProcessing) {
       return;
     }
@@ -133,6 +138,10 @@ function OrderFromCatalogScreen() {
         basicSection.includes_alteration_services
       );
       body.append(
+        "create_catalog_after_completion",
+        basicSection.create_catalog_after_completion // Will remain false anyways
+      );
+      body.append(
         "delivery",
         JSON.stringify({
           address: deliverySection.address.label,
@@ -153,7 +162,9 @@ function OrderFromCatalogScreen() {
           note: notesSection.note,
         })
       );
-      body.append("image", image);
+      for (let i = 0; i < images.length; i++) {
+        body.append("images", images[i]);
+      } // Multipart files share the same field name
 
       response = await Api("post", `/orders`, body);
 
@@ -228,9 +239,14 @@ function OrderFromCatalogScreen() {
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
-                      disables={["gender", "category", "name"]}
-                      image={image}
-                      handleImageSelect={handleImageSelect}
+                      disables={[
+                        "gender",
+                        "category",
+                        "name",
+                        "create_catalog_after_completion",
+                      ]}
+                      image={images}
+                      handleImageSelect={handleImagesSelect}
                     />
                   </div>
                 </div>

@@ -30,8 +30,7 @@ function ClientEditAdScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [image, setImage] = useState(null);
-
+  const [images, setImages] = useState([]);
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -44,6 +43,7 @@ function ClientEditAdScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -58,9 +58,8 @@ function ClientEditAdScreen() {
     note: "",
   });
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+  const handleImagesSelect = (event) => {
+    setImages([...images, ...event.target.files]);
   };
 
   useEffect(() => {
@@ -82,6 +81,7 @@ function ClientEditAdScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        create_catalog_after_completion: adData.create_catalog_after_completion,
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -94,10 +94,10 @@ function ClientEditAdScreen() {
         },
       });
       setNotesSection({
-        note: adData?.budget.note,
+        type: adData?.budget.type,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
+        note: adData?.budget.note,
       });
     } catch (e) {
       console.trace(e);
@@ -139,6 +139,10 @@ function ClientEditAdScreen() {
         basicSection.includes_alteration_services
       );
       body.append(
+        "create_catalog_after_completion",
+        basicSection.create_catalog_after_completion
+      );
+      body.append(
         "delivery",
         JSON.stringify({
           address: deliverySection.address.label,
@@ -160,7 +164,9 @@ function ClientEditAdScreen() {
           note: notesSection.note,
         })
       );
-      body.append("image", image);
+      for (let i = 0; i < images.length; i++) {
+        body.append("images", images[i]);
+      } // Multipart files share the same field name
 
       response = await Api("put", `/orders/${params.id}`, body);
 
@@ -239,8 +245,8 @@ function ClientEditAdScreen() {
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
-                      image={image}
-                      handleImageSelect={handleImageSelect}
+                      images={images}
+                      handleImagesSelect={handleImagesSelect}
                     />
                   </div>
                 </div>

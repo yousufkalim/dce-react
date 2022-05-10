@@ -36,8 +36,8 @@ function BasicSection({
   onClick,
   disabled,
   disables,
-  image,
-  handleImageSelect,
+  images,
+  handleImagesSelect,
 }) {
   const { t } = useTranslation();
   const _setState = (key, value) => {
@@ -70,13 +70,13 @@ function BasicSection({
     handleCloseMeasurements();
   };
   const store = Store();
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     inputRoot: {
       color: "#ffffff",
       "& .MuiOutlinedInput-input.Mui-disabled": {
-        "-webkit-text-fill-color":"#ffffff"
+        "-webkit-text-fill-color": "#ffffff",
       },
-    }
+    },
   }));
   const classes = useStyles();
   return (
@@ -387,9 +387,9 @@ function BasicSection({
               inputValue={t(inputValue)}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
-              }}  
+              }}
               options={colors.map((val) => t(val?.name))}
-              sx={{ width: 390}}
+              sx={{ width: 390 }}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -443,11 +443,11 @@ function BasicSection({
                 hidden
                 id="filePicker"
                 name="file"
-                onChange={handleImageSelect}
+                onChange={handleImagesSelect}
               />
               <div className="upload-img-text-cont">
                 <span className="upload-img-text">
-                  {image?.name ?? "Upload Drawing, Photo, Document, etc"}
+                  {"Upload Drawing, Photo, Document, etc"}
                 </span>
                 <img src={UploadSVG} />
               </div>
@@ -455,7 +455,7 @@ function BasicSection({
           </div>
         </div>
         <div className="selected-images-container">
-          {image?.files?.map((val) => (
+          {images?.map((val) => (
             <span> {val?.name} </span>
           ))}
         </div>
@@ -480,6 +480,33 @@ function BasicSection({
             <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
           </label>
         </div>
+        <div className="checkbox-container">
+          <Checkbox
+            {...label}
+            disabled={
+              disabled || disables?.includes("create_catalog_after_completion")
+            }
+            checked={state.create_catalog_after_completion}
+            sx={{
+              color: grey[900],
+              "&.Mui-checked": {
+                color: grey[900],
+              },
+            }}
+            onChange={(e) =>
+              _setState("create_catalog_after_completion", e.target.checked)
+            }
+          />
+          <label>
+            {" "}
+            <span className="duw-text">{t("Create Catalog After")}</span>{" "}
+            {/* TODO: Trans */}
+            <span className="alteration-txt">
+              {t("ORDER COMPLETION ?")}{" "}
+            </span>{" "}
+            {/* TODO: Trans */}
+          </label>
+        </div>
         {!onClick ? (
           <></>
         ) : (
@@ -498,7 +525,14 @@ function BasicSection({
   );
 }
 
-function DeliverySection({ state, setState, onClick, disabled,Open,setOpen }) {
+function DeliverySection({
+  state,
+  setState,
+  onClick,
+  disabled,
+  Open,
+  setOpen,
+}) {
   const { t } = useTranslation();
   const [addresses, setAddresses] = useState([]);
   const _setState = (key, value) => {
@@ -591,6 +625,7 @@ function DeliverySection({ state, setState, onClick, disabled,Open,setOpen }) {
           <div className="pa_profile_section_input_input">
             <div style={{ width: "100%" }}>
               <AutoComplete
+                disabled={disabled}
                 name="Address"
                 required={true}
                 label={"Address"}
@@ -729,7 +764,7 @@ function DeliverySection({ state, setState, onClick, disabled,Open,setOpen }) {
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
-            disablePast
+              disablePast
               disabled={disabled}
               setOpen={setOpen}
               Open={Open}
@@ -894,8 +929,9 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             />
           </div>
         </div>
-   {console.log(state.quotes,"dgfgdgdfv")}
-        {(store.userRole == "tailor" || state?.quotes?.length > 0)&&(state?.quotes[0]?.price>0) ? (
+        {console.log(state.quotes, "dgfgdgdfv")}
+        {(store.userRole == "tailor" || state?.quotes?.length > 0) &&
+        state?.quotes[0]?.price > 0 ? (
           <div
             className="pa_payment_section_input_container"
             style={{

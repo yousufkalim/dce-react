@@ -49,6 +49,7 @@ function TailorViewQuoteScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -85,6 +86,7 @@ function TailorViewQuoteScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        create_catalog_after_completion: adData.create_catalog_after_completion,
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -96,11 +98,11 @@ function TailorViewQuoteScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection({ 
+      setNotesSection({
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
       });
     } catch (e) {
       console.trace(e);
@@ -171,7 +173,7 @@ function TailorViewQuoteScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"112vh",
+              height: "112vh",
               padding: "1% 0%",
             }}
           >
@@ -355,7 +357,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_input_container"
                   style={{
-                   borderRadius:"15px",
+                    borderRadius: "15px",
                     marginBottom: "2%",
                   }}
                 >
@@ -380,7 +382,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_textarea_container"
                   style={{
-                   borderRadius:"15px",
+                    borderRadius: "15px",
                     marginBottom: "10%",
                   }}
                 >

@@ -114,9 +114,9 @@ i18n
           "Standard Size Chart": "Standard Size Chart",
           "Video Tutorial": "Video Tutorial",
           Measure: "Measure",
-          "Tape Measurements":"Tape Measurements",
-          "Circumference":"Circumference",
-          
+          "Tape Measurements": "Tape Measurements",
+          Circumference: "Circumference",
+
           //orderFromCatalog
           "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
@@ -383,19 +383,17 @@ i18n
           large: "large",
           medium: "medium",
           "Leg length": "Leg length",
-          
-          //colors
-          White:"White",
-          "Silver Grey":"Silver Grey",
-          "Pink Purple":"Pink Purple",
-          "Light Grey":"Light Grey",
-          "Cameo Brown":"Cameo Brown",
-          "Date Red":"Date Red",
-           Muave:"Muave",
-           "Bright Pink":"Bright Pink",
-           Red:"Red"
 
-          //tissue translation
+          //colors
+          White: "White",
+          "Silver Grey": "Silver Grey",
+          "Pink Purple": "Pink Purple",
+          "Light Grey": "Light Grey",
+          "Cameo Brown": "Cameo Brown",
+          "Date Red": "Date Red",
+          Muave: "Muave",
+          "Bright Pink": "Bright Pink",
+          Red: "Red",
           "Ribbed edges": "Ribbed edges",
           "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.":
             "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.",
@@ -542,8 +540,8 @@ i18n
           "Standard size": "Taille standard",
           "Video Tutorial": "Didacticiel vidéo",
           Measure: "Mesure",
-          "Tape Measurements":"Mesures de bande",
-          "Circumference":"Circonférence",
+          "Tape Measurements": "Mesures de bande",
+          Circumference: "Circonférence",
 
           //orderFromCatalog
           "Catalogue Price": "Prix ​​catalogue",
@@ -820,18 +818,16 @@ i18n
           Delivery: "Livraison",
           Notes: "Remarques",
           "Catalogue created successfully.": "Catalogue créé avec succès.",
-           //colors
-           White:"blanche",
-           "Silver Grey":"Gris Argenté",
-           "Pink Purple":"Rose-mauve",
-           "Light Grey":"Gris clair",
-           "Cameo Brown":"Brun camée",
-           "Date Red":"Date Rouge",
-            Muave:"Muave",
-            "Bright Pink":"Rose vif",
-            Red:"Rouge"
-
-          //tissue translation
+          //colors
+          White: "blanche",
+          "Silver Grey": "Gris Argenté",
+          "Pink Purple": "Rose-mauve",
+          "Light Grey": "Gris clair",
+          "Cameo Brown": "Brun camée",
+          "Date Red": "Date Rouge",
+          Muave: "Muave",
+          "Bright Pink": "Rose vif",
+          Red: "Rouge",
           "Ribbed edges": "Bords côtelés",
           "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.":
             "Le bord-côte est utilisé en couture pour réaliser les bords des manches, des cols, etc. des vêtements extensibles en jersey, en maille, en polaire pour les sweats etc. C'est une étoffe à mailles qui sert principalement à resserrer certaines parties des vêtements.",

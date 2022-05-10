@@ -28,14 +28,7 @@ function ClientCreateAdScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-   //const [image, setImage] = useState();
-  const [image, setImage] = useState({
-    files: [],
-  });
-  const [Open, setOpen] = useState(false)
-  // const [data, SetData] = useState({
-  //   files: [],
-  // });
+  const [images, setImages] = useState([]);
   const [basicSection, setBasicSection] = useState({
     gender: "",
     category: "",
@@ -48,6 +41,7 @@ function ClientCreateAdScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -62,19 +56,16 @@ function ClientCreateAdScreen() {
     note: "",
   });
 
-  const handleImageSelect = (event) => {
-    setImage({
-      ...image,
-      files: [...image.files, ...event.target.files],
-    });
+  const handleImagesSelect = (event) => {
+    setImages([...images, ...event.target.files]);
   };
   const basicSectionCallback = () => {
     const isValidated = FormValidations.parseAdBasicSection(basicSection);
     if (!isValidated) {
       return;
     }
-    if (!image) {
-      toast.error(t("Image must be selected"));
+    if (images.length == 0) {
+      toast.error(t("At least one image must be selected.")); // TODO: Trans
       return;
     }
     setActiveStep(1);
@@ -99,8 +90,8 @@ function ClientCreateAdScreen() {
       return;
     }
 
-    if (!image) {
-      toast.error(t("Image must be selected"));
+    if (images.length == 0) {
+      toast.error(t("At least one image must be selected.")); // TODO: Trans
       return;
     }
 
@@ -127,6 +118,10 @@ function ClientCreateAdScreen() {
         basicSection.includes_alteration_services
       );
       body.append(
+        "create_catalog_after_completion",
+        basicSection.create_catalog_after_completion
+      );
+      body.append(
         "delivery",
         JSON.stringify({
           address: deliverySection.address.label,
@@ -148,10 +143,10 @@ function ClientCreateAdScreen() {
           note: notesSection.note,
         })
       );
-      for (let i = 0; i < image.files.length; i++) {
-        body.append("image", image.files[i]);
-      }
-      //body.append("image", image);
+      for (let i = 0; i < images.length; i++) {
+        body.append("images", images[i]);
+      } // Multipart files share the same field name
+
       response = await Api("post", "/orders", body);
 
       if (response?.data?.success) {
@@ -220,8 +215,8 @@ function ClientCreateAdScreen() {
                     state={basicSection}
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
-                    image={image}
-                    handleImageSelect={handleImageSelect}
+                    images={images}
+                    handleImagesSelect={handleImagesSelect}
                   />
                 ) : activeStep == 1 ? (
                   <ParseAd.DeliverySection
@@ -229,7 +224,7 @@ function ClientCreateAdScreen() {
                     setState={setDeliverySection}
                     onClick={deliverySectionCallback}
                     image={image}
-                    Open={Open} 
+                    Open={Open}
                     setOpen={setOpen}
                   />
                 ) : activeStep == 2 ? (

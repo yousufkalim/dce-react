@@ -536,9 +536,9 @@ const AcceptQuoteModal = (props) => {
 
   const getSessionUrl = async (quote, line_items) => {
     try {
-      let id = quote._id;
-      let type = "static";
-      let response = await Api("post", "/payments/Checkout", {
+      const id = quote._id;
+      const type = "static";
+      const response = await Api("post", "/payments/Checkout", {
         line_items: line_items,
         metaData: { id, type },
       });

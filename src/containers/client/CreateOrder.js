@@ -30,7 +30,7 @@ function ClientCreateOrderScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
 
   const [basicSection, setBasicSection] = useState({
     gender: "",
@@ -44,6 +44,7 @@ function ClientCreateOrderScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
@@ -58,9 +59,8 @@ function ClientCreateOrderScreen() {
     note: "",
   });
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+  const handleImagesSelect = (event) => {
+    setImages([...images, ...event.target.files]);
   };
 
   const basicSectionCallback = () => {
@@ -68,8 +68,8 @@ function ClientCreateOrderScreen() {
     if (!isValidated) {
       return;
     }
-    if (!image) {
-      toast.error(t("Image must be selected"));
+    if (images.length == 0) {
+      toast.error(t("At least one image must be selected.")); // TODO: Trans
       return;
     }
     setActiveStep(1);
@@ -94,8 +94,8 @@ function ClientCreateOrderScreen() {
       return;
     }
 
-    if (!image) {
-      toast.error(t("Image must be selected"));
+    if (images.length == 0) {
+      toast.error(t("At least one image must be selected.")); // TODO: Trans
       return;
     }
 
@@ -124,6 +124,10 @@ function ClientCreateOrderScreen() {
         basicSection.includes_alteration_services
       );
       body.append(
+        "create_catalog_after_completion",
+        basicSection.create_catalog_after_completion
+      );
+      body.append(
         "delivery",
         JSON.stringify({
           address: deliverySection.address.label,
@@ -145,7 +149,9 @@ function ClientCreateOrderScreen() {
           note: notesSection.note,
         })
       );
-      body.append("image", image);
+      for (let i = 0; i < images.length; i++) {
+        body.append("images", images[i]);
+      } // Multipart files share the same field name
 
       response = await Api("post", "/orders", body);
 
@@ -210,8 +216,8 @@ function ClientCreateOrderScreen() {
                     state={basicSection}
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
-                    image={image}
-                    handleImageSelect={handleImageSelect}
+                    images={images}
+                    handleImagesSelect={handleImagesSelect}
                   />
                 ) : activeStep == 1 ? (
                   <ParseAd.DeliverySection
