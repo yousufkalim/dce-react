@@ -8,7 +8,7 @@ import Rating from "@mui/material/Rating";
 import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
-import dummy from '../assets/dummy.jpeg'
+import dummy from "../assets/dummy.jpeg";
 import assetsURL from "../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../utils/Helpers";
 
@@ -50,12 +50,11 @@ function CatalogListTile({
             objectFit: "cover",
             borderRadius: "20px",
           }}
-          // src={
-          //   catalog?.attachment
-          //     ? assetsURL(catalog.attachment)
-          //     : CatalogContent1SVG
-          // }
-          src={dummy}
+          src={
+            catalog?.attachment
+              ? assetsURL(catalog.attachment)
+              : CatalogContent1SVG
+          }
         />
         <CustomButton
           text={buttonText}

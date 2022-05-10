@@ -32,8 +32,8 @@ function BasicSection({
   onClick,
   disabled,
   disables,
-  image,
-  handleImageSelect,
+  images,
+  handleImagesSelect,
 }) {
   const { t } = useTranslation();
   const _setState = (key, value) => {
@@ -375,7 +375,7 @@ function BasicSection({
                 setInputValue(newInputValue);
               }}
               options={colors.map((val) => val?.name)}
-              sx={{ width: 390}}
+              sx={{ width: 390 }}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -429,11 +429,11 @@ function BasicSection({
                 hidden
                 id="filePicker"
                 name="file"
-                onChange={handleImageSelect}
+                onChange={handleImagesSelect}
               />
               <div className="upload-img-text-cont">
                 <span className="upload-img-text">
-                  {image?.name ?? "Upload Drawing, Photo, Document, etc"}
+                  {"Upload Drawing, Photo, Document, etc"}
                 </span>
                 <img src={UploadSVG} />
               </div>
@@ -441,7 +441,7 @@ function BasicSection({
           </div>
         </div>
         <div className="selected-images-container">
-          {image?.files?.map((val) => (
+          {images?.map((val) => (
             <span> {val?.name} </span>
           ))}
         </div>
@@ -464,6 +464,33 @@ function BasicSection({
             {" "}
             <span className="duw-text">{t("Do you Want")}</span>{" "}
             <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
+          </label>
+        </div>
+        <div className="checkbox-container">
+          <Checkbox
+            {...label}
+            disabled={
+              disabled || disables?.includes("create_catalog_after_completion")
+            }
+            checked={state.create_catalog_after_completion}
+            sx={{
+              color: grey[900],
+              "&.Mui-checked": {
+                color: grey[900],
+              },
+            }}
+            onChange={(e) =>
+              _setState("create_catalog_after_completion", e.target.checked)
+            }
+          />
+          <label>
+            {" "}
+            <span className="duw-text">{t("Create Catalog After")}</span>{" "}
+            {/* TODO: Trans */}
+            <span className="alteration-txt">
+              {t("ORDER COMPLETION ?")}{" "}
+            </span>{" "}
+            {/* TODO: Trans */}
           </label>
         </div>
         {!onClick ? (
@@ -577,6 +604,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           <div className="pa_profile_section_input_input">
             <div style={{ width: "100%" }}>
               <AutoComplete
+                disabled={disabled}
                 name="Address"
                 required={true}
                 label={"Address"}
