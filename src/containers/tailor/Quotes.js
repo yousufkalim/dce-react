@@ -238,7 +238,6 @@ function QuoteListTile(props) {
           )}
         </div>
       </div>
-
       {/* <div className="cas_ad_list_tile_column2">
         <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
         <p className="cas_ad_list_tile_column2_description">
