@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import addicon from "../../assets/addicon.svg";
 import SearchIcon from "../../assets/search1.svg";
 import { useTranslation } from "react-i18next";
@@ -37,7 +37,7 @@ function Faqs() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

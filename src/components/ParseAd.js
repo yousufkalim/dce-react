@@ -126,7 +126,7 @@ function BasicSection({
               selectID="category"
               selectName="category"
               selectNullValue={t("Select one category for your ad")}
-              selectValue={state.category}
+              selectValue={t(state.category)}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
                 <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
@@ -416,10 +416,10 @@ function BasicSection({
               selectID="materialFabrics"
               selectName="materialFabrics"
               selectNullValue={t("Select Fabric Style")}
-              selectValue={state.fabric}
+              selectValue={t(state.fabric)}
               onChange={(e) => _setState("fabric", e.target.value)}
               menuItems={materialFabrics.map((_) => (
-                <MenuItem value={_.title}>{_.title}</MenuItem>
+                <MenuItem value={_.title}>{t(_.title)}</MenuItem>
               ))}
             />
           </div>

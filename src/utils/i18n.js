@@ -327,6 +327,7 @@ i18n
 
           //viewOrder
           "Want to complete this order": "Want to complete this order",
+          "Create Catalogue": "Create Catalogue",
 
           //placeholders
           "Name of your Creation": "Name of your Creation",
@@ -382,6 +383,7 @@ i18n
           large: "large",
           medium: "medium",
           "Leg length": "Leg length",
+          
           //colors
           White:"White",
           "Silver Grey":"Silver Grey",
@@ -392,6 +394,41 @@ i18n
            Muave:"Muave",
            "Bright Pink":"Bright Pink",
            Red:"Red"
+
+          //tissue translation
+          "Ribbed edges": "Ribbed edges",
+          "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.":
+            "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.",
+          Chambray: "Chambray",
+          "Chambray fabric is a light canvas whose warp is a colored thread and the weft a white thread. It is often used to make shirts and can also be used to make light clothing and accessories.100% cotton":
+            "Chambray fabric is a light canvas whose warp is a colored thread and the weft a white thread. It is often used to make shirts and can also be used to make light clothing and accessories.100% cotton",
+          "plain cotton": "plain cotton",
+          "Range of quality plain poplin fabrics 100% cotton - 125 g/m²":
+            "Range of quality plain poplin fabrics 100% cotton - 125 g/m²",
+          "cotton fabric": "cotton fabric",
+          "Custom cotton fabrics: Polka dots, stars, stripes, checks, flowers... Light cotton fabrics for children and adults.":
+            "Custom cotton fabrics: Polka dots, stars, stripes, checks, flowers... Light cotton fabrics for children and adults.",
+          "Crepe/Polyester": "Crepe/Polyester",
+          "Fabrics made of polyester, muslin and textured crepe. Polyester fabrics are soft and fluid and can be transparent or opaque. Crepe is a fabric with a slight texture made from synthetic yarns crossed specifically to obtain an irregular effect. They are used to make blouses, skirts, flowing dresses with a nice drape. The crepe can even be used to make ceremonial clothes: wedding dress. This type of fabric also lends itself to being draped for fuzzier garments.":
+            "Fabrics made of polyester, muslin and textured crepe. Polyester fabrics are soft and fluid and can be transparent or opaque. Crepe is a fabric with a slight texture made from synthetic yarns crossed specifically to obtain an irregular effect. They are used to make blouses, skirts, flowing dresses with a nice drape. The crepe can even be used to make ceremonial clothes: wedding dress. This type of fabric also lends itself to being draped for fuzzier garments.",
+          Lace: "Lace",
+          "Cotton and polyester lace fabrics for clothing: wedding dresses, formal wear. But also for customization or decoration: appliqués, dream catchers. Also consider textile art.":
+            "Cotton and polyester lace fabrics for clothing: wedding dresses, formal wear. But also for customization or decoration: appliqués, dream catchers. Also consider textile art.",
+          "Water repellent": "Water repellent",
+          "Water-repellent fabrics can be used to make jackets and coats but also accessories. Softshell fabric is used to make windproof mid-season coats. It is made of a water-repellent membrane against the rain and a layer of breathable micro-fleece. Trench fabrics are fluid and light and will make it possible to make light rain jackets but also shopping bags for example. Water-repellent fabrics can be used to make bags or saddlebags.":
+            "Water-repellent fabrics can be used to make jackets and coats but also accessories. Softshell fabric is used to make windproof mid-season coats. It is made of a water-repellent membrane against the rain and a layer of breathable micro-fleece. Trench fabrics are fluid and light and will make it possible to make light rain jackets but also shopping bags for example. Water-repellent fabrics can be used to make bags or saddlebags.",
+          "double gauze": "double gauze",
+          "Double cotton gauze fabric for clothing and decoration. Double cotton gauze is actually two thin layers of cotton gauze connected by tiny, almost invisible stitches.":
+            "Double cotton gauze fabric for clothing and decoration. Double cotton gauze is actually two thin layers of cotton gauze connected by tiny, almost invisible stitches.",
+          Lining: "Lining",
+          "Satin lining for clothes, jackets, dresses, coats The satin lining has a nice hold and will also maintain your garment":
+            "Satin lining for clothes, jackets, dresses, coats The satin lining has a nice hold and will also maintain your garment",
+          Scottish: "Scottish",
+          "Scottish cut fabrics: burberry, checkered fabric, British fabric, Tartan... Different materials for this classic print.":
+            "Scottish cut fabrics: burberry, checkered fabric, British fabric, Tartan... Different materials for this classic print.",
+          Sponge: "Sponge",
+          "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.":
+            "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.",
         },
       },
       fr: {
@@ -530,7 +567,6 @@ i18n
 
           //catalogue
           "My Catalogue": "Mon catalogue",
-          "Create Catalogue": "Create Catalogue",
 
           //clientProfile
           Order: "Commande",
@@ -783,6 +819,41 @@ i18n
             Muave:"Muave",
             "Bright Pink":"Rose vif",
             Red:"Rouge"
+
+          //tissue translation
+          "Ribbed edges": "Bords côtelés",
+          "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.":
+            "Le bord-côte est utilisé en couture pour réaliser les bords des manches, des cols, etc. des vêtements extensibles en jersey, en maille, en polaire pour les sweats etc. C'est une étoffe à mailles qui sert principalement à resserrer certaines parties des vêtements.",
+          Chambray: "Chambray",
+          "Chambray fabric is a light canvas whose warp is a colored thread and the weft a white thread. It is often used to make shirts and can also be used to make light clothing and accessories.100% cotton":
+            "Le tissu chambray est une toile légère dont la chaîne est un fil coloré et la trame un fil blanc. Il est souvent utilisé pour la confection de chemises et peut également être utilisé pour la confection de vêtements légers et d'accessoires 100% coton",
+          "plain cotton": "coton uni",
+          "Range of quality plain poplin fabrics 100% cotton - 125 g/m²":
+            "Gamme de tissus popeline unis de qualité 100% coton - 125 g/m²",
+          "cotton fabric": "tissu en coton",
+          "Custom cotton fabrics: Polka dots, stars, stripes, checks, flowers... Light cotton fabrics for children and adults.":
+            "Tissus coton sur mesure : Pois, étoiles, rayures, carreaux, fleurs... Tissus coton légers pour enfants et adultes.",
+          "Crepe/Polyester": "Crêpe/Polyester",
+          "Fabrics made of polyester, muslin and textured crepe. Polyester fabrics are soft and fluid and can be transparent or opaque. Crepe is a fabric with a slight texture made from synthetic yarns crossed specifically to obtain an irregular effect. They are used to make blouses, skirts, flowing dresses with a nice drape. The crepe can even be used to make ceremonial clothes: wedding dress. This type of fabric also lends itself to being draped for fuzzier garments.":
+            "Tissus en polyester, mousseline et crêpe texturé. Les tissus en polyester sont doux et fluides et peuvent être transparents ou opaques. Le crêpe est un tissu à texture légère composé de fils synthétiques croisés spécifiquement pour obtenir un effet irrégulier. On les utilise pour confectionner des blouses, des jupes, des robes fluides au joli tombé. Le crêpe peut même être utilisé pour confectionner des vêtements de cérémonie : robe de mariée. Ce type de tissu se prête également à être drapé pour des vêtements plus flous.",
+          Lace: "Dentelle",
+          "Cotton and polyester lace fabrics for clothing: wedding dresses, formal wear. But also for customization or decoration: appliqués, dream catchers. Also consider textile art.":
+            "Tissus dentelles en coton et polyester pour l'habillement : robes de mariée, tenues de cérémonie. Mais aussi pour la customisation ou la décoration : appliqués, attrape-rêves. Pensez aussi à l'art textile.",
+          "Water repellent": "Hydrofuge",
+          "Water-repellent fabrics can be used to make jackets and coats but also accessories. Softshell fabric is used to make windproof mid-season coats. It is made of a water-repellent membrane against the rain and a layer of breathable micro-fleece. Trench fabrics are fluid and light and will make it possible to make light rain jackets but also shopping bags for example. Water-repellent fabrics can be used to make bags or saddlebags.":
+            "Les tissus déperlants peuvent être utilisés pour confectionner des vestes et des manteaux mais aussi des accessoires. Le tissu softshell est utilisé pour confectionner des manteaux coupe-vent de mi-saison. Il est composé d'une membrane déperlante contre la pluie et d'une couche de micro-polaire respirante. Les tissus des trenchs sont fluides et légers et permettront de réaliser des imperméables légers mais aussi des cabas par exemple. Les tissus hydrofuges peuvent être utilisés pour fabriquer des sacs ou des sacoches.",
+          "double gauze": "double gaze",
+          "Double cotton gauze fabric for clothing and decoration. Double cotton gauze is actually two thin layers of cotton gauze connected by tiny, almost invisible stitches.":
+            "Tissu double gaze de coton pour l'habillement et la décoration. La double gaze de coton est en fait deux fines couches de gaze de coton reliées par de minuscules points presque invisibles.",
+          Lining: "Garniture",
+          "Satin lining for clothes, jackets, dresses, coats The satin lining has a nice hold and will also maintain your garment":
+            "Doublure satin pour vêtements, vestes, robes, manteaux La doublure satin a une belle tenue et maintiendra également votre vêtement",
+          Scottish: "Écossais",
+          "Scottish cut fabrics: burberry, checkered fabric, British fabric, Tartan... Different materials for this classic print.":
+            "Tissus coupe écossaise : burberry, tissu à carreaux, tissu britannique, Tartan... Différentes matières pour cet imprimé classique.",
+          Sponge: "Éponge",
+          "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.":
+            "",
         },
       },
     },

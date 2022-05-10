@@ -93,11 +93,11 @@ function ClientEditAdScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection({ 
+      setNotesSection({
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes:adData?.quotes.filter((_)=>(_.status==="accepted"))
+        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
       });
     } catch (e) {
       console.trace(e);
@@ -190,10 +190,13 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
-              height:"118vh"
+              height: "118vh",
             }}
           >
-            <div style={{height:"100%"}} className="client_edit_ad_screen_row1">
+            <div
+              style={{ height: "100%" }}
+              className="client_edit_ad_screen_row1"
+            >
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
@@ -248,7 +251,7 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFC396",
-              paddingBottom:"1%"
+              paddingBottom: "1%",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -304,7 +307,7 @@ function ClientEditAdScreen() {
             className="container"
             style={{
               background: "#FFFCFB",
-              paddingBottom:"2%"
+              paddingBottom: "2%",
             }}
           >
             <div className="client_edit_ad_screen_row1">

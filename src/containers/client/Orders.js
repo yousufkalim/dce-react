@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/dummy.jpeg";
+import UploadSVG from "../../assets/upload.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from "../../components/Footer";
 import NoOrders from "../../components/NoOrders";
+import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import { useTranslation } from "react-i18next";
 
@@ -42,7 +44,6 @@ function ClientOrdersScreen() {
         client: user._id,
         tailor: { $ne: null },
       });
-      console.log(response,"response");
       const ordersData = response.data.orders;
       setOrders(ordersData);
       setIsLoading(false);
@@ -103,22 +104,31 @@ function OrderListTile(props) {
   const { t } = useTranslation();
 
   const [isFeedbackOrderModal, setIsFeedbackOrderModal] = useState(false);
-
   const handleFeedbackOrderModalClose = (e) => {
     setIsFeedbackOrderModal(false);
   };
-
   const handleFeedbackOrderModalOpen = (e) => {
     e.stopPropagation();
     setIsFeedbackOrderModal(true);
   };
+
+  const [isContactSupportOrderModal, setIsContactSupportOrderModal] =
+    useState(false);
+  const handleContactSupportOrderModalClose = (e) => {
+    setIsContactSupportOrderModal(false);
+  };
+  const handleContactSupportOrderModalOpen = (e) => {
+    e.stopPropagation();
+    setIsContactSupportOrderModal(true);
+  };
+
   return (
     <div
       className="cos_order_list_tile_container"
       onClick={() => {
-        if (!isFeedbackOrderModal) {
+        if (!isFeedbackOrderModal && !isContactSupportOrderModal) {
           props.navToViewOrder(props.order._id);
-        }
+        } // This prevents the trigger when clicking inside opened modals
       }}
     >
       <div className="cos_order_list_tile_column1">
@@ -212,8 +222,7 @@ function OrderListTile(props) {
               boxShadow: "none",
             }}
             onClick={(e) => {
-              e.stopPropagation();
-              toast.success(t("Coming soon!"));
+              handleContactSupportOrderModalOpen(e);
             }}
           />
         ) : (
@@ -241,6 +250,17 @@ function OrderListTile(props) {
       >
         <FeedbackOrderModal
           handleClose={handleFeedbackOrderModalClose}
+          order={props.order}
+        />
+      </Modal>
+      <Modal
+        open={isContactSupportOrderModal}
+        onClose={handleContactSupportOrderModalClose}
+        aria-labelledby="Contact Support Order"
+        onBackdropClick="false"
+      >
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
           order={props.order}
         />
       </Modal>
@@ -359,6 +379,175 @@ const FeedbackOrderModal = (props) => {
         />
         <CustomButton
           text={t("Feedback")}
+          style={{
+            boxShadow: "none",
+          }}
+          onClick={handleSubmit}
+        />
+      </div>
+    </div>
+  );
+};
+
+const ContactSupportOrderModal = (props) => {
+  const navigate = useNavigate();
+
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const [reason, setReason] = useState("");
+  const [details, setDetails] = useState("");
+  const [attachment, setAttachment] = useState(null);
+
+  const { t } = useTranslation();
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    setAttachment(file);
+  };
+
+  const navToChat = () => {
+    navigate("/chat");
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const isValidated = FormValidations.clientContactSupportOrder({
+      reason,
+      details,
+    });
+    if (!isValidated) {
+      return;
+    }
+
+    if (!attachment) {
+      toast.error(t("Attachment must be selected"));
+      return;
+    }
+
+    if (isProcessing) {
+      return;
+    }
+
+    let response;
+
+    try {
+      setIsProcessing(true);
+
+      const body = new FormData();
+
+      body.append("id", props.order._id);
+      body.append("reason", reason);
+      body.append("details", details);
+      body.append("attachment", attachment);
+
+      response = await Api("post", "/orders/support", body);
+
+      if (response?.data?.success) {
+        toast.success(t("Support request submitted successfully."));
+        props.handleClose();
+        navToChat();
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+
+    setIsProcessing(false);
+  };
+
+  return (
+    <div className="tqs_sqm_container">
+      <div
+        className="tqs_sqm_input_container"
+        style={{
+          borderTopLeftRadius: "20px",
+          borderTopLeftRadius: "20px",
+          borderBottomLeftRadius: "20px",
+          borderBottomRightRadius: "20px",
+          marginBottom: "2%",
+          padding: "1.6% 0",
+        }}
+      >
+        <div className="tqs_sqm_input_label">
+          <p className="tqs_sqm_input_text">{t("Reason")}</p>
+        </div>
+        <div className="tqs_sqm_input_input">
+          <CustomInput
+            labelStyle={{
+              display: "none",
+            }}
+            inputStyle={{
+              border: "none",
+              fontSize: "12px",
+            }}
+            inputPlaceholder={t("Enter Reason")} // TODO: Add Trans
+            onChange={(e) => setReason(e.target.value)}
+          />
+        </div>
+      </div>
+      <div
+        className="tqs_sqm_textarea_container"
+        style={{
+          borderTopLeftRadius: "20px",
+          borderTopRightRadius: "20px",
+          borderBottomLeftRadius: "20px",
+          borderBottomRightRadius: "20px",
+          marginBottom: "2%",
+        }}
+      >
+        <div className="tqs_sqm_textarea_label">
+          <p className="tqs_sqm_input_text">{t("Details")}</p>
+        </div>
+        <div className="tqs_sqm_input_input">
+          <textarea
+            className="tqs_sqm_textarea_textarea"
+            placeholder={t("Details")}
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+          />
+        </div>
+      </div>
+      <div
+        className="pa_profile_section_input_container"
+        style={{
+          borderRadius: "20px",
+          marginBottom: "2%",
+          width: "100%",
+          padding: "1.6% 0",
+        }}
+      >
+        <div className="pa_profile_section_input_label">
+          <p className="pa_profile_section_input_text">{t("Attachments")}</p>
+        </div>
+        <div className="pa_profile_section_input_input">
+          <label className="upload-pic-label">
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              id="filePicker"
+              name="file"
+              onChange={handleFileSelect}
+            />
+            <div className="upload-img-text-cont">
+              <span className="upload-img-text">
+                {attachment?.name ?? "Upload Drawing, Photo, Document, etc"}
+              </span>
+              <img src={UploadSVG} />
+            </div>
+          </label>
+        </div>
+      </div>
+      <div className="tvqs_sq_buttons">
+        <CustomButton
+          text={t("Cancel")}
+          style={{
+            boxShadow: "none",
+            marginRight: "10pt",
+          }}
+          onClick={props.handleClose}
+        />
+        <CustomButton
+          text={t("Submit")}
           style={{
             boxShadow: "none",
           }}

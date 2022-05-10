@@ -97,6 +97,9 @@ function TailorAppBar({
   const openNotifications = Boolean(anchorElNotifications);
   const handleClickNotifications = (event) => {
     setAnchorElNotifications(event.currentTarget);
+    if (notifications.filter((_) => !_.is_read).length > 0) {
+      _readNotifications();
+    }
   };
   const handleCloseNotifications = () => {
     setAnchorElNotifications(null);
@@ -168,8 +171,8 @@ function TailorAppBar({
       response = await Api("get", `/auth`);
       const userData = response.data.user;
       setProfile(userData);
-      console.log(userData.role,"userData");
-      updateStore({userRole:userData.role})
+      console.log(userData.role, "userData");
+      updateStore({ userRole: userData.role });
     } catch (e) {
       console.trace(e);
     }
@@ -183,6 +186,17 @@ function TailorAppBar({
       console.log(response.data);
       const notificationsData = response.data.notifications.splice(-10);
       setNotifications(notificationsData);
+    } catch (e) {
+      console.trace(e);
+    }
+    return;
+  };
+
+  const _readNotifications = async () => {
+    let response;
+    try {
+      response = await Api("post", `/notifications/read`);
+      console.log(response.data);
     } catch (e) {
       console.trace(e);
     }
@@ -266,15 +280,19 @@ function TailorAppBar({
               className="appbar_row2_notifications_img"
               onClick={handleClickNotifications}
             />
-            <div className="notifications_count_pos">
-              <p
-                style={{
-                  fontSize: "14px",
-                }}
-              >
-                {notifications.filter((_) => !_.is_read).length}
-              </p>
-            </div>
+            {notifications.filter((_) => !_.is_read).length > 0 ? (
+              <div className="notifications_count_pos">
+                <p
+                  style={{
+                    fontSize: "14px",
+                  }}
+                >
+                  {notifications.filter((_) => !_.is_read).length}
+                </p>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <Menu
             id="basic-menu"

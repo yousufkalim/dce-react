@@ -30,21 +30,29 @@ const ConversationListTile = (props) => {
 
   const getReceiver = () => {
     if (user.role == "client") {
-      return props.tailor;
+      return props.tailor ?? {};
     } else if (user.role == "tailor") {
-      return props.client;
+      return props.client ?? {};
     } else {
-      return null;
+      return {};
     }
   };
 
   const user = getUser();
   const receiver = getReceiver();
 
-  const receiverCheckIn = new Date(receiver.check_in);
-  const receiverCheckOut = new Date(receiver.check_out);
+  const receiverCheckIn = receiver.check_in
+    ? new Date(receiver.check_in)
+    : null;
+  const receiverCheckOut = receiver.check_out
+    ? new Date(receiver.check_out)
+    : null;
 
-  receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
+  if (receiverCheckIn && receiverCheckOut) {
+    receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
+  } else {
+    receiver.status = "online";
+  }
 
   const handleSelect = async () => {
     let response;
@@ -91,14 +99,17 @@ const ConversationListTile = (props) => {
                 width: "50pt",
                 marginRight: "20px",
               }}
-              src={receiver?.avatar ? assetsURL(receiver.avatar) : UserSVG}
+              src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
             />
             <div className="name-status">
-              <strong className="user-name">{receiver?.name}</strong>
+              <strong className="user-name">
+                {receiver.name
+                  ? receiver.name
+                  : props.is_admin
+                  ? "Admin"
+                  : "N/A"}
+              </strong>
               <div className="status-cont">
-                {/* {receiver?.status == "writing" ? (
-                  <img className="writing" src={WritingSVG} />
-                ) : null} */}
                 <p
                   style={{
                     color: receiver.status == "online" ? "#149E7A" : "#cc8e9c",
@@ -110,7 +121,7 @@ const ConversationListTile = (props) => {
               </div>
             </div>
           </div>
-          <p className="time"> {receiver?.time}</p>
+          <p className="time"> {receiver.time}</p>
         </div>
         <div className="user-detail-parent">
           <p className="user-detail">{props.last_message?.content ?? "N/A"}</p>

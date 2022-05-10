@@ -386,6 +386,40 @@ function parseMeasurementLengthSection(data) {
   return validated;
 }
 
+function clientContactSupportOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Reason", data["reason"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
+function tailorContactSupportOrder(data) {
+  const valArr = [
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Reason", data["reason"]),
+    },
+    {
+      validationFunction: () =>
+        Validators.nullValidator("Details", data["details"]),
+    },
+  ];
+
+  const validated = formValidator(null, valArr);
+
+  return validated;
+}
+
 export {
   login,
   clientRegister,
@@ -405,4 +439,6 @@ export {
   clientFeedbackOrder,
   parseMeasurementCircumferenceSection,
   parseMeasurementLengthSection,
+  clientContactSupportOrder,
+  tailorContactSupportOrder,
 };
