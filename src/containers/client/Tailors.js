@@ -127,7 +127,7 @@ function TailorListTile(props) {
           </p>
         </div>
         <div className="cds_tailor_list_tile_column3">
-          <div
+          {/* <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -146,7 +146,7 @@ function TailorListTile(props) {
             >
               {rating} ({ratingsCount})
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="cds_tailor_list_tile_column1">
           <CustomButton

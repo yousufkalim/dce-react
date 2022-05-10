@@ -5,6 +5,9 @@ import axios from "axios";
 import AutoComplete from "../components/AutoComplete";
 
 import Autocomplete from "@mui/material/Autocomplete";
+
+import { makeStyles } from "@material-ui/core/styles";
+
 import TextField from "@mui/material/TextField";
 
 import Modal from "./Modal/ModalComp";
@@ -26,6 +29,7 @@ import UploadSVG from "../assets/upload.svg";
 import { Store } from "../StoreContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 function BasicSection({
   state,
   setState,
@@ -66,6 +70,15 @@ function BasicSection({
     handleCloseMeasurements();
   };
   const store = Store();
+  const useStyles = makeStyles(theme => ({
+    inputRoot: {
+      color: "#ffffff",
+      "& .MuiOutlinedInput-input.Mui-disabled": {
+        "-webkit-text-fill-color":"#ffffff"
+      },
+    }
+  }));
+  const classes = useStyles();
   return (
     <>
       <div className="pa_profile_section_container">
@@ -366,6 +379,7 @@ function BasicSection({
     /> */}
             <Autocomplete
               disabled={disabled}
+              classes={classes}
               value={t(state?.color)}
               onChange={(event, newValue) => {
                 _setState("color", newValue);
@@ -373,9 +387,9 @@ function BasicSection({
               inputValue={t(inputValue)}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
-              }}
+              }}  
               options={colors.map((val) => t(val?.name))}
-              sx={{ width: 390 }}
+              sx={{ width: 390}}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -484,7 +498,7 @@ function BasicSection({
   );
 }
 
-function DeliverySection({ state, setState, onClick, disabled }) {
+function DeliverySection({ state, setState, onClick, disabled,Open,setOpen }) {
   const { t } = useTranslation();
   const [addresses, setAddresses] = useState([]);
   const _setState = (key, value) => {
@@ -715,8 +729,10 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
-              disablePast
+            disablePast
               disabled={disabled}
+              setOpen={setOpen}
+              Open={Open}
               labelStyle={{
                 display: "none",
               }}
@@ -878,8 +894,8 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             />
           </div>
         </div>
-
-        {store.userRole == "tailor" || state?.quotes?.length > 0 ? (
+   {console.log(state.quotes,"dgfgdgdfv")}
+        {(store.userRole == "tailor" || state?.quotes?.length > 0)&&(state?.quotes[0]?.price>0) ? (
           <div
             className="pa_payment_section_input_container"
             style={{

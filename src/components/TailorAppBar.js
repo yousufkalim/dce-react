@@ -365,7 +365,7 @@ function TailorAppBar({
               <img style={{ padding: "4% 0%" }} src={EditIcon} />{" "}
               <p>{t("Profile")} </p>
             </MenuItem>
-            {/* <MenuItem
+            <MenuItem
               className="menu-item"
               onClick={() =>
                 changeLanguage(`${language == "en" ? "fr" : "en"}`)
@@ -373,7 +373,7 @@ function TailorAppBar({
             >
               <GTranslateIcon sx={{ width: "20px" }} />
               {language == "fr" ? "French" : "English"}
-            </MenuItem> */}
+            </MenuItem>
             <MenuItem
               className="menu-item support-padding"
               onClick={navToSupport}
