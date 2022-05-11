@@ -223,7 +223,6 @@ function ClientCreateAdScreen() {
                     state={deliverySection}
                     setState={setDeliverySection}
                     onClick={deliverySectionCallback}
-                    image={image}
                     Open={Open}
                     setOpen={setOpen}
                   />
