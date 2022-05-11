@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FooterLogo from "../assets/FooterLogo.svg";
 import TwitterIcon from "../assets/TwitterIcon.svg";
-import InstagramIcon from '../assets/Instagram.svg'
+import InstagramIcon from "../assets/Instagram.svg";
 import { useTranslation } from "react-i18next";
 import Api from "../api/index";
 
@@ -28,7 +28,7 @@ const Footer = () => {
   };
 
   const navToSupport = () => {
-    navigate("/support_centre");
+    navigate("/support_center");
   };
   const navToTermsAndConditions = () => {
     navigate("/terms_and_conditions");

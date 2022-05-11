@@ -23,6 +23,7 @@ import ClientCreateAdScreen from "../containers/client/CreateAd";
 import ClientEditAdScreen from "../containers/client/EditAd";
 import ClientFaqsScreen from "../containers/client/Faqs";
 import ClientSearchResultsScreen from "../containers/client/SearchResults";
+import ClientSupportCenterScreen from "../containers/client/SupportCenter";
 import ClientViewOrderScreen from "../containers/client/ViewOrder";
 import ClientTapeMeasurementScreen from "../containers/client/TapeMeasurement";
 
@@ -39,7 +40,7 @@ import TailorProfileScreen from "../containers/tailor/Profile";
 import TailorHowItWorksScreen from "../containers/tailor/HowItWorks";
 import TailorTermsAndConditionsScreen from "../containers/tailor/TermsAndConditions";
 import TailorSearchResultsScreen from "../containers/tailor/SearchResults";
-import TailorSupportCentreScreen from "../containers/tailor/SupportCentre";
+import TailorSupportCenterScreen from "../containers/tailor/SupportCenter";
 import TailorClientProfileScreen from "../containers/tailor/ClientProfile";
 import TailorViewOrderScreen from "../containers/tailor/ViewOrder";
 
@@ -64,6 +65,7 @@ import ClientCreateOrderIcon from "@mui/icons-material/AccountBox";
 import ClientProfileIcon from "@mui/icons-material/AccountBox";
 import ClientTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 import ClientSearchResultsIcon from "@mui/icons-material/AccountBox";
+import ClientSupportCenterIcon from "@mui/icons-material/AccountBox";
 import ClientAdsIcon from "@mui/icons-material/AccountBox";
 import ClientCreateAdIcon from "@mui/icons-material/AccountBox";
 import ClientEditAdIcon from "@mui/icons-material/AccountBox";
@@ -81,7 +83,7 @@ import TailorProfileIcon from "@mui/icons-material/AccountBox";
 import TailorHowItWorksIcon from "@mui/icons-material/AccountBox";
 import TailorTermsAndConditionsIcon from "@mui/icons-material/AccountBox";
 import TailorSearchResultsIcon from "@mui/icons-material/AccountBox";
-import TailorSupportCentreIcon from "@mui/icons-material/AccountBox";
+import TailorSupportCenterIcon from "@mui/icons-material/AccountBox";
 import TailorClientProfileIcon from "@mui/icons-material/AccountBox";
 import TailorViewOrderIcon from "@mui/icons-material/AccountBox";
 import ChatIcon from "@mui/icons-material/AccountBox";
@@ -201,10 +203,10 @@ const ClientRoutes = [
     element: ClientCreateOrderScreen,
   },
   {
-    path: "/support_centre",
-    name: "support_centre",
-    icon: <TailorSupportCentreIcon />,
-    element: TailorSupportCentreScreen,
+    path: "/support_center",
+    name: "ClientSupportCenter",
+    icon: <ClientSupportCenterIcon />,
+    element: ClientSupportCenterScreen,
   },
   {
     path: "/profile",
@@ -343,10 +345,10 @@ const TailorRoutes = [
     element: TailorSearchResultsScreen,
   },
   {
-    path: "/support_centre",
-    name: "support_centre",
-    icon: <TailorSupportCentreIcon />,
-    element: TailorSupportCentreScreen,
+    path: "/support_center",
+    name: "TailorSupportCenter",
+    icon: <TailorSupportCenterIcon />,
+    element: TailorSupportCenterScreen,
   },
   {
     path: "/client_profile/:id",

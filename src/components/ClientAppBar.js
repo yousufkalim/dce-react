@@ -141,7 +141,7 @@ function ClientAppBar({
 
   const navToSupport = () => {
     handleCloseProfile();
-    navigate("/support_centre");
+    navigate("/support_center");
   };
 
   const navToTermsAndConditions = () => {
