@@ -56,6 +56,8 @@ function ClientCreateAdScreen() {
     note: "",
   });
 
+  const [Open, setOpen] = useState(false);
+
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
   };
