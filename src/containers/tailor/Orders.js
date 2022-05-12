@@ -542,7 +542,7 @@ function OrderCompletedListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {rating}({ratingsCount})
+          {/* {rating}({ratingsCount}) */}
         </p>
       </div>
       <div className="tcos_order_list_tile_column1">
@@ -666,7 +666,7 @@ function OrderDiscardedListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {rating}({ratingsCount})
+          {/* {rating}({ratingsCount}) */}
         </p>
       </div>
       <div className="tcos_order_list_tile_column1">

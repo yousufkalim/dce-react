@@ -225,7 +225,8 @@ function OrderListTile(props) {
               handleContactSupportOrderModalOpen(e);
             }}
           />
-        ) : (
+        ) : props.order.status == "completed" &&
+          !props.order.client_submission ? (
           <CustomButton
             text={t("Feedback")}
             padding={"10px 14px"}
@@ -236,6 +237,8 @@ function OrderListTile(props) {
             }}
             onClick={handleFeedbackOrderModalOpen}
           />
+        ) : (
+          <></>
         )}
 
         <p style={{ fontSize: "15px", fontWeight: "600" }}>

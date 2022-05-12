@@ -342,13 +342,14 @@ const CompleteOrderModal = (props) => {
 
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const [rating, setRating] = useState(5);
+  // const [rating, setRating] = useState(5);
   const [details, setDetails] = useState("");
-  const [attachment, setAttachment] = useState(null);
+  const [attachments, setAttachments] = useState([]);
+
   const { t } = useTranslation();
+
   const handleFileSelect = (event) => {
-    const file = event.target.files[0];
-    setAttachment(file);
+    setAttachments([...attachments, ...event.target.files]);
   };
 
   const navToOrders = () => {
@@ -359,15 +360,15 @@ const CompleteOrderModal = (props) => {
     event.preventDefault();
 
     const isValidated = FormValidations.tailorCompleteOrder({
-      rating,
+      // rating,
       details,
     });
     if (!isValidated) {
       return;
     }
 
-    if (!attachment) {
-      toast.error(t("Attachment must be selected"));
+    if (attachments.length === 0) {
+      toast.error(t("At least one attachment must be selected"));
       return;
     }
 
@@ -383,9 +384,11 @@ const CompleteOrderModal = (props) => {
       const body = new FormData();
 
       body.append("id", props.order._id);
-      body.append("rating", rating);
+      // body.append("rating", rating);
       body.append("details", details);
-      body.append("attachment", attachment);
+      for (let i = 0; i < attachments.length; i++) {
+        body.append("attachments", attachments[i]);
+      } // Multipart files share the same field name
 
       response = await Api("post", "/orders/complete", body);
 
@@ -460,6 +463,7 @@ const CompleteOrderModal = (props) => {
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">
             <input
+              multiple
               type="file"
               accept="image/*"
               hidden
@@ -469,12 +473,17 @@ const CompleteOrderModal = (props) => {
             />
             <div className="upload-img-text-cont">
               <span className="upload-img-text">
-                {attachment?.name ?? "Upload Drawing, Photo, Document, etc"}
+                {attachments?.name ?? "Upload Drawing, Photo, Document, etc"}
               </span>
               <img src={UploadSVG} />
             </div>
           </label>
         </div>
+      </div>
+      <div className="selected-images-container" style={{ margin: "0" }}>
+        {attachments?.map((val) => (
+          <span> {val?.name} </span>
+        ))}
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton
