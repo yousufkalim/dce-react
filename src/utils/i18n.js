@@ -466,6 +466,7 @@ i18n
           "Sent quote on your order.": "Sent quote on your order.",
           "Accepted your quote.": "Accepted your quote.",
           "Sent you a message.": "Sent you a message.",
+          "Type a message here": "Type a message here",
         },
       },
       fr: {
@@ -929,6 +930,7 @@ i18n
           "Sent quote on your order.": "Devis envoyé sur votre commande.",
           "Accepted your quote.": "J'ai accepté votre devis.",
           "Sent you a message.": "Vous a envoyé un message.",
+          "Type a message here": "Tapez un message ici",
         },
       },
     },

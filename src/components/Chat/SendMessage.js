@@ -14,8 +14,10 @@ import { Store, UpdateStore } from "../../StoreContext";
 import { toast } from "react-toastify";
 
 import Api from "../../api/index";
+import { useTranslation } from "react-i18next";
 
 const SendMessage = ({ directUser }) => {
+  const { t } = useTranslation();
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -155,7 +157,7 @@ const SendMessage = ({ directUser }) => {
         </div>
         <input
           className="msg-input"
-          placeholder="Type a message here"
+          placeholder={t("Type a message here")}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
