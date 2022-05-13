@@ -256,7 +256,7 @@ function OrderFromCatalogScreen() {
           <div
             className="container"
             style={{
-              height: "120vh",
+              height: "120vh !important",
               background: "#FFC396",
             }}
           >
