@@ -56,6 +56,8 @@ function ClientCreateAdScreen() {
     note: "",
   });
 
+  const [Open, setOpen] = useState(false);
+
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
   };
@@ -223,7 +225,6 @@ function ClientCreateAdScreen() {
                     state={deliverySection}
                     setState={setDeliverySection}
                     onClick={deliverySectionCallback}
-                    image={image}
                     Open={Open}
                     setOpen={setOpen}
                   />

@@ -288,10 +288,10 @@ function clientEditProfile(data) {
 
 function tailorCompleteOrder(data) {
   const valArr = [
-    {
-      validationFunction: () =>
-        Validators.nullValidator("Rating", data["rating"]),
-    },
+    // {
+    //   validationFunction: () =>
+    //     Validators.nullValidator("Rating", data["rating"]),
+    // },
     {
       validationFunction: () =>
         Validators.nullValidator("Details", data["details"]),
@@ -305,10 +305,10 @@ function tailorCompleteOrder(data) {
 
 function clientFeedbackOrder(data) {
   const valArr = [
-    {
-      validationFunction: () =>
-        Validators.nullValidator("Rating", data["rating"]),
-    },
+    // {
+    //   validationFunction: () =>
+    //     Validators.nullValidator("Rating", data["rating"]),
+    // },
     {
       validationFunction: () =>
         Validators.nullValidator("Details", data["details"]),

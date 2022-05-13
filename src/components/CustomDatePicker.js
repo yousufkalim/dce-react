@@ -16,9 +16,8 @@ function CustomDatePicker({
   labelStyle,
   dobinput,
   setOpen,
-  Open
+  Open,
 }) {
- 
   return (
     <div
       className="custom_input_container"
@@ -47,7 +46,7 @@ function CustomDatePicker({
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
-          className="datepck"
+            className="datepck"
             open={Open}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
@@ -56,12 +55,16 @@ function CustomDatePicker({
             disablePast={disablePast}
             disableFuture={disableFuture}
             inputFormat="dd/MM/yyyy"
-            renderInput={(params) => <TextField {...params} InputLabelProps={{
-              shrink: true,
-            }}
-           
-            onClick={(e) => setOpen(true)}
-            sx={{width: '100%'}}/>}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onClick={(e) => setOpen(true)}
+                sx={{ width: "100%" }}
+              />
+            )}
             disabled={disabled}
           />
         </LocalizationProvider>

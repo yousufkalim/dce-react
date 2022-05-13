@@ -393,7 +393,7 @@ function AdQuoteListTile(props) {
             color: "#A0A0A0",
           }}
         >
-          {rating}({ratingsCount})
+          {/* {rating}({ratingsCount}) */}
         </p>
       </div>
       <div className="cas_quote_list_tile_column1">
@@ -643,6 +643,7 @@ const AcceptQuoteModal = (props) => {
 
 const ScheduleCallModal = (props) => {
   const [isProcessing, setIsProcessing] = useState(false);
+  const [Open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
@@ -741,6 +742,8 @@ const ScheduleCallModal = (props) => {
         <div className="pa_profile_section_input_input">
           <CustomDatePicker
             disablePast
+            Open={Open}
+            setOpen={setOpen}
             labelStyle={{
               display: "none",
             }}
