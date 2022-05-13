@@ -203,8 +203,8 @@ function TailorViewQuoteScreen() {
                   className="pa_container"
                   style={{
                     marginTop: "10%",
-                    paddingTop:"3%",
-                    paddingBottom:"1%"
+                    paddingTop: "3%",
+                    paddingBottom: "1%",
                   }}
                 >
                   <div className="pa_steps_row">
@@ -399,7 +399,7 @@ function TailorViewQuoteScreen() {
                 </div>
                 <div className="tvqs_sq_buttons">
                   <CustomButton
-                    text={"Send Offer"}
+                    text={t("Send Offer")}
                     style={{
                       boxShadow: "none",
                       marginRight: "10pt",

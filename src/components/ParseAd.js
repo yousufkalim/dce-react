@@ -130,10 +130,10 @@ function BasicSection({
               selectValue={t(state.category)}
               onChange={(e) => _setState("category", e.target.value)}
               menuItems={[
-                <MenuItem value={"WOMEN"}>{t("WOMEN")}</MenuItem>,
-                <MenuItem value={"MAN"}>{t("MAN")}</MenuItem>,
-                <MenuItem value={"CHILD"}>{t("CHILD")}</MenuItem>,
-                <MenuItem value={"Other"}>{t("Other")}</MenuItem>,
+                <MenuItem value={"women"}>{t("WOMEN")}</MenuItem>,
+                <MenuItem value={"man"}>{t("MAN")}</MenuItem>,
+                <MenuItem value={"child"}>{t("CHILD")}</MenuItem>,
+                <MenuItem value={"other"}>{t("Other")}</MenuItem>,
               ]}
             />
           </div>
