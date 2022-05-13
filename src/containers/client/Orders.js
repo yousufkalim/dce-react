@@ -242,7 +242,7 @@ function OrderListTile(props) {
         )}
 
         <p style={{ fontSize: "15px", fontWeight: "600" }}>
-          {props.order.status.replace("_", " ")}
+          {t(props.order.status.replace("_", " "))}
         </p>
       </div>
       <Modal

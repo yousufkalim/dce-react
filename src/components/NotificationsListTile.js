@@ -3,8 +3,10 @@ import React from "react";
 import UserSVG from "../assets/dummy.jpeg";
 import { useNavigate } from "react-router-dom";
 import assetsURL from "../utils/Assets";
+import { useTranslation } from "react-i18next";
 
 function NotificationsListTile(props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const navToLink = () => {
@@ -59,9 +61,9 @@ function NotificationsListTile(props) {
             fontSize: "13px",
           }}
         >
-          {props.text.length < 35
-            ? props.text
-            : props.text.slice(0, 34) + "..."}
+          {t(props.text).length < 35
+            ? t(props.text)
+            : t(props.text).slice(0, 34) + "..."}
         </p>
       </div>
       <p
