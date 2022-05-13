@@ -162,7 +162,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             color: Color(order.status),
           }}
         >
-          {order?.status?.replace("_", " ")}
+          {t(order?.status?.replace("_", " "))}
         </p>
       </div>
     </>

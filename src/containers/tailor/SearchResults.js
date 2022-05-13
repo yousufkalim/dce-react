@@ -111,7 +111,7 @@ function SearchInput({ setSearchQuery, callback }) {
     >
       <input
         type="text"
-        placeholder={t('Search')}
+        placeholder={t("Search")}
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
@@ -125,6 +125,7 @@ function SearchInput({ setSearchQuery, callback }) {
 }
 
 function SingleResult(props) {
+  const { t } = useTranslation();
   return (
     <div className="tsrs_single_result_list_tile_container">
       <div className="tsrs_single_result_list_tile_row">
@@ -211,7 +212,7 @@ function SingleResult(props) {
                 fontFamily: "Montserrat, sans-serif",
               }}
             >
-              {props.order.status.replace("_", " ")}
+              {t(props.order.status.replace("_", " "))}
             </h1>
           </div>
         </div>

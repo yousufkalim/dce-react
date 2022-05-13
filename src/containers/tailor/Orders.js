@@ -579,7 +579,7 @@ function OrderCompletedListTile(props) {
             }}
           />
           <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>
-            {props.order.status.replace("_", " ")}
+            {t(props.order.status.replace("_", " "))}
           </p>
         </div>
       </div>
@@ -698,7 +698,7 @@ function OrderDiscardedListTile(props) {
             }}
           />
           <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>
-            {props.order.status.replace("_", " ")}
+            {t(props.order.status.replace("_", " "))}
           </p>
         </div>
       </div>
