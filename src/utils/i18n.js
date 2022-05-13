@@ -438,6 +438,22 @@ i18n
           Muave: "Muave",
           "Bright Pink": "Bright Pink",
           Red: "Red",
+
+          // Umar's
+          "I agree": "I agree",
+          "Book call (on schedule) for measurement":
+            "Book call (on schedule) for measurement",
+          "I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer be able to become a service provider on DCE.":
+            "I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer be able to become a service provider on DCE.",
+          "I declare on my honor that the information provided is accurate, as well as the identity document attached above is authentic, belongs to me, and meets all the required conditions.":
+            "I declare on my honor that the information provided is accurate, as well as the identity document attached above is authentic, belongs to me, and meets all the required conditions.",
+          Accept: "Accept",
+          "Urgent, Normal": "Urgent, Normal",
+          Urgent: "Urgent",
+          Normal: "Normal",
+          Address: "Address",
+          "Create Catalog After": "Create Catalog After",
+          "ORDER COMPLETION ?": "ORDER COMPLETION ?",
         },
       },
       fr: {
@@ -872,6 +888,22 @@ i18n
           Muave: "Mauve",
           "Bright Pink": "Rose vif",
           Red: "Rouge",
+
+          // Umar's
+          "I agree": "Je suis d'accord",
+          "Book call (on schedule) for measurement":
+            "Appel de rendez-vous (dans les délais) pour la mesure",
+          "I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer be able to become a service provider on DCE.":
+            "Je comprends également que toute adresse incomplète, date de naissance altérée, utilisation d'une identité différente de la mienne, ou tout document falsifié sera entraîner la suspension immédiate et définitive de mon compte et que je ne pourra donc plus devenir prestataire de services sur DCE.",
+          "I declare on my honor that the information provided is accurate, as well as the identity document attached above is authentic, belongs to me, and meets all the required conditions.":
+            "Je déclare sur l'honneur que les informations fournies sont exactes, comme ainsi que la pièce d'identité ci-jointe est authentique, appartient à moi, et remplit toutes les conditions requises.",
+          Accept: "Accepter",
+          "Urgent, Normal": "Urgente, Ordinaire",
+          Urgent: "Urgente",
+          Normal: "Ordinaire",
+          Address: "Adresse",
+          "Create Catalog After": "Créer un catalogue après",
+          "ORDER COMPLETION ?": "ACHÈVEMENT DE LA COMMANDE ?",
         },
       },
     },

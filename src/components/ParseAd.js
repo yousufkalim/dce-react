@@ -81,6 +81,7 @@ function BasicSection({
   const classes = useStyles();
   return (
     <>
+      {console.log(state)}
       <div className="pa_profile_section_container">
         <div
           className="pa_profile_section_input_container"
@@ -336,7 +337,7 @@ function BasicSection({
             borderTopRightRadius: "20px",
             marginTop: "2%",
             backgroundColor: state.color
-              ? colors.filter((_) => _.name == state?.color)[0]?.value
+              ? colors.filter((_) => t(_.name) == t(state?.color))[0]?.value
               : null,
           }}
         >
@@ -356,35 +357,35 @@ function BasicSection({
             className="pa_profile_section_input_input"
           >
             {/* <CustomDropDown
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
-              }}
-              selectID="colour"
-              selectName="colour"
-              selectNullValue={t("Select one colour for your Creations")}
-              selectValue={state.color}
-              onChange={(e) => _setState("color", e.target.value)}
-              menuItems={colors.map((_) => (
-                <MenuItem value={_.name}> {_.name}</MenuItem>
-              ))}
-              valuecolor={state.color ? "on" : "off"}
-            /> */}
+                  disabled={disabled}
+                  labelStyle={{
+                    display: "none",
+                  }}
+                  selectID="colour"
+                  selectName="colour"
+                  selectNullValue={t("Select one colour for your Creations")}
+                  selectValue={state.color}
+                  onChange={(e) => _setState("color", e.target.value)}
+                  menuItems={colors.map((_) => (
+                    <MenuItem value={_.name}> {_.name}</MenuItem>
+                  ))}
+                  valuecolor={state.color ? "on" : "off"}
+                /> */}
             {/* <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
-    /> */}
+                  disablePortal
+                  id="combo-box-demo"
+                  options={top100Films}
+                  sx={{ width: 300 }}
+                  renderInput={(params) => <TextField {...params} label="Movie" />}
+                /> */}
             <Autocomplete
               disabled={disabled}
               classes={classes}
-              value={t(state?.color)}
+              value={state?.color ? t(state?.color) : null}
               onChange={(event, newValue) => {
                 _setState("color", newValue);
               }}
-              inputValue={t(inputValue)}
+              inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
               }}
@@ -500,11 +501,7 @@ function BasicSection({
           <label>
             {" "}
             <span className="duw-text">{t("Create Catalog After")}</span>{" "}
-            {/* TODO: Trans */}
-            <span className="alteration-txt">
-              {t("ORDER COMPLETION ?")}{" "}
-            </span>{" "}
-            {/* TODO: Trans */}
+            <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "}
           </label>
         </div>
         {!onClick ? (
@@ -631,7 +628,7 @@ function DeliverySection({
                 label={"Address"}
                 value={state?.address?.label}
                 options={addresses}
-                placeholder={"Address"}
+                placeholder={t("Address")}
                 componenet="parseaddress"
                 onChangeAddress={(e) => {
                   handleInputAddress(e);
@@ -736,12 +733,12 @@ function DeliverySection({
               }}
               selectID="delivery_type"
               selectName="delivery_type"
-              selectNullValue="Urgent, Normal"
+              selectNullValue={t("Urgent, Normal")}
               selectValue={state.type}
               onChange={(e) => _setState("type", e.target.value)}
               menuItems={[
-                <MenuItem value={"urgent"}>Urgent</MenuItem>,
-                <MenuItem value={"normal"}>Normal</MenuItem>,
+                <MenuItem value={"urgent"}>{t("Urgent")}</MenuItem>,
+                <MenuItem value={"normal"}>{t("Normal")}</MenuItem>,
               ]}
             />
           </div>
