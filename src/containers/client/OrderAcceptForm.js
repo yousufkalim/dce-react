@@ -1,7 +1,9 @@
 import React from "react";
 import CustomButton from "../../components/CustomButton";
 import Checkbox from "@mui/material/Checkbox";
+import { useTranslation } from "react-i18next";
 const OrderAcceptForm = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="orderform-container">
@@ -14,9 +16,9 @@ const OrderAcceptForm = () => {
             service provider on DCE.{" "}
           </p>
         </div>
-        <div style={{marginTop:"5%"}} className="checkbox-text-container">
+        <div style={{ marginTop: "5%" }} className="checkbox-text-container">
           <Checkbox
-          sx={{padding:"0px"}}
+            sx={{ padding: "0px" }}
             style={{
               transform: "scale(0.8)",
               color: "#CC8E9C",
@@ -32,7 +34,7 @@ const OrderAcceptForm = () => {
         <div className="btn-container">
           {" "}
           <CustomButton
-            text="I agree"
+            text={t("I agree")}
             padding="1.3% 2.5%"
             style={{
               marginBottom: "10%",

@@ -475,6 +475,7 @@ function AdQuoteListTile(props) {
 }
 
 const AcceptQuoteModal = (props) => {
+  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
 
@@ -579,10 +580,9 @@ const AcceptQuoteModal = (props) => {
           marginBottom: "5%",
         }}
       >
-        I also understand that any incomplete address, altered date of birth,
-        use of an identity different from mine, or any falsified document will
-        lead to the immediate and definitive suspension of my account and that I
-        will therefore no longer be able to become a service provider on DCE.
+        {t(
+          "I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer be able to become a service provider on DCE."
+        )}
       </p>
       <div
         style={{
@@ -603,9 +603,9 @@ const AcceptQuoteModal = (props) => {
             fontWeight: "100",
           }}
         >
-          I declare on my honor that the information provided is accurate, as
-          well as the identity document attached above is authentic, belongs to
-          me, and meets all the required conditions
+          {t(
+            "I declare on my honor that the information provided is accurate, as well as the identity document attached above is authentic, belongs to me, and meets all the required conditions."
+          )}
         </p>
       </div>
       <div className="tvqs_sq_buttons">
@@ -618,7 +618,7 @@ const AcceptQuoteModal = (props) => {
           onClick={props.handleClose}
         />
         <CustomButton
-          text="I agree"
+          text={t("I agree")}
           style={{
             boxShadow: "none",
           }}
@@ -642,6 +642,7 @@ const AcceptQuoteModal = (props) => {
 };
 
 const ScheduleCallModal = (props) => {
+  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [Open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
@@ -726,7 +727,7 @@ const ScheduleCallModal = (props) => {
           marginBottom: "5%",
         }}
       >
-        Book call (on schedule) for measurement
+        {t("Book call (on schedule) for measurement")}
       </p>
       <div
         className="pa_profile_section_input_container"
@@ -788,7 +789,7 @@ const ScheduleCallModal = (props) => {
           onClick={props.handleClose}
         />
         <CustomButton
-          text="I agree"
+          text={t("I agree")}
           style={{
             boxShadow: "none",
           }}
@@ -800,6 +801,7 @@ const ScheduleCallModal = (props) => {
 };
 
 const RejectQuoteModal = (props) => {
+  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const navigate = useNavigate();
@@ -865,7 +867,7 @@ const RejectQuoteModal = (props) => {
           onClick={props.handleClose}
         />
         <CustomButton
-          text="I agree"
+          text={t("I agree")}
           style={{
             boxShadow: "none",
           }}
