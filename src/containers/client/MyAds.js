@@ -667,7 +667,6 @@ const ScheduleCallModal = (props) => {
         0,
         0
       );
-
       const body = {
         quote: props.quote._id,
         call_at: parsedDate,

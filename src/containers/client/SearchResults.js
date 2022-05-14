@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import SearchIcon from "../../assets/search1.svg";
 import UserSVG from "../../assets/resultimg1.svg";
 import CustomButton from "../../components/CustomButton";
@@ -56,47 +56,47 @@ function ClientSearchResultsScreen() {
 
   return (
     <>
-    <div className="container-page-vertical">
-      <ClientAppBar color="#FDFDFC" disableSearch />
-      <div
-        className="client_orders_screen_top"
-        style={{
-          background: "#E5E5E5",
-        }}
-      >
-        <div className="client_search_results_screen_row1">
-          <SearchInput setSearchQuery={setSearchQuery} callback={callback} />
-        </div>
+      <div className="container-page-vertical">
+        <ClientAppBar color="#FDFDFC" disableSearch />
         <div
+          className="client_orders_screen_top"
           style={{
-            width: "85%",
-            textAlign: "right",
-            padding: "20px",
-            color: "gray",
+            background: "#E5E5E5",
           }}
         >
-          <p>
-            {tailors.length} {t("Designers Found")}
-          </p>
+          <div className="client_search_results_screen_row1">
+            <SearchInput setSearchQuery={setSearchQuery} callback={callback} />
+          </div>
+          <div
+            style={{
+              width: "85%",
+              textAlign: "right",
+              padding: "20px",
+              color: "gray",
+            }}
+          >
+            <p>
+              {tailors.length} {t("Designers Found")}
+            </p>
+          </div>
+          <div className="client_search_results_screen_row2">
+            {tailors.map((_) => (
+              <SingleResult {..._} />
+            ))}
+          </div>
+          <CustomButton
+            text={t("See All")}
+            style={{
+              alignSelf: "center",
+              boxShadow: "none",
+              marginTop: "5%",
+              marginBottom: "5%",
+            }}
+          />
         </div>
-        <div className="client_search_results_screen_row2">
-          {tailors.map((_) => (
-            <SingleResult {..._} />
-          ))}
-        </div>
-        <CustomButton
-          text={t("See All")}
-          style={{
-            alignSelf: "center",
-            boxShadow: "none",
-            marginTop: "5%",
-            marginBottom: "5%",
-          }}
-        />
       </div>
-    </div>
-    <Footer/>
-</>
+      <Footer />
+    </>
   );
 }
 
@@ -109,7 +109,7 @@ function SearchInput({ setSearchQuery, callback }) {
     >
       <input
         type="text"
-        placeholder="Search"
+        placeholder={t("Search")}
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
