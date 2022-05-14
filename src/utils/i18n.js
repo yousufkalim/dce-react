@@ -550,7 +550,7 @@ i18n
           //chats
           Online: "En ligne",
           "Last Online": "Dernière connexion",
-          Chats: "Chats",
+          Chats: "Chattes",
           "Recent Chats": "Chats récents",
           "Search Input can't be empty":
             "L'entrée de recherche ne peut pas être vide",
