@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -13,6 +13,8 @@ function CustomTimePicker({
   divStyle,
   labelStyle,
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div
       className="custom_input_container"
@@ -39,6 +41,9 @@ function CustomTimePicker({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
             className="cdp_container"
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
             value={value}
             onChange={onChange}
             renderInput={(params) => <TextField {...params} />}

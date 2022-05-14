@@ -25,7 +25,6 @@ import { Store, UpdateStore } from "../../StoreContext";
 function TailorCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [Open, setOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [hasPhysicalStore, setHasPhysicalStore] = useState(false);
@@ -223,8 +222,6 @@ function TailorCreateAccountScreen() {
               />
               <CustomDatePicker
                 disableFuture
-                Open={Open}
-                setOpen={setOpen}
                 labelText="Date of Birth"
                 value={dateOfBirth}
                 onChange={setDateOfBirth}
