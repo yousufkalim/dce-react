@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -15,9 +15,9 @@ function CustomDatePicker({
   divStyle,
   labelStyle,
   dobinput,
-  setOpen,
-  Open,
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div
       className="custom_input_container"
@@ -47,7 +47,7 @@ function CustomDatePicker({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             className="datepck"
-            open={Open}
+            open={open}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
             value={value}

@@ -121,11 +121,21 @@ function SearchInput({ setSearchQuery, callback }) {
     </div>
   );
 }
+
 function SingleResult(props) {
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
+  const navToViewTailor = () => {
+    navigate(`/view_tailor/${props._id}`);
+  };
+
   return (
-    <div className="csrs_single_result_list_tile_container">
+    <div
+      className="csrs_single_result_list_tile_container"
+      onClick={navToViewTailor}
+    >
       <div className="csrs_single_result_list_tile_column">
         <img
           className="image_container"

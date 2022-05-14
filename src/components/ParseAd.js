@@ -521,14 +521,7 @@ function BasicSection({
   );
 }
 
-function DeliverySection({
-  state,
-  setState,
-  onClick,
-  disabled,
-  Open,
-  setOpen,
-}) {
+function DeliverySection({ state, setState, onClick, disabled }) {
   const { t } = useTranslation();
   const [addresses, setAddresses] = useState([]);
   const _setState = (key, value) => {
@@ -762,8 +755,6 @@ function DeliverySection({
             <CustomDatePicker
               disablePast
               disabled={disabled}
-              setOpen={setOpen}
-              Open={Open}
               labelStyle={{
                 display: "none",
               }}

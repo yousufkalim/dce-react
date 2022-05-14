@@ -644,7 +644,6 @@ const AcceptQuoteModal = (props) => {
 const ScheduleCallModal = (props) => {
   const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [Open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
@@ -742,8 +741,6 @@ const ScheduleCallModal = (props) => {
         <div className="pa_profile_section_input_input">
           <CustomDatePicker
             disablePast
-            Open={Open}
-            setOpen={setOpen}
             labelStyle={{
               display: "none",
             }}
