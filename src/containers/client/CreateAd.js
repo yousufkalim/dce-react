@@ -56,8 +56,6 @@ function ClientCreateAdScreen() {
     note: "",
   });
 
-  const [Open, setOpen] = useState(false);
-
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
   };
@@ -225,8 +223,6 @@ function ClientCreateAdScreen() {
                     state={deliverySection}
                     setState={setDeliverySection}
                     onClick={deliverySectionCallback}
-                    Open={Open}
-                    setOpen={setOpen}
                   />
                 ) : activeStep == 2 ? (
                   <ParseAd.NotesSection

@@ -33,7 +33,6 @@ function ClientCreateAccountScreen() {
   const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
   const [gender, setGender] = useState("");
   const [addresses, setAddresses] = useState([]);
-  const [Open, setOpen] = useState(false);
   const [address, setAddress] = useState({
     zip: "",
     label: "",
@@ -231,8 +230,6 @@ function ClientCreateAccountScreen() {
               />
               <CustomDatePicker
                 disableFuture
-                Open={Open}
-                setOpen={setOpen}
                 labelText="Date of Birth"
                 value={dateOfBirth}
                 onChange={setDateOfBirth}

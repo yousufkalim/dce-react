@@ -603,6 +603,16 @@ function OrderDiscardedListTile(props) {
   const rating = calculateRating(props.order.client.ratings);
   const ratingsCount = calculateRatingsCount(props.order.client.ratings);
 
+  const [isContactSupportOrderModal, setIsContactSupportOrderModal] =
+    useState(false);
+  const handleContactSupportOrderModalClose = (e) => {
+    setIsContactSupportOrderModal(false);
+  };
+  const handleContactSupportOrderModalOpen = (e) => {
+    e.stopPropagation();
+    setIsContactSupportOrderModal(true);
+  };
+
   const navigate = useNavigate();
   const navtoClientProfile = () => {
     navigate(`/client_profile/${props.order.client._id}`);
@@ -611,7 +621,11 @@ function OrderDiscardedListTile(props) {
   return (
     <div
       className="tcos_order_list_tile_container"
-      onClick={() => props.navToViewOrder(props.order._id)}
+      onClick={() => {
+        if (!isContactSupportOrderModal) {
+          props.navToViewOrder(props.order._id);
+        }
+      }}
     >
       <div className="tcos_order_list_tile_column1">
         <div
@@ -696,12 +710,26 @@ function OrderDiscardedListTile(props) {
             style={{
               boxShadow: "none",
             }}
+            onClick={(e) => {
+              handleContactSupportOrderModalOpen(e);
+            }}
           />
           <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>
             {t(props.order.status.replace("_", " "))}
           </p>
         </div>
       </div>
+      <Modal
+        open={isContactSupportOrderModal}
+        onClose={handleContactSupportOrderModalClose}
+        aria-labelledby="Contact Support Order"
+        onBackdropClick="false"
+      >
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
+          order={props.order}
+        />
+      </Modal>
     </div>
   );
 }
