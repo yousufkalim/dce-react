@@ -108,6 +108,7 @@ i18n
             "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries",
 
           //measurements
+          Measurements: "Measurements",
           "Get a tape": "Get a tape",
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important: If you hesitate between two sizes, take the larger one.",
@@ -561,7 +562,9 @@ i18n
           "Frequently Asked Question": "Question fréquemment posée",
           "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries":
             "Une liste de questions fréquemment posées est souvent utilisée dans les articles, les sites Web, les listes de diffusion et les forums en ligne où les questions courantes ont tendance à se reproduire, par exemple via des publications ou des requêtes.",
+
           //measurements
+          Measurements: "Des mesures",
           "Get a tape": "Obtenez une bande",
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important : Si vous hésitez entre deux tailles, prenez la plus grande.",
@@ -935,6 +938,7 @@ i18n
       },
     },
 
+    lng: "fr", // default language
     fallbackLng: "fr",
     debug: true,
 
