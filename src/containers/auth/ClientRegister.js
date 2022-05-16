@@ -13,7 +13,11 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import { useTranslation } from "react-i18next";
+
 function ClientRegisterScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -95,7 +99,7 @@ function ClientRegisterScreen() {
           <div className="login_screen_row2">
             <div className="login_screen_row2_container">
               <CustomInput
-                labelText="Email"
+                labelText={t("Email")}
                 inputType="email"
                 inputName="Email"
                 inputPlaceholder="abc@xyz.com"
@@ -104,7 +108,7 @@ function ClientRegisterScreen() {
                 }}
               />
               <CustomInput
-                labelText="Password"
+                labelText={t("Password")}
                 inputType="password"
                 inputName="Password"
                 inputPlaceholder="********"
@@ -114,7 +118,7 @@ function ClientRegisterScreen() {
                 }}
               />
               <CustomButton
-                text="Sign up"
+                text={t("Sign up")}
                 type="submit"
                 style={{
                   marginBottom: "10%",
@@ -132,7 +136,7 @@ function ClientRegisterScreen() {
                     color: "#A0A0A0",
                   }}
                 >
-                  Already have an account?
+                  {t("Already have an account?")}
                 </p>
                 <p
                   style={{
@@ -140,7 +144,7 @@ function ClientRegisterScreen() {
                     color: "#CC8E9C",
                   }}
                 >
-                  Sign in now
+                  {t("Sign in now")}
                 </p>
               </div>
             </div>

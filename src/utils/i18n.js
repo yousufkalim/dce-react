@@ -109,6 +109,7 @@ i18n
             "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries",
 
           //measurements
+          Measurements: "Measurements",
           "Get a tape": "Get a tape",
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important: If you hesitate between two sizes, take the larger one.",
@@ -468,6 +469,18 @@ i18n
           "Accepted your quote.": "Accepted your quote.",
           "Sent you a message.": "Sent you a message.",
           "Type a message here": "Type a message here",
+          "Forgot Password?": "Forgot Password?",
+          Login: "Login",
+          "Don't have an account?": "Don't have an account?",
+          "Register now": "Register now",
+          "Register As a": "Register As a",
+          Client: "Client",
+          Designer: "Designer",
+          "Sign up": "Sign up",
+          "Already have an account?": "Already have an account?",
+          "Sign in now": "Sign in now",
+          "Verification Code": "Verification Code",
+          "Create Account": "Create Account",
         },
       },
       fr: {
@@ -564,7 +577,9 @@ i18n
           "Frequently Asked Question": "Question fréquemment posée",
           "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries":
             "Une liste de questions fréquemment posées est souvent utilisée dans les articles, les sites Web, les listes de diffusion et les forums en ligne où les questions courantes ont tendance à se reproduire, par exemple via des publications ou des requêtes.",
+
           //measurements
+          Measurements: "Des mesures",
           "Get a tape": "Obtenez une bande",
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important : Si vous hésitez entre deux tailles, prenez la plus grande.",
@@ -934,10 +949,23 @@ i18n
           "Accepted your quote.": "J'ai accepté votre devis.",
           "Sent you a message.": "Vous a envoyé un message.",
           "Type a message here": "Tapez un message ici",
+          "Forgot Password?": "Mot de passe oublié?",
+          Login: "Connexion",
+          "Don't have an account?": "Vous n'avez pas de compte ?",
+          "Register now": "S'inscrire maintenant",
+          "Register As a": "Inscrivez-vous en tant que",
+          Client: "Client",
+          Designer: "Designer",
+          "Sign up": "S'inscrire",
+          "Already have an account?": "Vous avez déjà un compte?",
+          "Sign in now": "Connectez vous maintenant",
+          "Verification Code": "Code de vérification",
+          "Create Account": "Créer un compte",
         },
       },
     },
 
+    lng: "fr", // default language
     fallbackLng: "fr",
     debug: true,
 

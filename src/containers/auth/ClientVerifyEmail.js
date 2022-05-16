@@ -14,7 +14,11 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import { useTranslation } from "react-i18next";
+
 function ClientVerifyEmailScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -101,7 +105,7 @@ function ClientVerifyEmailScreen() {
             <div className="login_screen_row2_container">
               <CustomInput
                 disabled
-                labelText="Email"
+                labelText={t("Email")}
                 inputType="email"
                 inputName="Email"
                 inputPlaceholder="abc@xyz.com"
@@ -112,7 +116,7 @@ function ClientVerifyEmailScreen() {
               />
               <CustomInput
                 disabled
-                labelText="Password"
+                labelText={t("Password")}
                 inputType="password"
                 inputName="Password"
                 inputPlaceholder="********"
@@ -122,7 +126,7 @@ function ClientVerifyEmailScreen() {
                 }}
               />
               <CustomInput
-                labelText="Verification Code"
+                labelText={t("Verification Code")}
                 inputType="password"
                 inputName="Verification Code"
                 inputPlaceholder="Verification Code"
@@ -132,7 +136,7 @@ function ClientVerifyEmailScreen() {
                 }}
               />
               <CustomButton
-                text="Create Account"
+                text={t("Create Account")}
                 type="submit"
                 style={{
                   marginBottom: "10%",

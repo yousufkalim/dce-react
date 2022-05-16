@@ -17,7 +17,11 @@ import * as FormValidations from "../../utils/Validations";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
+import { useTranslation } from "react-i18next";
+
 function LoginScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -25,7 +29,7 @@ function LoginScreen() {
   const updateStore = UpdateStore();
 
   const navToHome = () => {
-     navigate("/home");
+    navigate("/home");
   };
 
   const navToSelectRole = (e) => {
@@ -98,7 +102,7 @@ function LoginScreen() {
           <div className="login_screen_row2">
             <div className="login_screen_row2_container">
               <CustomInput
-                labelText="Email"
+                labelText={t("Email")}
                 inputType="email"
                 inputName="Email"
                 inputPlaceholder="abc@xyz.com"
@@ -107,7 +111,7 @@ function LoginScreen() {
                 }}
               />
               <CustomInput
-                labelText="Password"
+                labelText={t("Password")}
                 inputType="password"
                 inputName="Password"
                 inputPlaceholder="********"
@@ -124,12 +128,11 @@ function LoginScreen() {
                   marginBottom: "4%",
                 }}
               >
-                Forgot Password?
+                {t("Forgot Password?")}
               </p>
               <CustomButton
-                text="Login"
-                // type="submit"
-                onClick={navToHome}
+                text={t("Login")}
+                type="submit"
                 style={{
                   marginBottom: "10%",
                 }}
@@ -146,7 +149,7 @@ function LoginScreen() {
                     color: "#A0A0A0",
                   }}
                 >
-                  Don't have an account?
+                  {t("Don't have an account?")}
                 </p>
                 <p
                   style={{
@@ -154,7 +157,7 @@ function LoginScreen() {
                     color: "#CC8E9C",
                   }}
                 >
-                  Register now
+                  {t("Register now")}
                 </p>
               </div>
             </div>

@@ -327,7 +327,6 @@ function TailorCreateAccountScreen() {
               ) : (
                 <></>
               )}
-
               <CustomButton
                 text="Save"
                 type="submit"
