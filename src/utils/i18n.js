@@ -17,6 +17,7 @@ i18n
           "Submit your idea,": "Submit your idea,",
           "We make it real,": "We make it real,",
           "You receive your creation": "You receive your creation",
+          "New Order": "New Order",
           "at home!": "at home!",
           "Place Your Ad": "Place Your Ad",
           "Orders List": "Orders List",
@@ -516,8 +517,10 @@ i18n
           "Place this Order": "Passer cette commande",
 
           //order
+
           Order: "Commande",
           "Order Date": "Date de commande",
+          "New Order": "Nouvel ordre",
           "Delivery Date": "La date de livraison",
           "Coming soon!": "Bientôt disponible!",
           Rating: "Évaluation",
@@ -548,7 +551,7 @@ i18n
           //chats
           Online: "En ligne",
           "Last Online": "Dernière connexion",
-          Chats: "Chats",
+          Chats: "Chattes",
           "Recent Chats": "Chats récents",
           "Search Input can't be empty":
             "L'entrée de recherche ne peut pas être vide",

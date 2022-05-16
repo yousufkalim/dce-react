@@ -413,7 +413,7 @@ function SearchInput({ setSearchQuery, callback }) {
       >
         <input
           type="text"
-          placeholder={t("Search")}
+          placeholder={t("chercher")}
           className="appbar_row2_input"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
