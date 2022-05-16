@@ -22,9 +22,13 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
+import { useTranslation } from "react-i18next";
+
 const steps = ["Circumference", "Length"];
 
 function ClientTapeMeasurementScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -101,7 +105,6 @@ function ClientTapeMeasurementScreen() {
         },
       ];
       let measurements = JSON.stringify(body.measurements);
-      console.log(measurements, "m");
       getSessionUrl(state.quote, line_items, measurements);
     } catch (e) {
       console.trace(e);
@@ -170,7 +173,7 @@ function ClientTapeMeasurementScreen() {
                 fontWeight: "900",
               }}
             >
-              Get a tape
+              {t("Get a tape")}
             </p>
             <p
               style={{
@@ -179,7 +182,7 @@ function ClientTapeMeasurementScreen() {
                 marginBottom: "8%",
               }}
             >
-              Measure
+              {t("Measure")}
             </p>
           </div>
           <div className="client_create_ad_screen_column2">
@@ -229,7 +232,9 @@ function ClientTapeMeasurementScreen() {
           <div> </div>
           <div className="m-cont">
             <p className="m-one-text">
-              Important: If you hesitate between two sizes, take the larger one.
+              {t(
+                "Important: If you hesitate between two sizes, take the larger one."
+              )}
             </p>
             <img src={MeasuremenToneSVG} />
           </div>
@@ -238,7 +243,7 @@ function ClientTapeMeasurementScreen() {
             <img src={measurementTwoSVG} />
           </div>
           <div className="m-cont">
-            <p>Video Tutorial</p>
+            <p>{t("Video Tutorial")}</p>
             <div className="utube-icon-container">
               <img className="utube-icon" src={YoutubeIconSVG} />
               <img className="video-img" src={VideotutSVG} />
