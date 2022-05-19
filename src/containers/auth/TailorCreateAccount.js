@@ -22,7 +22,11 @@ import * as FormValidations from "../../utils/Validations";
 
 import { Store, UpdateStore } from "../../StoreContext";
 
+import { useTranslation } from "react-i18next";
+
 function TailorCreateAccountScreen() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { state } = useLocation();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -205,24 +209,24 @@ function TailorCreateAccountScreen() {
           <div className="login_screen_row2">
             <div className="create_account_screen_row2_container">
               <CustomInput
-                labelText="Name of your company"
+                labelText={t("Name of your company")}
                 inputName="Name of your company"
-                inputPlaceholder="Name of your company"
+                inputPlaceholder={t("Name of your company")}
                 divStyle={{
                   marginBottom: "6%",
                 }}
               />
               <CustomInput
-                labelText="Name"
+                labelText={t("Name")}
                 inputName="Name"
-                inputPlaceholder="Name"
+                inputPlaceholder={t("Name")}
                 divStyle={{
                   marginBottom: "6%",
                 }}
               />
               <CustomDatePicker
                 disableFuture
-                labelText="Date of Birth"
+                labelText={t("Date of Birth")}
                 value={dateOfBirth}
                 onChange={setDateOfBirth}
                 divStyle={{
@@ -233,9 +237,9 @@ function TailorCreateAccountScreen() {
               <div style={{ width: "100%" }}>
                 <label className="custom_input_label">Address</label>
                 <AutoComplete
-                  name="Address"
+                  name={t("Address")}
                   required={true}
-                  label={"Address"}
+                  label={t("Address")}
                   value={address.label}
                   options={addresses}
                   placeholder={t("Address")}
@@ -273,9 +277,9 @@ function TailorCreateAccountScreen() {
                 />
               </div> */}
               <CustomInput
-                labelText="Phone No"
+                labelText={t("Phone No")}
                 inputName="Phone No"
-                inputPlaceholder="Phone No"
+                inputPlaceholder={t("Phone No")}
                 divStyle={{
                   marginBottom: "2%",
                 }}
@@ -308,14 +312,14 @@ function TailorCreateAccountScreen() {
                     paddingLeft: "10px",
                   }}
                 >
-                  I Have Physical Store
+                  {t("I Have Physical Store")}
                 </p>
               </div>
               {hasPhysicalStore ? (
                 <CustomInput
-                  labelText="Store Name"
+                  labelText={t("Store Name")}
                   inputName="Store Name"
-                  inputPlaceholder="Store Name"
+                  inputPlaceholder={t("Store Name")}
                   labelStyle={{
                     display: "none",
                   }}
@@ -328,7 +332,7 @@ function TailorCreateAccountScreen() {
                 <></>
               )}
               <CustomButton
-                text="Save"
+                text={t("Save")}
                 type="submit"
                 style={{
                   marginBottom: "10%",
