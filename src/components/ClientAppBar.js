@@ -180,8 +180,11 @@ function ClientAppBar({
     let response;
     try {
       response = await Api("get", `/notifications`);
-      console.log(response.data);
-      const notificationsData = response.data.notifications.splice(-10);
+      const notificationsData = response.data.notifications.splice(-8);
+      notificationsData.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
       setNotifications(notificationsData);
     } catch (e) {
       console.trace(e);
