@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import UserSVG from "../../assets/User.svg";
+import AutoComplete from "../../components/AutoComplete";
+
 import DesignElaborationSVG from "../../assets/profile.svg";
 
-import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
-import ProfileCitySVG from "../../assets/ProfileCity.svg";
-import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
-import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
 import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
 import dummy from "../../assets/dummy.jpeg";
 import { useTranslation } from "react-i18next";
@@ -15,8 +12,10 @@ import { useTranslation } from "react-i18next";
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
+import CustomDatePicker from "../../components/CustomDatePicker";
 
 import Api from "../../api";
+import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
@@ -34,13 +33,23 @@ function ClientProfileScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [profile, setProfile] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
-
   const [toEdit, setToEdit] = useState(false);
 
   const [state, setState] = useState({
     phone: "",
     password: undefined,
   });
+
+  // Z-Mods
+  const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [address, setAddress] = useState({
+    zip: "",
+    label: "",
+    city: "",
+    lat: "",
+    lng: "",
+  });
+  const [addresses, setAddresses] = useState([]);
 
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
@@ -70,6 +79,16 @@ function ClientProfileScreen() {
         ...state,
         phone: userData.phone ?? "",
       });
+      if (userData.dob) {
+        setDateOfBirth(userData.dob);
+      }
+      if (userData.address) {
+        setAddress({
+          zip: userData.zip_code,
+          label: userData.address,
+          city: userData.city,
+        });
+      }
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
@@ -105,12 +124,21 @@ function ClientProfileScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
+
       body.append("phone", state.phone);
-      body.append("phone", state.phone);
+      if (dateOfBirth) {
+        body.append("dob", dateOfBirth);
+      }
+      if (address.label) {
+        body.append("address", address.label);
+        body.append("zip_code", address.zip);
+        body.append("city", address.city);
+      }
       if (state.password) {
         body.append("password", state.password);
       }
       body.append("image", profileImage);
+
       response = await Api("put", `/clients/${profile?._id}`, body);
 
       if (response?.data?.success) {
@@ -126,6 +154,71 @@ function ClientProfileScreen() {
 
   const navToHome = () => {
     navigate("/home");
+  };
+
+  const _setAddress = (_) => {
+    setAddress({ ...address, ..._ });
+  };
+  const handleSelectAddress = (e) => {
+    if (e) {
+      _setAddress({
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+    }
+  };
+  const handleInputAddress = async (e) => {
+    if (e.target.value === "") {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+      setAddresses([]);
+    } else {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+        method: "get",
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features
+          .map((item) => {
+            addressToSet.push({
+              label: item.properties.label,
+              city: item.properties.city,
+              PostalCode: item.properties.postcode,
+              lat: item.geometry.coordinates[1],
+              lng: item.geometry.coordinates[0],
+            });
+            setAddresses(addressToSet);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
+    }
   };
 
   return (
@@ -224,43 +317,36 @@ function ClientProfileScreen() {
                     defaultValue={profile.email}
                     img={ProfileEmailSVG}
                   />
-                  <ProfileInput
-                    disabled
-                    name="Date Of Birth"
-                    placeholder={t("Date Of Birth")}
-                    defaultValue={new Date(profile.dob).toLocaleDateString(
-                      "en-GB"
-                    )}
-                    img={ProfileBirthdaySVG}
-                  />
-                  {
-                    <ProfileInput
-                      disabled
-                      name="Country"
-                      placeholder={t("Country")}
-                      defaultValue={"France"}
-                      img={ProfileCountrySVG}
-                    />
-                  }
-                  {/*<ProfileInput
-                    disabled
-                    name="City"
-                    placeholder={t("City")}
-                    defaultValue={profile.city}
-                    img={ProfileCitySVG}
-                  /> */}
-                  <ProfileInput
-                    disabled
-                    name="Location"
-                    placeholder={t("Location")}
-                    defaultValue={profile.address}
-                    img={ProfileLocationSVG}
+                  <CustomDatePicker
+                    disabled={!toEdit}
+                    disableFuture
+                    labelStyle={{
+                      display: "none",
+                    }}
+                    labelText="Date of Birth"
+                    value={dateOfBirth}
+                    onChange={setDateOfBirth}
                     divStyle={{
-                      borderBottomLeftRadius: "10px",
-                      borderBottomRightRadius: "10px",
-                      marginBottom: "2%",
+                      width: "90%",
+                      marginTop: "2%",
                     }}
                   />
+                  <div style={{ width: "90%" }}>
+                    <AutoComplete
+                      disabled={!toEdit}
+                      name="Address"
+                      required={true}
+                      label={"Address"}
+                      value={address?.label}
+                      options={addresses}
+                      placeholder={t("Address")}
+                      onChangeAddress={(e) => {
+                        handleInputAddress(e);
+                      }}
+                      onAddressSelect={(e) => handleSelectAddress(e)}
+                      defaultValue={address.label}
+                    />
+                  </div>
                   <ProfileInput
                     disabled
                     name="Last Password Changed"

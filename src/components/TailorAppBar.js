@@ -67,6 +67,7 @@ const StyledMenu = styled((MenuProps) => (
     },
   },
 }));
+
 function TailorAppBar({
   activeTab,
   color,

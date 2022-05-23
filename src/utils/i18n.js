@@ -396,6 +396,8 @@ i18n
           Muave: "Muave",
           "Bright Pink": "Bright Pink",
           Red: "Red",
+
+          // fabrics
           "Ribbed edges": "Ribbed edges",
           "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.":
             "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.",
@@ -429,6 +431,7 @@ i18n
           Sponge: "Sponge",
           "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.":
             "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.",
+          // TODO: TRANS REMAINING
 
           //colors
           White: "White",
@@ -486,6 +489,7 @@ i18n
           "I Have Physical Store": "I Have Physical Store",
           "Store Name": "Store Name",
           "Date of Birth": "Date of Birth",
+          "Select your gender": "Select your gender",
         },
       },
       fr: {
@@ -493,8 +497,8 @@ i18n
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
-          "Submit your idea,": "Soumettez votre idée,",
-          "We make it real,": "Nous le rendons réel,",
+          "Submit your idea,": "Soumettez-nous votre idée,",
+          "We make it real,": "nous la concrétisons !",
           "You receive your creation": "Vous recevez votre création",
           "at home!": "à la maison!",
           "Place Your Ad": "Placez votre annonce",
@@ -880,6 +884,8 @@ i18n
           Muave: "Muave",
           "Bright Pink": "Rose vif",
           Red: "Rouge",
+
+          // fabrics
           "Ribbed edges": "Bords côtelés",
           "The ribbing is used in sewing to make the edges of sleeves, collars, etc. stretch clothing in jersey, knit, fleece for sweatshirts etc. It is a knitted fabric which is mainly used to tighten certain parts of clothing.":
             "Le bord-côte est utilisé en couture pour réaliser les bords des manches, des cols, etc. des vêtements extensibles en jersey, en maille, en polaire pour les sweats etc. C'est une étoffe à mailles qui sert principalement à resserrer certaines parties des vêtements.",
@@ -913,6 +919,7 @@ i18n
           Sponge: "Éponge",
           "100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.":
             "",
+          // TODO: TRANS REMAINING
 
           //colors
           White: "Blanche",
@@ -971,6 +978,7 @@ i18n
           "I Have Physical Store": "J'ai un magasin physique",
           "Store Name": "Nom du magasin",
           "Date of Birth": "Date de naissance",
+          "Select your gender": "Sélectionnez votre sexe",
         },
       },
     },
