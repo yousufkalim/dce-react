@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ClientHomeSVG from "../../assets/ClientHome.svg";
-import UserSVG from "../../assets/dummy.jpeg";
+import ClientHomeSVG from "../../assets/ClientHomeNew.svg";
 
 import dummy from "../../assets/dummy.jpeg";
 
@@ -80,14 +79,25 @@ function ClientHomeScreen() {
     <>
       <div className="container-page">
         <ClientAppBar color="#F8F4EF" />
-        <div
-          className="container"
-          style={{
-            background: "#E8DCCA",
-          }}
-        >
+        <div className="container">
           <div className="client_home_screen_row1">
-            <div className="client_home_screen_row1_column1">
+            <div
+              style={{
+                position: "absolute",
+                zIndex: "1",
+                top: "25%",
+                left: "40%",
+                right: "5%",
+              }}
+            >
+              <div className="client_home_screen_row1_column2_img">
+                <img style={{ width: "90%" }} src={ClientHomeSVG} />
+              </div>
+            </div>
+            <div
+              className="client_home_screen_row1_column1"
+              style={{ backgroundColor: "#FFEEEC", width: "70%" }}
+            >
               <p className="client_home_screen_row1_column1_text_1">
                 {t("Submit your idea,")}
               </p>
@@ -112,16 +122,21 @@ function ClientHomeScreen() {
               </p>
               <button
                 className="client_home_screen_row1_column1_button"
+                style={{
+                  backgroundColor: "#FFFFFF",
+                }}
                 onClick={navToCreateAd}
               >
                 {t("Place Your Ad")}
               </button>
             </div>
-            <div className="client_home_screen_row1_column2">
-              <div className="client_home_screen_row1_column2_img">
-                <img style={{ width: "90%" }} src={ClientHomeSVG} />
-              </div>
-            </div>
+            <div
+              className="client_home_screen_row1_column2"
+              style={{
+                width: "30%",
+                backgroundColor: "#CC8E9C",
+              }}
+            ></div>
           </div>
         </div>
         <div
