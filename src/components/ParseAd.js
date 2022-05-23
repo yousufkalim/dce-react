@@ -3,9 +3,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import AutoComplete from "../components/AutoComplete";
-
-import Autocomplete from "@mui/material/Autocomplete";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 import CustomDropDown from "./CustomDropDown";
@@ -17,7 +14,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
-import TextField from "@mui/material/TextField";
+import { ChromePicker } from "react-color";
 import Modal from "./Modal/ModalComp";
 
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -84,6 +81,8 @@ function BasicSection({
     },
   }));
   const classes = useStyles();
+
+  const [openColorPicker, setOpenColorPicker] = useState(false);
   return (
     <>
       <div className="pa_profile_section_container">
@@ -378,9 +377,7 @@ function BasicSection({
             borderTopLeftRadius: "20px",
             borderTopRightRadius: "20px",
             marginTop: "2%",
-            backgroundColor: state.color
-              ? colors.filter((_) => t(_.name) == t(state?.color))[0]?.value
-              : null,
+            backgroundColor: state.color ?? null,
           }}
         >
           <div
@@ -395,24 +392,32 @@ function BasicSection({
             </p>
           </div>
           <div
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "30pt" }}
             className="pa_profile_section_input_input"
           >
-            <Autocomplete
-              disabled={disabled}
-              classes={classes}
-              value={state?.color ? t(state?.color) : null}
-              onChange={(event, newValue) => {
-                _setState("color", newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              options={colors.map((val) => t(val?.name))}
-              sx={{ width: 390 }}
-              renderInput={(params) => <TextField {...params} />}
-            />
+            {openColorPicker ? (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(80%)",
+                  marginTop: 15,
+                }}
+              >
+                <ChromePicker
+                  color={state.color}
+                  onChangeComplete={(e) => {
+                    _setState("color", e.hex);
+                  }}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+            <p onClick={() => setOpenColorPicker(!openColorPicker)}>
+              {state.color}
+            </p>
           </div>
         </div>
         <div
