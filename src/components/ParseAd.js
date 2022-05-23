@@ -8,17 +8,21 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import TextField from "@mui/material/TextField";
-
-import Modal from "./Modal/ModalComp";
-
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import Tooltip from "@mui/material/Tooltip";
+import TextField from "@mui/material/TextField";
+import Modal from "./Modal/ModalComp";
+
+import CancelIcon from "@mui/icons-material/Cancel";
+import InfoIcon from "@mui/icons-material/Info";
+
 import DottedSVG from "../assets/dottedblack.svg";
 import { grey } from "@mui/material/colors";
 import { useTranslation } from "react-i18next";
@@ -38,6 +42,7 @@ function BasicSection({
   disables,
   images,
   handleImagesSelect,
+  handleImageDeselect,
 }) {
   const { t } = useTranslation();
   const _setState = (key, value) => {
@@ -310,13 +315,51 @@ function BasicSection({
               }}
             >
               <MenuItem onClick={(e) => selectMeasurementsType("static")}>
-                Static
+                <p>Static</p>
+                <Tooltip
+                  arrow
+                  title={
+                    <p style={{ fontSize: "14px" }}>
+                      Measurements are entered in this input box right away.
+                    </p>
+                  }
+                >
+                  <InfoIcon
+                    sx={{ height: "20px", width: "20px", marginLeft: "5px" }}
+                  />
+                </Tooltip>
               </MenuItem>
               <MenuItem onClick={(e) => selectMeasurementsType("tape")}>
-                Get a Tape
+                <p>Get a Tape</p>
+                <Tooltip
+                  arrow
+                  title={
+                    <p style={{ fontSize: "14px" }}>
+                      Measurements will be entered in a detailed form once the
+                      order is accepted.
+                    </p>
+                  }
+                >
+                  <InfoIcon
+                    sx={{ height: "20px", width: "20px", marginLeft: "5px" }}
+                  />
+                </Tooltip>
               </MenuItem>
               <MenuItem onClick={(e) => selectMeasurementsType("call")}>
-                Book Call
+                <p>Book Call</p>
+                <Tooltip
+                  arrow
+                  title={
+                    <p style={{ fontSize: "14px" }}>
+                      A message will be dropped by you to the tailor for the
+                      measurements.
+                    </p>
+                  }
+                >
+                  <InfoIcon
+                    sx={{ height: "20px", width: "20px", marginLeft: "5px" }}
+                  />
+                </Tooltip>
               </MenuItem>
             </Menu>
           </div>
@@ -355,28 +398,6 @@ function BasicSection({
             style={{ width: "100%" }}
             className="pa_profile_section_input_input"
           >
-            {/* <CustomDropDown
-                  disabled={disabled}
-                  labelStyle={{
-                    display: "none",
-                  }}
-                  selectID="colour"
-                  selectName="colour"
-                  selectNullValue={t("Select one colour for your Creations")}
-                  selectValue={state.color}
-                  onChange={(e) => _setState("color", e.target.value)}
-                  menuItems={colors.map((_) => (
-                    <MenuItem value={_.name}> {_.name}</MenuItem>
-                  ))}
-                  valuecolor={state.color ? "on" : "off"}
-                /> */}
-            {/* <Autocomplete
-                  disablePortal
-                  id="combo-box-demo"
-                  options={top100Films}
-                  sx={{ width: 300 }}
-                  renderInput={(params) => <TextField {...params} label="Movie" />}
-                /> */}
             <Autocomplete
               disabled={disabled}
               classes={classes}
@@ -455,8 +476,25 @@ function BasicSection({
           </div>
         </div>
         <div className="selected-images-container">
-          {images?.map((val) => (
-            <span> {val?.name} </span>
+          {images?.map((_) => (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span>{_.name}</span>
+              {handleImageDeselect ? (
+                <CancelIcon
+                  sx={{ height: "17px", width: "17px", marginLeft: "5px" }}
+                  onClick={() => handleImageDeselect(_)}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           ))}
         </div>
         <div className="checkbox-container">
@@ -630,51 +668,6 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             </div>
           </div>
         </div>
-        {/* <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Zip code</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomInput
-              disabled
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder="Zip code"
-              Inputvalue={state?.address?.zip}
-            />
-          </div>
-        </div> */}
-        {/* <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderBottomLeftRadius: "20px",
-            borderBottomRightRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("City")}</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomInput
-              disabled
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder="City"
-              Inputvalue={state?.address?.city}
-            />
-          </div>
-        </div> */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -702,36 +695,6 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               )}
               inputDefaultValue={state?.note}
               onChange={(e) => _setState("note", e.target.value)}
-            />
-          </div>
-        </div>
-        <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "1%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Delivery Type")}
-            </p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
-              }}
-              selectID="delivery_type"
-              selectName="delivery_type"
-              selectNullValue={t("Urgent, Normal")}
-              selectValue={state.type}
-              onChange={(e) => _setState("type", e.target.value)}
-              menuItems={[
-                <MenuItem value={"urgent"}>{t("Urgent")}</MenuItem>,
-                <MenuItem value={"normal"}>{t("Normal")}</MenuItem>,
-              ]}
             />
           </div>
         </div>
@@ -802,7 +765,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
       <div className="pa_profile_section_container">
         {state?.quotes?.length === 0 || !state.quotes ? (
           <>
-            <div
+            {/* <div
               className="pa_profile_section_input_container"
               style={{
                 borderRadius: "20px",
@@ -831,7 +794,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   ]}
                 />
               </div>
-            </div>
+            </div> */}
             <div
               className="pa_payment_section_input_container"
               style={{
@@ -916,7 +879,6 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             />
           </div>
         </div>
-        {console.log(state.quotes, "dgfgdgdfv")}
         {(store.userRole == "tailor" || state?.quotes?.length > 0) &&
         state?.quotes[0]?.price > 0 ? (
           <div

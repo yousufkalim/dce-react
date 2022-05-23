@@ -51,7 +51,6 @@ function TailorViewOrderScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -482,7 +481,7 @@ const CompleteOrderModal = (props) => {
       </div>
       <div className="selected-images-container" style={{ margin: "0" }}>
         {attachments?.map((val) => (
-          <span> {val?.name} </span>
+          <span>{val?.name}</span>
         ))}
       </div>
       <div className="tvqs_sq_buttons">

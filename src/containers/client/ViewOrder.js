@@ -42,7 +42,6 @@ function ClientViewOrderScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });

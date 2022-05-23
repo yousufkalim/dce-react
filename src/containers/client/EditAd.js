@@ -47,7 +47,6 @@ function ClientEditAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -60,6 +59,14 @@ function ClientEditAdScreen() {
 
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
+  };
+  const handleImageDeselect = (image) => {
+    const _images = [...images];
+    const index = _images.map((_) => _.name).indexOf(image.name);
+    if (index > -1) {
+      _images.splice(index, 1);
+    }
+    setImages([..._images]);
   };
 
   useEffect(() => {
@@ -150,7 +157,6 @@ function ClientEditAdScreen() {
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          type: deliverySection.type,
           date: deliverySection.date,
         })
       );
@@ -247,6 +253,7 @@ function ClientEditAdScreen() {
                       setState={setBasicSection}
                       images={images}
                       handleImagesSelect={handleImagesSelect}
+                      handleImageDeselect={handleImageDeselect}
                     />
                   </div>
                 </div>

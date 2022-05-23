@@ -161,10 +161,6 @@ function parseAdDeliverySection(data) {
     },
     {
       validationFunction: () =>
-        Validators.selectValidator("Delivery Type", data["type"]),
-    },
-    {
-      validationFunction: () =>
         Validators.selectValidator("Delivery Date", data["date"]),
     },
   ];
@@ -176,17 +172,17 @@ function parseAdDeliverySection(data) {
 
 function parseAdNotesSection(data) {
   const valArr = [
+    // {
+    //   validationFunction: () =>
+    //     Validators.selectValidator("Choose Method", data["type"]),
+    // },
     {
       validationFunction: () =>
-        Validators.selectValidator("Choose Method", data["type"]),
+        Validators.moneyValidator("Minimum Price", data["min_price"]),
     },
     {
       validationFunction: () =>
-        Validators.nullValidator("Minimum Price", data["min_price"]),
-    },
-    {
-      validationFunction: () =>
-        Validators.nullValidator("Maximum Price", data["max_price"]),
+        Validators.moneyValidator("Maximum Price", data["max_price"]),
     },
   ];
 
@@ -199,7 +195,7 @@ function sendQuote(data) {
   const valArr = [
     {
       validationFunction: () =>
-        Validators.nullValidator("Price", data["price"]),
+        Validators.moneyValidator("Price", data["price"]),
     },
     {
       validationFunction: () =>
@@ -227,7 +223,7 @@ function tailorCreateCatalog(data) {
     },
     {
       validationFunction: () =>
-        Validators.selectValidator("Price", data["price"]),
+        Validators.moneyValidator("Price", data["price"]),
     },
     {
       validationFunction: () =>

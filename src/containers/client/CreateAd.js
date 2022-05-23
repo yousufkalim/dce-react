@@ -45,7 +45,6 @@ function ClientCreateAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -59,6 +58,15 @@ function ClientCreateAdScreen() {
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
   };
+  const handleImageDeselect = (image) => {
+    const _images = [...images];
+    const index = _images.map((_) => _.name).indexOf(image.name);
+    if (index > -1) {
+      _images.splice(index, 1);
+    }
+    setImages([..._images]);
+  };
+
   const basicSectionCallback = () => {
     const isValidated = FormValidations.parseAdBasicSection(basicSection);
     if (!isValidated) {
@@ -129,7 +137,6 @@ function ClientCreateAdScreen() {
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          type: deliverySection.type,
           date: deliverySection.date,
         })
       );
@@ -217,6 +224,7 @@ function ClientCreateAdScreen() {
                     onClick={basicSectionCallback}
                     images={images}
                     handleImagesSelect={handleImagesSelect}
+                    handleImageDeselect={handleImageDeselect}
                   />
                 ) : activeStep == 1 ? (
                   <ParseAd.DeliverySection

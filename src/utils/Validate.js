@@ -96,6 +96,18 @@ class Validators {
 
     return null;
   }
+
+  static moneyValidator(name, value) {
+    if (isEmpty(value)) {
+      return `${name} can't be empty`;
+    }
+
+    if (parseInt(value) > 10000) {
+      return `${name} can't be greater than 10000`;
+    }
+
+    return null;
+  }
 }
 
 function formValidator(data, objsArr) {
