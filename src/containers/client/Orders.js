@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 
 import UserSVG from "../../assets/dummy.jpeg";
 import UploadSVG from "../../assets/upload.svg";
-import InvoiceLogoSVG from "../../assets/InvoiceLogo.svg";
+import InvoiceLogoSVG from "../../assets/InvoiceLogo.jpg";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from "../../components/Footer";
@@ -20,6 +20,8 @@ import Api from "../../api";
 import assetsURL from "../../utils/Assets";
 
 import { useNavigate, useParams } from "react-router-dom";
+import { useScreenshot } from "use-react-screenshot";
+import { saveAs } from "file-saver";
 
 import { toast } from "react-toastify";
 
@@ -128,7 +130,11 @@ function OrderListTile(props) {
   };
   const handleInvoiceGenerateModalOpen = (e) => {
     e.stopPropagation();
-    setIsInvoiceGenerateModal(true);
+    if (props.order.status == "completed") {
+      setIsInvoiceGenerateModal(true);
+    } else {
+      toast.error("Order must be completed for billing.");
+    }
   };
 
   return (
@@ -206,7 +212,10 @@ function OrderListTile(props) {
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
         </p>
-        <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }} onClick={(e) => handleInvoiceGenerateModalOpen(e)}>
+        <p
+          style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C", cursor: "pointer" }}
+          onClick={(e) => handleInvoiceGenerateModalOpen(e)}
+        >
           {t("Bill")}
         </p>
       </div>
@@ -546,9 +555,19 @@ const ContactSupportOrderModal = (props) => {
 };
 
 const InvoiceOrderModal = (props) => {
+  const ref = createRef(null);
+  const [image, takeScreenshot] = useScreenshot();
+
+  const download = async () => {
+    await takeScreenshot(ref.current);
+    if (image) {
+      saveAs(image, `${props.order.name} - ${Date.now()}.jpeg`);
+    }
+  };
+
   return (
     <div className="tqs_sqm_container cos_oim_container">
-      <div className="cos_oim_row1">
+      <div className="cos_oim_row1" ref={ref}>
         <div
           className="cos_oim_column1"
           style={{
@@ -612,7 +631,7 @@ const InvoiceOrderModal = (props) => {
                   fontWeight: "bold",
                 }}
               >
-                Shasha Designer
+                {props.order.client.name}
               </p>
               <p
                 style={{
@@ -620,7 +639,7 @@ const InvoiceOrderModal = (props) => {
                   fontWeight: "bold",
                 }}
               >
-                london
+                {props.order.delivery.address.split(" ").at(-1)}
               </p>
             </div>
           </div>
@@ -629,7 +648,6 @@ const InvoiceOrderModal = (props) => {
           className="cos_oim_column1"
           style={{
             alignItems: "flex-end",
-            // backgroundColor: "#a2a2a2",
           }}
         >
           <p
@@ -658,10 +676,13 @@ const InvoiceOrderModal = (props) => {
               width: "100%",
             }}
           >
-            <_InvoiceR1C2Section title="Date:" description="March 01, 2022" />
-            <_InvoiceR1C2Section title="Payment Terms:" description="bank deposit" />
-            <_InvoiceR1C2Section title="Due Date:" description="March 02, 2022" />
-            <_InvoiceR1C2Section title="PO Number:" description="22331" />
+            <_InvoiceR1C2Section title="Date:" description={new Date().toLocaleDateString("en-US")} />
+            <_InvoiceR1C2Section title="Payment Terms:" description="Bank Deposit" />
+            <_InvoiceR1C2Section
+              title="Due Date:"
+              description={new Date(props.order.delivery.date).toLocaleDateString("en-US")}
+            />
+            <_InvoiceR1C2Section title="PO Number:" description="N/A" />
             <div
               className="cos_oim_column1_section"
               style={{
@@ -686,7 +707,7 @@ const InvoiceOrderModal = (props) => {
                   fontWeight: "bold",
                 }}
               >
-                US$310.00
+                {`US$${props.quote.price}`}
               </p>
             </div>
           </div>
@@ -695,16 +716,129 @@ const InvoiceOrderModal = (props) => {
       <div
         className="cos_oim_row1"
         style={{
-          height: "10vh",
+          marginTop: "2%",
         }}
       >
-        <div className="cos_oim_column1"></div>
+        <div
+          className="cos_oim_column1"
+          style={{
+            backgroundColor: "#3A3A3A",
+            borderTopLeftRadius: "10px",
+            borderBottomLeftRadius: "10px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "22px",
+              color: "#FFFFFF",
+              padding: "4%",
+            }}
+          >
+            {props.order.name}
+          </p>
+        </div>
+        <div
+          className="cos_oim_column1"
+          style={{
+            backgroundColor: "#3A3A3A",
+            borderTopRightRadius: "10px",
+            borderBottomRightRadius: "10px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "22px",
+              color: "#FFFFFF",
+              padding: "4%",
+            }}
+          >
+            {`US$${props.quote.price}`}
+          </p>
+        </div>
+      </div>
+      <div
+        className="cos_oim_row1"
+        style={{
+          marginTop: "4%",
+          height: "20vh",
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+          }}
+        >
+          <_InvoiceR1C2Section
+            title="Subtotal:"
+            description={`US$${props.quote.price}`}
+            divStyle={{
+              paddingLeft: "80%",
+            }}
+          />
+          <_InvoiceR1C2Section
+            title="Tax (0%):"
+            description="US$0.00"
+            divStyle={{
+              paddingLeft: "80%",
+            }}
+          />
+          <_InvoiceR1C2Section
+            title="Shipping:"
+            description="US$0.00"
+            divStyle={{
+              paddingLeft: "80%",
+            }}
+          />
+          <_InvoiceR1C2Section
+            title="Total:"
+            description={`US$${props.quote.price}`}
+            divStyle={{
+              paddingLeft: "80%",
+            }}
+          />
+        </div>
+      </div>
+      <div
+        style={{
+          marginTop: "4%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          width: "100%",
+        }}
+      >
+        <p style={{ fontSize: "14px", color: "#BBBBBB", marginBottom: "10px" }}>Notes:</p>
+        <p style={{ fontSize: "14px" }}>
+          Design CONFECTIONS ETHIQUES is an online platform (with free registration) allowing independent designers to
+        </p>
+        <p style={{ fontSize: "14px" }}>unearth their customers in whole or in part</p>
+        <p style={{ fontSize: "14px", color: "#BBBBBB", marginBottom: "10px", marginTop: "10px" }}>Terms:</p>
+        <p style={{ fontSize: "14px" }}>
+          Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new clients, with natural
+        </p>
+        <p style={{ fontSize: "14px" }}>
+          persons (individuals) and/or legal persons (companies) looking for a service: tailor-made tailoring clothing,
+        </p>
+        <p style={{ fontSize: "14px" }}>decorative items or linens or any other creations</p>
+        <CustomButton
+          text="Download Invoice"
+          style={{
+            alignSelf: "flex-end",
+            marginTop: "20px",
+          }}
+          onClick={download}
+        />
       </div>
     </div>
   );
 };
 
-function _InvoiceR1C2Section({ title, description }) {
+function _InvoiceR1C2Section({ title, description, divStyle }) {
   return (
     <div
       className="cos_oim_column1_section"
@@ -712,6 +846,7 @@ function _InvoiceR1C2Section({ title, description }) {
         justifyContent: "space-between",
         marginTop: "2%",
         paddingLeft: "60%",
+        ...divStyle,
       }}
     >
       <p
