@@ -74,7 +74,7 @@ function ClientHomeScreen() {
   const navToTailors = () => {
     navigate("/tailors");
   };
-  console.log(orders, "<>><><");
+
   return (
     <>
       <div className="container-page">
