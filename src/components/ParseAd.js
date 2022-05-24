@@ -332,7 +332,11 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
               {t("Colour")}
             </p>
           </div>
-          <div style={{ width: "100%", height: "30pt" }} className="pa_profile_section_input_input">
+          <div
+            style={{ width: "100%", height: "30pt" }}
+            className="pa_profile_section_input_input"
+            onClick={() => setOpenColorPicker(!openColorPicker)}
+          >
             {openColorPicker ? (
               <div
                 style={{
@@ -353,7 +357,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
             ) : (
               <></>
             )}
-            <p onClick={() => setOpenColorPicker(!openColorPicker)}>{state.color}</p>
+            <p>{state.color}</p>
           </div>
         </div>
         <div

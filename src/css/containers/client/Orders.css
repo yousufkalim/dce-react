@@ -126,6 +126,44 @@
   height: 100%;
 }
 
+/* Create Order Screen, Order Invoice Modal */
+
+.cos_oim_container {
+  height: 90vh !important;
+  width: 80vw !important;
+  padding: 5% 5% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: start !important;
+  overflow-y: scroll !important;
+}
+
+.cos_oim_row1 {
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+}
+
+.cos_oim_column1 {
+  height: 100%;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.cos_oim_column1_section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media only screen and (max-width: 768px) {
   .cos_order_list_tile_container {
     display: flex;
