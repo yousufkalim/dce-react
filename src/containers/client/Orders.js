@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import UserSVG from "../../assets/dummy.jpeg";
 import UploadSVG from "../../assets/upload.svg";
+import InvoiceLogoSVG from "../../assets/InvoiceLogo.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
 import Footer from "../../components/Footer";
@@ -121,11 +122,20 @@ function OrderListTile(props) {
     setIsContactSupportOrderModal(true);
   };
 
+  const [isInvoiceGenerateModal, setIsInvoiceGenerateModal] = useState(false);
+  const handleInvoiceGenerateModalClose = (e) => {
+    setIsInvoiceGenerateModal(false);
+  };
+  const handleInvoiceGenerateModalOpen = (e) => {
+    e.stopPropagation();
+    setIsInvoiceGenerateModal(true);
+  };
+
   return (
     <div
       className="cos_order_list_tile_container"
       onClick={() => {
-        if (!isFeedbackOrderModal && !isContactSupportOrderModal) {
+        if (!isFeedbackOrderModal && !isContactSupportOrderModal && !isInvoiceGenerateModal) {
           props.navToViewOrder(props.order._id);
         } // This prevents the trigger when clicking inside opened modals
       }}
@@ -196,7 +206,9 @@ function OrderListTile(props) {
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
         </p>
-        <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
+        <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }} onClick={(e) => handleInvoiceGenerateModalOpen(e)}>
+          {t("Bill")}
+        </p>
       </div>
       <div className="cos_order_list_tile_column4">
         {props.order.status == "completed" && props.order.client_submission ? (
@@ -244,6 +256,9 @@ function OrderListTile(props) {
         onBackdropClick="false"
       >
         <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
+      </Modal>
+      <Modal open={isInvoiceGenerateModal} onClose={handleInvoiceGenerateModalClose} aria-labelledby="Order Invoice">
+        <InvoiceOrderModal handleClose={handleInvoiceGenerateModalClose} order={props.order} quote={props.quote} />
       </Modal>
     </div>
   );
@@ -529,5 +544,193 @@ const ContactSupportOrderModal = (props) => {
     </div>
   );
 };
+
+const InvoiceOrderModal = (props) => {
+  return (
+    <div className="tqs_sqm_container cos_oim_container">
+      <div className="cos_oim_row1">
+        <div
+          className="cos_oim_column1"
+          style={{
+            paddingLeft: "5%",
+          }}
+        >
+          <img
+            style={{
+              height: "150pt",
+              width: "200pt",
+              objectFit: "cover",
+            }}
+            src={InvoiceLogoSVG}
+          />
+          <div
+            style={{
+              marginLeft: "3%",
+            }}
+          >
+            <p
+              style={{
+                marginTop: "5%",
+                fontSize: "14px",
+                fontWeight: "600",
+              }}
+            >
+              Design confection Ethiques
+            </p>
+            <div
+              className="cos_oim_column1_section"
+              style={{
+                marginTop: "20%",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#BBBBBB",
+                }}
+              >
+                Bill To:
+              </p>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#BBBBBB",
+                }}
+              >
+                Ship To:
+              </p>
+            </div>
+            <div
+              className="cos_oim_column1_section"
+              style={{
+                marginTop: "5%",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                Shasha Designer
+              </p>
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                london
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="cos_oim_column1"
+          style={{
+            alignItems: "flex-end",
+            // backgroundColor: "#a2a2a2",
+          }}
+        >
+          <p
+            style={{
+              paddingRight: "3%",
+              marginTop: "5%",
+              fontSize: "26px",
+              fontWeight: "500",
+              letterSpacing: "2",
+            }}
+          >
+            INVOICE
+          </p>
+          <p
+            style={{
+              marginTop: "2%",
+              fontSize: "14px",
+            }}
+          >
+            #1
+          </p>
+          <div
+            style={{
+              marginTop: "5%",
+              paddingRight: "3%",
+              width: "100%",
+            }}
+          >
+            <_InvoiceR1C2Section title="Date:" description="March 01, 2022" />
+            <_InvoiceR1C2Section title="Payment Terms:" description="bank deposit" />
+            <_InvoiceR1C2Section title="Due Date:" description="March 02, 2022" />
+            <_InvoiceR1C2Section title="PO Number:" description="22331" />
+            <div
+              className="cos_oim_column1_section"
+              style={{
+                justifyContent: "space-between",
+                marginTop: "2%",
+                marginLeft: "60%",
+                padding: "2%",
+                backgroundColor: "#F5F5F5",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                Balance Due:
+              </p>
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                US$310.00
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="cos_oim_row1"
+        style={{
+          height: "10vh",
+        }}
+      >
+        <div className="cos_oim_column1"></div>
+      </div>
+    </div>
+  );
+};
+
+function _InvoiceR1C2Section({ title, description }) {
+  return (
+    <div
+      className="cos_oim_column1_section"
+      style={{
+        justifyContent: "space-between",
+        marginTop: "2%",
+        paddingLeft: "60%",
+      }}
+    >
+      <p
+        style={{
+          color: "#BBBBBB",
+          fontSize: "12px",
+        }}
+      >
+        {title}
+      </p>
+      <p
+        style={{
+          fontSize: "12px",
+        }}
+      >
+        {description}
+      </p>
+    </div>
+  );
+}
 
 export default ClientOrdersScreen;
