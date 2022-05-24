@@ -61,9 +61,7 @@ function NotificationsListTile(props) {
             fontSize: "13px",
           }}
         >
-          {t(props.text).length < 35
-            ? t(props.text)
-            : t(props.text).slice(0, 34) + "..."}
+          {t(props.text).length < 35 ? t(props.text) : t(props.text).slice(0, 34) + "..."}
         </p>
       </div>
       <p

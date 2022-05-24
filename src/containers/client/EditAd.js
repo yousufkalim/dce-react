@@ -47,7 +47,6 @@ function ClientEditAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -60,6 +59,14 @@ function ClientEditAdScreen() {
 
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
+  };
+  const handleImageDeselect = (image) => {
+    const _images = [...images];
+    const index = _images.map((_) => _.name).indexOf(image.name);
+    if (index > -1) {
+      _images.splice(index, 1);
+    }
+    setImages([..._images]);
   };
 
   useEffect(() => {
@@ -134,14 +141,8 @@ function ClientEditAdScreen() {
       body.append("measurements", JSON.stringify(basicSection.measurements));
       body.append("color", basicSection.color);
       body.append("fabric", basicSection.fabric);
-      body.append(
-        "includes_alteration_services",
-        basicSection.includes_alteration_services
-      );
-      body.append(
-        "create_catalog_after_completion",
-        basicSection.create_catalog_after_completion
-      );
+      body.append("includes_alteration_services", basicSection.includes_alteration_services);
+      body.append("create_catalog_after_completion", basicSection.create_catalog_after_completion);
       body.append(
         "delivery",
         JSON.stringify({
@@ -150,7 +151,6 @@ function ClientEditAdScreen() {
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          type: deliverySection.type,
           date: deliverySection.date,
         })
       );
@@ -199,10 +199,7 @@ function ClientEditAdScreen() {
               height: "118vh",
             }}
           >
-            <div
-              style={{ height: "100%" }}
-              className="client_edit_ad_screen_row1"
-            >
+            <div style={{ height: "100%" }} className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
@@ -234,9 +231,7 @@ function ClientEditAdScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -247,6 +242,7 @@ function ClientEditAdScreen() {
                       setState={setBasicSection}
                       images={images}
                       handleImagesSelect={handleImagesSelect}
+                      handleImageDeselect={handleImageDeselect}
                     />
                   </div>
                 </div>
@@ -272,18 +268,13 @@ function ClientEditAdScreen() {
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                    <ParseAd.DeliverySection state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
@@ -348,19 +339,13 @@ function ClientEditAdScreen() {
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.NotesSection
-                      state={notesSection}
-                      setState={setNotesSection}
-                      onClick={handleSubmit}
-                    />
+                    <ParseAd.NotesSection state={notesSection} setState={setNotesSection} onClick={handleSubmit} />
                   </div>
                 </div>
               </div>

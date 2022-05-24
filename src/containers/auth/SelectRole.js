@@ -32,10 +32,7 @@ const SelectRole = () => {
       <div className="login_screen_top">
         <div className="login_screen_row1">
           <div className="login_screen_row1_img">
-            <img
-              style={{ width: "35%", marginBottom: "5%" }}
-              src={AppLogoSVG}
-            />
+            <img style={{ width: "35%", marginBottom: "5%" }} src={AppLogoSVG} />
           </div>
           <div className="login_screen_row1_img">
             <img style={{ width: "70%" }} src={DesignElaborationSVG} />
@@ -44,28 +41,15 @@ const SelectRole = () => {
         <div className="login_screen_row2">
           <h1 className="select_role_screen_heading">{t("Register As a")}</h1>
           <div className="select_role_screen_row2_container">
-            <div
-              className="select_role_screen_tile"
-              style={{ marginRight: "15%" }}
-              onClick={navToClientRegister}
-            >
+            <div className="select_role_screen_tile" style={{ marginRight: "15%" }} onClick={navToClientRegister}>
               <img src={ClientRole} style={{ height: "90%" }}></img>
-              <p
-                className="select_role_screen_tile_text"
-                style={{ marginTop: "16%" }}
-              >
+              <p className="select_role_screen_tile_text" style={{ marginTop: "16%" }}>
                 {t("Client")}
               </p>
             </div>
-            <div
-              className="select_role_screen_tile"
-              onClick={navToTailorRegister}
-            >
+            <div className="select_role_screen_tile" onClick={navToTailorRegister}>
               <img src={DesignerRole}></img>
-              <p
-                className="select_role_screen_tile_text"
-                style={{ marginTop: "16%" }}
-              >
+              <p className="select_role_screen_tile_text" style={{ marginTop: "16%" }}>
                 {t("Designer")}
               </p>
             </div>

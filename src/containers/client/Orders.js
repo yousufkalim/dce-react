@@ -112,8 +112,7 @@ function OrderListTile(props) {
     setIsFeedbackOrderModal(true);
   };
 
-  const [isContactSupportOrderModal, setIsContactSupportOrderModal] =
-    useState(false);
+  const [isContactSupportOrderModal, setIsContactSupportOrderModal] = useState(false);
   const handleContactSupportOrderModalClose = (e) => {
     setIsContactSupportOrderModal(false);
   };
@@ -170,9 +169,7 @@ function OrderListTile(props) {
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
-          <p className="cos_order_list_tile_column2_item_value">
-            {props.order.name}
-          </p>
+          <p className="cos_order_list_tile_column2_item_value">{props.order.name}</p>
         </div>
         <div
           className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
@@ -180,12 +177,8 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">
-            {t("Order Date")}
-          </p>
-          <p className="cos_order_list_tile_column2_item_value">
-            {new Date(props.order.createdAt).toLocaleDateString("en-US")}
-          </p>
+          <p className="cos_order_list_tile_column2_item_key">{t("Order Date")}</p>
+          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-US")}</p>
         </div>
         <div
           className="cos_order_list_tile_column2_item"
@@ -193,23 +186,17 @@ function OrderListTile(props) {
             padding: "3% 0",
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">
-            {t("Delivery Date")}
-          </p>
+          <p className="cos_order_list_tile_column2_item_key">{t("Delivery Date")}</p>
           <p className="cos_order_list_tile_column2_item_value">
             {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
           </p>
         </div>
       </div>
       <div className="cos_order_list_tile_column1">
-        <p
-          style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}
-        >
+        <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
         </p>
-        <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>
-          {t("Bill")}
-        </p>
+        <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
       </div>
       <div className="cos_order_list_tile_column4">
         {props.order.status == "completed" && props.order.client_submission ? (
@@ -225,8 +212,7 @@ function OrderListTile(props) {
               handleContactSupportOrderModalOpen(e);
             }}
           />
-        ) : props.order.status == "completed" &&
-          !props.order.client_submission ? (
+        ) : props.order.status == "completed" && !props.order.client_submission ? (
           <CustomButton
             text={t("Feedback")}
             padding={"10px 14px"}
@@ -241,9 +227,7 @@ function OrderListTile(props) {
           <></>
         )}
 
-        <p style={{ fontSize: "15px", fontWeight: "600" }}>
-          {t(props.order.status.replace("_", " "))}
-        </p>
+        <p style={{ fontSize: "15px", fontWeight: "600" }}>{t(props.order.status.replace("_", " "))}</p>
       </div>
       <Modal
         open={isFeedbackOrderModal}
@@ -251,10 +235,7 @@ function OrderListTile(props) {
         aria-labelledby="Feedback Order"
         onBackdropClick="false"
       >
-        <FeedbackOrderModal
-          handleClose={handleFeedbackOrderModalClose}
-          order={props.order}
-        />
+        <FeedbackOrderModal handleClose={handleFeedbackOrderModalClose} order={props.order} />
       </Modal>
       <Modal
         open={isContactSupportOrderModal}
@@ -262,10 +243,7 @@ function OrderListTile(props) {
         aria-labelledby="Contact Support Order"
         onBackdropClick="false"
       >
-        <ContactSupportOrderModal
-          handleClose={handleContactSupportOrderModalClose}
-          order={props.order}
-        />
+        <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
       </Modal>
     </div>
   );
@@ -523,18 +501,9 @@ const ContactSupportOrderModal = (props) => {
         </div>
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              id="filePicker"
-              name="file"
-              onChange={handleFileSelect}
-            />
+            <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">
-                {attachment?.name ?? "Upload Drawing, Photo, Document, etc"}
-              </span>
+              <span className="upload-img-text">{attachment?.name ?? "Upload Drawing, Photo, Document, etc"}</span>
               <img src={UploadSVG} />
             </div>
           </label>

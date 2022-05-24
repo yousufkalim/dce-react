@@ -54,10 +54,7 @@ function ClientTailorsScreen() {
           }}
         >
           <div className="client_orders_screen_row1">
-            <p
-              className="client_orders_screen_row1_text"
-              style={{ paddingLeft: "3%" }}
-            >
+            <p className="client_orders_screen_row1_text" style={{ paddingLeft: "3%" }}>
               {t("Designers")}
             </p>
           </div>
@@ -149,11 +146,7 @@ function TailorListTile(props) {
           </div> */}
         </div>
         <div className="cds_tailor_list_tile_column1">
-          <CustomButton
-            text={t("Chat Here")}
-            style={{ borderRadius: "20px" }}
-            onClick={navToChat}
-          />
+          <CustomButton text={t("Chat Here")} style={{ borderRadius: "20px" }} onClick={navToChat} />
         </div>
       </div>
     </>

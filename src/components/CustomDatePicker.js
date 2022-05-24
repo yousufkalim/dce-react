@@ -5,17 +5,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 
-function CustomDatePicker({
-  labelText,
-  value,
-  onChange,
-  disablePast,
-  disableFuture,
-  disabled,
-  divStyle,
-  labelStyle,
-  dobinput,
-}) {
+function CustomDatePicker({ labelText, value, onChange, disablePast, disableFuture, disabled, divStyle, labelStyle, dobinput }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -39,9 +29,9 @@ function CustomDatePicker({
           position: "relative",
           height: "100%",
           width: "100%",
-          border: dobinput == "dob" ? "1px solid #CC8E9C" : "",
-          borderRadius: dobinput == "dob" ? "10px" : "",
-          borderWidth: dobinput == "dob" ? "1.5px" : "",
+          border: dobinput == "dob" ? "1px solid #CC8E9C" : "1px solid #DBDBDB",
+          borderRadius: dobinput == "dob" ? "10px" : "10px",
+          borderWidth: dobinput == "dob" ? "1.5px" : "1.5px",
         }}
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>

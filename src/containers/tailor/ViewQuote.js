@@ -53,7 +53,6 @@ function TailorViewQuoteScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -211,19 +210,13 @@ function TailorViewQuoteScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.BasicSection
-                      disabled
-                      state={basicSection}
-                      setState={setBasicSection}
-                    />
+                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
                   </div>
                 </div>
               </div>
@@ -249,19 +242,13 @@ function TailorViewQuoteScreen() {
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      disabled
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
@@ -327,19 +314,13 @@ function TailorViewQuoteScreen() {
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.NotesSection
-                      disabled
-                      state={notesSection}
-                      setState={setNotesSection}
-                    />
+                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
                   </div>
                 </div>
               </div>

@@ -58,28 +58,17 @@ const Footer = () => {
       <div>
         <ul className="footer_list">
           <li onClick={navToOrders}>{t("Orders")}</li>
-          {profile?.role === "client" ? (
-            <li onClick={navToMyAds}>{t("My Ads")}</li>
-          ) : null}
-          {profile?.role === "client" ? (
-            <li onClick={navToDesigner}>{t("Designers")}</li>
-          ) : null}
-          {profile?.role === "tailor" ? (
-            <li onClick={navToQuotes}>{t("Quotes")}</li>
-          ) : null}
-          {profile?.role === "tailor" ? (
-            <li onClick={navToCatalog}>{t("Catalogue")}</li>
-          ) : null}
+          {profile?.role === "client" ? <li onClick={navToMyAds}>{t("My Ads")}</li> : null}
+          {profile?.role === "client" ? <li onClick={navToDesigner}>{t("Designers")}</li> : null}
+          {profile?.role === "tailor" ? <li onClick={navToQuotes}>{t("Quotes")}</li> : null}
+          {profile?.role === "tailor" ? <li onClick={navToCatalog}>{t("Catalogue")}</li> : null}
           <li onClick={navToSupport}>{t("Support")}</li>
           <li onClick={navToTermsAndConditions}>{t("Terms and Conditions")}</li>
         </ul>
         <div className="footer_icon_div">
           <div>
             <p>
-              © 2022{" "}
-              <span className="footer_bottom_text">
-                Design Confection Ethiques
-              </span>
+              © 2022 <span className="footer_bottom_text">Design Confection Ethiques</span>
               {t(", Developed by Falcon Consulting. All rights reserved.")}
             </p>
           </div>

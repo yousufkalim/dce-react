@@ -35,9 +35,7 @@ function TailorHowItWorksScreen() {
               paddingBottom: "5pt",
             }}
           >
-            {t(
-              "In just a few clicks, Design Créations allows you to find one-off assignments in"
-            )}
+            {t("In just a few clicks, Design Créations allows you to find one-off assignments in")}
           </p>
           <p
             style={{
@@ -47,9 +45,7 @@ function TailorHowItWorksScreen() {
               paddingBottom: "5pt",
             }}
           >
-            {t(
-              "in the production and manufacture of clothing, decorative elements."
-            )}
+            {t("in the production and manufacture of clothing, decorative elements.")}
           </p>
           <p
             style={{
@@ -64,24 +60,18 @@ function TailorHowItWorksScreen() {
         <div className="thiw_qna_standard_screen_row2">
           <QNAStandardListTile
             question={t("1 . Find the right clients for you")}
-            answer={t(
-              "Design creation puts you in touch with potential customers suited to your profile"
-            )}
+            answer={t("Design creation puts you in touch with potential customers suited to your profile")}
           />
           <QNAStandardListTile
             question={t("2 . Focus on the essentials")}
-            answer={t(
-              "Design creation manages all the formalities relating to the provision of services"
-            )}
+            answer={t("Design creation manages all the formalities relating to the provision of services")}
           />
           <QNAStandardListTile
             question={t("3 . Post your ad (offer) in just a few clicks")}
             answer={t("Post your add in 3 steps")}
           />
           <QNAListListTile
-            question={t(
-              "Seamstress selection based on the following criteria:"
-            )}
+            question={t("Seamstress selection based on the following criteria:")}
             answers={[
               t("Reliability / Seriousness"),
               t("Rating on the site"),
@@ -97,18 +87,14 @@ function TailorHowItWorksScreen() {
           <QNAListListTile
             question={t("General skills")}
             answers={[
-              t(
-                "Know and master the techniques of making a garment (cutting, stitching, etc.)"
-              ),
+              t("Know and master the techniques of making a garment (cutting, stitching, etc.)"),
               t("Have knowledge of the different fabrics, materials, colors"),
               t("Make drawings, sketches"),
               t("Operate the right machinery"),
               t("Prepare detailed quotes"),
               t("Meet deadlines"),
               t("Have knowledge of management"),
-              t(
-                "Know how to handle computers in particular the Design CREATION site"
-              ),
+              t("Know how to handle computers in particular the Design CREATION site"),
             ]}
           />
         </div>

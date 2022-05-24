@@ -51,7 +51,6 @@ function TailorViewOrderScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -152,19 +151,13 @@ function TailorViewOrderScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.BasicSection
-                      disabled
-                      state={basicSection}
-                      setState={setBasicSection}
-                    />
+                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
                   </div>
                 </div>
               </div>
@@ -188,19 +181,13 @@ function TailorViewOrderScreen() {
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      disabled
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
@@ -264,29 +251,19 @@ function TailorViewOrderScreen() {
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.NotesSection
-                      disabled
-                      state={notesSection}
-                      setState={setNotesSection}
-                    />
+                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {ad.status == "in_progress" ? (
-            <CompleteOrderSection {...ad} />
-          ) : (
-            <></>
-          )}
+          {ad.status == "in_progress" ? <CompleteOrderSection {...ad} /> : <></>}
           <Footer />
         </div>
       )}
@@ -327,10 +304,7 @@ const CompleteOrderSection = (props) => {
           aria-labelledby="Complete Order"
           onBackdropClick="false"
         >
-          <CompleteOrderModal
-            handleClose={handleCompleteOrderModalClose}
-            order={props}
-          />
+          <CompleteOrderModal handleClose={handleCompleteOrderModalClose} order={props} />
         </Modal>
       </div>
     </div>
@@ -462,19 +436,9 @@ const CompleteOrderModal = (props) => {
         </div>
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">
-            <input
-              multiple
-              type="file"
-              accept="image/*"
-              hidden
-              id="filePicker"
-              name="file"
-              onChange={handleFileSelect}
-            />
+            <input multiple type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">
-                {attachments?.name ?? "Upload Drawing, Photo, Document, etc"}
-              </span>
+              <span className="upload-img-text">{attachments?.name ?? "Upload Drawing, Photo, Document, etc"}</span>
               <img src={UploadSVG} />
             </div>
           </label>
@@ -482,7 +446,7 @@ const CompleteOrderModal = (props) => {
       </div>
       <div className="selected-images-container" style={{ margin: "0" }}>
         {attachments?.map((val) => (
-          <span> {val?.name} </span>
+          <span>{val?.name}</span>
         ))}
       </div>
       <div className="tvqs_sq_buttons">

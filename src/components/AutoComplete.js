@@ -18,11 +18,11 @@ export default function ComboBox(props) {
       display: "flex",
       fontStyle: "normal !important",
       fontWeight: "550 !important",
-      fontSize: "24px !important",
+      fontSize: "14px !important",
       lineHeight: "151.02 !important%",
       color: "#363557 !important",
       "&  .MuiInputLabel-formControl": { textAlign: "center !important" },
-  
+
       "@media (max-width:992px)": {
         fontSize: "20px !important",
       },
@@ -32,15 +32,15 @@ export default function ComboBox(props) {
       },
     },
     textfield: {
-      border:props.componenet=="parseaddress"? "": "1px solid #CC8E9C",
-      borderRadius:"10px",
+      border: props.componenet == "parseaddress" ? "" : "1px solid #CC8E9C",
+      borderRadius: "10px",
       borderWidth: "1.5px",
       fontStyle: "normal !important",
-      fontSize:props.componenet=="parseaddress"?"12px !important":"18px !important",
+      fontSize: props.componenet == "parseaddress" ? "12px !important" : "14px !important",
       lineHeight: "151.02% !important",
       color: "black !important",
       fontWeight: "300 !important",
-      marginTop:props.componenet=="parseaddress"?"0px": "10px !important",
+      marginTop: props.componenet == "parseaddress" ? "0px" : "10px !important",
       "@media (max-width:992px)": {
         fontSize: "16px !important",
       },
@@ -63,14 +63,16 @@ export default function ComboBox(props) {
       {...props.FormControlProps}
     >
       <Autocomplete
+        disab
         sx={{
           width: "100%",
-          height:props.componenet=="parseaddress"?"42px !important": "72px !important",
-          border:"none"
+          height: props.componenet == "parseaddress" ? "42px !important" : "72px !important",
+          border: "none",
         }}
         getOptionLabel={(option) => option.label}
         disabled={props.disabled}
         options={props.options}
+        defaultValue={props.defaultValue}
         onChange={(event, value) => props.onAddressSelect(value)}
         renderInput={(params) => (
           <TextField
@@ -80,18 +82,19 @@ export default function ComboBox(props) {
             sx={{
               width: "100% !important",
               height: "72px !important",
-              border:"none"
+              border: "none",
             }}
             onChange={(e) => {
-              props.onChangeAddress
-                ? props.onChangeAddress(e)
-                : props.onChangeLanguage(e);
+              props.onChangeAddress ? props.onChangeAddress(e) : props.onChangeLanguage(e);
             }}
             inputProps={{
               ...params.inputProps,
               className: classes.textfield,
               Autocomplete: "#####autoComplete",
               value: props.value,
+              form: {
+                autocomplete: props.disabled ? "off" : "on",
+              },
             }}
           />
         )}

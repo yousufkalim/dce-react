@@ -113,11 +113,7 @@ function SearchInput({ setSearchQuery, callback }) {
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <img
-        src={SearchIcon}
-        className="tsrs_search_input_icon"
-        onClick={callback}
-      />
+      <img src={SearchIcon} className="tsrs_search_input_icon" onClick={callback} />
     </div>
   );
 }
@@ -132,10 +128,7 @@ function SingleResult(props) {
   };
 
   return (
-    <div
-      className="csrs_single_result_list_tile_container"
-      onClick={navToViewTailor}
-    >
+    <div className="csrs_single_result_list_tile_container" onClick={navToViewTailor}>
       <div className="csrs_single_result_list_tile_column">
         <img
           className="image_container"
@@ -163,9 +156,7 @@ function SingleResult(props) {
             padding: "3% 0",
           }}
         >
-          <p className="csrs_single_result_list_tile_column_key">
-            {t("Total Orders")}
-          </p>
+          <p className="csrs_single_result_list_tile_column_key">{t("Total Orders")}</p>
           <p className="csrs_single_result_list_tile_column_value">N/A</p>
         </div>
         <div
@@ -174,12 +165,8 @@ function SingleResult(props) {
             padding: "3% 0",
           }}
         >
-          <p className="csrs_single_result_list_tile_column_key">
-            {t("Experience")}
-          </p>
-          <p className="csrs_single_result_list_tile_column_value">
-            {props.experience}
-          </p>
+          <p className="csrs_single_result_list_tile_column_key">{t("Experience")}</p>
+          <p className="csrs_single_result_list_tile_column_value">{props.experience}</p>
         </div>
         <div
           className="csrs_single_result_list_tile_column_item csrs_single_result_list_tile_column_borders"
@@ -187,12 +174,8 @@ function SingleResult(props) {
             padding: "3% 0",
           }}
         >
-          <p className="csrs_single_result_list_tile_column_key">
-            {t("Speciality")}
-          </p>
-          <p className="csrs_single_result_list_tile_column_value">
-            {props.speciality}
-          </p>
+          <p className="csrs_single_result_list_tile_column_key">{t("Speciality")}</p>
+          <p className="csrs_single_result_list_tile_column_value">{props.speciality}</p>
         </div>
       </div>
     </div>

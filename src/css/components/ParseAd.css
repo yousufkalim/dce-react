@@ -240,16 +240,15 @@
   bottom: 13px;
   font-size: 24px;
 }
-.selected-images-container{
+.selected-images-container {
   padding: 2% 0%;
   font-size: 10px;
   width: 88%;
-  /* margin: 0% -1%; */
   display: flex;
   justify-content: flex-start;
   margin: auto;
 }
-.selected-images-container>*{
+.selected-images-container > * {
   padding: 0% 2%;
 }
 /* build */

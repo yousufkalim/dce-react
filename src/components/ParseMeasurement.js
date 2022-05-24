@@ -232,9 +232,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            Head to floor height
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">Head to floor height</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -260,9 +258,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            From shoulder to floor
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">From shoulder to floor</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -288,9 +284,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            From waist to floor
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">From waist to floor</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -344,9 +338,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            Leg length
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">Leg length</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput

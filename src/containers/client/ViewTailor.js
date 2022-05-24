@@ -152,9 +152,7 @@ function ClientViewTailorScreen() {
                     src={tailor?.avatar ? assetsURL(tailor?.avatar) : dummy}
                   />
                 </div>
-                <p className="tailor_profile_screen_row1_column1_user_name_text">
-                  {tailor.name}
-                </p>
+                <p className="tailor_profile_screen_row1_column1_user_name_text">{tailor.name}</p>
               </div>
               <div className="tailor_profile_screen_row1_column2">
                 <ProfileInput
@@ -169,20 +167,12 @@ function ClientViewTailorScreen() {
                   }}
                   onChange={(e) => _setState("phone", e.target.value)}
                 />
-                <ProfileInput
-                  disabled
-                  name="Email"
-                  placeholder={t("Email")}
-                  defaultValue={tailor.email}
-                  img={ProfileEmailSVG}
-                />
+                <ProfileInput disabled name="Email" placeholder={t("Email")} defaultValue={tailor.email} img={ProfileEmailSVG} />
                 <ProfileInput
                   disabled
                   name="Date Of Birth"
                   placeholder={t("Date Of Birth")}
-                  defaultValue={new Date(tailor.dob).toLocaleDateString(
-                    "en-US"
-                  )}
+                  defaultValue={new Date(tailor.dob).toLocaleDateString("en-US")}
                   img={ProfileBirthdaySVG}
                   divStyle={{
                     marginBottom: "3%",
@@ -203,13 +193,7 @@ function ClientViewTailorScreen() {
                   defaultValue={tailor.country}
                   img={ProfileCountrySVG}
                 />
-                <ProfileInput
-                  disabled
-                  name="City"
-                  placeholder={t("City")}
-                  defaultValue={tailor.city}
-                  img={ProfileCitySVG}
-                />
+                <ProfileInput disabled name="City" placeholder={t("City")} defaultValue={tailor.city} img={ProfileCitySVG} />
                 <ProfileInput
                   disabled
                   name="Location"
@@ -297,9 +281,7 @@ function ClientViewTailorScreen() {
                       borderBottomRightRadius: "10px",
                       padding: "1.0% 0",
                     }}
-                    onChange={(e) =>
-                      _setState("free_shipping_rate", e.target.value)
-                    }
+                    onChange={(e) => _setState("free_shipping_rate", e.target.value)}
                     alignText={"textend"}
                   />
                 </div>
@@ -359,18 +341,7 @@ function ClientViewTailorScreen() {
   );
 }
 
-function ProfileInput({
-  name,
-  onChange,
-  placeholder,
-  defaultValue,
-  inputType,
-  img,
-  label,
-  disabled,
-  divStyle,
-  alignText,
-}) {
+function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, img, label, disabled, divStyle, alignText }) {
   const { t } = useTranslation();
 
   return (
@@ -389,11 +360,7 @@ function ProfileInput({
       >
         <input
           disabled={disabled}
-          className={
-            alignText == "textend"
-              ? "tps_profile_input_text_end"
-              : "tps_profile_input_input"
-          }
+          className={alignText == "textend" ? "tps_profile_input_text_end" : "tps_profile_input_input"}
           name={name}
           onChange={onChange}
           placeholder={placeholder}

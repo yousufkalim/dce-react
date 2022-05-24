@@ -3,22 +3,23 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import AutoComplete from "../components/AutoComplete";
-
-import Autocomplete from "@mui/material/Autocomplete";
-
 import { makeStyles } from "@material-ui/core/styles";
-
-import TextField from "@mui/material/TextField";
-
-import Modal from "./Modal/ModalComp";
 
 import CustomDropDown from "./CustomDropDown";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import Tooltip from "@mui/material/Tooltip";
+import { ChromePicker } from "react-color";
+import Modal from "./Modal/ModalComp";
+
+import CancelIcon from "@mui/icons-material/Cancel";
+import InfoIcon from "@mui/icons-material/Info";
+
 import DottedSVG from "../assets/dottedblack.svg";
 import { grey } from "@mui/material/colors";
 import { useTranslation } from "react-i18next";
@@ -30,15 +31,7 @@ import { Store } from "../StoreContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-function BasicSection({
-  state,
-  setState,
-  onClick,
-  disabled,
-  disables,
-  images,
-  handleImagesSelect,
-}) {
+function BasicSection({ state, setState, onClick, disabled, disables, images, handleImagesSelect, handleImageDeselect }) {
   const { t } = useTranslation();
   const _setState = (key, value) => {
     const obj = {};
@@ -79,6 +72,8 @@ function BasicSection({
     },
   }));
   const classes = useStyles();
+
+  const [openColorPicker, setOpenColorPicker] = useState(false);
   return (
     <>
       <div className="pa_profile_section_container">
@@ -103,10 +98,7 @@ function BasicSection({
               selectNullValue={t("Select gender for your creation")}
               selectValue={state?.gender}
               onChange={(e) => _setState("gender", e.target.value)}
-              menuItems={[
-                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
-                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
-              ]}
+              menuItems={[<MenuItem value={"male"}>{t("Male")}</MenuItem>, <MenuItem value={"female"}>{t("Female")}</MenuItem>]}
               selectSX={{
                 fontSize: "12px",
               }}
@@ -232,24 +224,14 @@ function BasicSection({
               },
             ].map((_) => (
               <div>
-                <span className="size">{t(_.size)} </span>{" "}
-                <span className="measurements">{_.measurements}</span>{" "}
+                <span className="size">{t(_.size)} </span> <span className="measurements">{_.measurements}</span>{" "}
               </div>
             ))}
           </div>
         </div>
-        <Modal
-          _setState={_setState}
-          RenderComp="tapemeasurements"
-          state={state}
-          open={state?.openModal}
-        />
+        <Modal _setState={_setState} RenderComp="tapemeasurements" state={state} open={state?.openModal} />
         <div
-          onClick={() =>
-            state?.measurements?.type == "tape"
-              ? _setState("openModal", true)
-              : ""
-          }
+          onClick={() => (state?.measurements?.type == "tape" ? _setState("openModal", true) : "")}
           className="pa_profile_section_input_container"
           style={{
             borderRadius: "20px",
@@ -262,11 +244,7 @@ function BasicSection({
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              disabled={
-                disabled ||
-                state.measurements.type == "tape" ||
-                state.measurements.type == "call"
-              }
+              disabled={disabled || state.measurements.type == "tape" || state.measurements.type == "call"}
               labelStyle={{
                 display: "none",
               }}
@@ -295,11 +273,7 @@ function BasicSection({
               }}
             />{" "}
             {/* TODO: This should be cleared when other types selected. */}
-            <img
-              className="dots-measurement"
-              src={DottedSVG}
-              onClick={!disabled ? handleClickMeasurements : null}
-            />
+            <img className="dots-measurement" src={DottedSVG} onClick={!disabled ? handleClickMeasurements : null} />
             <Menu
               id="basic-menu"
               anchorEl={anchorElMeasurements}
@@ -310,24 +284,39 @@ function BasicSection({
               }}
             >
               <MenuItem onClick={(e) => selectMeasurementsType("static")}>
-                Static
+                <p>Static</p>
+                <Tooltip arrow title={<p style={{ fontSize: "14px" }}>Measurements are entered in this input box right away.</p>}>
+                  <InfoIcon sx={{ height: "20px", width: "20px", marginLeft: "5px" }} />
+                </Tooltip>
               </MenuItem>
               <MenuItem onClick={(e) => selectMeasurementsType("tape")}>
-                Get a Tape
+                <p>Get a Tape</p>
+                <Tooltip
+                  arrow
+                  title={
+                    <p style={{ fontSize: "14px" }}>
+                      Measurements will be entered in a detailed form once the order is accepted.
+                    </p>
+                  }
+                >
+                  <InfoIcon sx={{ height: "20px", width: "20px", marginLeft: "5px" }} />
+                </Tooltip>
               </MenuItem>
               <MenuItem onClick={(e) => selectMeasurementsType("call")}>
-                Book Call
+                <p>Book Call</p>
+                <Tooltip
+                  arrow
+                  title={<p style={{ fontSize: "14px" }}>A message will be dropped by you to the tailor for the measurements.</p>}
+                >
+                  <InfoIcon sx={{ height: "20px", width: "20px", marginLeft: "5px" }} />
+                </Tooltip>
               </MenuItem>
             </Menu>
           </div>
         </div>
+        <p className="pa_profile_section_input_instructions_text">{t("*Bring a tape measure")}</p>
         <p className="pa_profile_section_input_instructions_text">
-          {t("*Bring a tape measure")}
-        </p>
-        <p className="pa_profile_section_input_instructions_text">
-          {t(
-            "*Measure either the circumference or the length depending on the part of the body."
-          )}
+          {t("*Measure either the circumference or the length depending on the part of the body.")}
         </p>
         <div
           className="pa_profile_section_input_container"
@@ -335,63 +324,36 @@ function BasicSection({
             borderTopLeftRadius: "20px",
             borderTopRightRadius: "20px",
             marginTop: "2%",
-            backgroundColor: state.color
-              ? colors.filter((_) => t(_.name) == t(state?.color))[0]?.value
-              : null,
+            backgroundColor: state.color ?? null,
           }}
         >
-          <div
-            style={{ width: "42%" }}
-            className="pa_profile_section_input_label"
-          >
-            <p
-              style={{ color: state.color ? "#ffffff" : "" }}
-              className="pa_profile_section_input_text"
-            >
+          <div style={{ width: "42%" }} className="pa_profile_section_input_label">
+            <p style={{ color: state.color ? "#ffffff" : "" }} className="pa_profile_section_input_text">
               {t("Colour")}
             </p>
           </div>
-          <div
-            style={{ width: "100%" }}
-            className="pa_profile_section_input_input"
-          >
-            {/* <CustomDropDown
-                  disabled={disabled}
-                  labelStyle={{
-                    display: "none",
+          <div style={{ width: "100%", height: "30pt" }} className="pa_profile_section_input_input">
+            {openColorPicker ? (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(80%)",
+                  marginTop: 15,
+                }}
+              >
+                <ChromePicker
+                  color={state.color}
+                  onChangeComplete={(e) => {
+                    _setState("color", e.hex);
                   }}
-                  selectID="colour"
-                  selectName="colour"
-                  selectNullValue={t("Select one colour for your Creations")}
-                  selectValue={state.color}
-                  onChange={(e) => _setState("color", e.target.value)}
-                  menuItems={colors.map((_) => (
-                    <MenuItem value={_.name}> {_.name}</MenuItem>
-                  ))}
-                  valuecolor={state.color ? "on" : "off"}
-                /> */}
-            {/* <Autocomplete
-                  disablePortal
-                  id="combo-box-demo"
-                  options={top100Films}
-                  sx={{ width: 300 }}
-                  renderInput={(params) => <TextField {...params} label="Movie" />}
-                /> */}
-            <Autocomplete
-              disabled={disabled}
-              classes={classes}
-              value={state?.color ? t(state?.color) : null}
-              onChange={(event, newValue) => {
-                _setState("color", newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              options={colors.map((val) => t(val?.name))}
-              sx={{ width: 390 }}
-              renderInput={(params) => <TextField {...params} />}
-            />
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+            <p onClick={() => setOpenColorPicker(!openColorPicker)}>{state.color}</p>
           </div>
         </div>
         <div
@@ -402,9 +364,7 @@ function BasicSection({
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Material Fabrics")}
-            </p>
+            <p className="pa_profile_section_input_text">{t("Material Fabrics")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -446,17 +406,29 @@ function BasicSection({
                 onChange={handleImagesSelect}
               />
               <div className="upload-img-text-cont">
-                <span className="upload-img-text">
-                  {"Upload Drawing, Photo, Document, etc"}
-                </span>
+                <span className="upload-img-text">{"Upload Drawing, Photo, Document, etc"}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
           </div>
         </div>
         <div className="selected-images-container">
-          {images?.map((val) => (
-            <span> {val?.name} </span>
+          {images?.map((_) => (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span>{_.name}</span>
+              {handleImageDeselect ? (
+                <CancelIcon sx={{ height: "17px", width: "17px", marginLeft: "5px" }} onClick={() => handleImageDeselect(_)} />
+              ) : (
+                <></>
+              )}
+            </div>
           ))}
         </div>
         <div className="checkbox-container">
@@ -470,9 +442,7 @@ function BasicSection({
                 color: grey[900],
               },
             }}
-            onChange={(e) =>
-              _setState("includes_alteration_services", e.target.checked)
-            }
+            onChange={(e) => _setState("includes_alteration_services", e.target.checked)}
           />
           <label>
             {" "}
@@ -483,9 +453,7 @@ function BasicSection({
         <div className="checkbox-container">
           <Checkbox
             {...label}
-            disabled={
-              disabled || disables?.includes("create_catalog_after_completion")
-            }
+            disabled={disabled || disables?.includes("create_catalog_after_completion")}
             checked={state.create_catalog_after_completion}
             sx={{
               color: grey[900],
@@ -493,9 +461,7 @@ function BasicSection({
                 color: grey[900],
               },
             }}
-            onChange={(e) =>
-              _setState("create_catalog_after_completion", e.target.checked)
-            }
+            onChange={(e) => _setState("create_catalog_after_completion", e.target.checked)}
           />
           <label>
             {" "}
@@ -607,9 +573,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Delivery Address")}
-            </p>
+            <p className="pa_profile_section_input_text">{t("Delivery Address")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <div style={{ width: "100%" }}>
@@ -630,51 +594,6 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             </div>
           </div>
         </div>
-        {/* <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Zip code</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomInput
-              disabled
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder="Zip code"
-              Inputvalue={state?.address?.zip}
-            />
-          </div>
-        </div> */}
-        {/* <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderBottomLeftRadius: "20px",
-            borderBottomRightRadius: "20px",
-            marginBottom: "2%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("City")}</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomInput
-              disabled
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder="City"
-              Inputvalue={state?.address?.city}
-            />
-          </div>
-        </div> */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -683,9 +602,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Delivery Note")}
-            </p>
+            <p className="pa_profile_section_input_text">{t("Delivery Note")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -697,47 +614,13 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder={t(
-                "Write any note regarding Delivery (Optional)"
-              )}
+              inputPlaceholder={t("Write any note regarding Delivery (Optional)")}
               inputDefaultValue={state?.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
           </div>
         </div>
-        <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "1%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Delivery Type")}
-            </p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomDropDown
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
-              }}
-              selectID="delivery_type"
-              selectName="delivery_type"
-              selectNullValue={t("Urgent, Normal")}
-              selectValue={state.type}
-              onChange={(e) => _setState("type", e.target.value)}
-              menuItems={[
-                <MenuItem value={"urgent"}>{t("Urgent")}</MenuItem>,
-                <MenuItem value={"normal"}>{t("Normal")}</MenuItem>,
-              ]}
-            />
-          </div>
-        </div>
-        <p className="pa_profile_section_input_instructions_text">
-          {t("*Select Delivery Type according to your Demands")}
-        </p>
+        <p className="pa_profile_section_input_instructions_text">{t("*Select Delivery Type according to your Demands")}</p>
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -747,9 +630,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">
-              {t("Delivery Date")}
-            </p>
+            <p className="pa_profile_section_input_text">{t("Delivery Date")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
@@ -763,9 +644,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             />
           </div>
         </div>
-        <p className="pa_profile_section_input_instructions_text">
-          {t("*Select Date for delivery")}
-        </p>
+        <p className="pa_profile_section_input_instructions_text">{t("*Select Date for delivery")}</p>
         {!onClick ? (
           <></>
         ) : (
@@ -802,7 +681,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
       <div className="pa_profile_section_container">
         {state?.quotes?.length === 0 || !state.quotes ? (
           <>
-            <div
+            {/* <div
               className="pa_profile_section_input_container"
               style={{
                 borderRadius: "20px",
@@ -831,7 +710,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   ]}
                 />
               </div>
-            </div>
+            </div> */}
             <div
               className="pa_payment_section_input_container"
               style={{
@@ -840,9 +719,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               }}
             >
               <div className="pa_payment_section_input_label">
-                <p className="pa_payment_section_input_text">
-                  {t("Set Minimum Price")}
-                </p>
+                <p className="pa_payment_section_input_text">{t("Set Minimum Price")}</p>
               </div>
               <div className="pa_payment_section_input_input_container">
                 <input
@@ -855,9 +732,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   }}
                   placeholder="€0"
                 />
-                {state.min_price ? (
-                  <span className="input-currency-sign">€</span>
-                ) : null}
+                {state.min_price ? <span className="input-currency-sign">€</span> : null}
               </div>
             </div>
             <div
@@ -868,9 +743,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               }}
             >
               <div className="pa_payment_section_input_label">
-                <p className="pa_payment_section_input_text">
-                  {t("Set Maximum Price")}
-                </p>
+                <p className="pa_payment_section_input_text">{t("Set Maximum Price")}</p>
               </div>
               <div className="pa_payment_section_input_input_container">
                 <input
@@ -881,9 +754,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   onChange={(e) => _setState("max_price", e.target.value)}
                   placeholder="€0"
                 />
-                {state.max_price ? (
-                  <span className="input-currency-sign">€</span>
-                ) : null}
+                {state.max_price ? <span className="input-currency-sign">€</span> : null}
               </div>
             </div>
           </>
@@ -908,17 +779,13 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder={t(
-                "Write any note regarding Payment (Optional)"
-              )}
+              inputPlaceholder={t("Write any note regarding Payment (Optional)")}
               inputDefaultValue={state.note}
               onChange={(e) => _setState("note", e.target.value)}
             />
           </div>
         </div>
-        {console.log(state.quotes, "dgfgdgdfv")}
-        {(store.userRole == "tailor" || state?.quotes?.length > 0) &&
-        state?.quotes[0]?.price > 0 ? (
+        {(store.userRole == "tailor" || state?.quotes?.length > 0) && state?.quotes[0]?.price > 0 ? (
           <div
             className="pa_payment_section_input_container"
             style={{
@@ -938,9 +805,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 onChange={(e) => _setState("min_price", e.target.value)}
                 placeholder="€0"
               />
-              {state?.quotes[0]?.price ? (
-                <span className="input-currency-sign">€</span>
-              ) : null}
+              {state?.quotes[0]?.price ? <span className="input-currency-sign">€</span> : null}
             </div>
           </div>
         ) : null}

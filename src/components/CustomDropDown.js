@@ -60,7 +60,7 @@ function CustomDropDown({
           renderValue={(value) => (value?.length > 0 ? value : selectNullValue)}
           IconComponent={KeyboardArrowDownRoundedIcon}
           sx={{
-            color: valuecolor === "on" ? "#ffffff" :selectValue?"#000000": "#A0A0A0",
+            color: valuecolor === "on" ? "#ffffff" : selectValue ? "#000000" : "#A0A0A0",
             minWidth: "100%",
             background: "transparent",
             ...selectSX,

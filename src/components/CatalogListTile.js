@@ -12,13 +12,7 @@ import dummy from "../assets/dummy.jpeg";
 import assetsURL from "../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../utils/Helpers";
 
-function CatalogListTile({
-  catalog,
-  buttonText,
-  onClickButton,
-  onClick,
-  mainDivStyle,
-}) {
+function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivStyle }) {
   const { t } = useTranslation();
 
   const rating = calculateRating(catalog.ratings);
@@ -50,11 +44,7 @@ function CatalogListTile({
             objectFit: "contain",
             borderRadius: "20px",
           }}
-          src={
-            catalog?.attachment
-              ? assetsURL(catalog.attachment)
-              : CatalogContent1SVG
-          }
+          src={catalog?.attachment ? assetsURL(catalog.attachment) : CatalogContent1SVG}
         />
         <CustomButton
           text={buttonText}
@@ -75,9 +65,7 @@ function CatalogListTile({
         />
         <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
         <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">
-            {t("Stitching Price")}
-          </p>
+          <p className="tailor_catalog_list_tile_price_detail">{t("Stitching Price")}</p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">

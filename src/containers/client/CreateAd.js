@@ -45,7 +45,6 @@ function ClientCreateAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -59,6 +58,15 @@ function ClientCreateAdScreen() {
   const handleImagesSelect = (event) => {
     setImages([...images, ...event.target.files]);
   };
+  const handleImageDeselect = (image) => {
+    const _images = [...images];
+    const index = _images.map((_) => _.name).indexOf(image.name);
+    if (index > -1) {
+      _images.splice(index, 1);
+    }
+    setImages([..._images]);
+  };
+
   const basicSectionCallback = () => {
     const isValidated = FormValidations.parseAdBasicSection(basicSection);
     if (!isValidated) {
@@ -113,14 +121,8 @@ function ClientCreateAdScreen() {
       body.append("measurements", JSON.stringify(basicSection.measurements));
       body.append("color", basicSection.color);
       body.append("fabric", basicSection.fabric);
-      body.append(
-        "includes_alteration_services",
-        basicSection.includes_alteration_services
-      );
-      body.append(
-        "create_catalog_after_completion",
-        basicSection.create_catalog_after_completion
-      );
+      body.append("includes_alteration_services", basicSection.includes_alteration_services);
+      body.append("create_catalog_after_completion", basicSection.create_catalog_after_completion);
       body.append(
         "delivery",
         JSON.stringify({
@@ -129,7 +131,6 @@ function ClientCreateAdScreen() {
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          type: deliverySection.type,
           date: deliverySection.date,
         })
       );
@@ -202,9 +203,7 @@ function ClientCreateAdScreen() {
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
-                      <StepLabel onClick={() => setActiveStep(i)}>
-                        {t(v)}
-                      </StepLabel>
+                      <StepLabel onClick={() => setActiveStep(i)}>{t(v)}</StepLabel>
                     </Step>
                   ))}
                 </Stepper>
@@ -217,6 +216,7 @@ function ClientCreateAdScreen() {
                     onClick={basicSectionCallback}
                     images={images}
                     handleImagesSelect={handleImagesSelect}
+                    handleImageDeselect={handleImageDeselect}
                   />
                 ) : activeStep == 1 ? (
                   <ParseAd.DeliverySection
@@ -225,11 +225,7 @@ function ClientCreateAdScreen() {
                     onClick={deliverySectionCallback}
                   />
                 ) : activeStep == 2 ? (
-                  <ParseAd.NotesSection
-                    state={notesSection}
-                    setState={setNotesSection}
-                    onClick={notesSectionCallback}
-                  />
+                  <ParseAd.NotesSection state={notesSection} setState={setNotesSection} onClick={notesSectionCallback} />
                 ) : (
                   <></>
                 )}

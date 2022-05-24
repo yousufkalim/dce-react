@@ -9,11 +9,9 @@ const OrderAcceptForm = () => {
       <div className="orderform-container">
         <div>
           <p className="terms">
-            I also understand that any incomplete address, altered date of
-            birth, use of an identity different from mine, or any falsified
-            document will lead to the immediate and definitive suspension of my
-            account and that I will therefore no longer be able to become a
-            service provider on DCE.{" "}
+            I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any
+            falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no
+            longer be able to become a service provider on DCE.{" "}
           </p>
         </div>
         <div style={{ marginTop: "5%" }} className="checkbox-text-container">
@@ -26,9 +24,8 @@ const OrderAcceptForm = () => {
             defaultChecked
           />
           <p className="declaration">
-            I declare on my honor that the information provided is accurate, as
-            well as the identity document attached above is authentic, belongs
-            to me, and meets all the required conditions
+            I declare on my honor that the information provided is accurate, as well as the identity document attached above is
+            authentic, belongs to me, and meets all the required conditions
           </p>
         </div>
         <div className="btn-container">

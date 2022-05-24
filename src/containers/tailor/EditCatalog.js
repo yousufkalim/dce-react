@@ -209,10 +209,7 @@ function InputSection(props) {
               selectNullValue={t("Select gender")}
               selectValue={state.gender}
               onChange={(e) => _setState("gender", e.target.value)}
-              menuItems={[
-                <MenuItem value={"male"}>{t("Male")}</MenuItem>,
-                <MenuItem value={"female"}>{t("Female")}</MenuItem>,
-              ]}
+              menuItems={[<MenuItem value={"male"}>{t("Male")}</MenuItem>, <MenuItem value={"female"}>{t("Female")}</MenuItem>]}
               selectSX={{
                 fontSize: "12px",
               }}
@@ -301,19 +298,9 @@ function InputSection(props) {
           </div>
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
-              <input
-                
-                type="file"
-                accept="image/*"
-                hidden
-                id="filePicker"
-                name="file"
-                onChange={handleImageSelect}
-              />
+              <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleImageSelect} />
               <div className="upload-img-text-cont">
-                <span className="upload-img-text">
-                  {image?.name ?? "Upload Drawing, Photo, Document, etc"}
-                </span>
+                <span className="upload-img-text">{image?.name ?? "Upload Drawing, Photo, Document, etc"}</span>
                 <img src={UploadSVG} />
               </div>
             </label>

@@ -41,12 +41,8 @@ const ConversationListTile = (props) => {
   const user = getUser();
   const receiver = getReceiver();
 
-  const receiverCheckIn = receiver.check_in
-    ? new Date(receiver.check_in)
-    : null;
-  const receiverCheckOut = receiver.check_out
-    ? new Date(receiver.check_out)
-    : null;
+  const receiverCheckIn = receiver.check_in ? new Date(receiver.check_in) : null;
+  const receiverCheckOut = receiver.check_out ? new Date(receiver.check_out) : null;
 
   if (receiverCheckIn && receiverCheckOut) {
     receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
@@ -102,13 +98,7 @@ const ConversationListTile = (props) => {
               src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
             />
             <div className="name-status">
-              <strong className="user-name">
-                {receiver.name
-                  ? receiver.name
-                  : props.is_admin
-                  ? "Admin"
-                  : "N/A"}
-              </strong>
+              <strong className="user-name">{receiver.name ? receiver.name : props.is_admin ? "Admin" : "N/A"}</strong>
               <div className="status-cont">
                 <p
                   style={{
@@ -125,13 +115,8 @@ const ConversationListTile = (props) => {
         </div>
         <div className="user-detail-parent">
           <p className="user-detail">{props.last_message?.content ?? "N/A"}</p>
-          {(user.role == "client" && props.client_unread_messages) ||
-          (user.role == "tailor" && props.tailor_unread_messages) ? (
-            <div className="dot">
-              {user.role == "client"
-                ? props.client_unread_messages
-                : props.tailor_unread_messages}
-            </div>
+          {(user.role == "client" && props.client_unread_messages) || (user.role == "tailor" && props.tailor_unread_messages) ? (
+            <div className="dot">{user.role == "client" ? props.client_unread_messages : props.tailor_unread_messages}</div>
           ) : (
             <></>
           )}

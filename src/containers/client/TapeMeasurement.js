@@ -59,10 +59,7 @@ function ClientTapeMeasurementScreen() {
   }, []);
 
   const circumferenceSectionCallback = () => {
-    const isValidated =
-      FormValidations.parseMeasurementCircumferenceSection(
-        circumferenceSection
-      );
+    const isValidated = FormValidations.parseMeasurementCircumferenceSection(circumferenceSection);
     if (!isValidated) {
       return;
     }
@@ -73,9 +70,8 @@ function ClientTapeMeasurementScreen() {
     event.preventDefault();
 
     const isValidated =
-      FormValidations.parseMeasurementCircumferenceSection(
-        circumferenceSection
-      ) && FormValidations.parseMeasurementLengthSection(lengthSection);
+      FormValidations.parseMeasurementCircumferenceSection(circumferenceSection) &&
+      FormValidations.parseMeasurementLengthSection(lengthSection);
     if (!isValidated) {
       return;
     }
@@ -201,9 +197,7 @@ function ClientTapeMeasurementScreen() {
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
-                      <StepLabel onClick={() => setActiveStep(i)}>
-                        {v}
-                      </StepLabel>
+                      <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>
                     </Step>
                   ))}
                 </Stepper>
@@ -231,11 +225,7 @@ function ClientTapeMeasurementScreen() {
         <div className="measurements-container">
           <div> </div>
           <div className="m-cont">
-            <p className="m-one-text">
-              {t(
-                "Important: If you hesitate between two sizes, take the larger one."
-              )}
-            </p>
+            <p className="m-one-text">{t("Important: If you hesitate between two sizes, take the larger one.")}</p>
             <img src={MeasuremenToneSVG} />
           </div>
           <div className="m-cont">

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import UserSVG from "../../assets/dummy.jpeg";
+import AutoComplete from "../../components/AutoComplete";
+
 import AddCatalogSVG from "../../assets/AddOrder.svg";
 import { useTranslation } from "react-i18next";
 
 import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
-import ProfileCitySVG from "../../assets/ProfileCity.svg";
 import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
 import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
 import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
@@ -16,12 +16,14 @@ import dummy from "../../assets/dummy.jpeg";
 import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
+import CustomDatePicker from "../../components/CustomDatePicker";
 
 import CatalogListTile from "../../components/CatalogListTile";
 
 import { getUser } from "../../utils/Auth";
 
 import Api from "../../api";
+import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
@@ -55,6 +57,17 @@ function TailorProfileScreen() {
     free_shipping_rate: "",
     password: undefined,
   });
+
+  // Z-Mods
+  const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [address, setAddress] = useState({
+    zip: "",
+    label: "",
+    city: "",
+    lat: "",
+    lng: "",
+  });
+  const [addresses, setAddresses] = useState([]);
 
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
@@ -106,6 +119,16 @@ function TailorProfileScreen() {
         hourly_rate: userData.hourly_rate ?? "",
         free_shipping_rate: userData.free_shipping_rate ?? "",
       });
+      if (userData.dob) {
+        setDateOfBirth(userData.dob);
+      }
+      if (userData.address) {
+        setAddress({
+          zip: userData.zip_code,
+          label: userData.address,
+          city: userData.city,
+        });
+      }
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
@@ -148,6 +171,14 @@ function TailorProfileScreen() {
       body.append("shop_name", state.shop_name);
       body.append("hourly_rate", state.hourly_rate);
       body.append("free_shipping_rate", state.free_shipping_rate);
+      if (dateOfBirth) {
+        body.append("dob", dateOfBirth);
+      }
+      if (address.label) {
+        body.append("address", address.label);
+        body.append("zip_code", address.zip);
+        body.append("city", address.city);
+      }
       if (state.password) {
         body.append("password", state.password);
       }
@@ -178,6 +209,71 @@ function TailorProfileScreen() {
     navigate(`/edit_catalog/${id}`);
   };
 
+  const _setAddress = (_) => {
+    setAddress({ ...address, ..._ });
+  };
+  const handleSelectAddress = (e) => {
+    if (e) {
+      _setAddress({
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+    }
+  };
+  const handleInputAddress = async (e) => {
+    if (e.target.value === "") {
+      _setAddress({
+        label: "",
+        zip: "",
+        city: "",
+        lat: "",
+        lng: "",
+      });
+      setAddresses([]);
+    } else {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+        method: "get",
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features
+          .map((item) => {
+            addressToSet.push({
+              label: item.properties.label,
+              city: item.properties.city,
+              PostalCode: item.properties.postcode,
+              lat: item.geometry.coordinates[1],
+              lng: item.geometry.coordinates[0],
+            });
+            setAddresses(addressToSet);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -200,10 +296,7 @@ function TailorProfileScreen() {
           >
             <div className="tailor-profile-edit-container">
               <div className="tailor_profile_screen_row1_column1_header_text">
-                <p
-                  className="client_profile_screen_row1_text"
-                  style={{ paddingLeft: "3%" }}
-                >
+                <p className="client_profile_screen_row1_text" style={{ paddingLeft: "3%" }}>
                   {t("Profile")}
                 </p>
               </div>
@@ -252,19 +345,11 @@ function TailorProfileScreen() {
                         height: "80pt",
                         width: "80pt",
                       }}
-                      src={
-                        profileImage
-                          ? URL.createObjectURL(profileImage)
-                          : profile.avatar
-                          ? assetsURL(profile.avatar)
-                          : dummy
-                      }
+                      src={profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy}
                     />
                   </label>
                 </div>
-                <p className="tailor_profile_screen_row1_column1_user_name_text">
-                  {profile.name}
-                </p>
+                <p className="tailor_profile_screen_row1_column1_user_name_text">{profile.name}</p>
               </div>
               <div className="tailor_profile_screen_row1_column2">
                 <ProfileInput
@@ -280,80 +365,45 @@ function TailorProfileScreen() {
                   minmax="on"
                   onChange={(e) => _setState("phone", e.target.value)}
                 />
-                <ProfileInput
-                  disabled
-                  name="Email"
-                  placeholder={t("Email")}
-                  defaultValue={profile.email}
-                  img={ProfileEmailSVG}
-                />
-                <ProfileInput
-                  disabled
-                  name="Date Of Birth"
-                  placeholder={t("Date Of Birth")}
-                  defaultValue={new Date(profile.dob).toLocaleDateString(
-                    "en-GB"
-                  )}
-                  img={ProfileBirthdaySVG}
+                <ProfileInput disabled name="Email" placeholder={t("Email")} defaultValue={profile.email} img={ProfileEmailSVG} />
+                <CustomDatePicker
+                  disabled={!toEdit}
+                  disableFuture
+                  labelStyle={{
+                    display: "none",
+                  }}
+                  labelText="Date of Birth"
+                  value={dateOfBirth}
+                  onChange={setDateOfBirth}
                   divStyle={{
-                    marginBottom: "3%",
-                    borderBottomLeftRadius: "10px",
-                    borderBottomRightRadius: "10px",
+                    width: "95%",
+                    marginTop: "2%",
                   }}
                 />
-                <ProfileInput
-                  disabled
-                  name="Country"
-                  placeholder={t("Country")}
-                  defaultValue={"France"}
-                  img={ProfileCountrySVG}
-                  divStyle={{
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
-                  }}
-                />
-                {/* <ProfileInput
-                  disabled
-                  name="City"
-                  placeholder={t("City")}
-                  defaultValue={profile.city}
-                  img={ProfileCitySVG}
-                /> */}
-                <ProfileInput
-                  disabled
-                  name="Location"
-                  placeholder={t("Location")}
-                  defaultValue={profile.address}
-                  img={ProfileLocationSVG}
-                  divStyle={{
-                    borderBottomLeftRadius: "10px",
-                    borderBottomRightRadius: "10px",
-                    marginBottom: "3%",
-                  }}
-                />
+                <div style={{ width: "95%" }}>
+                  <AutoComplete
+                    disabled={!toEdit}
+                    name="Address"
+                    required={true}
+                    label={"Address"}
+                    value={address?.label}
+                    options={addresses}
+                    placeholder={t("Address")}
+                    onChangeAddress={(e) => {
+                      handleInputAddress(e);
+                    }}
+                    onAddressSelect={(e) => handleSelectAddress(e)}
+                    defaultValue={address.label}
+                  />
+                </div>
               </div>
               <div className="tailor_profile_screen_row1_column2">
-                {/* <CustomButton
-                  type="submit"
-                  onClick={toEditCallback}
-                  text={toEdit ? t("Save") : t("Edit")}
-                  style={{
-                    alignSelf: "flex-end",
-                    boxShadow: "none",
-                    marginRight: "5%",
-                    marginBottom: "2%",
-                  }}
-                /> */}
                 <ProfileInput
                   disabled
                   name="Last Password Changed"
                   placeholder={t("Last Password Changed")}
                   defaultValue={
-                    profile.last_password_changed
-                      ? new Date(
-                          profile.last_password_changed
-                        ).toLocaleDateString("en-GB")
-                      : "N/A"
+                    profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString("en-GB") : "N/A"
                   }
                   label={t("Last Password Changed")}
                   divStyle={{
@@ -372,9 +422,7 @@ function TailorProfileScreen() {
                   disabled
                   name="Account Created"
                   placeholder={t("Account Created")}
-                  defaultValue={new Date(profile.createdAt).toLocaleDateString(
-                    "en-GB"
-                  )}
+                  defaultValue={new Date(profile.createdAt).toLocaleDateString("en-GB")}
                   label={t("Account Created")}
                   divStyle={{
                     borderBottomLeftRadius: "10px",
@@ -487,17 +535,12 @@ function TailorProfileScreen() {
                       borderBottomRightRadius: "10px",
                       padding: "1.0% 0",
                     }}
-                    onChange={(e) =>
-                      _setState("free_shipping_rate", e.target.value)
-                    }
+                    onChange={(e) => _setState("free_shipping_rate", e.target.value)}
                   />
                 </div>
               </div>
             </div>
-            <div
-              className="tailor_profile_screen_row3"
-              style={{ height: "20%" }}
-            >
+            <div className="tailor_profile_screen_row3" style={{ height: "20%" }}>
               <p
                 className="tailor_profile_screen_row3_text"
                 style={{
@@ -559,11 +602,7 @@ function ProfileInput({
         <input
           disabled={disabled}
           // className="tps_profile_input_input"
-          className={
-            alignText == "textend"
-              ? "tps_profile_input_text_end"
-              : "tps_profile_input_input"
-          }
+          className={alignText == "textend" ? "tps_profile_input_text_end" : "tps_profile_input_input"}
           name={name}
           onChange={onChange}
           placeholder={placeholder}
@@ -608,10 +647,7 @@ function AddCatalogListTile() {
   const { t } = useTranslation();
 
   return (
-    <div
-      className="new_order_list_tile tailor-new_order_list_tile"
-      onClick={navToCreateCatalog}
-    >
+    <div className="new_order_list_tile tailor-new_order_list_tile" onClick={navToCreateCatalog}>
       <div className="new_order_list_tile_img">
         <img style={{ width: "40%" }} src={AddCatalogSVG} />
       </div>

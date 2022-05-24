@@ -87,10 +87,7 @@ function ClientRegisterScreen() {
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img">
-              <img
-                style={{ width: "35%", marginBottom: "5%" }}
-                src={AppLogoSVG}
-              />
+              <img style={{ width: "35%", marginBottom: "5%" }} src={AppLogoSVG} />
             </div>
             <div className="login_screen_row1_img">
               <img style={{ width: "70%" }} src={DesignElaborationSVG} />
