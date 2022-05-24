@@ -80,10 +80,7 @@ const ChatScreen = () => {
         chats: chatsData,
       });
       if (directUser) {
-        const isDirectUserInvalid = chatsData.some(
-          (_) =>
-            _.tailor._id == directUser._id || _.client._id == directUser._id
-        );
+        const isDirectUserInvalid = chatsData.some((_) => _.tailor._id == directUser._id || _.client._id == directUser._id);
         if (isDirectUserInvalid) {
           setDirectUser(null);
         } else {
@@ -118,15 +115,8 @@ const ChatScreen = () => {
 
   return (
     <>
-      <div
-        style={{ background: "#DFDFDF" }}
-        className="container-page-vertical"
-      >
-        {user.role == "client" ? (
-          <ClientAppBar activeTab={3} color="#FCFCFC" />
-        ) : (
-          <TailorAppBar activeTab={3} color="#FCFCFC" />
-        )}
+      <div style={{ background: "#DFDFDF" }} className="container-page-vertical">
+        {user.role == "client" ? <ClientAppBar activeTab={3} color="#FCFCFC" /> : <TailorAppBar activeTab={3} color="#FCFCFC" />}
         <div className="client_orders_screen_top">
           <div className="chat">
             <Box
@@ -149,11 +139,7 @@ const ChatScreen = () => {
                 <ConversationsContainer />
               </div>
             </Box>
-            <MessagesContainer
-              width={width}
-              mobiletoggle={mobiletoggle}
-              directUser={directUser}
-            />
+            <MessagesContainer width={width} mobiletoggle={mobiletoggle} directUser={directUser} />
           </div>
         </div>
       </div>

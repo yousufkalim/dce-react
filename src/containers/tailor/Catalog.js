@@ -51,13 +51,9 @@ const TailorCatalogScreen = () => {
     <div className="container-page">
       <TailorAppBar color="#ffffff" activeTab={1} />
       <div className="tailor_catalog_screen_row1">
-        <div
-          className="tailor_catalog_screen_row1_column1"
-          style={{ justifyContent: "center", alignItems: "center" }}
-        >
+        <div className="tailor_catalog_screen_row1_column1" style={{ justifyContent: "center", alignItems: "center" }}>
           <p className="tailor_catalog_screen_row1_column1_text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           </p>
           <CustomButton
             text={t("Add Catalogue")}

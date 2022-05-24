@@ -236,10 +236,7 @@ function ClientProfileScreen() {
             }}
           >
             <div className="client_profile_screen_row1">
-              <p
-                className="client_profile_screen_row1_text"
-                style={{ paddingLeft: "3%" }}
-              >
+              <p className="client_profile_screen_row1_text" style={{ paddingLeft: "3%" }}>
                 {t("Profile")}
               </p>
               <CustomButton
@@ -260,10 +257,7 @@ function ClientProfileScreen() {
               </div>
               <div className="client_profile_screen_row2_column2">
                 <div className="cps_profile_container">
-                  <div
-                    className="cps_profile_img"
-                    style={{ paddingBottom: "2%" }}
-                  >
+                  <div className="cps_profile_img" style={{ paddingBottom: "2%" }}>
                     <label>
                       <input
                         style={{
@@ -282,19 +276,12 @@ function ClientProfileScreen() {
                           width: "80pt",
                         }}
                         src={
-                          profileImage
-                            ? URL.createObjectURL(profileImage)
-                            : profile.avatar
-                            ? assetsURL(profile.avatar)
-                            : dummy
+                          profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy
                         }
                       />
                     </label>
                   </div>
-                  <p
-                    className="cps_profile_text"
-                    style={{ paddingBottom: "10px" }}
-                  >
+                  <p className="cps_profile_text" style={{ paddingBottom: "10px" }}>
                     {profile.name}
                   </p>
                   <ProfileInput
@@ -352,11 +339,7 @@ function ClientProfileScreen() {
                     name="Last Password Changed"
                     placeholder={t("Last Password Changed")}
                     defaultValue={
-                      profile.last_password_changed
-                        ? new Date(
-                            profile.last_password_changed
-                          ).toLocaleDateString("en-US")
-                        : "N/A"
+                      profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString("en-US") : "N/A"
                     }
                     label={t("Last Password Changed")}
                     divStyle={{
@@ -376,9 +359,7 @@ function ClientProfileScreen() {
                     disabled
                     name="Account Created"
                     placeholder={t("Account Created")}
-                    defaultValue={new Date(
-                      profile.createdAt
-                    ).toLocaleDateString("en-GB")}
+                    defaultValue={new Date(profile.createdAt).toLocaleDateString("en-GB")}
                     label={t("Account Created")}
                     divStyle={{
                       borderBottomLeftRadius: "10px",
@@ -396,17 +377,7 @@ function ClientProfileScreen() {
   );
 }
 
-function ProfileInput({
-  disabled,
-  name,
-  onChange,
-  placeholder,
-  defaultValue,
-  img,
-  label,
-  divStyle,
-  minmax,
-}) {
+function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img, label, divStyle, minmax }) {
   return (
     <div
       className="cps_profile_input_container"

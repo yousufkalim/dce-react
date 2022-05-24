@@ -80,15 +80,10 @@ function TailorHomeScreen() {
       >
         <div className="client_home_screen_row1">
           <div className="client_home_screen_row1_column1">
-            <p
-              className="client_home_screen_row1_column1_text_1"
-              style={{ color: "#CC8E9C" }}
-            >
+            <p className="client_home_screen_row1_column1_text_1" style={{ color: "#CC8E9C" }}>
               {t("Welcome to the")}
             </p>
-            <p className="tailor_home_screen_row1_column1_text_2">
-              Design Confection Ethiques
-            </p>
+            <p className="tailor_home_screen_row1_column1_text_2">Design Confection Ethiques</p>
             <p
               className="client_home_screen_row1_column1_text_1"
               style={{
@@ -105,10 +100,7 @@ function TailorHomeScreen() {
             >
               {t("order here")}
             </p>
-            <button
-              className="client_home_screen_row1_column1_button"
-              onClick={navToQuotes}
-            >
+            <button className="client_home_screen_row1_column1_button" onClick={navToQuotes}>
               {t("Find Quotes")}
             </button>
           </div>
@@ -134,9 +126,7 @@ function TailorHomeScreen() {
             borderBottomWidth: "0.5px",
           }}
         >
-          <p className="client_home_screen_row2_row1_text">
-            {t("Order Requests")}
-          </p>
+          <p className="client_home_screen_row2_row1_text">{t("Order Requests")}</p>
           <div className="client_home_screen_row2_row1_row_container">
             {ordersRequest.map((_) => (
               <OrderListTile order={_} viewAs="tailor" />
@@ -156,15 +146,10 @@ function TailorHomeScreen() {
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
-          <p className="client_home_screen_row2_row1_text">
-            {t("Recent Orders")}
-          </p>
+          <p className="client_home_screen_row2_row1_text">{t("Recent Orders")}</p>
           <div className="client_home_screen_row2_row1_row_container">
             {ordersInProgress.map((_) => (
-              <OrderListTile
-                order={_}
-                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
-              />
+              <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == "accepted")[0]} />
             ))}
             <p
               style={{

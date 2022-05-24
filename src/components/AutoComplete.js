@@ -36,10 +36,7 @@ export default function ComboBox(props) {
       borderRadius: "10px",
       borderWidth: "1.5px",
       fontStyle: "normal !important",
-      fontSize:
-        props.componenet == "parseaddress"
-          ? "12px !important"
-          : "14px !important",
+      fontSize: props.componenet == "parseaddress" ? "12px !important" : "14px !important",
       lineHeight: "151.02% !important",
       color: "black !important",
       fontWeight: "300 !important",
@@ -69,10 +66,7 @@ export default function ComboBox(props) {
         disab
         sx={{
           width: "100%",
-          height:
-            props.componenet == "parseaddress"
-              ? "42px !important"
-              : "72px !important",
+          height: props.componenet == "parseaddress" ? "42px !important" : "72px !important",
           border: "none",
         }}
         getOptionLabel={(option) => option.label}
@@ -91,9 +85,7 @@ export default function ComboBox(props) {
               border: "none",
             }}
             onChange={(e) => {
-              props.onChangeAddress
-                ? props.onChangeAddress(e)
-                : props.onChangeLanguage(e);
+              props.onChangeAddress ? props.onChangeAddress(e) : props.onChangeLanguage(e);
             }}
             inputProps={{
               ...params.inputProps,

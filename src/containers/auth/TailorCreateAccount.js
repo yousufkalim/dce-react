@@ -99,10 +99,7 @@ function TailorCreateAccountScreen() {
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img create_account_screen_row1_img">
-              <img
-                style={{ width: "15%", marginBottom: "5%" }}
-                src={AppLogoSVG}
-              />
+              <img style={{ width: "15%", marginBottom: "5%" }} src={AppLogoSVG} />
               <div>
                 <p
                   style={{

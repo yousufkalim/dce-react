@@ -5,14 +5,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import TimePicker from "@mui/lab/TimePicker";
 
-function CustomTimePicker({
-  labelText,
-  value,
-  onChange,
-  disabled,
-  divStyle,
-  labelStyle,
-}) {
+function CustomTimePicker({ labelText, value, onChange, disabled, divStyle, labelStyle }) {
   const [open, setOpen] = useState(false);
 
   return (

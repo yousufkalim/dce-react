@@ -58,15 +58,9 @@ function ClientViewCatalogScreen() {
           >
             <div className="view_catalog_screen_row1">
               <div className="view_catalog_screen_row1_column1">
-                <p className="view_catalog_screen_row1_column1_text_1">
-                  {catalog.name}
-                </p>
-                <p className="view_catalog_screen_row1_column1_text_2">
-                  {t("Description")}
-                </p>
-                <p className="view_catalog_screen_row1_column1_text_3">
-                  {catalog.description}
-                </p>
+                <p className="view_catalog_screen_row1_column1_text_1">{catalog.name}</p>
+                <p className="view_catalog_screen_row1_column1_text_2">{t("Description")}</p>
+                <p className="view_catalog_screen_row1_column1_text_3">{catalog.description}</p>
                 <div className="view_catalog_screen_row1_column1_section">
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
@@ -117,11 +111,7 @@ function ClientViewCatalogScreen() {
                       borderTopLeftRadius: "20px",
                       borderBottomLeftRadius: "20px",
                     }}
-                    src={
-                      catalog.attachment
-                        ? assetsURL(catalog.attachment)
-                        : ViewCatalogSVG
-                    }
+                    src={catalog.attachment ? assetsURL(catalog.attachment) : ViewCatalogSVG}
                   />
                 </div>
               </div>

@@ -1,10 +1,5 @@
 import { toast } from "react-toastify";
-import {
-  kRegExpEmail,
-  kRegExpPassword,
-  kRegExpPhone,
-  kRegExpUserName,
-} from "./Constants";
+import { kRegExpEmail, kRegExpPassword, kRegExpPhone, kRegExpUserName } from "./Constants";
 
 function isEmpty(str) {
   return !str || str.length === 0;

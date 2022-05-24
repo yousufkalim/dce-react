@@ -45,13 +45,7 @@ const Main = () => {
       <div className="main-container">
         <Routes>
           {token && isMyTokenExpired == false ? (
-            <>
-              {user.role == "client" ? (
-                <>{getRoutes(RoutesObj.ClientRoutes)}</>
-              ) : (
-                <>{getRoutes(RoutesObj.TailorRoutes)}</>
-              )}
-            </>
+            <>{user.role == "client" ? <>{getRoutes(RoutesObj.ClientRoutes)}</> : <>{getRoutes(RoutesObj.TailorRoutes)}</>}</>
           ) : (
             <>{getRoutes(RoutesObj.AuthRoutes)}</>
           )}

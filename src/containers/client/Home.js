@@ -94,16 +94,9 @@ function ClientHomeScreen() {
                 <img style={{ width: "90%" }} src={ClientHomeSVG} />
               </div>
             </div>
-            <div
-              className="client_home_screen_row1_column1"
-              style={{ backgroundColor: "#FFEEEC", width: "70%" }}
-            >
-              <p className="client_home_screen_row1_column1_text_1">
-                {t("Submit your idea,")}
-              </p>
-              <p className="client_home_screen_row1_column1_text_2">
-                {t("We make it real,")}
-              </p>
+            <div className="client_home_screen_row1_column1" style={{ backgroundColor: "#FFEEEC", width: "70%" }}>
+              <p className="client_home_screen_row1_column1_text_1">{t("Submit your idea,")}</p>
+              <p className="client_home_screen_row1_column1_text_2">{t("We make it real,")}</p>
               <p
                 className="client_home_screen_row1_column1_text_1"
                 style={{
@@ -154,17 +147,11 @@ function ClientHomeScreen() {
               borderBottomWidth: "0.5px",
             }}
           >
-            <p className="client_home_screen_row2_row1_text">
-              {t("Orders List")}
-            </p>
+            <p className="client_home_screen_row2_row1_text">{t("Orders List")}</p>
             <div className="client_home_screen_row2_row1_row_container">
               <NewOrderListTile />
               {orders.map((_) => (
-                <OrderListTile
-                  order={_}
-                  quote={_.quotes.filter((__) => __.status == "accepted")[0]}
-                  viewAs="client"
-                />
+                <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == "accepted")[0]} viewAs="client" />
               ))}
               <p
                 style={{
@@ -180,9 +167,7 @@ function ClientHomeScreen() {
             </div>
           </div>
           <div className="client_home_screen_row2_row1">
-            <p className="client_home_screen_row2_row1_text">
-              {t("Designers")}
-            </p>
+            <p className="client_home_screen_row2_row1_text">{t("Designers")}</p>
             <div className="client_home_screen_row2_row1_row_container">
               {tailors.map((_) => (
                 <DesignerListTile {..._} />

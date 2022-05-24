@@ -1,9 +1,7 @@
 const kRegExpEmail =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const kRegExpPassword =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-const kRegExpPhone =
-  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+const kRegExpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const kRegExpPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 const kRegExpUserName = /^[a-zA-Z0-9_\.]+$/;
 
 const materialFabrics = [
@@ -77,8 +75,7 @@ const materialFabrics = [
   },
   {
     title: "Net",
-    description:
-      "Net fabrics for bulk bag, washing bag, zero waste bag, bulk pocket.",
+    description: "Net fabrics for bulk bag, washing bag, zero waste bag, bulk pocket.",
   },
   {
     title: "Gabardine",
@@ -87,8 +84,7 @@ const materialFabrics = [
   },
   {
     title: "Jacquard",
-    description:
-      "Fabric type Jacquard, Brocade, damask... for making clothes such as jackets, dresses, skirts or pants.",
+    description: "Fabric type Jacquard, Brocade, damask... for making clothes such as jackets, dresses, skirts or pants.",
   },
   {
     title: "Jersey",
@@ -97,8 +93,7 @@ const materialFabrics = [
   },
   {
     title: "Velor jersey",
-    description:
-      "Velor jersey fabric, for clothing and household linen: dressing gowns, pajamas, cuddly toys, etc.",
+    description: "Velor jersey fabric, for clothing and household linen: dressing gowns, pajamas, cuddly toys, etc.",
   },
   {
     title: "jersey sweatshirt",
@@ -112,18 +107,15 @@ const materialFabrics = [
   },
   {
     title: "Soft woolen fabric",
-    description:
-      "Fabric for making winter clothes such as dresses, skirts, pants, jackets",
+    description: "Fabric for making winter clothes such as dresses, skirts, pants, jackets",
   },
   {
     title: "Lange",
-    description:
-      "Very soft, the organic cotton or bamboo baby swaddle can also be used as a towel, glove, bed sheet or wipe",
+    description: "Very soft, the organic cotton or bamboo baby swaddle can also be used as a towel, glove, bed sheet or wipe",
   },
   {
     title: "Linen",
-    description:
-      "Range of 100% plain linen fabric, for making clothes: Shirts, pants, jackets...",
+    description: "Range of 100% plain linen fabric, for making clothes: Shirts, pants, jackets...",
   },
   {
     title: "Meshes",
@@ -132,23 +124,19 @@ const materialFabrics = [
   },
   {
     title: "Quilted",
-    description:
-      "Quilted cotton piqué fabric for making sleeping bags, angel's nest, lining, accessories...",
+    description: "Quilted cotton piqué fabric for making sleeping bags, angel's nest, lining, accessories...",
   },
   {
     title: "Honeycomb",
-    description:
-      "Honeycomb terry fabrics of different qualities for making towels, tea towels, bathrobes, home accessories",
+    description: "Honeycomb terry fabrics of different qualities for making towels, tea towels, bathrobes, home accessories",
   },
   {
     title: "Cotton piqué",
-    description:
-      "Cotton piqué fabric, 100% cotton Plain and fancy fabrics, flat and quilted",
+    description: "Cotton piqué fabric, 100% cotton Plain and fancy fabrics, flat and quilted",
   },
   {
     title: "Fleece / comforter",
-    description:
-      "Fleece fabric cut, plain double-sided and printed, soft and light. For clothes, blankets, sleeping bags",
+    description: "Fleece fabric cut, plain double-sided and printed, soft and light. For clothes, blankets, sleeping bags",
   },
   {
     title: "PUL washable diapers",
@@ -157,8 +145,7 @@ const materialFabrics = [
   },
   {
     title: "Faux leather",
-    description:
-      "Faux leather fabric for clothing and making clothes but also for making accessories.",
+    description: "Faux leather fabric for clothing and making clothes but also for making accessories.",
   },
   {
     title: "Tulle",
@@ -216,11 +203,4 @@ const colors = [
   },
 ];
 
-export {
-  kRegExpEmail,
-  kRegExpPassword,
-  kRegExpPhone,
-  kRegExpUserName,
-  materialFabrics,
-  colors,
-};
+export { kRegExpEmail, kRegExpPassword, kRegExpPhone, kRegExpUserName, materialFabrics, colors };

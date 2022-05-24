@@ -67,11 +67,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             paddingBottom: "8%",
           }}
         >
-          {viewAs == "client"
-            ? order?.tailor?.name ?? ""
-            : viewAs == "tailor"
-            ? order?.client?.name ?? ""
-            : ""}
+          {viewAs == "client" ? order?.tailor?.name ?? "" : viewAs == "tailor" ? order?.client?.name ?? "" : ""}
         </p>
         <div className="order_list_tile_divider" />
         <div className="order_list_tile_item">

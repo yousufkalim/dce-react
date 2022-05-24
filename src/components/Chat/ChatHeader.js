@@ -34,12 +34,8 @@ const ChatHeader = ({ directUser }) => {
   const user = getUser();
   const receiver = getReceiver();
 
-  const receiverCheckIn = receiver.check_in
-    ? new Date(receiver.check_in)
-    : null;
-  const receiverCheckOut = receiver.check_out
-    ? new Date(receiver.check_out)
-    : null;
+  const receiverCheckIn = receiver.check_in ? new Date(receiver.check_in) : null;
+  const receiverCheckOut = receiver.check_out ? new Date(receiver.check_out) : null;
 
   if (receiverCheckIn && receiverCheckOut) {
     receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
@@ -130,29 +126,18 @@ const ChatHeader = ({ directUser }) => {
             src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
           />
           <div>
-            <p className="usr">
-              {receiver.name
-                ? receiver.name
-                : store.chat.is_admin
-                ? "Admin"
-                : "N/A"}
-            </p>
+            <p className="usr">{receiver.name ? receiver.name : store.chat.is_admin ? "Admin" : "N/A"}</p>
             {receiver.status == "online" ? (
               <p className="is-online">{t("Online")}</p>
             ) : (
               <p className="is-offline">
-                {t("Last Online")}{" "}
-                {new Date(receiver.check_out).toLocaleDateString("en-US")}
+                {t("Last Online")} {new Date(receiver.check_out).toLocaleDateString("en-US")}
               </p>
             )}
           </div>
         </div>
         <div>
-          <img
-            className="chat-header-icons-two"
-            src={threedots}
-            onClick={handleClickMenu}
-          />
+          <img className="chat-header-icons-two" src={threedots} onClick={handleClickMenu} />
           <Menu
             id="basic-menu"
             anchorEl={anchorElMenu}

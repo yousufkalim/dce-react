@@ -62,11 +62,7 @@ function SearchInput({}) {
             display: "flex",
           }}
         >
-          <input
-            type="text"
-            placeholder="Ask your Question"
-            className="search-input-faqs"
-          />
+          <input type="text" placeholder="Ask your Question" className="search-input-faqs" />
           <img src={SearchIcon} className="search-Input-Icon" />
         </div>
       </div>

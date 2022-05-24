@@ -5,17 +5,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 
-function CustomDatePicker({
-  labelText,
-  value,
-  onChange,
-  disablePast,
-  disableFuture,
-  disabled,
-  divStyle,
-  labelStyle,
-  dobinput,
-}) {
+function CustomDatePicker({ labelText, value, onChange, disablePast, disableFuture, disabled, divStyle, labelStyle, dobinput }) {
   const [open, setOpen] = useState(false);
 
   return (

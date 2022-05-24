@@ -56,11 +56,7 @@ function ClientSupportCenterScreen() {
         {supportOrders.map((_) => (
           <SupportListTile {..._} />
         ))}
-        {supportOrders.length == 0 ? (
-          <NoOrders RenderText="No Support Orders" />
-        ) : (
-          <></>
-        )}
+        {supportOrders.length == 0 ? <NoOrders RenderText="No Support Orders" /> : <></>}
       </div>
       <Footer />
     </div>
@@ -79,10 +75,7 @@ function SupportListTile(props) {
   return (
     <div className="supportmainDiv">
       <div className="supportcol1">
-        <img
-          src={props.tailor.avatar ? assetsURL(props.tailor.avatar) : dummy}
-          style={{ width: "10%", padding: "25px 25px" }}
-        />
+        <img src={props.tailor.avatar ? assetsURL(props.tailor.avatar) : dummy} style={{ width: "10%", padding: "25px 25px" }} />
         <div className="supportName">
           <h3 className="supportnameh3">{props.name}</h3>
         </div>
