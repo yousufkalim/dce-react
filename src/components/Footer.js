@@ -68,7 +68,7 @@ const Footer = () => {
         <div className="footer_icon_div">
           <div>
             <p>
-              © 2022 <span className="footer_bottom_text">Design Confection Ethiques</span>
+              © 2022 <span className="footer_bottom_text">Design Confections Ethiques</span>
               {t(", Developed by Falcon Consulting. All rights reserved.")}
             </p>
           </div>

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function TailorHomeScreen() {
   const navigate = useNavigate();
+
   const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -83,7 +84,7 @@ function TailorHomeScreen() {
             <p className="client_home_screen_row1_column1_text_1" style={{ color: "#CC8E9C" }}>
               {t("Welcome to the")}
             </p>
-            <p className="tailor_home_screen_row1_column1_text_2">Design Confection Ethiques</p>
+            <p className="tailor_home_screen_row1_column1_text_2">Design Confections Ethiques</p>
             <p
               className="client_home_screen_row1_column1_text_1"
               style={{

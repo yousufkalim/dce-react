@@ -594,7 +594,7 @@ const InvoiceOrderModal = (props) => {
                 fontWeight: "600",
               }}
             >
-              Design confection Ethiques
+              Design confections Ethiques
             </p>
             <div
               className="cos_oim_column1_section"

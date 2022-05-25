@@ -14,17 +14,22 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
+import { Modal } from "@mui/material";
+
 import { ChromePicker } from "react-color";
-import Modal from "./Modal/ModalComp";
+import * as MeasurementsModal from "./Modal/ModalComp";
 
 import CancelIcon from "@mui/icons-material/Cancel";
 import InfoIcon from "@mui/icons-material/Info";
 
 import DottedSVG from "../assets/dottedblack.svg";
+import AttachmentsSVG from "../assets/PAttachment.svg";
+import ViewImageSVG from "../assets/InputEye.svg";
+import CancelAttachmentSVG from "../assets/CancelAttachment.svg";
 import { grey } from "@mui/material/colors";
 import { useTranslation } from "react-i18next";
 
-import { materialFabrics, colors } from "../utils/Constants";
+import { materialFabrics } from "../utils/Constants";
 import UploadSVG from "../assets/upload.svg";
 
 import { Store } from "../StoreContext";
@@ -33,6 +38,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function BasicSection({ state, setState, onClick, disabled, disables, images, handleImagesSelect, handleImageDeselect }) {
   const { t } = useTranslation();
+
   const _setState = (key, value) => {
     const obj = {};
     obj[key] = value;
@@ -52,6 +58,14 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
     setAnchorElMeasurements(null);
   };
 
+  const [isAcceptQuoteModal, setIsAcceptQuoteModal] = useState(false);
+  const handleIsAcceptQuoteModalClose = () => {
+    setIsAcceptQuoteModal(false);
+  };
+  const handleIsAcceptQuoteModalOpen = () => {
+    setIsAcceptQuoteModal(true);
+  };
+
   const selectMeasurementsType = (_) => {
     setState({
       ...state,
@@ -62,7 +76,9 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
     });
     handleCloseMeasurements();
   };
+
   const store = Store();
+
   const useStyles = makeStyles((theme) => ({
     inputRoot: {
       color: "#ffffff",
@@ -74,8 +90,11 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
   const classes = useStyles();
 
   const [openColorPicker, setOpenColorPicker] = useState(false);
+  const [viewImage, setViewImage] = useState(null);
+
   return (
     <>
+      {console.log(viewImage)}
       <div className="pa_profile_section_container">
         <div
           className="pa_profile_section_input_container"
@@ -229,7 +248,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
             ))}
           </div>
         </div>
-        <Modal _setState={_setState} RenderComp="tapemeasurements" state={state} open={state?.openModal} />
+        {/* <MeasurementsModal _setState={_setState} RenderComp="tapemeasurements" state={state} open={state?.openModal} /> */}
         <div
           onClick={() => (state?.measurements?.type == "tape" ? _setState("openModal", true) : "")}
           className="pa_profile_section_input_container"
@@ -422,13 +441,70 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
+                height: "30pt",
+                padding: "0.6% 0",
+                backgroundColor: "transparent",
+                borderColor: "#f7c9d0",
+                borderStyle: "solid",
+                borderWidth: "0.5px",
               }}
             >
-              <span>{_.name}</span>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginLeft: "4%",
+                }}
+              >
+                <img
+                  src={AttachmentsSVG}
+                  style={{
+                    width: "12pt",
+                  }}
+                />
+                <span
+                  style={{
+                    marginLeft: "10pt",
+                  }}
+                >
+                  {_.name}
+                </span>
+              </div>
               {handleImageDeselect ? (
-                <CancelIcon sx={{ height: "17px", width: "17px", marginLeft: "5px" }} onClick={() => handleImageDeselect(_)} />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginRight: "4%",
+                  }}
+                >
+                  <img
+                    src={ViewImageSVG}
+                    style={{
+                      cursor: "pointer",
+                      width: "12pt",
+                    }}
+                    onClick={() => {
+                      setViewImage(_);
+                      handleIsAcceptQuoteModalOpen();
+                    }}
+                  />
+                  <img
+                    src={CancelAttachmentSVG}
+                    style={{
+                      cursor: "pointer",
+                      marginLeft: "10pt",
+                      width: "12pt",
+                    }}
+                    onClick={() => handleImageDeselect(_)}
+                  />
+                </div>
               ) : (
                 <></>
               )}
@@ -486,8 +562,32 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
             onClick={onClick}
           />
         )}
+        <Modal open={isAcceptQuoteModal} onClose={handleIsAcceptQuoteModalClose} aria-labelledby="View Image">
+          <ViewImageModal src={viewImage} handleClose={handleIsAcceptQuoteModalClose} />
+        </Modal>
       </div>
     </>
+  );
+}
+
+function ViewImageModal(props) {
+  return (
+    <div
+      className="tqs_sqm_container"
+      style={{
+        height: "40vh",
+        width: "40vw",
+      }}
+    >
+      <img
+        src={URL.createObjectURL(props.src)}
+        style={{
+          height: "100%",
+          width: "100%",
+          objectFit: "contain",
+        }}
+      />
+    </div>
   );
 }
 
@@ -763,32 +863,6 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             </div>
           </>
         ) : null}
-        <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginBottom: "1%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Payment Note")}</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomInput
-              disabled={disabled}
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder={t("Write any note regarding Payment (Optional)")}
-              inputDefaultValue={state.note}
-              onChange={(e) => _setState("note", e.target.value)}
-            />
-          </div>
-        </div>
         {(store.userRole == "tailor" || state?.quotes?.length > 0) && state?.quotes[0]?.price > 0 ? (
           <div
             className="pa_payment_section_input_container"
@@ -831,7 +905,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              {t("I agree to the design Confection Ethiques")}
+              {t("I agree to the design Confections Ethiques")}
             </p>
             <p
               className="terms-text"

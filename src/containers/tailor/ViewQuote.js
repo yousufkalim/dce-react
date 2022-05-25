@@ -52,7 +52,6 @@ function TailorViewQuoteScreen() {
     create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    note: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -89,7 +88,6 @@ function TailorViewQuoteScreen() {
       });
       setDeliverySection({
         date: adData.delivery.date,
-        note: adData.delivery.note,
         type: adData.delivery.type,
         address: {
           zip: adData.delivery.zipcode,

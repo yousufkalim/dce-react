@@ -50,7 +50,6 @@ function TailorViewOrderScreen() {
     userRole: "",
   });
   const [deliverySection, setDeliverySection] = useState({
-    note: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -85,7 +84,6 @@ function TailorViewOrderScreen() {
       });
       setDeliverySection({
         date: adData.delivery.date,
-        note: adData.delivery.note,
         type: adData.delivery.type,
         address: {
           zip: adData.delivery.zipcode,
