@@ -17,8 +17,9 @@ import TailorAppBar from "../../components/TailorAppBar";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import CustomDatePicker from "../../components/CustomDatePicker";
-
 import CatalogListTile from "../../components/CatalogListTile";
+
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 import { getUser } from "../../utils/Auth";
 
@@ -339,14 +340,35 @@ function TailorProfileScreen() {
                       accept="image/*"
                       onChange={handleImageSelect}
                     />
-                    <img
-                      className="image_container"
+                    <div
                       style={{
-                        height: "80pt",
-                        width: "80pt",
+                        position: "relative",
+                        height: "100%",
+                        width: "100%",
                       }}
-                      src={profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy}
-                    />
+                    >
+                      <img
+                        className="image_container"
+                        style={{
+                          height: "80pt",
+                          width: "80pt",
+                        }}
+                        src={
+                          profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy
+                        }
+                      />
+                      {toEdit ? (
+                        <AddPhotoAlternateIcon
+                          sx={{
+                            position: "absolute",
+                            right: "-4pt",
+                            top: "50pt",
+                          }}
+                        />
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </label>
                 </div>
                 <p className="tailor_profile_screen_row1_column1_user_name_text">{profile.name}</p>
