@@ -32,7 +32,7 @@ i18n
           Designers: "Designers",
           Orders: "Orders",
           "My Ads": "My Ads",
-          Quotes: "Quotes",
+          Quotes: "Missions",
           Help: "Help",
           Chats: "Chats",
           "Terms and Conditions": "Terms and Conditions",
@@ -145,7 +145,7 @@ i18n
 
           //view tailor
           "Designer Profile": "Designer Profile",
-          "Quote sent successfully.": "Quote sent successfully.",
+          "Quote sent successfully.": "Mission sent successfully.",
 
           //--------------------------------------------------------------Designer--------------------------------------------------
 
@@ -184,7 +184,7 @@ i18n
           "Welcome to the": "Welcome to the",
           "Now You receive your": "Now You receive your",
           "order here": "order here",
-          "Find Quotes": "Find Quotes",
+          "Find Quotes": "Find Missions",
           "Order Requests": "Order Requests",
           "See all": "See all",
           "Recent Orders": "Recent Orders",
@@ -230,7 +230,7 @@ i18n
             "Have knowledge of the different fabrics, materials, colors",
           "Make drawings, sketches": "Make drawings, sketches",
           "Operate the right machinery": "Operate the right machinery",
-          "Prepare detailed quotes": "Prepare detailed quotes",
+          "Prepare detailed quotes": "Prepare detailed missions",
           "Meet deadlines": "Meet deadlines",
           "Have knowledge of management": "Have knowledge of management",
           "Know how to handle computers in particular the Design CREATION site":
@@ -246,7 +246,7 @@ i18n
           "Hourly Rate": "Hourly Rate",
           Offer: "Offer",
           "Send Offer": "Send Offer",
-          "You have already sent quote for this ad.": "You have already sent quote for this ad.",
+          "You have already sent quote for this ad.": "You have already sent mission for this ad.",
 
           //profile
           "Hourly Rate": "Hourly Rate",
@@ -256,7 +256,7 @@ i18n
           //quotes
           "Name of Creation": "Name of Creation",
           "Ad for": "Ad for",
-          "No quotes yet": "No quotes yet",
+          "No quotes yet": "No missions yet",
           //searchResults
           "Orders Found": "Orders Found",
           offer: "offer",
@@ -297,7 +297,7 @@ i18n
           "The seamstress is also required to provide neat and quality work with selected quality materials.The seamstress must reside in France in order to respect the “made in France” label.":
             "The seamstress is also required to provide neat and quality work with selected quality materials.The seamstress must reside in France in order to respect the “made in France” label.",
           "Orders are made directly by the customer via the Design CONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.":
-            "Orders are made directly by the customer via the DesignCONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.",
+            "Orders are made directly by the customer via the DesignCONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various missions will be offered to him.",
           Delivery: "Delivery",
           offline: "offline",
 
@@ -453,8 +453,8 @@ i18n
           "Order discarded.": "Order discarded.",
           "Order completed.": "Order completed.",
           "Feedback given by client.": "Feedback given by client.",
-          "Sent quote on your order.": "Sent quote on your order.",
-          "Accepted your quote.": "Accepted your quote.",
+          "Sent quote on your order.": "Sent mission on your order.",
+          "Accepted your quote.": "Accepted your mission.",
           "Sent you a message.": "Sent you a message.",
           "Type a message here": "Type a message here",
           "Forgot Password?": "Forgot Password?",

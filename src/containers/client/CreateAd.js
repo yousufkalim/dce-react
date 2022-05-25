@@ -44,7 +44,6 @@ function ClientCreateAdScreen() {
     create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    note: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -56,6 +55,23 @@ function ClientCreateAdScreen() {
   });
 
   const handleImagesSelect = (event) => {
+    if (event.target.files.length + images.length > 5) {
+      toast.error("You can select a maximum of 5 files.");
+      return;
+    }
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const obj = event.target.files[i];
+      if (obj.size / 1024 > 5000) {
+        toast.error("File sizes greater than 5 MB are not allowed.");
+        return;
+      }
+    }
+
+    if (event.target.files.length + images.length > 5) {
+      toast.error("You can select a maximum of 5 files.");
+      return;
+    }
     setImages([...images, ...event.target.files]);
   };
   const handleImageDeselect = (image) => {
@@ -134,7 +150,6 @@ function ClientCreateAdScreen() {
           date: deliverySection.date,
         })
       );
-      body.append("note", notesSection.note);
       body.append(
         "budget",
         JSON.stringify({
