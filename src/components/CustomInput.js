@@ -7,7 +7,7 @@ function CustomInput({
   inputName,
   inputPlaceholder,
   inputDefaultValue,
-  Inputvalue,
+  inputValue,
   enableEyes,
   accept,
   onChange,
@@ -56,7 +56,7 @@ function CustomInput({
           onChange={onChange}
           placeholder={inputPlaceholder}
           defaultValue={inputDefaultValue}
-          value={Inputvalue}
+          value={inputValue}
           maxlength={minmax ? 10 : 100}
           className="custom_input_input"
           style={{

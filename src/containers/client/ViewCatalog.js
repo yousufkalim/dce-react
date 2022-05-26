@@ -111,7 +111,7 @@ function ClientViewCatalogScreen() {
                       borderTopLeftRadius: "20px",
                       borderBottomLeftRadius: "20px",
                     }}
-                    src={catalog.attachment ? assetsURL(catalog.attachment) : ViewCatalogSVG}
+                    src={catalog.attachments[0] ? assetsURL(catalog.attachments[0]) : ViewCatalogSVG}
                   />
                 </div>
               </div>

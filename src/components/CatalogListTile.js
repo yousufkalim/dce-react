@@ -44,7 +44,7 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
             objectFit: "contain",
             borderRadius: "20px",
           }}
-          src={catalog?.attachment ? assetsURL(catalog.attachment) : CatalogContent1SVG}
+          src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}
         />
         <CustomButton
           text={buttonText}

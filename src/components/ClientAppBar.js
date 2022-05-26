@@ -294,16 +294,6 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
                 <img style={{ width: "16px" }} src={SupportIcon} />
                 <p> {t("Support")}</p>
               </MenuItem>
-              {/* <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
-                <img src={TermsConditionsIcon} />{" "}
-                <p>{t("Terms and Conditions")}</p>
-              </MenuItem> */}
-              {/* <MenuItem
-                style={{ borderBottom: "1px solid #DBDBDB" }}
-                className="menu-item privacy-padding"
-              >
-                <img src={PrivacyPolicyIcon} /> <p>{t("Privacy Policy")}</p>
-              </MenuItem> */}
               <MenuItem className="menu-item sign-out-padding" onClick={handleLogoutSubmit}>
                 <img style={{ width: "16px" }} src={SignOutIcon} /> <p> {t("Sign out")}</p>
               </MenuItem>

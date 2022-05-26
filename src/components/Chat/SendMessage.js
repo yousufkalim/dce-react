@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 
 const SendMessage = ({ directUser }) => {
   const { t } = useTranslation();
+
   const store = Store();
   const updateStore = UpdateStore();
 

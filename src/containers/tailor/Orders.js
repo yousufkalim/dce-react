@@ -127,6 +127,7 @@ function TailorOrdersScreen() {
   const navToViewOrder = (_) => {
     navigate(`/view_order/${_}`);
   };
+
   return (
     <>
       <div className="container-page-vertical">

@@ -25,7 +25,6 @@ import ClientFaqsScreen from "../containers/client/Faqs";
 import ClientSearchResultsScreen from "../containers/client/SearchResults";
 import ClientSupportCenterScreen from "../containers/client/SupportCenter";
 import ClientViewOrderScreen from "../containers/client/ViewOrder";
-import ClientTapeMeasurementScreen from "../containers/client/TapeMeasurement";
 
 // Tailor Screens
 import TailorHomeScreen from "../containers/tailor/Home";
@@ -255,12 +254,6 @@ const ClientRoutes = [
     name: "ClientViewOrder",
     icon: <ClientViewOrderIcon />,
     element: ClientViewOrderScreen,
-  },
-  {
-    path: "/tape_measurement",
-    name: "ClientTapeMeasurement",
-    icon: <ClientTapeMeasurementIcon />,
-    element: ClientTapeMeasurementScreen,
   },
 ];
 
