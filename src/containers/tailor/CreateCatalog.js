@@ -10,8 +10,11 @@ import { useTranslation } from "react-i18next";
 import CustomDropDown from "../../components/CustomDropDown";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
+import Attachment from "../../components/Attachment";
+import ViewImageModal from "../../components/ViewImageModal";
 
 import MenuItem from "@mui/material/MenuItem";
+import { Modal } from "@mui/material";
 
 import Api from "../../api/index";
 
@@ -65,7 +68,8 @@ function InputSection() {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
+  const [viewImage, setViewImage] = useState(null);
 
   const [state, setState] = useState({
     name: "",
@@ -75,9 +79,41 @@ function InputSection() {
     description: "",
   });
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+  const [isViewImageModal, setIsViewImageModal] = useState(false);
+  const handleIsViewImageModalClose = () => {
+    setIsViewImageModal(false);
+  };
+  const handleIsViewImageModalOpen = () => {
+    setIsViewImageModal(true);
+  };
+
+  const handleImagesSelect = (event) => {
+    if (event.target.files.length + images.length > 5) {
+      toast.error("You can select a maximum of 5 files.");
+      return;
+    }
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const obj = event.target.files[i];
+      if (obj.size / 1024 > 5000) {
+        toast.error("File sizes greater than 5 MB are not allowed.");
+        return;
+      }
+    }
+
+    if (event.target.files.length + images.length > 5) {
+      toast.error("You can select a maximum of 5 files.");
+      return;
+    }
+    setImages([...images, ...event.target.files]);
+  };
+  const handleImageDeselect = (image) => {
+    const _images = [...images];
+    const index = _images.map((_) => _.name).indexOf(image.name);
+    if (index > -1) {
+      _images.splice(index, 1);
+    }
+    setImages([..._images]);
   };
 
   const _setState = (key, value) => {
@@ -97,7 +133,7 @@ function InputSection() {
       return;
     }
 
-    if (!image) {
+    if (images.length == 0) {
       toast.error(t("Image must be selected"));
       return;
     }
@@ -118,7 +154,9 @@ function InputSection() {
       body.append("category", state.category);
       body.append("price", state.price);
       body.append("description", state.description);
-      body.append("image", image);
+      for (let i = 0; i < images.length; i++) {
+        body.append("images", images[i]);
+      } // Multipart files share the same field name
 
       response = await Api("post", "/catalogs", body);
 
@@ -255,33 +293,6 @@ function InputSection() {
             ></textarea>
           </div>
         </div>
-        {/* <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: "20px",
-            marginTop: "2%",
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Attachments")}</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <CustomInput
-              labelStyle={{
-                display: "none",
-              }}
-              inputStyle={{
-                border: "none",
-                fontSize: "12px",
-              }}
-              inputPlaceholder={t("Upload Drawing, Photo, Document, etc.")}
-              inputType="file"
-              accept="image/*"
-              onChange={handleImageSelect}
-            />
-          </div>
-        </div> */}
-        {/* start */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -294,16 +305,26 @@ function InputSection() {
           </div>
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
-              <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleImageSelect} />
+              <input type="file" multiple accept="image/*" hidden id="filePicker" name="file" onChange={handleImagesSelect} />
               <div className="upload-img-text-cont">
-                <span className="upload-img-text">{image?.name ?? "Upload Drawing, Photo, Document, etc"}</span>
+                <span className="upload-img-text">Upload Drawing, Photo, Document, etc</span>
                 <img src={UploadSVG} />
               </div>
             </label>
           </div>
         </div>
-
-        {/* end */}
+        <div className="selected-images-container">
+          {images?.map((_) => (
+            <Attachment
+              image={_}
+              view={() => {
+                setViewImage(_);
+                handleIsViewImageModalOpen();
+              }}
+              deselect={() => handleImageDeselect(_)}
+            />
+          ))}
+        </div>
         <CustomButton
           text={t("Create Catalogue")}
           onClick={handleSubmit}
@@ -314,6 +335,9 @@ function InputSection() {
             boxShadow: "none",
           }}
         />
+        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby="View Image">
+          <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
+        </Modal>
       </div>
     </>
   );

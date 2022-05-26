@@ -4,6 +4,29 @@ const kRegExpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d
 const kRegExpPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 const kRegExpUserName = /^[a-zA-Z0-9_\.]+$/;
 
+const adNames = {
+  women: ["SHIRT / BLOUSE", "JUMPSUIT / DUNGAREES", "VEST", "SKIRT", "TROUSERS / SHORTS", "DRESS", "TUNIC", "JACKET"],
+  man: ["SHIRT", "VEST", "PANTS", "JACKET"],
+  child: [
+    // Girl
+    "SHIRT / BLOUSE",
+    "JUMPSUIT / DUNGAREES",
+    "VEST",
+    "SKIRT",
+    "TROUSERS / SHORTS",
+    "PYJAMAS",
+    "DRESS",
+    "TUNIC",
+    "JACKET",
+    "SCHOOL APRON",
+    "DISGUISE",
+
+    // Boy
+    "SHIRT",
+    "PANTS",
+  ],
+};
+
 const materialFabrics = [
   {
     title: "Ribbed edges",
@@ -164,43 +187,4 @@ const materialFabrics = [
   },
 ];
 
-const colors = [
-  {
-    name: "White",
-    value: "#DADADC",
-  },
-  {
-    name: "Silver Grey",
-    value: "#949496",
-  },
-  {
-    name: "Pink Purple",
-    value: "#5D2D52",
-  },
-  {
-    name: "Light Grey",
-    value: "#8B898C",
-  },
-  {
-    name: "Cameo Brown",
-    value: "#B05173",
-  },
-  {
-    name: "Date Red",
-    value: "#93142A",
-  },
-  {
-    name: "Muave",
-    value: "#ED72DA",
-  },
-  {
-    name: "Bright Pink",
-    value: "#F4739F",
-  },
-  {
-    name: "Red",
-    value: "#D6080A",
-  },
-];
-
-export { kRegExpEmail, kRegExpPassword, kRegExpPhone, kRegExpUserName, materialFabrics, colors };
+export { kRegExpEmail, kRegExpPassword, kRegExpPhone, kRegExpUserName, materialFabrics, adNames };

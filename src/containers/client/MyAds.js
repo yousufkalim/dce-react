@@ -458,9 +458,9 @@ const AcceptQuoteModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (props.order.measurements.type == "static") {
-      handleStaticMeasurements();
+      handleMeasurements();
     } else if (props.order.measurements.type == "tape") {
-      handleTapeMeasurements();
+      handleMeasurements();
     } else if (props.order.measurements.type == "call") {
       handleCallMeasurements(event);
     } else {
@@ -468,7 +468,7 @@ const AcceptQuoteModal = (props) => {
     }
   };
 
-  const handleStaticMeasurements = async () => {
+  const handleMeasurements = async () => {
     if (isProcessing) {
       return;
     }
@@ -512,20 +512,8 @@ const AcceptQuoteModal = (props) => {
     }
   };
 
-  const handleTapeMeasurements = () => {
-    props.handleClose();
-    navigate("/tape_measurement", {
-      state: { order: props.order, quote: props.quote },
-    });
-  };
-
   const handleCallMeasurements = async (e) => {
     handleIsScheduleCallModalOpen(e);
-  };
-
-  const navToOrders = () => {
-    props.handleClose();
-    navigate("/orders");
   };
 
   return (
@@ -652,11 +640,6 @@ const ScheduleCallModal = (props) => {
     } catch (e) {
       console.trace(e);
     }
-  };
-
-  const navToOrders = () => {
-    props.handleClose();
-    navigate("/orders");
   };
 
   return (
