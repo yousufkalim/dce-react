@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TailorHomeSVG from "../../assets/Tailorsvg.svg";
+import TailorHomeSVG from "../../assets/TailorHome.svg";
 import UserSVG from "../../assets/dummy.jpeg";
 import AppBar from "../../components/TailorAppBar";
 import OrderListTile from "../../components/OrderListTile";
@@ -76,7 +76,7 @@ function TailorHomeScreen() {
       <div
         className="container"
         style={{
-          background: "rgba(255, 202, 186, 0.67)",
+          background: "#FAFAFA",
         }}
       >
         <div className="client_home_screen_row1">
@@ -101,7 +101,13 @@ function TailorHomeScreen() {
             >
               {t("order here")}
             </p>
-            <button className="client_home_screen_row1_column1_button" onClick={navToQuotes}>
+            <button
+              className="client_home_screen_row1_column1_button"
+              style={{
+                backgroundColor: "#FFFFFF",
+              }}
+              onClick={navToQuotes}
+            >
               {t("Find Quotes")}
             </button>
           </div>
