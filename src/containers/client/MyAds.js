@@ -229,7 +229,7 @@ function AdListTile(props) {
             }}
           >
             <p className="cas_ad_list_tile_column1_item_key">{t("Delivery Date")}</p>
-            <p className="cas_ad_list_tile_column1_item_value">{new Date(props.delivery.date).toLocaleDateString("en-US")}</p>
+            <p className="cas_ad_list_tile_column1_item_value">{new Date(props.delivery.date).toLocaleDateString("en-gb")}</p>
           </div>
         </div>
         <div className="cas_ad_list_tile_column2">

@@ -131,7 +131,7 @@ const ChatHeader = ({ directUser }) => {
               <p className="is-online">{t("Online")}</p>
             ) : (
               <p className="is-offline">
-                {t("Last Online")} {new Date(receiver.check_out).toLocaleDateString("en-US")}
+                {t("Last Online")} {new Date(receiver.check_out).toLocaleDateString("en-gb")}
               </p>
             )}
           </div>

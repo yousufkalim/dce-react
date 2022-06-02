@@ -172,7 +172,7 @@ function ClientViewTailorScreen() {
                   disabled
                   name="Date Of Birth"
                   placeholder={t("Date Of Birth")}
-                  defaultValue={new Date(tailor.dob).toLocaleDateString("en-US")}
+                  defaultValue={new Date(tailor.dob).toLocaleDateString("en-gb")}
                   img={ProfileBirthdaySVG}
                   divStyle={{
                     marginBottom: "3%",

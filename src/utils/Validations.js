@@ -84,9 +84,6 @@ function tailorVerifyEmail(data) {
 function tailorCreateAccount(data) {
   const valArr = [
     {
-      name: "Name of your company",
-    },
-    {
       name: "Name",
     },
     {
@@ -210,26 +207,6 @@ function tailorEditProfile(data) {
     {
       validationFunction: () => Validators.nullValidator("Phone", data["phone"]),
     },
-    // {
-    //   validationFunction: () =>
-    //     Validators.nullValidator("Experience", data["experience"]),
-    // },
-    // {
-    //   validationFunction: () =>
-    //     Validators.nullValidator("Diploma", data["diploma"]),
-    // },
-    // {
-    //   validationFunction: () =>
-    //     Validators.nullValidator("Shop Name", data["shop_name"]),
-    // },
-    // {
-    //   validationFunction: () =>
-    //     Validators.nullValidator("Hourly Rate", data["hourly_rate"]),
-    // },
-    // {
-    //   validationFunction: () =>
-    //     Validators.nullValidator("Free Shipping", data["free_shipping_rate"]),
-    // },
   ];
 
   const validated = formValidator(data, valArr);

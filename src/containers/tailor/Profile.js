@@ -53,7 +53,7 @@ function TailorProfileScreen() {
     phone: "",
     experience: "",
     diploma: "",
-    shop_name: "",
+    store_name: "",
     hourly_rate: "",
     free_shipping_rate: "",
     password: undefined,
@@ -116,7 +116,7 @@ function TailorProfileScreen() {
         phone: userData.phone ?? "",
         experience: userData.experience ?? "",
         diploma: userData.diploma ?? "",
-        shop_name: userData.shop_name ?? "",
+        store_name: userData.store_name ?? "",
         hourly_rate: userData.hourly_rate ?? "",
         free_shipping_rate: userData.free_shipping_rate ?? "",
       });
@@ -169,7 +169,7 @@ function TailorProfileScreen() {
       body.append("phone", state.phone);
       body.append("experience", state.experience);
       body.append("diploma", state.diploma);
-      body.append("shop_name", state.shop_name);
+      body.append("store_name", state.store_name);
       body.append("hourly_rate", state.hourly_rate);
       body.append("free_shipping_rate", state.free_shipping_rate);
       if (dateOfBirth) {
@@ -474,16 +474,16 @@ function TailorProfileScreen() {
                 />
                 <ProfileInput
                   disabled={!toEdit}
-                  name="Shop Name"
-                  placeholder={t("Shop Name")}
-                  defaultValue={profile.shop_name}
-                  label={t("Shop Name")}
+                  name="Store Name"
+                  placeholder={t("Store Name")}
+                  defaultValue={profile.store_name}
+                  label={t("Store Name")}
                   divStyle={{
                     borderBottomLeftRadius: "10px",
                     borderBottomRightRadius: "10px",
                     marginBottom: "3%",
                   }}
-                  onChange={(e) => _setState("shop_name", e.target.value)}
+                  onChange={(e) => _setState("store_name", e.target.value)}
                 />
               </div>
             </div>

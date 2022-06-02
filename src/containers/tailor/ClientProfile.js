@@ -116,7 +116,7 @@ function TailorClientProfileScreen() {
                     disabled
                     name="Date Of Birth"
                     placeholder={t("Date Of Birth")}
-                    defaultValue={new Date(client.dob).toLocaleDateString("en-US")}
+                    defaultValue={new Date(client.dob).toLocaleDateString("en-gb")}
                     img={ProfileBirthdaySVG}
                     divStyle={{
                       marginBottom: "3%",
@@ -173,6 +173,7 @@ function TailorClientProfileScreen() {
     </>
   );
 }
+
 function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, img, label, disabled, divStyle }) {
   return (
     <div
@@ -250,12 +251,12 @@ function ClientProfileOrderListTile(props) {
           <hr className="hrline" />
           <div className="orderDiv">
             <p className="ordername">{t("Order Date")}</p>
-            <p className="ordername2">{new Date(props.createdAt).toLocaleDateString("en-US")}</p>
+            <p className="ordername2">{new Date(props.createdAt).toLocaleDateString("en-gb")}</p>
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
             <p className="ordername">{t("Delivery Date")}</p>
-            <p className="ordername2">{new Date(props.delivery.date).toLocaleDateString("en-US")}</p>
+            <p className="ordername2">{new Date(props.delivery.date).toLocaleDateString("en-gb")}</p>
           </div>
         </div>
         <div className="orderLine"></div>

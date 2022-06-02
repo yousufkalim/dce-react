@@ -61,7 +61,7 @@ function TailorCreateAccountScreen() {
       const body = {
         email: state["Email"],
         password: state["Password"],
-        shop_name: data.get("Name of your company"),
+        // shop_name: data.get("Name of your company"),
         name: data.get("Name"),
         phone: data.get("Phone No"),
       };
@@ -123,14 +123,14 @@ function TailorCreateAccountScreen() {
           </div>
           <div className="login_screen_row2">
             <div className="create_account_screen_row2_container">
-              <CustomInput
+              {/* <CustomInput
                 labelText={t("Name of your company")}
                 inputName="Name of your company"
                 inputPlaceholder={t("Name of your company")}
                 divStyle={{
                   marginBottom: "6%",
                 }}
-              />
+              /> */}
               <CustomInput
                 labelText={t("Name")}
                 inputName="Name"

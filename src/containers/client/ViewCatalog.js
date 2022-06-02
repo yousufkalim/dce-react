@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import ViewCatalogSVG from "../../assets/ViewCatalog.svg";
 
 import ClientAppBar from "../../components/ClientAppBar";
-
 import CustomButton from "../../components/CustomButton";
+import CustomCarousel from "../../components/CustomCarousel";
+
 import { useTranslation } from "react-i18next";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,6 +23,7 @@ function ClientViewCatalogScreen() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [catalog, setCatalog] = useState(null);
+  const [displayImageIndex, setDisplayImageIndex] = useState(0);
 
   useEffect(() => {
     getCatalog();
@@ -106,12 +108,17 @@ function ClientViewCatalogScreen() {
                 <div className="view_catalog_screen_row1_column2_img">
                   <img
                     style={{
-                      height: "60%",
                       width: "75%",
+                      height: "50%",
+                      objectFit: "cover",
                       borderTopLeftRadius: "20px",
-                      borderBottomLeftRadius: "20px",
                     }}
-                    src={catalog.attachments[0] ? assetsURL(catalog.attachments[0]) : ViewCatalogSVG}
+                    src={catalog?.attachments?.length > 0 ? assetsURL(catalog.attachments[displayImageIndex]) : ViewCatalogSVG}
+                  />
+                  <CustomCarousel
+                    images={catalog?.attachments}
+                    displayImageIndex={displayImageIndex}
+                    setDisplayImageIndex={setDisplayImageIndex}
                   />
                 </div>
               </div>

@@ -277,7 +277,7 @@ i18n
           "Feedback provided successfully.": "Feedback provided successfully.",
           "Attachment must be selected": "Attachment must be selected",
 
-          "Shop Name": "Shop Name",
+          "Store Name": "Store Name",
           "Ad created successfully.": "Ad created successfully.",
           "Order completed successfully.": "Order completed successfully.",
 
@@ -840,7 +840,7 @@ i18n
           "Certain Amount": "Certain Montant",
           "Any Confection": "N'importe quelle confiserie",
           Diploma: "Diplôme",
-          "Shop Name": "Nom de la boutique",
+          "Store Name": "Nom de la boutique",
           "Fixed price": "Prix fixe",
           offline: "hors ligne",
 
