@@ -103,7 +103,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_value"
           >
-            {new Date(order.createdAt).toLocaleDateString("en-US")}
+            {new Date(order.createdAt).toLocaleDateString("en-gb")}
           </p>
         </div>
         <div className="order_list_tile_item">
@@ -121,7 +121,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_value"
           >
-            {new Date(order.delivery.date).toLocaleDateString("en-US")}
+            {new Date(order.delivery.date).toLocaleDateString("en-gb")}
           </p>
         </div>
         <div

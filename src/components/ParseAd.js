@@ -105,7 +105,6 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
 
   return (
     <>
-      {console.log(state)}
       <div className="pa_profile_section_container">
         <div
           className="pa_profile_section_input_container"

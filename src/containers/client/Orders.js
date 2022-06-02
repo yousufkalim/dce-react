@@ -194,7 +194,7 @@ function OrderListTile(props) {
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Order Date")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-US")}</p>
+          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-gb")}</p>
         </div>
         <div
           className="cos_order_list_tile_column2_item"
@@ -204,7 +204,7 @@ function OrderListTile(props) {
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Delivery Date")}</p>
           <p className="cos_order_list_tile_column2_item_value">
-            {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
+            {new Date(props.order.delivery.date).toLocaleDateString("en-gb")}
           </p>
         </div>
       </div>
@@ -676,11 +676,11 @@ const InvoiceOrderModal = (props) => {
               width: "100%",
             }}
           >
-            <_InvoiceR1C2Section title="Date:" description={new Date().toLocaleDateString("en-US")} />
+            <_InvoiceR1C2Section title="Date:" description={new Date().toLocaleDateString("en-gb")} />
             <_InvoiceR1C2Section title="Payment Terms:" description="Bank Deposit" />
             <_InvoiceR1C2Section
               title="Due Date:"
-              description={new Date(props.order.delivery.date).toLocaleDateString("en-US")}
+              description={new Date(props.order.delivery.date).toLocaleDateString("en-gb")}
             />
             <_InvoiceR1C2Section title="PO Number:" description="N/A" />
             <div

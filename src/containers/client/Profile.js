@@ -360,7 +360,7 @@ function ClientProfileScreen() {
                     name="Last Password Changed"
                     placeholder={t("Last Password Changed")}
                     defaultValue={
-                      profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString("en-US") : "N/A"
+                      profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString("en-gb") : "N/A"
                     }
                     label={t("Last Password Changed")}
                     divStyle={{

@@ -69,7 +69,7 @@ function NotificationsListTile(props) {
           fontSize: "12px",
         }}
       >
-        {new Date(props.createdAt).toLocaleDateString("en-US")}
+        {new Date(props.createdAt).toLocaleDateString("en-gb")}
       </p>
     </div>
   );

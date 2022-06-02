@@ -270,7 +270,7 @@ function OrderRequestListTile(props) {
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Order Date")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-US")}</p>
+          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-gb")}</p>
         </div>
         <div
           className="cos_order_list_tile_column2_item"
@@ -280,7 +280,7 @@ function OrderRequestListTile(props) {
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Delivery Date")}</p>
           <p className="cos_order_list_tile_column2_item_value">
-            {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
+            {new Date(props.order.delivery.date).toLocaleDateString("en-gb")}
           </p>
         </div>
       </div>
@@ -368,7 +368,7 @@ function OrderInProgressListTile(props) {
           }}
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Order Date")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-US")}</p>
+          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-gb")}</p>
         </div>
         <div
           className="cos_order_list_tile_column2_item"
@@ -378,7 +378,7 @@ function OrderInProgressListTile(props) {
         >
           <p className="cos_order_list_tile_column2_item_key">{t("Delivery Date")}</p>
           <p className="cos_order_list_tile_column2_item_value">
-            {new Date(props.order.delivery.date).toLocaleDateString("en-US")}
+            {new Date(props.order.delivery.date).toLocaleDateString("en-gb")}
           </p>
         </div>
       </div>

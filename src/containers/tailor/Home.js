@@ -85,22 +85,22 @@ function TailorHomeScreen() {
               {t("Welcome to the")}
             </p>
             <p className="tailor_home_screen_row1_column1_text_2">Design Confections Ethiques</p>
-            <p
+            {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#A0805A",
               }}
             >
               {t("Now You receive your")}
-            </p>
-            <p
+            </p> */}
+            {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#857B6F",
               }}
             >
               {t("order here")}
-            </p>
+            </p> */}
             <button
               className="client_home_screen_row1_column1_button"
               style={{

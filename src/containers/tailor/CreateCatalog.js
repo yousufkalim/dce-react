@@ -107,6 +107,7 @@ function InputSection() {
     }
     setImages([...images, ...event.target.files]);
   };
+
   const handleImageDeselect = (image) => {
     const _images = [...images];
     const index = _images.map((_) => _.name).indexOf(image.name);
