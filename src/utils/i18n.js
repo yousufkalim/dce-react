@@ -184,7 +184,7 @@ i18n
           "Welcome to the": "Welcome to the",
           "Now You receive your": "Now You receive your",
           "order here": "order here",
-          "Find Quotes": "Find Missions",
+          "find your sewing assignments": "find your sewing assignments",
           "Order Requests": "Order Requests",
           "See all": "See all",
           "Recent Orders": "Recent Orders",
@@ -348,7 +348,7 @@ i18n
           "Delivery Type": "Delivery Type",
 
           "Payment Note": "Payment Note",
-          "I agree to the design Confection Ethiques": "I agree to the design Confection Ethiques",
+          "I agree with terms & condition & privacy policy of design confection and ethiques": "I agree with terms & condition & privacy policy of design confection and ethiques",
           "Terms of Services": "Terms of Services",
           "Privacy Policy": "Privacy Policy",
           and: "and",
@@ -547,7 +547,7 @@ i18n
 
           //client navbar
           Designers: "Créateurs",
-          Orders: "Ordres",
+          Orders: "Demandes de commandes",
           "My Ads": "Mes annonces",
           Chats: "Chats",
           "Terms and Conditions": "Termes et conditions",
@@ -699,7 +699,7 @@ i18n
           "Welcome to the": "Bienvenue à la",
           "Now You receive your": "Maintenant, vous recevez votre",
           "order here": "commander ici",
-          "Find Quotes": "Trouver des devis",
+          "find your sewing assignments": "trouvez vos devoirs de couture",
           "Order Requests": "Demandes de commande",
           "See all": "Voir tout",
           "Recent Orders": "Dernières commandes",
@@ -865,7 +865,7 @@ i18n
           "Set Maximum Price": "Définir le prix maximum",
           "Payment Note": "Bulletin de paiement",
 
-          "I agree to the design Confection Ethiques": "J'accepte le design Confection Ethiques",
+          "I agree with terms & condition & privacy policy of design confection and ethiques": "J'accepte les termes et conditions et la politique de confidentialité de design confection and ethiques",
           "Terms of Services": "Conditions de services",
           and: "et",
           "Privacy Policy": "Politique de confidentialité",
@@ -988,7 +988,7 @@ i18n
           "Verification Code": "Code de vérification",
           "Create Account": "Créer un compte",
           "Name of your company": "Nom de votre entreprise",
-          "Phone No": "Pas de téléphone",
+          "Phone No": "Numéro de téléphone",
           "I Have Physical Store": "J'ai un magasin physique",
           "Store Name": "Nom du magasin",
           "Date of Birth": "Date de naissance",

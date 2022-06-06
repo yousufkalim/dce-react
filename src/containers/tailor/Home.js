@@ -108,7 +108,7 @@ function TailorHomeScreen() {
               }}
               onClick={navToQuotes}
             >
-              {t("Find Quotes")}
+              {t("find your sewing assignments")}
             </button>
           </div>
           <div className="client_home_screen_row1_column2">

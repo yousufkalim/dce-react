@@ -992,7 +992,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              {t("I agree to the design Confections Ethiques")}
+              {t("I agree with terms & condition & privacy policy of design confection and ethiques")}
             </p>
             <p
               className="terms-text"
