@@ -527,7 +527,7 @@ const ContactSupportOrderModal = (props) => {
           <label className="upload-pic-label">
             <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachment?.name ?? "Upload Drawing, Photo, Document, etc"}</span>
+              <span className="upload-img-text">{attachment?.name ?? t("upload an illustration of your creation")}</span>
               <img src={UploadSVG} />
             </div>
           </label>

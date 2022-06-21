@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Notes"];
 
 function ClientCreateAdScreen() {
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ function ClientCreateAdScreen() {
   const [activeStep, setActiveStep] = useState(0);
   const [images, setImages] = useState([]);
   const [basicSection, setBasicSection] = useState({
-    gender: "",
+    // gender: "",
     category: "",
     name: "",
     cut: "",
@@ -130,7 +130,7 @@ function ClientCreateAdScreen() {
 
       const body = new FormData();
       body.append("type", "ad");
-      body.append("gender", basicSection.gender);
+      // body.append("gender", basicSection.gender);
       body.append("category", basicSection.category);
       body.append("name", basicSection.name);
       body.append("cut", basicSection.cut);

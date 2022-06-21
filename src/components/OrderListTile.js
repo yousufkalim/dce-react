@@ -113,7 +113,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            {t("Delivery Date")}
+            {t("desired delivery date")}
           </p>
           <p
             style={{

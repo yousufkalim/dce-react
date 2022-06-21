@@ -97,10 +97,11 @@ function tailorCreateAccount(data) {
 }
 
 function parseAdBasicSection(data) {
+  console.log(data,"adat");
   const valArr = [
-    {
-      validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
-    },
+    // {
+    //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
+    // },
     {
       validationFunction: () => Validators.selectValidator("Category", data["category"]),
     },
@@ -150,9 +151,9 @@ function parseAdNotesSection(data) {
     //   validationFunction: () =>
     //     Validators.selectValidator("Choose Method", data["type"]),
     // },
-    {
-      validationFunction: () => Validators.moneyValidator("Minimum Price", data["min_price"]),
-    },
+    // {
+    //   validationFunction: () => Validators.moneyValidator("Minimum Price", data["min_price"]),
+    // },
     {
       validationFunction: () => Validators.moneyValidator("Maximum Price", data["max_price"]),
     },
@@ -183,9 +184,9 @@ function tailorCreateCatalog(data) {
     {
       validationFunction: () => Validators.nullValidator("Name", data["name"]),
     },
-    {
-      validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
-    },
+    // {
+    //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
+    // },
     {
       validationFunction: () => Validators.selectValidator("Category", data["category"]),
     },

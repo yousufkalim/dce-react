@@ -106,7 +106,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
   return (
     <>
       <div className="pa_profile_section_container">
-        <div
+        {/* <div
           className="pa_profile_section_input_container"
           style={{
             borderTopLeftRadius: "20px",
@@ -133,8 +133,13 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
               }}
             />
           </div>
-        </div>
-        <div className="pa_profile_section_input_container">
+        </div> */}
+        <div
+         style={{
+          borderTopLeftRadius: "20px",
+          borderTopRightRadius: "20px",
+        }}
+        className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t("Category")}</p>
           </div>
@@ -219,7 +224,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Cut")}</p>
+            <p className="pa_profile_section_input_text">{t("size")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -398,7 +403,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
         >
           <div style={{ width: "42%" }} className="pa_profile_section_input_label">
             <p style={{ color: state.color ? "#ffffff" : "" }} className="pa_profile_section_input_text">
-              {t("Colour")}
+              {t("dominant color")}
             </p>
           </div>
           <div
@@ -479,7 +484,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
                 onChange={handleImagesSelect}
               />
               <div className="upload-img-text-cont">
-                <span className="upload-img-text">{"Upload Drawing, Photo, Document, etc"}</span>
+                <span className="upload-img-text">{t("upload an illustration of your creation")}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
@@ -497,7 +502,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
             />
           ))}
         </div>
-        <div className="checkbox-container">
+        {/* <div className="checkbox-container">
           <Checkbox
             {...label}
             disabled={disabled}
@@ -515,7 +520,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
             <span className="duw-text">{t("Do you Want")}</span>{" "}
             <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
           </label>
-        </div>
+        </div> */}
         <div className="checkbox-container">
           <Checkbox
             {...label}
@@ -531,7 +536,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
           />
           <label>
             {" "}
-            <span className="duw-text">{t("Create Catalog After")}</span>{" "}
+            <span className="duw-text">{t("I do desired not that my creation appears on the site")}</span>{" "}
             <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "}
           </label>
         </div>
@@ -793,7 +798,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Delivery Note")}</p>
+            <p className="pa_profile_section_input_text">{t("any note (s) concerning the delivery")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
@@ -821,7 +826,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Delivery Date")}</p>
+            <p className="pa_profile_section_input_text">{t("desired delivery date")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDatePicker
@@ -902,7 +907,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 />
               </div>
             </div> */}
-            <div
+            {/* <div
               className="pa_payment_section_input_container"
               style={{
                 borderRadius: "20px",
@@ -925,7 +930,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 />
                 {state.min_price ? <span className="input-currency-sign">€</span> : null}
               </div>
-            </div>
+            </div> */}
             <div
               className="pa_payment_section_input_container"
               style={{

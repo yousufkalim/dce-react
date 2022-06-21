@@ -255,7 +255,7 @@ function ClientProfileOrderListTile(props) {
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
-            <p className="ordername">{t("Delivery Date")}</p>
+            <p className="ordername">{t("desired delivery date")}</p>
             <p className="ordername2">{new Date(props.delivery.date).toLocaleDateString("en-gb")}</p>
           </div>
         </div>

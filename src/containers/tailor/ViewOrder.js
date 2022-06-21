@@ -24,7 +24,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Notes"];
 
 function TailorViewOrderScreen() {
   const { t } = useTranslation();
@@ -436,7 +436,7 @@ const CompleteOrderModal = (props) => {
           <label className="upload-pic-label">
             <input multiple type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachments?.name ?? "Upload Drawing, Photo, Document, etc"}</span>
+              <span className="upload-img-text">{attachments?.name ?? t("upload an illustration of your creation")}</span>
               <img src={UploadSVG} />
             </div>
           </label>

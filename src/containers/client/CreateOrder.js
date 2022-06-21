@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Notes"];
 
 function ClientCreateOrderScreen() {
   const { t } = useTranslation();

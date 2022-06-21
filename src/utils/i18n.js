@@ -60,6 +60,7 @@ i18n
           Order: "Order",
           "Order Date": "Order Date",
           "Delivery Date": "Delivery Date",
+          "desired delivery date ":"desired delivery date",
           "Coming soon!": "Coming soon!",
           Rating: "Rating",
           Cancel: "Cancel",
@@ -67,6 +68,7 @@ i18n
           "Place Your Order": "Place Your Order",
           "Image must be selected": "Image must be selected",
           "Delivery Note": "Delivery Note",
+          "any note (s) concerning the delivery":"any note (s) concerning the delivery",
           "Catalogue created successfully.": "Catalogue created successfully.",
           "No Orders": "No Orders",
           //my ads
@@ -85,11 +87,13 @@ i18n
 
           "Chat Here": "Chat Here",
           "Ad Basic": "Ad Basic",
-          Delivery: "Delivery",
+          // Delivery: "Delivery",
           Payment: "Payment",
-          Basic: "Basic",
+          "MY PROJECT":"MY PROJECT",
+          // Basic: "Basic",
           Notes: "Notes",
-          Delivery: "Delivery",
+          // Delivery: "Delivery",
+         "My delivery":"My delivery",
 
           //chats
           Online: "Online",
@@ -326,7 +330,8 @@ i18n
           "Select category": "Select category",
           "Set your Price": "Set your Price",
           "Tell us about your service": "Tell us about your service",
-          "Upload Drawing, Photo, Document, etc.": "Upload Drawing, Photo, Document, etc.",
+          // "Upload Drawing, Photo, Document, etc.": "Upload Drawing, Photo, Document, etc.",
+          "upload an illustration of your creation":"upload an illustration of your creation",
           "Tell us": "Tell us",
           Save: "Save",
           "Write Measurement here": "Write Measurement here",
@@ -335,7 +340,8 @@ i18n
           "*Bring a tape measure": "*Bring a tape measure",
           "*Measure either the circumference or the length depending on the part of the body.":
             "*Measure either the circumference or the length depending on the part of the body.",
-          Colour: "Colour",
+          // Colour: "Colour",
+          "dominant color":"dominant color",
           "Select Fabric Style": "Select Fabric Style",
           "Do you Want": "Do you Want",
           "ALTREATION SERVICE ?": "ALTREATION SERVICE ?",
@@ -367,6 +373,7 @@ i18n
           "(handle)": "(handle)",
           Next: "Next",
           Cut: "Cut",
+          size:"size",
           small: "small",
           large: "large",
           medium: "medium",
@@ -443,6 +450,7 @@ i18n
           Normal: "Normal",
           Address: "Address",
           "Create Catalog After": "Create Catalog After",
+          "I do desired not that my creation appears on the site":"I do desired not that my creation appears on the site",
           "ORDER COMPLETION ?": "ORDER COMPLETION ?",
           pending: "pending",
           "in progress": "in progress",
@@ -535,7 +543,7 @@ i18n
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
-          "Submit your idea,": "Soumettez-nous votre idée,",
+          "Submit your idea,": "Vous avez une idée de confection couture ? DÉPOSER VOTRE PROJET",
           "We make it real,": "nous la concrétisons !",
           "You receive your creation": "Vous recevez votre création",
           "at home!": "à la maison!",
@@ -546,10 +554,10 @@ i18n
           Feedback: "Retour",
 
           //client navbar
-          Designers: "Créateurs",
-          Orders: "Demandes de commandes",
+          Designers: "Les Pros de la couture",
+          Orders: "Mes projets en cours",
           "My Ads": "Mes annonces",
-          Chats: "Chats",
+          Chats: "Messagerie",
           "Terms and Conditions": "Termes et conditions",
           Profile: "Profil",
           Quotes: "Devis",
@@ -560,7 +568,7 @@ i18n
           "Send Message": "Envoyer le message",
           View: "Voir",
           "Delivery Note": "Bon de livraison",
-
+          "any note (s) concerning the delivery":"par note(s) éventuel(les) concernant la livraison",
           //Profile
           Edit: "Modifier",
           Phone: "Téléphoner",
@@ -594,6 +602,7 @@ i18n
           "Name of Creation": "Nom de la création",
           "Ad for": "Annonce pour",
           "Delivery Date": "La date de livraison",
+          "desired delivery date":"date de livraison souhaitée",
           min: "min",
           max: "maximum",
           Range: "Varier",
@@ -609,7 +618,7 @@ i18n
           //chats
           Online: "En ligne",
           "Last Online": "Dernière connexion",
-          Chats: "Chattes",
+          Chats: "Messagerie",
           "Recent Chats": "Chats récents",
           "Search Input can't be empty": "L'entrée de recherche ne peut pas être vide",
 
@@ -731,8 +740,8 @@ i18n
             "Design création gère toutes les formalités liées à la prestation de services",
           "3 . Post your ad (offer) in just a few clicks": "3 . Déposez votre annonce (offre) en quelques clics",
           "Post your add in 3 steps": "Publiez votre annonce en 3 étapes",
-          "Upload Drawing, Photo, Document, etc.": "Télécharger un dessin, une photo, un document, etc.",
-
+          // "Upload Drawing, Photo, Document, etc.": "Télécharger un dessin, une photo, un document, etc.",
+           "upload an illustration of your creation":"téléchargez une illustration de votre création",
           "Seamstress selection based on the following criteria:": "Sélection des couturières selon les critères suivants :",
           "Reliability / Seriousness": "Fiabilité / Sérieux",
           "Rating on the site": "Note sur le site",
@@ -760,6 +769,7 @@ i18n
           "Know how to handle computers in particular the Design CREATION site":
             "Savoir manier l'informatique notamment le site Design CREATION",
           Cut: "Couper",
+          size:"taille",
 
           //order
           "Orders Requests": "Demandes de commandes",
@@ -808,6 +818,7 @@ i18n
           "Orders are made directly by the customer via the Design CONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.":
             "Les commandes sont passées directement par le client via le site DesignCONFECTIONS ETHIQUES, où ce dernier a sélectionné les différents choix qui lui sont proposés quant à sa création (type, tissu, délai, etc.). Puis sa création est acheminée vers l'interface professionnelle de les couturières où différents devis lui seront proposés.",
           Delivery: "Livraison",
+          "My delivery":"Ma livraison",
           "Delivery Address": "Adresse de livraison",
           "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.":
             "Le client a le choix entre différents délais de livraison : 2 semaines, 1 mois ou saisir un délai de livraison. Il peut cocher la case indifférent s'il n'est pas trop pressé.",
@@ -848,8 +859,8 @@ i18n
           "*Measure either the circumference or the length depending on the part of the body.":
             "*Mesurer soit la circonférence soit la longueur selon la partie du corps.",
           "*Bring a tape measure": "*Apportez un mètre ruban",
-          Colour: "Couleur",
-
+          // Colour: "Couleur",
+          "dominant color":"couleur dominante",
           "Select one colour for your Creations": "Sélectionnez une couleur pour vos Créations",
           "Material Fabrics": "Matériaux Tissus",
           "Select Fabric Style": "Sélectionnez le style de tissu",
@@ -886,7 +897,8 @@ i18n
           Next: "Suivant",
           large: "grand",
           medium: "moyen",
-          Basic: "Basique",
+          "MY PROJECT":"Mon projet",
+          // Basic: "Basique",
           Delivery: "Livraison",
           Notes: "Remarques",
           "Catalogue created successfully.": "Catalogue créé avec succès.",
@@ -961,6 +973,7 @@ i18n
           Normal: "Ordinaire",
           Address: "Adresse",
           "Create Catalog After": "Créer un catalogue après",
+          "I do desired not that my creation appears on the site":"je ne souhaite pas que ma création figure sur le site",
           "ORDER COMPLETION ?": "ACHÈVEMENT DE LA COMMANDE ?",
           pending: "en attendant",
           "in progress": "en cours",
