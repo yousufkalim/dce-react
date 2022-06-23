@@ -86,6 +86,7 @@ import TailorSupportCenterIcon from "@mui/icons-material/AccountBox";
 import TailorClientProfileIcon from "@mui/icons-material/AccountBox";
 import TailorViewOrderIcon from "@mui/icons-material/AccountBox";
 import ChatIcon from "@mui/icons-material/AccountBox";
+import ResetPasswordScreen from "../containers/auth/ResetPassword";
 
 // Routes for Auth
 const AuthRoutes = [
@@ -143,6 +144,7 @@ const AuthRoutes = [
     icon: <TailorCreateAccountIcon />,
     element: TailorCreateAccountScreen,
   },
+  { path: "/reset-password/:token", element: ResetPasswordScreen },
 ];
 
 // Routes for Client

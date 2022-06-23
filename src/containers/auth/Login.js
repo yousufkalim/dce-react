@@ -22,6 +22,7 @@ import * as FormValidations from "../../utils/Validations";
 import { Store, UpdateStore } from "../../StoreContext";
 
 import { useTranslation } from "react-i18next";
+import ResetPasswordScreen from "./ResetPassword";
 
 function LoginScreen() {
   const { t } = useTranslation();
@@ -32,6 +33,8 @@ function LoginScreen() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  let [email, setEmail] = useState("");
+  let [forgetPassword, setforgetPassword] = useState(false);
 
   const store = Store();
   const updateStore = UpdateStore();
@@ -43,7 +46,22 @@ function LoginScreen() {
   const navToSelectRole = (e) => {
     navigate("/select_role");
   };
-
+  const handleInput = (e) => {
+    setEmail(e.target.value);
+  };
+  const forgetPasswrd = async () => {
+    console.log("abdjsbc");
+    // if (email) {s
+    let res = await Api("post", "/clients/forget-password", { email });
+    if (res) {
+      setOpen(false);
+      toast.success("Please check your email to reset your password");
+    }
+    setEmail("");
+    // } else {
+    //   toast.success("Please enter your email");
+    // }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -85,6 +103,7 @@ function LoginScreen() {
 
     setIsProcessing(false);
   };
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -113,7 +132,10 @@ function LoginScreen() {
           <div className="login_screen_top">
             <div className="login_screen_row1">
               <div className="login_screen_row1_img">
-                <img style={{ width: "35%", marginBottom: "5%" }} src={AppLogoSVG} />
+                <img
+                  style={{ width: "35%", marginBottom: "5%" }}
+                  src={AppLogoSVG}
+                />
               </div>
               <div className="login_screen_row1_img">
                 <img style={{ width: "70%" }} src={DesignElaborationSVG} />
@@ -187,12 +209,26 @@ function LoginScreen() {
           </div>
         </div>
       </form>
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style} className="forget-modal">
           <div className="cross-img">
-            <img src={Cross} style={{ width: "15px", cursor: "pointer" }} onClick={handleClose} />
+            <img
+              src={Cross}
+              style={{ width: "15px", cursor: "pointer" }}
+              onClick={handleClose}
+            />
           </div>
-          <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ textAlign: "center" }}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ textAlign: "center" }}
+          >
             Forgot Password?
           </Typography>
           <Typography
@@ -207,6 +243,7 @@ function LoginScreen() {
             inputType="email"
             inputName="Email"
             inputPlaceholder="abc@xyz.com"
+            onChange={handleInput}
             divStyle={{
               marginBottom: "10%",
             }}
@@ -214,7 +251,8 @@ function LoginScreen() {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CustomButton
               text={t("Send Code")}
-              type="submit"
+              // type="submit"
+              onClick={forgetPasswrd}
               style={{
                 marginBottom: "13%",
               }}
@@ -222,6 +260,7 @@ function LoginScreen() {
           </div>
         </Box>
       </Modal>
+      {/* <ResetPasswordScreen open={forgetPassword} setOpen={setforgetPassword} /> */}
     </>
   );
 }
