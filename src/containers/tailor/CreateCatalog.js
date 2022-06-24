@@ -308,7 +308,7 @@ function InputSection() {
             <label className="upload-pic-label" htmlFor="filePicker">
               <input type="file" multiple accept="image/*" hidden id="filePicker" name="file" onChange={handleImagesSelect} />
               <div className="upload-img-text-cont">
-                <span className="upload-img-text">Upload Drawing, Photo, Document, etc</span>
+                <span className="upload-img-text">{t("upload an illustration of your creation")}</span>
                 <img src={UploadSVG} />
               </div>
             </label>

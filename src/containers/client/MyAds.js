@@ -228,7 +228,7 @@ function AdListTile(props) {
               padding: "2% 0",
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">{t("Delivery Date")}</p>
+            <p className="cas_ad_list_tile_column1_item_key">{t("desired delivery date")}</p>
             <p className="cas_ad_list_tile_column1_item_value">{new Date(props.delivery.date).toLocaleDateString("en-gb")}</p>
           </div>
         </div>

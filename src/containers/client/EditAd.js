@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Notes"];
 
 function ClientEditAdScreen() {
   const { t } = useTranslation();
@@ -296,7 +296,7 @@ function ClientEditAdScreen() {
                     fontWeight: "900",
                   }}
                 >
-                  {t("Delivery")}
+                  {t("My delivery")}
                 </p>
                 <p
                   style={{

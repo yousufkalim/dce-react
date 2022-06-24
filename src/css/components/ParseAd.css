@@ -114,11 +114,7 @@
 .upload-pic-label {
   width: 93%;
 }
-.upload-img-text-cont {
-  display: flex;
-  justify-content: space-between;
-  padding: 2% 0%;
-}
+a
 .size-measurement-cont {
   display: flex;
   width: 65%;

@@ -23,7 +23,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Notes"];
 
 function TailorViewQuoteScreen() {
   const { t } = useTranslation();
@@ -208,7 +208,7 @@ function TailorViewQuoteScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
