@@ -999,7 +999,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             >
               {t("I agree with terms & condition & privacy policy of design confection and ethiques")}
             </p>
-            <p
+            {/* <p
               className="terms-text"
               style={{
                 paddingRight: "0.6%",
@@ -1023,7 +1023,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               }}
             >
               {t("Privacy Policy")}
-            </p>
+            </p> */}
           </div>
         )}
         {!onClick ? (
