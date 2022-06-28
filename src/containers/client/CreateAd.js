@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["MY PROJECT", "My delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Remarks"];
 
 function ClientCreateAdScreen() {
   const { t } = useTranslation();
@@ -197,13 +197,15 @@ function ClientCreateAdScreen() {
           <div className="client_create_ad_screen_column1">
             <p
               style={{
-                fontSize: "30px",
+                fontSize: "20px",
                 fontWeight: "900",
-                marginBottom: "8%",
+                marginBottom: "6%",
+                width:"50%",
+                lineHeight:"23px"
               }}
               onClick={navToCreateAd}
             >
-              {t("Place Your Ad")}
+              {t("I am concretizing my idea of tailoring")}
             </p>
             <img style={{ width: "70%" }} src={AdElaborationSVG} />
           </div>

@@ -176,7 +176,7 @@ function SingleResult(props) {
             >
               offer
             </h3>
-            <h3
+            {/* <h3
               style={{
                 fontSize: "20px",
                 fontWeight: "600",
@@ -184,7 +184,7 @@ function SingleResult(props) {
             >
               {" "}
               ${props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"}
-            </h3>
+            </h3> */}
           </div>
           <div>
             <h1

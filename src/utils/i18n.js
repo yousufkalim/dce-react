@@ -19,7 +19,7 @@ i18n
           "You receive your creation": "You receive your creation",
           "New Order": "New Order",
           "at home!": "at home!",
-          "Place Your Ad": "Place Your Ad",
+          "I am concretizing my idea of tailoring": "I am concretizing my idea of tailoring",
           "Orders List": "Orders List",
           "See all": "See all",
           Search: "Search",
@@ -91,7 +91,7 @@ i18n
           Payment: "Payment",
           "MY PROJECT":"MY PROJECT",
           // Basic: "Basic",
-          Notes: "Notes",
+          Remarks: "Remarks",
           // Delivery: "Delivery",
          "My delivery":"My delivery",
 
@@ -112,16 +112,23 @@ i18n
             "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries",
 
           //measurements
-          Measurements: "Measurements",
-          "Get a tape": "Get a tape",
+          "My Measurements": "My Measurements",
+          "Get a Tape": "Get a Tape",
+          "Static":"Static",
+          "Book Call":"Book Call",
+          "Measurements are entered in this input box right away.":"Measurements are entered in this input box right away.",
+          "Measurements will be entered in a detailed form once the order is accepted.":" Measurements will be entered in a detailed form once the order is accepted.",
           "Important: If you hesitate between two sizes, take the larger one.":
-            "Important: If you hesitate between two sizes, take the larger one.",
+          "Important: If you hesitate between two sizes, take the larger one.",
+          "A message will be dropped by you to the tailor for the measurements.":"A message will be dropped by you to the tailor for the measurements.",
           "Standard Size Chart": "Standard Size Chart",
           "Video Tutorial": "Video Tutorial",
           Measure: "Measure",
           "Tape Measurements": "Tape Measurements",
+          "Length":"Length",
           Circumference: "Circumference",
-
+         "Save and Next": "Save and Next",
+         "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.":"REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.",
           //orderFromCatalog
           "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
@@ -179,7 +186,7 @@ i18n
           Price: "Price",
           Attachments: "Attachments",
           "Fixed price": "Fixed price",
-          "Select one category for your ad": "Select one category for your ad",
+          "I select the category to which my con...": "I select the category to which my con...",
 
           //home
           Fabric: "Fabric",
@@ -224,7 +231,8 @@ i18n
           Enthusiastic: "Enthusiastic",
           Available: "Available",
           Skills: "Skills",
-          "Material Fabrics": "Material Fabrics",
+          // "Material Fabrics": "Material Fabrics",
+          "Dominant FABRIC":"Dominant FABRIC",
 
           "Know how": "Know how",
           "General skills": "General skills",
@@ -325,7 +333,7 @@ i18n
           "Create Catalogue": "Create Catalogue",
 
           //placeholders
-          "Name of your Creation": "Name of your Creation",
+          "I give a name to my confection": "I give a name to my confection",
           "Select gender": "Select gender",
           "Select category": "Select category",
           "Set your Price": "Set your Price",
@@ -334,12 +342,13 @@ i18n
           "upload an illustration of your creation":"upload an illustration of your creation",
           "Tell us": "Tell us",
           Save: "Save",
-          "Write Measurement here": "Write Measurement here",
+          "I'm taking my measurements": "I'm taking my measurements",
 
           //other
-          "*Bring a tape measure": "*Bring a tape measure",
-          "*Measure either the circumference or the length depending on the part of the body.":
-            "*Measure either the circumference or the length depending on the part of the body.",
+          "*I'm getting a tape measure": "*I'm getting a tape measure",
+
+          "*depending on the garment, I measure certain parts of the body in circumference and/or length.":
+            "*depending on the garment, I measure certain parts of the body in circumference and/or length..",
           // Colour: "Colour",
           "dominant color":"dominant color",
           "Select Fabric Style": "Select Fabric Style",
@@ -354,11 +363,12 @@ i18n
           "Delivery Type": "Delivery Type",
 
           "Payment Note": "Payment Note",
-          "I agree with terms & condition & privacy policy of design confection and ethiques": "I agree with terms & condition & privacy policy of design confection and ethiques",
+          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals": "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals",
           "Terms of Services": "Terms of Services",
           "Privacy Policy": "Privacy Policy",
           and: "and",
           "Publish Ad": "Publish Ad",
+          "publish my project":"publish my project",
           Arm: "Arm",
           "Chest size": "Chest size",
           "Waist size": "Waist size",
@@ -547,7 +557,7 @@ i18n
           "We make it real,": "nous la concrétisons !",
           "You receive your creation": "Vous recevez votre création",
           "at home!": "à la maison!",
-          "Place Your Ad": "Placez votre annonce",
+          "I am concretizing my idea of tailoring": "Je concrétise mon idée de confection",
           "Orders List": "Liste des commandes",
           "See all": "Voir tout",
           Search: "Recherche",
@@ -633,8 +643,13 @@ i18n
             "Une liste de questions fréquemment posées est souvent utilisée dans les articles, les sites Web, les listes de diffusion et les forums en ligne où les questions courantes ont tendance à se reproduire, par exemple via des publications ou des requêtes.",
 
           //measurements
-          Measurements: "Des mesures",
-          "Get a tape": "Obtenez une bande",
+          "My Measurements": "Mes Mensurations",
+          "Get a Tape": "Obtenez une bande",
+          "Static":"Statique",
+          "Book Call":"Réserver un appel",
+          "Measurements are entered in this input box right away.":"Les mesures sont saisies immédiatement dans cette zone de saisie.",
+          "Measurements will be entered in a detailed form once the order is accepted.":"Les mesures seront saisies dans un formulaire détaillé une fois la commande acceptée.",
+          "A message will be dropped by you to the tailor for the measurements.":"Un message sera déposé par vous au tailleur pour les mesures.",
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important : Si vous hésitez entre deux tailles, prenez la plus grande.",
           "Standard Size Chart": "Tableau des tailles standard",
@@ -643,7 +658,9 @@ i18n
           Measure: "Mesure",
           "Tape Measurements": "Mesures de bande",
           Circumference: "Circonférence",
-
+          "Length":"Longueur",
+          "Save and Next":"Enregistrer et Suivant",
+          "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.":"RAPPEL :  Une fois les mesures renseignées et validées, D.C.E utilisera ces mensurations pour la confection de votre tenue. D.C.E ne sera en aucun cas responsable des mauvaises prises des mensurations.  Aucune réclamation concernant les mesures de vos tenues ne sera possible. Toutes retouches pour causes de mauvaises mesures vous seront facturées et les envois seront à vos frais.",
           //orderFromCatalog
           "Catalogue Price": "Prix ​​catalogue",
           "Extra Note": "Remarque supplémentaire",
@@ -663,7 +680,7 @@ i18n
           Description: "La description",
           Charges: "Des charges",
           "Review & rating": "Examen et évaluation",
-          "Select one category for your ad": "Sélectionnez une catégorie pour votre annonce",
+          "I select the category to which my con...": "Je sélectionne la catégorie à laquelle appartient ma...",
 
           //viewOrder
           "Client Basic": "Client de base",
@@ -699,7 +716,7 @@ i18n
           Attachments: "Pièces jointes",
           ", Developed by Falcon Consulting. All rights reserved.": ", Développé par Falcon Consulting. Tous droits réservés.",
           "Select gender for your creation": "Sélectionnez le sexe pour votre création",
-          "Write Measurement here": "Écrivez la mesure ici",
+          "I'm taking my measurements": "Je rentre mes mesures",
           "Order completed successfully.": "Commande terminée avec succès.",
           //home
           Fabric: "Tissu",
@@ -769,7 +786,7 @@ i18n
           "Know how to handle computers in particular the Design CREATION site":
             "Savoir manier l'informatique notamment le site Design CREATION",
           Cut: "Couper",
-          size:"taille",
+          size:"Ma taille",
 
           //order
           "Orders Requests": "Demandes de commandes",
@@ -837,7 +854,7 @@ i18n
           "Want to complete this order": "Vous souhaitez finaliser cette commande",
 
           //placeholders
-          "Name of your Creation": "Nom de votre Création",
+          "I give a name to my confection": "je donne un nom à ma confection",
           "Select gender": "Sélectionnez le sexe",
           "Select category": "Choisir une catégorie",
           "Set your Price": "Fixez votre prix",
@@ -856,13 +873,14 @@ i18n
           offline: "hors ligne",
 
           //others
-          "*Measure either the circumference or the length depending on the part of the body.":
-            "*Mesurer soit la circonférence soit la longueur selon la partie du corps.",
-          "*Bring a tape measure": "*Apportez un mètre ruban",
+          "*depending on the garment, I measure certain parts of the body in circumference and/or length.":
+            "*en fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur",
+          "*I'm getting a tape measure": "*Je me munis d'un mètre ruban",
           // Colour: "Couleur",
           "dominant color":"couleur dominante",
           "Select one colour for your Creations": "Sélectionnez une couleur pour vos Créations",
-          "Material Fabrics": "Matériaux Tissus",
+          // "Material Fabrics": "Matériaux Tissus",
+           "Dominant FABRIC": "TISSU dominant",
           "Select Fabric Style": "Sélectionnez le style de tissu",
 
           "Do you Want": "Veux-tu",
@@ -876,11 +894,11 @@ i18n
           "Set Maximum Price": "Définir le prix maximum",
           "Payment Note": "Bulletin de paiement",
 
-          "I agree with terms & condition & privacy policy of design confection and ethiques": "J'accepte les termes et conditions et la politique de confidentialité de design confection and ethiques",
+          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals": "J'accepte les termes et conditions et la politique de confidentialité de DESIGN Confections Ethiques",
           "Terms of Services": "Conditions de services",
           and: "et",
           "Privacy Policy": "Politique de confidentialité",
-          "Publish Ad": "Publier l'annonce",
+          "Publish Ad": "publier mon projet",
           Hip: "Hanche",
           Thigh: "La cuisse",
           "Head to floor height": "Hauteur de la tête au sol",
@@ -900,7 +918,7 @@ i18n
           "MY PROJECT":"Mon projet",
           // Basic: "Basique",
           Delivery: "Livraison",
-          Notes: "Remarques",
+          Remarks: "Mon budget",
           "Catalogue created successfully.": "Catalogue créé avec succès.",
           //colors
           White: "blanche",
@@ -1036,22 +1054,22 @@ i18n
           "Total:": "Total:",
 
           // XYZ3
-          "Fake fur": "Fake fur",
+          "Fake fur": "Fausse fourrure",
           Festive: "Festive",
-          Felt: "Felt",
-          Net: "Net",
+          Felt: "Feutre",
+          Net: "Rapporter",
           Gabardine: "Gabardine",
           Jacquard: "Jacquard",
           Jersey: "Jersey",
           "Velor jersey": "Velor jersey",
           "jersey sweatshirt": "jersey sweatshirt",
-          Woolen: "Woolen",
-          "Soft woolen fabric": "Soft woolen fabric",
+          Woolen: "De laine",
+          "Soft woolen fabric": "Tissu en laine douce",
           Lange: "Lange",
           Linen: "LanLinene",
-          Meshes: "Meshes",
-          Quilted: "Quilted",
-          Honeycomb: "Honeycomb",
+          Meshes: "Mailles",
+          Quilted: "Matelassé",
+          Honeycomb: "Rayon de miel",
           "Cotton piqué": "Cotton piqué",
           "Fleece / comforter": "Fleece / comforter",
           "PUL washable diapers": "PUL washable diapers",

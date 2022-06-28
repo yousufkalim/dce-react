@@ -19,10 +19,16 @@ import Tooltip from "@mui/material/Tooltip";
 import { Modal } from "@mui/material";
 
 import { ChromePicker } from "react-color";
+import { SketchPicker, GithubPicker } from "react-color";
+
 
 import InfoIcon from "@mui/icons-material/Info";
 
 import DottedSVG from "../assets/dottedblack.svg";
+import MeasurementDetailsSVG from '../assets/MeasurementDetails.svg'
+import MeasurementChartSVG from '../assets/MeasurementChart.svg'
+
+import { useTranslation } from "react-i18next";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -31,14 +37,15 @@ import * as ParseMeasurement from "./ParseMeasurement";
 import * as FormValidations from "../utils/Validations";
 
 import { grey } from "@mui/material/colors";
-import { useTranslation } from "react-i18next";
 
-import { materialFabrics, adNames } from "../utils/Constants";
+import { materialFabrics, adNames, colors } from "../utils/Constants";
 import UploadSVG from "../assets/upload.svg";
 
 import { Store } from "../StoreContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+
 
 function BasicSection({ state, setState, onClick, disabled, disables, images, handleImagesSelect, handleImageDeselect }) {
   const { t } = useTranslation();
@@ -102,7 +109,19 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
 
   const [openColorPicker, setOpenColorPicker] = useState(false);
   const [viewImage, setViewImage] = useState(null);
+/////test code
+const handleChangeComplete = color => {
+  // console.log("on change complete");
+  // console.log(color.hex,"h");
+  _setState("color", color.hex);
+  // this.setState({ background: color.hex });
+};
 
+const handleChange=(color, event)=>{
+  console.log("on change");
+  console.log(color);
+}
+/////
   return (
     <>
       <div className="pa_profile_section_container">
@@ -151,7 +170,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
               }}
               selectID="category"
               selectName="category"
-              selectNullValue={t("Select one category for your ad")}
+              selectNullValue={t("I select the category to which my con...")}
               selectValue={t(state.category)}
               onChange={(e) => {
                 _setState("category", e.target.value);
@@ -199,7 +218,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
               }}
               selectID="name"
               selectName="name"
-              selectNullValue={t("Name of your creation")}
+              selectNullValue={t("I give a name to my confection")}
               selectValue={t(state.name)}
               onChange={(e) => _setState("name", e.target.value)}
               menuItems={
@@ -298,7 +317,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Measurements")}</p>
+            <p className="pa_profile_section_input_text">{t("My Measurements")}</p>
           </div>
           <Tooltip
             arrow
@@ -318,7 +337,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
                 }}
                 inputPlaceholder={
                   state.measurements.type == "static"
-                    ? t("Write Measurement here")
+                    ? t("I'm taking my measurements")
                     : state.measurements.type == "tape"
                     ? "Measured by tape"
                     : state.measurements.type == "call"
@@ -348,10 +367,10 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
                 }}
               >
                 <MenuItem onClick={(e) => selectMeasurementsType("static")}>
-                  <p>Static</p>
+                  <p>{t("Static")}</p>
                   <Tooltip
                     arrow
-                    title={<p style={{ fontSize: "14px" }}>Measurements are entered in this input box right away.</p>}
+                    title={<p style={{ fontSize: "14px" }}>{t("Measurements are entered in this input box right away.")}</p>}
                   >
                     <InfoIcon sx={{ height: "20px", width: "20px", marginLeft: "5px" }} />
                   </Tooltip>
@@ -361,12 +380,12 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
                     handleIsTapeMeasurementModalOpen();
                   }}
                 >
-                  <p>Get a Tape</p>
+                  <p>{t("Get a Tape")}</p>
                   <Tooltip
                     arrow
                     title={
                       <p style={{ fontSize: "14px" }}>
-                        Measurements will be entered in a detailed form once the order is accepted.
+                       {t("Measurements will be entered in a detailed form once the order is accepted.")}
                       </p>
                     }
                   >
@@ -374,11 +393,11 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
                   </Tooltip>
                 </MenuItem>
                 <MenuItem onClick={(e) => selectMeasurementsType("call")}>
-                  <p>Book Call</p>
+                  <p>{t("Book Call")}</p>
                   <Tooltip
                     arrow
                     title={
-                      <p style={{ fontSize: "14px" }}>A message will be dropped by you to the tailor for the measurements.</p>
+                      <p style={{ fontSize: "14px" }}>{t("A message will be dropped by you to the tailor for the measurements.")}</p>
                     }
                   >
                     <InfoIcon sx={{ height: "20px", width: "20px", marginLeft: "5px" }} />
@@ -388,9 +407,9 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
             </div>
           </Tooltip>
         </div>
-        <p className="pa_profile_section_input_instructions_text">{t("*Bring a tape measure")}</p>
+        <p className="pa_profile_section_input_instructions_text">{t("*I'm getting a tape measure")}</p>
         <p className="pa_profile_section_input_instructions_text">
-          {t("*Measure either the circumference or the length depending on the part of the body.")}
+          {t("*depending on the garment, I measure certain parts of the body in circumference and/or length.")}
         </p>
         <div
           className="pa_profile_section_input_container"
@@ -421,12 +440,28 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
                   marginTop: 15,
                 }}
               >
-                <ChromePicker
+                {/* <ChromePicker
                   color={state.color}
                   onChangeComplete={(e) => {
                     _setState("color", e.hex);
                   }}
-                />
+                /> */}
+                <div style={{
+                  maxHeight:"200px",
+                  overflow:"scroll"
+                }}>
+                <GithubPicker
+        width="225px"
+       style={{
+        maxHeight:"30px",
+        overflow:"scroll"
+       }}
+        colors={colors}
+        // color={this.state.background}
+        onChange={handleChange}
+        onChangeComplete={handleChangeComplete}
+      />
+ </div>
               </div>
             ) : (
               <></>
@@ -442,7 +477,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
           }}
         >
           <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t("Material Fabrics")}</p>
+            <p className="pa_profile_section_input_text">{t("Dominant FABRIC")}</p>
           </div>
           <div className="pa_profile_section_input_input">
             <CustomDropDown
@@ -537,7 +572,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
           <label>
             {" "}
             <span className="duw-text">{t("I do desired not that my creation appears on the site")}</span>{" "}
-            <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "}
+            {/* <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "} */}
           </label>
         </div>
         {!onClick ? (
@@ -565,6 +600,7 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
 }
 
 function TapeMeasurementsModal(props) {
+  const { t } = useTranslation();
   const steps = ["Circumference", "Length"];
 
   const [activeStep, setActiveStep] = useState(0);
@@ -638,11 +674,38 @@ function TapeMeasurementsModal(props) {
     <div
       className="tqs_sqm_container"
       style={{
-        height: "80vh",
+        maxHeight:'95vh',
         width: "60vw",
+        overflow:"scroll"
       }}
     >
-      <div className="client_create_ad_screen_column2">
+          
+          
+      <div
+      style={{width:"95%"}}
+      className="client_create_ad_screen_column2">
+          <p 
+           style={{
+            padding:"2% 0%", 
+            color:"#990000",
+            fontSize: "12pt",
+            fontWeight:"bold",
+            lineHeight:"20px"
+            }}> 
+            {
+              t("REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.")
+            }
+          </p>
+          <div style={{width:"100%", display:"flex", alignItems:"center", flexDirection:"column"}}> 
+          <img
+        src={MeasurementDetailsSVG}
+        style={{width:"70%"}}
+        />
+        <img
+         style={{width:"70%"}}
+        src={MeasurementChartSVG}
+        />
+          </div>
         <div
           className="pa_container"
           style={{
@@ -654,12 +717,13 @@ function TapeMeasurementsModal(props) {
             className="pa_steps_row"
             style={{
               paddingBottom: "4%",
+              paddingTop:"2%"
             }}
           >
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((v, i) => (
                 <Step key={v}>
-                  <StepLabel onClick={() => setActiveStep(i)}>{v}</StepLabel>
+                  <StepLabel onClick={() => setActiveStep(i)}>{t(v)}</StepLabel>
                 </Step>
               ))}
             </Stepper>
@@ -997,7 +1061,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              {t("I agree with terms & condition & privacy policy of design confection and ethiques")}
+              {t("I agree with terms & condition & privacy policy of DESIGN Confections Ethicals")}
             </p>
             {/* <p
               className="terms-text"

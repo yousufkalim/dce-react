@@ -284,12 +284,12 @@ function OrderRequestListTile(props) {
           </p>
         </div>
       </div>
-      <div className="cos_order_list_tile_column1">
+      {/* <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {props.order.budget.min_price ?? props.order.budget.max_price}$
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
-      </div>
+      </div> */}
       <div className="tos_order_list_tile_column4">
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
@@ -382,12 +382,12 @@ function OrderInProgressListTile(props) {
           </p>
         </div>
       </div>
-      <div className="cos_order_list_tile_column1">
+      {/* <div className="cos_order_list_tile_column1">
         <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"}€`}
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
-      </div>
+      </div> */}
       <div className="tos_order_list_tile_column4">
         <p style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }} onClick={navToChat}>
           {t("Chat Here")}
@@ -490,9 +490,9 @@ function OrderCompletedListTile(props) {
         >
           {t("Offer")}
         </p>
-        <p style={{ fontSize: "20px", fontWeight: "bold" }}>
+        {/* <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"}€`}
-        </p>
+        </p> */}
       </div>
       <div
         className="tcos_order_list_tile_column5"
@@ -614,9 +614,9 @@ function OrderDiscardedListTile(props) {
         >
           {t("Offer")}
         </p>
-        <p style={{ fontSize: "20px", fontWeight: "bold" }}>
+        {/* <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}€`}
-        </p>
+        </p> */}
       </div>
       <div
         className="tcos_order_list_tile_column5"

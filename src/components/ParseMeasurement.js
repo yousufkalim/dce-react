@@ -2,6 +2,7 @@ import React from "react";
 
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
+import { useTranslation } from "react-i18next";
 
 function CircumferenceSection({ state, setState, onClick, disabled }) {
   const _setState = (key, value) => {
@@ -12,9 +13,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
       ...obj,
     });
   };
-
+  const { t } = useTranslation();
   return (
     <>
+    
       <div
         className="pa_profile_section_input_container"
         style={{
@@ -22,8 +24,9 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
           marginBottom: "2%",
         }}
       >
+       
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Arm</p>
+          <p className="pa_profile_section_input_text">{t("Arm")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -35,7 +38,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.arm}
             onChange={(e) => _setState("arm", e.target.value)}
           />
@@ -49,7 +52,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Chest size</p>
+          <p className="pa_profile_section_input_text">{t("Chest size")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -61,7 +64,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.chest}
             onChange={(e) => _setState("chest", e.target.value)}
           />
@@ -75,7 +78,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Waist size</p>
+          <p className="pa_profile_section_input_text">{t("Waist size")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -87,7 +90,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.waist}
             onChange={(e) => _setState("waist", e.target.value)}
           />
@@ -101,7 +104,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Hip</p>
+          <p className="pa_profile_section_input_text">{t("Hip")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -113,7 +116,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.hip}
             onChange={(e) => _setState("hip", e.target.value)}
           />
@@ -127,7 +130,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Thigh</p>
+          <p className="pa_profile_section_input_text">{t("Thigh")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -139,7 +142,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.thigh}
             onChange={(e) => _setState("thigh", e.target.value)}
           />
@@ -153,7 +156,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Calf</p>
+          <p className="pa_profile_section_input_text">{t("Calf")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -165,7 +168,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.calf}
             onChange={(e) => _setState("calf", e.target.value)}
           />
@@ -179,7 +182,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Ankle</p>
+          <p className="pa_profile_section_input_text">{t("Ankle")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -191,17 +194,17 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.ankle}
             onChange={(e) => _setState("ankle", e.target.value)}
           />
         </div>
       </div>
       <CustomButton
-        text={"Save and Next"}
+        text={t("Save and Next")}
         style={{
           marginTop: "2%",
-          marginBottom: "7%",
+          marginBottom: "5%",
           padding: "1.5% 5%",
           boxShadow: "none",
           borderRadius: "10px",
@@ -221,7 +224,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
       ...obj,
     });
   };
-
+  const { t } = useTranslation();
   return (
     <>
       <div
@@ -232,7 +235,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">Head to floor height</p>
+          <p className="pa_profile_section_input_text measurement_profile_section">{t("Head to floor height")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -244,7 +247,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.head_to_floor}
             onChange={(e) => _setState("head_to_floor", e.target.value)}
           />
@@ -258,7 +261,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">From shoulder to floor</p>
+          <p className="pa_profile_section_input_text measurement_profile_section">{t("From shoulder to floor")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -270,7 +273,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.shoulder_to_floor}
             onChange={(e) => _setState("shoulder_to_floor", e.target.value)}
           />
@@ -284,7 +287,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">From waist to floor</p>
+          <p className="pa_profile_section_input_text measurement_profile_section">{t("From waist to floor")}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -296,7 +299,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.waist_to_floor}
             onChange={(e) => _setState("waist_to_floor", e.target.value)}
           />
@@ -311,7 +314,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            Arm length <span style={{ color: "#A0A0A0" }}> (handle) </span>
+            {t("Arm length")} <span style={{ color: "#A0A0A0" }}> {t("(handle)")} </span>
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -324,7 +327,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.arm_length}
             onChange={(e) => _setState("arm_length", e.target.value)}
           />
@@ -350,14 +353,14 @@ function LengthSection({ state, setState, onClick, disabled }) {
               border: "none",
               fontSize: "12px",
             }}
-            inputPlaceholder="Select size"
+            inputPlaceholder={t("Select size")}
             inputDefaultValue={state.leg_length}
             onChange={(e) => _setState("leg_length", e.target.value)}
           />
         </div>
       </div>
       <CustomButton
-        text={"Next"}
+        text={t("Next")}
         style={{
           marginTop: "2%",
           marginBottom: "7%",

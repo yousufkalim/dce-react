@@ -23,7 +23,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["MY PROJECT", "My delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Remarks"];
 
 function TailorViewQuoteScreen() {
   const { t } = useTranslation();
