@@ -28,6 +28,8 @@ const Messages = ({}) => {
     scrollToBottom();
   }, [store]);
 
+
+  console.log(store,"store");
   return (
     <>
       <div className="message-cont">

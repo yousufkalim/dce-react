@@ -9,6 +9,7 @@ import { Store, UpdateStore } from "../../StoreContext";
 const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
   const store = Store();
   const updateStore = UpdateStore();
+  console.log(directUser,"directUser");
   return (
     <>
       <Box

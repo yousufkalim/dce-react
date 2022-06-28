@@ -23,6 +23,11 @@ const ChatHeader = ({ directUser }) => {
   const store = Store();
   const updateStore = UpdateStore();
 
+  
+  console.log(directUser,"directUser");
+  console.log(store,"store");
+
+  const user = getUser();
   const getReceiver = () => {
     if (user.role == "client") {
       return store.chat?.tailor ?? directUser ?? {};
@@ -30,9 +35,8 @@ const ChatHeader = ({ directUser }) => {
       return store.chat?.client ?? directUser ?? {};
     }
   };
-
-  const user = getUser();
   const receiver = getReceiver();
+  console.log(receiver,"receiver");
 
   const receiverCheckIn = receiver.check_in ? new Date(receiver.check_in) : null;
   const receiverCheckOut = receiver.check_out ? new Date(receiver.check_out) : null;

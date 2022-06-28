@@ -53,13 +53,17 @@ const ChatScreen = () => {
     // if (store.chats.length == 0) {
     //   loadData();
     // }
+    console.log();
+    console.log(store,"store");
+    console.log(location?.state?.directUser_?._id,"location?.state?.directUser");
     loadData();
   }, []);
 
   const loadData = async () => {
-    const chatID = await getChats();
-    if (chatID) {
-      getMessages(chatID);
+    const chat = await getChats();
+    console.log(chat,"chat");
+    if (chat) {
+      getMessages(chat);
     }
   };
 
@@ -73,14 +77,18 @@ const ChatScreen = () => {
       } else {
         body["tailor"] = user._id;
       }
-
+    console.log(body,"body");
       response = await Api("post", `/chats/byQuery`, body);
-      const chatsData = response.data.chats;
+     
+      const chatsData = response?.data?.chats;
+      console.log(chatsData,"chatsData");
       updateStore({
         chats: chatsData,
       });
+      console.log(directUser,"directUser");
       if (directUser) {
-        const isDirectUserInvalid = chatsData.some((_) => _.tailor._id == directUser._id || _.client._id == directUser._id);
+        const isDirectUserInvalid = chatsData.some((_) => _.tailor?._id == directUser?._id || _.client?._id == directUser?._id);
+        console.log(isDirectUserInvalid,"isDirectUserInvalid");
         if (isDirectUserInvalid) {
           setDirectUser(null);
         } else {
@@ -88,6 +96,7 @@ const ChatScreen = () => {
           return null;
         }
       }
+      console.log(chatsData[0],"chatsData[0]");
       updateStore({
         chat: chatsData[0],
       });
@@ -97,12 +106,14 @@ const ChatScreen = () => {
     }
   };
 
-  const getMessages = async (chatID) => {
+  const getMessages = async (chat) => {
+    console.log(chat,"chatIDget");
     let response;
     try {
       response = await Api("post", `/messages/byQuery`, {
-        chat: chatID,
+        chat: chat?._id,
       });
+      console.log(response,"response");
       const messagesData = response.data.messages;
       updateStore({
         messages: messagesData,

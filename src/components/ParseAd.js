@@ -709,7 +709,6 @@ function TapeMeasurementsModal(props) {
         <div
           className="pa_container"
           style={{
-            height: "100%",
             width: "100%",
           }}
         >
@@ -1061,7 +1060,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: "0.6%",
               }}
             >
-              {t("I agree with terms & condition & privacy policy of DESIGN Confections Ethicals")}
+              {t("I agree with terms & condition & privacy policy of DESIGN Confections Ethiques")}
             </p>
             {/* <p
               className="terms-text"

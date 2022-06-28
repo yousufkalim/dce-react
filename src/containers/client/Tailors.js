@@ -17,6 +17,8 @@ import Api from "../../api";
 import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
 
+import { Store, UpdateStore } from "../../StoreContext";
+
 import star from "../../assets/star.svg";
 
 function ClientTailorsScreen() {
@@ -25,6 +27,7 @@ function ClientTailorsScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [tailors, setTailors] = useState([]);
   const user = getUser();
+
 
   useEffect(() => {
     getTailors();
@@ -72,6 +75,8 @@ function ClientTailorsScreen() {
 
 function TailorListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const rating = calculateRating(props.ratings);
   const ratingsCount = calculateRatingsCount(props.ratings);
@@ -81,9 +86,10 @@ function TailorListTile(props) {
   const navToViewTailor = () => {
     navigate(`/view_tailor/${props._id}`);
   };
-
+console.log(props,"props");
   const navToChat = () => {
-    navigate(`/chat`, { state: { directUser: props } });
+    console.log(store,"lk");
+    navigate(`/chat`, {state: { directUser: props }});
   };
 
   return (

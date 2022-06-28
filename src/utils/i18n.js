@@ -363,7 +363,7 @@ i18n
           "Delivery Type": "Delivery Type",
 
           "Payment Note": "Payment Note",
-          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals": "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals",
+          "I agree with terms & condition & privacy policy of DESIGN Confections Ethiques": "I agree with terms & condition & privacy policy of DESIGN Confections Ethiques",
           "Terms of Services": "Terms of Services",
           "Privacy Policy": "Privacy Policy",
           and: "and",
@@ -894,7 +894,7 @@ i18n
           "Set Maximum Price": "Définir le prix maximum",
           "Payment Note": "Bulletin de paiement",
 
-          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals": "J'accepte les termes et conditions et la politique de confidentialité de DESIGN Confections Ethiques",
+          "I agree with terms & condition & privacy policy of DESIGN Confections Ethiques": "J'accepte les termes et conditions et la politique de confidentialité de DESIGN Confections Ethiques",
           "Terms of Services": "Conditions de services",
           and: "et",
           "Privacy Policy": "Politique de confidentialité",
