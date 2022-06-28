@@ -120,7 +120,7 @@ function ClientHomeScreen() {
                 }}
                 onClick={navToCreateAd}
               >
-                {t("Place Your Ad")}
+                {t("I am concretizing my idea of tailoring")}
               </button>
             </div>
             <div

@@ -139,7 +139,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
           >
             {t("Bill")}
           </p>
-          <p
+          {/* <p
             className="order_list_tile_item_value"
             style={{
               fontSize: "15px",
@@ -148,7 +148,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
           >
             {quote?.price ?? order.budget.min_price}€
-          </p>
+          </p> */}
         </div>
         <div className="order_list_tile_divider" />
         <p

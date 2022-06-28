@@ -209,9 +209,9 @@ function OrderListTile(props) {
         </div>
       </div>
       <div className="cos_order_list_tile_column1">
-        <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
+        {/* <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
-        </p>
+        </p> */}
         <p
           style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C", cursor: "pointer" }}
           onClick={(e) => handleInvoiceGenerateModalOpen(e)}

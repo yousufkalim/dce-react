@@ -35,7 +35,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.ArmCirmunference}
               />
             </div>
@@ -60,7 +60,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.ChestCirmunferenc}
               />
             </div>
@@ -85,7 +85,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.WaistCirmunferenc}
               />
             </div>
@@ -110,7 +110,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.HipCirmunferenc}
               />
             </div>
@@ -135,7 +135,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.ThighCirmunferenc}
               />
             </div>
@@ -160,7 +160,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.CalfCirmunferenc}
               />
             </div>
@@ -185,7 +185,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.AnkleCirmunferenc}
               />
             </div>
@@ -214,7 +214,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.HeadToFloorLengt}
               />
             </div>
@@ -239,7 +239,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.ShoulderToFloorLengt}
               />
             </div>
@@ -264,7 +264,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.WaistToFloorLengt}
               />
             </div>
@@ -291,7 +291,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.ArmLengt}
               />
             </div>
@@ -316,7 +316,7 @@ const TapeMeasurements = ({ state }) => {
                   border: "none",
                   fontSize: "12px",
                 }}
-                inputPlaceholder="Select size"
+                inputPlaceholder={t("Select size")}
                 inputDefaultValue={state?.LegLengt}
               />
             </div>

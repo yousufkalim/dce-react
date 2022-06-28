@@ -158,8 +158,8 @@ function QuoteListTile(props) {
           </div>
         </div>
         <div className="cas_ad_list_tile_column2">
-          <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.min_price}€`}</p>
+          {/* <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.min_price}€`}</p> */}
           <p className="cas_ad_list_tile_column2_title">{t("max")}</p>
           <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.max_price}€`}</p>
           <p

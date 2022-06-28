@@ -16,7 +16,7 @@ import * as ParseAd from "../../components/ParseAd";
 import Api from "../../api";
 import { useParams } from "react-router-dom";
 
-const steps = ["MY PROJECT", "My delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Remarks"];
 
 function ClientViewOrderScreen() {
   const { t } = useTranslation();

@@ -199,7 +199,7 @@ function InputSection() {
                 border: "none",
                 fontSize: "12px",
               }}
-              inputPlaceholder={t("Name of your Creation")}
+              inputPlaceholder={t("I give a name to my confection")}
               onChange={(e) => _setState("name", e.target.value)}
             />
           </div>
