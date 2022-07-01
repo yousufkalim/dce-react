@@ -1,23 +1,23 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-// route 
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+// route
+import { Link } from "react-router-dom";
 // assets
 import AppLogoSVG from "../assets/AppLogo.svg";
-const pages = ['Why DCE', 'How Its Work'];
-const settings = [''];
+const pages = ["Why DCE", "How Its Work"];
+const settings = [""];
 
 const AuthAppbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,14 +38,11 @@ const AuthAppbar = () => {
     setAnchorElUser(null);
   };
 
-  const maninavdata = [
-    "Why DCE", "How Its Work", "Register " , "Login"
-  ]
+  const maninavdata = ["Why DCE", "How Its Work", "Register ", "Login"];
   return (
     <AppBar position="fixed" className="auth_appbar_main">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-         
           <Typography
             variant="h6"
             noWrap
@@ -53,15 +50,15 @@ const AuthAppbar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
-          <img src={AppLogoSVG} className="auth_appbar_row1_img" style={{ marginRight: "5%" }}  />
+            <img src={AppLogoSVG} className="auth_appbar_row1_img" style={{ marginRight: "5%" }} />
           </Typography>
 
           <Typography
@@ -71,28 +68,19 @@ const AuthAppbar = () => {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
-           <img src ={AppLogoSVG} className="auth_appbar_row1_img" />
-        
+            <img src={AppLogoSVG} className="auth_appbar_row1_img" />
           </Typography>
 
-
-
-
-
-
-    
-
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -104,80 +92,76 @@ const AuthAppbar = () => {
               <MenuIcon />
             </IconButton>
 
-
-
-
-
-
-
-
-
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {maninavdata.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography onClick={(e)=> console.log(e,"--e")} textAlign="center" className="auth_appbar_menus">{page}</Typography>
+                  <Typography onClick={(e) => console.log(e, "--e")} textAlign="center" className="auth_appbar_menus">
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
-
-
-
-
-
-
-
           </Box>
-          
-     
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {/* {pages.map((page) => ( */}
+            <a style={{ textDecoration: "none" }} className="animation_dec" href="#WhyChooseDCE">
               <Button
                 className="auth_appbar_menus"
-                key={page}
+                style={{ display: "inline-block" }}
+                // key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {/* {page} */}
+                Why DCE
               </Button>
-            ))}
+            </a>
+            <a style={{ textDecoration: "none" }} className="animation_work" href="#FindGreatWork">
+              <Button
+                className="auth_appbar_menus"
+                style={{ display: "inline-block" }}
+                // key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {/* {page} */}
+                How Its Work
+              </Button>
+            </a>
+
+            {/* ))} */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-   
-              <Link to ="/login">
+            <Link to="/login">
               <Button onClick={handleOpenUserMenu} className="auth_appbar_button_login" sx={{ p: 0 }}>
-                Login    
-              </Button>  
-              </Link>
-          
+                Login
+              </Button>
+            </Link>
 
-            
-              <Link to="/select_role" > 
-               <Button onClick={handleOpenUserMenu} className="auth_appbar_button_register" sx={{ p: 0 }}>
-                Register    
-              </Button>    
-              </Link>
-      
-     
-      
-            
+            <Link to="/select_role">
+              <Button onClick={handleOpenUserMenu} className="auth_appbar_button_register" sx={{ p: 0 }}>
+                Register
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

@@ -176,13 +176,15 @@
   vertical-align: top;
   cursor: pointer;
 }
-
+.animation_dec
+{
+  scroll-behavior: smooth !important;
+}
 @media only screen and (max-width: 768px) {
   .appbar_row2_input {
     width: 46vw;
   }
 }
-
 
 
 /*  auth appbar */
