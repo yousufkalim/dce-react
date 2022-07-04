@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import AppLogoSVG from "../../assets/AppLogo.svg";
-import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
+import AppLogoSVG from '../../assets/AppLogo.svg';
+import DesignElaborationSVG from '../../assets/DesignElaboration.svg';
 
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
 
-import Api from "../../api/index";
+import Api from '../../api/index';
 
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 function TailorRegisterScreen() {
   const { t } = useTranslation();
@@ -23,11 +23,11 @@ function TailorRegisterScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const navToLogin = () => {
-    navigate("/login");
+    navigate('/login');
   };
 
   const navToVerifyEmail = (state) => {
-    navigate("/tailor_verify_email", {
+    navigate('/tailor_verify_email', {
       state: state,
     });
   };
@@ -53,16 +53,16 @@ function TailorRegisterScreen() {
       setIsProcessing(true);
 
       const body = {
-        email: data.get("Email"),
+        email: data.get('Email'),
       };
 
-      response = await Api("post", "/otps", body);
+      response = await Api('post', '/otps', body);
 
       if (response?.data?.success) {
         toast.success(response.data.message);
         navToVerifyEmail({
-          Email: data.get("Email"),
-          Password: data.get("Password"),
+          Email: data.get('Email'),
+          Password: data.get('Password'),
           otp: {
             ...response.data.otp,
           },
@@ -81,67 +81,70 @@ function TailorRegisterScreen() {
         className="container"
         style={{
           background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img">
-              <img style={{ width: "35%", marginBottom: "5%" }} src={AppLogoSVG} />
+              <img
+                style={{ width: '35%', marginBottom: '5%' }}
+                src={AppLogoSVG}
+              />
             </div>
             <div className="login_screen_row1_img">
-              <img style={{ width: "70%" }} src={DesignElaborationSVG} />
+              <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
           <div className="login_screen_row2">
             <div className="login_screen_row2_container">
               <CustomInput
-                labelText={t("Email")}
+                labelText={t('Email')}
                 inputType="email"
                 inputName="Email"
                 inputPlaceholder="abc@xyz.com"
                 divStyle={{
-                  marginBottom: "6%",
+                  marginBottom: '6%',
                 }}
               />
               <CustomInput
-                labelText={t("Password")}
+                labelText={t('Password')}
                 inputType="password"
                 inputName="Password"
                 inputPlaceholder="********"
                 enableEyes={true}
                 divStyle={{
-                  marginBottom: "6%",
+                  marginBottom: '6%',
                 }}
               />
               <CustomButton
-                text={t("Sign up")}
+                text={t('Sign up')}
                 type="submit"
                 style={{
-                  marginBottom: "10%",
+                  marginBottom: '10%',
                 }}
               />
               <div
                 onClick={navToLogin}
                 style={{
-                  cursor: "pointer",
+                  cursor: 'pointer',
                 }}
               >
                 <p
                   style={{
-                    fontSize: "11px",
-                    color: "#A0A0A0",
+                    fontSize: '11px',
+                    color: '#A0A0A0',
                   }}
                 >
-                  {t("Already have an account?")}
+                  {t('Already have an account?')}
                 </p>
                 <p
                   style={{
-                    fontSize: "16px",
-                    color: "#CC8E9C",
+                    fontSize: '16px',
+                    color: '#CC8E9C',
                   }}
                 >
-                  {t("Sign in now")}
+                  {t('Sign in now')}
                 </p>
               </div>
             </div>

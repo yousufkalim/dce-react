@@ -1,29 +1,29 @@
-import UserSVG from "../assets/dummy.jpeg";
-import { useTranslation } from "react-i18next";
+import UserSVG from '../assets/dummy.jpeg';
+import { useTranslation } from 'react-i18next';
 
-import assetsURL from "../utils/Assets";
+import assetsURL from '../utils/Assets';
 
 function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
   const { t } = useTranslation();
 
   const Color = (status) => {
-    let color = "";
-    if (status == "in_process") {
-      color = "#000000";
+    let color = '';
+    if (status == 'in_process') {
+      color = '#000000';
     }
-    if (status == "completed") {
-      color = "#A0A0A0";
+    if (status == 'completed') {
+      color = '#A0A0A0';
     }
     return color;
   };
 
   const Opacity = (status) => {
-    let opacity = "";
-    if (status == "completed") {
-      opacity = "0.5";
+    let opacity = '';
+    if (status == 'completed') {
+      opacity = '0.5';
     }
-    if (status == "in_process") {
-      opacity = "1";
+    if (status == 'in_process') {
+      opacity = '1';
     }
     return opacity;
   };
@@ -39,21 +39,21 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
         <div
           className="order_list_tile_img"
           style={{
-            paddingBottom: "5%",
+            paddingBottom: '5%',
           }}
         >
           <img
             className="image_container"
             style={{
-              height: "50pt",
-              width: "50pt",
+              height: '50pt',
+              width: '50pt',
             }}
             src={
-              viewAs == "client"
+              viewAs == 'client'
                 ? order?.tailor?.avatar
                   ? assetsURL(order.tailor.avatar)
                   : UserSVG
-                : viewAs == "tailor"
+                : viewAs == 'tailor'
                 ? order?.client?.avatar
                   ? assetsURL(order.client.avatar)
                   : UserSVG
@@ -64,10 +64,14 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
         <p
           className="order_list_tile_title_text"
           style={{
-            paddingBottom: "8%",
+            paddingBottom: '8%',
           }}
         >
-          {viewAs == "client" ? order?.tailor?.name ?? "" : viewAs == "tailor" ? order?.client?.name ?? "" : ""}
+          {viewAs == 'client'
+            ? order?.tailor?.name ?? ''
+            : viewAs == 'tailor'
+            ? order?.client?.name ?? ''
+            : ''}
         </p>
         <div className="order_list_tile_divider" />
         <div className="order_list_tile_item">
@@ -77,7 +81,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            {t("Order")}
+            {t('Order')}
           </p>
           <p
             style={{
@@ -95,7 +99,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            {t("Order Date")}
+            {t('Order Date')}
           </p>
           <p
             style={{
@@ -103,7 +107,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_value"
           >
-            {new Date(order.createdAt).toLocaleDateString("en-gb")}
+            {new Date(order.createdAt).toLocaleDateString('en-gb')}
           </p>
         </div>
         <div className="order_list_tile_item">
@@ -113,7 +117,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            {t("desired delivery date")}
+            {t('desired delivery date')}
           </p>
           <p
             style={{
@@ -121,14 +125,14 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_value"
           >
-            {new Date(order.delivery.date).toLocaleDateString("en-gb")}
+            {new Date(order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
         <div
           className="order_list_tile_item"
           style={{
-            paddingTop: "6%",
-            paddingBottom: "4%",
+            paddingTop: '6%',
+            paddingBottom: '4%',
           }}
         >
           <p
@@ -137,7 +141,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             }}
             className="order_list_tile_item_key"
           >
-            {t("Bill")}
+            {t('Bill')}
           </p>
           {/* <p
             className="order_list_tile_item_value"
@@ -154,11 +158,11 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
         <p
           className="order_list_tile_title_text_bottom"
           style={{
-            padding: "4% 0",
+            padding: '4% 0',
             color: Color(order.status),
           }}
         >
-          {t(order?.status?.replace("_", " "))}
+          {t(order?.status?.replace('_', ' '))}
         </p>
       </div>
     </>

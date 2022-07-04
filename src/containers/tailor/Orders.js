@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import UserSVG from "../../assets/dummy.jpeg";
-import UploadSVG from "../../assets/upload.svg";
+import UserSVG from '../../assets/dummy.jpeg';
+import UploadSVG from '../../assets/upload.svg';
 
-import TailorAppBar from "../../components/TailorAppBar";
-import CustomButton from "../../components/CustomButton";
-import CustomInput from "../../components/CustomInput";
-import Footer from "../../components/Footer";
-import { useTranslation } from "react-i18next";
+import TailorAppBar from '../../components/TailorAppBar';
+import CustomButton from '../../components/CustomButton';
+import CustomInput from '../../components/CustomInput';
+import Footer from '../../components/Footer';
+import { useTranslation } from 'react-i18next';
 
-import { Modal } from "@mui/material";
+import { Modal } from '@mui/material';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import assetsURL from "../../utils/Assets";
-import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
+import assetsURL from '../../utils/Assets';
+import { calculateRating, calculateRatingsCount } from '../../utils/Helpers';
+import { Store, UpdateStore } from '../../StoreContext';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
 function TailorOrdersScreen() {
   const navigate = useNavigate();
@@ -47,15 +48,23 @@ function TailorOrdersScreen() {
   const getOrders = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, { tailor: user._id });
+      response = await Api('post', `/orders/byQuery`, { tailor: user._id });
       const ordersData = response.data.orders;
-      const _ordersRequest = ordersData.filter((_) => _.type == "direct" && _.status == "pending").splice(-4);
+      const _ordersRequest = ordersData
+        .filter((_) => _.type == 'direct' && _.status == 'pending')
+        .splice(-4);
       setOrdersRequest(_ordersRequest);
-      const _ordersInProgress = ordersData.filter((_) => _.status == "in_progress").splice(-4);
+      const _ordersInProgress = ordersData
+        .filter((_) => _.status == 'in_progress')
+        .splice(-4);
       setOrdersInProgress(_ordersInProgress);
-      const _ordersCompleted = ordersData.filter((_) => _.status == "completed").splice(-4);
+      const _ordersCompleted = ordersData
+        .filter((_) => _.status == 'completed')
+        .splice(-4);
       setOrdersCompleted(_ordersCompleted);
-      const _ordersDiscarded = ordersData.filter((_) => _.status == "discarded").splice(-4);
+      const _ordersDiscarded = ordersData
+        .filter((_) => _.status == 'discarded')
+        .splice(-4);
       setOrdersDiscarded(_ordersDiscarded);
       setIsLoading(false);
     } catch (e) {
@@ -81,7 +90,7 @@ function TailorOrdersScreen() {
         id: id,
       };
 
-      response = await Api("post", "/orders/accept", body);
+      response = await Api('post', '/orders/accept', body);
 
       if (response?.data?.success) {
         toast.success(response.data.message);
@@ -111,7 +120,7 @@ function TailorOrdersScreen() {
         id: id,
       };
 
-      response = await Api("post", "/orders/discard", body);
+      response = await Api('post', '/orders/discard', body);
 
       if (response?.data?.success) {
         toast.success(response.data.message);
@@ -135,12 +144,14 @@ function TailorOrdersScreen() {
         <div
           className="tailor_orders_screen_top"
           style={{
-            background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+            background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
           <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t("Orders Requests")}</p>
-            <CustomButton text={t("See All Requests")} />
+            <p className="client_orders_screen_row1_text">
+              {t('Orders Requests')}
+            </p>
+            <CustomButton text={t('See All Requests')} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersRequest.map((_) => (
@@ -156,18 +167,18 @@ function TailorOrdersScreen() {
         <div
           className="tailor_orders_screen_top"
           style={{
-            background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+            background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t("In Progress")}</p>
-            <CustomButton text={t("See All Orders")} />
+            <p className="client_orders_screen_row1_text">{t('In Progress')}</p>
+            <CustomButton text={t('See All Orders')} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersInProgress.map((_) => (
               <OrderInProgressListTile
                 order={_}
-                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
                 discardOrder={discardOrder}
                 navToViewOrder={navToViewOrder}
               />
@@ -177,18 +188,18 @@ function TailorOrdersScreen() {
         <div
           className="tailor_orders_screen_top"
           style={{
-            background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+            background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t("Completed")}</p>
-            <CustomButton text={t("See All Orders")} />
+            <p className="client_orders_screen_row1_text">{t('Completed')}</p>
+            <CustomButton text={t('See All Orders')} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersCompleted.map((_) => (
               <OrderCompletedListTile
                 order={_}
-                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
                 navToViewOrder={navToViewOrder}
               />
             ))}
@@ -197,18 +208,18 @@ function TailorOrdersScreen() {
         <div
           className="tailor_orders_screen_top"
           style={{
-            background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+            background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
           <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t("Discarded")}</p>
-            <CustomButton text={t("See All Orders")} />
+            <p className="client_orders_screen_row1_text">{t('Discarded')}</p>
+            <CustomButton text={t('See All Orders')} />
           </div>
           <div className="client_orders_screen_row2">
             {ordersDiscarded.map((_) => (
               <OrderDiscardedListTile
                 order={_}
-                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
                 navToViewOrder={navToViewOrder}
               />
             ))}
@@ -222,65 +233,88 @@ function TailorOrdersScreen() {
 
 function OrderRequestListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props.order.client } });
   };
 
   return (
-    <div className="cos_order_list_tile_container" onClick={() => props.navToViewOrder(props.order._id)}>
+    <div
+      className="cos_order_list_tile_container"
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className="cos_order_list_tile_column1">
         <div
           className="cos_order_list_tile_column1_img"
           style={{
-            paddingBottom: "5%",
+            paddingBottom: '5%',
           }}
         >
           <img
             className="image_container"
             style={{
-              height: "65pt",
-              width: "65pt",
+              height: '65pt',
+              width: '65pt',
             }}
-            src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
+            src={
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
+            }
           />
         </div>
-        <p className="cos_order_list_tile_column1_title_text">{props.order.client.name}</p>
+        <p className="cos_order_list_tile_column1_title_text">
+          {props.order.client.name}
+        </p>
       </div>
       <div
         className="tos_order_list_tile_column2"
         style={{
-          padding: "3%",
+          padding: '3%',
         }}
       >
         <div
           className="cos_order_list_tile_column2_item"
           style={{
-            padding: "2% 0",
+            padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{props.order.name}</p>
+          <p className="cos_order_list_tile_column2_item_key">{t('Order')}</p>
+          <p className="cos_order_list_tile_column2_item_value">
+            {props.order.name}
+          </p>
         </div>
         <div
           className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
           style={{
-            padding: "2% 0",
+            padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t("Order Date")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-gb")}</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t('Order Date')}
+          </p>
+          <p className="cos_order_list_tile_column2_item_value">
+            {new Date(props.order.createdAt).toLocaleDateString('en-gb')}
+          </p>
         </div>
         <div
           className="cos_order_list_tile_column2_item"
           style={{
-            padding: "2% 0",
+            padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t("Delivery Date")}</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t('Delivery Date')}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
-            {new Date(props.order.delivery.date).toLocaleDateString("en-gb")}
+            {new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
       </div>
@@ -293,25 +327,28 @@ function OrderRequestListTile(props) {
       <div className="tos_order_list_tile_column4">
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
-            text={t("Accept")}
+            text={t('Accept')}
             onClick={(e) => props.acceptOrder(e, props.order._id)}
             style={{
-              boxShadow: "none",
-              marginBottom: "10px",
+              boxShadow: 'none',
+              marginBottom: '10px',
             }}
           />
           <CustomButton
-            text={t("Discard")}
+            text={t('Discard')}
             style={{
-              boxShadow: "none",
-              backgroundColor: "transparent",
-              color: "#CC8E9C",
+              boxShadow: 'none',
+              backgroundColor: 'transparent',
+              color: '#CC8E9C',
             }}
             onClick={(e) => props.discardOrder(e, props.order._id)}
           />
         </div>
-        <p style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }} onClick={navToChat}>
-          {t("Chat Here")}
+        <p
+          style={{ fontSize: '16px', fontWeight: '900', cursor: 'pointer' }}
+          onClick={navToChat}
+        >
+          {t('Chat Here')}
         </p>
       </div>
     </div>
@@ -320,65 +357,88 @@ function OrderRequestListTile(props) {
 
 function OrderInProgressListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props.order.client } });
   };
 
   return (
-    <div className="cos_order_list_tile_container" onClick={() => props.navToViewOrder(props.order._id)}>
+    <div
+      className="cos_order_list_tile_container"
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className="cos_order_list_tile_column1">
         <div
           className="cos_order_list_tile_column1_img"
           style={{
-            paddingBottom: "5%",
+            paddingBottom: '5%',
           }}
         >
           <img
             className="image_container"
             style={{
-              height: "65pt",
-              width: "65pt",
+              height: '65pt',
+              width: '65pt',
             }}
-            src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
+            src={
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
+            }
           />
         </div>
-        <p className="cos_order_list_tile_column1_title_text">{props.order.client.name}</p>
+        <p className="cos_order_list_tile_column1_title_text">
+          {props.order.client.name}
+        </p>
       </div>
       <div
         className="tos_order_list_tile_column2"
         style={{
-          padding: "3%",
+          padding: '3%',
         }}
       >
         <div
           className="cos_order_list_tile_column2_item"
           style={{
-            padding: "2% 0",
+            padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t("Order")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{props.order.name}</p>
+          <p className="cos_order_list_tile_column2_item_key">{t('Order')}</p>
+          <p className="cos_order_list_tile_column2_item_value">
+            {props.order.name}
+          </p>
         </div>
         <div
           className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
           style={{
-            padding: "2% 0",
+            padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t("Order Date")}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString("en-gb")}</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t('Order Date')}
+          </p>
+          <p className="cos_order_list_tile_column2_item_value">
+            {new Date(props.order.createdAt).toLocaleDateString('en-gb')}
+          </p>
         </div>
         <div
           className="cos_order_list_tile_column2_item"
           style={{
-            padding: "2% 0",
+            padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t("Delivery Date")}</p>
+          <p className="cos_order_list_tile_column2_item_key">
+            {t('Delivery Date')}
+          </p>
           <p className="cos_order_list_tile_column2_item_value">
-            {new Date(props.order.delivery.date).toLocaleDateString("en-gb")}
+            {new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
       </div>
@@ -389,14 +449,17 @@ function OrderInProgressListTile(props) {
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
       </div> */}
       <div className="tos_order_list_tile_column4">
-        <p style={{ fontSize: "16px", fontWeight: "900", cursor: "pointer" }} onClick={navToChat}>
-          {t("Chat Here")}
+        <p
+          style={{ fontSize: '16px', fontWeight: '900', cursor: 'pointer' }}
+          onClick={navToChat}
+        >
+          {t('Chat Here')}
         </p>
         <div className="tos_order_list_tile_column4_buttons">
           <CustomButton
-            text={t("Discard")}
+            text={t('Discard')}
             style={{
-              boxShadow: "none",
+              boxShadow: 'none',
             }}
             onClick={(e) => props.discardOrder(e, props.order._id)}
           />
@@ -412,7 +475,8 @@ function OrderCompletedListTile(props) {
   const rating = calculateRating(props.order.client.ratings);
   const ratingsCount = calculateRatingsCount(props.order.client.ratings);
 
-  const [isContactSupportOrderModal, setIsContactSupportOrderModal] = useState(false);
+  const [isContactSupportOrderModal, setIsContactSupportOrderModal] =
+    useState(false);
   const handleContactSupportOrderModalClose = (e) => {
     setIsContactSupportOrderModal(false);
   };
@@ -434,46 +498,52 @@ function OrderCompletedListTile(props) {
         <div
           className="tcos_order_list_tile_column1_img"
           style={{
-            paddingBottom: "5%",
+            paddingBottom: '5%',
           }}
         >
           <img
             className="image_container"
             style={{
-              height: "50pt",
-              width: "50pt",
+              height: '50pt',
+              width: '50pt',
             }}
-            src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
+            src={
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
+            }
           />
         </div>
       </div>
       <div
         className="tcos_order_list_tile_column1"
         style={{
-          padding: "3%",
-          alignItems: "flex-start",
+          padding: '3%',
+          alignItems: 'flex-start',
         }}
       >
         <p
           className="tcos_order_list_tile_column1_title_text"
           style={{
-            paddingBottom: "10px",
+            paddingBottom: '10px',
           }}
         >
           {props.order.client.name}
         </p>
-        <p className="tcos_order_list_tile_column1_description_text">{props.order.name}</p>
+        <p className="tcos_order_list_tile_column1_description_text">
+          {props.order.name}
+        </p>
       </div>
       <div
         className="tcos_order_list_tile_column1"
         style={{
-          padding: "3%",
+          padding: '3%',
         }}
       >
         <p
           style={{
-            fontSize: "12px",
-            color: "#A0A0A0",
+            fontSize: '12px',
+            color: '#A0A0A0',
           }}
         >
           {/* {rating}({ratingsCount}) */}
@@ -482,13 +552,13 @@ function OrderCompletedListTile(props) {
       <div className="tcos_order_list_tile_column1">
         <p
           style={{
-            fontSize: "12px",
-            fontWeight: "200",
-            color: "#A0A0A0",
-            paddingBottom: "3%",
+            fontSize: '12px',
+            fontWeight: '200',
+            color: '#A0A0A0',
+            paddingBottom: '3%',
           }}
         >
-          {t("Offer")}
+          {t('Offer')}
         </p>
         {/* <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "N/A"}€`}
@@ -497,20 +567,22 @@ function OrderCompletedListTile(props) {
       <div
         className="tcos_order_list_tile_column5"
         style={{
-          marginRight: "5vw",
+          marginRight: '5vw',
         }}
       >
         <div className="tcos_order_list_tile_column5_buttons">
           <CustomButton
-            text={t("Support")}
+            text={t('Support')}
             style={{
-              boxShadow: "none",
+              boxShadow: 'none',
             }}
             onClick={(e) => {
               handleContactSupportOrderModalOpen(e);
             }}
           />
-          <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>{t(props.order.status.replace("_", " "))}</p>
+          <p style={{ fontSize: '13px', fontWeight: '900', marginTop: '10px' }}>
+            {t(props.order.status.replace('_', ' '))}
+          </p>
         </div>
       </div>
       <Modal
@@ -519,7 +591,10 @@ function OrderCompletedListTile(props) {
         aria-labelledby="Contact Support Order"
         onBackdropClick="false"
       >
-        <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
+          order={props.order}
+        />
       </Modal>
     </div>
   );
@@ -530,7 +605,8 @@ function OrderDiscardedListTile(props) {
   const rating = calculateRating(props.order.client.ratings);
   const ratingsCount = calculateRatingsCount(props.order.client.ratings);
 
-  const [isContactSupportOrderModal, setIsContactSupportOrderModal] = useState(false);
+  const [isContactSupportOrderModal, setIsContactSupportOrderModal] =
+    useState(false);
   const handleContactSupportOrderModalClose = (e) => {
     setIsContactSupportOrderModal(false);
   };
@@ -557,47 +633,53 @@ function OrderDiscardedListTile(props) {
         <div
           className="tcos_order_list_tile_column1_img"
           style={{
-            paddingBottom: "5%",
+            paddingBottom: '5%',
           }}
           onClick={navtoClientProfile}
         >
           <img
             className="image_container"
             style={{
-              height: "50pt",
-              width: "50pt",
+              height: '50pt',
+              width: '50pt',
             }}
-            src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
+            src={
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
+            }
           />
         </div>
       </div>
       <div
         className="tcos_order_list_tile_column1"
         style={{
-          padding: "3%",
-          alignItems: "flex-start",
+          padding: '3%',
+          alignItems: 'flex-start',
         }}
       >
         <p
           className="tcos_order_list_tile_column1_title_text"
           style={{
-            paddingBottom: "10px",
+            paddingBottom: '10px',
           }}
         >
           {props.order.client.name}
         </p>
-        <p className="tcos_order_list_tile_column1_description_text">{props.order.name}</p>
+        <p className="tcos_order_list_tile_column1_description_text">
+          {props.order.name}
+        </p>
       </div>
       <div
         className="tcos_order_list_tile_column1"
         style={{
-          padding: "3%",
+          padding: '3%',
         }}
       >
         <p
           style={{
-            fontSize: "12px",
-            color: "#A0A0A0",
+            fontSize: '12px',
+            color: '#A0A0A0',
           }}
         >
           {/* {rating}({ratingsCount}) */}
@@ -606,13 +688,13 @@ function OrderDiscardedListTile(props) {
       <div className="tcos_order_list_tile_column1">
         <p
           style={{
-            fontSize: "12px",
-            fontWeight: "200",
-            color: "#A0A0A0",
-            paddingBottom: "3%",
+            fontSize: '12px',
+            fontWeight: '200',
+            color: '#A0A0A0',
+            paddingBottom: '3%',
           }}
         >
-          {t("Offer")}
+          {t('Offer')}
         </p>
         {/* <p style={{ fontSize: "20px", fontWeight: "bold" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? ""}€`}
@@ -621,20 +703,22 @@ function OrderDiscardedListTile(props) {
       <div
         className="tcos_order_list_tile_column5"
         style={{
-          marginRight: "5vw",
+          marginRight: '5vw',
         }}
       >
         <div className="tcos_order_list_tile_column5_buttons">
           <CustomButton
-            text={t("Support")}
+            text={t('Support')}
             style={{
-              boxShadow: "none",
+              boxShadow: 'none',
             }}
             onClick={(e) => {
               handleContactSupportOrderModalOpen(e);
             }}
           />
-          <p style={{ fontSize: "13px", fontWeight: "900", marginTop: "10px" }}>{t(props.order.status.replace("_", " "))}</p>
+          <p style={{ fontSize: '13px', fontWeight: '900', marginTop: '10px' }}>
+            {t(props.order.status.replace('_', ' '))}
+          </p>
         </div>
       </div>
       <Modal
@@ -643,7 +727,10 @@ function OrderDiscardedListTile(props) {
         aria-labelledby="Contact Support Order"
         onBackdropClick="false"
       >
-        <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
+          order={props.order}
+        />
       </Modal>
     </div>
   );
@@ -654,8 +741,8 @@ const ContactSupportOrderModal = (props) => {
 
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const [reason, setReason] = useState("");
-  const [details, setDetails] = useState("");
+  const [reason, setReason] = useState('');
+  const [details, setDetails] = useState('');
   const [attachment, setAttachment] = useState(null);
 
   const { t } = useTranslation();
@@ -665,7 +752,7 @@ const ContactSupportOrderModal = (props) => {
   };
 
   const navToChat = () => {
-    navigate("/chat");
+    navigate('/chat');
   };
 
   const handleSubmit = async (event) => {
@@ -681,7 +768,7 @@ const ContactSupportOrderModal = (props) => {
     }
 
     if (!attachment) {
-      toast.error(t("Attachment must be selected"));
+      toast.error(t('Attachment must be selected'));
       return;
     }
 
@@ -696,15 +783,15 @@ const ContactSupportOrderModal = (props) => {
 
       const body = new FormData();
 
-      body.append("id", props.order._id);
-      body.append("reason", reason);
-      body.append("details", details);
-      body.append("attachment", attachment);
+      body.append('id', props.order._id);
+      body.append('reason', reason);
+      body.append('details', details);
+      body.append('attachment', attachment);
 
-      response = await Api("post", "/orders/support", body);
+      response = await Api('post', '/orders/support', body);
 
       if (response?.data?.success) {
-        toast.success(t("Support request submitted successfully."));
+        toast.success(t('Support request submitted successfully.'));
         props.handleClose();
         navToChat();
       }
@@ -720,27 +807,27 @@ const ContactSupportOrderModal = (props) => {
       <div
         className="tqs_sqm_input_container"
         style={{
-          borderTopLeftRadius: "20px",
-          borderTopLeftRadius: "20px",
-          borderBottomLeftRadius: "20px",
-          borderBottomRightRadius: "20px",
-          marginBottom: "2%",
-          padding: "1.6% 0",
+          borderTopLeftRadius: '20px',
+          borderTopLeftRadius: '20px',
+          borderBottomLeftRadius: '20px',
+          borderBottomRightRadius: '20px',
+          marginBottom: '2%',
+          padding: '1.6% 0',
         }}
       >
         <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">{t("Reason")}</p>
+          <p className="tqs_sqm_input_text">{t('Reason')}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <CustomInput
             labelStyle={{
-              display: "none",
+              display: 'none',
             }}
             inputStyle={{
-              border: "none",
-              fontSize: "12px",
+              border: 'none',
+              fontSize: '12px',
             }}
-            inputPlaceholder={t("Enter Reason")} // TODO: Add Trans
+            inputPlaceholder={t('Enter Reason')} // TODO: Add Trans
             onChange={(e) => setReason(e.target.value)}
           />
         </div>
@@ -748,20 +835,20 @@ const ContactSupportOrderModal = (props) => {
       <div
         className="tqs_sqm_textarea_container"
         style={{
-          borderTopLeftRadius: "20px",
-          borderTopRightRadius: "20px",
-          borderBottomLeftRadius: "20px",
-          borderBottomRightRadius: "20px",
-          marginBottom: "2%",
+          borderTopLeftRadius: '20px',
+          borderTopRightRadius: '20px',
+          borderBottomLeftRadius: '20px',
+          borderBottomRightRadius: '20px',
+          marginBottom: '2%',
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">{t("Details")}</p>
+          <p className="tqs_sqm_input_text">{t('Details')}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
             className="tqs_sqm_textarea_textarea"
-            placeholder={t("Details")}
+            placeholder={t('Details')}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
           />
@@ -770,20 +857,30 @@ const ContactSupportOrderModal = (props) => {
       <div
         className="pa_profile_section_input_container"
         style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-          width: "100%",
-          padding: "1.6% 0",
+          borderRadius: '20px',
+          marginBottom: '2%',
+          width: '100%',
+          padding: '1.6% 0',
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">{t("Attachments")}</p>
+          <p className="pa_profile_section_input_text">{t('Attachments')}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">
-            <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              id="filePicker"
+              name="file"
+              onChange={handleFileSelect}
+            />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachment?.name ?? t("upload an illustration of your creation")}</span>
+              <span className="upload-img-text">
+                {attachment?.name ??
+                  t('upload an illustration of your creation')}
+              </span>
               <img src={UploadSVG} />
             </div>
           </label>
@@ -791,17 +888,17 @@ const ContactSupportOrderModal = (props) => {
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton
-          text={t("Cancel")}
+          text={t('Cancel')}
           style={{
-            boxShadow: "none",
-            marginRight: "10pt",
+            boxShadow: 'none',
+            marginRight: '10pt',
           }}
           onClick={props.handleClose}
         />
         <CustomButton
-          text={t("Submit")}
+          text={t('Submit')}
           style={{
-            boxShadow: "none",
+            boxShadow: 'none',
           }}
           onClick={handleSubmit}
         />

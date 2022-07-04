@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import AppLogoSVG from "../../assets/AppLogo.svg";
-import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
+import AppLogoSVG from '../../assets/AppLogo.svg';
+import DesignElaborationSVG from '../../assets/DesignElaboration.svg';
 
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
-import CustomDropDown from "../../components/CustomDropDown";
-import MenuItem from "@mui/material/MenuItem";
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
+import CustomDropDown from '../../components/CustomDropDown';
+import MenuItem from '@mui/material/MenuItem';
 
-import { handleLogin } from "../../utils/Auth";
-import Api from "../../api/index";
+import { handleLogin } from '../../utils/Auth';
+import Api from '../../api/index';
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-import { Store, UpdateStore } from "../../StoreContext";
+import { Store, UpdateStore } from '../../StoreContext';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 function ClientCreateAccountScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState('');
   const { t } = useTranslation();
   const store = Store();
   const updateStore = UpdateStore();
 
   useEffect(() => {
-    if (!state?.["Email"] || !state?.["Password"]) {
-      navigate("/login");
+    if (!state?.['Email'] || !state?.['Password']) {
+      navigate('/login');
     }
   }, []);
 
   const navToHome = () => {
-    navigate("/home");
+    navigate('/home');
   };
 
   const handleSubmit = async (event) => {
@@ -62,16 +62,16 @@ function ClientCreateAccountScreen() {
       setIsProcessing(true);
 
       const body = {
-        email: state["Email"],
-        password: state["Password"],
-        name: data.get("Full Name"),
-        phone: data.get("Phone Number"),
+        email: state['Email'],
+        password: state['Password'],
+        name: data.get('Full Name'),
+        phone: data.get('Phone Number'),
         gender: gender,
       };
-      response = await Api("post", "/clients", body);
+      response = await Api('post', '/clients', body);
 
       if (response?.data?.success) {
-        toast.success("Registered successfully!");
+        toast.success('Registered successfully!');
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
@@ -88,24 +88,27 @@ function ClientCreateAccountScreen() {
         className="container"
         style={{
           background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img create_account_screen_row1_img">
-              <img style={{ width: "15%", marginBottom: "5%" }} src={AppLogoSVG} />
+              <img
+                style={{ width: '15%', marginBottom: '5%' }}
+                src={AppLogoSVG}
+              />
               <div>
                 <p
                   style={{
-                    fontSize: "32px",
+                    fontSize: '32px',
                   }}
                 >
                   Building
                 </p>
                 <p
                   style={{
-                    fontSize: "32px",
+                    fontSize: '32px',
                   }}
                 >
                   Profile
@@ -113,7 +116,7 @@ function ClientCreateAccountScreen() {
               </div>
             </div>
             <div className="login_screen_row1_img">
-              <img style={{ width: "70%" }} src={DesignElaborationSVG} />
+              <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
           <div className="login_screen_row2">
@@ -123,7 +126,7 @@ function ClientCreateAccountScreen() {
                 inputName="Full Name"
                 inputPlaceholder="Full Name"
                 divStyle={{
-                  marginBottom: "6%",
+                  marginBottom: '6%',
                 }}
               />
               <CustomInput
@@ -131,33 +134,33 @@ function ClientCreateAccountScreen() {
                 inputName="Phone Number"
                 inputPlaceholder="Phone Number"
                 divStyle={{
-                  marginBottom: "6%",
+                  marginBottom: '6%',
                 }}
                 minmax={true}
               />
-              <div style={{ width: "100%", border: "none" }}>
+              <div style={{ width: '100%', border: 'none' }}>
                 <div>
-                  <p className="custom_input_label">{t("Category")}</p>
+                  <p className="custom_input_label">{t('Category')}</p>
                 </div>
                 <CustomDropDown
                   labelStyle={{
-                    display: "none",
+                    display: 'none',
                   }}
                   selectID="gender"
                   selectName="gender"
-                  selectNullValue={t("Select your gender")}
+                  selectNullValue={t('Select your gender')}
                   selectValue={gender}
                   onChange={(e) => setGender(e.target.value)}
                   menuItems={[
-                    <MenuItem value={"male"}>{t("Male")}</MenuItem>,
-                    <MenuItem value={"female"}>{t("Female")}</MenuItem>,
+                    <MenuItem value={'male'}>{t('Male')}</MenuItem>,
+                    <MenuItem value={'female'}>{t('Female')}</MenuItem>,
                   ]}
                   selectSX={{
-                    fontSize: "12px",
-                    border: "2px solid #CC8E9C",
-                    padding: "2%",
-                    borderRadius: "10px",
-                    marginBottom: "3%",
+                    fontSize: '12px',
+                    border: '2px solid #CC8E9C',
+                    padding: '2%',
+                    borderRadius: '10px',
+                    marginBottom: '3%',
                   }}
                 />
               </div>
@@ -165,7 +168,7 @@ function ClientCreateAccountScreen() {
                 text="Save"
                 type="submit"
                 style={{
-                  marginBottom: "10%",
+                  marginBottom: '10%',
                 }}
               />
             </div>

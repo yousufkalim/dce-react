@@ -1,18 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import CustomButton from "./CustomButton";
+import CustomButton from './CustomButton';
 
-import CatalogContent1SVG from "../assets/CatalogContent1.svg";
+import CatalogContent1SVG from '../assets/CatalogContent1.svg';
 
-import Rating from "@mui/material/Rating";
-import { useTranslation } from "react-i18next";
+import Rating from '@mui/material/Rating';
+import { useTranslation } from 'react-i18next';
 
-import { useNavigate } from "react-router-dom";
-import dummy from "../assets/dummy.jpeg";
-import assetsURL from "../utils/Assets";
-import { calculateRating, calculateRatingsCount } from "../utils/Helpers";
+import { useNavigate } from 'react-router-dom';
+import dummy from '../assets/dummy.jpeg';
+import assetsURL from '../utils/Assets';
+import { calculateRating, calculateRatingsCount } from '../utils/Helpers';
 
-function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivStyle }) {
+function CatalogListTile({
+  catalog,
+  buttonText,
+  onClickButton,
+  onClick,
+  mainDivStyle,
+}) {
   const { t } = useTranslation();
 
   const rating = calculateRating(catalog.ratings);
@@ -31,41 +37,47 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
     >
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }}
         onClick={onClick}
       >
         <img
           style={{
-            width: "100%",
-            height: "100pt",
-            objectFit: "contain",
-            borderRadius: "20px",
+            width: '100%',
+            height: '100pt',
+            objectFit: 'contain',
+            borderRadius: '20px',
           }}
-          src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}
+          src={
+            catalog?.attachments[0]
+              ? assetsURL(catalog.attachments[0])
+              : CatalogContent1SVG
+          }
         />
         <CustomButton
           text={buttonText}
           type="submit"
           onClick={onClickButtonCallback}
           style={{
-            background: "#fff",
-            color: "#CC8E9C",
-            fontWeight: "600",
-            boxShadow: "none",
-            borderRadius: "20px",
-            marginTop: "5%",
-            padding: "2% 5%",
-            position: "absolute",
-            top: "0",
-            right: "5%",
+            background: '#fff',
+            color: '#CC8E9C',
+            fontWeight: '600',
+            boxShadow: 'none',
+            borderRadius: '20px',
+            marginTop: '5%',
+            padding: '2% 5%',
+            position: 'absolute',
+            top: '0',
+            right: '5%',
           }}
         />
         <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
         <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">{t("Stitching Price")}</p>
+          <p className="tailor_catalog_list_tile_price_detail">
+            {t('Stitching Price')}
+          </p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">

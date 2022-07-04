@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import { useTranslation } from "react-i18next";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import { useTranslation } from 'react-i18next';
 
-import AdEdit1SVG from "../../assets/AdEdit1.svg";
-import AdEdit2SVG from "../../assets/AdEdit2.svg";
-import AdEdit3SVG from "../../assets/AdEdit3.svg";
+import AdEdit1SVG from '../../assets/AdEdit1.svg';
+import AdEdit2SVG from '../../assets/AdEdit2.svg';
+import AdEdit3SVG from '../../assets/AdEdit3.svg';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import * as ParseAd from "../../components/ParseAd";
-import CustomButton from "../../components/CustomButton";
+import ClientAppBar from '../../components/ClientAppBar';
+import * as ParseAd from '../../components/ParseAd';
+import CustomButton from '../../components/CustomButton';
 
-import Api from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import Api from '../../api';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-const steps = ["MY PROJECT", "My delivery", "Remarks"];
+const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
 function OrderFromCatalogScreen() {
   const { t } = useTranslation();
@@ -34,38 +34,38 @@ function OrderFromCatalogScreen() {
 
   const [catalog, setCatalog] = useState(null);
   const [basicSection, setBasicSection] = useState({
-    gender: "",
-    category: "",
-    name: "",
-    cut: "",
+    gender: '',
+    category: '',
+    name: '',
+    cut: '',
     measurements: {
-      type: "static",
-      value: "",
+      type: 'static',
+      value: '',
     },
-    color: "",
-    fabric: "",
+    color: '',
+    fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    date: "",
-    address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    date: '',
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
-    price: "",
+    note: '',
+    price: '',
   });
 
   const handleImagesSelect = (event) => {
     if (event.target.files.length + images.length > 5) {
-      toast.error("You can select a maximum of 5 files.");
+      toast.error('You can select a maximum of 5 files.');
       return;
     }
 
     for (let i = 0; i < event.target.files.length; i++) {
       const obj = event.target.files[i];
       if (obj.size / 1024 > 5000) {
-        toast.error("File sizes greater than 5 MB are not allowed.");
+        toast.error('File sizes greater than 5 MB are not allowed.');
         return;
       }
     }
@@ -98,7 +98,7 @@ function OrderFromCatalogScreen() {
   const getCatalog = async () => {
     let response;
     try {
-      response = await Api("get", `/catalogs/${params.id}`);
+      response = await Api('get', `/catalogs/${params.id}`);
       const catalogData = response.data.catalog;
       setCatalog(catalogData);
       setBasicSection({
@@ -120,13 +120,14 @@ function OrderFromCatalogScreen() {
     event.preventDefault();
 
     const isValidated =
-      FormValidations.parseAdBasicSection(basicSection) && FormValidations.parseAdDeliverySection(deliverySection);
+      FormValidations.parseAdBasicSection(basicSection) &&
+      FormValidations.parseAdDeliverySection(deliverySection);
     if (!isValidated) {
       return;
     }
 
     if (images.length == 0) {
-      toast.error(t("At least one image must be selected.")); // TODO: Trans
+      toast.error(t('At least one image must be selected.')); // TODO: Trans
       return;
     }
 
@@ -141,23 +142,26 @@ function OrderFromCatalogScreen() {
 
       const body = new FormData();
 
-      body.append("type", "direct");
-      body.append("catalog", params.id);
-      body.append("tailor", catalog.tailor._id);
-      body.append("gender", basicSection.gender);
-      body.append("category", basicSection.category);
-      body.append("name", basicSection.name);
-      body.append("cut", basicSection.cut);
-      body.append("measurements", JSON.stringify(basicSection.measurements));
-      body.append("color", basicSection.color);
-      body.append("fabric", basicSection.fabric);
-      body.append("includes_alteration_services", basicSection.includes_alteration_services);
+      body.append('type', 'direct');
+      body.append('catalog', params.id);
+      body.append('tailor', catalog.tailor._id);
+      body.append('gender', basicSection.gender);
+      body.append('category', basicSection.category);
+      body.append('name', basicSection.name);
+      body.append('cut', basicSection.cut);
+      body.append('measurements', JSON.stringify(basicSection.measurements));
+      body.append('color', basicSection.color);
+      body.append('fabric', basicSection.fabric);
       body.append(
-        "create_catalog_after_completion",
+        'includes_alteration_services',
+        basicSection.includes_alteration_services
+      );
+      body.append(
+        'create_catalog_after_completion',
         basicSection.create_catalog_after_completion // Will remain false anyways
       );
       body.append(
-        "delivery",
+        'delivery',
         JSON.stringify({
           address: deliverySection.address.label,
           country: deliverySection.country,
@@ -168,7 +172,7 @@ function OrderFromCatalogScreen() {
         })
       );
       body.append(
-        "budget",
+        'budget',
         JSON.stringify({
           min_price: notesSection.price,
           max_price: notesSection.price,
@@ -176,13 +180,13 @@ function OrderFromCatalogScreen() {
         })
       );
       for (let i = 0; i < images.length; i++) {
-        body.append("images", images[i]);
+        body.append('images', images[i]);
       } // Multipart files share the same field name
 
-      response = await Api("post", `/orders`, body);
+      response = await Api('post', `/orders`, body);
 
       if (response?.data?.success) {
-        toast.success(t("Order created successfully."));
+        toast.success(t('Order created successfully.'));
         navToMyAds();
       }
     } catch (e) {
@@ -193,7 +197,7 @@ function OrderFromCatalogScreen() {
   };
 
   const navToMyAds = () => {
-    navigate("/my_ads");
+    navigate('/my_ads');
   };
 
   return (
@@ -206,42 +210,44 @@ function OrderFromCatalogScreen() {
           <div
             className="container"
             style={{
-              background: "#FFE9A0",
+              background: '#FFE9A0',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Place Order")}
+                  {t('Place Order')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
                   {basicSection.name}
                 </p>
-                <img style={{ width: "55%" }} src={AdEdit1SVG} />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "8%",
+                    marginTop: '8%',
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {t(label)}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -250,7 +256,12 @@ function OrderFromCatalogScreen() {
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
-                      disables={["gender", "category", "name", "create_catalog_after_completion"]}
+                      disables={[
+                        'gender',
+                        'category',
+                        'name',
+                        'create_catalog_after_completion',
+                      ]}
                       image={images}
                       handleImageSelect={handleImagesSelect}
                       handleImageDeselect={handleImageDeselect}
@@ -263,8 +274,8 @@ function OrderFromCatalogScreen() {
           <div
             className="container"
             style={{
-              height: "120vh !important",
-              background: "#FFC396",
+              height: '120vh !important',
+              background: '#FFC396',
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -272,84 +283,91 @@ function OrderFromCatalogScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {t(label)}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection state={deliverySection} setState={setDeliverySection} />
+                    <ParseAd.DeliverySection
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
                   </div>
                 </div>
               </div>
               <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Delivery")}
+                  {t('Delivery')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "70%" }} src={AdEdit2SVG} />
+                <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
           </div>
           <div
             className="container"
             style={{
-              background: "#FFFCFB",
+              background: '#FFFCFB',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Payment")}
+                  {t('Payment')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "20%" }} src={AdEdit3SVG} />
+                <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {t(label)}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -359,30 +377,36 @@ function OrderFromCatalogScreen() {
                       <div
                         className="pa_payment_section_textarea_container"
                         style={{
-                          borderRadius: "20px",
-                          marginBottom: "2%",
+                          borderRadius: '20px',
+                          marginBottom: '2%',
                         }}
                       >
                         <div className="pa_payment_section_textarea_label">
-                          <p className="pa_profile_section_input_text">{t("Extra Note")}</p>
+                          <p className="pa_profile_section_input_text">
+                            {t('Extra Note')}
+                          </p>
                         </div>
                         <div className="pa_profile_section_input_input">
                           <textarea
                             className="pa_profile_section_textarea_textarea"
                             defaultValue={notesSection.note}
-                            onChange={(e) => _setNotesSection("note", e.target.value)}
+                            onChange={(e) =>
+                              _setNotesSection('note', e.target.value)
+                            }
                           ></textarea>
                         </div>
                       </div>
                       <div
                         className="pa_payment_section_input_container"
                         style={{
-                          borderRadius: "20px",
-                          marginBottom: "2%",
+                          borderRadius: '20px',
+                          marginBottom: '2%',
                         }}
                       >
                         <div className="pa_payment_section_input_label">
-                          <p className="pa_payment_section_input_text">{t("Catalogue Price")}</p>
+                          <p className="pa_payment_section_input_text">
+                            {t('Catalogue Price')}
+                          </p>
                         </div>
                         <div className="pa_payment_section_input_input_container">
                           <input
@@ -390,17 +414,19 @@ function OrderFromCatalogScreen() {
                             className="pa_payment_section_input_input"
                             type="number"
                             defaultValue={notesSection.price}
-                            onChange={(e) => _setNotesSection("rice", e.target.value)}
+                            onChange={(e) =>
+                              _setNotesSection('rice', e.target.value)
+                            }
                           />
                         </div>
                       </div>
                       <CustomButton
-                        text={t("Place this Order")}
+                        text={t('Place this Order')}
                         onClick={handleSubmit}
                         style={{
-                          marginBottom: "2%",
-                          padding: "1.2% 5%",
-                          boxShadow: "none",
+                          marginBottom: '2%',
+                          padding: '1.2% 5%',
+                          boxShadow: 'none',
                         }}
                       />
                     </div>
