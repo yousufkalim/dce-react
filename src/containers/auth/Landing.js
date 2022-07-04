@@ -1,7 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import AuthAppbar from "../../components/AuthAppbar";
 // Router
 import { Link } from "react-router-dom";
+
+//  translation
+import { useTranslation } from "react-i18next";
 // assets
 import Landinghero from "../../assets/Landinghero.png";
 import addpost from "../../assets/addpost.png";
@@ -20,6 +23,17 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const Landing = () => {
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
+  useEffect(() => {
+    lang();
+  }, []);
+  const lang = () => {
+    i18n.changeLanguage(language == "fr" ? "fr" : "en");
+  };
+
+  console.log(language);
   const reviews = [
     {
       rv: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores",
@@ -98,9 +112,10 @@ const Landing = () => {
       <div className="landing_main_container">
         <div className="landing_hero_section">
           {/* cl 1  */}
+
           <div className="landing_hero_section_info">
             <div className="landing_hero_section_info_heading">
-              <h3>Welcome to the Design Confection Ethiques</h3>
+              <h3>{t("Welcome to the Design Confection Ethiques")}</h3>
               <h4> Hire The Best Designers For Your Confection</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim

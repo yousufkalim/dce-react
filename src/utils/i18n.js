@@ -11,7 +11,10 @@ i18n
     resources: {
       en: {
         translations: {
-          //----------------------------------------------------------Client-------------------------------------------------------
+          //--- -------------------------------------------------------Client-------------------------------------------------------
+
+          // landing page
+          "Welcome to the Design Confection Ethiques": "Welcome to the Design Confection Ethiques,",
 
           // client home
           "Submit your idea,": "Submit your idea,",
@@ -60,7 +63,7 @@ i18n
           Order: "Order",
           "Order Date": "Order Date",
           "Delivery Date": "Delivery Date",
-          "desired delivery date ":"desired delivery date",
+          "desired delivery date ": "desired delivery date",
           "Coming soon!": "Coming soon!",
           Rating: "Rating",
           Cancel: "Cancel",
@@ -68,7 +71,7 @@ i18n
           "Place Your Order": "Place Your Order",
           "Image must be selected": "Image must be selected",
           "Delivery Note": "Delivery Note",
-          "any note (s) concerning the delivery":"any note (s) concerning the delivery",
+          "any note (s) concerning the delivery": "any note (s) concerning the delivery",
           "Catalogue created successfully.": "Catalogue created successfully.",
           "No Orders": "No Orders",
           //my ads
@@ -89,11 +92,11 @@ i18n
           "Ad Basic": "Ad Basic",
           // Delivery: "Delivery",
           Payment: "Payment",
-          "MY PROJECT":"MY PROJECT",
+          "MY PROJECT": "MY PROJECT",
           // Basic: "Basic",
           Remarks: "Remarks",
           // Delivery: "Delivery",
-         "My delivery":"My delivery",
+          "My delivery": "My delivery",
 
           //chats
           Online: "Online",
@@ -114,21 +117,24 @@ i18n
           //measurements
           "My Measurements": "My Measurements",
           "Get a Tape": "Get a Tape",
-          "Static":"Static",
-          "Book Call":"Book Call",
-          "Measurements are entered in this input box right away.":"Measurements are entered in this input box right away.",
-          "Measurements will be entered in a detailed form once the order is accepted.":" Measurements will be entered in a detailed form once the order is accepted.",
+          Static: "Static",
+          "Book Call": "Book Call",
+          "Measurements are entered in this input box right away.": "Measurements are entered in this input box right away.",
+          "Measurements will be entered in a detailed form once the order is accepted.":
+            " Measurements will be entered in a detailed form once the order is accepted.",
           "Important: If you hesitate between two sizes, take the larger one.":
-          "Important: If you hesitate between two sizes, take the larger one.",
-          "A message will be dropped by you to the tailor for the measurements.":"A message will be dropped by you to the tailor for the measurements.",
+            "Important: If you hesitate between two sizes, take the larger one.",
+          "A message will be dropped by you to the tailor for the measurements.":
+            "A message will be dropped by you to the tailor for the measurements.",
           "Standard Size Chart": "Standard Size Chart",
           "Video Tutorial": "Video Tutorial",
           Measure: "Measure",
           "Tape Measurements": "Tape Measurements",
-          "Length":"Length",
+          Length: "Length",
           Circumference: "Circumference",
-         "Save and Next": "Save and Next",
-         "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.":"REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.",
+          "Save and Next": "Save and Next",
+          "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.":
+            "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.",
           //orderFromCatalog
           "Catalogue Price": "Catalogue Price",
           "Extra Note": "Extra Note",
@@ -232,7 +238,7 @@ i18n
           Available: "Available",
           Skills: "Skills",
           // "Material Fabrics": "Material Fabrics",
-          "Dominant FABRIC":"Dominant FABRIC",
+          "Dominant FABRIC": "Dominant FABRIC",
 
           "Know how": "Know how",
           "General skills": "General skills",
@@ -339,7 +345,7 @@ i18n
           "Set your Price": "Set your Price",
           "Tell us about your service": "Tell us about your service",
           // "Upload Drawing, Photo, Document, etc.": "Upload Drawing, Photo, Document, etc.",
-          "upload an illustration of your creation":"upload an illustration of your creation",
+          "upload an illustration of your creation": "upload an illustration of your creation",
           "Tell us": "Tell us",
           Save: "Save",
           "I'm taking my measurements": "I'm taking my measurements",
@@ -350,7 +356,7 @@ i18n
           "*depending on the garment, I measure certain parts of the body in circumference and/or length.":
             "*depending on the garment, I measure certain parts of the body in circumference and/or length..",
           // Colour: "Colour",
-          "dominant color":"dominant color",
+          "dominant color": "dominant color",
           "Select Fabric Style": "Select Fabric Style",
           "Do you Want": "Do you Want",
           "ALTREATION SERVICE ?": "ALTREATION SERVICE ?",
@@ -363,12 +369,13 @@ i18n
           "Delivery Type": "Delivery Type",
 
           "Payment Note": "Payment Note",
-          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals": "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals",
+          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals":
+            "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals",
           "Terms of Services": "Terms of Services",
           "Privacy Policy": "Privacy Policy",
           and: "and",
           "Publish Ad": "Publish Ad",
-          "publish my project":"publish my project",
+          "publish my project": "publish my project",
           Arm: "Arm",
           "Chest size": "Chest size",
           "Waist size": "Waist size",
@@ -383,7 +390,7 @@ i18n
           "(handle)": "(handle)",
           Next: "Next",
           Cut: "Cut",
-          size:"size",
+          size: "size",
           small: "small",
           large: "large",
           medium: "medium",
@@ -460,7 +467,7 @@ i18n
           Normal: "Normal",
           Address: "Address",
           "Create Catalog After": "Create Catalog After",
-          "I do desired not that my creation appears on the site":"I do desired not that my creation appears on the site",
+          "I do desired not that my creation appears on the site": "I do desired not that my creation appears on the site",
           "ORDER COMPLETION ?": "ORDER COMPLETION ?",
           pending: "pending",
           "in progress": "in progress",
@@ -552,6 +559,9 @@ i18n
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
 
+          // landing page
+          "Welcome to the Design Confection Ethiques": "Bienvenue à l'éthique de la conception de la confection,",
+
           // client home
           "Submit your idea,": "Vous avez une idée de confection couture ? DÉPOSER VOTRE PROJET",
           "We make it real,": "nous la concrétisons !",
@@ -578,7 +588,7 @@ i18n
           "Send Message": "Envoyer le message",
           View: "Voir",
           "Delivery Note": "Bon de livraison",
-          "any note (s) concerning the delivery":"par note(s) éventuel(les) concernant la livraison",
+          "any note (s) concerning the delivery": "par note(s) éventuel(les) concernant la livraison",
           //Profile
           Edit: "Modifier",
           Phone: "Téléphoner",
@@ -612,7 +622,7 @@ i18n
           "Name of Creation": "Nom de la création",
           "Ad for": "Annonce pour",
           "Delivery Date": "La date de livraison",
-          "desired delivery date":"date de livraison souhaitée",
+          "desired delivery date": "date de livraison souhaitée",
           min: "min",
           max: "maximum",
           Range: "Varier",
@@ -645,11 +655,14 @@ i18n
           //measurements
           "My Measurements": "Mes Mensurations",
           "Get a Tape": "Obtenez une bande",
-          "Static":"Statique",
-          "Book Call":"Réserver un appel",
-          "Measurements are entered in this input box right away.":"Les mesures sont saisies immédiatement dans cette zone de saisie.",
-          "Measurements will be entered in a detailed form once the order is accepted.":"Les mesures seront saisies dans un formulaire détaillé une fois la commande acceptée.",
-          "A message will be dropped by you to the tailor for the measurements.":"Un message sera déposé par vous au tailleur pour les mesures.",
+          Static: "Statique",
+          "Book Call": "Réserver un appel",
+          "Measurements are entered in this input box right away.":
+            "Les mesures sont saisies immédiatement dans cette zone de saisie.",
+          "Measurements will be entered in a detailed form once the order is accepted.":
+            "Les mesures seront saisies dans un formulaire détaillé une fois la commande acceptée.",
+          "A message will be dropped by you to the tailor for the measurements.":
+            "Un message sera déposé par vous au tailleur pour les mesures.",
           "Important: If you hesitate between two sizes, take the larger one.":
             "Important : Si vous hésitez entre deux tailles, prenez la plus grande.",
           "Standard Size Chart": "Tableau des tailles standard",
@@ -658,9 +671,10 @@ i18n
           Measure: "Mesure",
           "Tape Measurements": "Mesures de bande",
           Circumference: "Circonférence",
-          "Length":"Longueur",
-          "Save and Next":"Enregistrer et Suivant",
-          "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.":"RAPPEL :  Une fois les mesures renseignées et validées, D.C.E utilisera ces mensurations pour la confection de votre tenue. D.C.E ne sera en aucun cas responsable des mauvaises prises des mensurations.  Aucune réclamation concernant les mesures de vos tenues ne sera possible. Toutes retouches pour causes de mauvaises mesures vous seront facturées et les envois seront à vos frais.",
+          Length: "Longueur",
+          "Save and Next": "Enregistrer et Suivant",
+          "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.":
+            "RAPPEL :  Une fois les mesures renseignées et validées, D.C.E utilisera ces mensurations pour la confection de votre tenue. D.C.E ne sera en aucun cas responsable des mauvaises prises des mensurations.  Aucune réclamation concernant les mesures de vos tenues ne sera possible. Toutes retouches pour causes de mauvaises mesures vous seront facturées et les envois seront à vos frais.",
           //orderFromCatalog
           "Catalogue Price": "Prix ​​catalogue",
           "Extra Note": "Remarque supplémentaire",
@@ -758,7 +772,7 @@ i18n
           "3 . Post your ad (offer) in just a few clicks": "3 . Déposez votre annonce (offre) en quelques clics",
           "Post your add in 3 steps": "Publiez votre annonce en 3 étapes",
           // "Upload Drawing, Photo, Document, etc.": "Télécharger un dessin, une photo, un document, etc.",
-           "upload an illustration of your creation":"téléchargez une illustration de votre création",
+          "upload an illustration of your creation": "téléchargez une illustration de votre création",
           "Seamstress selection based on the following criteria:": "Sélection des couturières selon les critères suivants :",
           "Reliability / Seriousness": "Fiabilité / Sérieux",
           "Rating on the site": "Note sur le site",
@@ -786,7 +800,7 @@ i18n
           "Know how to handle computers in particular the Design CREATION site":
             "Savoir manier l'informatique notamment le site Design CREATION",
           Cut: "Couper",
-          size:"Ma taille",
+          size: "Ma taille",
 
           //order
           "Orders Requests": "Demandes de commandes",
@@ -835,7 +849,7 @@ i18n
           "Orders are made directly by the customer via the Design CONFECTIONS ETHIQUES site, where the latter has selected the various choices offered to him as to his creation (type, fabric, deadline, etc.). Then his creation is routed to the professional interface of the seamstresses where various quotes will be offered to him.":
             "Les commandes sont passées directement par le client via le site DesignCONFECTIONS ETHIQUES, où ce dernier a sélectionné les différents choix qui lui sont proposés quant à sa création (type, tissu, délai, etc.). Puis sa création est acheminée vers l'interface professionnelle de les couturières où différents devis lui seront proposés.",
           Delivery: "Livraison",
-          "My delivery":"Ma livraison",
+          "My delivery": "Ma livraison",
           "Delivery Address": "Adresse de livraison",
           "The customer has the choice between various delivery times: 2 weeks, 1 month or to enter a delivery deadline. He can tick the indifferent box if he is not in too much of a hurry.":
             "Le client a le choix entre différents délais de livraison : 2 semaines, 1 mois ou saisir un délai de livraison. Il peut cocher la case indifférent s'il n'est pas trop pressé.",
@@ -877,10 +891,10 @@ i18n
             "*en fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur",
           "*I'm getting a tape measure": "*Je me munis d'un mètre ruban",
           // Colour: "Couleur",
-          "dominant color":"couleur dominante",
+          "dominant color": "couleur dominante",
           "Select one colour for your Creations": "Sélectionnez une couleur pour vos Créations",
           // "Material Fabrics": "Matériaux Tissus",
-           "Dominant FABRIC": "TISSU dominant",
+          "Dominant FABRIC": "TISSU dominant",
           "Select Fabric Style": "Sélectionnez le style de tissu",
 
           "Do you Want": "Veux-tu",
@@ -894,7 +908,8 @@ i18n
           "Set Maximum Price": "Définir le prix maximum",
           "Payment Note": "Bulletin de paiement",
 
-          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals": "J'accepte les termes et conditions et la politique de confidentialité de DESIGN Confections Ethiques",
+          "I agree with terms & condition & privacy policy of DESIGN Confections Ethicals":
+            "J'accepte les termes et conditions et la politique de confidentialité de DESIGN Confections Ethiques",
           "Terms of Services": "Conditions de services",
           and: "et",
           "Privacy Policy": "Politique de confidentialité",
@@ -915,7 +930,7 @@ i18n
           Next: "Suivant",
           large: "grand",
           medium: "moyen",
-          "MY PROJECT":"Mon projet",
+          "MY PROJECT": "Mon projet",
           // Basic: "Basique",
           Delivery: "Livraison",
           Remarks: "Mon budget",
@@ -991,7 +1006,7 @@ i18n
           Normal: "Ordinaire",
           Address: "Adresse",
           "Create Catalog After": "Créer un catalogue après",
-          "I do desired not that my creation appears on the site":"je ne souhaite pas que ma création figure sur le site",
+          "I do desired not that my creation appears on the site": "je ne souhaite pas que ma création figure sur le site",
           "ORDER COMPLETION ?": "ACHÈVEMENT DE LA COMMANDE ?",
           pending: "en attendant",
           "in progress": "en cours",
