@@ -5,6 +5,7 @@ import AuthAppbar from '../../components/AuthAppBar';
 import Terms from '../../assets/terms.png';
 import FooterLogo from '../../assets/FooterLogo.svg';
 import instagram from '../../assets/instagram.png';
+import facebook from '../../assets/facebook.png';
 
 function AuthTermsAndConditions() {
   const { t } = useTranslation();
@@ -104,34 +105,33 @@ function AuthTermsAndConditions() {
         </div>
         <img src={Terms} className="termsimg" />
       </div>
-      <>
-        {/* footer start  */}
 
-        <div class="footer_section_main" id="animation_dec">
-          <div className="footer_center_section">
-            <img src={FooterLogo} />
+      {/* footer start  */}
+
+      <div className="footer_section_main" id="animation_dec">
+        <div className="footer_center_section">
+          <img src={FooterLogo} alt="footerlogo" />
+          <div>
+            <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
+              {' '}
+              <span className="card_text_support card_text_support2">Terms & Conditions</span>
+            </Link>
+          </div>
+          <div className="footer_text-last">
             <div>
-              <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
-                {' '}
-                <span className="card_text_support card_text_support2">Terms & Conditions</span>
-              </Link>
+              <h4 className="footer_text_last_p">
+                © 2022 <span style={{ color: '#CC8E9C' }}>Design Confection Ethiques,</span> Developed by{' '}
+                <span style={{ color: '#0085FF' }}>Falcon Consulting.</span> All rights reserved.
+              </h4>
             </div>
-            <div className="footer_text-last">
-              <div>
-                <h4 className="footer_text_last_p">
-                  © 2022 <span style={{ color: '#CC8E9C' }}>Design Confection Ethiques,</span> Developed by{' '}
-                  <span style={{ color: '#0085FF' }}>Falcon Consulting.</span> All rights reserved.
-                </h4>
-              </div>
-              <div className="footer_incons_main" style={{ color: 'white' }}>
-                <img src={facebook} />
-                <img src={instagram} />
-              </div>
+            <div className="footer_incons_main" style={{ color: 'white' }}>
+              <img src={facebook} alt="icon" />
+              <img src={instagram} alt="icon" />
             </div>
           </div>
         </div>
-        {/* footer end  */}
-      </>
+      </div>
+      {/* footer end  */}
     </div>
   );
 }
