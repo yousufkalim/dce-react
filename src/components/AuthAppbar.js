@@ -10,30 +10,20 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
-// route
 import { Link } from 'react-router-dom';
-// assets
-
 import AppLogoSVG from '../assets/AppLogo.svg';
-const AuthAppBar = () => {
-  const { t, i18n } = useTranslation();
 
+function AuthAppBar() {
+  const { t, i18n } = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    // setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    // setAnchorElUser(null);
   };
 
   const maninavdata = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
@@ -148,13 +138,13 @@ const AuthAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Link to='/login'>
-              <Button onClick={handleOpenUserMenu} className='auth_appbar_button_login' sx={{ p: 0 }}>
+              <Button className='auth_appbar_button_login' sx={{ p: 0 }}>
                 {t('Login')}
               </Button>
             </Link>
 
             <Link to='/select_role'>
-              <Button onClick={handleOpenUserMenu} className='auth_appbar_button_register' sx={{ p: 0 }}>
+              <Button className='auth_appbar_button_register' sx={{ p: 0 }}>
                 {t('Register')}
               </Button>
             </Link>
@@ -163,5 +153,6 @@ const AuthAppBar = () => {
       </Container>
     </AppBar>
   );
-};
+}
+
 export default AuthAppBar;
