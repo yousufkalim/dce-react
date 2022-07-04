@@ -19,6 +19,7 @@ import Api from "../../api";
 import { toast } from "react-toastify";
 import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
+import { Store, UpdateStore } from "../../StoreContext";
 
 function ClientAdsScreen() {
   const { t } = useTranslation();
@@ -283,6 +284,8 @@ function AdListTile(props) {
 
 function AdQuoteListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
   const rating = calculateRating(props.quote.tailor?.ratings);
   const ratingsCount = calculateRatingsCount(props.quote.tailor?.ratings);
 
@@ -318,6 +321,10 @@ function AdQuoteListTile(props) {
   };
 
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props.quote.tailor } });
   };
 

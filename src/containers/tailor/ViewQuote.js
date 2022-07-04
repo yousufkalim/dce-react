@@ -18,6 +18,7 @@ import * as ParseAd from "../../components/ParseAd";
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
+import { Store, UpdateStore } from "../../StoreContext";
 
 import { toast } from "react-toastify";
 
@@ -27,6 +28,8 @@ const steps = ["MY PROJECT", "My delivery", "Remarks"];
 
 function TailorViewQuoteScreen() {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const params = useParams();
@@ -157,6 +160,10 @@ function TailorViewQuoteScreen() {
   };
 
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: ad.client } });
   };
   return (

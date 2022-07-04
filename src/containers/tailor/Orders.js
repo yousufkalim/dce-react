@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 
 import assetsURL from "../../utils/Assets";
 import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
+import { Store, UpdateStore } from "../../StoreContext";
 
 import * as FormValidations from "../../utils/Validations";
 
@@ -222,9 +223,15 @@ function TailorOrdersScreen() {
 
 function OrderRequestListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props.order.client } });
   };
 
@@ -320,9 +327,15 @@ function OrderRequestListTile(props) {
 
 function OrderInProgressListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props.order.client } });
   };
 

@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getUser } from "../../utils/Auth";
 import Api from "../../api";
+import { Store, UpdateStore } from "../../StoreContext";
 
 import assetsURL from "../../utils/Assets";
 
@@ -73,6 +74,8 @@ function TailorQuotesScreen() {
 
 function QuoteListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const user = getUser();
   const [isSendOfferModal, setIsSendOfferModal] = useState(false);
@@ -92,6 +95,10 @@ function QuoteListTile(props) {
 
   const navToChat = (e) => {
     e.stopPropagation();
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props.client } });
   };
 

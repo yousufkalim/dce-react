@@ -89,7 +89,7 @@ const ChatHeader = ({ directUser }) => {
       const chatsData = response.data.chats;
       updateStore({
         chats: chatsData,
-        chat: chatsData[0],
+        messages: [],
       });
       _loadMessages(chatsData[0]._id);
     } catch (e) {
@@ -98,6 +98,9 @@ const ChatHeader = ({ directUser }) => {
   };
 
   const _loadMessages = async (chatID) => {
+    if (!chatID) {
+      return;
+    }
     let response;
     try {
       response = await Api("post", `/messages/byQuery`, {

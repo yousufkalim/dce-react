@@ -27,8 +27,12 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import assetsURL from "../../utils/Assets";
 
+import { Store, UpdateStore } from "../../StoreContext";
+
 function ClientViewTailorScreen() {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const params = useParams();
@@ -95,6 +99,10 @@ function ClientViewTailorScreen() {
   };
 
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: tailor } });
   };
 
