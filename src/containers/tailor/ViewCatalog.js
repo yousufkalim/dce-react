@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import ViewCatalogSVG from "../../assets/ViewCatalog.svg";
+import ViewCatalogSVG from '../../assets/ViewCatalog.svg';
 
-import TailorAppBar from "../../components/TailorAppBar";
-import Footer from "../../components/Footer";
-import CustomButton from "../../components/CustomButton";
-import CustomCarousel from "../../components/CustomCarousel";
+import TailorAppBar from '../../components/TailorAppBar';
+import Footer from '../../components/Footer';
+import CustomButton from '../../components/CustomButton';
+import CustomCarousel from '../../components/CustomCarousel';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 
-import Api from "../../api";
+import Api from '../../api';
 
-import assetsURL from "../../utils/Assets";
-import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
+import assetsURL from '../../utils/Assets';
+import { calculateRating, calculateRatingsCount } from '../../utils/Helpers';
 
 function TailorViewCatalogScreen() {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ function TailorViewCatalogScreen() {
   const getCatalog = async () => {
     let response;
     try {
-      response = await Api("get", `/catalogs/${params.id}`);
+      response = await Api('get', `/catalogs/${params.id}`);
       const catalogData = response.data.catalog;
       setCatalog(catalogData);
       setIsLoading(false);
@@ -56,27 +56,33 @@ function TailorViewCatalogScreen() {
           <div
             className="container"
             style={{
-              background: "linear-gradient(to right, #EEEEEE , #FCEEE1)",
+              background: 'linear-gradient(to right, #EEEEEE , #FCEEE1)',
             }}
           >
             <div className="view_catalog_screen_row1">
               <div className="view_catalog_screen_row1_column1">
-                <p className="view_catalog_screen_row1_column1_text_1">{catalog.name}</p>
-                <p className="view_catalog_screen_row1_column1_text_2">{t("Description")}</p>
-                <p className="view_catalog_screen_row1_column1_text_3">{catalog.description}</p>
+                <p className="view_catalog_screen_row1_column1_text_1">
+                  {catalog.name}
+                </p>
+                <p className="view_catalog_screen_row1_column1_text_2">
+                  {t('Description')}
+                </p>
+                <p className="view_catalog_screen_row1_column1_text_3">
+                  {catalog.description}
+                </p>
                 <div className="view_catalog_screen_row1_column1_section">
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
                     style={{
-                      paddingRight: "10%",
+                      paddingRight: '10%',
                     }}
                   >
-                    {t("Charges")}
+                    {t('Charges')}
                   </p>
                   <p
                     className="view_catalog_screen_row1_column1_text_2"
                     style={{
-                      color: "#CC8E9C",
+                      color: '#CC8E9C',
                     }}
                   >
                     € {catalog.price}
@@ -96,12 +102,12 @@ function TailorViewCatalogScreen() {
                   </p>
                 </div> */}
                 <CustomButton
-                  text={t("Edit")}
+                  text={t('Edit')}
                   onClick={navToEditCatalog}
                   padding="1.6% 8%"
                   style={{
-                    marginTop: "4%",
-                    boxShadow: "none",
+                    marginTop: '4%',
+                    boxShadow: 'none',
                   }}
                 />
               </div>
@@ -109,12 +115,16 @@ function TailorViewCatalogScreen() {
                 <div className="view_catalog_screen_row1_column2_img">
                   <img
                     style={{
-                      width: "75%",
-                      height: "50%",
-                      objectFit: "cover",
-                      borderTopLeftRadius: "20px",
+                      width: '75%',
+                      height: '50%',
+                      objectFit: 'cover',
+                      borderTopLeftRadius: '20px',
                     }}
-                    src={catalog?.attachments?.length > 0 ? assetsURL(catalog.attachments[displayImageIndex]) : ViewCatalogSVG}
+                    src={
+                      catalog?.attachments?.length > 0
+                        ? assetsURL(catalog.attachments[displayImageIndex])
+                        : ViewCatalogSVG
+                    }
                   />
                   <CustomCarousel
                     images={catalog?.attachments}

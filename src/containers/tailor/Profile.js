@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import AutoComplete from "../../components/AutoComplete";
+import AutoComplete from '../../components/AutoComplete';
 
-import AddCatalogSVG from "../../assets/AddOrder.svg";
-import { useTranslation } from "react-i18next";
+import AddCatalogSVG from '../../assets/AddOrder.svg';
+import { useTranslation } from 'react-i18next';
 
-import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
-import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
-import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
-import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
-import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
+import ProfileBirthdaySVG from '../../assets/ProfileBirthday.svg';
+import ProfileCountrySVG from '../../assets/ProfileCountry.svg';
+import ProfileEmailSVG from '../../assets/ProfileEmail.svg';
+import ProfileLocationSVG from '../../assets/ProfileLocation.svg';
+import ProfilePhoneSVG from '../../assets/ProfilePhone.svg';
 
-import dummy from "../../assets/dummy.jpeg";
+import dummy from '../../assets/dummy.jpeg';
 
-import TailorAppBar from "../../components/TailorAppBar";
-import Footer from "../../components/Footer";
-import CustomButton from "../../components/CustomButton";
-import CustomDatePicker from "../../components/CustomDatePicker";
-import CatalogListTile from "../../components/CatalogListTile";
+import TailorAppBar from '../../components/TailorAppBar';
+import Footer from '../../components/Footer';
+import CustomButton from '../../components/CustomButton';
+import CustomDatePicker from '../../components/CustomDatePicker';
+import CatalogListTile from '../../components/CatalogListTile';
 
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import { getUser } from "../../utils/Auth";
+import { getUser } from '../../utils/Auth';
 
-import Api from "../../api";
-import axios from "axios";
+import Api from '../../api';
+import axios from 'axios';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-import assetsURL from "../../utils/Assets";
+import assetsURL from '../../utils/Assets';
 
 function TailorProfileScreen() {
   const { t } = useTranslation();
@@ -50,23 +50,23 @@ function TailorProfileScreen() {
   const [toEdit, setToEdit] = useState(false);
 
   const [state, setState] = useState({
-    phone: "",
-    experience: "",
-    diploma: "",
-    store_name: "",
-    hourly_rate: "",
-    free_shipping_rate: "",
+    phone: '',
+    experience: '',
+    diploma: '',
+    store_name: '',
+    hourly_rate: '',
+    free_shipping_rate: '',
     password: undefined,
   });
 
   // Z-Mods
-  const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [dateOfBirth, setDateOfBirth] = useState(new Date('January 01, 1999'));
   const [address, setAddress] = useState({
-    zip: "",
-    label: "",
-    city: "",
-    lat: "",
-    lng: "",
+    zip: '',
+    label: '',
+    city: '',
+    lat: '',
+    lng: '',
   });
   const [addresses, setAddresses] = useState([]);
 
@@ -96,7 +96,7 @@ function TailorProfileScreen() {
   const getCatalogs = async () => {
     let response;
     try {
-      response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
+      response = await Api('post', `/catalogs/byQuery`, { tailor: user._id });
       const catalogsData = response.data.catalogs.splice(-4);
       setCatalogs(catalogsData);
     } catch (e) {
@@ -108,17 +108,17 @@ function TailorProfileScreen() {
   const getProfile = async () => {
     let response;
     try {
-      response = await Api("get", `/auth`);
+      response = await Api('get', `/auth`);
       const userData = response.data.user;
       setProfile(userData);
       setState({
         ...state,
-        phone: userData.phone ?? "",
-        experience: userData.experience ?? "",
-        diploma: userData.diploma ?? "",
-        store_name: userData.store_name ?? "",
-        hourly_rate: userData.hourly_rate ?? "",
-        free_shipping_rate: userData.free_shipping_rate ?? "",
+        phone: userData.phone ?? '',
+        experience: userData.experience ?? '',
+        diploma: userData.diploma ?? '',
+        store_name: userData.store_name ?? '',
+        hourly_rate: userData.hourly_rate ?? '',
+        free_shipping_rate: userData.free_shipping_rate ?? '',
       });
       if (userData.dob) {
         setDateOfBirth(userData.dob);
@@ -166,29 +166,29 @@ function TailorProfileScreen() {
 
       const body = new FormData();
 
-      body.append("phone", state.phone);
-      body.append("experience", state.experience);
-      body.append("diploma", state.diploma);
-      body.append("store_name", state.store_name);
-      body.append("hourly_rate", state.hourly_rate);
-      body.append("free_shipping_rate", state.free_shipping_rate);
+      body.append('phone', state.phone);
+      body.append('experience', state.experience);
+      body.append('diploma', state.diploma);
+      body.append('store_name', state.store_name);
+      body.append('hourly_rate', state.hourly_rate);
+      body.append('free_shipping_rate', state.free_shipping_rate);
       if (dateOfBirth) {
-        body.append("dob", dateOfBirth);
+        body.append('dob', dateOfBirth);
       }
       if (address.label) {
-        body.append("address", address.label);
-        body.append("zip_code", address.zip);
-        body.append("city", address.city);
+        body.append('address', address.label);
+        body.append('zip_code', address.zip);
+        body.append('city', address.city);
       }
       if (state.password) {
-        body.append("password", state.password);
+        body.append('password', state.password);
       }
-      body.append("image", profileImage);
+      body.append('image', profileImage);
 
-      response = await Api("put", "/tailors", body);
+      response = await Api('put', '/tailors', body);
 
       if (response?.data?.success) {
-        toast.success(t("Profile updated successfully."));
+        toast.success(t('Profile updated successfully.'));
         navToHome();
       }
     } catch (e) {
@@ -199,7 +199,7 @@ function TailorProfileScreen() {
   };
 
   const navToHome = () => {
-    navigate("/home");
+    navigate('/home');
   };
 
   const navToViewCatalog = (id) => {
@@ -224,22 +224,22 @@ function TailorProfileScreen() {
       });
     } else {
       _setAddress({
-        label: "",
-        zip: "",
-        city: "",
-        lat: "",
-        lng: "",
+        label: '',
+        zip: '',
+        city: '',
+        lat: '',
+        lng: '',
       });
     }
   };
   const handleInputAddress = async (e) => {
-    if (e.target.value === "") {
+    if (e.target.value === '') {
       _setAddress({
-        label: "",
-        zip: "",
-        city: "",
-        lat: "",
-        lng: "",
+        label: '',
+        zip: '',
+        city: '',
+        lat: '',
+        lng: '',
       });
       setAddresses([]);
     } else {
@@ -247,7 +247,7 @@ function TailorProfileScreen() {
         label: e.target.value,
       });
       const config = {
-        method: "get",
+        method: 'get',
         url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
       };
       axios.defaults.headers = null;
@@ -282,8 +282,8 @@ function TailorProfileScreen() {
       ) : (
         <div
           style={{
-            height: "150vh",
-            width: "100vw",
+            height: '150vh',
+            width: '100vw',
           }}
         >
           <TailorAppBar color="#FCFCFC" />
@@ -292,48 +292,51 @@ function TailorProfileScreen() {
             className="client_profile_screen_top tailor-client_profile_screen_top"
             style={{
               background:
-                "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+                'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
             <div className="tailor-profile-edit-container">
               <div className="tailor_profile_screen_row1_column1_header_text">
-                <p className="client_profile_screen_row1_text" style={{ paddingLeft: "3%" }}>
-                  {t("Profile")}
+                <p
+                  className="client_profile_screen_row1_text"
+                  style={{ paddingLeft: '3%' }}
+                >
+                  {t('Profile')}
                 </p>
               </div>
               <CustomButton
                 type="submit"
                 onClick={toEditCallback}
-                text={toEdit ? t("Save") : t("Edit")}
+                text={toEdit ? t('Save') : t('Edit')}
                 style={{
-                  alignSelf: "flex-end",
-                  boxShadow: "none",
-                  marginRight: "5%",
-                  marginBottom: "2%",
-                  padding: "0.8% 4%",
+                  alignSelf: 'flex-end',
+                  boxShadow: 'none',
+                  marginRight: '5%',
+                  marginBottom: '2%',
+                  padding: '0.8% 4%',
                 }}
               />
             </div>
             <div
               className="tailor_profile_screen_row1"
               style={{
-                borderBottomColor: "#DBDBDB",
-                borderBottomStyle: "solid",
-                borderBottomWidth: "1.5px",
+                borderBottomColor: '#DBDBDB',
+                borderBottomStyle: 'solid',
+                borderBottomWidth: '1.5px',
               }}
             >
               <div className="tailor_profile_screen_row1_column1">
                 <div
                   className="tailor_profile_screen_row1_column1_img"
                   style={{
-                    paddingBottom: "5%",
+                    paddingBottom: '5%',
                   }}
                 >
                   <label>
                     <input
                       style={{
-                        display: "none",
-                        cursor: "none",
+                        display: 'none',
+                        cursor: 'none',
                       }}
                       disabled={!toEdit}
                       type="file"
@@ -342,27 +345,31 @@ function TailorProfileScreen() {
                     />
                     <div
                       style={{
-                        position: "relative",
-                        height: "100%",
-                        width: "100%",
+                        position: 'relative',
+                        height: '100%',
+                        width: '100%',
                       }}
                     >
                       <img
                         className="image_container"
                         style={{
-                          height: "80pt",
-                          width: "80pt",
+                          height: '80pt',
+                          width: '80pt',
                         }}
                         src={
-                          profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy
+                          profileImage
+                            ? URL.createObjectURL(profileImage)
+                            : profile.avatar
+                            ? assetsURL(profile.avatar)
+                            : dummy
                         }
                       />
                       {toEdit ? (
                         <AddPhotoAlternateIcon
                           sx={{
-                            position: "absolute",
-                            right: "-4pt",
-                            top: "50pt",
+                            position: 'absolute',
+                            right: '-4pt',
+                            top: '50pt',
                           }}
                         />
                       ) : (
@@ -371,46 +378,54 @@ function TailorProfileScreen() {
                     </div>
                   </label>
                 </div>
-                <p className="tailor_profile_screen_row1_column1_user_name_text">{profile.name}</p>
+                <p className="tailor_profile_screen_row1_column1_user_name_text">
+                  {profile.name}
+                </p>
               </div>
               <div className="tailor_profile_screen_row1_column2">
                 <ProfileInput
                   disabled={!toEdit}
                   name="Phone"
-                  placeholder={t("Phone")}
+                  placeholder={t('Phone')}
                   defaultValue={profile.phone}
                   img={ProfilePhoneSVG}
                   divStyle={{
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
+                    borderTopLeftRadius: '10px',
+                    borderTopRightRadius: '10px',
                   }}
                   minmax="on"
-                  onChange={(e) => _setState("phone", e.target.value)}
+                  onChange={(e) => _setState('phone', e.target.value)}
                 />
-                <ProfileInput disabled name="Email" placeholder={t("Email")} defaultValue={profile.email} img={ProfileEmailSVG} />
+                <ProfileInput
+                  disabled
+                  name="Email"
+                  placeholder={t('Email')}
+                  defaultValue={profile.email}
+                  img={ProfileEmailSVG}
+                />
                 <CustomDatePicker
                   disabled={!toEdit}
                   disableFuture
                   labelStyle={{
-                    display: "none",
+                    display: 'none',
                   }}
                   labelText="Date of Birth"
                   value={dateOfBirth}
                   onChange={setDateOfBirth}
                   divStyle={{
-                    width: "95%",
-                    marginTop: "2%",
+                    width: '95%',
+                    marginTop: '2%',
                   }}
                 />
-                <div style={{ width: "95%" }}>
+                <div style={{ width: '95%' }}>
                   <AutoComplete
                     disabled={!toEdit}
                     name="Address"
                     required={true}
-                    label={"Address"}
+                    label={'Address'}
                     value={address?.label}
                     options={addresses}
-                    placeholder={t("Address")}
+                    placeholder={t('Address')}
                     onChangeAddress={(e) => {
                       handleInputAddress(e);
                     }}
@@ -423,67 +438,73 @@ function TailorProfileScreen() {
                 <ProfileInput
                   disabled
                   name="Last Password Changed"
-                  placeholder={t("Last Password Changed")}
+                  placeholder={t('Last Password Changed')}
                   defaultValue={
-                    profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString("en-GB") : "N/A"
+                    profile.last_password_changed
+                      ? new Date(
+                          profile.last_password_changed
+                        ).toLocaleDateString('en-GB')
+                      : 'N/A'
                   }
-                  label={t("Last Password Changed")}
+                  label={t('Last Password Changed')}
                   divStyle={{
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
+                    borderTopLeftRadius: '10px',
+                    borderTopRightRadius: '10px',
                   }}
                 />
                 <ProfileInput
                   disabled={!toEdit}
                   name="Password"
                   placeholder="**********"
-                  label={t("Password")}
-                  onChange={(e) => _setState("password", e.target.value)}
+                  label={t('Password')}
+                  onChange={(e) => _setState('password', e.target.value)}
                 />
                 <ProfileInput
                   disabled
                   name="Account Created"
-                  placeholder={t("Account Created")}
-                  defaultValue={new Date(profile.createdAt).toLocaleDateString("en-GB")}
-                  label={t("Account Created")}
+                  placeholder={t('Account Created')}
+                  defaultValue={new Date(profile.createdAt).toLocaleDateString(
+                    'en-GB'
+                  )}
+                  label={t('Account Created')}
                   divStyle={{
-                    borderBottomLeftRadius: "10px",
-                    borderBottomRightRadius: "10px",
-                    marginBottom: "3%",
+                    borderBottomLeftRadius: '10px',
+                    borderBottomRightRadius: '10px',
+                    marginBottom: '3%',
                   }}
                 />
                 <ProfileInput
                   disabled={!toEdit}
                   name="Experience"
-                  placeholder={t("Experience")}
+                  placeholder={t('Experience')}
                   defaultValue={profile.experience}
-                  label={t("Experience")}
+                  label={t('Experience')}
                   divStyle={{
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
+                    borderTopLeftRadius: '10px',
+                    borderTopRightRadius: '10px',
                   }}
-                  onChange={(e) => _setState("experience", e.target.value)}
+                  onChange={(e) => _setState('experience', e.target.value)}
                 />
                 <ProfileInput
                   disabled={!toEdit}
                   name="Diploma"
-                  placeholder={t("Diploma")}
+                  placeholder={t('Diploma')}
                   defaultValue={profile.diploma}
-                  label={t("Diploma")}
-                  onChange={(e) => _setState("diploma", e.target.value)}
+                  label={t('Diploma')}
+                  onChange={(e) => _setState('diploma', e.target.value)}
                 />
                 <ProfileInput
                   disabled={!toEdit}
                   name="Store Name"
-                  placeholder={t("Store Name")}
+                  placeholder={t('Store Name')}
                   defaultValue={profile.store_name}
-                  label={t("Store Name")}
+                  label={t('Store Name')}
                   divStyle={{
-                    borderBottomLeftRadius: "10px",
-                    borderBottomRightRadius: "10px",
-                    marginBottom: "3%",
+                    borderBottomLeftRadius: '10px',
+                    borderBottomRightRadius: '10px',
+                    marginBottom: '3%',
                   }}
-                  onChange={(e) => _setState("store_name", e.target.value)}
+                  onChange={(e) => _setState('store_name', e.target.value)}
                 />
               </div>
             </div>
@@ -498,29 +519,29 @@ function TailorProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Fixed price"
-                    alignText={"textend"}
-                    placeholder={t("Certain Amount")}
-                    label={t("Fixed price")}
+                    alignText={'textend'}
+                    placeholder={t('Certain Amount')}
+                    label={t('Fixed price')}
                     divStyle={{
-                      borderTopLeftRadius: "10px",
-                      borderTopRightRadius: "10px",
-                      padding: "1.0% 0",
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
+                      padding: '1.0% 0',
                     }}
                   />
                   <ProfileInput
                     disabled={!toEdit}
                     name="Any Confection"
-                    alignText={"textend"}
+                    alignText={'textend'}
                     placeholder="€120"
                     defaultValue={profile.hourly_rate}
-                    label={t("Any Confection")}
+                    label={t('Any Confection')}
                     inputType="number"
                     divStyle={{
-                      borderBottomLeftRadius: "10px",
-                      borderBottomRightRadius: "10px",
-                      padding: "1.0% 0",
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
+                      padding: '1.0% 0',
                     }}
-                    onChange={(e) => _setState("hourly_rate", e.target.value)}
+                    onChange={(e) => _setState('hourly_rate', e.target.value)}
                   />
                 </div>
               </div>
@@ -534,39 +555,44 @@ function TailorProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Free Shipping"
-                    alignText={"textend"}
-                    placeholder={t("Certain Amount")}
-                    label={t("Free Shipping")}
+                    alignText={'textend'}
+                    placeholder={t('Certain Amount')}
+                    label={t('Free Shipping')}
                     divStyle={{
-                      borderTopLeftRadius: "10px",
-                      borderTopRightRadius: "10px",
-                      padding: "1.0% 0",
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
+                      padding: '1.0% 0',
                     }}
-                    sx={{ textAlign: "end" }}
+                    sx={{ textAlign: 'end' }}
                   />
                   <ProfileInput
                     disabled={!toEdit}
                     name="Confection"
-                    alignText={"textend"}
+                    alignText={'textend'}
                     placeholder="€500"
                     defaultValue={profile.free_shipping_rate}
                     label="Confection"
                     inputType="number"
                     divStyle={{
-                      borderBottomLeftRadius: "10px",
-                      borderBottomRightRadius: "10px",
-                      padding: "1.0% 0",
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
+                      padding: '1.0% 0',
                     }}
-                    onChange={(e) => _setState("free_shipping_rate", e.target.value)}
+                    onChange={(e) =>
+                      _setState('free_shipping_rate', e.target.value)
+                    }
                   />
                 </div>
               </div>
             </div>
-            <div className="tailor_profile_screen_row3" style={{ height: "20%" }}>
+            <div
+              className="tailor_profile_screen_row3"
+              style={{ height: '20%' }}
+            >
               <p
                 className="tailor_profile_screen_row3_text"
                 style={{
-                  marginRight: "2%",
+                  marginRight: '2%',
                 }}
               >
                 Catalogue
@@ -577,9 +603,9 @@ function TailorProfileScreen() {
                   <CatalogListTile
                     catalog={_}
                     mainDivStyle={{
-                      width: "160pt",
+                      width: '160pt',
                     }}
-                    buttonText={t("Edit")}
+                    buttonText={t('Edit')}
                     onClick={() => navToViewCatalog(_._id)}
                     onClickButton={() => navToEditCatalog(_._id)}
                   />
@@ -616,30 +642,34 @@ function ProfileInput({
     >
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }}
       >
         <input
           disabled={disabled}
           // className="tps_profile_input_input"
-          className={alignText == "textend" ? "tps_profile_input_text_end" : "tps_profile_input_input"}
+          className={
+            alignText == 'textend'
+              ? 'tps_profile_input_text_end'
+              : 'tps_profile_input_input'
+          }
           name={name}
           onChange={onChange}
           placeholder={placeholder}
-          maxlength={minmax === "on" && "10"}
+          maxlength={minmax === 'on' && '10'}
           defaultValue={defaultValue}
           type={inputType}
         />
         {label ? (
           <p
             style={{
-              fontSize: "12px",
-              fontWeight: "500",
-              position: "absolute",
-              left: "2%",
-              top: "1%",
+              fontSize: '12px',
+              fontWeight: '500',
+              position: 'absolute',
+              left: '2%',
+              top: '1%',
             }}
           >
             {label}
@@ -648,10 +678,10 @@ function ProfileInput({
           <img
             src={img}
             style={{
-              width: "16px",
-              position: "absolute",
-              left: "2%",
-              top: "1%",
+              width: '16px',
+              position: 'absolute',
+              left: '2%',
+              top: '1%',
             }}
           />
         )}
@@ -664,16 +694,19 @@ function AddCatalogListTile() {
   const navigate = useNavigate();
 
   const navToCreateCatalog = () => {
-    navigate("/create_catalog");
+    navigate('/create_catalog');
   };
   const { t } = useTranslation();
 
   return (
-    <div className="new_order_list_tile tailor-new_order_list_tile" onClick={navToCreateCatalog}>
+    <div
+      className="new_order_list_tile tailor-new_order_list_tile"
+      onClick={navToCreateCatalog}
+    >
       <div className="new_order_list_tile_img">
-        <img style={{ width: "40%" }} src={AddCatalogSVG} />
+        <img style={{ width: '40%' }} src={AddCatalogSVG} />
       </div>
-      <p className="new_order_list_tile_text">{t("Add Catalogue")}</p>
+      <p className="new_order_list_tile_text">{t('Add Catalogue')}</p>
     </div>
   );
 }

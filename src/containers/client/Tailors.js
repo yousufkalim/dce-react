@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import UserSVG from "../../assets/dummy.jpeg";
-import { useTranslation } from "react-i18next";
+import UserSVG from '../../assets/dummy.jpeg';
+import { useTranslation } from 'react-i18next';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
-import Rating from "@mui/material/Rating";
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
+import Rating from '@mui/material/Rating';
 
-import dummy from "../../assets/dummy.jpeg";
+import dummy from '../../assets/dummy.jpeg';
 
-import { useNavigate } from "react-router-dom";
-import CustomButton from "../../components/CustomButton";
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
+import { useNavigate } from 'react-router-dom';
+import CustomButton from '../../components/CustomButton';
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
 
-import assetsURL from "../../utils/Assets";
-import { calculateRating, calculateRatingsCount } from "../../utils/Helpers";
+import assetsURL from '../../utils/Assets';
+import { calculateRating, calculateRatingsCount } from '../../utils/Helpers';
+import { Store, UpdateStore } from '../../StoreContext';
 
-import star from "../../assets/star.svg";
+import star from '../../assets/star.svg';
 
 function ClientTailorsScreen() {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ function ClientTailorsScreen() {
   const getTailors = async () => {
     let response;
     try {
-      response = await Api("get", `/tailors`);
+      response = await Api('get', `/tailors`);
       const tailorsData = response.data.users;
       setTailors(tailorsData);
       setIsLoading(false);
@@ -50,12 +51,15 @@ function ClientTailorsScreen() {
           className="client_orders_screen_top"
           style={{
             background:
-              "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+              'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
           <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text" style={{ paddingLeft: "3%" }}>
-              {t("Designers")}
+            <p
+              className="client_orders_screen_row1_text"
+              style={{ paddingLeft: '3%' }}
+            >
+              {t('Designers')}
             </p>
           </div>
           <div className="client_orders_screen_row2">
@@ -72,6 +76,8 @@ function ClientTailorsScreen() {
 
 function TailorListTile(props) {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const rating = calculateRating(props.ratings);
   const ratingsCount = calculateRatingsCount(props.ratings);
@@ -83,6 +89,10 @@ function TailorListTile(props) {
   };
 
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: props } });
   };
 
@@ -93,15 +103,15 @@ function TailorListTile(props) {
           <div
             className="cds_tailor_list_tile_column1_img"
             style={{
-              paddingBottom: "5%",
+              paddingBottom: '5%',
             }}
           >
             <img
               className="image_container"
               style={{
-                height: "80pt",
-                width: "80pt",
-                cursor: "pointer",
+                height: '80pt',
+                width: '80pt',
+                cursor: 'pointer',
               }}
               src={props.avatar ? assetsURL(props.avatar) : dummy}
               onClick={navToViewTailor}
@@ -111,15 +121,15 @@ function TailorListTile(props) {
         <div className="cds_tailor_list_tile_column1">
           <p
             style={{
-              fontSize: "16px",
-              fontWeight: "bold",
-              color: "#CC8E9C",
-              paddingBottom: "5%",
+              fontSize: '16px',
+              fontWeight: 'bold',
+              color: '#CC8E9C',
+              paddingBottom: '5%',
             }}
           >
             {props.name}
           </p>
-          <p style={{ fontSize: "10px", fontWeight: "200", color: "#A0A0A0" }}>
+          <p style={{ fontSize: '10px', fontWeight: '200', color: '#A0A0A0' }}>
             {props.city}, {props.country}
           </p>
         </div>
@@ -146,7 +156,11 @@ function TailorListTile(props) {
           </div> */}
         </div>
         <div className="cds_tailor_list_tile_column1">
-          <CustomButton text={t("Chat Here")} style={{ borderRadius: "20px" }} onClick={navToChat} />
+          <CustomButton
+            text={t('Chat Here')}
+            style={{ borderRadius: '20px' }}
+            onClick={navToChat}
+          />
         </div>
       </div>
     </>

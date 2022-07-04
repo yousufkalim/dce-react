@@ -1,13 +1,13 @@
-import React from "react";
-import UserSVG from "../../assets/dummy.jpeg";
-import WritingSVG from "../../assets/writing.svg";
+import React from 'react';
+import UserSVG from '../../assets/dummy.jpeg';
+import WritingSVG from '../../assets/writing.svg';
 
-import { Store, UpdateStore } from "../../StoreContext";
-import { getUser } from "../../utils/Auth";
-import { useTranslation } from "react-i18next";
+import { Store, UpdateStore } from '../../StoreContext';
+import { getUser } from '../../utils/Auth';
+import { useTranslation } from 'react-i18next';
 
-import Api from "../../api/index";
-import assetsURL from "../../utils/Assets";
+import Api from '../../api/index';
+import assetsURL from '../../utils/Assets';
 
 const ConversationsContainer = (props) => {
   const store = Store();
@@ -29,9 +29,9 @@ const ConversationListTile = (props) => {
   const updateStore = UpdateStore();
 
   const getReceiver = () => {
-    if (user.role == "client") {
+    if (user.role == 'client') {
       return props.tailor ?? {};
-    } else if (user.role == "tailor") {
+    } else if (user.role == 'tailor') {
       return props.client ?? {};
     } else {
       return {};
@@ -41,19 +41,23 @@ const ConversationListTile = (props) => {
   const user = getUser();
   const receiver = getReceiver();
 
-  const receiverCheckIn = receiver.check_in ? new Date(receiver.check_in) : null;
-  const receiverCheckOut = receiver.check_out ? new Date(receiver.check_out) : null;
+  const receiverCheckIn = receiver.check_in
+    ? new Date(receiver.check_in)
+    : null;
+  const receiverCheckOut = receiver.check_out
+    ? new Date(receiver.check_out)
+    : null;
 
   if (receiverCheckIn && receiverCheckOut) {
-    receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
+    receiver.status = receiverCheckIn > receiverCheckOut ? 'online' : 'offline';
   } else {
-    receiver.status = "online";
+    receiver.status = 'online';
   }
 
   const handleSelect = async () => {
     let response;
     try {
-      response = await Api("post", `/messages/byQuery`, {
+      response = await Api('post', `/messages/byQuery`, {
         chat: props._id,
       });
       const messagesData = response.data.messages;
@@ -71,17 +75,17 @@ const ConversationListTile = (props) => {
     <>
       <div
         style={{
-          padding: "24px",
-          background: "#ffffff",
-          borderRadius: "10px",
-          marginBottom: "10px",
-          cursor: "pointer",
+          padding: '24px',
+          background: '#ffffff',
+          borderRadius: '10px',
+          marginBottom: '10px',
+          cursor: 'pointer',
         }}
         onClick={handleSelect}
       >
         <div className="parent">
           <div className="card-user">
-            {props.status === "online" ? (
+            {props.status === 'online' ? (
               <div className="online">
                 <div className="online-white">
                   <div className="online-green"> </div>
@@ -91,22 +95,28 @@ const ConversationListTile = (props) => {
             <img
               className="image_container"
               style={{
-                height: "50pt",
-                width: "50pt",
-                marginRight: "20px",
+                height: '50pt',
+                width: '50pt',
+                marginRight: '20px',
               }}
               src={receiver.avatar ? assetsURL(receiver.avatar) : UserSVG}
             />
             <div className="name-status">
-              <strong className="user-name">{receiver.name ? receiver.name : props.is_admin ? "Admin" : "N/A"}</strong>
+              <strong className="user-name">
+                {receiver.name
+                  ? receiver.name
+                  : props.is_admin
+                  ? 'Admin'
+                  : 'N/A'}
+              </strong>
               <div className="status-cont">
                 <p
                   style={{
-                    color: receiver.status == "online" ? "#149E7A" : "#cc8e9c",
+                    color: receiver.status == 'online' ? '#149E7A' : '#cc8e9c',
                   }}
                   className="status"
                 >
-                  {t(receiver.status)}{" "}
+                  {t(receiver.status)}{' '}
                 </p>
               </div>
             </div>
@@ -114,9 +124,14 @@ const ConversationListTile = (props) => {
           <p className="time"> {receiver.time}</p>
         </div>
         <div className="user-detail-parent">
-          <p className="user-detail">{props.last_message?.content ?? "N/A"}</p>
-          {(user.role == "client" && props.client_unread_messages) || (user.role == "tailor" && props.tailor_unread_messages) ? (
-            <div className="dot">{user.role == "client" ? props.client_unread_messages : props.tailor_unread_messages}</div>
+          <p className="user-detail">{props.last_message?.content ?? 'N/A'}</p>
+          {(user.role == 'client' && props.client_unread_messages) ||
+          (user.role == 'tailor' && props.tailor_unread_messages) ? (
+            <div className="dot">
+              {user.role == 'client'
+                ? props.client_unread_messages
+                : props.tailor_unread_messages}
+            </div>
           ) : (
             <></>
           )}

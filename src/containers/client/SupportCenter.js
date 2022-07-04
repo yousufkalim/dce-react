@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import TailorAppBar from "../../components/TailorAppBar";
-import NoOrders from "../../components/NoOrders";
-import dummy from "../../assets/dummy.jpeg";
-import { useTranslation } from "react-i18next";
-import Footer from "../../components/Footer";
+import React, { useState, useEffect } from 'react';
+import TailorAppBar from '../../components/TailorAppBar';
+import NoOrders from '../../components/NoOrders';
+import dummy from '../../assets/dummy.jpeg';
+import { useTranslation } from 'react-i18next';
+import Footer from '../../components/Footer';
 
-import { useNavigate } from "react-router-dom";
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
-import assetsURL from "../../utils/Assets";
+import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
+import assetsURL from '../../utils/Assets';
 
 function ClientSupportCenterScreen() {
   const { t } = useTranslation();
@@ -24,7 +24,7 @@ function ClientSupportCenterScreen() {
   const getSupportOrders = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, {
+      response = await Api('post', `/orders/byQuery`, {
         client: user._id,
         client_support: true,
       });
@@ -42,21 +42,25 @@ function ClientSupportCenterScreen() {
       <div
         className="client_orders_screen_top"
         style={{
-          background: "linear-gradient(to right, #EEEEEE , #FDF3EA)",
+          background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
         }}
       >
         <div className="thiw_qna_standard_screen_row1">
-          <h1 className="supportheading">{t("Support Center")}</h1>
+          <h1 className="supportheading">{t('Support Center')}</h1>
           <p className="suppordesc">
             {t(
-              "In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen."
+              'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.'
             )}
           </p>
         </div>
         {supportOrders.map((_) => (
           <SupportListTile {..._} />
         ))}
-        {supportOrders.length == 0 ? <NoOrders RenderText="No Support Orders" /> : <></>}
+        {supportOrders.length == 0 ? (
+          <NoOrders RenderText="No Support Orders" />
+        ) : (
+          <></>
+        )}
       </div>
       <Footer />
     </div>
@@ -69,13 +73,16 @@ function SupportListTile(props) {
   const navigate = useNavigate();
 
   const navToChat = () => {
-    navigate("/chat");
+    navigate('/chat');
   };
 
   return (
     <div className="supportmainDiv">
       <div className="supportcol1">
-        <img src={props.tailor.avatar ? assetsURL(props.tailor.avatar) : dummy} style={{ width: "10%", padding: "25px 25px" }} />
+        <img
+          src={props.tailor.avatar ? assetsURL(props.tailor.avatar) : dummy}
+          style={{ width: '10%', padding: '25px 25px' }}
+        />
         <div className="supportName">
           <h3 className="supportnameh3">{props.name}</h3>
         </div>
@@ -83,11 +90,11 @@ function SupportListTile(props) {
           <button
             className="chatBtn"
             style={{
-              cursor: "pointer",
+              cursor: 'pointer',
             }}
             onClick={navToChat}
           >
-            {t("Chat With Us")}
+            {t('Chat With Us')}
           </button>
         </div>
       </div>

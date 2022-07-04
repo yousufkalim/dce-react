@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import AppLogoSVG from "../../assets/AppLogo.svg";
-import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
+import AppLogoSVG from '../../assets/AppLogo.svg';
+import DesignElaborationSVG from '../../assets/DesignElaboration.svg';
 
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
-import { useNavigate, useParams } from "react-router-dom";
-import Api from "../../api/index";
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
+import { useNavigate, useParams } from 'react-router-dom';
+import Api from '../../api/index';
 
-import { toast } from "react-toastify";
-import { useTranslation } from "react-i18next";
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 function ResetPasswordScreen() {
   const { t } = useTranslation();
@@ -23,10 +23,10 @@ function ResetPasswordScreen() {
 
   const verifyToken = async () => {
     try {
-      await Api("get", `/clients/verify-token/${token}`);
+      await Api('get', `/clients/verify-token/${token}`);
     } catch (err) {
-      toast.error("Link has been expired");
-      navigate("/login");
+      toast.error('Link has been expired');
+      navigate('/login');
     }
   };
 
@@ -43,27 +43,27 @@ function ResetPasswordScreen() {
   };
 
   const handleSubmit = async (e) => {
-    console.log("check", passwords.password, passwords.confirmPassword);
+    console.log('check', passwords.password, passwords.confirmPassword);
     e.preventDefault();
     const { password, confirmPassword } = passwords;
 
     if (password !== confirmPassword) {
-      return toast.error("Password and confirm password are not same");
+      return toast.error('Password and confirm password are not same');
     } else if (password.length < 8) {
-      return toast.error("Password should be minimum 8 characters long");
+      return toast.error('Password should be minimum 8 characters long');
     }
 
-    let res = await Api("put", `/clients/reset-password/${token}`, {
+    let res = await Api('put', `/clients/reset-password/${token}`, {
       password,
     });
     if (res) {
-      toast.success("Password changed successfully, Please login to continue.");
+      toast.success('Password changed successfully, Please login to continue.');
     }
     setPasswords({
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     });
-    navigate("/login");
+    navigate('/login');
   };
   return (
     <>
@@ -72,50 +72,50 @@ function ResetPasswordScreen() {
           className="container"
           style={{
             background:
-              "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+              'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
           <div className="login_screen_top">
             <div className="login_screen_row1">
               <div className="login_screen_row1_img">
                 <img
-                  style={{ width: "35%", marginBottom: "5%" }}
+                  style={{ width: '35%', marginBottom: '5%' }}
                   src={AppLogoSVG}
                 />
               </div>
               <div className="login_screen_row1_img">
-                <img style={{ width: "70%" }} src={DesignElaborationSVG} />
+                <img style={{ width: '70%' }} src={DesignElaborationSVG} />
               </div>
             </div>
             <div className="login_screen_row2">
               <div className="login_screen_row2_container">
                 <div
                   style={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                   }}
                 >
                   <p
                     style={{
-                      fontSize: "16px",
-                      color: "#CC8E9C",
-                      fontWeight: "600",
-                      marginBottom: "4%",
+                      fontSize: '16px',
+                      color: '#CC8E9C',
+                      fontWeight: '600',
+                      marginBottom: '4%',
                     }}
                   >
-                    {t("Reset Password")}
+                    {t('Reset Password')}
                   </p>
                   <p
                     style={{
-                      fontSize: "11px",
-                      color: "#A0A0A0",
-                      marginBottom: "10%",
+                      fontSize: '11px',
+                      color: '#A0A0A0',
+                      marginBottom: '10%',
                     }}
                   >
-                    {t("Set up your new Password & Login")}
+                    {t('Set up your new Password & Login')}
                   </p>
                 </div>
                 <CustomInput
-                  labelText={t("Password")}
+                  labelText={t('Password')}
                   inputType="password"
                   inputName="password"
                   inputPlaceholder="********"
@@ -123,11 +123,11 @@ function ResetPasswordScreen() {
                   value={passwords.password}
                   onChange={handleInput}
                   divStyle={{
-                    marginBottom: "12%",
+                    marginBottom: '12%',
                   }}
                 />
                 <CustomInput
-                  labelText={t("Password")}
+                  labelText={t('Password')}
                   inputType="password"
                   inputName="confirmPassword"
                   value={passwords.confirmPassword}
@@ -135,16 +135,16 @@ function ResetPasswordScreen() {
                   enableEyes={true}
                   onChange={handleInput}
                   divStyle={{
-                    marginBottom: "12%",
+                    marginBottom: '12%',
                   }}
                 />
 
                 <CustomButton
-                  text={t("Change Password")}
+                  text={t('Change Password')}
                   type="submit"
                   onClick={handleSubmit}
                   style={{
-                    marginBottom: "10%",
+                    marginBottom: '10%',
                   }}
                 />
               </div>

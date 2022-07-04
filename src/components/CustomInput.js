@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import InputEyeSVG from "../assets/InputEye.svg";
+import React, { useState } from 'react';
+import InputEyeSVG from '../assets/InputEye.svg';
 
 function CustomInput({
   labelText,
@@ -42,15 +42,23 @@ function CustomInput({
       </label>
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }}
       >
         <input
           disabled={disabled}
           ref={ref}
-          type={enableEyes ? (!isPasswordVisible ? "password" : "text") : inputType ? inputType : "text"}
+          type={
+            enableEyes
+              ? !isPasswordVisible
+                ? 'password'
+                : 'text'
+              : inputType
+              ? inputType
+              : 'text'
+          }
           name={inputName}
           accept={accept}
           onChange={onChange}
@@ -68,9 +76,9 @@ function CustomInput({
             onClick={handlePasswordVisible}
             src={InputEyeSVG}
             style={{
-              position: "absolute",
-              right: "10px",
-              top: "12px",
+              position: 'absolute',
+              right: '10px',
+              top: '12px',
             }}
           />
         ) : (
