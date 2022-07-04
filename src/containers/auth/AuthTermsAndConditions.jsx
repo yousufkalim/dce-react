@@ -1,26 +1,25 @@
 import React from 'react';
-import AuthAppbar from '../../components/AuthAppBar';
 import { useTranslation } from 'react-i18next';
-import Terms from '../../assets/terms.png';
 import { Link } from 'react-router-dom';
+import AuthAppbar from '../../components/AuthAppBar';
+import Terms from '../../assets/terms.png';
 import Facebok from '../../assets/facebook.png';
 import FooterLogo from '../../assets/FooterLogo.svg';
-import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
 
-const AuthTermsAndConditions = () => {
+function AuthTermsAndConditions() {
   const { t } = useTranslation();
 
   return (
     <div>
       <AuthAppbar />
       <div
-        className='client_orders_screen_top'
+        className="client_orders_screen_top"
         style={{
           background: 'linear-gradient(to right, #EEEEEE , #F7F4ED)',
         }}
       >
-        <div className='thiw_qna_standard_screen_row1'>
+        <div className="thiw_qna_standard_screen_row1">
           <p
             style={{
               fontSize: '23px',
@@ -31,7 +30,7 @@ const AuthTermsAndConditions = () => {
             {t('Terms & Conditions')}
           </p>
         </div>
-        <div className='thiw_qna_standard_screen_row2'>
+        <div className="thiw_qna_standard_screen_row2">
           <QNAStandardListTile
             question={t('General informations')}
             answers={[
@@ -104,28 +103,28 @@ const AuthTermsAndConditions = () => {
             ]}
           />
         </div>
-        <img src={Terms} className='termsimg' />
+        <img src={Terms} className="termsimg" />
       </div>
       <>
         {/* footer start  */}
 
-        <div class='footer_section_main' id='animation_dec'>
-          <div className='footer_center_section'>
+        <div class="footer_section_main" id="animation_dec">
+          <div className="footer_center_section">
             <img src={FooterLogo} />
             <div>
-              <Link style={{ textDecoration: 'none' }} to='/terms_conditions'>
+              <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
                 {' '}
-                <span className='card_text_support card_text_support2'>Terms & Conditions</span>
+                <span className="card_text_support card_text_support2">Terms & Conditions</span>
               </Link>
             </div>
-            <div className='footer_text-last'>
+            <div className="footer_text-last">
               <div>
-                <h4 className='footer_text_last_p'>
+                <h4 className="footer_text_last_p">
                   © 2022 <span style={{ color: '#CC8E9C' }}>Design Confection Ethiques,</span> Developed by{' '}
                   <span style={{ color: '#0085FF' }}>Falcon Consulting.</span> All rights reserved.
                 </h4>
               </div>
-              <div className='footer_incons_main' style={{ color: 'white' }}>
+              <div className="footer_incons_main" style={{ color: 'white' }}>
                 <img src={facebook} />
                 <img src={instagram} />
               </div>
@@ -136,11 +135,11 @@ const AuthTermsAndConditions = () => {
       </>
     </div>
   );
-};
+}
 
 function QNAStandardListTile({ question, answers }) {
   return (
-    <div className='thiw_qna_standard_list_tile_container'>
+    <div className="thiw_qna_standard_list_tile_container">
       <p
         style={{
           fontSize: '16px',

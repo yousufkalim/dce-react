@@ -62,7 +62,7 @@ function AuthAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src={AppLogoSVG} className="auth_appbar_row1_img" />
+            <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
