@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 // import AuthAppBar from '../../components/AuthAppBar';
-import AuthAppBar from '../../components/AuthAppBar';
 // Router
 import { Link } from 'react-router-dom';
-
 //  translation
 import { useTranslation } from 'react-i18next';
+import AuthAppBar from '../../components/AuthAppBar';
+
 // assets
 import Landinghero from '../../assets/Landinghero.png';
 import addpost from '../../assets/addpost.png';
@@ -120,7 +120,7 @@ const Landing = () => {
               <h4>{t('Hire The Best Designers For Your Confection')}</h4>
               <p>
                 {t(
-                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam'
+                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam',
                 )}
               </p>
 

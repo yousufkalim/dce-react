@@ -103,7 +103,7 @@ function AuthTermsAndConditions() {
             ]}
           />
         </div>
-        <img src={Terms} className="termsimg" />
+        <img src={Terms} alt="term" className="termsimg" />
       </div>
 
       {/* footer start  */}
@@ -120,8 +120,9 @@ function AuthTermsAndConditions() {
           <div className="footer_text-last">
             <div>
               <h4 className="footer_text_last_p">
-                © 2022 <span style={{ color: '#CC8E9C' }}>Design Confection Ethiques,</span> Developed by{' '}
-                <span style={{ color: '#0085FF' }}>Falcon Consulting.</span> All rights reserved.
+                © 2022
+                <span style={{ color: '#CC8E9C' }}>Design Confection Ethiques,</span>
+                All rights reserved
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
