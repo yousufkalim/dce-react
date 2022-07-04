@@ -302,7 +302,7 @@ const Landing = () => {
             <div>
               <h4 className="footer_text_last_p">
                 © 2022 <span style={{ color: "#CC8E9C" }}>Design Confection Ethiques,</span> Developed by{" "}
-                <span style={{ color: "#0085FF" }}>Falcon Consulting.</span> All rights reserved.
+                <span style={{ color: "#0085FF" }}>Falcon Consulting.</span> All rights reserved..
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: "white" }}>
