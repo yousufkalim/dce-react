@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AuthAppbar from '../../components/AuthAppBar';
 import Terms from '../../assets/terms.png';
-import Facebok from '../../assets/facebook.png';
 import FooterLogo from '../../assets/FooterLogo.svg';
 import instagram from '../../assets/instagram.png';
 
@@ -37,6 +36,7 @@ function AuthTermsAndConditions() {
               t(
                 'Design CONFECTIONS ETHIQUES is an online platform (with free registration) allowing independent designers to unearth their customers in whole or in part'
               ),
+
               t(
                 'Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new clients, with natural persons (individuals) and/or legal persons (companies) looking for a service: tailor-made tailoring clothing, decorative items or linens or any other creations '
               ),

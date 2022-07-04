@@ -97,7 +97,7 @@ function AuthAppBar() {
             >
               {maniNavData.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography onClick={(e) => console.log(e, '--e')} textAlign="center" className="auth_appbar_menus">
+                  <Typography textAlign="center" className="auth_appbar_menus">
                     {t(page)}
                   </Typography>
                 </MenuItem>
