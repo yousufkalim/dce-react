@@ -16,16 +16,13 @@ import AppLogoSVG from '../assets/AppLogo.svg';
 function AuthAppBar() {
   const { t } = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const maniNavData = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
   return (
     <AppBar position='fixed' className='auth_appbar_main'>
