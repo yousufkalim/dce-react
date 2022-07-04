@@ -116,7 +116,7 @@ const Landing = () => {
           <div className="landing_hero_section_info">
             <div className="landing_hero_section_info_heading">
               <h3>{t("Welcome to the Design Confection Ethiques")}</h3>
-              <h4> Hire The Best Designers For Your Confection</h4>
+              <h4>{t("Hire The Best Designers For Your Confection")}</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
                 veniam,

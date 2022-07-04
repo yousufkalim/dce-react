@@ -14,8 +14,8 @@ i18n
           //--- -------------------------------------------------------Client-------------------------------------------------------
 
           // landing page
-          "Welcome to the Design Confection Ethiques": "Welcome to the Design Confection Ethiques,",
-
+          "Welcome to the Design Confection Ethiques": "Welcome to the Design Confection Ethiques",
+          "Hire The Best Designers For Your Confection": "Hire The Best Designers For Your Confection",
           // client home
           "Submit your idea,": "Submit your idea,",
           "We make it real,": "We make it real,",
@@ -561,7 +561,7 @@ i18n
 
           // landing page
           "Welcome to the Design Confection Ethiques": "Bienvenue à l'éthique de la conception de la confection,",
-
+          "Hire The Best Designers For Your Confection": "Engagez les meilleurs designers pour votre confection",
           // client home
           "Submit your idea,": "Vous avez une idée de confection couture ? DÉPOSER VOTRE PROJET",
           "We make it real,": "nous la concrétisons !",
