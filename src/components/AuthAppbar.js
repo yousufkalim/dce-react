@@ -8,30 +8,24 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-
 import MenuItem from '@mui/material/MenuItem';
-
 import { useTranslation } from 'react-i18next';
-
 // route
 import { Link } from 'react-router-dom';
 // assets
-import AppLogoSVG from '../assets/AppLogo.svg';
-const pages = ['Why DCE', 'How Its Work'];
-const settings = [''];
 
-const AuthAppbar = () => {
+import AppLogoSVG from '../assets/AppLogo.svg';
+const AuthAppBar = () => {
   const { t, i18n } = useTranslation();
-  const { language } = i18n;
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+    // setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -39,7 +33,7 @@ const AuthAppbar = () => {
   };
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    // setAnchorElUser(null);
   };
 
   const maninavdata = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
@@ -125,7 +119,6 @@ const AuthAppbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {/* {pages.map((page) => ( */}
             <a style={{ textDecoration: 'none' }} className='animation_dec' href='#WhyChooseDCE'>
               <Button
                 className='auth_appbar_menus'
@@ -134,7 +127,6 @@ const AuthAppbar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {/* {page} */}
                 {t('Why DCE')}
               </Button>
             </a>
@@ -172,4 +164,4 @@ const AuthAppbar = () => {
     </AppBar>
   );
 };
-export default AuthAppbar;
+export default AuthAppBar;
