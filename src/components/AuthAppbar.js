@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useTranslation } from "react-i18next";
+
 // route
 import { Link } from "react-router-dom";
 // assets
@@ -20,6 +22,9 @@ const pages = ["Why DCE", "How Its Work"];
 const settings = [""];
 
 const AuthAppbar = () => {
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -113,7 +118,7 @@ const AuthAppbar = () => {
               {maninavdata.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography onClick={(e) => console.log(e, "--e")} textAlign="center" className="auth_appbar_menus">
-                    {page}
+                    {t(page)}
                   </Typography>
                 </MenuItem>
               ))}
@@ -131,7 +136,7 @@ const AuthAppbar = () => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {/* {page} */}
-                Why DCE
+                {t("Why DCE")}
               </Button>
             </a>
             <a style={{ textDecoration: "none" }} className="animation_work" href="#FindGreatWork">
@@ -143,7 +148,7 @@ const AuthAppbar = () => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {/* {page} */}
-                How Its Work
+                {t("How Its Work")}
               </Button>
             </a>
 
@@ -153,13 +158,13 @@ const AuthAppbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Link to="/login">
               <Button onClick={handleOpenUserMenu} className="auth_appbar_button_login" sx={{ p: 0 }}>
-                Login
+                {t("Login")}
               </Button>
             </Link>
 
             <Link to="/select_role">
               <Button onClick={handleOpenUserMenu} className="auth_appbar_button_register" sx={{ p: 0 }}>
-                Register
+                {t("Register")}
               </Button>
             </Link>
           </Box>

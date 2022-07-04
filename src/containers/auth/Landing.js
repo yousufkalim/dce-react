@@ -118,18 +118,19 @@ const Landing = () => {
               <h3>{t("Welcome to the Design Confection Ethiques")}</h3>
               <h4>{t("Hire The Best Designers For Your Confection")}</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
-                veniam,
+                {t(
+                  " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam"
+                )}
               </p>
 
               <Link style={{ textDecoration: "none" }} to="/select_role">
-                <button>Hire Design</button>
+                <button>{t("Hire Design")}</button>
               </Link>
               <hr />
               <div className="or">
-                Or{" "}
+                {t("Or")}{" "}
                 <Link to="/select_role">
-                  <span> registered as a Designer</span>
+                  <span> {t("registered as a Designer")}</span>
                 </Link>
               </div>
             </div>
@@ -149,7 +150,7 @@ const Landing = () => {
       <div className="chose_main_section" id="WhyChooseDCE">
         <div className="chose_title_main">
           <div className="chose_title">
-            <h3>Why Choose DCE</h3>
+            <h3>{t("Why Choose DCE")}</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
               veniam,
@@ -164,7 +165,7 @@ const Landing = () => {
               <img src={addpost} alt="addpost." />
             </div>
 
-            <span className="card_title">Post Ads </span>
+            <span className="card_title">{t("Post Ads")} </span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -173,7 +174,7 @@ const Landing = () => {
               <img src={chosedesgin} alt="addpost." />
             </div>
 
-            <span className="card_title">Choose Designer</span>
+            <span className="card_title">{t("Choose Designer")}</span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -182,7 +183,7 @@ const Landing = () => {
               <img src={pay} alt="addpost." />
             </div>
 
-            <span className="card_title">Pay Safely </span>
+            <span className="card_title">{t("Pay Safely")} </span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -191,7 +192,7 @@ const Landing = () => {
               <img src={door} alt="door." />
             </div>
 
-            <span className="card_title">At Your Door Step </span>
+            <span className="card_title">{t("At Your Door Step")} </span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -200,7 +201,7 @@ const Landing = () => {
               <img src={help} alt="help." />
             </div>
 
-            <span className="card_title">We Are Here To Help </span>
+            <span className="card_title">{t("We Are Here To Help")} </span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -215,7 +216,7 @@ const Landing = () => {
           </div>
           <div className="great_work_right">
             <div className="great_work_heading">
-              <h3>Find Great Work </h3>
+              <h3>{t("Find Great Work")} </h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
                 veniam,
@@ -228,7 +229,7 @@ const Landing = () => {
                   <img src={tickicon} />
                 </div>
                 <div className="great_work_Card_inner_info">
-                  <h4>Find opportunities</h4>
+                  <h4>{t("FIND OPPORTUNITIES")}</h4>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
                     nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{" "}
@@ -241,7 +242,7 @@ const Landing = () => {
                 </div>
 
                 <div className="great_work_Card_inner_info">
-                  <h4>Find opportunities</h4>
+                  <h4>{t("Explore Different Ways Earn")}</h4>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
                     nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{" "}
@@ -254,7 +255,7 @@ const Landing = () => {
                 </div>
 
                 <div className="great_work_Card_inner_info">
-                  <h4>Find opportunities</h4>
+                  <h4>{t("CONTROL WHEN, WHERE, AND HOW YOU WORK")}</h4>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
                     nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{" "}
@@ -270,7 +271,7 @@ const Landing = () => {
       {/*Clients Review  start*/}
       <div className="client_main_section">
         <div className="clinet_handing_text">
-          <h3>Clients Review</h3>
+          <h3>{"Clients Review"}</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
             veniam,
@@ -310,14 +311,14 @@ const Landing = () => {
             {" "}
             <Link style={{ textDecoration: "none" }} to="/terms_conditions">
               {" "}
-              <span className="card_text_support card_text_support2">Terms & Conditions</span>
+              <span className="card_text_support card_text_support2">{t("Terms & Conditions")}</span>
             </Link>
           </div>
           <div className="footer_text-last">
             <div>
               <h4 className="footer_text_last_p">
-                © 2022 <span style={{ color: "#CC8E9C" }}>Design Confection Ethiques,</span> Developed by{" "}
-                <span style={{ color: "#0085FF" }}>Falcon Consulting.</span> All rights reserved..
+                © 2022 <span style={{ color: "#CC8E9C" }}>{t("Design Confection Ethiques,")}</span> {t("Developed by")}{" "}
+                <span style={{ color: "#0085FF" }}>{t("Falcon Consulting")}.</span> {t("All rights reserved.")}
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: "white" }}>
