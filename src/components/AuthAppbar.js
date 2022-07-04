@@ -26,7 +26,7 @@ function AuthAppBar() {
     setAnchorElNav(null);
   };
 
-  const maninavdata = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
+  const maniNavData = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
   return (
     <AppBar position='fixed' className='auth_appbar_main'>
       <Container maxWidth='xl'>
@@ -46,7 +46,7 @@ function AuthAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src={AppLogoSVG} className='auth_appbar_row1_img' style={{ marginRight: '5%' }} />
+            <img src={AppLogoSVG} alt='logo' className='auth_appbar_row1_img' style={{ marginRight: '5%' }} />
           </Typography>
 
           <Typography
@@ -98,7 +98,7 @@ function AuthAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {maninavdata.map((page) => (
+              {maniNavData.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography onClick={(e) => console.log(e, '--e')} textAlign='center' className='auth_appbar_menus'>
                     {t(page)}
