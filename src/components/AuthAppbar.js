@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import AppLogoSVG from '../assets/AppLogo.svg';
 
 function AuthAppBar() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
