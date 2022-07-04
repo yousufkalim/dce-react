@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import ClientAppBar from "../../components/ClientAppBar";
-import TailorAppBar from "../../components/TailorAppBar";
-import MessagesContainer from "../../components/Chat/MessagesContainer";
-import ArrowSVG from "../../assets/recentdown.svg";
-import ConversationsContainer from "../../components/Chat/ConversationsContainer";
-import SearchSVG from "../../assets/search.svg";
-import Box from "@mui/material/Box";
-import CustomDropDown from "../../components/CustomDropDown";
-import { useTranslation } from "react-i18next";
+import React, { useState, useEffect } from 'react';
+import ClientAppBar from '../../components/ClientAppBar';
+import TailorAppBar from '../../components/TailorAppBar';
+import MessagesContainer from '../../components/Chat/MessagesContainer';
+import ArrowSVG from '../../assets/recentdown.svg';
+import ConversationsContainer from '../../components/Chat/ConversationsContainer';
+import SearchSVG from '../../assets/search.svg';
+import Box from '@mui/material/Box';
+import CustomDropDown from '../../components/CustomDropDown';
+import { useTranslation } from 'react-i18next';
 
-import { useNavigate, useLocation } from "react-router-dom";
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
-import { toast } from "react-toastify";
-import { Store, UpdateStore } from "../../StoreContext";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
+import { toast } from 'react-toastify';
+import { Store, UpdateStore } from '../../StoreContext';
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
@@ -21,7 +21,7 @@ function useWindowSize() {
     const handleResize = () => {
       setSize([window.innerWidth]);
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
   }, []);
   return size;
 }
@@ -32,7 +32,7 @@ const ChatScreen = () => {
   const [width] = useWindowSize();
   const [mobiletoggle, setMobiletoggle] = useState(false);
   const OpenChat = () => {
-    if (width <= "768") {
+    if (width <= '768') {
       setMobiletoggle(true);
     }
   };
@@ -68,19 +68,22 @@ const ChatScreen = () => {
     try {
       const body = {};
 
-      if (user.role == "client") {
-        body["client"] = user._id;
+      if (user.role == 'client') {
+        body['client'] = user._id;
       } else {
-        body["tailor"] = user._id;
+        body['tailor'] = user._id;
       }
 
-      response = await Api("post", `/chats/byQuery`, body);
+      response = await Api('post', `/chats/byQuery`, body);
       const chatsData = response.data.chats;
       updateStore({
         chats: chatsData,
       });
       if (directUser) {
-        const isDirectUserInvalid = chatsData.some((_) => _.tailor._id == directUser._id || _.client._id == directUser._id);
+        const isDirectUserInvalid = chatsData.some(
+          (_) =>
+            _.tailor._id == directUser._id || _.client._id == directUser._id
+        );
         if (isDirectUserInvalid) {
           setDirectUser(null);
         } else {
@@ -100,7 +103,7 @@ const ChatScreen = () => {
   const getMessages = async (chatID) => {
     let response;
     try {
-      response = await Api("post", `/messages/byQuery`, {
+      response = await Api('post', `/messages/byQuery`, {
         chat: chatID,
       });
       const messagesData = response.data.messages;
@@ -115,31 +118,42 @@ const ChatScreen = () => {
 
   return (
     <>
-      <div style={{ background: "#DFDFDF" }} className="container-page-vertical">
-        {user.role == "client" ? <ClientAppBar activeTab={3} color="#FCFCFC" /> : <TailorAppBar activeTab={3} color="#FCFCFC" />}
+      <div
+        style={{ background: '#DFDFDF' }}
+        className="container-page-vertical"
+      >
+        {user.role == 'client' ? (
+          <ClientAppBar activeTab={3} color="#FCFCFC" />
+        ) : (
+          <TailorAppBar activeTab={3} color="#FCFCFC" />
+        )}
         <div className="client_orders_screen_top">
           <div className="chat">
             <Box
               sx={{
-                display: mobiletoggle && width <= "768" ? "none" : "block",
+                display: mobiletoggle && width <= '768' ? 'none' : 'block',
               }}
               onClick={OpenChat}
               className="chat-left-bar"
             >
-              <h4>{t("Chats")}</h4>
+              <h4>{t('Chats')}</h4>
               <div className="recentchats">
-                <p> {t("Recent Chats")}</p>
+                <p> {t('Recent Chats')}</p>
                 <img className="recent-down-icon" src={ArrowSVG} />
               </div>
               <div className="search-msg-cont">
                 <img className="srch-icon" src={SearchSVG} />
-                <input className="search-msg-input" placeholder={t("Search")} />
+                <input className="search-msg-input" placeholder={t('Search')} />
               </div>
               <div className="user-card-container">
                 <ConversationsContainer />
               </div>
             </Box>
-            <MessagesContainer width={width} mobiletoggle={mobiletoggle} directUser={directUser} />
+            <MessagesContainer
+              width={width}
+              mobiletoggle={mobiletoggle}
+              directUser={directUser}
+            />
           </div>
         </div>
       </div>

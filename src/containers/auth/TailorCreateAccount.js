@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import AppLogoSVG from "../../assets/AppLogo.svg";
-import DesignElaborationSVG from "../../assets/DesignElaboration.svg";
+import AppLogoSVG from '../../assets/AppLogo.svg';
+import DesignElaborationSVG from '../../assets/DesignElaboration.svg';
 
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
 
-import Checkbox from "@mui/material/Checkbox";
-import { grey } from "@mui/material/colors";
+import Checkbox from '@mui/material/Checkbox';
+import { grey } from '@mui/material/colors';
 
-import { handleLogin } from "../../utils/Auth";
-import Api from "../../api/index";
-import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { handleLogin } from '../../utils/Auth';
+import Api from '../../api/index';
+import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-import { Store, UpdateStore } from "../../StoreContext";
+import { Store, UpdateStore } from '../../StoreContext';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 function TailorCreateAccountScreen() {
   const { t } = useTranslation();
@@ -34,13 +34,13 @@ function TailorCreateAccountScreen() {
   const updateStore = UpdateStore();
 
   useEffect(() => {
-    if (!state?.["Email"] || !state?.["Password"]) {
-      navigate("/login");
+    if (!state?.['Email'] || !state?.['Password']) {
+      navigate('/login');
     }
   }, []);
 
   const navToHome = () => {
-    navigate("/home");
+    navigate('/home');
   };
 
   const handleSubmit = async (event) => {
@@ -59,24 +59,24 @@ function TailorCreateAccountScreen() {
 
     try {
       const body = {
-        email: state["Email"],
-        password: state["Password"],
+        email: state['Email'],
+        password: state['Password'],
         // shop_name: data.get("Name of your company"),
-        name: data.get("Name"),
-        phone: data.get("Phone No"),
+        name: data.get('Name'),
+        phone: data.get('Phone No'),
       };
       setIsProcessing(true);
       if (hasPhysicalStore) {
-        if (!data.get("Store Name")) {
+        if (!data.get('Store Name')) {
           toast.error("Store Name can't be empty.");
           return;
         }
-        body["store_name"] = data.get("Store Name");
+        body['store_name'] = data.get('Store Name');
       }
-      response = await Api("post", "/tailors", body);
+      response = await Api('post', '/tailors', body);
 
       if (response?.data?.success) {
-        toast.success("Registered successfully!");
+        toast.success('Registered successfully!');
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
@@ -93,24 +93,27 @@ function TailorCreateAccountScreen() {
         className="container"
         style={{
           background:
-            "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img create_account_screen_row1_img">
-              <img style={{ width: "15%", marginBottom: "5%" }} src={AppLogoSVG} />
+              <img
+                style={{ width: '15%', marginBottom: '5%' }}
+                src={AppLogoSVG}
+              />
               <div>
                 <p
                   style={{
-                    fontSize: "32px",
+                    fontSize: '32px',
                   }}
                 >
                   Introduce
                 </p>
                 <p
                   style={{
-                    fontSize: "32px",
+                    fontSize: '32px',
                   }}
                 >
                   yourself
@@ -118,7 +121,7 @@ function TailorCreateAccountScreen() {
               </div>
             </div>
             <div className="login_screen_row1_img">
-              <img style={{ width: "70%" }} src={DesignElaborationSVG} />
+              <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
           <div className="login_screen_row2">
@@ -132,36 +135,36 @@ function TailorCreateAccountScreen() {
                 }}
               /> */}
               <CustomInput
-                labelText={t("Name")}
+                labelText={t('Name')}
                 inputName="Name"
-                inputPlaceholder={t("Name")}
+                inputPlaceholder={t('Name')}
                 divStyle={{
-                  marginBottom: "6%",
+                  marginBottom: '6%',
                 }}
               />
               <CustomInput
-                labelText={t("Phone No")}
+                labelText={t('Phone No')}
                 inputName="Phone No"
-                inputPlaceholder={t("Phone No")}
+                inputPlaceholder={t('Phone No')}
                 divStyle={{
-                  marginBottom: "2%",
+                  marginBottom: '2%',
                 }}
                 minmax={true}
               />
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "2%",
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '2%',
                 }}
               >
                 <Checkbox
                   checked={hasPhysicalStore}
                   sx={{
                     color: grey[900],
-                    "&.Mui-checked": {
+                    '&.Mui-checked': {
                       color: grey[900],
                     },
                   }}
@@ -169,36 +172,36 @@ function TailorCreateAccountScreen() {
                 />
                 <p
                   style={{
-                    fontSize: "14px",
-                    fontWeight: "400",
-                    color: "#A0A0A0",
-                    paddingLeft: "10px",
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    color: '#A0A0A0',
+                    paddingLeft: '10px',
                   }}
                 >
-                  {t("I Have Physical Store")}
+                  {t('I Have Physical Store')}
                 </p>
               </div>
               {hasPhysicalStore ? (
                 <CustomInput
-                  labelText={t("Store Name")}
+                  labelText={t('Store Name')}
                   inputName="Store Name"
-                  inputPlaceholder={t("Store Name")}
+                  inputPlaceholder={t('Store Name')}
                   labelStyle={{
-                    display: "none",
+                    display: 'none',
                   }}
                   divStyle={{
-                    marginBottom: "6%",
-                    width: "48%",
+                    marginBottom: '6%',
+                    width: '48%',
                   }}
                 />
               ) : (
                 <></>
               )}
               <CustomButton
-                text={t("Save")}
+                text={t('Save')}
                 type="submit"
                 style={{
-                  marginBottom: "10%",
+                  marginBottom: '10%',
                 }}
               />
             </div>

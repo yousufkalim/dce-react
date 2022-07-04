@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import TailorAppBar from "../../components/TailorAppBar";
-import SearchIcon from "../../assets/search1.svg";
-import UserSVG from "../../assets/resultimg1.svg";
-import Footer from "../../components/Footer";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
-import { useTranslation } from "react-i18next";
+import TailorAppBar from '../../components/TailorAppBar';
+import SearchIcon from '../../assets/search1.svg';
+import UserSVG from '../../assets/resultimg1.svg';
+import Footer from '../../components/Footer';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import { useTranslation } from 'react-i18next';
 
-import CustomButton from "../../components/CustomButton";
+import CustomButton from '../../components/CustomButton';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
 
-import assetsURL from "../../utils/Assets";
+import assetsURL from '../../utils/Assets';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 function TailorSearchResultsScreen() {
   const searchParams = new URLSearchParams(location.search);
-  const query = searchParams.get("query");
+  const query = searchParams.get('query');
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ function TailorSearchResultsScreen() {
   const [orders, setOrders] = useState([]);
   const user = getUser();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     getOrders();
@@ -39,7 +39,7 @@ function TailorSearchResultsScreen() {
   const getOrders = async (_) => {
     let response;
     try {
-      response = await Api("get", `/orders/byName/${_ ?? query}`);
+      response = await Api('get', `/orders/byName/${_ ?? query}`);
       const ordersData = response.data.orders;
       setOrders(ordersData);
       setIsLoading(false);
@@ -62,7 +62,7 @@ function TailorSearchResultsScreen() {
       <div
         className="client_orders_screen_top"
         style={{
-          background: "#E5E5E5",
+          background: '#E5E5E5',
         }}
       >
         <div className="thiw_qna_standard_screen_row1">
@@ -70,25 +70,28 @@ function TailorSearchResultsScreen() {
         </div>
         <div
           style={{
-            width: "85%",
-            textAlign: "right",
-            padding: "20px",
-            color: "gray",
+            width: '85%',
+            textAlign: 'right',
+            padding: '20px',
+            color: 'gray',
           }}
         >
           <p>
-            {orders.length} {t("Orders Found")}
+            {orders.length} {t('Orders Found')}
           </p>
         </div>
         {orders.map((_) => (
-          <SingleResult order={_} quote={_.quotes.filter((__) => __.status == "accepted")[0]} />
+          <SingleResult
+            order={_}
+            quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
+          />
         ))}
         <CustomButton
-          text={t("See All")}
+          text={t('See All')}
           style={{
-            alignSelf: "center",
-            boxShadow: "none",
-            marginBottom: "20px",
+            alignSelf: 'center',
+            boxShadow: 'none',
+            marginBottom: '20px',
           }}
         />
       </div>
@@ -103,16 +106,20 @@ function SearchInput({ setSearchQuery, callback }) {
   return (
     <div
       style={{
-        position: "relative",
+        position: 'relative',
       }}
     >
       <input
         type="text"
-        placeholder={t("Search")}
+        placeholder={t('Search')}
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <img src={SearchIcon} className="tsrs_search_input_icon" onClick={callback} />
+      <img
+        src={SearchIcon}
+        className="tsrs_search_input_icon"
+        onClick={callback}
+      />
     </div>
   );
 }
@@ -126,52 +133,62 @@ function SingleResult(props) {
           <img
             className="image_container"
             style={{
-              height: "80pt",
-              width: "80pt",
-              cursor: "pointer",
-              marginBottom: "4%",
+              height: '80pt',
+              width: '80pt',
+              cursor: 'pointer',
+              marginBottom: '4%',
             }}
-            src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
+            src={
+              props.order.client.avatar
+                ? assetsURL(props.order.client.avatar)
+                : UserSVG
+            }
           />
           <div>
             <h3
               style={{
-                color: "#cc8e9c",
-                fontSize: "22px",
-                fonWeight: "600",
+                color: '#cc8e9c',
+                fontSize: '22px',
+                fonWeight: '600',
               }}
             >
               {props.order.client.name}
             </h3>
             <p
               style={{
-                fontSize: "12px",
-                color: "gray",
-                padding: "7px 0px",
-                lineHeight: "1.4",
+                fontSize: '12px',
+                color: 'gray',
+                padding: '7px 0px',
+                lineHeight: '1.4',
               }}
             >
               {props.order.name}
             </p>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <Stack spacing={1}>
-              <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly style={{ color: "grey" }} />
+              <Rating
+                name="half-rating-read"
+                defaultValue={4.5}
+                precision={0.5}
+                readOnly
+                style={{ color: 'grey' }}
+              />
             </Stack>
-            <p style={{ color: "grey", paddingLeft: "6px" }}> 4.5(32k)</p>
+            <p style={{ color: 'grey', paddingLeft: '6px' }}> 4.5(32k)</p>
           </div>
         </div>
         <div className="tsrs_single_result_list_tile_row_column1">
           <div
             style={{
-              paddingLeft: "20px",
+              paddingLeft: '20px',
             }}
           >
             <h3
               style={{
-                color: "gray",
-                padding: "4px 5px",
-                fontWeight: "900",
+                color: 'gray',
+                padding: '4px 5px',
+                fontWeight: '900',
               }}
             >
               offer
@@ -189,13 +206,13 @@ function SingleResult(props) {
           <div>
             <h1
               style={{
-                fontSize: "24px",
-                opacity: "0.5",
-                fontWeight: "600",
-                fontFamily: "Montserrat, sans-serif",
+                fontSize: '24px',
+                opacity: '0.5',
+                fontWeight: '600',
+                fontFamily: 'Montserrat, sans-serif',
               }}
             >
-              {t(props.order.status.replace("_", " "))}
+              {t(props.order.status.replace('_', ' '))}
             </h1>
           </div>
         </div>

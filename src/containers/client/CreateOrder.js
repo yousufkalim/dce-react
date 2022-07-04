@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 
-import AdElaborationSVG from "../../assets/AdElaboration.svg";
-import { useTranslation } from "react-i18next";
+import AdElaborationSVG from '../../assets/AdElaboration.svg';
+import { useTranslation } from 'react-i18next';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
 
-import * as ParseAd from "../../components/ParseAd";
+import * as ParseAd from '../../components/ParseAd';
 
-import Api from "../../api/index";
+import Api from '../../api/index';
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-const steps = ["MY PROJECT", "My delivery", "Remarks"];
+const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
 function ClientCreateOrderScreen() {
   const { t } = useTranslation();
@@ -33,40 +33,40 @@ function ClientCreateOrderScreen() {
   const [images, setImages] = useState([]);
 
   const [basicSection, setBasicSection] = useState({
-    gender: "",
-    category: "",
-    name: "",
-    cut: "",
+    gender: '',
+    category: '',
+    name: '',
+    cut: '',
     measurements: {
-      type: "static",
-      value: "",
+      type: 'static',
+      value: '',
     },
-    color: "",
-    fabric: "",
+    color: '',
+    fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    date: "",
-    address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    date: '',
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
-    type: "",
-    min_price: "",
-    max_price: "",
-    note: "",
+    type: '',
+    min_price: '',
+    max_price: '',
+    note: '',
   });
 
   const handleImagesSelect = (event) => {
     if (event.target.files.length + images.length > 5) {
-      toast.error("You can select a maximum of 5 files.");
+      toast.error('You can select a maximum of 5 files.');
       return;
     }
 
     for (let i = 0; i < event.target.files.length; i++) {
       const obj = event.target.files[i];
       if (obj.size / 1024 > 5000) {
-        toast.error("File sizes greater than 5 MB are not allowed.");
+        toast.error('File sizes greater than 5 MB are not allowed.');
         return;
       }
     }
@@ -88,7 +88,7 @@ function ClientCreateOrderScreen() {
       return;
     }
     if (images.length == 0) {
-      toast.error(t("At least one image must be selected.")); // TODO: Trans
+      toast.error(t('At least one image must be selected.')); // TODO: Trans
       return;
     }
     setActiveStep(1);
@@ -114,7 +114,7 @@ function ClientCreateOrderScreen() {
     }
 
     if (images.length == 0) {
-      toast.error(t("At least one image must be selected.")); // TODO: Trans
+      toast.error(t('At least one image must be selected.')); // TODO: Trans
       return;
     }
 
@@ -129,19 +129,25 @@ function ClientCreateOrderScreen() {
 
       const body = new FormData();
 
-      body.append("type", "direct");
-      body.append("tailor", params.id);
-      body.append("gender", basicSection.gender);
-      body.append("category", basicSection.category);
-      body.append("name", basicSection.name);
-      body.append("cut", basicSection.cut);
-      body.append("measurements", JSON.stringify(basicSection.measurements));
-      body.append("color", basicSection.color);
-      body.append("fabric", basicSection.fabric);
-      body.append("includes_alteration_services", basicSection.includes_alteration_services);
-      body.append("create_catalog_after_completion", basicSection.create_catalog_after_completion);
+      body.append('type', 'direct');
+      body.append('tailor', params.id);
+      body.append('gender', basicSection.gender);
+      body.append('category', basicSection.category);
+      body.append('name', basicSection.name);
+      body.append('cut', basicSection.cut);
+      body.append('measurements', JSON.stringify(basicSection.measurements));
+      body.append('color', basicSection.color);
+      body.append('fabric', basicSection.fabric);
       body.append(
-        "delivery",
+        'includes_alteration_services',
+        basicSection.includes_alteration_services
+      );
+      body.append(
+        'create_catalog_after_completion',
+        basicSection.create_catalog_after_completion
+      );
+      body.append(
+        'delivery',
         JSON.stringify({
           address: deliverySection.address.label,
           country: deliverySection.country,
@@ -152,7 +158,7 @@ function ClientCreateOrderScreen() {
         })
       );
       body.append(
-        "budget",
+        'budget',
         JSON.stringify({
           type: notesSection.type,
           min_price: notesSection.min_price,
@@ -161,13 +167,13 @@ function ClientCreateOrderScreen() {
         })
       );
       for (let i = 0; i < images.length; i++) {
-        body.append("images", images[i]);
+        body.append('images', images[i]);
       } // Multipart files share the same field name
 
-      response = await Api("post", "/orders", body);
+      response = await Api('post', '/orders', body);
 
       if (response?.data?.success) {
-        toast.success(t("Order created successfully."));
+        toast.success(t('Order created successfully.'));
         navToMyAds();
       }
     } catch (e) {
@@ -178,7 +184,7 @@ function ClientCreateOrderScreen() {
   };
 
   const navToMyAds = () => {
-    navigate("/my_ads");
+    navigate('/my_ads');
   };
 
   return (
@@ -188,33 +194,35 @@ function ClientCreateOrderScreen() {
         <div
           className="client_create_ad_screen_top"
           style={{
-            background: "#FFEEEA",
+            background: '#FFEEEA',
           }}
         >
           <div className="client_create_ad_screen_column1">
             <p
               style={{
-                fontSize: "30px",
-                fontWeight: "900",
-                marginBottom: "8%",
+                fontSize: '30px',
+                fontWeight: '900',
+                marginBottom: '8%',
               }}
             >
-              {t("Place Your Order")}
+              {t('Place Your Order')}
             </p>
-            <img style={{ width: "70%" }} src={AdElaborationSVG} />
+            <img style={{ width: '70%' }} src={AdElaborationSVG} />
           </div>
           <div className="client_create_ad_screen_column2">
             <div
               className="pa_container"
               style={{
-                marginTop: "10%",
+                marginTop: '10%',
               }}
             >
               <div className="pa_steps_row">
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
-                      <StepLabel onClick={() => setActiveStep(i)}>{t(v)}</StepLabel>
+                      <StepLabel onClick={() => setActiveStep(i)}>
+                        {t(v)}
+                      </StepLabel>
                     </Step>
                   ))}
                 </Stepper>
@@ -239,7 +247,7 @@ function ClientCreateOrderScreen() {
                   <ParseAd.NotesSection
                     state={notesSection}
                     setState={setNotesSection}
-                    buttonText={t("Place Order")}
+                    buttonText={t('Place Order')}
                     onClick={notesSectionCallback}
                   />
                 ) : (

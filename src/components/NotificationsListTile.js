@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import UserSVG from "../assets/dummy.jpeg";
-import { useNavigate } from "react-router-dom";
-import assetsURL from "../utils/Assets";
-import { useTranslation } from "react-i18next";
+import UserSVG from '../assets/dummy.jpeg';
+import { useNavigate } from 'react-router-dom';
+import assetsURL from '../utils/Assets';
+import { useTranslation } from 'react-i18next';
 
 function NotificationsListTile(props) {
   const { t } = useTranslation();
@@ -17,13 +17,13 @@ function NotificationsListTile(props) {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "5pt",
-        backgroundColor: "#FFF",
-        cursor: "pointer",
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '5pt',
+        backgroundColor: '#FFF',
+        cursor: 'pointer',
       }}
       onClick={navToLink}
     >
@@ -31,45 +31,47 @@ function NotificationsListTile(props) {
         <img
           className="image_container"
           style={{
-            height: "40pt",
-            width: "40pt",
+            height: '40pt',
+            width: '40pt',
           }}
           src={props.sender.avatar ? assetsURL(props.sender.avatar) : UserSVG}
         />
       </div>
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-          marginLeft: "5pt",
-          width: "13vw",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-start',
+          marginLeft: '5pt',
+          width: '13vw',
         }}
       >
         <p
           style={{
-            fontSize: "17px",
-            fontWeight: "600",
-            color: "#CC8E9C",
+            fontSize: '17px',
+            fontWeight: '600',
+            color: '#CC8E9C',
           }}
         >
           {props.sender.name}
         </p>
         <p
           style={{
-            fontSize: "13px",
+            fontSize: '13px',
           }}
         >
-          {t(props.text).length < 35 ? t(props.text) : t(props.text).slice(0, 34) + "..."}
+          {t(props.text).length < 35
+            ? t(props.text)
+            : t(props.text).slice(0, 34) + '...'}
         </p>
       </div>
       <p
         style={{
-          fontSize: "12px",
+          fontSize: '12px',
         }}
       >
-        {new Date(props.createdAt).toLocaleDateString("en-gb")}
+        {new Date(props.createdAt).toLocaleDateString('en-gb')}
       </p>
     </div>
   );

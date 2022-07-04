@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import { useTranslation } from "react-i18next";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import { useTranslation } from 'react-i18next';
 
-import AdEdit1SVG from "../../assets/AdEdit1.svg";
-import AdEdit2SVG from "../../assets/AdEdit2.svg";
-import AdEdit3SVG from "../../assets/AdEdit3.svg";
+import AdEdit1SVG from '../../assets/AdEdit1.svg';
+import AdEdit2SVG from '../../assets/AdEdit2.svg';
+import AdEdit3SVG from '../../assets/AdEdit3.svg';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
-import * as ParseAd from "../../components/ParseAd";
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
+import * as ParseAd from '../../components/ParseAd';
 
-import Api from "../../api";
-import { useParams } from "react-router-dom";
+import Api from '../../api';
+import { useParams } from 'react-router-dom';
 
-const steps = ["MY PROJECT", "My delivery", "Remarks"];
+const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
 function ClientViewOrderScreen() {
   const { t } = useTranslation();
@@ -27,27 +27,27 @@ function ClientViewOrderScreen() {
 
   const [ad, setAd] = useState(null);
   const [basicSection, setBasicSection] = useState({
-    gender: "",
-    category: "",
-    name: "",
-    cut: "",
+    gender: '',
+    category: '',
+    name: '',
+    cut: '',
     measurements: {
-      type: "static",
-      value: "",
+      type: 'static',
+      value: '',
     },
-    color: "",
-    fabric: "",
+    color: '',
+    fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    date: "",
-    address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    date: '',
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
-    min_price: "",
-    max_price: "",
+    note: '',
+    min_price: '',
+    max_price: '',
   });
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function ClientViewOrderScreen() {
   const getAd = async () => {
     let response;
     try {
-      response = await Api("get", `/orders/${params.id}`);
+      response = await Api('get', `/orders/${params.id}`);
       const adData = response.data.order;
       setAd(adData);
       setBasicSection({
@@ -85,7 +85,7 @@ function ClientViewOrderScreen() {
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
+        quotes: adData?.quotes.filter((_) => _.status === 'accepted'),
       });
     } catch (e) {
       console.trace(e);
@@ -103,49 +103,55 @@ function ClientViewOrderScreen() {
           <div
             className="container"
             style={{
-              background: "#FFE9A0",
-              height: "118vh",
+              background: '#FFE9A0',
+              height: '118vh',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Client Basic")}
+                  {t('Client Basic')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "55%" }} src={AdEdit1SVG} />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {label}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
+                    <ParseAd.BasicSection
+                      disabled
+                      state={basicSection}
+                      setState={setBasicSection}
+                    />
                   </div>
                 </div>
               </div>
@@ -154,8 +160,8 @@ function ClientViewOrderScreen() {
           <div
             className="container"
             style={{
-              background: "#FFC396",
-              height: "80vh",
+              background: '#FFC396',
+              height: '80vh',
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -163,91 +169,103 @@ function ClientViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {label}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
+                    <ParseAd.DeliverySection
+                      disabled
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
                   </div>
                 </div>
               </div>
               <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Delivery")}
+                  {t('Delivery')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "70%" }} src={AdEdit2SVG} />
+                <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
           </div>
           <div
             className="container"
             style={{
-              background: "#FFFCFB",
-              height: "90vh",
+              background: '#FFFCFB',
+              height: '90vh',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Payment")}
+                  {t('Payment')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "20%" }} src={AdEdit3SVG} />
+                <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>
+                            {label}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
+                    <ParseAd.NotesSection
+                      disabled
+                      state={notesSection}
+                      setState={setNotesSection}
+                    />
                   </div>
                 </div>
               </div>

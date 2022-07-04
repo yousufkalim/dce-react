@@ -1,19 +1,19 @@
-import React, { useRef, useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import DotSVG from "../../assets/dot.svg";
-import SeenSCG from "../../assets/Seenicon.svg";
-import { useTranslation } from "react-i18next";
+import React, { useRef, useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import DotSVG from '../../assets/dot.svg';
+import SeenSCG from '../../assets/Seenicon.svg';
+import { useTranslation } from 'react-i18next';
 
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-import { Store, UpdateStore } from "../../StoreContext";
-import { getUser } from "../../utils/Auth";
-import assetsURL from "../../utils/Assets";
+import { Store, UpdateStore } from '../../StoreContext';
+import { getUser } from '../../utils/Auth';
+import assetsURL from '../../utils/Assets';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import Api from "../../api/index";
+import Api from '../../api/index';
 
 const Messages = ({}) => {
   const store = Store();
@@ -21,7 +21,7 @@ const Messages = ({}) => {
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "auto" });
+    messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
   };
 
   useEffect(() => {
@@ -60,8 +60,8 @@ const MessageListTile = (props) => {
   const isSender = getIsSender();
 
   const handleClick = () => {
-    if (props.type != "text") {
-      window.open(assetsURL(props.content), "_blank");
+    if (props.type != 'text') {
+      window.open(assetsURL(props.content), '_blank');
     }
   };
 
@@ -84,11 +84,11 @@ const MessageListTile = (props) => {
     try {
       setIsProcessing(true);
 
-      response = await Api("delete", `/messages/${props._id}`);
+      response = await Api('delete', `/messages/${props._id}`);
 
       if (response?.data?.success) {
         handleCloseMenu();
-        toast.success("Messagee deleted successfully");
+        toast.success('Messagee deleted successfully');
         _loadMessages();
       }
     } catch (e) {
@@ -101,7 +101,7 @@ const MessageListTile = (props) => {
   const _loadMessages = async () => {
     let response;
     try {
-      response = await Api("post", `/messages/byQuery`, {
+      response = await Api('post', `/messages/byQuery`, {
         chat: store.chat._id,
       });
       const messagesData = response.data.messages ?? [];
@@ -115,7 +115,10 @@ const MessageListTile = (props) => {
 
   return (
     <>
-      <Box sx={{ justifyContent: isSender ? "right" : "left" }} className="message-width">
+      <Box
+        sx={{ justifyContent: isSender ? 'right' : 'left' }}
+        className="message-width"
+      >
         {isSender ? (
           <>
             <img className="dot-msg" src={DotSVG} onClick={handleClickMenu} />
@@ -125,40 +128,48 @@ const MessageListTile = (props) => {
               open={openMenu}
               onClose={handleCloseMenu}
               MenuListProps={{
-                "aria-labelledby": "basic-button",
+                'aria-labelledby': 'basic-button',
               }}
             >
               <MenuItem
                 style={{
-                  borderBottom: "1px solid #DBDBDB",
-                  margin: "5px 20px",
+                  borderBottom: '1px solid #DBDBDB',
+                  margin: '5px 20px',
                 }}
                 className="menu-item"
                 onClick={handleDelete}
               >
-                <p>{t("Delete")}</p>
+                <p>{t('Delete')}</p>
               </MenuItem>
             </Menu>
           </>
         ) : null}
         <Box
           sx={{
-            background: isSender ? " #ffffff" : "#F7C9D0",
-            border: isSender ? "1px solid #DBDBDB" : "none",
-            boxShadow: isSender ? "0px 4px 9px rgba(0, 0, 0, 0.04)" : "none",
-            borderBottomRightRadius: isSender ? "none" : "10px",
-            borderTopLeftRadius: isSender ? "10px" : "none",
+            background: isSender ? ' #ffffff' : '#F7C9D0',
+            border: isSender ? '1px solid #DBDBDB' : 'none',
+            boxShadow: isSender ? '0px 4px 9px rgba(0, 0, 0, 0.04)' : 'none',
+            borderBottomRightRadius: isSender ? 'none' : '10px',
+            borderTopLeftRadius: isSender ? '10px' : 'none',
           }}
           className="msg-text"
           onClick={handleClick}
         >
-          <p style={{ cursor: props.type != "text" ? "pointer" : "auto" }}>{props.content}</p>
+          <p style={{ cursor: props.type != 'text' ? 'pointer' : 'auto' }}>
+            {props.content}
+          </p>
         </Box>
-        {props.role === "receiver" ? <img className="dot-msg" src={DotSVG} /> : null}
+        {props.role === 'receiver' ? (
+          <img className="dot-msg" src={DotSVG} />
+        ) : null}
         {isSender ? <img src={SeenSCG} /> : null}
       </Box>
 
-      {isSender ? <p style={{ textAlign: "end", width: "95%", color: "#DBDBDB" }}>{props?.lastseen}</p> : null}
+      {isSender ? (
+        <p style={{ textAlign: 'end', width: '95%', color: '#DBDBDB' }}>
+          {props?.lastseen}
+        </p>
+      ) : null}
     </>
   );
 };

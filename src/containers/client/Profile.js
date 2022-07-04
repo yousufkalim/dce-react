@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import AutoComplete from "../../components/AutoComplete";
+import AutoComplete from '../../components/AutoComplete';
 
-import DesignElaborationSVG from "../../assets/profile.svg";
+import DesignElaborationSVG from '../../assets/profile.svg';
 
-import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
-import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
-import dummy from "../../assets/dummy.jpeg";
-import { useTranslation } from "react-i18next";
+import ProfileEmailSVG from '../../assets/ProfileEmail.svg';
+import ProfilePhoneSVG from '../../assets/ProfilePhone.svg';
+import dummy from '../../assets/dummy.jpeg';
+import { useTranslation } from 'react-i18next';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
-import CustomButton from "../../components/CustomButton";
-import CustomDatePicker from "../../components/CustomDatePicker";
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
+import CustomButton from '../../components/CustomButton';
+import CustomDatePicker from '../../components/CustomDatePicker';
 
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import Api from "../../api";
-import axios from "axios";
+import Api from '../../api';
+import axios from 'axios';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
-import assetsURL from "../../utils/Assets";
+import * as FormValidations from '../../utils/Validations';
+import assetsURL from '../../utils/Assets';
 
 function ClientProfileScreen() {
   const { t } = useTranslation();
@@ -38,18 +38,18 @@ function ClientProfileScreen() {
   const [toEdit, setToEdit] = useState(false);
 
   const [state, setState] = useState({
-    phone: "",
+    phone: '',
     password: undefined,
   });
 
   // Z-Mods
-  const [dateOfBirth, setDateOfBirth] = useState(new Date("January 01, 1999"));
+  const [dateOfBirth, setDateOfBirth] = useState(new Date('January 01, 1999'));
   const [address, setAddress] = useState({
-    zip: "",
-    label: "",
-    city: "",
-    lat: "",
-    lng: "",
+    zip: '',
+    label: '',
+    city: '',
+    lat: '',
+    lng: '',
   });
   const [addresses, setAddresses] = useState([]);
 
@@ -74,12 +74,12 @@ function ClientProfileScreen() {
   const getProfile = async () => {
     let response;
     try {
-      response = await Api("get", `/auth`);
+      response = await Api('get', `/auth`);
       const userData = response.data.user;
       setProfile(userData);
       setState({
         ...state,
-        phone: userData.phone ?? "",
+        phone: userData.phone ?? '',
       });
       if (userData.dob) {
         setDateOfBirth(userData.dob);
@@ -127,24 +127,24 @@ function ClientProfileScreen() {
 
       const body = new FormData();
 
-      body.append("phone", state.phone);
+      body.append('phone', state.phone);
       if (dateOfBirth) {
-        body.append("dob", dateOfBirth);
+        body.append('dob', dateOfBirth);
       }
       if (address.label) {
-        body.append("address", address.label);
-        body.append("zip_code", address.zip);
-        body.append("city", address.city);
+        body.append('address', address.label);
+        body.append('zip_code', address.zip);
+        body.append('city', address.city);
       }
       if (state.password) {
-        body.append("password", state.password);
+        body.append('password', state.password);
       }
-      body.append("image", profileImage);
+      body.append('image', profileImage);
 
-      response = await Api("put", `/clients/${profile?._id}`, body);
+      response = await Api('put', `/clients/${profile?._id}`, body);
 
       if (response?.data?.success) {
-        toast.success(t("Profile updated successfully."));
+        toast.success(t('Profile updated successfully.'));
         navToHome();
       }
     } catch (e) {
@@ -155,7 +155,7 @@ function ClientProfileScreen() {
   };
 
   const navToHome = () => {
-    navigate("/home");
+    navigate('/home');
   };
 
   const _setAddress = (_) => {
@@ -172,22 +172,22 @@ function ClientProfileScreen() {
       });
     } else {
       _setAddress({
-        label: "",
-        zip: "",
-        city: "",
-        lat: "",
-        lng: "",
+        label: '',
+        zip: '',
+        city: '',
+        lat: '',
+        lng: '',
       });
     }
   };
   const handleInputAddress = async (e) => {
-    if (e.target.value === "") {
+    if (e.target.value === '') {
       _setAddress({
-        label: "",
-        zip: "",
-        city: "",
-        lat: "",
-        lng: "",
+        label: '',
+        zip: '',
+        city: '',
+        lat: '',
+        lng: '',
       });
       setAddresses([]);
     } else {
@@ -195,7 +195,7 @@ function ClientProfileScreen() {
         label: e.target.value,
       });
       const config = {
-        method: "get",
+        method: 'get',
         url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
       };
       axios.defaults.headers = null;
@@ -234,37 +234,43 @@ function ClientProfileScreen() {
             className="client_profile_screen_top"
             style={{
               background:
-                "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+                'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
             <div className="client_profile_screen_row1">
-              <p className="client_profile_screen_row1_text" style={{ paddingLeft: "3%" }}>
-                {t("Profile")}
+              <p
+                className="client_profile_screen_row1_text"
+                style={{ paddingLeft: '3%' }}
+              >
+                {t('Profile')}
               </p>
               <CustomButton
                 type="submit"
                 onClick={toEditCallback}
-                text={toEdit ? t("Save") : t("Edit")}
+                text={toEdit ? t('Save') : t('Edit')}
                 style={{
-                  boxShadow: "none",
-                  marginRight: "5%",
+                  boxShadow: 'none',
+                  marginRight: '5%',
                 }}
               />
             </div>
             <div className="client_profile_screen_row2">
               <div className="client_profile_screen_row2_column1">
                 <div className="prof-img">
-                  <img style={{ width: "86%" }} src={DesignElaborationSVG} />
+                  <img style={{ width: '86%' }} src={DesignElaborationSVG} />
                 </div>
               </div>
               <div className="client_profile_screen_row2_column2">
                 <div className="cps_profile_container">
-                  <div className="cps_profile_img" style={{ paddingBottom: "2%" }}>
+                  <div
+                    className="cps_profile_img"
+                    style={{ paddingBottom: '2%' }}
+                  >
                     <label>
                       <input
                         style={{
-                          display: "none",
-                          cursor: "none",
+                          display: 'none',
+                          cursor: 'none',
                         }}
                         disabled={!toEdit}
                         type="file"
@@ -273,27 +279,31 @@ function ClientProfileScreen() {
                       />
                       <div
                         style={{
-                          position: "relative",
-                          height: "100%",
-                          width: "100%",
+                          position: 'relative',
+                          height: '100%',
+                          width: '100%',
                         }}
                       >
                         <img
                           className="image_container"
                           style={{
-                            height: "80pt",
-                            width: "80pt",
+                            height: '80pt',
+                            width: '80pt',
                           }}
                           src={
-                            profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy
+                            profileImage
+                              ? URL.createObjectURL(profileImage)
+                              : profile.avatar
+                              ? assetsURL(profile.avatar)
+                              : dummy
                           }
                         />
                         {toEdit ? (
                           <AddPhotoAlternateIcon
                             sx={{
-                              position: "absolute",
-                              right: "-4pt",
-                              top: "50pt",
+                              position: 'absolute',
+                              right: '-4pt',
+                              top: '50pt',
                             }}
                           />
                         ) : (
@@ -302,26 +312,29 @@ function ClientProfileScreen() {
                       </div>
                     </label>
                   </div>
-                  <p className="cps_profile_text" style={{ paddingBottom: "10px" }}>
+                  <p
+                    className="cps_profile_text"
+                    style={{ paddingBottom: '10px' }}
+                  >
                     {profile.name}
                   </p>
                   <ProfileInput
                     disabled={!toEdit}
                     name="Phone"
-                    placeholder={t("Phone")}
+                    placeholder={t('Phone')}
                     defaultValue={profile.phone}
                     img={ProfilePhoneSVG}
                     minmax="on"
                     divStyle={{
-                      borderTopLeftRadius: "10px",
-                      borderTopRightRadius: "10px",
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
                     }}
-                    onChange={(e) => _setState("phone", e.target.value)}
+                    onChange={(e) => _setState('phone', e.target.value)}
                   />
                   <ProfileInput
                     disabled
                     name="Email"
-                    placeholder={t("Email")}
+                    placeholder={t('Email')}
                     defaultValue={profile.email}
                     img={ProfileEmailSVG}
                   />
@@ -329,25 +342,25 @@ function ClientProfileScreen() {
                     disabled={!toEdit}
                     disableFuture
                     labelStyle={{
-                      display: "none",
+                      display: 'none',
                     }}
                     labelText="Date of Birth"
                     value={dateOfBirth}
                     onChange={setDateOfBirth}
                     divStyle={{
-                      width: "90%",
-                      marginTop: "2%",
+                      width: '90%',
+                      marginTop: '2%',
                     }}
                   />
-                  <div style={{ width: "90%" }}>
+                  <div style={{ width: '90%' }}>
                     <AutoComplete
                       disabled={!toEdit}
                       name="Address"
                       required={true}
-                      label={"Address"}
+                      label={'Address'}
                       value={address?.label}
                       options={addresses}
-                      placeholder={t("Address")}
+                      placeholder={t('Address')}
                       onChangeAddress={(e) => {
                         handleInputAddress(e);
                       }}
@@ -358,14 +371,18 @@ function ClientProfileScreen() {
                   <ProfileInput
                     disabled
                     name="Last Password Changed"
-                    placeholder={t("Last Password Changed")}
+                    placeholder={t('Last Password Changed')}
                     defaultValue={
-                      profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString("en-gb") : "N/A"
+                      profile.last_password_changed
+                        ? new Date(
+                            profile.last_password_changed
+                          ).toLocaleDateString('en-gb')
+                        : 'N/A'
                     }
-                    label={t("Last Password Changed")}
+                    label={t('Last Password Changed')}
                     divStyle={{
-                      borderTopLeftRadius: "10px",
-                      borderTopRightRadius: "10px",
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
                     }}
                   />
                   <ProfileInput
@@ -374,17 +391,19 @@ function ClientProfileScreen() {
                     placeholder="**********"
                     defaultValue=""
                     label="Password"
-                    onChange={(e) => _setState("password", e.target.value)}
+                    onChange={(e) => _setState('password', e.target.value)}
                   />
                   <ProfileInput
                     disabled
                     name="Account Created"
-                    placeholder={t("Account Created")}
-                    defaultValue={new Date(profile.createdAt).toLocaleDateString("en-GB")}
-                    label={t("Account Created")}
+                    placeholder={t('Account Created')}
+                    defaultValue={new Date(
+                      profile.createdAt
+                    ).toLocaleDateString('en-GB')}
+                    label={t('Account Created')}
                     divStyle={{
-                      borderBottomLeftRadius: "10px",
-                      borderBottomRightRadius: "10px",
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
                     }}
                   />
                 </div>
@@ -398,7 +417,17 @@ function ClientProfileScreen() {
   );
 }
 
-function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img, label, divStyle, minmax }) {
+function ProfileInput({
+  disabled,
+  name,
+  onChange,
+  placeholder,
+  defaultValue,
+  img,
+  label,
+  divStyle,
+  minmax,
+}) {
   return (
     <div
       className="cps_profile_input_container"
@@ -408,16 +437,16 @@ function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img
     >
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }}
       >
         <input
           disabled={disabled}
           className="cps_profile_input_input"
           name={name}
-          maxlength={minmax === "on" && "10"}
+          maxlength={minmax === 'on' && '10'}
           onChange={onChange}
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -425,11 +454,11 @@ function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img
         {label ? (
           <p
             style={{
-              fontSize: "12px",
-              fontWeight: "500",
-              position: "absolute",
-              left: "2%",
-              top: "1%",
+              fontSize: '12px',
+              fontWeight: '500',
+              position: 'absolute',
+              left: '2%',
+              top: '1%',
             }}
           >
             {label}
@@ -438,10 +467,10 @@ function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img
           <img
             src={img}
             style={{
-              width: "16px",
-              position: "absolute",
-              left: "2%",
-              top: "1%",
+              width: '16px',
+              position: 'absolute',
+              left: '2%',
+              top: '1%',
             }}
           />
         )}

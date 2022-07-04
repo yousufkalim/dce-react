@@ -1,26 +1,33 @@
-import * as React from "react";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
-import StarIcon from "@mui/icons-material/Star";
-import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
+import * as React from 'react';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 export default function HoverRating(props) {
   const useStyles = makeStyles((theme) => ({
     rating: {
-      display: props.display || "flex",
+      display: props.display || 'flex',
     },
     icon: {
-      opacity: props.opacity || "0.55 !important",
-      fontFamily: props.fontFamily || "inter",
-      fontSize: "inherit",
+      opacity: props.opacity || '0.55 !important',
+      fontFamily: props.fontFamily || 'inter',
+      fontSize: 'inherit',
     },
     text: {
-      fontSize: props.size === "large" ? "18px" : props.size === "medium" ? "16px" : props.size === "small" ? "13px" : "18px",
-      fontFamily: props.fontFamily || "inter",
-      fontWeight: props.fontWeight || "700",
-      marginTop: "2px",
-      "& .css-d0uhtl ": {
-        marginLeft: "0px",
+      fontSize:
+        props.size === 'large'
+          ? '18px'
+          : props.size === 'medium'
+          ? '16px'
+          : props.size === 'small'
+          ? '13px'
+          : '18px',
+      fontFamily: props.fontFamily || 'inter',
+      fontWeight: props.fontWeight || '700',
+      marginTop: '2px',
+      '& .css-d0uhtl ': {
+        marginLeft: '0px',
       },
     },
   }));
@@ -28,25 +35,29 @@ export default function HoverRating(props) {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "left",
-        justifyContent: "left",
+        display: 'flex',
+        alignItems: 'left',
+        justifyContent: 'left',
       }}
       className={classes.rating}
     >
       {props.showLabel && (
         <Box sx={{ ml: 2 }}>
-          <Typography color={props.labelColor || "#2A3235"} className={classes.text} {...props.ratingLabelprops}>
+          <Typography
+            color={props.labelColor || '#2A3235'}
+            className={classes.text}
+            {...props.ratingLabelprops}
+          >
             {props.value}
           </Typography>
         </Box>
       )}
       <Rating
-        name={"rating-feedback"}
+        name={'rating-feedback'}
         value={props.sum / props.length}
         readOnly={true}
-        size={"small"}
-        precision={"0.5"}
+        size={'small'}
+        precision={'0.5'}
         disabled={false}
         //highlightSelectedOnly={2}
         onChange={props.onChange}

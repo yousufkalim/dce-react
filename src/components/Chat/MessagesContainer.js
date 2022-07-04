@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import ChatHeader from "./ChatHeader";
-import SendMessage from "./SendMessage";
-import Messages from "./Messages";
-import Box from "@mui/material/Box";
+import React, { useState } from 'react';
+import ChatHeader from './ChatHeader';
+import SendMessage from './SendMessage';
+import Messages from './Messages';
+import Box from '@mui/material/Box';
 
-import { Store, UpdateStore } from "../../StoreContext";
+import { Store, UpdateStore } from '../../StoreContext';
 
 const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
   const store = Store();
@@ -13,8 +13,13 @@ const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
     <>
       <Box
         sx={{
-          display: width <= 768 && mobiletoggle ? "block" : width > 768 ? "block" : "none",
-          width: width <= 768 ? "100%" : "55%",
+          display:
+            width <= 768 && mobiletoggle
+              ? 'block'
+              : width > 768
+              ? 'block'
+              : 'none',
+          width: width <= 768 ? '100%' : '55%',
         }}
         className="c-body"
       >
