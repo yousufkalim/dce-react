@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 // import AuthAppBar from '../../components/AuthAppBar';
 // Router
 import { Link } from 'react-router-dom';
+// import slider
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 //  translation
 import { useTranslation } from 'react-i18next';
 import AuthAppBar from '../../components/AuthAppBar';
@@ -19,22 +22,18 @@ import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
 import user from '../../assets/user.png';
-// import slider
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 
-const Landing = () => {
+function Landing() {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
 
-  useEffect(() => {
-    lang();
-  }, []);
   const lang = () => {
     i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
 
-  console.log(language);
+  useEffect(() => {
+    lang();
+  });
   const reviews = [
     {
       rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
@@ -129,9 +128,9 @@ const Landing = () => {
               </Link>
               <hr />
               <div className="or">
-                {t('Or')}{' '}
+                {t('Or')}
                 <Link to="/select_role">
-                  <span> {t('registered as a Designer')}</span>
+                  <span>{t('registered as a Designer')}</span>
                 </Link>
               </div>
             </div>
@@ -332,6 +331,6 @@ const Landing = () => {
       {/* footer end  */}
     </div>
   );
-};
+}
 
 export default Landing;
