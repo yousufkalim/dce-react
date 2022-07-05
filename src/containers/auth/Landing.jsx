@@ -124,7 +124,7 @@ function Landing() {
               </p>
 
               <Link style={{ textDecoration: 'none' }} to="/select_role">
-                <button>{t('Hire Design')}</button>
+                <button type="button">{t('Hire Design')}</button>
               </Link>
               <hr />
               <div className="or">
@@ -151,10 +151,7 @@ function Landing() {
         <div className="chose_title_main">
           <div className="chose_title">
             <h3>{t('Why Choose DCE')}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
-              veniam,
-            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut</p>
           </div>
         </div>
 
@@ -165,7 +162,7 @@ function Landing() {
               <img src={addpost} alt="addpost." />
             </div>
 
-            <span className="card_title">{t('Post Ads')} </span>
+            <span className="card_title">{t('Post Ads')}</span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -201,7 +198,7 @@ function Landing() {
               <img src={help} alt="help." />
             </div>
 
-            <span className="card_title">{t('We Are Here To Help')} </span>
+            <span className="card_title">{t('We Are Here To Help')}</span>
             <hr className="card_inner_line" />
             <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
           </div>
@@ -212,7 +209,7 @@ function Landing() {
 
         <div className="great_work" id="FindGreatWork">
           <div className="great_work_left">
-            <img src={greatleft} />
+            <img src={greatleft} alt="greate_work_image" />
           </div>
           <div className="great_work_right">
             <div className="great_work_heading">
