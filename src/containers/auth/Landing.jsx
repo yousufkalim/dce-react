@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // import AuthAppBar from '../../components/AuthAppBar';
 // Router
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Landing = () => {
     lang();
   }, []);
   const lang = () => {
-    i18n.changeLanguage(language == 'fr' ? 'fr' : 'en');
+    i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
 
   console.log(language);
@@ -107,7 +107,7 @@ const Landing = () => {
     },
   };
   return (
-    <Fragment>
+    <div>
       <AuthAppBar />
       {/* start hero section */}
       <div className="landing_main_container">
@@ -330,7 +330,7 @@ const Landing = () => {
         </div>
       </div>
       {/* footer end  */}
-    </Fragment>
+    </div>
   );
 };
 
