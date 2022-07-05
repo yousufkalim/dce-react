@@ -223,7 +223,7 @@ function Landing() {
             <div className="great_work_Card">
               <div className="great_work_Card_inner">
                 <div>
-                  <img src={tickicon} />
+                  <img src={tickicon} alt="icons" />
                 </div>
                 <div className="great_work_Card_inner_info">
                   <h4>{t('FIND OPPORTUNITIES')}</h4>
