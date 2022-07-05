@@ -23,7 +23,7 @@ function AuthAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const maniNavData = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
+  const MainNavBar = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
   return (
     <AppBar position="fixed" className="auth_appbar_main">
       <Container maxWidth="xl">
@@ -95,7 +95,7 @@ function AuthAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {maniNavData.map((page) => (
+              {MainNavBar.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center" className="auth_appbar_menus">
                     {t(page)}
