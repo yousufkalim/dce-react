@@ -247,7 +247,7 @@ function Landing() {
               </div>
               <div className="great_work_Card_inner">
                 <div>
-                  <img src={tickicon} />
+                  <img src={tickicon} alt="tick icon" />
                 </div>
 
                 <div className="great_work_Card_inner_info">
@@ -284,7 +284,7 @@ function Landing() {
                   </p>
                   <hr />
                   <div className="slider_user_info">
-                    <img src={user} />
+                    <img src={user} alt="user" />
                     <div className="user_pic_slider">
                       <h5>Rob Hope</h5>
                       <span>Onepagelove.com</span>

@@ -5,7 +5,7 @@ import UnAuthAppBar from '../../components/UnAuthAppBar';
 import Terms from '../../assets/terms.png';
 import FooterLogo from '../../assets/FooterLogo.svg';
 import instagram from '../../assets/instagram.png';
-import facebook from '../../assets/facebook.png';
+import facebook f alt="icons" rom '../../assets/facebook.p alt="icons" ng alt="icons"';
 
 function AuthTermsAndConditions() {
   const { t, i18n } = useTranslation();
@@ -14,6 +14,9 @@ function AuthTermsAndConditions() {
   const lang = () => {
     i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
+  useEffect(() => {
+    lang();
+  });
 
   return (
     <div>
@@ -115,7 +118,7 @@ function AuthTermsAndConditions() {
 
       <div class="footer_section_main" id="animation_dec">
         <div className="footer_center_section">
-          <img src={FooterLogo} />
+          <img src={FooterLogo} alt="footer " />
           <div>
             {' '}
             <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
@@ -131,8 +134,8 @@ function AuthTermsAndConditions() {
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
-              <img src={facebook} />
-              <img src={instagram} />
+              <img src={facebook}  alt="icons" />
+              <img src={instagram} alt="icons" />
             </div>
           </div>
         </div>
