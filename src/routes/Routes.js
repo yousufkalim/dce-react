@@ -87,7 +87,8 @@ import TailorClientProfileIcon from '@mui/icons-material/AccountBox';
 import TailorViewOrderIcon from '@mui/icons-material/AccountBox';
 import ChatIcon from '@mui/icons-material/AccountBox';
 import ResetPasswordScreen from '../containers/auth/ResetPassword';
-import Landing from '../containers/auth/Landing';
+
+import Landing from '../containers/unAuth/Landing';
 import TermCondition from '../containers/auth/AuthTermsAndConditions';
 // Routes for Auth
 const AuthRoutes = [
