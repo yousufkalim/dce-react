@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import { useTranslation } from "react-i18next";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import { useTranslation } from 'react-i18next';
 
-import AdEdit1SVG from "../../assets/AdEdit1.svg";
-import AdEdit2SVG from "../../assets/AdEdit2.svg";
-import AdEdit3SVG from "../../assets/AdEdit3.svg";
+import AdEdit1SVG from '../../assets/AdEdit1.svg';
+import AdEdit2SVG from '../../assets/AdEdit2.svg';
+import AdEdit3SVG from '../../assets/AdEdit3.svg';
 
-import TailorAppBar from "../../components//TailorAppBar";
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
-import Footer from "../../components/Footer";
-import * as ParseAd from "../../components/ParseAd";
+import TailorAppBar from '../../components//TailorAppBar';
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
+import Footer from '../../components/Footer';
+import * as ParseAd from '../../components/ParseAd';
 
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Store, UpdateStore } from '../../StoreContext';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
 function TailorViewQuoteScreen() {
   const { t } = useTranslation();
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const navigate = useNavigate();
   const params = useParams();
@@ -37,32 +40,32 @@ function TailorViewQuoteScreen() {
 
   const [ad, setAd] = useState(null);
   const [basicSection, setBasicSection] = useState({
-    gender: "",
-    category: "",
-    name: "",
-    cut: "",
+    openModal: 'false',
+    gender: '',
+    category: '',
+    name: '',
+    cut: '',
     measurements: {
-      type: "static",
-      value: "",
+      type: 'static',
+      value: '',
     },
-    color: "",
-    fabric: "",
+    color: '',
+    fabric: '',
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    note: "",
-    type: "",
-    date: "",
-    address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    date: '',
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
-    min_price: "",
-    max_price: "",
+    note: '',
+    min_price: '',
+    max_price: '',
   });
 
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     getAd();
@@ -72,7 +75,7 @@ function TailorViewQuoteScreen() {
   const getAd = async () => {
     let response;
     try {
-      response = await Api("get", `/orders/${params.id}`);
+      response = await Api('get', `/orders/${params.id}`);
       const adData = response.data.order;
       setAd(adData);
       setBasicSection({
@@ -84,10 +87,10 @@ function TailorViewQuoteScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        create_catalog_after_completion: adData.create_catalog_after_completion,
       });
       setDeliverySection({
         date: adData.delivery.date,
-        note: adData.delivery.note,
         type: adData.delivery.type,
         address: {
           zip: adData.delivery.zipcode,
@@ -95,7 +98,12 @@ function TailorViewQuoteScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({
+        note: adData?.budget.note,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        quotes: adData?.quotes.filter((_) => _.status === 'accepted'),
+      });
     } catch (e) {
       console.trace(e);
     }
@@ -106,7 +114,7 @@ function TailorViewQuoteScreen() {
     event.preventDefault();
 
     if (ad.quotes.some((_) => _.tailor._id == user._id)) {
-      toast.error(t("You have already sent quote for this ad."));
+      toast.error(t('You have already sent quote for this ad.'));
       return;
     }
 
@@ -134,10 +142,10 @@ function TailorViewQuoteScreen() {
         description: description,
       };
 
-      response = await Api("post", `/quotes`, body);
+      response = await Api('post', `/quotes`, body);
 
       if (response?.data?.success) {
-        toast.success(t("Quote sent successfully."));
+        toast.success(t('Quote sent successfully.'));
         navToQuotes();
       }
     } catch (e) {
@@ -148,13 +156,16 @@ function TailorViewQuoteScreen() {
   };
 
   const navToQuotes = () => {
-    navigate("/quotes");
+    navigate('/quotes');
   };
 
   const navToChat = () => {
+    updateStore({
+      chat: null,
+      messages: [],
+    });
     navigate(`/chat`, { state: { directUser: ad.client } });
   };
-
   return (
     <>
       {isLoading ? (
@@ -165,37 +176,39 @@ function TailorViewQuoteScreen() {
           <div
             className="container"
             style={{
-              background: "#FFE9A0",
-              height:"110vh",
-              padding:"1% 0%"
+              background: '#FFE9A0',
+              height: '112vh',
+              padding: '1% 0%',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Client Basic")}
+                  {t('Client Basic')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "55%" }} src={AdEdit1SVG} />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
+                    paddingTop: '3%',
+                    paddingBottom: '1%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -203,7 +216,7 @@ function TailorViewQuoteScreen() {
                       {steps.map((label, index) => (
                         <Step key={label}>
                           <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
+                            {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
@@ -223,9 +236,9 @@ function TailorViewQuoteScreen() {
           <div
             className="container"
             style={{
-              background: "#FFC396",
-              height:"110vh",
-              padding:"1% 0%"
+              background: '#FFC396',
+              height: '100vh',
+              padding: '1% 0%',
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -233,7 +246,7 @@ function TailorViewQuoteScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -259,59 +272,59 @@ function TailorViewQuoteScreen() {
               <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Delivery")}
+                  {t('Delivery')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "70%" }} src={AdEdit2SVG} />
+                <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
           </div>
           <div
             className="container"
             style={{
-              background: "#FFFCFB",
-              height:"108vh",
-              padding:"1% 0%"
+              background: '#FFFCFB',
+              height: '100vh',
+              padding: '1% 0%',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Payment")}
+                  {t('Payment')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "20%" }} src={AdEdit3SVG} />
+                <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -338,9 +351,9 @@ function TailorViewQuoteScreen() {
           </div>
           <div
             style={{
-              height: "80vh",
-              width: "100vw",
-              background: "#FFEEEA",
+              height: '80vh',
+              width: '100vw',
+              background: '#FFEEEA',
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -348,25 +361,24 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_input_container"
                   style={{
-                    borderBottomLeftRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    marginBottom: "2%",
+                    borderRadius: '15px',
+                    marginBottom: '2%',
                   }}
                 >
                   <div className="tqs_sqm_input_label">
-                    <p className="tqs_sqm_input_text">{t("Price")}</p>
+                    <p className="tqs_sqm_input_text">{t('Price')}</p>
                   </div>
                   <div className="tqs_sqm_input_input">
                     <CustomInput
                       inputType="number"
                       labelStyle={{
-                        display: "none",
+                        display: 'none',
                       }}
                       inputStyle={{
-                        border: "none",
-                        fontSize: "12px",
+                        border: 'none',
+                        fontSize: '12px',
                       }}
-                      inputPlaceholder={t("Set Your Price")}
+                      inputPlaceholder={t('Set Your Price')}
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
@@ -374,35 +386,34 @@ function TailorViewQuoteScreen() {
                 <div
                   className="tqs_sqm_textarea_container"
                   style={{
-                    borderTopLeftRadius: "20px",
-                    borderTopRightRadius: "20px",
-                    marginBottom: "10%",
+                    borderRadius: '15px',
+                    marginBottom: '10%',
                   }}
                 >
                   <div className="tqs_sqm_textarea_label">
-                    <p className="tqs_sqm_input_text">{t("Description")}</p>
+                    <p className="tqs_sqm_input_text">{t('Description')}</p>
                   </div>
                   <div className="tqs_sqm_input_input">
                     <textarea
                       className="tqs_sqm_textarea_textarea"
-                      placeholder={t("Tell us")}
+                      placeholder={t('Tell us')}
                       onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                   </div>
                 </div>
                 <div className="tvqs_sq_buttons">
                   <CustomButton
-                    text={"Send Offer"}
+                    text={t('Send Offer')}
                     style={{
-                      boxShadow: "none",
-                      marginRight: "10pt",
+                      boxShadow: 'none',
+                      marginRight: '10pt',
                     }}
                     onClick={handleSubmit}
                   />
                   <CustomButton
-                    text={t("Chat Here")}
+                    text={t('Chat Here')}
                     style={{
-                      boxShadow: "none",
+                      boxShadow: 'none',
                     }}
                     onClick={navToChat}
                   />

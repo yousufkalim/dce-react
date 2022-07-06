@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { Routes } from "react-router-dom";
+import { Routes } from 'react-router-dom';
 
-import { getToken, getUser, handleLogout } from "../utils/Auth";
-import { useLocation, useNavigate } from "react-router-dom";
-import { focusHandling } from "cruip-js-toolkit";
-import { isExpired } from "react-jwt";
+import { getToken, getUser, handleLogout } from '../utils/Auth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { focusHandling } from 'cruip-js-toolkit';
+import { isExpired } from 'react-jwt';
 
-import RoutesObj from "../routes/Routes";
-import { getRoutes, initSocket } from "../utils/Auth";
+import RoutesObj from '../routes/Routes';
+import { getRoutes, initSocket } from '../utils/Auth';
 
-import { Store, UpdateStore } from "../StoreContext";
-import SS from "../utils/services/socket.io/utils/state";
+import { Store, UpdateStore } from '../StoreContext';
+import SS from '../utils/services/socket.io/utils/state';
 
 const Main = () => {
   const token = getToken();
@@ -25,10 +25,10 @@ const Main = () => {
   const updateStore = UpdateStore();
 
   useEffect(() => {
-    document.querySelector("html").style.scrollBehavior = "auto";
+    document.querySelector('html').style.scrollBehavior = 'auto';
     window.scroll({ top: 0 });
-    document.querySelector("html").style.scrollBehavior = "";
-    focusHandling("outline");
+    document.querySelector('html').style.scrollBehavior = '';
+    focusHandling('outline');
     initSocket(updateStore);
     if (token && isMyTokenExpired) {
       handleLogout(navigate, store, updateStore);
@@ -39,14 +39,14 @@ const Main = () => {
     Object.assign(SS, store);
     // console.log(SS, `_SS_`);
   }, [store]);
-console.log(user?.role);
+
   return (
     <>
       <div className="main-container">
         <Routes>
           {token && isMyTokenExpired == false ? (
             <>
-              {user.role == "client" ? (
+              {user.role == 'client' ? (
                 <>{getRoutes(RoutesObj.ClientRoutes)}</>
               ) : (
                 <>{getRoutes(RoutesObj.TailorRoutes)}</>

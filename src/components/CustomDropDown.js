@@ -1,14 +1,14 @@
-import React from "react";
-import Select from "@mui/material/Select";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Select from '@mui/material/Select';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   input: {
-    "& input.Mui-disabled": {
-      color: "green"
-    }
-  }
+    '& input.Mui-disabled': {
+      color: 'green',
+    },
+  },
 }));
 
 function CustomDropDown({
@@ -23,7 +23,7 @@ function CustomDropDown({
   divStyle,
   labelStyle,
   selectSX,
-  valuecolor
+  valuecolor,
 }) {
   const classes = useStyles();
   return (
@@ -44,9 +44,9 @@ function CustomDropDown({
       </label>
       <div
         style={{
-          position: "relative",
-          height: "100%",
-           width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }}
       >
         <Select
@@ -57,16 +57,21 @@ function CustomDropDown({
           value={selectValue}
           className={classes.input}
           onChange={onChange}
-          renderValue={(value) => (value.length > 0 ? value : selectNullValue)}
+          renderValue={(value) => (value?.length > 0 ? value : selectNullValue)}
           IconComponent={KeyboardArrowDownRoundedIcon}
           sx={{
-            color: valuecolor==="on"?"#ffffff":"#A0A0A0",
-            minWidth: "100%",
-            background: "transparent",
+            color:
+              valuecolor === 'on'
+                ? '#ffffff'
+                : selectValue
+                ? '#000000'
+                : '#A0A0A0',
+            minWidth: '100%',
+            background: 'transparent',
             ...selectSX,
           }}
         >
-  {menuItems}
+          {menuItems}
         </Select>
       </div>
     </div>

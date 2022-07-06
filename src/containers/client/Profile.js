@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import UserSVG from "../../assets/User.svg";
-import DesignElaborationSVG from "../../assets/profile.svg";
+import AutoComplete from '../../components/AutoComplete';
 
-import ProfileBirthdaySVG from "../../assets/ProfileBirthday.svg";
-import ProfileCitySVG from "../../assets/ProfileCity.svg";
-import ProfileCountrySVG from "../../assets/ProfileCountry.svg";
-import ProfileEmailSVG from "../../assets/ProfileEmail.svg";
-import ProfileLocationSVG from "../../assets/ProfileLocation.svg";
-import ProfilePhoneSVG from "../../assets/ProfilePhone.svg";
-import dummy from "../../assets/dummy.jpeg";
-import { useTranslation } from "react-i18next";
+import DesignElaborationSVG from '../../assets/profile.svg';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
-import CustomButton from "../../components/CustomButton";
+import ProfileEmailSVG from '../../assets/ProfileEmail.svg';
+import ProfilePhoneSVG from '../../assets/ProfilePhone.svg';
+import dummy from '../../assets/dummy.jpeg';
+import { useTranslation } from 'react-i18next';
 
-import Api from "../../api";
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
+import CustomButton from '../../components/CustomButton';
+import CustomDatePicker from '../../components/CustomDatePicker';
 
-import { useNavigate } from "react-router-dom";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import { toast } from "react-toastify";
+import Api from '../../api';
+import axios from 'axios';
 
-import * as FormValidations from "../../utils/Validations";
-import assetsURL from "../../utils/Assets";
+import { useNavigate } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
+
+import * as FormValidations from '../../utils/Validations';
+import assetsURL from '../../utils/Assets';
 
 function ClientProfileScreen() {
   const { t } = useTranslation();
@@ -35,13 +35,23 @@ function ClientProfileScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [profile, setProfile] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
-
   const [toEdit, setToEdit] = useState(false);
 
   const [state, setState] = useState({
-    phone: "",
+    phone: '',
     password: undefined,
   });
+
+  // Z-Mods
+  const [dateOfBirth, setDateOfBirth] = useState(new Date('January 01, 1999'));
+  const [address, setAddress] = useState({
+    zip: '',
+    label: '',
+    city: '',
+    lat: '',
+    lng: '',
+  });
+  const [addresses, setAddresses] = useState([]);
 
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
@@ -64,13 +74,23 @@ function ClientProfileScreen() {
   const getProfile = async () => {
     let response;
     try {
-      response = await Api("get", `/auth`);
+      response = await Api('get', `/auth`);
       const userData = response.data.user;
       setProfile(userData);
       setState({
         ...state,
-        phone: userData.phone ?? "",
+        phone: userData.phone ?? '',
       });
+      if (userData.dob) {
+        setDateOfBirth(userData.dob);
+      }
+      if (userData.address) {
+        setAddress({
+          zip: userData.zip_code,
+          label: userData.address,
+          city: userData.city,
+        });
+      }
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
@@ -106,16 +126,25 @@ function ClientProfileScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
-      body.append("phone", state.phone);
-      body.append("phone", state.phone);
-      if (state.password) {
-        body.append("password", state.password);
+
+      body.append('phone', state.phone);
+      if (dateOfBirth) {
+        body.append('dob', dateOfBirth);
       }
-      body.append("image", profileImage);
-      response = await Api("put", `/clients/${profile?._id}`, body);
+      if (address.label) {
+        body.append('address', address.label);
+        body.append('zip_code', address.zip);
+        body.append('city', address.city);
+      }
+      if (state.password) {
+        body.append('password', state.password);
+      }
+      body.append('image', profileImage);
+
+      response = await Api('put', `/clients/${profile?._id}`, body);
 
       if (response?.data?.success) {
-        toast.success(t("Profile updated successfully."));
+        toast.success(t('Profile updated successfully.'));
         navToHome();
       }
     } catch (e) {
@@ -126,7 +155,72 @@ function ClientProfileScreen() {
   };
 
   const navToHome = () => {
-    navigate("/home");
+    navigate('/home');
+  };
+
+  const _setAddress = (_) => {
+    setAddress({ ...address, ..._ });
+  };
+  const handleSelectAddress = (e) => {
+    if (e) {
+      _setAddress({
+        label: e.label,
+        zip: e.PostalCode,
+        city: e.city,
+        lat: e.lat,
+        lng: e.lng,
+      });
+    } else {
+      _setAddress({
+        label: '',
+        zip: '',
+        city: '',
+        lat: '',
+        lng: '',
+      });
+    }
+  };
+  const handleInputAddress = async (e) => {
+    if (e.target.value === '') {
+      _setAddress({
+        label: '',
+        zip: '',
+        city: '',
+        lat: '',
+        lng: '',
+      });
+      setAddresses([]);
+    } else {
+      _setAddress({
+        label: e.target.value,
+      });
+      const config = {
+        method: 'get',
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+      };
+      axios.defaults.headers = null;
+      try {
+        const response = await axios(config);
+        const addressToSet = [];
+        response.data.features
+          .map((item) => {
+            addressToSet.push({
+              label: item.properties.label,
+              city: item.properties.city,
+              PostalCode: item.properties.postcode,
+              lat: item.geometry.coordinates[1],
+              lng: item.geometry.coordinates[0],
+            });
+            setAddresses(addressToSet);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        setAddresses(addressToSet);
+      } catch (e) {
+        console.trace(e);
+      }
+    }
   };
 
   return (
@@ -140,142 +234,155 @@ function ClientProfileScreen() {
             className="client_profile_screen_top"
             style={{
               background:
-                "linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+                'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
             <div className="client_profile_screen_row1">
               <p
                 className="client_profile_screen_row1_text"
-                style={{ paddingLeft: "3%" }}
+                style={{ paddingLeft: '3%' }}
               >
-                {t("Profile")}
+                {t('Profile')}
               </p>
               <CustomButton
                 type="submit"
                 onClick={toEditCallback}
-                text={toEdit ? t("Save") : t("Edit")}
+                text={toEdit ? t('Save') : t('Edit')}
                 style={{
-                  boxShadow: "none",
-                  marginRight: "5%",
+                  boxShadow: 'none',
+                  marginRight: '5%',
                 }}
               />
             </div>
             <div className="client_profile_screen_row2">
               <div className="client_profile_screen_row2_column1">
                 <div className="prof-img">
-                  <img style={{ width: "86%" }} src={DesignElaborationSVG} />
+                  <img style={{ width: '86%' }} src={DesignElaborationSVG} />
                 </div>
               </div>
               <div className="client_profile_screen_row2_column2">
                 <div className="cps_profile_container">
                   <div
                     className="cps_profile_img"
-                    style={{ paddingBottom: "2%" }}
+                    style={{ paddingBottom: '2%' }}
                   >
                     <label>
                       <input
                         style={{
-                          display: "none",
-                          cursor: "none",
+                          display: 'none',
+                          cursor: 'none',
                         }}
                         disabled={!toEdit}
                         type="file"
                         accept="image/*"
                         onChange={handleImageSelect}
                       />
-                      <img
-                        className="image_container"
+                      <div
                         style={{
-                          height: "80pt",
-                          width: "80pt",
+                          position: 'relative',
+                          height: '100%',
+                          width: '100%',
                         }}
-                        src={
-                          profileImage
-                            ? URL.createObjectURL(profileImage)
-                            : profile.avatar
-                            ? assetsURL(profile.avatar)
-                            : dummy
-                        }
-                      />
+                      >
+                        <img
+                          className="image_container"
+                          style={{
+                            height: '80pt',
+                            width: '80pt',
+                          }}
+                          src={
+                            profileImage
+                              ? URL.createObjectURL(profileImage)
+                              : profile.avatar
+                              ? assetsURL(profile.avatar)
+                              : dummy
+                          }
+                        />
+                        {toEdit ? (
+                          <AddPhotoAlternateIcon
+                            sx={{
+                              position: 'absolute',
+                              right: '-4pt',
+                              top: '50pt',
+                            }}
+                          />
+                        ) : (
+                          <></>
+                        )}
+                      </div>
                     </label>
                   </div>
                   <p
                     className="cps_profile_text"
-                    style={{ paddingBottom: "10px" }}
+                    style={{ paddingBottom: '10px' }}
                   >
                     {profile.name}
                   </p>
                   <ProfileInput
                     disabled={!toEdit}
                     name="Phone"
-                    placeholder={t("Phone")}
+                    placeholder={t('Phone')}
                     defaultValue={profile.phone}
                     img={ProfilePhoneSVG}
+                    minmax="on"
                     divStyle={{
-                      borderTopLeftRadius: "10px",
-                      borderTopRightRadius: "10px",
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
                     }}
-                    onChange={(e) => _setState("phone", e.target.value)}
+                    onChange={(e) => _setState('phone', e.target.value)}
                   />
                   <ProfileInput
                     disabled
                     name="Email"
-                    placeholder={t("Email")}
+                    placeholder={t('Email')}
                     defaultValue={profile.email}
                     img={ProfileEmailSVG}
                   />
-                  <ProfileInput
-                    disabled
-                    name="Date Of Birth"
-                    placeholder={t("Date Of Birth")}
-                    defaultValue={new Date(profile.dob).toLocaleDateString(
-                      "en-GB"
-                    )}
-                    img={ProfileBirthdaySVG}
-                  />
-                  {
-                    <ProfileInput
-                      disabled
-                      name="Country"
-                      placeholder={t("Country")}
-                      defaultValue={"France"}
-                      img={ProfileCountrySVG}
-                    />
-                  }
-                  {/*<ProfileInput
-                    disabled
-                    name="City"
-                    placeholder={t("City")}
-                    defaultValue={profile.city}
-                    img={ProfileCitySVG}
-                  /> */}
-                  <ProfileInput
-                    disabled
-                    name="Location"
-                    placeholder={t("Location")}
-                    defaultValue={profile.address}
-                    img={ProfileLocationSVG}
+                  <CustomDatePicker
+                    disabled={!toEdit}
+                    disableFuture
+                    labelStyle={{
+                      display: 'none',
+                    }}
+                    labelText="Date of Birth"
+                    value={dateOfBirth}
+                    onChange={setDateOfBirth}
                     divStyle={{
-                      borderBottomLeftRadius: "10px",
-                      borderBottomRightRadius: "10px",
-                      marginBottom: "2%",
+                      width: '90%',
+                      marginTop: '2%',
                     }}
                   />
+                  <div style={{ width: '90%' }}>
+                    <AutoComplete
+                      disabled={!toEdit}
+                      name="Address"
+                      required={true}
+                      label={'Address'}
+                      value={address?.label}
+                      options={addresses}
+                      placeholder={t('Address')}
+                      onChangeAddress={(e) => {
+                        handleInputAddress(e);
+                      }}
+                      onAddressSelect={(e) => handleSelectAddress(e)}
+                      defaultValue={address.label}
+                    />
+                  </div>
                   <ProfileInput
                     disabled
                     name="Last Password Changed"
-                    placeholder={t("Last Password Changed")}
+                    placeholder={t('Last Password Changed')}
                     defaultValue={
                       profile.last_password_changed
                         ? new Date(
                             profile.last_password_changed
-                          ).toLocaleDateString("en-US")
-                        : "N/A"
+                          ).toLocaleDateString('en-gb')
+                        : 'N/A'
                     }
-                    label={t("Last Password Changed")}
+                    label={t('Last Password Changed')}
                     divStyle={{
-                      borderTopLeftRadius: "10px",
-                      borderTopRightRadius: "10px",
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
                     }}
                   />
                   <ProfileInput
@@ -284,19 +391,19 @@ function ClientProfileScreen() {
                     placeholder="**********"
                     defaultValue=""
                     label="Password"
-                    onChange={(e) => _setState("password", e.target.value)}
+                    onChange={(e) => _setState('password', e.target.value)}
                   />
                   <ProfileInput
                     disabled
                     name="Account Created"
-                    placeholder={t("Account Created")}
+                    placeholder={t('Account Created')}
                     defaultValue={new Date(
                       profile.createdAt
-                    ).toLocaleDateString("en-GB")}
-                    label={t("Account Created")}
+                    ).toLocaleDateString('en-GB')}
+                    label={t('Account Created')}
                     divStyle={{
-                      borderBottomLeftRadius: "10px",
-                      borderBottomRightRadius: "10px",
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
                     }}
                   />
                 </div>
@@ -319,6 +426,7 @@ function ProfileInput({
   img,
   label,
   divStyle,
+  minmax,
 }) {
   return (
     <div
@@ -329,15 +437,16 @@ function ProfileInput({
     >
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }}
       >
         <input
           disabled={disabled}
           className="cps_profile_input_input"
           name={name}
+          maxlength={minmax === 'on' && '10'}
           onChange={onChange}
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -345,11 +454,11 @@ function ProfileInput({
         {label ? (
           <p
             style={{
-              fontSize: "12px",
-              fontWeight: "500",
-              position: "absolute",
-              left: "2%",
-              top: "1%",
+              fontSize: '12px',
+              fontWeight: '500',
+              position: 'absolute',
+              left: '2%',
+              top: '1%',
             }}
           >
             {label}
@@ -358,10 +467,10 @@ function ProfileInput({
           <img
             src={img}
             style={{
-              width: "16px",
-              position: "absolute",
-              left: "2%",
-              top: "1%",
+              width: '16px',
+              position: 'absolute',
+              left: '2%',
+              top: '1%',
             }}
           />
         )}

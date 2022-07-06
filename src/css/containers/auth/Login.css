@@ -40,3 +40,21 @@
   height: 100%;
   margin-right: 20%;
 }
+.forget-modal-description{
+  font-weight: 400;
+  font-size: 16px !important;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: #0D0C0C;
+  
+  opacity: 0.5;
+}
+.cross-img{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  left: 15%;
+  width: 100%;
+}

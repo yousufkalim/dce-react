@@ -1,5 +1,5 @@
-import SS from "./utils/state";
-import Api from "../../../api/index";
+import SS from './utils/state';
+import Api from '../../../api/index';
 
 export const connectHandler = (socket, updateStore) => {
   updateStore({
@@ -27,7 +27,7 @@ export const receiveChatHandler = async (socket, updateStore, _) => {
 const _getMessages = async (chatID) => {
   let response;
   try {
-    response = await Api("post", `/messages/byQuery`, {
+    response = await Api('post', `/messages/byQuery`, {
       chat: chatID,
     });
     const messagesData = response.data.messages ?? [];

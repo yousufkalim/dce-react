@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ClientAppBar from "../../components/ClientAppBar";
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import addicon from "../../assets/addicon.svg";
 import SearchIcon from "../../assets/search1.svg";
 import { useTranslation } from "react-i18next";
@@ -37,7 +37,7 @@ function Faqs() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
@@ -62,11 +62,7 @@ function SearchInput({}) {
             display: "flex",
           }}
         >
-          <input
-            type="text"
-            placeholder="Ask your Question"
-            className="search-input-faqs"
-          />
+          <input type="text" placeholder="Ask your Question" className="search-input-faqs" />
           <img src={SearchIcon} className="search-Input-Icon" />
         </div>
       </div>

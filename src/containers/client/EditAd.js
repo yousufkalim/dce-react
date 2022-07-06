@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import { useTranslation } from "react-i18next";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import { useTranslation } from 'react-i18next';
 
-import AdEdit1SVG from "../../assets/AdEdit1.svg";
-import AdEdit2SVG from "../../assets/AdEdit2.svg";
-import AdEdit3SVG from "../../assets/AdEdit3.svg";
+import AdEdit1SVG from '../../assets/AdEdit1.svg';
+import AdEdit2SVG from '../../assets/AdEdit2.svg';
+import AdEdit3SVG from '../../assets/AdEdit3.svg';
 
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
-import * as ParseAd from "../../components/ParseAd";
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
+import * as ParseAd from '../../components/ParseAd';
 
-import Api from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import Api from '../../api';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
 function ClientEditAdScreen() {
   const { t } = useTranslation();
@@ -30,37 +30,55 @@ function ClientEditAdScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [image, setImage] = useState(null);
-
+  const [images, setImages] = useState([]);
   const [basicSection, setBasicSection] = useState({
-    gender: "",
-    category: "",
-    name: "",
-    cut: "",
+    gender: '',
+    category: '',
+    name: '',
+    cut: '',
     measurements: {
-      type: "static",
-      value: "",
+      type: 'static',
+      value: '',
     },
-    color: "",
-    fabric: "",
+    color: '',
+    fabric: '',
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
   });
   const [deliverySection, setDeliverySection] = useState({
-    note: "",
-    type: "",
-    date: "",
-    address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    date: '',
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
-    type: "",
-    min_price: "",
-    max_price: "",
-    note: "",
+    type: '',
+    min_price: '',
+    max_price: '',
+    note: '',
   });
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+  const handleImagesSelect = (event) => {
+    if (event.target.files.length + images.length > 5) {
+      toast.error('You can select a maximum of 5 files.');
+      return;
+    }
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      const obj = event.target.files[i];
+      if (obj.size / 1024 > 5000) {
+        toast.error('File sizes greater than 5 MB are not allowed.');
+        return;
+      }
+    }
+
+    setImages([...images, ...event.target.files]);
+  };
+  const handleImageDeselect = (image) => {
+    const _images = [...images];
+    const index = _images.map((_) => _.name).indexOf(image.name);
+    if (index > -1) {
+      _images.splice(index, 1);
+    }
+    setImages([..._images]);
   };
 
   useEffect(() => {
@@ -71,7 +89,7 @@ function ClientEditAdScreen() {
   const getAd = async () => {
     let response;
     try {
-      response = await Api("get", `/orders/${params.id}`);
+      response = await Api('get', `/orders/${params.id}`);
       const adData = response.data.order;
       setBasicSection({
         gender: adData.gender,
@@ -82,10 +100,10 @@ function ClientEditAdScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        create_catalog_after_completion: adData.create_catalog_after_completion,
       });
       setDeliverySection({
         date: adData.delivery.date,
-        note: adData.delivery.note,
         type: adData.delivery.type,
         address: {
           zip: adData.delivery.zipcode,
@@ -93,7 +111,12 @@ function ClientEditAdScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({
+        type: adData?.budget.type,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        note: adData?.budget.note,
+      });
     } catch (e) {
       console.trace(e);
     }
@@ -121,33 +144,36 @@ function ClientEditAdScreen() {
       setIsProcessing(true);
 
       const body = new FormData();
-      body.append("type", "ad");
-      body.append("gender", basicSection.gender);
-      body.append("category", basicSection.category);
-      body.append("name", basicSection.name);
-      body.append("cut", basicSection.cut);
-      body.append("measurements", JSON.stringify(basicSection.measurements));
-      body.append("color", basicSection.color);
-      body.append("fabric", basicSection.fabric);
+      body.append('type', 'ad');
+      body.append('gender', basicSection.gender);
+      body.append('category', basicSection.category);
+      body.append('name', basicSection.name);
+      body.append('cut', basicSection.cut);
+      body.append('measurements', JSON.stringify(basicSection.measurements));
+      body.append('color', basicSection.color);
+      body.append('fabric', basicSection.fabric);
       body.append(
-        "includes_alteration_services",
+        'includes_alteration_services',
         basicSection.includes_alteration_services
       );
       body.append(
-        "delivery",
+        'create_catalog_after_completion',
+        basicSection.create_catalog_after_completion
+      );
+      body.append(
+        'delivery',
         JSON.stringify({
           address: deliverySection.address.label,
           country: deliverySection.country,
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          type: deliverySection.type,
           date: deliverySection.date,
         })
       );
-      body.append("note", notesSection.note);
+      body.append('note', notesSection.note);
       body.append(
-        "budget",
+        'budget',
         JSON.stringify({
           type: notesSection.type,
           min_price: notesSection.min_price,
@@ -155,12 +181,14 @@ function ClientEditAdScreen() {
           note: notesSection.note,
         })
       );
-      body.append("image", image);
+      for (let i = 0; i < images.length; i++) {
+        body.append('images', images[i]);
+      } // Multipart files share the same field name
 
-      response = await Api("put", `/orders/${params.id}`, body);
+      response = await Api('put', `/orders/${params.id}`, body);
 
       if (response?.data?.success) {
-        toast.success(t("Ad updated successfully."));
+        toast.success(t('Ad updated successfully.'));
         navToMyAds();
       }
     } catch (e) {
@@ -171,7 +199,7 @@ function ClientEditAdScreen() {
   };
 
   const navToMyAds = () => {
-    navigate("/my_ads");
+    navigate('/my_ads');
   };
 
   return (
@@ -184,36 +212,39 @@ function ClientEditAdScreen() {
           <div
             className="container"
             style={{
-              background: "#FFE9A0",
-              height:"106vh"
+              background: '#FFE9A0',
+              height: '118vh',
             }}
           >
-            <div style={{height:"auto"}} className="client_edit_ad_screen_row1">
+            <div
+              style={{ height: '100%' }}
+              className="client_edit_ad_screen_row1"
+            >
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Ad Basic")}
+                  {t('Ad Basic')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "55%" }} src={AdEdit1SVG} />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -231,8 +262,9 @@ function ClientEditAdScreen() {
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
-                      image={image}
-                      handleImageSelect={handleImageSelect}
+                      images={images}
+                      handleImagesSelect={handleImagesSelect}
+                      handleImageDeselect={handleImageDeselect}
                     />
                   </div>
                 </div>
@@ -242,8 +274,8 @@ function ClientEditAdScreen() {
           <div
             className="container"
             style={{
-              background: "#FFC396",
-              paddingBottom:"1%"
+              background: '#FFC396',
+              paddingBottom: '1%',
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -251,7 +283,7 @@ function ClientEditAdScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -276,58 +308,58 @@ function ClientEditAdScreen() {
               <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Delivery")}
+                  {t('My delivery')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "70%" }} src={AdEdit2SVG} />
+                <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
           </div>
           <div
             className="container"
             style={{
-              background: "#FFFCFB",
-              paddingBottom:"2%"
+              background: '#FFFCFB',
+              paddingBottom: '2%',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Payment")}
+                  {t('Payment')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "20%" }} src={AdEdit3SVG} />
+                <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: '10%',
                   }}
                 >
                   <div className="pa_steps_row">

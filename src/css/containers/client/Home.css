@@ -19,6 +19,7 @@
   font-weight: 900;
   color: #e9a555;
   padding-bottom: 2%;
+  width: 52%;
 }
 
 .client_home_screen_row1_column1_text_2 {
@@ -159,7 +160,6 @@
   .container {
     height: auto !important;
   }
-
   .new_order_list_tile {
     width: 90%;
   }
@@ -189,5 +189,4 @@
     width: 90%;
     margin: 2% 0%;
   }
-
 }

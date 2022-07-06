@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import SendSVG from "../../assets/send.svg";
-import MovieSVG from "../../assets/attachone.svg";
-import ImageSVG from "../../assets/attachtwo.svg";
-import DocumentSVG from "../../assets/attachthree.svg";
-import MinusSVG from "../../assets/attachfour.svg";
-import Box from "@mui/material/Box";
-import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
-import Picker from "emoji-picker-react";
-import chatemoji from "../../assets/chatemoji.svg";
+import React, { useState } from 'react';
+import SendSVG from '../../assets/send.svg';
+import MovieSVG from '../../assets/attachone.svg';
+import ImageSVG from '../../assets/attachtwo.svg';
+import DocumentSVG from '../../assets/attachthree.svg';
+import MinusSVG from '../../assets/attachfour.svg';
+import Box from '@mui/material/Box';
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import Picker from 'emoji-picker-react';
+import chatemoji from '../../assets/chatemoji.svg';
 
-import { Store, UpdateStore } from "../../StoreContext";
+import { Store, UpdateStore } from '../../StoreContext';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import Api from "../../api/index";
+import Api from '../../api/index';
+import { useTranslation } from 'react-i18next';
 
 const SendMessage = ({ directUser }) => {
+  const { t } = useTranslation();
+
   const store = Store();
   const updateStore = UpdateStore();
 
@@ -24,24 +27,24 @@ const SendMessage = ({ directUser }) => {
 
   const sendTextMessage = () => {
     if (!text) {
-      toast.error("Please type message to send.");
+      toast.error('Please type message to send.');
     }
 
-    store.socket.emit("send_message", {
-      type: "text",
+    store.socket.emit('send_message', {
+      type: 'text',
       content: text,
       direct_user: directUser,
       chat: store.chat,
     });
 
-    setText("");
+    setText('');
   };
 
   const sendAssetMessage = async (e, type) => {
     const file = e.target.files[0];
 
     if (file.size / 1024 > 10000) {
-      toast.error("Files greater than 10 MB are not allowed.");
+      toast.error('Files greater than 10 MB are not allowed.');
       return;
     }
 
@@ -56,14 +59,14 @@ const SendMessage = ({ directUser }) => {
 
       const body = new FormData();
 
-      body.append("file", file);
+      body.append('file', file);
 
-      response = await Api("post", "/assets", body);
+      response = await Api('post', '/assets', body);
 
       if (response?.data?.success) {
         const asset = response.data.file;
 
-        store.socket.emit("send_message", {
+        store.socket.emit('send_message', {
           type: type,
           content: asset,
           direct_user: directUser,
@@ -82,9 +85,9 @@ const SendMessage = ({ directUser }) => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
   const [values, setvalues] = useState({
-    video: "",
-    image: "",
-    file: "",
+    video: '',
+    image: '',
+    file: '',
   });
   const ToggleIcon = () => {
     setIconsToggle(!iconsToggle);
@@ -101,10 +104,10 @@ const SendMessage = ({ directUser }) => {
     <>
       <div
         className="send-msg-cont"
-        style={{ pointerEvents: isProcessing ? "none" : "all" }}
+        style={{ pointerEvents: isProcessing ? 'none' : 'all' }}
       >
         <div className="send-attachments cursor-pointer">
-          <Box className={iconsToggle ? "inptwo" : "inp"}>
+          <Box className={iconsToggle ? 'inptwo' : 'inp'}>
             <div className="send-att-img cursor-pointer">
               <label htmlFor="videoPicker">
                 <input
@@ -112,7 +115,7 @@ const SendMessage = ({ directUser }) => {
                   accept=".mp4"
                   hidden
                   id="videoPicker"
-                  onChange={(e) => sendAssetMessage(e, "video")}
+                  onChange={(e) => sendAssetMessage(e, 'video')}
                   name="video"
                 />
                 <img src={MovieSVG} />
@@ -125,7 +128,7 @@ const SendMessage = ({ directUser }) => {
                   accept=".jpeg,.png,.jpg"
                   hidden
                   id="imgPicker"
-                  onChange={(e) => sendAssetMessage(e, "image")}
+                  onChange={(e) => sendAssetMessage(e, 'image')}
                   name="image"
                 />
                 <img src={ImageSVG} />
@@ -138,7 +141,7 @@ const SendMessage = ({ directUser }) => {
                   accept="*"
                   hidden
                   id="filePicker"
-                  onChange={(e) => sendAssetMessage(e, "attachment")}
+                  onChange={(e) => sendAssetMessage(e, 'attachment')}
                   name="file"
                 />
                 <img src={DocumentSVG} />
@@ -147,7 +150,7 @@ const SendMessage = ({ directUser }) => {
           </Box>
           <div onClick={ToggleIcon} className="toggle-icons">
             {iconsToggle ? (
-              <RemoveOutlinedIcon sx={{ height: "17px", width: "17px" }} />
+              <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} />
             ) : (
               <img src={MinusSVG} />
             )}
@@ -155,7 +158,7 @@ const SendMessage = ({ directUser }) => {
         </div>
         <input
           className="msg-input"
-          placeholder="Type a message here"
+          placeholder={t('Type a message here')}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />

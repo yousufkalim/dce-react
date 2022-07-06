@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import TailorAppBar from "../../components/TailorAppBar";
-import Footer from "../../components/Footer";
-import CustomButton from "../../components/CustomButton";
-import CatalogListTile from "../../components/CatalogListTile";
-import { useTranslation } from "react-i18next";
+import TailorAppBar from '../../components/TailorAppBar';
+import Footer from '../../components/Footer';
+import CustomButton from '../../components/CustomButton';
+import CatalogListTile from '../../components/CatalogListTile';
+import { useTranslation } from 'react-i18next';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { getUser } from "../../utils/Auth";
-import Api from "../../api";
+import { getUser } from '../../utils/Auth';
+import Api from '../../api';
 
 const TailorCatalogScreen = () => {
   const { t } = useTranslation();
@@ -26,8 +26,8 @@ const TailorCatalogScreen = () => {
   const getCatalogs = async () => {
     let response;
     try {
-      response = await Api("post", `/catalogs/byQuery`, { tailor: user._id });
-      const catalogsData = response.data.catalogs;
+      response = await Api('post', `/catalogs/byQuery`, { tailor: user._id });
+      const catalogsData = response.data.catalogs.splice(-4);
       setCatalogs(catalogsData);
       setIsLoading(false);
     } catch (e) {
@@ -36,7 +36,7 @@ const TailorCatalogScreen = () => {
   };
 
   const navToCreateCatalog = () => {
-    navigate("/create_catalog");
+    navigate('/create_catalog');
   };
 
   const navToViewCatalog = (id) => {
@@ -53,34 +53,34 @@ const TailorCatalogScreen = () => {
       <div className="tailor_catalog_screen_row1">
         <div
           className="tailor_catalog_screen_row1_column1"
-          style={{ justifyContent: "center", alignItems: "center" }}
+          style={{ justifyContent: 'center', alignItems: 'center' }}
         >
           <p className="tailor_catalog_screen_row1_column1_text">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
           </p>
           <CustomButton
-            text={t("Add Catalogue")}
+            text={t('Add Catalogue')}
             type="submit"
             style={{
-              background: "#fff",
-              color: "#CC8E9C",
-              fontWeight: "600",
-              boxShadow: "none",
-              marginTop: "0%",
-              padding: "1% 2% 1% 2%",
+              background: '#fff',
+              color: '#CC8E9C',
+              fontWeight: '600',
+              boxShadow: 'none',
+              marginTop: '0%',
+              padding: '1% 2% 1% 2%',
             }}
             onClick={navToCreateCatalog}
           />
         </div>
       </div>
       <div className="tailor_catalog_screen_row2">
-        <p className="tailor_catalog_screen_row2_text">{t("My Catalogue")}</p>
+        <p className="tailor_catalog_screen_row2_text">{t('My Catalogue')}</p>
         <div className="tailor_catalog_screen_row2_list_container">
           {catalogs.map((_) => (
             <CatalogListTile
               catalog={_}
-              buttonText={t("Edit")}
+              buttonText={t('Edit')}
               onClick={() => navToViewCatalog(_._id)}
               onClickButton={() => navToEditCatalog(_._id)}
             />

@@ -24,7 +24,7 @@ import { toast } from "react-toastify";
 
 import * as FormValidations from "../../utils/Validations";
 
-const steps = ["Basic", "Delivery", "Notes"];
+const steps = ["MY PROJECT", "My delivery", "Remarks"];
 
 function TailorViewOrderScreen() {
   const { t } = useTranslation();
@@ -46,10 +46,10 @@ function TailorViewOrderScreen() {
     color: "",
     fabric: "",
     includes_alteration_services: false,
+    create_catalog_after_completion: false,
+    userRole: "",
   });
   const [deliverySection, setDeliverySection] = useState({
-    note: "",
-    type: "",
     date: "",
     address: { zip: "", label: "", city: "", lat: "", lng: "" },
   });
@@ -69,6 +69,7 @@ function TailorViewOrderScreen() {
     try {
       response = await Api("get", `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log("adData", adData);
       setAd(adData);
       setBasicSection({
         gender: adData.gender,
@@ -79,10 +80,10 @@ function TailorViewOrderScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
+        create_catalog_after_completion: adData.create_catalog_after_completion,
       });
       setDeliverySection({
         date: adData.delivery.date,
-        note: adData.delivery.note,
         type: adData.delivery.type,
         address: {
           zip: adData.delivery.zipcode,
@@ -90,7 +91,12 @@ function TailorViewOrderScreen() {
           city: adData.delivery.city,
         },
       });
-      setNotesSection(adData.budget);
+      setNotesSection({
+        note: adData?.budget.note,
+        min_price: adData?.budget.min_price,
+        max_price: adData?.budget.max_price,
+        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
+      });
     } catch (e) {
       console.trace(e);
     }
@@ -108,6 +114,7 @@ function TailorViewOrderScreen() {
             className="container"
             style={{
               background: "#FFE9A0",
+              height: "112vh",
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -135,26 +142,20 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "8%",
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.BasicSection
-                      disabled
-                      state={basicSection}
-                      setState={setBasicSection}
-                    />
+                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
                   </div>
                 </div>
               </div>
@@ -171,26 +172,20 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "7%",
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      disabled
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
@@ -247,36 +242,26 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "10%",
+                    marginTop: "7%",
                   }}
                 >
                   <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.NotesSection
-                      disabled
-                      state={notesSection}
-                      setState={setNotesSection}
-                    />
+                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {ad.status == "in_progress" ? (
-            <CompleteOrderSection {...ad} />
-          ) : (
-            <></>
-          )}
+          {ad.status == "in_progress" ? <CompleteOrderSection {...ad} /> : <></>}
           <Footer />
         </div>
       )}
@@ -317,10 +302,7 @@ const CompleteOrderSection = (props) => {
           aria-labelledby="Complete Order"
           onBackdropClick="false"
         >
-          <CompleteOrderModal
-            handleClose={handleCompleteOrderModalClose}
-            order={props}
-          />
+          <CompleteOrderModal handleClose={handleCompleteOrderModalClose} order={props} />
         </Modal>
       </div>
     </div>
@@ -332,13 +314,14 @@ const CompleteOrderModal = (props) => {
 
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const [rating, setRating] = useState(5);
+  // const [rating, setRating] = useState(5);
   const [details, setDetails] = useState("");
-  const [attachment, setAttachment] = useState(null);
+  const [attachments, setAttachments] = useState([]);
+
   const { t } = useTranslation();
+
   const handleFileSelect = (event) => {
-    const file = event.target.files[0];
-    setAttachment(file);
+    setAttachments([...attachments, ...event.target.files]);
   };
 
   const navToOrders = () => {
@@ -349,15 +332,15 @@ const CompleteOrderModal = (props) => {
     event.preventDefault();
 
     const isValidated = FormValidations.tailorCompleteOrder({
-      rating,
+      // rating,
       details,
     });
     if (!isValidated) {
       return;
     }
 
-    if (!attachment) {
-      toast.error(t("Attachment must be selected"));
+    if (attachments.length === 0) {
+      toast.error(t("At least one attachment must be selected"));
       return;
     }
 
@@ -373,9 +356,11 @@ const CompleteOrderModal = (props) => {
       const body = new FormData();
 
       body.append("id", props.order._id);
-      body.append("rating", rating);
+      // body.append("rating", rating);
       body.append("details", details);
-      body.append("attachment", attachment);
+      for (let i = 0; i < attachments.length; i++) {
+        body.append("attachments", attachments[i]);
+      } // Multipart files share the same field name
 
       response = await Api("post", "/orders/complete", body);
 
@@ -393,7 +378,7 @@ const CompleteOrderModal = (props) => {
 
   return (
     <div className="tqs_sqm_container">
-      <div
+      {/* <div
         className="tqs_sqm_input_container"
         style={{
           borderBottomLeftRadius: "20px",
@@ -414,7 +399,7 @@ const CompleteOrderModal = (props) => {
             }}
           />
         </div>
-      </div>
+      </div> */}
       <div
         className="tqs_sqm_textarea_container"
         style={{
@@ -449,22 +434,18 @@ const CompleteOrderModal = (props) => {
         </div>
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              id="filePicker"
-              name="file"
-              onChange={handleFileSelect}
-            />
+            <input multiple type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">
-                {attachment?.name ?? "Upload Drawing, Photo, Document, etc"}
-              </span>
+              <span className="upload-img-text">{attachments?.name ?? t("upload an illustration of your creation")}</span>
               <img src={UploadSVG} />
             </div>
           </label>
         </div>
+      </div>
+      <div className="selected-images-container" style={{ margin: "0" }}>
+        {attachments?.map((val) => (
+          <span>{val?.name}</span>
+        ))}
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton

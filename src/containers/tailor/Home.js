@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
-import TailorHomeSVG from "../../assets/Tailorsvg.svg";
-import UserSVG from "../../assets/dummy.jpeg";
-import AppBar from "../../components/TailorAppBar";
-import OrderListTile from "../../components/OrderListTile";
-import Footer from "../../components/Footer";
-import { useTranslation } from "react-i18next";
+import React, { useState, useEffect } from 'react';
+import TailorHomeSVG from '../../assets/TailorHome.svg';
+import UserSVG from '../../assets/dummy.jpeg';
+import AppBar from '../../components/TailorAppBar';
+import OrderListTile from '../../components/OrderListTile';
+import Footer from '../../components/Footer';
+import { useTranslation } from 'react-i18next';
 
-import { getUser } from "../../utils/Auth";
+import { getUser } from '../../utils/Auth';
 
-import Api from "../../api";
+import Api from '../../api';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function TailorHomeScreen() {
   const navigate = useNavigate();
+
   const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -34,9 +35,9 @@ function TailorHomeScreen() {
   const getOrdersRequest = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, {
+      response = await Api('post', `/orders/byQuery`, {
         tailor: user._id,
-        type: "direct",
+        type: 'direct',
       });
       const ordersData = response.data.orders.splice(-4);
       setOrdersRequest(ordersData);
@@ -49,9 +50,9 @@ function TailorHomeScreen() {
   const getOrdersInProgress = async () => {
     let response;
     try {
-      response = await Api("post", `/orders/byQuery`, {
+      response = await Api('post', `/orders/byQuery`, {
         tailor: user._id,
-        status: "in_progress",
+        status: 'in_progress',
       });
       const ordersData = response.data.orders.splice(-4);
       setOrdersInProgress(ordersData);
@@ -62,11 +63,11 @@ function TailorHomeScreen() {
   };
 
   const navToQuotes = () => {
-    navigate("/quotes");
+    navigate('/quotes');
   };
 
   const navToOrders = () => {
-    navigate("/orders");
+    navigate('/orders');
   };
 
   return (
@@ -75,46 +76,49 @@ function TailorHomeScreen() {
       <div
         className="container"
         style={{
-          background: "rgba(255, 202, 186, 0.67)",
+          background: '#FAFAFA',
         }}
       >
         <div className="client_home_screen_row1">
           <div className="client_home_screen_row1_column1">
             <p
               className="client_home_screen_row1_column1_text_1"
-              style={{ color: "#CC8E9C" }}
+              style={{ color: '#CC8E9C' }}
             >
-              {t("Welcome to the")}
+              {t('Welcome to the')}
             </p>
             <p className="tailor_home_screen_row1_column1_text_2">
-              Design Confection Ethiques
+              Design Confections Ethiques
             </p>
-            <p
+            {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#A0805A",
               }}
             >
               {t("Now You receive your")}
-            </p>
-            <p
+            </p> */}
+            {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#857B6F",
               }}
             >
               {t("order here")}
-            </p>
+            </p> */}
             <button
               className="client_home_screen_row1_column1_button"
+              style={{
+                backgroundColor: '#FFFFFF',
+              }}
               onClick={navToQuotes}
             >
-              {t("Find Quotes")}
+              {t('find your sewing assignments')}
             </button>
           </div>
           <div className="client_home_screen_row1_column2">
             <div className="client_home_screen_row1_column2_img">
-              <img style={{ width: "90%" }} src={TailorHomeSVG} />
+              <img style={{ width: '90%' }} src={TailorHomeSVG} />
             </div>
           </div>
         </div>
@@ -123,19 +127,19 @@ function TailorHomeScreen() {
         className="container"
         style={{
           background:
-            "linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))",
+            'linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
         <div
           className="client_home_screen_row2_row1"
           style={{
-            borderBottomColor: "#DBDBDB",
-            borderBottomStyle: "solid",
-            borderBottomWidth: "0.5px",
+            borderBottomColor: '#DBDBDB',
+            borderBottomStyle: 'solid',
+            borderBottomWidth: '0.5px',
           }}
         >
           <p className="client_home_screen_row2_row1_text">
-            {t("Order Requests")}
+            {t('Order Requests')}
           </p>
           <div className="client_home_screen_row2_row1_row_container">
             {ordersRequest.map((_) => (
@@ -143,40 +147,40 @@ function TailorHomeScreen() {
             ))}
             <p
               style={{
-                color: "#CC8E9C",
-                fontWeight: "800",
-                paddingLeft: "2%",
-                textDecoration: "underline",
-                cursor: "pointer",
+                color: '#CC8E9C',
+                fontWeight: '800',
+                paddingLeft: '2%',
+                textDecoration: 'underline',
+                cursor: 'pointer',
               }}
               onClick={navToOrders}
             >
-              {t("See all")}
+              {t('See all')}
             </p>
           </div>
         </div>
         <div className="client_home_screen_row2_row1">
           <p className="client_home_screen_row2_row1_text">
-            {t("Recent Orders")}
+            {t('Recent Orders')}
           </p>
           <div className="client_home_screen_row2_row1_row_container">
             {ordersInProgress.map((_) => (
               <OrderListTile
                 order={_}
-                quote={_.quotes.filter((__) => __.status == "accepted")[0]}
+                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
               />
             ))}
             <p
               style={{
-                color: "#CC8E9C",
-                fontWeight: "800",
-                paddingLeft: "2%",
-                textDecoration: "underline",
-                cursor: "pointer",
+                color: '#CC8E9C',
+                fontWeight: '800',
+                paddingLeft: '2%',
+                textDecoration: 'underline',
+                cursor: 'pointer',
               }}
               onClick={navToOrders}
             >
-              {t("See all")}
+              {t('See all')}
             </p>
           </div>
         </div>

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from 'react';
 
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 function CustomDatePicker({
   labelText,
@@ -16,6 +16,8 @@ function CustomDatePicker({
   labelStyle,
   dobinput,
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div
       className="custom_input_container"
@@ -34,23 +36,35 @@ function CustomDatePicker({
       </label>
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
-          border: dobinput == "dob" ? "1px solid #CC8E9C" : "",
-          borderRadius: dobinput == "dob" ? "10px" : "",
-          borderWidth: dobinput == "dob" ? "1.5px" : "",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
+          border: dobinput == 'dob' ? '1px solid #CC8E9C' : '1px solid #DBDBDB',
+          borderRadius: dobinput == 'dob' ? '10px' : '10px',
+          borderWidth: dobinput == 'dob' ? '1.5px' : '1.5px',
         }}
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
-            className="cdp_container"
+            className="datepck"
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
             value={value}
             onChange={onChange}
             disablePast={disablePast}
             disableFuture={disableFuture}
             inputFormat="dd/MM/yyyy"
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onClick={(e) => setOpen(true)}
+                sx={{ width: '100%' }}
+              />
+            )}
             disabled={disabled}
           />
         </LocalizationProvider>

@@ -1,11 +1,11 @@
 // Init
-import React from "react";
-import { ToastContainer, Flip } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { ToastContainer, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Files
-import Main from "./routes/Main";
-import "./css/index.css";
+import Main from './routes/Main';
+import './css/index.css';
 
 // Component
 function App() {

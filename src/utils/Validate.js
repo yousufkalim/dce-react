@@ -1,10 +1,10 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import {
   kRegExpEmail,
   kRegExpPassword,
   kRegExpPhone,
   kRegExpUserName,
-} from "./Constants";
+} from './Constants';
 
 function isEmpty(str) {
   return !str || str.length === 0;
@@ -92,6 +92,18 @@ class Validators {
 
     if (!regexMatch) {
       return `${name} can only contain alphabets, numbers or underscore`;
+    }
+
+    return null;
+  }
+
+  static moneyValidator(name, value) {
+    if (isEmpty(value)) {
+      return `${name} can't be empty`;
+    }
+
+    if (parseInt(value) > 10000) {
+      return `${name} can't be greater than 10000`;
     }
 
     return null;

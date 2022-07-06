@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ClientHomeSVG from "../../assets/ClientHome.svg";
-import UserSVG from "../../assets/dummy.jpeg";
+import ClientHomeSVG from "../../assets/ClientHomeNew.svg";
 
 import dummy from "../../assets/dummy.jpeg";
 
@@ -75,25 +74,29 @@ function ClientHomeScreen() {
   const navToTailors = () => {
     navigate("/tailors");
   };
-  console.log(orders, "<>><><");
+
   return (
     <>
       <div className="container-page">
         <ClientAppBar color="#F8F4EF" />
-        <div
-          className="container"
-          style={{
-            background: "#E8DCCA",
-          }}
-        >
+        <div className="container">
           <div className="client_home_screen_row1">
-            <div className="client_home_screen_row1_column1">
-              <p className="client_home_screen_row1_column1_text_1">
-                {t("Submit your idea,")}
-              </p>
-              <p className="client_home_screen_row1_column1_text_2">
-                {t("We make it real,")}
-              </p>
+            <div
+              style={{
+                position: "absolute",
+                zIndex: "1",
+                top: "25%",
+                left: "40%",
+                right: "5%",
+              }}
+            >
+              <div className="client_home_screen_row1_column2_img">
+                <img style={{ width: "90%" }} src={ClientHomeSVG} />
+              </div>
+            </div>
+            <div className="client_home_screen_row1_column1" style={{ backgroundColor: "#FFEEEC", width: "70%" }}>
+              <p className="client_home_screen_row1_column1_text_1">{t("Submit your idea,")}</p>
+              <p className="client_home_screen_row1_column1_text_2">{t("We make it real,")}</p>
               <p
                 className="client_home_screen_row1_column1_text_1"
                 style={{
@@ -112,16 +115,21 @@ function ClientHomeScreen() {
               </p>
               <button
                 className="client_home_screen_row1_column1_button"
+                style={{
+                  backgroundColor: "#FFFFFF",
+                }}
                 onClick={navToCreateAd}
               >
-                {t("Place Your Ad")}
+                {t("I am concretizing my idea of tailoring")}
               </button>
             </div>
-            <div className="client_home_screen_row1_column2">
-              <div className="client_home_screen_row1_column2_img">
-                <img style={{ width: "90%" }} src={ClientHomeSVG} />
-              </div>
-            </div>
+            <div
+              className="client_home_screen_row1_column2"
+              style={{
+                width: "30%",
+                backgroundColor: "#CC8E9C",
+              }}
+            ></div>
           </div>
         </div>
         <div
@@ -139,17 +147,11 @@ function ClientHomeScreen() {
               borderBottomWidth: "0.5px",
             }}
           >
-            <p className="client_home_screen_row2_row1_text">
-              {t("Orders List")}
-            </p>
+            <p className="client_home_screen_row2_row1_text">{t("Orders List")}</p>
             <div className="client_home_screen_row2_row1_row_container">
               <NewOrderListTile />
               {orders.map((_) => (
-                <OrderListTile
-                  order={_}
-                  quote={_.quotes.filter((__) => __.status == "accepted")[0]}
-                  viewAs="client"
-                />
+                <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == "accepted")[0]} viewAs="client" />
               ))}
               <p
                 style={{
@@ -165,9 +167,7 @@ function ClientHomeScreen() {
             </div>
           </div>
           <div className="client_home_screen_row2_row1">
-            <p className="client_home_screen_row2_row1_text">
-              {t("Designers")}
-            </p>
+            <p className="client_home_screen_row2_row1_text">{t("Designers")}</p>
             <div className="client_home_screen_row2_row1_row_container">
               {tailors.map((_) => (
                 <DesignerListTile {..._} />
@@ -232,9 +232,9 @@ function DesignerListTile(props) {
       >
         {`${props.city}`}
       </p>
-      <div className="stars">
+      {/* <div className="stars">
         <Rating value={rating} size="small" />
-      </div>
+      </div> */}
     </div>
   );
 }
