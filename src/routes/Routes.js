@@ -88,13 +88,34 @@ import TailorViewOrderIcon from '@mui/icons-material/AccountBox';
 import ChatIcon from '@mui/icons-material/AccountBox';
 import ResetPasswordScreen from '../containers/auth/ResetPassword';
 
+import Landing from '../containers/unAuth/Landing';
+import UnAuthTermCondition from '../containers/unAuth/AuthTermsAndConditions';
 // Routes for Auth
 const AuthRoutes = [
+  // {
+  //   path: "*",
+  //   name: "Login",
+  //   icon: <LoginIcon />,
+  //   element: Landing,
+
+  // },
   {
     path: '*',
-    name: 'Login',
+    name: 'landing',
     icon: <LoginIcon />,
-    element: LoginScreen,
+    element: Landing,
+  },
+  {
+    path: '/',
+    name: 'landing',
+    icon: <LoginIcon />,
+    element: Landing,
+  },
+  {
+    path: '/terms_conditions',
+    name: 'TermConditionsScreen',
+    icon: <ClientTermsAndConditionsIcon />,
+    element: UnAuthTermCondition,
   },
   {
     path: '/login',
