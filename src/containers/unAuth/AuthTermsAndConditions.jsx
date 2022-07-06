@@ -5,7 +5,7 @@ import UnAuthAppBar from '../../components/UnAuthAppBar';
 import Terms from '../../assets/terms.png';
 import FooterLogo from '../../assets/FooterLogo.svg';
 import instagram from '../../assets/instagram.png';
-import facebook f alt="icons" rom '../../assets/facebook.p alt="icons" ng alt="icons"';
+import facebook from '../../assets/facebook.png';
 
 function AuthTermsAndConditions() {
   const { t, i18n } = useTranslation();
@@ -134,8 +134,8 @@ function AuthTermsAndConditions() {
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
-              <img src={facebook}  alt="icons" />
-              <img src={instagram} alt="icons" />
+              <img src={facebook} />
+              <img src={instagram} />
             </div>
           </div>
         </div>

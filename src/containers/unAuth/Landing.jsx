@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+// router link
 import { Link } from 'react-router-dom';
 // import slider
 import Carousel from 'react-multi-carousel';
