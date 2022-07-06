@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AppLogoSVG from '../assets/AppLogo.svg';
 
-function AuthAppBar() {
+function UnAuthAppBar() {
   const { t } = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -152,4 +152,4 @@ function AuthAppBar() {
   );
 }
 
-export default AuthAppBar;
+export default UnAuthAppBar;

@@ -1,18 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import AuthAppbar from '../../components/AuthAppBar';
+import UnAuthAppBar from '../../components/UnAuthAppBar';
 import Terms from '../../assets/terms.png';
 import FooterLogo from '../../assets/FooterLogo.svg';
 import instagram from '../../assets/instagram.png';
 import facebook from '../../assets/facebook.png';
 
 function AuthTermsAndConditions() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
+  const lang = () => {
+    i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
+  };
 
   return (
     <div>
-      <AuthAppbar />
+      <UnAuthAppBar />
       <div
         className="client_orders_screen_top"
         style={{
@@ -108,26 +113,26 @@ function AuthTermsAndConditions() {
 
       {/* footer start  */}
 
-      <div className="footer_section_main" id="animation_dec">
+      <div class="footer_section_main" id="animation_dec">
         <div className="footer_center_section">
-          <img src={FooterLogo} alt="footerlogo" />
+          <img src={FooterLogo} />
           <div>
+            {' '}
             <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
               {' '}
-              <span className="card_text_support card_text_support2">Terms & Conditions</span>
+              <span className="card_text_support card_text_support2">{t('Terms & Conditions')}</span>
             </Link>
           </div>
           <div className="footer_text-last">
             <div>
               <h4 className="footer_text_last_p">
-                © 2022
-                <span style={{ color: '#CC8E9C' }}>Design Confection Ethiques,</span>
-                All rights reserved
+                © 2022 <span style={{ color: '#CC8E9C' }}>{t('Design Confection Ethiques,')}</span> {t('Developed by')}{' '}
+                <span style={{ color: '#0085FF' }}>{t('Falcon Consulting')}.</span> {t('All rights reserved.')}
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
-              <img src={facebook} alt="icon" />
-              <img src={instagram} alt="icon" />
+              <img src={facebook} />
+              <img src={instagram} />
             </div>
           </div>
         </div>

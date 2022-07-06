@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-// import AuthAppBar from '../../components/AuthAppBar';
-// Router
+
 import { Link } from 'react-router-dom';
 // import slider
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 //  translation
 import { useTranslation } from 'react-i18next';
-import AuthAppBar from '../../components/AuthAppBar';
+import UnAuthAppBar from '../../components/UnAuthAppBar';
 
 // assets
 import Landinghero from '../../assets/Landinghero.png';
@@ -107,7 +106,7 @@ function Landing() {
   };
   return (
     <div>
-      <AuthAppBar />
+      <UnAuthAppBar />
       {/* start hero section */}
       <div className="landing_main_container">
         <div className="landing_hero_section">

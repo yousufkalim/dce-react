@@ -89,7 +89,7 @@ import ChatIcon from '@mui/icons-material/AccountBox';
 import ResetPasswordScreen from '../containers/auth/ResetPassword';
 
 import Landing from '../containers/unAuth/Landing';
-import TermCondition from '../containers/auth/AuthTermsAndConditions';
+import UnAuthTermCondition from '../containers/unAuth/AuthTermsAndConditions';
 // Routes for Auth
 const AuthRoutes = [
   // {
@@ -115,7 +115,7 @@ const AuthRoutes = [
     path: '/terms_conditions',
     name: 'TermConditionsScreen',
     icon: <ClientTermsAndConditionsIcon />,
-    element: TermCondition,
+    element: UnAuthTermCondition,
   },
   {
     path: '/login',
