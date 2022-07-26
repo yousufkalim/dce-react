@@ -139,8 +139,8 @@ function SingleResult(props) {
               marginBottom: '4%',
             }}
             src={
-              props.order.client.avatar
-                ? assetsURL(props.order.client.avatar)
+              props?.order?.client?.avatar
+                ? assetsURL(props?.order?.client?.avatar)
                 : UserSVG
             }
           />
@@ -152,7 +152,7 @@ function SingleResult(props) {
                 fonWeight: '600',
               }}
             >
-              {props.order.client.name}
+              {props?.order?.client?.name}
             </h3>
             <p
               style={{
@@ -162,7 +162,7 @@ function SingleResult(props) {
                 lineHeight: '1.4',
               }}
             >
-              {props.order.name}
+              {props?.order?.name}
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>

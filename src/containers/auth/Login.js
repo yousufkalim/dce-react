@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
+import Footer from '../../components/Footer'
+
 import * as FormValidations from '../../utils/Validations';
 
 import { Store, UpdateStore } from '../../StoreContext';
@@ -120,7 +122,7 @@ function LoginScreen() {
 
   return (
     <>
-      {' '}
+     <>
       <form noValidate={true} onSubmit={handleSubmit}>
         <div
           className="container"
@@ -261,6 +263,8 @@ function LoginScreen() {
         </Box>
       </Modal>
       {/* <ResetPasswordScreen open={forgetPassword} setOpen={setforgetPassword} /> */}
+    </>
+    <Footer/>
     </>
   );
 }

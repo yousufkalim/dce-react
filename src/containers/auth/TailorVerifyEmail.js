@@ -23,6 +23,7 @@ function TailorVerifyEmailScreen() {
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [resendCode, setResendCode] = useState(false)
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password'] || !state?.['otp']) {
@@ -49,10 +50,23 @@ function TailorVerifyEmailScreen() {
       return;
     }
 
-    if (data.get('Verification Code') != state.otp.otp) {
-      toast.error('OTP is incorrect.');
-      return;
+    if(resendCode){
+      if (data.get("Verification Code") != resendCode) {
+        toast.error("OTP is incorrect.");
+        return;
+      }
     }
+    if(!resendCode){
+      if (data.get("Verification Code") != state.otp.otp) {
+        toast.error("OTP is incorrect.");
+        return;
+      }
+    }
+
+    // if (data.get('Verification Code') != state.otp.otp) {
+    //   toast.error('OTP is incorrect.');
+    //   return;
+    // }
 
     let response;
 
@@ -77,6 +91,25 @@ function TailorVerifyEmailScreen() {
       console.trace(e);
     }
 
+    setIsProcessing(false);
+  };
+  const resendVerificationCode = async () => {
+    let response;
+    try {
+      setIsProcessing(true);
+
+      const body = {
+        email: state?.Email,
+        password: state?.Password,
+      };
+      response = await Api("post", "/otps", body);
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        setResendCode(response?.data?.otp?.otp)
+      }
+    } catch (e) {
+      console.trace(e);
+    }
     setIsProcessing(false);
   };
 
@@ -135,6 +168,9 @@ function TailorVerifyEmailScreen() {
                   marginBottom: '6%',
                 }}
               />
+               <div onClick={resendVerificationCode} className="resend_code">
+                <small>Resend Code</small>
+              </div>
               <CustomButton
                 text={t('Create Account')}
                 type="submit"

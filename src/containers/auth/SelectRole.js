@@ -8,6 +8,8 @@ import DesignerRole from '../../assets/DesignerRole.svg';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import Footer from '../../components/Footer'
+
 const SelectRole = () => {
   const { t } = useTranslation();
 
@@ -22,6 +24,7 @@ const SelectRole = () => {
   };
 
   return (
+    <> 
     <div
       className="container"
       style={{
@@ -73,6 +76,8 @@ const SelectRole = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
