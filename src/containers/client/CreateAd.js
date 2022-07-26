@@ -240,6 +240,7 @@ function ClientCreateAdScreen() {
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
                     images={images}
+                    setImages={setImages}
                     handleImagesSelect={handleImagesSelect}
                     handleImageDeselect={handleImageDeselect}
                   />

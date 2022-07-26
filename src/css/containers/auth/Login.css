@@ -58,3 +58,9 @@
   left: 15%;
   width: 100%;
 }
+.resend_code{
+  width: 100%;
+  text-align: end;
+  color: #cc8e9c;
+  font-weight: 900;
+}

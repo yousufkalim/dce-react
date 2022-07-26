@@ -11,6 +11,8 @@ import Api from '../../api/index';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import Footer from '../../components/Footer'
+
 import * as FormValidations from '../../utils/Validations';
 
 import { useTranslation } from 'react-i18next';
@@ -76,6 +78,7 @@ function TailorRegisterScreen() {
   };
 
   return (
+    <>
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
         className="container"
@@ -152,6 +155,8 @@ function TailorRegisterScreen() {
         </div>
       </div>
     </form>
+    <Footer/>
+    </>
   );
 }
 

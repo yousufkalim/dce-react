@@ -581,6 +581,8 @@ i18n
           Tulle: 'Tulle',
           Velvet: 'Velvet',
           Gingham: 'Gingham',
+          ///confirmation box text
+          'Are you sure you want to delete the selected item':'Are you sure you want to delete the selected item'
         },
       },
       fr: {
@@ -596,7 +598,7 @@ i18n
 
           'registered as a Designer': 'enregistré en tant que Designer',
           Or: 'Ou',
-          'Why Choose DCE': 'Pourquoi choisir DCI',
+          'Why Choose DCE': 'Pourquoi choisir DCE',
           'Post Ads': 'Publier des annonces',
           'Choose Designer': 'Choisissez le concepteur',
           'Pay Safely': 'Payez en toute sécurité',
@@ -1147,6 +1149,7 @@ i18n
           Tulle: 'Tulle',
           Velvet: 'Velvet',
           Gingham: 'Gingham',
+          'Are you sure you want to delete the selected item':`Êtes-vous sûr de vouloir supprimer l'élément sélectionné`
         },
       },
     },

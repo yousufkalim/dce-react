@@ -8,6 +8,8 @@ import CustomButton from '../../components/CustomButton';
 
 import Api from '../../api/index';
 
+import Footer from '../../components/Footer'
+
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -76,6 +78,7 @@ function ClientRegisterScreen() {
   };
 
   return (
+    <>
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
         className="container"
@@ -152,6 +155,8 @@ function ClientRegisterScreen() {
         </div>
       </div>
     </form>
+    <Footer/>
+    </>
   );
 }
 

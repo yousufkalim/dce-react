@@ -263,6 +263,7 @@ function ClientEditAdScreen() {
                       state={basicSection}
                       setState={setBasicSection}
                       images={images}
+                      setImages={setImages}
                       handleImagesSelect={handleImagesSelect}
                       handleImageDeselect={handleImageDeselect}
                     />

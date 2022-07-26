@@ -101,6 +101,7 @@ function ClientSearchResultsScreen() {
 }
 
 function SearchInput({ setSearchQuery, callback }) {
+  const { t } = useTranslation();
   return (
     <div
       style={{

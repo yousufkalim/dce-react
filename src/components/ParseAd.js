@@ -11,6 +11,7 @@ import CustomButton from "./CustomButton";
 import CustomDatePicker from "./CustomDatePicker";
 import Attachment from "./Attachment";
 import ViewImageModal from "./ViewImageModal";
+import AlertBox from "./AlertBox";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -21,12 +22,11 @@ import { Modal } from "@mui/material";
 import { ChromePicker } from "react-color";
 import { SketchPicker, GithubPicker } from "react-color";
 
-
 import InfoIcon from "@mui/icons-material/Info";
 
 import DottedSVG from "../assets/dottedblack.svg";
-import MeasurementDetailsSVG from '../assets/MeasurementDetails.svg'
-import MeasurementChartSVG from '../assets/MeasurementChart.svg'
+import MeasurementDetailsSVG from "../assets/MeasurementDetails.svg";
+import MeasurementChartSVG from "../assets/MeasurementChart.svg";
 
 import { useTranslation } from "react-i18next";
 
@@ -45,9 +45,17 @@ import { Store } from "../StoreContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-
-
-function BasicSection({ state, setState, onClick, disabled, disables, images, handleImagesSelect, handleImageDeselect }) {
+function BasicSection({
+  state,
+  setState,
+  onClick,
+  disabled,
+  disables,
+  images,
+  setImages,
+  handleImagesSelect,
+  handleImageDeselect,
+}) {
   const { t } = useTranslation();
 
   const _setState = (key, value) => {
@@ -109,22 +117,36 @@ function BasicSection({ state, setState, onClick, disabled, disables, images, ha
 
   const [openColorPicker, setOpenColorPicker] = useState(false);
   const [viewImage, setViewImage] = useState(null);
-/////test code
-const handleChangeComplete = color => {
-  // console.log("on change complete");
-  // console.log(color.hex,"h");
-  _setState("color", color.hex);
-  // this.setState({ background: color.hex });
-};
+  const [open, setOpen] = useState(false);
+  const [imageToDeleteConfirmation, setImageToDeleteConfirmation] = useState();
+  /////test code
+  const handleChangeComplete = (color) => {
+    // console.log("on change complete");
+    // console.log(color.hex,"h");
+    _setState("color", color.hex);
+    // this.setState({ background: color.hex });
+  };
 
-const handleChange=(color, event)=>{
-  console.log("on change");
-  console.log(color);
-}
-/////
+  const handleChange = (color, event) => {
+    console.log("on change");
+    console.log(color);
+  };
+  const handleCloseAlert = (confirmation) => {
+    if (confirmation) {
+      const _images = [...images];
+      const index = _images.map((_) => _.name).indexOf(imageToDeleteConfirmation.name);
+      if (index > -1) {
+        _images.splice(index, 1);
+      }
+      setImages([..._images]);
+    }
+    setOpen(false);
+  };
+  /////
   return (
     <>
       <div className="pa_profile_section_container">
+        <AlertBox open={open} setOpen={setOpen} handleClose={handleCloseAlert} />
         {/* <div
           className="pa_profile_section_input_container"
           style={{
@@ -154,11 +176,12 @@ const handleChange=(color, event)=>{
           </div>
         </div> */}
         <div
-         style={{
-          borderTopLeftRadius: "20px",
-          borderTopRightRadius: "20px",
-        }}
-        className="pa_profile_section_input_container">
+          style={{
+            borderTopLeftRadius: "20px",
+            borderTopRightRadius: "20px",
+          }}
+          className="pa_profile_section_input_container"
+        >
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t("Category")}</p>
           </div>
@@ -385,7 +408,7 @@ const handleChange=(color, event)=>{
                     arrow
                     title={
                       <p style={{ fontSize: "14px" }}>
-                       {t("Measurements will be entered in a detailed form once the order is accepted.")}
+                        {t("Measurements will be entered in a detailed form once the order is accepted.")}
                       </p>
                     }
                   >
@@ -397,7 +420,9 @@ const handleChange=(color, event)=>{
                   <Tooltip
                     arrow
                     title={
-                      <p style={{ fontSize: "14px" }}>{t("A message will be dropped by you to the tailor for the measurements.")}</p>
+                      <p style={{ fontSize: "14px" }}>
+                        {t("A message will be dropped by you to the tailor for the measurements.")}
+                      </p>
                     }
                   >
                     <InfoIcon sx={{ height: "20px", width: "20px", marginLeft: "5px" }} />
@@ -446,22 +471,24 @@ const handleChange=(color, event)=>{
                     _setState("color", e.hex);
                   }}
                 /> */}
-                <div style={{
-                  maxHeight:"200px",
-                  overflow:"scroll"
-                }}>
-                <GithubPicker
-        width="225px"
-       style={{
-        maxHeight:"30px",
-        overflow:"scroll"
-       }}
-        colors={colors}
-        // color={this.state.background}
-        onChange={handleChange}
-        onChangeComplete={handleChangeComplete}
-      />
- </div>
+                <div
+                  style={{
+                    maxHeight: "200px",
+                    overflow: "scroll",
+                  }}
+                >
+                  <GithubPicker
+                    width="225px"
+                    style={{
+                      maxHeight: "30px",
+                      overflow: "scroll",
+                    }}
+                    colors={colors}
+                    // color={this.state.background}
+                    onChange={handleChange}
+                    onChangeComplete={handleChangeComplete}
+                  />
+                </div>
               </div>
             ) : (
               <></>
@@ -533,7 +560,11 @@ const handleChange=(color, event)=>{
                 setViewImage(_);
                 handleIsViewImageModalOpen();
               }}
-              deselect={() => handleImageDeselect(_)}
+              deselect={() => {
+                //handleImageDeselect(_)
+                setOpen(true);
+                setImageToDeleteConfirmation(_);
+              }}
             />
           ))}
         </div>
@@ -674,38 +705,29 @@ function TapeMeasurementsModal(props) {
     <div
       className="tqs_sqm_container"
       style={{
-        maxHeight:'95vh',
+        maxHeight: "95vh",
         width: "60vw",
-        overflow:"scroll"
+        overflow: "scroll",
       }}
     >
-          
-          
-      <div
-      style={{width:"95%"}}
-      className="client_create_ad_screen_column2">
-          <p 
-           style={{
-            padding:"2% 0%", 
-            color:"#990000",
+      <div style={{ width: "95%" }} className="client_create_ad_screen_column2">
+        <p
+          style={{
+            padding: "2% 0%",
+            color: "#990000",
             fontSize: "12pt",
-            fontWeight:"bold",
-            lineHeight:"20px"
-            }}> 
-            {
-              t("REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.")
-            }
-          </p>
-          <div style={{width:"100%", display:"flex", alignItems:"center", flexDirection:"column"}}> 
-          <img
-        src={MeasurementDetailsSVG}
-        style={{width:"70%"}}
-        />
-        <img
-         style={{width:"70%"}}
-        src={MeasurementChartSVG}
-        />
-          </div>
+            fontWeight: "bold",
+            lineHeight: "20px",
+          }}
+        >
+          {t(
+            "REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense."
+          )}
+        </p>
+        <div style={{ width: "100%", display: "flex", alignItems: "center", flexDirection: "column" }}>
+          <img src={MeasurementDetailsSVG} style={{ width: "70%" }} />
+          <img style={{ width: "70%" }} src={MeasurementChartSVG} />
+        </div>
         <div
           className="pa_container"
           style={{
@@ -717,7 +739,7 @@ function TapeMeasurementsModal(props) {
             className="pa_steps_row"
             style={{
               paddingBottom: "4%",
-              paddingTop:"2%"
+              paddingTop: "2%",
             }}
           >
             <Stepper activeStep={activeStep} alternativeLabel>
