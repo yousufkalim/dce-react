@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useNavigate } from 'react-router-dom';
 import dummy from '../assets/dummy.jpeg';
+import ron from '../assets/ron.jpeg';
 import assetsURL from '../utils/Assets';
 import { calculateRating, calculateRatingsCount } from '../utils/Helpers';
 
@@ -33,6 +34,7 @@ function CatalogListTile({
       className="tailor_catalog_list_tile_container"
       style={{
         ...mainDivStyle,
+        width:"auto"
       }}
     >
       <div
@@ -64,10 +66,11 @@ function CatalogListTile({
             background: '#fff',
             color: '#CC8E9C',
             fontWeight: '600',
+            fontSize:"12px",
             boxShadow: 'none',
             borderRadius: '20px',
             marginTop: '5%',
-            padding: '2% 5%',
+            padding: '2% 8%',
             position: 'absolute',
             top: '0',
             right: '5%',

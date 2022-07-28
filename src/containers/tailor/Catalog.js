@@ -27,7 +27,8 @@ const TailorCatalogScreen = () => {
     let response;
     try {
       response = await Api('post', `/catalogs/byQuery`, { tailor: user._id });
-      const catalogsData = response.data.catalogs.splice(-4);
+      const catalogsData = response.data.catalogs.splice(response.data.length);
+      //const catalogsData = response.data.catalogs.splice;
       setCatalogs(catalogsData);
       setIsLoading(false);
     } catch (e) {

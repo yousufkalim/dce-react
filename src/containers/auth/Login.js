@@ -52,7 +52,6 @@ function LoginScreen() {
     setEmail(e.target.value);
   };
   const forgetPasswrd = async () => {
-    console.log('abdjsbc');
     // if (email) {s
     let res = await Api('post', '/clients/forget-password', { email });
     if (res) {

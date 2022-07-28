@@ -405,6 +405,7 @@ function TailorProfileScreen() {
                 />
                 <CustomDatePicker
                   disabled={!toEdit}
+                  centeredText={true}
                   disableFuture
                   labelStyle={{
                     display: 'none',

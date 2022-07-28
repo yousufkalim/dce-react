@@ -162,7 +162,6 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
       response = await Api("get", `/auth`);
       const userData = response.data.user;
       setProfile(userData);
-      console.log(userData.role, "userData");
       updateStore({ userRole: userData.role });
     } catch (e) {
       console.trace(e);
@@ -187,7 +186,6 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
     let response;
     try {
       response = await Api("post", `/notifications/read`);
-      console.log(response.data);
     } catch (e) {
       console.trace(e);
     }

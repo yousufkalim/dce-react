@@ -168,7 +168,6 @@ function ClientAppBar({
       response = await Api('get', `/auth`);
       const userData = response.data.user;
       setProfile(userData);
-      console.log(userData, 'userData');
       updateStore({ userRole: userData.role });
     } catch (e) {
       console.trace(e);
@@ -196,7 +195,6 @@ function ClientAppBar({
     let response;
     try {
       response = await Api('post', `/notifications/read`);
-      console.log(response.data);
     } catch (e) {
       console.trace(e);
     }

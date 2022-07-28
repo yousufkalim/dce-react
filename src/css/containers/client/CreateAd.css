@@ -58,5 +58,6 @@
   }
   .pa_steps_row {
     padding-bottom: 4%;
+    cursor: pointer;
   }
 }

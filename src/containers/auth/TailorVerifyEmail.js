@@ -24,6 +24,7 @@ function TailorVerifyEmailScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [resendCode, setResendCode] = useState(false)
+  const [otpValue, setotpValue] = useState('')
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password'] || !state?.['otp']) {
@@ -167,6 +168,8 @@ function TailorVerifyEmailScreen() {
                 divStyle={{
                   marginBottom: '6%',
                 }}
+                inputValue={otpValue}
+                onChange={(e)=>setotpValue(e.target.value.replace(/[^0-9]/g, ''))}
               />
                <div onClick={resendVerificationCode} className="resend_code">
                 <small>Resend Code</small>

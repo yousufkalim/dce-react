@@ -312,9 +312,6 @@ const FeedbackOrderModal = (props) => {
         rating: rating,
         details: details,
       };
-
-      console.log(body);
-
       response = await Api("post", "/orders/feedback", body);
 
       if (response?.data?.success) {

@@ -11,6 +11,7 @@
   border-radius: 20px;
   box-shadow: 4px 6px 10px #d1cbc6;
   padding: 3% 0%;
+  cursor: pointer;
 }
 
 .pa_steps_row {
@@ -20,6 +21,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .pa_content_row {
@@ -76,6 +78,7 @@
   border-color: #f7c9d0;
   border-style: solid;
   border-width: 0.5px;
+  cursor: pointer;
 }
 .dots-measurement {
   margin: 0px 7%;

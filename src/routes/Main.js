@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect } from 'react';
 
 import { Routes } from 'react-router-dom';
 
@@ -23,7 +23,6 @@ const Main = () => {
 
   const store = Store();
   const updateStore = UpdateStore();
-
   useEffect(() => {
     document.querySelector('html').style.scrollBehavior = 'auto';
     window.scroll({ top: 0 });
@@ -37,7 +36,6 @@ const Main = () => {
 
   useEffect(() => {
     Object.assign(SS, store);
-    // console.log(SS, `_SS_`);
   }, [store]);
 
   return (
