@@ -50,6 +50,7 @@
   padding: 1.5% 0;
   background-color: #ffffff;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 .cos_order_list_tile_column1 {

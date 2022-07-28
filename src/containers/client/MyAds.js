@@ -153,9 +153,9 @@ function ClientAdsScreen() {
           <div className="client_ads_screen_row2">
             {ads.map((_) => (
               <AdListTile {..._} />
-            ))}
+              ))}
           </div>
-          {ads.length === 0 ? (
+          {ads?.length === 0 ? (
             <>
               {/* <div
                 style={{
@@ -216,7 +216,7 @@ function AdListTile(props) {
                 fontWeight: '900',
               }}
             >
-              {props.name}
+              {props?.name}
             </p>
           </div>
           <div
@@ -227,7 +227,7 @@ function AdListTile(props) {
           >
             <p className="cas_ad_list_tile_column1_item_key">{t('Ad for')}</p>
             <p className="cas_ad_list_tile_column1_item_value">
-              {props.category}
+              {props?.category}
             </p>
           </div>
           <div
@@ -240,7 +240,7 @@ function AdListTile(props) {
               {t('desired delivery date')}
             </p>
             <p className="cas_ad_list_tile_column1_item_value">
-              {new Date(props.delivery.date).toLocaleDateString('en-gb')}
+              {new Date(props?.delivery?.date).toLocaleDateString('en-gb')}
             </p>
           </div>
         </div>
@@ -248,7 +248,7 @@ function AdListTile(props) {
           {/* <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
           <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}€`}</p> */}
           <p className="cas_ad_list_tile_column2_title">{t('max')}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props.budget.max_price}€`}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.max_price}€`}</p>
           <p
             style={{
               fontSize: '16px',
@@ -266,7 +266,7 @@ function AdListTile(props) {
               paddingBottom: '2.5%',
             }}
           >
-            {props.quotes.length}
+            {props?.quotes?.length}
           </p>
           <p style={{ fontSize: '12px', fontWeight: '200', color: '#CC8E9C' }}>
             {t('Responses')}
@@ -292,9 +292,21 @@ function AdListTile(props) {
         timeout="auto"
         unmountOnExit
       >
-        {props?.quotes?.map((_) => (
-          <AdQuoteListTile order={props} quote={_} />
-        ))}
+        {
+          props?.quotes?.filter((_)=>( _?.status!="rejected")).map((__)=>(
+            <AdQuoteListTile 
+            order={props?.quotes} 
+            quote={__} 
+            />
+          ))
+        }
+        {/* {props.quotes.map((_) => (
+          
+          <AdQuoteListTile 
+          order={props.quotes} 
+          quote={_} 
+          />
+))} */}
       </Collapse>
     </div>
   );
@@ -345,7 +357,6 @@ function AdQuoteListTile(props) {
     });
     navigate(`/chat`, { state: { directUser: props.quote.tailor } });
   };
-
   return (
     <div className="cas_quote_list_tile_container">
       <div className="cas_quote_list_tile_column1">
@@ -362,8 +373,8 @@ function AdQuoteListTile(props) {
               width: '65pt',
             }}
             src={
-              props.quote.tailor.avatar
-                ? assetsURL(props.quote.tailor.avatar)
+              props?.quote?.tailor?.avatar
+                ? assetsURL(props?.quote?.tailor?.avatar)
                 : UserSVG
             }
           />
@@ -382,10 +393,10 @@ function AdQuoteListTile(props) {
             paddingBottom: '10px',
           }}
         >
-          {props.quote?.tailor?.name}
+          {props?.quote?.tailor?.name}
         </p>
         <p className="cas_quote_list_tile_column1_description_text">
-          {props.quote?.tailor?.speciality}
+          {props?.quote?.tailor?.speciality}
         </p>
       </div>
       <div
@@ -416,7 +427,7 @@ function AdQuoteListTile(props) {
         </p>
         <p
           style={{ fontSize: '20px', fontWeight: 'bold' }}
-        >{`${props.quote.price}€`}</p>
+        >{`${props?.quote?.price}€`}</p>
       </div>
       <div
         className="cas_quote_list_tile_column5"
@@ -460,8 +471,8 @@ function AdQuoteListTile(props) {
         onBackdropClick="false"
       >
         <AcceptQuoteModal
-          order={props.order}
-          quote={props.quote}
+          order={props?.order}
+          quote={props?.quote}
           handleClose={handleIsAcceptQuoteModalClose}
         />
       </Modal>
@@ -472,8 +483,8 @@ function AdQuoteListTile(props) {
         onBackdropClick="false"
       >
         <RejectQuoteModal
-          order={props.order}
-          quote={props.quote}
+          order={props?.order}
+          quote={props?.quote}
           handleClose={handleIsRejectQuoteModalClose}
         />
       </Modal>

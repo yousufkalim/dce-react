@@ -145,7 +145,7 @@ function ClientProfileScreen() {
 
       if (response?.data?.success) {
         toast.success(t('Profile updated successfully.'));
-        navToHome();
+        // navToHome();
       }
     } catch (e) {
       console.trace(e);
@@ -344,6 +344,7 @@ function ClientProfileScreen() {
                     labelStyle={{
                       display: 'none',
                     }}
+                    centeredText={true}
                     labelText="Date of Birth"
                     value={dateOfBirth}
                     onChange={setDateOfBirth}

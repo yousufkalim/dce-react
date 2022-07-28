@@ -113,7 +113,6 @@ function tailorCreateAccount(data) {
 }
 
 function parseAdBasicSection(data) {
-  console.log(data, 'adat');
   const valArr = [
     // {
     //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
@@ -154,7 +153,7 @@ function parseAdDeliverySection(data) {
   const valArr = [
     {
       validationFunction: () =>
-        Validators.nullValidator('Delivery Address', data.address['label']),
+        Validators.addressValidator('Delivery Address', data.address['label'], data.address['zip'],data.address['lat'],data.address['lng'],data.address['city']),
     },
     {
       validationFunction: () =>

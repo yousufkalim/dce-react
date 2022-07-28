@@ -285,7 +285,8 @@ function InputSection() {
           </div>
           <div className="pa_profile_section_input_input">
             <CustomInput
-              inputType="number"
+              inputType="tel"
+              inputValue={state?.price}
               labelStyle={{
                 display: "none",
               }}
@@ -294,7 +295,7 @@ function InputSection() {
                 fontSize: "12px",
               }}
               inputPlaceholder={t("Set your Price")}
-              onChange={(e) => _setState("price", e.target.value)}
+              onChange={(e) => _setState("price", e.target.value.replace(/[^0-9]/g, ""))}
             />
           </div>
         </div>
@@ -338,7 +339,6 @@ function InputSection() {
           </div>
         </div>
         <div className="selected-images-container">
-          {console.log(images, "images")}
           {images?.map((_) => (
             <Attachment
               image={_}

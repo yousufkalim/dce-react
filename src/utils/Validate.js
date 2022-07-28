@@ -15,6 +15,13 @@ class Validators {
     return null;
   }
 
+  static addressValidator (name,label,zip,lat,lng,city){
+    if (isEmpty(label)||isEmpty(zip)||isEmpty(lat)||isEmpty(lng)||isEmpty(city)) {
+      return `Invalid ${name}, Select address from dropdown list`;
+    }
+    return null;
+  }
+
   static nullValidator(name, value) {
     if (isEmpty(value)) {
       return `${name} can't be empty`;

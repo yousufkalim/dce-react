@@ -188,9 +188,9 @@ function ClientViewTailorScreen() {
                   disabled
                   name="Date Of Birth"
                   placeholder={t('Date Of Birth')}
-                  defaultValue={new Date(tailor.dob).toLocaleDateString(
+                  defaultValue={tailor?.dob? new Date(tailor?.dob).toLocaleDateString(
                     'en-gb'
-                  )}
+                  ):""}
                   img={ProfileBirthdaySVG}
                   divStyle={{
                     marginBottom: '3%',

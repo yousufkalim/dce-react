@@ -128,8 +128,7 @@ function BasicSection({
   };
 
   const handleChange = (color, event) => {
-    console.log("on change");
-    console.log(color);
+    console.log(color,"132col");
   };
   const handleCloseAlert = (confirmation) => {
     if (confirmation) {
@@ -442,11 +441,11 @@ function BasicSection({
             borderTopLeftRadius: "20px",
             borderTopRightRadius: "20px",
             marginTop: "2%",
-            backgroundColor: state.color ?? null,
+            backgroundColor: state.color=="#000000"? "#ffffff":state.color,
           }}
         >
           <div style={{ width: "42%" }} className="pa_profile_section_input_label">
-            <p style={{ color: state.color ? "#ffffff" : "" }} className="pa_profile_section_input_text">
+            <p style={{ color: state.color=="#000000" ? "#000000" : !state.color?"":"#ffffff" }} className="pa_profile_section_input_text">
               {t("dominant color")}
             </p>
           </div>
@@ -493,7 +492,7 @@ function BasicSection({
             ) : (
               <></>
             )}
-            <p>{state.color}</p>
+            {/* <p>{state.color}</p> */}
           </div>
         </div>
         <div
@@ -708,6 +707,7 @@ function TapeMeasurementsModal(props) {
         maxHeight: "95vh",
         width: "60vw",
         overflow: "scroll",
+        height:"90vh"
       }}
     >
       <div style={{ width: "95%" }} className="client_create_ad_screen_column2">
@@ -1031,10 +1031,12 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 <input
                   disabled={disabled}
                   className="pa_payment_section_input_input"
-                  type="number"
+                  type="tel"
+                  value={state?.max_price}
                   defaultValue={state.max_price}
-                  onChange={(e) => _setState("max_price", e.target.value)}
+                  onChange={(e) => _setState("max_price", e.target.value.replace(/[^0-9]/g, ""))}
                   placeholder="€0"
+                  maxlength="15"
                 />
                 {state.max_price ? <span className="input-currency-sign">€</span> : null}
               </div>

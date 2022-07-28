@@ -187,7 +187,6 @@ function ClientHomeScreen() {
 }
 
 function DesignerListTile(props) {
-  console.log(props);
   const { t } = useTranslation();
 
   const rating = calculateRating(props.ratings);

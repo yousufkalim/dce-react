@@ -43,7 +43,6 @@ function ResetPasswordScreen() {
   };
 
   const handleSubmit = async (e) => {
-    console.log('check', passwords.password, passwords.confirmPassword);
     e.preventDefault();
     const { password, confirmPassword } = passwords;
 

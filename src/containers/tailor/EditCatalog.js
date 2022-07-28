@@ -337,6 +337,7 @@ function InputSection(props) {
           style={{
             borderRadius: '20px',
             marginTop: '2%',
+            cursor:"pointer"
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -353,7 +354,7 @@ function InputSection(props) {
                 name="file"
                 onChange={handleImagesSelect}
               />
-              <div className="upload-img-text-cont">
+              <div style={{cursor:"pointer"}} className="upload-img-text-cont">
                 <span className="upload-img-text">
                   {t('upload an illustration of your creation')}
                 </span>

@@ -95,7 +95,6 @@ function TailorListTile(props) {
     });
     navigate(`/chat`, { state: { directUser: props } });
   };
-
   return (
     <>
       <div className="cds_tailor_list_tile_container">
@@ -118,7 +117,10 @@ function TailorListTile(props) {
             />
           </div>
         </div>
-        <div className="cds_tailor_list_tile_column1">
+        <div 
+        className="cds_tailor_list_tile_column1"
+        onClick={navToViewTailor}
+        >
           <p
             style={{
               fontSize: '16px',
