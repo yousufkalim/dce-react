@@ -222,6 +222,7 @@ function InputSection() {
                 border: "none",
                 fontSize: "12px",
               }}
+              minmax="on"
               inputPlaceholder={t("I give a name to my confection")}
               onChange={(e) => _setState("name", e.target.value)}
             />
@@ -294,6 +295,7 @@ function InputSection() {
                 border: "none",
                 fontSize: "12px",
               }}
+              minmax="on"
               inputPlaceholder={t("Set your Price")}
               onChange={(e) => _setState("price", e.target.value.replace(/[^0-9]/g, ""))}
             />
@@ -315,6 +317,7 @@ function InputSection() {
               className="pa_profile_section_textarea_textarea"
               placeholder={t("Tell us about your service")}
               onChange={(e) => _setState("description", e.target.value)}
+              maxLength="300"
             ></textarea>
           </div>
         </div>

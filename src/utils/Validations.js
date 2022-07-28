@@ -135,6 +135,10 @@ function parseAdBasicSection(data) {
       validationFunction: () =>
         Validators.selectValidator('Fabric', data['fabric']),
     },
+    {
+      validationFunction: () =>
+        Validators.checkBox('accept policies', data['create_catalog_after_completion']),
+    },
   ];
 
   if (data['measurements'].type == 'static') {
@@ -153,7 +157,7 @@ function parseAdDeliverySection(data) {
   const valArr = [
     {
       validationFunction: () =>
-        Validators.addressValidator('Delivery Address', data.address['label'], data.address['zip'],data.address['lat'],data.address['lng'],data.address['city']),
+        Validators.addressValidator('Delivery Address', data.address['label'], data.address['zip'],data.address['city']),
     },
     {
       validationFunction: () =>
@@ -167,6 +171,7 @@ function parseAdDeliverySection(data) {
 }
 
 function parseAdNotesSection(data) {
+  console.log(data,"data");
   const valArr = [
     // {
     //   validationFunction: () =>
@@ -175,6 +180,10 @@ function parseAdNotesSection(data) {
     // {
     //   validationFunction: () => Validators.moneyValidator("Minimum Price", data["min_price"]),
     // },
+    {
+      validationFunction: () =>
+        Validators.checkBox('accept terms and condition', data['terms_conditions']),
+    },
     {
       validationFunction: () =>
         Validators.moneyValidator('Maximum Price', data['max_price']),
@@ -221,7 +230,7 @@ function tailorCreateCatalog(data) {
     },
     {
       validationFunction: () =>
-        Validators.selectValidator('Description', data['description']),
+        Validators.nullValidator('Description', data['description']),
     },
   ];
 

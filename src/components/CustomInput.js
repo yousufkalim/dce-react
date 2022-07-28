@@ -65,7 +65,7 @@ function CustomInput({
           placeholder={inputPlaceholder}
           defaultValue={inputDefaultValue}
           value={inputValue}
-          maxlength={minmax ? 10 : 100}
+          maxlength={minmax ? 30 : 100}
           className="custom_input_input"
           style={{
             ...inputStyle,

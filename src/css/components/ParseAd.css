@@ -162,6 +162,7 @@ a
   background-color: transparent;
   border: none;
   padding-top: 2%;
+  resize: none;
 }
 
 .pa_payment_section_input_container {

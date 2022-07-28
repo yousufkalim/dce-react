@@ -11,7 +11,6 @@ import { grey } from '@mui/material/colors';
 
 import { handleLogin } from '../../utils/Auth';
 import Api from '../../api/index';
-import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
@@ -29,6 +28,7 @@ function TailorCreateAccountScreen() {
   const { state } = useLocation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [hasPhysicalStore, setHasPhysicalStore] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('')
 
   const store = Store();
   const updateStore = UpdateStore();
@@ -141,6 +141,7 @@ function TailorCreateAccountScreen() {
                 divStyle={{
                   marginBottom: '6%',
                 }}
+                minmax={true}
               />
               <CustomInput
                 labelText={t('Phone No')}
@@ -150,6 +151,8 @@ function TailorCreateAccountScreen() {
                   marginBottom: '2%',
                 }}
                 minmax={true}
+                inputValue={phoneNumber}
+                onChange={(e)=>setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
               />
               <div
                 style={{
