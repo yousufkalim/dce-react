@@ -14,9 +14,14 @@ class Validators {
   static noValidator() {
     return null;
   }
-
-  static addressValidator (name,label,zip,lat,lng,city){
-    if (isEmpty(label)||isEmpty(zip)||isEmpty(lat)||isEmpty(lng)||isEmpty(city)) {
+  static checkBox(name, value) {
+    if (!(value)) {
+      return `Please  ${name} to proceed`;
+    }
+    return null;
+  }
+  static addressValidator (name,label,zip,city){
+    if (isEmpty(label)||isEmpty(zip)||isEmpty(city)) {
       return `Invalid ${name}, Select address from dropdown list`;
     }
     return null;

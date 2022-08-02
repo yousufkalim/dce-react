@@ -116,6 +116,7 @@ function ClientEditAdScreen() {
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
         note: adData?.budget.note,
+        terms_conditions:true
       });
     } catch (e) {
       console.trace(e);

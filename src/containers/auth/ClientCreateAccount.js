@@ -27,6 +27,7 @@ function ClientCreateAccountScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [gender, setGender] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('')
   const { t } = useTranslation();
   const store = Store();
   const updateStore = UpdateStore();
@@ -137,6 +138,8 @@ function ClientCreateAccountScreen() {
                   marginBottom: '6%',
                 }}
                 minmax={true}
+                inputValue={phoneNumber}
+                onChange={(e)=>setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
               />
               <div style={{ width: '100%', border: 'none' }}>
                 <div>

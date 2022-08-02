@@ -368,12 +368,13 @@ function BasicSection({
                 }
                 inputValue={state?.measurements?.value}
                 inputDefaultValue={state?.measurements?.value}
+                minmax="on"
                 onChange={(e) => {
                   setState({
                     ...state,
                     measurements: {
                       type: "static",
-                      value: e.target.value,
+                      value: e.target.value.replace(/[^0-9]/g, ''),
                     },
                   });
                 }}
@@ -896,6 +897,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: "none",
                 fontSize: "12px",
               }}
+              inputType="text"
               inputPlaceholder={t("Write any note regarding Delivery (Optional)")}
               inputDefaultValue={state?.note}
               onChange={(e) => _setState("note", e.target.value)}
@@ -1072,6 +1074,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
         ) : (
           <div className="pa_payment_section_consent_container">
             <Checkbox
+              onChange={(e) => _setState("terms_conditions", e.target.checked)}
               style={{
                 transform: "scale(0.8)",
                 color: "#000000",

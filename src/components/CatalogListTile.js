@@ -48,7 +48,7 @@ function CatalogListTile({
         <img
           style={{
             width: '100%',
-            height: '100pt',
+            height: '100%',
             objectFit: 'contain',
             borderRadius: '20px',
           }}

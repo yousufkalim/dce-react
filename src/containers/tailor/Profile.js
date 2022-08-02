@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import AutoComplete from '../../components/AutoComplete';
 
+import CustomInput from '../../components/CustomInput'
+
 import AddCatalogSVG from '../../assets/AddOrder.svg';
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +12,7 @@ import ProfileCountrySVG from '../../assets/ProfileCountry.svg';
 import ProfileEmailSVG from '../../assets/ProfileEmail.svg';
 import ProfileLocationSVG from '../../assets/ProfileLocation.svg';
 import ProfilePhoneSVG from '../../assets/ProfilePhone.svg';
+import InputEyeSVG from '../../assets/InputEye.svg'
 
 import dummy from '../../assets/dummy.jpeg';
 
@@ -44,6 +47,7 @@ function TailorProfileScreen() {
   const [catalogs, setCatalogs] = useState([]);
   const [profile, setProfile] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
+  const [showPassword, setshowPassword] = useState(false)
 
   const user = getUser();
 
@@ -453,13 +457,19 @@ function TailorProfileScreen() {
                     borderTopRightRadius: '10px',
                   }}
                 />
+                
                 <ProfileInput
                   disabled={!toEdit}
                   name="Password"
                   placeholder="**********"
+                  inputType={showPassword?"text":"password"}
                   label={t('Password')}
+                  minmax="on"
+                  enableEyes={true}
+                  setshowPassword={setshowPassword}
+                  showPassword={showPassword}
                   onChange={(e) => _setState('password', e.target.value)}
-                />
+                />      
                 <ProfileInput
                   disabled
                   name="Account Created"
@@ -484,6 +494,7 @@ function TailorProfileScreen() {
                     borderTopLeftRadius: '10px',
                     borderTopRightRadius: '10px',
                   }}
+                  minmax="on"
                   onChange={(e) => _setState('experience', e.target.value)}
                 />
                 <ProfileInput
@@ -492,6 +503,7 @@ function TailorProfileScreen() {
                   placeholder={t('Diploma')}
                   defaultValue={profile.diploma}
                   label={t('Diploma')}
+                  minmax="on"
                   onChange={(e) => _setState('diploma', e.target.value)}
                 />
                 <ProfileInput
@@ -500,6 +512,7 @@ function TailorProfileScreen() {
                   placeholder={t('Store Name')}
                   defaultValue={profile.store_name}
                   label={t('Store Name')}
+                  minmax="on"
                   divStyle={{
                     borderBottomLeftRadius: '10px',
                     borderBottomRightRadius: '10px',
@@ -535,14 +548,16 @@ function TailorProfileScreen() {
                     alignText={'textend'}
                     placeholder="€120"
                     defaultValue={profile.hourly_rate}
+                    value={state?.hourly_rate}
                     label={t('Any Confection')}
-                    inputType="number"
+                    minmax="on"
+                    inputType="tel"
                     divStyle={{
                       borderBottomLeftRadius: '10px',
                       borderBottomRightRadius: '10px',
                       padding: '1.0% 0',
                     }}
-                    onChange={(e) => _setState('hourly_rate', e.target.value)}
+                    onChange={(e) => _setState('hourly_rate', e.target.value.replace(/[^0-9]/g, ''))}
                   />
                 </div>
               </div>
@@ -572,15 +587,17 @@ function TailorProfileScreen() {
                     alignText={'textend'}
                     placeholder="€500"
                     defaultValue={profile.free_shipping_rate}
+                    value={state.free_shipping_rate}
                     label="Confection"
-                    inputType="number"
+                    minmax="on"
+                    inputType="tel"
                     divStyle={{
                       borderBottomLeftRadius: '10px',
                       borderBottomRightRadius: '10px',
                       padding: '1.0% 0',
                     }}
                     onChange={(e) =>
-                      _setState('free_shipping_rate', e.target.value)
+                      _setState('free_shipping_rate', e.target.value.replace(/[^0-9]/g, ''))
                     }
                   />
                 </div>
@@ -633,6 +650,10 @@ function ProfileInput({
   divStyle,
   minmax,
   alignText,
+  value,
+  enableEyes,
+  setshowPassword,
+  showPassword
 }) {
   return (
     <div
@@ -659,10 +680,23 @@ function ProfileInput({
           name={name}
           onChange={onChange}
           placeholder={placeholder}
-          maxlength={minmax === 'on' && '10'}
+          maxlength={minmax === 'on' && '30'}
           defaultValue={defaultValue}
+          value={value}
           type={inputType}
         />
+       {  
+       enableEyes?(
+       <>
+        <div
+         style={{position:"absolute", right:"9px", top:"0", paddingTop:"2px", textAlign:"end"}}
+         onClick={()=>setshowPassword(!showPassword)}
+         > 
+        <img src={InputEyeSVG}/>
+        </div>
+       </>
+       ):null
+        }
         {label ? (
           <p
             style={{

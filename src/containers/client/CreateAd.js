@@ -52,6 +52,7 @@ function ClientCreateAdScreen() {
     min_price: '',
     max_price: '',
     note: '',
+    terms_conditions:true
   });
 
   const handleImagesSelect = (event) => {
