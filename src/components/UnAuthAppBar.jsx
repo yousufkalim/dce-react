@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AppLogoSVG from '../assets/AppLogo.svg';
+import { BsList } from "react-icons/bs";
 
 function UnAuthAppBar() {
   const { t } = useTranslation();
@@ -66,7 +67,7 @@ function UnAuthAppBar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -75,7 +76,8 @@ function UnAuthAppBar() {
               color="inherit"
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
+           <BsList   color="black"  size="45" style={{marginLeft:"300px",marginTop:'10px'}} onClick={handleOpenNavMenu} />
 
             <Menu
               id="menu-appbar"
