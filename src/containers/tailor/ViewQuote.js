@@ -370,16 +370,17 @@ function TailorViewQuoteScreen() {
                   </div>
                   <div className="tqs_sqm_input_input">
                     <CustomInput
-                      inputType="number"
+                      inputType="text"
                       labelStyle={{
                         display: 'none',
                       }}
+                      inputValue={price}
                       inputStyle={{
                         border: 'none',
                         fontSize: '12px',
                       }}
                       inputPlaceholder={t('Set Your Price')}
-                      onChange={(e) => setPrice(e.target.value)}
+                      onChange={(e) => setPrice(e.target.value.replace(/[^0-9]/g, ''))}
                     />
                   </div>
                 </div>

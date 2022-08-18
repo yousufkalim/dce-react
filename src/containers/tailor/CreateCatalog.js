@@ -333,7 +333,7 @@ function InputSection() {
           </div>
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
-              <input type="file" multiple accept="image/*" hidden id="filePicker" name="file" onChange={handleImagesSelect} />
+              <input type="file" multiple accept=".jpg,.jpeg,.png" hidden id="filePicker" name="file" onChange={handleImagesSelect} />
               <div className="upload-img-text-cont">
                 <span className="upload-img-text">{t("upload an illustration of your creation")}</span>
                 <img src={UploadSVG} />

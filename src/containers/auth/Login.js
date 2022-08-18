@@ -94,7 +94,6 @@ function LoginScreen() {
       // } else
       if (response?.data?.success) {
         toast.success('Logged In');
-
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
