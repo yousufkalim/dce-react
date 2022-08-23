@@ -107,7 +107,7 @@ function UnAuthAppBar() {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ width:"80%",  display: { xs: 'none', md: 'flex' }, justifyContent:"center"  }}>
             <a style={{ textDecoration: 'none' }} className="animation_dec" href="#WhyChooseDCE">
               <Button
                 className="auth_appbar_menus"
@@ -116,7 +116,7 @@ function UnAuthAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {t('Why DCE')}
+                {t('About')}
               </Button>
             </a>
             <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
@@ -128,14 +128,27 @@ function UnAuthAppBar() {
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {/* {page} */}
-                {t('How Its Work')}
+                {t('Blog')}
               </Button>
             </a>
 
+            <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
+              <Button
+                className="auth_appbar_menus"
+                style={{ display: 'inline-block' }}
+                // key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {/* {page} */}
+                {t('Gallery')}
+              </Button>
+            </a>
             {/* ))} */}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+
+          <Box sx={{ flexGrow: 0,display: { xs: 'none', md: 'flex' }}}>
             <Link to="/login">
               <Button className="auth_appbar_button_login" sx={{ p: 0 }}>
                 {t('Login')}
@@ -144,7 +157,7 @@ function UnAuthAppBar() {
 
             <Link to="/select_role">
               <Button className="auth_appbar_button_register" sx={{ p: 0 }}>
-                {t('Register')}
+                {t('REGISTRATION')}
               </Button>
             </Link>
           </Box>
