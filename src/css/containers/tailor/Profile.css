@@ -13,12 +13,28 @@ justify-content: space-between;
   justify-content: flex-start;
   padding:2% 0%;
 }
+.designer_profile_screen_row1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding:2% 0%;
+}
 .tailor-client_profile_screen_top{
   height: 170vh;
 }
 .tailor_profile_screen_row1_column1 {
   height: 100%;
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tailor_profile_screen_row1_column1_{
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +69,14 @@ justify-content: space-between;
 .tailor_profile_screen_row1_column2 {
   /* height: 100%; */
   width: 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.tailor_profile_screen_row1_column2_ {
+  /* height: 100%; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

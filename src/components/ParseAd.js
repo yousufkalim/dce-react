@@ -20,7 +20,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { Modal } from '@mui/material';
 
 import { ChromePicker } from 'react-color';
-import { SketchPicker, GithubPicker } from 'react-color';
+import { SketchPicker, GithubPicker, CompactPicker } from 'react-color';
 
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -144,7 +144,7 @@ function BasicSection({
   /////
   return (
     <>
-      <div className="pa_profile_section_container">
+      <div className='pa_profile_section_container'>
         <AlertBox open={open} setOpen={setOpen} handleClose={handleCloseAlert} />
         {/* <div
           className="pa_profile_section_input_container"
@@ -179,19 +179,19 @@ function BasicSection({
             borderTopLeftRadius: '20px',
             borderTopRightRadius: '20px',
           }}
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Category')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Category')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               disabled={disabled || disables?.includes('category')}
               labelStyle={{
                 display: 'none',
               }}
-              selectID="category"
-              selectName="category"
+              selectID='category'
+              selectName='category'
               selectNullValue={t('I select the category to which my con...')}
               selectValue={t(state.category)}
               onChange={(e) => {
@@ -222,24 +222,24 @@ function BasicSection({
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderBottomLeftRadius: '20px',
             borderBottomRightRadius: '20px',
             marginBottom: '2%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Name')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Name')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               disabled={disabled || disables?.includes('name')}
               labelStyle={{
                 display: 'none',
               }}
-              selectID="name"
-              selectName="name"
+              selectID='name'
+              selectName='name'
               selectNullValue={t('I give a name to my confection')}
               selectValue={t(state.name)}
               onChange={(e) => _setState('name', e.target.value)}
@@ -258,41 +258,33 @@ function BasicSection({
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginBottom: '1%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('size')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('size')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               disabled={disabled}
               labelStyle={{
                 display: 'none',
               }}
-              selectID="cut"
-              selectName="cut"
+              selectID='cut'
+              selectName='cut'
               selectNullValue={t('Select size')}
               selectValue={state.cut}
               onChange={(e) => _setState('cut', e.target.value)}
               menuItems={[
-                <MenuItem value={'34'}>34</MenuItem>,
-                <MenuItem value={'36'}>36</MenuItem>,
-                <MenuItem value={'38'}>38</MenuItem>,
-                <MenuItem value={'40'}>40</MenuItem>,
-                <MenuItem value={'42'}>42</MenuItem>,
-                <MenuItem value={'44'}>44</MenuItem>,
-                <MenuItem value={'46'}>46</MenuItem>,
-                <MenuItem value={'48'}>48</MenuItem>,
-                <MenuItem value={'50'}>50</MenuItem>,
-                <MenuItem value={'52'}>52</MenuItem>,
-                <MenuItem value={'54'}>54</MenuItem>,
-                <MenuItem value={'56'}>56</MenuItem>,
-                <MenuItem value={'58'}>58</MenuItem>,
-                <MenuItem value={'60'}>60</MenuItem>,
+                <MenuItem value={'XS'}>XS</MenuItem>,
+                <MenuItem value={'S'}>S</MenuItem>,
+                <MenuItem value={'M'}>M</MenuItem>,
+                <MenuItem value={'L'}>L</MenuItem>,
+                <MenuItem value={'XL'}>XL</MenuItem>,
+                <MenuItem value={'XXL'}>XXL</MenuItem>,
               ]}
             />
           </div>
@@ -307,9 +299,9 @@ function BasicSection({
           }}
         >
           <div>
-            <span className="measurements"> {t('Standard size')}</span>{' '}
+            <span className='measurements'> {t('Standard size')}</span>{' '}
           </div>
-          <div className="size-measurement-cont">
+          <div className='size-measurement-cont'>
             {[
               {
                 size: 'small',
@@ -325,21 +317,21 @@ function BasicSection({
               },
             ].map((_) => (
               <div>
-                <span className="size">{t(_.size)} </span> <span className="measurements">{_.measurements}</span>{' '}
+                <span className='size'>{t(_.size)} </span> <span className='measurements'>{_.measurements}</span>{' '}
               </div>
             ))}
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginTop: '2%',
             marginBottom: '1%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('My Measurements')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('My Measurements')}</p>
           </div>
           <Tooltip
             arrow
@@ -347,7 +339,7 @@ function BasicSection({
               state?.measurements?.value?.length == 0 ? '' : <p style={{ fontSize: '14px' }}>{state?.measurements?.value}</p>
             }
           >
-            <div className="pa_profile_section_input_input">
+            <div className='pa_profile_section_input_input'>
               <CustomInput
                 disabled={disabled || state.measurements.type == 'tape' || state.measurements.type == 'call'}
                 labelStyle={{
@@ -368,7 +360,7 @@ function BasicSection({
                 }
                 inputValue={state?.measurements?.value}
                 inputDefaultValue={state?.measurements?.value}
-                minmax="on"
+                minmax='on'
                 onChange={(e) => {
                   setState({
                     ...state,
@@ -379,9 +371,9 @@ function BasicSection({
                   });
                 }}
               />
-              <img className="dots-measurement" src={DottedSVG} onClick={!disabled ? handleClickMeasurements : null} />
+              <img className='dots-measurement' src={DottedSVG} onClick={!disabled ? handleClickMeasurements : null} />
               <Menu
-                id="basic-menu"
+                id='basic-menu'
                 anchorEl={anchorElMeasurements}
                 open={openMeasurements}
                 onClose={handleCloseMeasurements}
@@ -432,12 +424,12 @@ function BasicSection({
             </div>
           </Tooltip>
         </div>
-        <p className="pa_profile_section_input_instructions_text">{t("*I'm getting a tape measure")}</p>
-        <p className="pa_profile_section_input_instructions_text">
+        <p className='pa_profile_section_input_instructions_text'>{t("*I'm getting a tape measure")}</p>
+        <p className='pa_profile_section_input_instructions_text'>
           {t('*depending on the garment, I measure certain parts of the body in circumference and/or length.')}
         </p>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderTopLeftRadius: '20px',
             borderTopRightRadius: '20px',
@@ -445,17 +437,17 @@ function BasicSection({
             backgroundColor: state.color == '#000000' ? '#ffffff' : state.color,
           }}
         >
-          <div style={{ width: '42%' }} className="pa_profile_section_input_label">
+          <div style={{ width: '42%' }} className='pa_profile_section_input_label'>
             <p
               style={{ color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff' }}
-              className="pa_profile_section_input_text"
+              className='pa_profile_section_input_text'
             >
-              {t('dominant color')}
+              {t('Dominant color')}
             </p>
           </div>
           <div
             style={{ width: '100%', height: '30pt' }}
-            className="pa_profile_section_input_input"
+            className='pa_profile_section_input_input'
             onClick={() => setOpenColorPicker(!openColorPicker)}
           >
             {openColorPicker ? (
@@ -480,8 +472,8 @@ function BasicSection({
                     overflow: 'scroll',
                   }}
                 >
-                  <GithubPicker
-                    width="225px"
+                  <CompactPicker
+                    width='225px'
                     style={{
                       maxHeight: '30px',
                       overflow: 'scroll',
@@ -500,23 +492,23 @@ function BasicSection({
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderBottomLeftRadius: '20px',
             borderBottomRightRadius: '20px',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Dominant FABRIC')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Dominant Fabric')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               disabled={disabled}
               labelStyle={{
                 display: 'none',
               }}
-              selectID="materialFabrics"
-              selectName="materialFabrics"
+              selectID='materialFabrics'
+              selectName='materialFabrics'
               selectNullValue={t('Select Fabric Style')}
               selectValue={state.fabric}
               onChange={(e) => _setState('fabric', e.target.value)}
@@ -527,35 +519,35 @@ function BasicSection({
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginTop: '2%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Attachments')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
-            <label className="upload-pic-label" htmlFor="filePicker">
+          <div className='pa_profile_section_input_input'>
+            <label className='upload-pic-label' htmlFor='filePicker'>
               <input
                 disabled={disabled}
                 multiple
-                type="file"
-                accept="image/*"
+                type='file'
+                accept='image/*'
                 hidden
-                id="filePicker"
-                name="file"
+                id='filePicker'
+                name='file'
                 onChange={handleImagesSelect}
               />
-              <div className="upload-img-text-cont">
-                <span className="upload-img-text">{t('upload an illustration of your creation')}</span>
+              <div className='upload-img-text-cont'>
+                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
           </div>
         </div>
-        <div className="selected-images-container">
+        <div className='selected-images-container'>
           {images?.map((_) => (
             <Attachment
               image={_}
@@ -570,6 +562,33 @@ function BasicSection({
               }}
             />
           ))}
+        </div>
+        <div
+          className='pa_profile_section_input_container'
+          style={{
+            borderRadius: '20px',
+            marginBottom: '1%',
+          }}
+        >
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Description')}</p>
+          </div>
+          <div className='pa_profile_section_input_input'>
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: 'none',
+              }}
+              inputStyle={{
+                border: 'none',
+                fontSize: '12px',
+              }}
+              inputType='text'
+              inputPlaceholder={t('Write any note regarding Project (Optional)')}
+              // inputDefaultValue={state?.note}
+              // onChange={(e) => _setState('note', e.target.value)}
+            />
+          </div>
         </div>
         {/* <div className="checkbox-container">
           <Checkbox
@@ -590,7 +609,7 @@ function BasicSection({
             <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
           </label>
         </div> */}
-        <div className="checkbox-container">
+        <div className='checkbox-container'>
           <Checkbox
             {...label}
             disabled={disabled || disables?.includes('create_catalog_after_completion')}
@@ -605,7 +624,7 @@ function BasicSection({
           />
           <label>
             {' '}
-            <span className="duw-text">{t('I do desired not that my creation appears on the site')}</span>{' '}
+            <span className='duw-text'>{t('I do desired not that my creation appears on the site')}</span>{' '}
             {/* <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "} */}
           </label>
         </div>
@@ -622,10 +641,10 @@ function BasicSection({
             onClick={onClick}
           />
         )}
-        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby="View Image">
+        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
-        <Modal open={isTapeMeasurementModal} onClose={handleIsTapeMeasurementModalClose} aria-labelledby="Tape Measurement">
+        <Modal open={isTapeMeasurementModal} onClose={handleIsTapeMeasurementModalClose} aria-labelledby='Tape Measurement'>
           <TapeMeasurementsModal _setState={_setState} handleClose={handleIsTapeMeasurementModalClose} />
         </Modal>
       </div>
@@ -706,7 +725,7 @@ function TapeMeasurementsModal(props) {
 
   return (
     <div
-      className="tqs_sqm_container"
+      className='tqs_sqm_container'
       style={{
         maxHeight: '95vh',
         width: '60vw',
@@ -714,7 +733,7 @@ function TapeMeasurementsModal(props) {
         height: '90vh',
       }}
     >
-      <div style={{ width: '95%' }} className="client_create_ad_screen_column2">
+      <div style={{ width: '95%' }} className='client_create_ad_screen_column2'>
         <p
           style={{
             padding: '2% 0%',
@@ -733,14 +752,14 @@ function TapeMeasurementsModal(props) {
           <img style={{ width: '70%' }} src={MeasurementChartSVG} />
         </div>
         <div
-          className="pa_container"
+          className='pa_container'
           style={{
             height: '100%',
             width: '100%',
           }}
         >
           <div
-            className="pa_steps_row"
+            className='pa_steps_row'
             style={{
               paddingBottom: '4%',
               paddingTop: '2%',
@@ -754,7 +773,7 @@ function TapeMeasurementsModal(props) {
               ))}
             </Stepper>
           </div>
-          <div className="pa_content_row">
+          <div className='pa_content_row'>
             {activeStep == 0 ? (
               <ParseMeasurement.CircumferenceSection
                 state={circumferenceSection}
@@ -850,47 +869,18 @@ function DeliverySection({ state, setState, onClick, disabled }) {
   };
   return (
     <>
-      <div className="pa_profile_section_container">
+      <div className='pa_profile_section_container'>
         <div
-          className="pa_profile_section_input_container"
-          style={{
-            borderRadius: '20px',
-            marginBottom: '2%',
-          }}
-        >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Delivery Address')}</p>
-          </div>
-          <div className="pa_profile_section_input_input">
-            <div style={{ width: '100%' }}>
-              <AutoComplete
-                disabled={disabled}
-                name="Address"
-                required={true}
-                label={'Address'}
-                value={state?.address?.label}
-                options={addresses}
-                placeholder={t('Address')}
-                componenet="parseaddress"
-                onChangeAddress={(e) => {
-                  handleInputAddress(e);
-                }}
-                onAddressSelect={(e) => handleSelectAddress(e)}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginBottom: '1%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('any note (s) concerning the delivery')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('First Name')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomInput
               disabled={disabled}
               labelStyle={{
@@ -900,26 +890,109 @@ function DeliverySection({ state, setState, onClick, disabled }) {
                 border: 'none',
                 fontSize: '12px',
               }}
-              inputType="text"
+              inputType='text'
+              inputPlaceholder={t('First Name')}
+              // inputDefaultValue={state?.note}
+              // onChange={(e) => _setState('note', e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className='pa_profile_section_input_container'
+          style={{
+            borderRadius: '20px',
+            marginBottom: '1%',
+          }}
+        >
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Last Name')}</p>
+          </div>
+          <div className='pa_profile_section_input_input'>
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: 'none',
+              }}
+              inputStyle={{
+                border: 'none',
+                fontSize: '12px',
+              }}
+              inputType='text'
+              inputPlaceholder={t('Last Name')}
+              // inputDefaultValue={state?.note}
+              // onChange={(e) => _setState('note', e.target.value)}
+            />
+          </div>
+        </div>
+        <div
+          className='pa_profile_section_input_container'
+          style={{
+            borderRadius: '20px',
+            marginBottom: '2%',
+          }}
+        >
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Delivery Address')}</p>
+          </div>
+          <div className='pa_profile_section_input_input'>
+            <div style={{ width: '100%' }}>
+              <AutoComplete
+                disabled={disabled}
+                name='Address'
+                required={true}
+                label={'Address'}
+                value={state?.address?.label}
+                options={addresses}
+                placeholder={t('Address')}
+                componenet='parseaddress'
+                onChangeAddress={(e) => {
+                  handleInputAddress(e);
+                }}
+                onAddressSelect={(e) => handleSelectAddress(e)}
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className='pa_profile_section_input_container'
+          style={{
+            borderRadius: '20px',
+            marginBottom: '1%',
+          }}
+        >
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('any note (s) concerning the delivery')}</p>
+          </div>
+          <div className='pa_profile_section_input_input'>
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: 'none',
+              }}
+              inputStyle={{
+                border: 'none',
+                fontSize: '12px',
+              }}
+              inputType='text'
               inputPlaceholder={t('Write any note regarding Delivery (Optional)')}
               inputDefaultValue={state?.note}
               onChange={(e) => _setState('note', e.target.value)}
             />
           </div>
         </div>
-        <p className="pa_profile_section_input_instructions_text">{t('*Select Delivery Type according to your Demands')}</p>
+        <p className='pa_profile_section_input_instructions_text'>{t('*Select Delivery Type according to your Demands')}</p>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginTop: '2%',
             marginBottom: '1%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('desired delivery date')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('desired delivery date')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDatePicker
               disablePast
               disabled={disabled}
@@ -931,7 +1004,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             />
           </div>
         </div>
-        <p className="pa_profile_section_input_instructions_text">{t('*Select Date for delivery')}</p>
+        <p className='pa_profile_section_input_instructions_text'>{t('*Select Date for delivery')}</p>
         {!onClick ? (
           <></>
         ) : (
@@ -965,7 +1038,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
   const store = Store();
   return (
     <>
-      <div className="pa_profile_section_container">
+      <div className='pa_profile_section_container'>
         {state?.quotes?.length === 0 || !state.quotes ? (
           <>
             {/* <div
@@ -1023,59 +1096,59 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               </div>
             </div> */}
             <div
-              className="pa_payment_section_input_container"
+              className='pa_payment_section_input_container'
               style={{
                 borderRadius: '20px',
                 marginBottom: '2%',
               }}
             >
-              <div className="pa_payment_section_input_label">
-                <p className="pa_payment_section_input_text">{t('Set Maximum Price')}</p>
+              <div className='pa_payment_section_input_label'>
+                <p className='pa_payment_section_input_text'>{t('Set Maximum Price')}</p>
               </div>
-              <div className="pa_payment_section_input_input_container">
+              <div className='pa_payment_section_input_input_container'>
                 <input
                   disabled={disabled}
-                  className="pa_payment_section_input_input"
-                  type="tel"
+                  className='pa_payment_section_input_input'
+                  type='tel'
                   value={state?.max_price}
                   defaultValue={state.max_price}
                   onChange={(e) => _setState('max_price', e.target.value.replace(/[^0-9]/g, ''))}
-                  placeholder="€0"
-                  maxlength="15"
+                  placeholder='€0'
+                  maxlength='15'
                 />
-                {state.max_price ? <span className="input-currency-sign">€</span> : null}
+                {state.max_price ? <span className='input-currency-sign'>€</span> : null}
               </div>
             </div>
           </>
         ) : null}
         {(store.userRole == 'tailor' || state?.quotes?.length > 0) && state?.quotes[0]?.price > 0 ? (
           <div
-            className="pa_payment_section_input_container"
+            className='pa_payment_section_input_container'
             style={{
               borderRadius: '25px',
               marginBottom: '2%',
             }}
           >
-            <div className="pa_payment_section_input_label">
-              <p className="pa_payment_section_input_text">{t('Bill')}</p>
+            <div className='pa_payment_section_input_label'>
+              <p className='pa_payment_section_input_text'>{t('Bill')}</p>
             </div>
-            <div className="pa_payment_section_input_input_container">
+            <div className='pa_payment_section_input_input_container'>
               <input
                 disabled={disabled}
-                className="pa_payment_section_input_input"
-                type="number"
+                className='pa_payment_section_input_input'
+                type='number'
                 defaultValue={state?.quotes[0]?.price}
                 onChange={(e) => _setState('min_price', e.target.value)}
-                placeholder="€0"
+                placeholder='€0'
               />
-              {state?.quotes[0]?.price ? <span className="input-currency-sign">€</span> : null}
+              {state?.quotes[0]?.price ? <span className='input-currency-sign'>€</span> : null}
             </div>
           </div>
         ) : null}
         {!onClick ? (
           <></>
         ) : (
-          <div className="pa_payment_section_consent_container">
+          <div className='pa_payment_section_consent_container'>
             <Checkbox
               onChange={(e) => _setState('terms_conditions', e.target.checked)}
               style={{
@@ -1086,7 +1159,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               defaultChecked
             />
             <p
-              className="terms-text"
+              className='terms-text'
               style={{
                 paddingRight: '0.6%',
               }}
