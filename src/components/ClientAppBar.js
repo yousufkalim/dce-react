@@ -49,10 +49,7 @@ const StyledMenu = styled((MenuProps) => (
     marginTop: theme.spacing(3),
     padding: '2% 2% 1% 2%',
     minWidth: 230,
-    color:
-      theme.palette.mode === 'light'
-        ? 'rgb(55, 65, 81)'
-        : theme.palette.grey[300],
+    color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow: '0px 4px 20px rgba(160, 160, 160, 0.33)',
 
     '& .MuiMenuItem-root': {
@@ -80,13 +77,7 @@ function useWindowSize() {
   return size;
 }
 
-function ClientAppBar({
-  activeTab,
-  color,
-  sticky = true,
-  disableSearch = false,
-  divStyle,
-}) {
+function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, divStyle }) {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
 
@@ -105,8 +96,7 @@ function ClientAppBar({
     setAnchorElProfile(null);
   };
 
-  const [anchorElNotifications, setAnchorElNotifications] =
-    React.useState(null);
+  const [anchorElNotifications, setAnchorElNotifications] = React.useState(null);
   const openNotifications = Boolean(anchorElNotifications);
   const handleClickNotifications = (event) => {
     setAnchorElNotifications(event.currentTarget);
@@ -180,10 +170,7 @@ function ClientAppBar({
     try {
       response = await Api('get', `/notifications`);
       const notificationsData = response.data.notifications.splice(-8);
-      notificationsData.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
+      notificationsData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setNotifications(notificationsData);
     } catch (e) {
       console.trace(e);
@@ -221,43 +208,20 @@ function ClientAppBar({
       >
         <div className="appbar_top">
           <div className="appbar_row1">
-            <img
-              src={AppLogoSVG}
-              className="appbar_row1_img"
-              style={{ marginRight: '5%' }}
-              onClick={navToHome}
-            />
+            <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: '5%' }} onClick={navToHome} />
             {width > 768 ? (
               <>
                 <NavlinkDesktop activeTab={activeTab} />
               </>
             ) : (
-              <img
-                className="cursor-pointer"
-                onClick={mobilemenu}
-                src={dotted}
-              />
+              <img className="cursor-pointer" onClick={mobilemenu} src={dotted} />
             )}
           </div>
 
           <div className="appbar_row2">
-            {!disableSearch ? (
-              <SearchInput
-                setSearchQuery={setSearchQuery}
-                callback={navToSearch}
-              />
-            ) : (
-              <></>
-            )}
-            <div
-              className="notifications_count_container"
-              style={{ marginLeft: '3%' }}
-            >
-              <img
-                src={NotificationsSVG}
-                className="appbar_row2_notifications_img"
-                onClick={handleClickNotifications}
-              />
+            {!disableSearch ? <SearchInput setSearchQuery={setSearchQuery} callback={navToSearch} /> : <></>}
+            <div className="notifications_count_container" style={{ marginLeft: '3%' }}>
+              <img src={NotificationsSVG} className="appbar_row2_notifications_img" onClick={handleClickNotifications} />
               {notifications.filter((_) => !_.is_read).length > 0 ? (
                 <div className="notifications_count_pos">
                   <p
@@ -282,10 +246,7 @@ function ClientAppBar({
               }}
             >
               {notifications.map((_) => (
-                <NotificationsListTile
-                  {..._}
-                  handleClose={handleCloseNotifications}
-                />
+                <NotificationsListTile {..._} handleClose={handleCloseNotifications} />
               ))}
             </Menu>
             <img
@@ -312,13 +273,7 @@ function ClientAppBar({
               <div className="user-detail-conatiner">
                 <img
                   className="image_container"
-                  src={
-                    profileImage
-                      ? URL.createObjectURL(profileImage)
-                      : profile?.avatar
-                      ? assetsURL(profile?.avatar)
-                      : dummy
-                  }
+                  src={profileImage ? URL.createObjectURL(profileImage) : profile?.avatar ? assetsURL(profile?.avatar) : dummy}
                 />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <p className="user-name">{profile?.name} </p>
@@ -326,20 +281,10 @@ function ClientAppBar({
                 </div>
               </div>
 
-              <MenuItem
-                style={{ borderBottom: '1px solid #DBDBDB' }}
-                className="menu-item"
-                onClick={navToProfile}
-              >
-                <img style={{ padding: '4% 0%' }} src={EditIcon} />{' '}
-                <p> {t('Profile')} </p>
+              <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className="menu-item" onClick={navToProfile}>
+                <img style={{ padding: '4% 0%' }} src={EditIcon} /> <p> {t('Profile')} </p>
               </MenuItem>
-              <MenuItem
-                className="menu-item support-padding"
-                onClick={() =>
-                  changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)
-                }
-              >
+              <MenuItem className="menu-item support-padding" onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
                 <GTranslateIcon sx={{ width: '20px' }} />
                 {language == 'fr' ? 'French' : 'English'}
               </MenuItem>
@@ -347,12 +292,8 @@ function ClientAppBar({
                 <img style={{ width: '16px' }} src={SupportIcon} />
                 <p> {t('Support')}</p>
               </MenuItem>
-              <MenuItem
-                className="menu-item sign-out-padding"
-                onClick={handleLogoutSubmit}
-              >
-                <img style={{ width: '16px' }} src={SignOutIcon} />{' '}
-                <p> {t('Sign out')}</p>
+              <MenuItem className="menu-item sign-out-padding" onClick={handleLogoutSubmit}>
+                <img style={{ width: '16px' }} src={SignOutIcon} /> <p> {t('Sign out')}</p>
               </MenuItem>
             </StyledMenu>
           </div>
@@ -381,11 +322,7 @@ function SearchInput({ setSearchQuery, callback }) {
           className="appbar_row2_input"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <img
-          src={SearchSVG}
-          className="appbar_row2_search_img"
-          onClick={callback}
-        />
+        <img src={SearchSVG} className="appbar_row2_search_img" onClick={callback} />
       </div>
     </div>
   );

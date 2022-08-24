@@ -1,7 +1,7 @@
 .tailor_catalog_screen_row1 {
   width: 100vw;
   height: 70vh;
-  background: url("../../../assets/CatalogBackground.svg"), #c8a4a4;
+  background: url('../../../assets/CatalogBackground.svg'), #c8a4a4;
   background-repeat: no-repeat;
   background-position: 0% 100%;
 }
@@ -14,7 +14,7 @@
 }
 
 .tailor_catalog_screen_row1_column1_text {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
@@ -30,16 +30,12 @@
 
 .tailor_catalog_screen_row2 {
   width: 100vw;
-  background: linear-gradient(
-    293deg,
-    rgba(240, 168, 106, 0.2) 15.42%,
-    rgba(255, 255, 255, 0) 94.95%
-  );
+  background: linear-gradient(293deg, rgba(240, 168, 106, 0.2) 15.42%, rgba(255, 255, 255, 0) 94.95%);
   padding-bottom: 5%;
 }
 
 .tailor_catalog_screen_row2_text {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 40px;

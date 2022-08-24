@@ -13,13 +13,7 @@ import ron from '../assets/ron.jpeg';
 import assetsURL from '../utils/Assets';
 import { calculateRating, calculateRatingsCount } from '../utils/Helpers';
 
-function CatalogListTile({
-  catalog,
-  buttonText,
-  onClickButton,
-  onClick,
-  mainDivStyle,
-}) {
+function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivStyle }) {
   const { t } = useTranslation();
 
   const rating = calculateRating(catalog.ratings);
@@ -34,7 +28,7 @@ function CatalogListTile({
       className="tailor_catalog_list_tile_container"
       style={{
         ...mainDivStyle,
-        width:"auto"
+        width: 'auto',
       }}
     >
       <div
@@ -52,11 +46,7 @@ function CatalogListTile({
             objectFit: 'contain',
             borderRadius: '20px',
           }}
-          src={
-            catalog?.attachments[0]
-              ? assetsURL(catalog.attachments[0])
-              : CatalogContent1SVG
-          }
+          src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}
         />
         <CustomButton
           text={buttonText}
@@ -66,7 +56,7 @@ function CatalogListTile({
             background: '#fff',
             color: '#CC8E9C',
             fontWeight: '600',
-            fontSize:"12px",
+            fontSize: '12px',
             boxShadow: 'none',
             borderRadius: '20px',
             marginTop: '5%',
@@ -78,9 +68,7 @@ function CatalogListTile({
         />
         <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
         <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">
-            {t('Stitching Price')}
-          </p>
+          <p className="tailor_catalog_list_tile_price_detail">{t('Stitching Price')}</p>
           <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">

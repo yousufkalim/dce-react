@@ -1,10 +1,10 @@
 // Author: Umar Bin Ayaz
 
-const E_CONNECTION = "connect";
-const E_DISCONNECT = "disconnect";
-const E_SEND_MESSAGE = "send_message";
-const E_RECEIVE_MESSAGE = "receive_message";
-const E_RECEIVE_CHAT = "receive_chat";
+const E_CONNECTION = 'connect';
+const E_DISCONNECT = 'disconnect';
+const E_SEND_MESSAGE = 'send_message';
+const E_RECEIVE_MESSAGE = 'receive_message';
+const E_RECEIVE_CHAT = 'receive_chat';
 
 module.exports = {
   E_CONNECTION,

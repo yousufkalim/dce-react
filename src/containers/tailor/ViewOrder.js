@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import { useTranslation } from "react-i18next";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import { useTranslation } from 'react-i18next';
 
-import AdEdit1SVG from "../../assets/AdEdit1.svg";
-import AdEdit2SVG from "../../assets/AdEdit2.svg";
-import AdEdit3SVG from "../../assets/AdEdit3.svg";
-import UploadSVG from "../../assets/upload.svg";
+import AdEdit1SVG from '../../assets/AdEdit1.svg';
+import AdEdit2SVG from '../../assets/AdEdit2.svg';
+import AdEdit3SVG from '../../assets/AdEdit3.svg';
+import UploadSVG from '../../assets/upload.svg';
 
-import TailorAppBar from "../../components//TailorAppBar";
-import CustomButton from "../../components/CustomButton";
-import Footer from "../../components/Footer";
-import * as ParseAd from "../../components/ParseAd";
-import { Modal } from "@mui/material";
-import Rating from "@mui/material/Rating";
+import TailorAppBar from '../../components//TailorAppBar';
+import CustomButton from '../../components/CustomButton';
+import Footer from '../../components/Footer';
+import * as ParseAd from '../../components/ParseAd';
+import { Modal } from '@mui/material';
+import Rating from '@mui/material/Rating';
 
-import Api from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import Api from '../../api';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import * as FormValidations from "../../utils/Validations";
+import * as FormValidations from '../../utils/Validations';
 
-const steps = ["MY PROJECT", "My delivery", "Remarks"];
+const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
 function TailorViewOrderScreen() {
   const { t } = useTranslation();
@@ -35,28 +35,28 @@ function TailorViewOrderScreen() {
 
   const [ad, setAd] = useState(null);
   const [basicSection, setBasicSection] = useState({
-    gender: "",
-    category: "",
-    name: "",
-    cut: "",
+    gender: '',
+    category: '',
+    name: '',
+    cut: '',
     measurements: {
-      type: "static",
-      value: "",
+      type: 'static',
+      value: '',
     },
-    color: "",
-    fabric: "",
+    color: '',
+    fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
-    userRole: "",
+    userRole: '',
   });
   const [deliverySection, setDeliverySection] = useState({
-    date: "",
-    address: { zip: "", label: "", city: "", lat: "", lng: "" },
+    date: '',
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
-    note: "",
-    min_price: "",
-    max_price: "",
+    note: '',
+    min_price: '',
+    max_price: '',
   });
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function TailorViewOrderScreen() {
   const getAd = async () => {
     let response;
     try {
-      response = await Api("get", `/orders/${params.id}`);
+      response = await Api('get', `/orders/${params.id}`);
       const adData = response.data.order;
       setAd(adData);
       setBasicSection({
@@ -94,7 +94,7 @@ function TailorViewOrderScreen() {
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes: adData?.quotes.filter((_) => _.status === "accepted"),
+        quotes: adData?.quotes.filter((_) => _.status === 'accepted'),
       });
     } catch (e) {
       console.trace(e);
@@ -112,36 +112,36 @@ function TailorViewOrderScreen() {
           <div
             className="container"
             style={{
-              background: "#FFE9A0",
-              height: "112vh",
+              background: '#FFE9A0',
+              height: '112vh',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Client Basic")}
+                  {t('Client Basic')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "55%" }} src={AdEdit1SVG} />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "8%",
+                    marginTop: '8%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -163,7 +163,7 @@ function TailorViewOrderScreen() {
           <div
             className="container"
             style={{
-              background: "#FFC396",
+              background: '#FFC396',
             }}
           >
             <div className="client_edit_ad_screen_row1">
@@ -171,7 +171,7 @@ function TailorViewOrderScreen() {
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "7%",
+                    marginTop: '7%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -191,57 +191,57 @@ function TailorViewOrderScreen() {
               <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Delivery")}
+                  {t('Delivery')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "70%" }} src={AdEdit2SVG} />
+                <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
           </div>
           <div
             className="container"
             style={{
-              background: "#FFFCFB",
+              background: '#FFFCFB',
             }}
           >
             <div className="client_edit_ad_screen_row1">
               <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
+                    fontSize: '30px',
+                    fontWeight: '900',
                   }}
                 >
-                  {t("Payment")}
+                  {t('Payment')}
                 </p>
                 <p
                   style={{
-                    fontSize: "30px",
-                    fontWeight: "900",
-                    marginBottom: "20%",
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '20%',
                   }}
                 >
-                  {t("Details")}
+                  {t('Details')}
                 </p>
-                <img style={{ width: "20%" }} src={AdEdit3SVG} />
+                <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
               <div className="client_edit_ad_screen_row1_column2">
                 <div
                   className="pa_container"
                   style={{
-                    marginTop: "7%",
+                    marginTop: '7%',
                   }}
                 >
                   <div className="pa_steps_row">
@@ -260,7 +260,7 @@ function TailorViewOrderScreen() {
               </div>
             </div>
           </div>
-          {ad.status == "in_progress" ? <CompleteOrderSection {...ad} /> : <></>}
+          {ad.status == 'in_progress' ? <CompleteOrderSection {...ad} /> : <></>}
           <Footer />
         </div>
       )}
@@ -278,22 +278,22 @@ const CompleteOrderSection = (props) => {
   return (
     <div
       style={{
-        height: "30vh",
-        width: "100vw",
-        background: "#FFEEEA",
+        height: '30vh',
+        width: '100vw',
+        background: '#FFEEEA',
       }}
     >
       <div className="client_edit_ad_screen_row1">
         <p
           style={{
             fontSize: 28,
-            fontWeight: "900",
-            textDecoration: "underline",
-            cursor: "pointer",
+            fontWeight: '900',
+            textDecoration: 'underline',
+            cursor: 'pointer',
           }}
           onClick={() => setIsCompleteOrderModal(true)}
         >
-          {t("Want to complete this order")}
+          {t('Want to complete this order')}
         </p>
         <Modal
           open={isCompleteOrderModal}
@@ -314,7 +314,7 @@ const CompleteOrderModal = (props) => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   // const [rating, setRating] = useState(5);
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState('');
   const [attachments, setAttachments] = useState([]);
 
   const { t } = useTranslation();
@@ -324,7 +324,7 @@ const CompleteOrderModal = (props) => {
   };
 
   const navToOrders = () => {
-    navigate("/orders");
+    navigate('/orders');
   };
 
   const handleSubmit = async (event) => {
@@ -339,7 +339,7 @@ const CompleteOrderModal = (props) => {
     }
 
     if (attachments.length === 0) {
-      toast.error(t("At least one attachment must be selected"));
+      toast.error(t('At least one attachment must be selected'));
       return;
     }
 
@@ -354,17 +354,17 @@ const CompleteOrderModal = (props) => {
 
       const body = new FormData();
 
-      body.append("id", props.order._id);
+      body.append('id', props.order._id);
       // body.append("rating", rating);
-      body.append("details", details);
+      body.append('details', details);
       for (let i = 0; i < attachments.length; i++) {
-        body.append("attachments", attachments[i]);
+        body.append('attachments', attachments[i]);
       } // Multipart files share the same field name
 
-      response = await Api("post", "/orders/complete", body);
+      response = await Api('post', '/orders/complete', body);
 
       if (response?.data?.success) {
-        toast.success(t("Order completed successfully."));
+        toast.success(t('Order completed successfully.'));
         props.handleClose();
         navToOrders();
       }
@@ -402,18 +402,18 @@ const CompleteOrderModal = (props) => {
       <div
         className="tqs_sqm_textarea_container"
         style={{
-          borderTopLeftRadius: "20px",
-          borderTopRightRadius: "20px",
-          marginBottom: "2%",
+          borderTopLeftRadius: '20px',
+          borderTopRightRadius: '20px',
+          marginBottom: '2%',
         }}
       >
         <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">{t("Details")}</p>
+          <p className="tqs_sqm_input_text">{t('Details')}</p>
         </div>
         <div className="tqs_sqm_input_input">
           <textarea
             className="tqs_sqm_textarea_textarea"
-            placeholder={t("Describe about submit report")}
+            placeholder={t('Describe about submit report')}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
           />
@@ -422,43 +422,43 @@ const CompleteOrderModal = (props) => {
       <div
         className="pa_profile_section_input_container"
         style={{
-          borderRadius: "20px",
-          marginBottom: "2%",
-          width: "100%",
-          padding: "1.6% 0",
+          borderRadius: '20px',
+          marginBottom: '2%',
+          width: '100%',
+          padding: '1.6% 0',
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">{t("Attachments")}</p>
+          <p className="pa_profile_section_input_text">{t('Attachments')}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <label className="upload-pic-label">
             <input multiple type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
             <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachments?.name ?? t("upload an illustration of your creation")}</span>
+              <span className="upload-img-text">{attachments?.name ?? t('upload an illustration of your creation')}</span>
               <img src={UploadSVG} />
             </div>
           </label>
         </div>
       </div>
-      <div className="selected-images-container" style={{ margin: "0" }}>
+      <div className="selected-images-container" style={{ margin: '0' }}>
         {attachments?.map((val) => (
           <span>{val?.name}</span>
         ))}
       </div>
       <div className="tvqs_sq_buttons">
         <CustomButton
-          text={t("Cancel")}
+          text={t('Cancel')}
           style={{
-            boxShadow: "none",
-            marginRight: "10pt",
+            boxShadow: 'none',
+            marginRight: '10pt',
           }}
           onClick={props.handleClose}
         />
         <CustomButton
-          text={t("Complete")}
+          text={t('Complete')}
           style={{
-            boxShadow: "none",
+            boxShadow: 'none',
           }}
           onClick={handleSubmit}
         />

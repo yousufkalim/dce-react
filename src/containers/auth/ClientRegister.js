@@ -8,7 +8,7 @@ import CustomButton from '../../components/CustomButton';
 
 import Api from '../../api/index';
 
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -79,83 +79,80 @@ function ClientRegisterScreen() {
 
   return (
     <>
-    <form noValidate={true} onSubmit={handleSubmit}>
-      <div
-        className="container"
-        style={{
-          background:
-            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
-        }}
-      >
-        <div className="login_screen_top">
-          <div className="login_screen_row1">
-            <div className="login_screen_row1_img">
-              <img
-                style={{ width: '35%', marginBottom: '5%' }}
-                src={AppLogoSVG}
-              />
+      <form noValidate={true} onSubmit={handleSubmit}>
+        <div
+          className="container"
+          style={{
+            background:
+              'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
+          }}
+        >
+          <div className="login_screen_top">
+            <div className="login_screen_row1">
+              <div className="login_screen_row1_img">
+                <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
+              </div>
+              <div className="login_screen_row1_img">
+                <img style={{ width: '70%' }} src={DesignElaborationSVG} />
+              </div>
             </div>
-            <div className="login_screen_row1_img">
-              <img style={{ width: '70%' }} src={DesignElaborationSVG} />
-            </div>
-          </div>
-          <div className="login_screen_row2">
-            <div className="login_screen_row2_container">
-              <CustomInput
-                labelText={t('Email')}
-                inputType="email"
-                inputName="Email"
-                inputPlaceholder="abc@xyz.com"
-                divStyle={{
-                  marginBottom: '6%',
-                }}
-              />
-              <CustomInput
-                labelText={t('Password')}
-                inputType="password"
-                inputName="Password"
-                inputPlaceholder="********"
-                enableEyes={true}
-                divStyle={{
-                  marginBottom: '6%',
-                }}
-              />
-              <CustomButton
-                text={t('Sign up')}
-                type="submit"
-                style={{
-                  marginBottom: '10%',
-                }}
-              />
-              <div
-                onClick={navToLogin}
-                style={{
-                  cursor: 'pointer',
-                }}
-              >
-                <p
+            <div className="login_screen_row2">
+              <div className="login_screen_row2_container">
+                <CustomInput
+                  labelText={t('Email')}
+                  inputType="email"
+                  inputName="Email"
+                  inputPlaceholder="abc@xyz.com"
+                  divStyle={{
+                    marginBottom: '6%',
+                  }}
+                />
+                <CustomInput
+                  labelText={t('Password')}
+                  inputType="password"
+                  inputName="Password"
+                  inputPlaceholder="********"
+                  enableEyes={true}
+                  divStyle={{
+                    marginBottom: '6%',
+                  }}
+                />
+                <CustomButton
+                  text={t('Sign up')}
+                  type="submit"
                   style={{
-                    fontSize: '11px',
-                    color: '#A0A0A0',
+                    marginBottom: '10%',
+                  }}
+                />
+                <div
+                  onClick={navToLogin}
+                  style={{
+                    cursor: 'pointer',
                   }}
                 >
-                  {t('Already have an account?')}
-                </p>
-                <p
-                  style={{
-                    fontSize: '16px',
-                    color: '#CC8E9C',
-                  }}
-                >
-                  {t('Sign in now')}
-                </p>
+                  <p
+                    style={{
+                      fontSize: '11px',
+                      color: '#A0A0A0',
+                    }}
+                  >
+                    {t('Already have an account?')}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '16px',
+                      color: '#CC8E9C',
+                    }}
+                  >
+                    {t('Sign in now')}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-    <Footer/>
+      </form>
+      <Footer />
     </>
   );
 }

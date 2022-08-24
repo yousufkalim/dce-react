@@ -8,12 +8,7 @@ function ViewImageModal(props) {
       }}
     >
       <img
-        src={
-          typeof(props?.src) =="string"?
-          props.src
-          :
-          URL.createObjectURL(props.src)
-        }
+        src={typeof props?.src == 'string' ? props.src : URL.createObjectURL(props.src)}
         style={{
           height: '100%',
           width: '100%',

@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+
 // router link
 import { Link } from 'react-router-dom';
+
 // import slider
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+
 //  translation
 import { useTranslation } from 'react-i18next';
 import UnAuthAppBar from '../../components/UnAuthAppBar';
@@ -118,18 +121,18 @@ function Landing() {
               <h4>{t('Hire The Best Designers For Your Confection')}</h4>
               <p>
                 {t(
-                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam',
+                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam'
                 )}
               </p>
 
               <Link style={{ textDecoration: 'none' }} to="/select_role">
-                <button type="button">{t('Hire Design')}</button>
+                <button type="button">{t('Hire Designer')}</button>
               </Link>
               <hr />
               <div className="or">
                 {t('Or')}
                 <Link to="/select_role">
-                  <span>{t('registered as a Designer')}</span>
+                  <span>{t('register as a Designer')}</span>
                 </Link>
               </div>
             </div>
@@ -238,7 +241,7 @@ function Landing() {
                 </div>
 
                 <div className="great_work_Card_inner_info">
-                  <h4>{t('Explore Different Ways Earn')}</h4>
+                  <h4>{t('EXPLORE DIFFERENT WAYS TO EARN')}</h4>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
                     nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
@@ -264,7 +267,7 @@ function Landing() {
       </div>
       {/* end  chose Dec */}
 
-      {/*Clients Review  start*/}
+      {/* Clients Review */}
       <div className="client_main_section">
         <div className="clinet_handing_text">
           <h3>{'Clients Review'}</h3>
@@ -296,10 +299,9 @@ function Landing() {
           </div>
         </div>
       </div>
-      {/*Clients Review  end */}
+      {/* Clients Review */}
 
-      {/* footer start  */}
-
+      {/* Footer */}
       <div class="footer_section_main" id="animation_dec">
         <div className="footer_center_section">
           <img src={FooterLogo} />
@@ -324,7 +326,7 @@ function Landing() {
           </div>
         </div>
       </div>
-      {/* footer end  */}
+      {/* Footer */}
     </div>
   );
 }

@@ -138,14 +138,8 @@ function ClientCreateOrderScreen() {
       body.append('measurements', JSON.stringify(basicSection.measurements));
       body.append('color', basicSection.color);
       body.append('fabric', basicSection.fabric);
-      body.append(
-        'includes_alteration_services',
-        basicSection.includes_alteration_services
-      );
-      body.append(
-        'create_catalog_after_completion',
-        basicSection.create_catalog_after_completion
-      );
+      body.append('includes_alteration_services', basicSection.includes_alteration_services);
+      body.append('create_catalog_after_completion', basicSection.create_catalog_after_completion);
       body.append(
         'delivery',
         JSON.stringify({
@@ -220,9 +214,7 @@ function ClientCreateOrderScreen() {
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
-                      <StepLabel onClick={() => setActiveStep(i)}>
-                        {t(v)}
-                      </StepLabel>
+                      <StepLabel onClick={() => setActiveStep(i)}>{t(v)}</StepLabel>
                     </Step>
                   ))}
                 </Stepper>

@@ -27,7 +27,7 @@ function ClientCreateAccountScreen() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [gender, setGender] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('');
   const { t } = useTranslation();
   const store = Store();
   const updateStore = UpdateStore();
@@ -95,10 +95,7 @@ function ClientCreateAccountScreen() {
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img create_account_screen_row1_img">
-              <img
-                style={{ width: '15%', marginBottom: '5%' }}
-                src={AppLogoSVG}
-              />
+              <img style={{ width: '15%', marginBottom: '5%' }} src={AppLogoSVG} />
               <div>
                 <p
                   style={{
@@ -139,7 +136,7 @@ function ClientCreateAccountScreen() {
                 }}
                 minmax={true}
                 inputValue={phoneNumber}
-                onChange={(e)=>setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
+                onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
               />
               <div style={{ width: '100%', border: 'none' }}>
                 <div>

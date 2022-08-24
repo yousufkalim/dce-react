@@ -8,30 +8,30 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { useTranslation } from 'react-i18next';
 
-const AlertBox = ({open,handleClose}) => {
+const AlertBox = ({ open, handleClose }) => {
   const { t } = useTranslation();
   return (
     <div>
-      <Dialog
-        open={open}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-      
+      <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-         {t("Are you sure you want to delete the selected item")}
+            {t('Are you sure you want to delete the selected item')}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>handleClose(false)}>{t('Discard')}</Button>
-          <Button onClick={()=>{handleClose(true)}} autoFocus>
-          {t('I agree')}
+          <Button onClick={() => handleClose(false)}>{t('Discard')}</Button>
+          <Button
+            onClick={() => {
+              handleClose(true);
+            }}
+            autoFocus
+          >
+            {t('I agree')}
           </Button>
         </DialogActions>
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-export default AlertBox
+export default AlertBox;

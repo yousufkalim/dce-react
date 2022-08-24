@@ -117,8 +117,7 @@
 .upload-pic-label {
   width: 93%;
 }
-a
-.size-measurement-cont {
+a .size-measurement-cont {
   display: flex;
   width: 65%;
   justify-content: space-between;

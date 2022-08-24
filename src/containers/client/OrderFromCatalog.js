@@ -120,8 +120,7 @@ function OrderFromCatalogScreen() {
     event.preventDefault();
 
     const isValidated =
-      FormValidations.parseAdBasicSection(basicSection) &&
-      FormValidations.parseAdDeliverySection(deliverySection);
+      FormValidations.parseAdBasicSection(basicSection) && FormValidations.parseAdDeliverySection(deliverySection);
     if (!isValidated) {
       return;
     }
@@ -152,10 +151,7 @@ function OrderFromCatalogScreen() {
       body.append('measurements', JSON.stringify(basicSection.measurements));
       body.append('color', basicSection.color);
       body.append('fabric', basicSection.fabric);
-      body.append(
-        'includes_alteration_services',
-        basicSection.includes_alteration_services
-      );
+      body.append('includes_alteration_services', basicSection.includes_alteration_services);
       body.append(
         'create_catalog_after_completion',
         basicSection.create_catalog_after_completion // Will remain false anyways
@@ -245,9 +241,7 @@ function OrderFromCatalogScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -256,12 +250,7 @@ function OrderFromCatalogScreen() {
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
-                      disables={[
-                        'gender',
-                        'category',
-                        'name',
-                        'create_catalog_after_completion',
-                      ]}
+                      disables={['gender', 'category', 'name', 'create_catalog_after_completion']}
                       image={images}
                       handleImageSelect={handleImagesSelect}
                       handleImageDeselect={handleImageDeselect}
@@ -290,18 +279,13 @@ function OrderFromCatalogScreen() {
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
                   <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                    <ParseAd.DeliverySection state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
@@ -365,9 +349,7 @@ function OrderFromCatalogScreen() {
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -382,17 +364,13 @@ function OrderFromCatalogScreen() {
                         }}
                       >
                         <div className="pa_payment_section_textarea_label">
-                          <p className="pa_profile_section_input_text">
-                            {t('Extra Note')}
-                          </p>
+                          <p className="pa_profile_section_input_text">{t('Extra Note')}</p>
                         </div>
                         <div className="pa_profile_section_input_input">
                           <textarea
                             className="pa_profile_section_textarea_textarea"
                             defaultValue={notesSection.note}
-                            onChange={(e) =>
-                              _setNotesSection('note', e.target.value)
-                            }
+                            onChange={(e) => _setNotesSection('note', e.target.value)}
                           ></textarea>
                         </div>
                       </div>
@@ -404,9 +382,7 @@ function OrderFromCatalogScreen() {
                         }}
                       >
                         <div className="pa_payment_section_input_label">
-                          <p className="pa_payment_section_input_text">
-                            {t('Catalogue Price')}
-                          </p>
+                          <p className="pa_payment_section_input_text">{t('Catalogue Price')}</p>
                         </div>
                         <div className="pa_payment_section_input_input_container">
                           <input
@@ -414,9 +390,7 @@ function OrderFromCatalogScreen() {
                             className="pa_payment_section_input_input"
                             type="number"
                             defaultValue={notesSection.price}
-                            onChange={(e) =>
-                              _setNotesSection('rice', e.target.value)
-                            }
+                            onChange={(e) => _setNotesSection('rice', e.target.value)}
                           />
                         </div>
                       </div>

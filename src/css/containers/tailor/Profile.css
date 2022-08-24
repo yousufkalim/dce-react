@@ -1,8 +1,8 @@
-.tailor-profile-edit-container{
-margin-top: 6%;
-width: 100%;
-display: flex;
-justify-content: space-between;
+.tailor-profile-edit-container {
+  margin-top: 6%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tailor_profile_screen_row1 {
@@ -11,7 +11,7 @@ justify-content: space-between;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  padding:2% 0%;
+  padding: 2% 0%;
 }
 .designer_profile_screen_row1 {
   width: 100%;
@@ -19,9 +19,9 @@ justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding:2% 0%;
+  padding: 2% 0%;
 }
-.tailor-client_profile_screen_top{
+.tailor-client_profile_screen_top {
   height: 170vh;
 }
 .tailor_profile_screen_row1_column1 {
@@ -32,7 +32,7 @@ justify-content: space-between;
   align-items: center;
   justify-content: flex-start;
 }
-.tailor_profile_screen_row1_column1_{
+.tailor_profile_screen_row1_column1_ {
   height: 100%;
   width: 100%;
   display: flex;
@@ -89,7 +89,7 @@ justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding:2% 0%;
+  padding: 2% 0%;
 }
 
 .tailor_profile_screen_row2_column1 {
@@ -153,7 +153,7 @@ justify-content: space-between;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+
   width: 100%;
 }
 
@@ -192,11 +192,10 @@ justify-content: space-between;
 .img-designer {
   width: 30%;
 }
-.tailor-new_order_list_tile{
+.tailor-new_order_list_tile {
   padding: 8% 0%;
   width: 15%;
   height: 19px;
-
 }
 
 /* media queries */
@@ -209,10 +208,10 @@ justify-content: space-between;
     padding-top: 14%;
     overflow-y: unset;
   }
-  .tailor-profile-edit-container{
+  .tailor-profile-edit-container {
     margin-top: 15%;
   }
-  .tailor-client_profile_screen_top{
+  .tailor-client_profile_screen_top {
     height: auto;
   }
   .tailor_profile_screen_row2 {
@@ -245,7 +244,7 @@ justify-content: space-between;
     align-self: center;
   }
   .tailor-new_order_list_tile {
- width: 79%;
- height: auto;
-}
+    width: 79%;
+    height: auto;
+  }
 }
