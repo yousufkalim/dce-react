@@ -156,6 +156,14 @@ justify-content: space-between;
   
   width: 100%;
 }
+.tailor_profile_screen_row3_list_container_ {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+  
+  width: 100%;
+}
 
 /* screen components */
 
@@ -239,6 +247,9 @@ justify-content: space-between;
     height: auto;
   }
   .tailor_profile_screen_row3_list_container {
+    flex-direction: column;
+  }
+  .tailor_profile_screen_row3_list_container_ {
     flex-direction: column;
   }
   .tailor_profile_screen_row3_text {

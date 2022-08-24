@@ -611,7 +611,7 @@ function TailorProfileScreen() {
               >
                 Catalogue
               </p>
-              <div className='tailor_profile_screen_row3_list_container'>
+              <div className='tailor_profile_screen_row3_list_container_'>
                 <AddCatalogListTile />
                 {catalogs.map((_) => (
                   <CatalogListTile

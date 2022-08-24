@@ -96,24 +96,25 @@ function ClientHomeScreen() {
             </div>
             <div className='client_home_screen_row1_column1' style={{ backgroundColor: '#FFEEEC', width: '70%' }}>
               {/* <div> */}
-              <p className='client_home_screen_row1_column1_text_1'>{t('Submit your idea,')}</p>
-              <p className='client_home_screen_row1_column1_text_2'>{t('We make it real,')}</p>
+              {/* <p className='client_home_screen_row1_column1_text_1'>{t('Submit your idea,')}</p>
+              <p className='client_home_screen_row1_column1_text_2'>{t('We make it real,')}</p> */}
+              <p className='client_home_screen_row1_column1_text_1'>{t('Do you have an idea for tailoring?')}</p>
               <p
                 className='client_home_screen_row1_column1_text_1'
                 style={{
                   color: '#A0805A',
                 }}
               >
-                {t('You receive your creation')}
+                {t('Submit Your Project here!')}
               </p>
-              <p
+              {/* <p
                 className='client_home_screen_row1_column1_text_1'
                 style={{
                   color: '#857B6F',
                 }}
               >
                 {t('at home!')}
-              </p>
+              </p> */}
               <button
                 className='client_home_screen_row1_column1_button'
                 style={{

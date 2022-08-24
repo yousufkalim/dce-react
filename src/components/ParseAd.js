@@ -568,10 +568,11 @@ function BasicSection({
           style={{
             borderRadius: '20px',
             marginBottom: '1%',
+            height: '80px',
           }}
         >
           <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Description')}</p>
+            <p className='pa_profile_section_input_text'>{t('Observation')}</p>
           </div>
           <div className='pa_profile_section_input_input'>
             <CustomInput
@@ -584,7 +585,7 @@ function BasicSection({
                 fontSize: '12px',
               }}
               inputType='text'
-              inputPlaceholder={t('Write any note regarding Project (Optional)')}
+              inputPlaceholder={t('Page Creation client(detaillee)')}
               // inputDefaultValue={state?.note}
               // onChange={(e) => _setState('note', e.target.value)}
             />
