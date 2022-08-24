@@ -27,7 +27,10 @@ i18n
           'Place this Order': 'Place this Order',
           'Privacy Policy': 'Privacy Policy',
           'Select gender for your creation': 'Select gender for your creation',
-
+          'I am concretizing my idea of tailoring': 'I am concretizing my idea of tailoring',
+          'Do you have an idea for tailoring?': 'Do you have an idea for tailoring?',
+          'Submit Your Project here!': 'Submit Your Project here!',
+          'desired delivery date': 'desired delivery date',
           //client navbar
           Designers: 'Designers',
           Orders: 'Orders',
@@ -94,6 +97,19 @@ i18n
           '*depending on the garment, I measure certain parts of the body in circumference and/or length.':
             '*depending on the garment, I measure certain parts of the body in circumference and/or length.',
           'Dominant color': 'Dominant color',
+          'Dominant Fabric': 'Dominant Fabric',
+          'I select the category to which my con...': 'I select the category to which my con...',
+          'I give a name to my confection': 'I give a name to my confection',
+          'My Measurements': 'My Measurements',
+          "I'm taking my measurements": "I'm taking my measurements",
+          'upload an illustration of your creation': 'upload an illustration of your creation',
+          size: 'size',
+          'I do desired not that my creation appears on the site': 'I do desired not that my creation appears on the site',
+          'My PROJECT': 'My PROJECT',
+          'My Delivery': 'My Delivery',
+          Remarks: 'Remarks',
+          'First Name': 'First Name',
+          'Last Name': 'Last Name',
           //chats
           Online: 'Online',
           'Last Online': 'Last Online',
@@ -566,6 +582,10 @@ i18n
           'See all': 'Voir tout',
           Search: 'Recherche',
           Feedback: 'Retour',
+          'I am concretizing my idea of tailoring': 'Je concrétise mon idée',
+          'Do you have an idea for tailoring?': 'Vous avez une idée de confection couture ?',
+          'Submit Your Project here!': 'DÉPOSEZ ici VOTRE PROJET !',
+          'desired delivery date': 'date de livraison souhaitée',
 
           //client navbar
           Designers: 'Professionnels',
@@ -631,6 +651,19 @@ i18n
           '*depending on the garment, I measure certain parts of the body in circumference and/or length.':
             'en fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur',
           'Dominant color': 'Couleur dominante',
+          'Dominant Fabric': 'TISSU dominant',
+          'I select the category to which my con...': 'Je sélectionne la catégorie à laquelle mon con...',
+          'I give a name to my confection': 'Je donne un nom à ma confection',
+          'My Measurements': 'Des mesures',
+          "I'm taking my measurements": 'je prends mes mesures',
+          'upload an illustration of your creation': 'téléchargez une illustration de votre création',
+          size: 'Taille',
+          'I do desired not that my creation appears on the site': 'Je ne souhaite pas que ma création apparaisse sur le site',
+          'MY PROJECT': 'Mon projet',
+          'My delivery': 'Ma livraison',
+          Remarks: 'Mon budget',
+          'First Name': 'Prénom',
+          'Last Name': 'Nom de famille',
           //chats
           Online: 'En ligne',
           'Last Online': 'Dernière connexion',
