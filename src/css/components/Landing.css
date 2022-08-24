@@ -3,15 +3,9 @@
 
 
     background: #FAF4F5;
-    margin-top: 70px;
-
-    height: 100vh;
-
-
+    margin-top: 65px;
+    height: 80vh;
 }
-
-
-
 
 body {
     overflow-x: hidden;
@@ -22,9 +16,9 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    width: 90%;
+    /* width: 90%;
     margin: auto;
-    margin-left: 163px;
+    margin-left: 163px; */
 }
 
 .landing_hero_section_info {
@@ -32,15 +26,58 @@ body {
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 50%;
+    width: 100%;
+    padding-top: 30px;
+    /* border: 2px solid red; */
 
     margin-top: 68px
 }
 
+.how_work h3
+{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 59px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -0.5px;
+    color: black !important;
+    opacity: 0.6 !important;
+    margin-top: 50px;
+    text-align: center !important;
+}
+.how_work
+{
+    margin-top: 40px;
+}
+.how_work p
+{
+    font-family: 'Montserrat' !important;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 32px;
+    /* line-height: 33px; */
+    display: flex;
+    width: 914px;
+    height: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 50px;
+    color: #0D0C0C;
+    opacity: 0.5;
+    font-weight: bold;
+    /* margin-left: 234px;
+    
+    margin-top: 85px; */
+
+}
 .landing_hero_section_info_heading h3 {
     font-style: normal;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 60px;
     line-height: 59px;
     display: flex;
     align-items: center;
@@ -53,10 +90,12 @@ body {
 .landing_hero_section_info_heading h4 {
     font-style: normal;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 50px;
     line-height: 59px;
     display: flex;
+    padding-top: 20px;
     align-items: center;
+    justify-content: center;
     letter-spacing: -0.5px;
     background: #DAC9B5;
     background: linear-gradient(to bottom, #DAC9B5 0%, #8B7964 100%);
@@ -69,13 +108,18 @@ body {
     font-family: 'Montserrat' !important;
     font-style: normal;
     font-weight: 200;
-    font-size: 26px;
+    font-size: 32px;
     line-height: 33px;
     display: flex;
+    width: 914px;
+    text-align: center;
+    line-height: 50px;
     align-items: center;
     color: #0D0C0C;
     opacity: 0.5;
-    margin-top: 43px;
+    margin-left: 234px;
+    
+    margin-top: 85px;
 
 }
 
@@ -95,9 +139,10 @@ body {
     line-height: 29px;
     text-align: center;
     color: white;
-    margin-top: 63px;
+    margin-top: 130px;
     border: none;
-
+    margin-left: 400px;
+   
 }
 
 .landing_hero_section_info_heading hr {
@@ -117,7 +162,10 @@ body {
     display: flex !important;
     align-items: center !important;
     color: #838081 !important;
-    margin-top: 40px;
+    /* margin-top: 40px; */
+    position: relative;
+    left: 700px;
+    top: -45px;
 }
 
 .or span {
@@ -180,6 +228,21 @@ body {
 
 }
 
+.how_work_heading
+{
+    padding: 40px;
+    background: #DAC9B5;
+    background: linear-gradient(to bottom, #DAC9B5 0%, #8B7964 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.how_work_heading2
+{
+width: 80%;
+margin: auto;
+ /* border: 3px solid red; */
+
+text-align: center;}
 .chose_title_main p {
     font-family: 'Montserrat';
     font-style: normal;
@@ -199,6 +262,21 @@ body {
 
 }
 
+.submit_main_card
+{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+    /* border: 3px solid red; */
+}
+.submit_main_cardh4
+{
+    font-size: 30px;
+    margin-top: 10px;
+    color: #0D0C0C;
+    opacity: 0.5;
+}
 .card_main_section {
     display: flex;
     justify-content: space-around;
@@ -268,15 +346,17 @@ body {
 
 .great_work {
     width: 100%;
-    height: 1117px;
+    height: 800px;
     display: flex;
+    background: #FAF4F5;
     margin-top: 200px;
 }
 
 .great_work_left {
     width: 808px;
-    height: 1000px;
-    background: #FDFAFB;
+    height: 700px;
+    background: #FAF4F5;
+
 }
 
 .great_work_right {
@@ -381,11 +461,19 @@ body {
 .client_main_section {
 
     width: 100%;
-    height: 1117px;
-    margin-top: 1043px;
-    background: #FAF4F5;
+    height: 617px;
+    margin-top: 570px;
+
+    /* background: #FAF4F5; */
+    background: white;
+    /* border: 2px solid red; */
 }
 
+.how_work_p
+{
+    text-align: center !important;
+    width: 100% !important;
+}
 .clinet_handing_text {
 
     position: relative;
@@ -463,13 +551,16 @@ body {
 
 .card_text_support2 {
     padding-left: 20px;
+    position: relative;
+    left: 143px;
+    top: -24px;
 
 }
 
 .footer_text-last {
     display: flex;
     justify-content: space-between;
-    margin-top: 46px;
+    margin-top: -23px;
 }
 
 
