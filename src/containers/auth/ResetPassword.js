@@ -26,7 +26,7 @@ function ResetPasswordScreen() {
       await Api('get', `/clients/verify-token/${token}`);
     } catch (err) {
       toast.error('Link has been expired');
-      navigate('/login');
+      navigate('/client_login');
     }
   };
 
@@ -62,7 +62,7 @@ function ResetPasswordScreen() {
       password: '',
       confirmPassword: '',
     });
-    navigate('/login');
+    navigate('/client_login');
   };
   return (
     <>

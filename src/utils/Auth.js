@@ -32,7 +32,7 @@ export const handleLogin = (token, user, updateStore) => {
 
 export const handleLogout = (navigate, store, updateStore) => {
   localStorage.clear();
-  navigate('/login');
+  navigate('/client_login');
   store.socket.disconnect();
   updateStore({
     socket: null,

@@ -34,7 +34,7 @@ function ClientCreateAccountScreen() {
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password']) {
-      navigate('/login');
+      navigate('/client_login');
     }
   }, []);
 

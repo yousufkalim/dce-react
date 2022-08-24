@@ -28,7 +28,7 @@ function ClientVerifyEmailScreen() {
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password'] || !state?.['otp']) {
-      navigate('/login');
+      navigate('/client_login');
     }
   }, []);
 

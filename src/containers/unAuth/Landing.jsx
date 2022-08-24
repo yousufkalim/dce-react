@@ -114,7 +114,6 @@ function Landing() {
       <div className="landing_main_container">
         <div className="landing_hero_section">
           {/* cl 1  */}
-
           <div className="landing_hero_section_info">
             <div className="landing_hero_section_info_heading">
               <h3>{t('Welcome to the Design Confection Ethiques')}</h3>
@@ -124,14 +123,13 @@ function Landing() {
                   ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam'
                 )}
               </p>
-
-              <Link style={{ textDecoration: 'none' }} to="/select_role">
+              <Link style={{ textDecoration: 'none' }} to="/client_register">
                 <button type="button">{t('Hire Designer')}</button>
               </Link>
               <hr />
               <div className="or">
                 {t('Or')}
-                <Link to="/select_role">
+                <Link to="/tailor_register">
                   <span>{t('register as a Designer')}</span>
                 </Link>
               </div>
@@ -265,7 +263,7 @@ function Landing() {
           </div>
         </div>
       </div>
-      {/* end  chose Dec */}
+      {/* end chose Dec */}
 
       {/* Clients Review */}
       <div className="client_main_section">

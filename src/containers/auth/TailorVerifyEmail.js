@@ -28,7 +28,7 @@ function TailorVerifyEmailScreen() {
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password'] || !state?.['otp']) {
-      navigate('/login');
+      navigate('/tailor_login');
     }
   }, []);
 

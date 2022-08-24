@@ -128,13 +128,13 @@ function UnAuthAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Link to="/login">
+            <Link to="/select_role_login">
               <Button className="auth_appbar_button_login" sx={{ p: 0 }}>
                 {t('Login')}
               </Button>
             </Link>
 
-            <Link to="/select_role">
+            <Link to="/select_role_register">
               <Button className="auth_appbar_button_register" sx={{ p: 0 }}>
                 {t('Register')}
               </Button>

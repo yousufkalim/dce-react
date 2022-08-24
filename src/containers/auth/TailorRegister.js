@@ -25,7 +25,7 @@ function TailorRegisterScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const navToLogin = () => {
-    navigate('/login');
+    navigate('/tailor_login');
   };
 
   const navToVerifyEmail = (state) => {

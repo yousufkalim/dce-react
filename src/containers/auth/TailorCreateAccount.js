@@ -35,7 +35,7 @@ function TailorCreateAccountScreen() {
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password']) {
-      navigate('/login');
+      navigate('/tailor_login');
     }
   }, []);
 

@@ -25,7 +25,7 @@ function ClientRegisterScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const navToLogin = () => {
-    navigate('/login');
+    navigate('/client_login');
   };
 
   const navToVerifyEmail = (state) => {
