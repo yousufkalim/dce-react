@@ -45,9 +45,15 @@ function ClientCreateOrderScreen() {
     fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
+    fabric_type: '',
+    fabric_description: '',
+    height: '',
+    observation: '',
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
+    client_first_name: '',
+    client_last_name: '',
     address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
@@ -138,14 +144,8 @@ function ClientCreateOrderScreen() {
       body.append('measurements', JSON.stringify(basicSection.measurements));
       body.append('color', basicSection.color);
       body.append('fabric', basicSection.fabric);
-      body.append(
-        'includes_alteration_services',
-        basicSection.includes_alteration_services
-      );
-      body.append(
-        'create_catalog_after_completion',
-        basicSection.create_catalog_after_completion
-      );
+      body.append('includes_alteration_services', basicSection.includes_alteration_services);
+      body.append('create_catalog_after_completion', basicSection.create_catalog_after_completion);
       body.append(
         'delivery',
         JSON.stringify({
@@ -189,15 +189,15 @@ function ClientCreateOrderScreen() {
 
   return (
     <>
-      <div className="container">
-        <ClientAppBar activeTab={2} color="#FFFAF9" />
+      <div className='container'>
+        <ClientAppBar activeTab={2} color='#FFFAF9' />
         <div
-          className="client_create_ad_screen_top"
+          className='client_create_ad_screen_top'
           style={{
             background: '#FFEEEA',
           }}
         >
-          <div className="client_create_ad_screen_column1">
+          <div className='client_create_ad_screen_column1'>
             <p
               style={{
                 fontSize: '30px',
@@ -209,25 +209,23 @@ function ClientCreateOrderScreen() {
             </p>
             <img style={{ width: '70%' }} src={AdElaborationSVG} />
           </div>
-          <div className="client_create_ad_screen_column2">
+          <div className='client_create_ad_screen_column2'>
             <div
-              className="pa_container"
+              className='pa_container'
               style={{
                 marginTop: '10%',
               }}
             >
-              <div className="pa_steps_row">
+              <div className='pa_steps_row'>
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
-                      <StepLabel onClick={() => setActiveStep(i)}>
-                        {t(v)}
-                      </StepLabel>
+                      <StepLabel onClick={() => setActiveStep(i)}>{t(v)}</StepLabel>
                     </Step>
                   ))}
                 </Stepper>
               </div>
-              <div className="pa_content_row">
+              <div className='pa_content_row'>
                 {activeStep == 0 ? (
                   <ParseAd.BasicSection
                     state={basicSection}

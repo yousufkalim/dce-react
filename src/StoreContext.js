@@ -1,5 +1,5 @@
 // Init
-import React, { useContext, useState, createContext } from "react";
+import React, { useContext, useState, createContext } from 'react';
 
 // Initializing Create Context Hook
 const storeContext = createContext();
@@ -22,7 +22,7 @@ export function StoreProvider({ children }) {
     chats: [],
     chat: null,
     messages: [],
-    userRole: "",
+    userRole: '',
   });
 
   const updateStore = (data) => {

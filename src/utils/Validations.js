@@ -3,12 +3,10 @@ import { Validators, formValidator } from '../utils/Validate';
 function login(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.emailValidator('Email', data.get('Email')),
+      validationFunction: () => Validators.emailValidator('Email', data.get('Email')),
     },
     {
-      validationFunction: () =>
-        Validators.lengthValidator('Password', data.get('Password'), 8),
+      validationFunction: () => Validators.lengthValidator('Password', data.get('Password'), 8),
     },
   ];
 
@@ -20,12 +18,10 @@ function login(data) {
 function clientRegister(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.emailValidator('Email', data.get('Email')),
+      validationFunction: () => Validators.emailValidator('Email', data.get('Email')),
     },
     {
-      validationFunction: () =>
-        Validators.lengthValidator('Password', data.get('Password'), 8),
+      validationFunction: () => Validators.lengthValidator('Password', data.get('Password'), 8),
     },
   ];
 
@@ -37,12 +33,7 @@ function clientRegister(data) {
 function clientVerifyEmail(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.lengthValidator(
-          'Verification Code',
-          data.get('Verification Code'),
-          6
-        ),
+      validationFunction: () => Validators.lengthValidator('Verification Code', data.get('Verification Code'), 6),
     },
   ];
 
@@ -66,12 +57,10 @@ function clientCreateAccount(data) {
 function tailorRegister(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.emailValidator('Email', data.get('Email')),
+      validationFunction: () => Validators.emailValidator('Email', data.get('Email')),
     },
     {
-      validationFunction: () =>
-        Validators.lengthValidator('Password', data.get('Password'), 8),
+      validationFunction: () => Validators.lengthValidator('Password', data.get('Password'), 8),
     },
   ];
 
@@ -83,12 +72,7 @@ function tailorRegister(data) {
 function tailorVerifyEmail(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.lengthValidator(
-          'Verification Code',
-          data.get('Verification Code'),
-          6
-        ),
+      validationFunction: () => Validators.lengthValidator('Verification Code', data.get('Verification Code'), 6),
     },
   ];
 
@@ -118,8 +102,7 @@ function parseAdBasicSection(data) {
     //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
     // },
     {
-      validationFunction: () =>
-        Validators.selectValidator('Category', data['category']),
+      validationFunction: () => Validators.selectValidator('Category', data['category']),
     },
     {
       validationFunction: () => Validators.nullValidator('Name', data['name']),
@@ -128,24 +111,26 @@ function parseAdBasicSection(data) {
       validationFunction: () => Validators.selectValidator('Cut', data['cut']),
     },
     {
-      validationFunction: () =>
-        Validators.selectValidator('Color', data['color']),
+      validationFunction: () => Validators.selectValidator('Color', data['color']),
     },
     {
-      validationFunction: () =>
-        Validators.selectValidator('Fabric', data['fabric']),
+      validationFunction: () => Validators.selectValidator('Fabric', data['fabric']),
     },
     {
-      validationFunction: () =>
-        Validators.checkBox('accept policies', data['create_catalog_after_completion']),
+      validationFunction: () => Validators.checkBox('accept policies', data['create_catalog_after_completion']),
     },
   ];
 
-  if (data['measurements'].type == 'static') {
+  if (data['cut']) {
     valArr.push({
-      validationFunction: () =>
-        Validators.nullValidator('Measurements', data['measurements'].value),
+      validationFunction: () => Validators.nullValidator('Size', data['cut']),
     });
+  } else {
+    if (data['measurements'].type == 'static') {
+      valArr.push({
+        validationFunction: () => Validators.nullValidator('Measurements', data['measurements'].value),
+      });
+    }
   }
 
   const validated = formValidator(null, valArr);
@@ -157,11 +142,10 @@ function parseAdDeliverySection(data) {
   const valArr = [
     {
       validationFunction: () =>
-        Validators.addressValidator('Delivery Address', data.address['label'], data.address['zip'],data.address['city']),
+        Validators.addressValidator('Delivery Address', data.address['label'], data.address['zip'], data.address['city']),
     },
     {
-      validationFunction: () =>
-        Validators.selectValidator('Delivery Date', data['date']),
+      validationFunction: () => Validators.selectValidator('Delivery Date', data['date']),
     },
   ];
 
@@ -171,7 +155,7 @@ function parseAdDeliverySection(data) {
 }
 
 function parseAdNotesSection(data) {
-  console.log(data,"data");
+  console.log(data, 'data');
   const valArr = [
     // {
     //   validationFunction: () =>
@@ -181,12 +165,10 @@ function parseAdNotesSection(data) {
     //   validationFunction: () => Validators.moneyValidator("Minimum Price", data["min_price"]),
     // },
     {
-      validationFunction: () =>
-        Validators.checkBox('accept terms and condition', data['terms_conditions']),
+      validationFunction: () => Validators.checkBox('accept terms and condition', data['terms_conditions']),
     },
     {
-      validationFunction: () =>
-        Validators.moneyValidator('Maximum Price', data['max_price']),
+      validationFunction: () => Validators.moneyValidator('Maximum Price', data['max_price']),
     },
   ];
 
@@ -198,12 +180,10 @@ function parseAdNotesSection(data) {
 function sendQuote(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.moneyValidator('Price', data['price']),
+      validationFunction: () => Validators.moneyValidator('Price', data['price']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Description', data['description']),
+      validationFunction: () => Validators.nullValidator('Description', data['description']),
     },
   ];
 
@@ -221,16 +201,13 @@ function tailorCreateCatalog(data) {
     //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
     // },
     {
-      validationFunction: () =>
-        Validators.selectValidator('Category', data['category']),
+      validationFunction: () => Validators.selectValidator('Category', data['category']),
     },
     {
-      validationFunction: () =>
-        Validators.moneyValidator('Price', data['price']),
+      validationFunction: () => Validators.moneyValidator('Price', data['price']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Description', data['description']),
+      validationFunction: () => Validators.nullValidator('Description', data['description']),
     },
   ];
 
@@ -242,8 +219,7 @@ function tailorCreateCatalog(data) {
 function tailorEditProfile(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.nullValidator('Phone', data['phone']),
+      validationFunction: () => Validators.nullValidator('Phone', data['phone']),
     },
   ];
 
@@ -255,8 +231,7 @@ function tailorEditProfile(data) {
 function clientEditProfile(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.nullValidator('Phone', data['phone']),
+      validationFunction: () => Validators.nullValidator('Phone', data['phone']),
     },
   ];
 
@@ -272,8 +247,7 @@ function tailorCompleteOrder(data) {
     //     Validators.nullValidator("Rating", data["rating"]),
     // },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Details', data['details']),
+      validationFunction: () => Validators.nullValidator('Details', data['details']),
     },
   ];
 
@@ -289,8 +263,7 @@ function clientFeedbackOrder(data) {
     //     Validators.nullValidator("Rating", data["rating"]),
     // },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Details', data['details']),
+      validationFunction: () => Validators.nullValidator('Details', data['details']),
     },
   ];
 
@@ -305,26 +278,22 @@ function parseMeasurementCircumferenceSection(data) {
       validationFunction: () => Validators.nullValidator('Arm', data['arm']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Chest', data['chest']),
+      validationFunction: () => Validators.nullValidator('Chest', data['chest']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Waist', data['waist']),
+      validationFunction: () => Validators.nullValidator('Waist', data['waist']),
     },
     {
       validationFunction: () => Validators.nullValidator('Hip', data['hip']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Thigh', data['thigh']),
+      validationFunction: () => Validators.nullValidator('Thigh', data['thigh']),
     },
     {
       validationFunction: () => Validators.nullValidator('Calf', data['calf']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Ankle', data['ankle']),
+      validationFunction: () => Validators.nullValidator('Ankle', data['ankle']),
     },
   ];
 
@@ -336,27 +305,19 @@ function parseMeasurementCircumferenceSection(data) {
 function parseMeasurementLengthSection(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.nullValidator('Head to floor height', data['head_to_floor']),
+      validationFunction: () => Validators.nullValidator('Head to floor height', data['head_to_floor']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator(
-          'From shoulder to floot',
-          data['shoulder_to_floor']
-        ),
+      validationFunction: () => Validators.nullValidator('From shoulder to floot', data['shoulder_to_floor']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('From waist to floor', data['waist_to_floor']),
+      validationFunction: () => Validators.nullValidator('From waist to floor', data['waist_to_floor']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Arm length', data['arm_length']),
+      validationFunction: () => Validators.nullValidator('Arm length', data['arm_length']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Leg length', data['leg_length']),
+      validationFunction: () => Validators.nullValidator('Leg length', data['leg_length']),
     },
   ];
 
@@ -368,12 +329,10 @@ function parseMeasurementLengthSection(data) {
 function clientContactSupportOrder(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.nullValidator('Reason', data['reason']),
+      validationFunction: () => Validators.nullValidator('Reason', data['reason']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Details', data['details']),
+      validationFunction: () => Validators.nullValidator('Details', data['details']),
     },
   ];
 
@@ -385,12 +344,10 @@ function clientContactSupportOrder(data) {
 function tailorContactSupportOrder(data) {
   const valArr = [
     {
-      validationFunction: () =>
-        Validators.nullValidator('Reason', data['reason']),
+      validationFunction: () => Validators.nullValidator('Reason', data['reason']),
     },
     {
-      validationFunction: () =>
-        Validators.nullValidator('Details', data['details']),
+      validationFunction: () => Validators.nullValidator('Details', data['details']),
     },
   ];
 

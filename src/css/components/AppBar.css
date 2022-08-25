@@ -4,7 +4,7 @@
   height: 9vh;
   width: 100%;
   top: 0;
-  z-index: 1;
+  z-index: 99;
 }
 
 .appbar_top {
@@ -174,7 +174,6 @@
 .css-19r6kue-MuiContainer-root {
   padding-left: 0 !important;
   padding-right: 2px !important ;
-  
 
 }
 .auth_appbar_row1_img {
@@ -194,7 +193,6 @@
     background: #ffffff !important;
     box-shadow: none !important;
     height: 65px !important;
-
   }
 }
 
@@ -203,7 +201,6 @@
   background: #ffffff !important;
   box-shadow: none !important;
   height: 85px;
-  
 }
 
 .auth_appbar_row1_img {

@@ -5,12 +5,10 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { InputAdornment } from '@mui/material';
-import Birthday from '../assets/Birthday.svg'
+import Birthday from '../assets/Birthday.svg';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { makeStyles } from '@mui/styles';
-
-
 
 function CustomDatePicker({
   labelText,
@@ -22,13 +20,13 @@ function CustomDatePicker({
   divStyle,
   labelStyle,
   dobinput,
-  centeredText
+  centeredText,
 }) {
   const [open, setOpen] = useState(false);
-  
+
   const useStyles = makeStyles((theme) => ({
-    textfield:{
-textAlign:"center"
+    textfield: {
+      textAlign: 'center',
     },
     inputLabels: {
       display: 'flex',
@@ -38,7 +36,7 @@ textAlign:"center"
       lineHeight: '151.02 !important%',
       color: '#363557 !important',
       '&  .MuiInputLabel-formControl': { textAlign: 'center !important' },
-  
+
       '@media (max-width:992px)': {
         fontSize: '20px !important',
       },
@@ -47,7 +45,6 @@ textAlign:"center"
         textAlign: 'center !important',
       },
     },
-  
   }));
   const classes = useStyles();
   return (
@@ -76,18 +73,14 @@ textAlign:"center"
           borderWidth: dobinput == 'dob' ? '1.5px' : '1.5px',
         }}
       >
-        {
-          centeredText?
-          (
+        {centeredText ? (
           <>
-          <div style={{position:'absolute', padding:"1%"}}> 
-        <img src={Birthday}/>  
-        </div> 
+            <div style={{ position: 'absolute', padding: '1%' }}>
+              <img src={Birthday} />
+            </div>
           </>
-          ):
-          null
-        }
-        
+        ) : null}
+
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             className="datepck"
@@ -104,21 +97,20 @@ textAlign:"center"
                 {...params}
                 inputProps={{
                   ...params.inputProps,
-                  className: centeredText? classes.textfield:"",
+                  className: centeredText ? classes.textfield : '',
                 }}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 onClick={(e) => {
                   //setOpen(true)
-                 if(disabled){
-                  setOpen(false)
-                 }
-                 if(!disabled){
-                  setOpen(true)
-                 }
-                }
-              }
+                  if (disabled) {
+                    setOpen(false);
+                  }
+                  if (!disabled) {
+                    setOpen(true);
+                  }
+                }}
               />
             )}
             disabled={disabled}

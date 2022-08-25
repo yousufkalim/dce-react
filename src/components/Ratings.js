@@ -15,14 +15,7 @@ export default function HoverRating(props) {
       fontSize: 'inherit',
     },
     text: {
-      fontSize:
-        props.size === 'large'
-          ? '18px'
-          : props.size === 'medium'
-          ? '16px'
-          : props.size === 'small'
-          ? '13px'
-          : '18px',
+      fontSize: props.size === 'large' ? '18px' : props.size === 'medium' ? '16px' : props.size === 'small' ? '13px' : '18px',
       fontFamily: props.fontFamily || 'inter',
       fontWeight: props.fontWeight || '700',
       marginTop: '2px',
@@ -43,11 +36,7 @@ export default function HoverRating(props) {
     >
       {props.showLabel && (
         <Box sx={{ ml: 2 }}>
-          <Typography
-            color={props.labelColor || '#2A3235'}
-            className={classes.text}
-            {...props.ratingLabelprops}
-          >
+          <Typography color={props.labelColor || '#2A3235'} className={classes.text} {...props.ratingLabelprops}>
             {props.value}
           </Typography>
         </Box>

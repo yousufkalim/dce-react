@@ -50,15 +50,7 @@ function CustomInput({
         <input
           disabled={disabled}
           ref={ref}
-          type={
-            enableEyes
-              ? !isPasswordVisible
-                ? 'password'
-                : 'text'
-              : inputType
-              ? inputType
-              : 'text'
-          }
+          type={enableEyes ? (!isPasswordVisible ? 'password' : 'text') : inputType ? inputType : 'text'}
           name={inputName}
           accept={accept}
           onChange={onChange}

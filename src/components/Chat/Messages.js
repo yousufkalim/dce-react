@@ -115,10 +115,7 @@ const MessageListTile = (props) => {
 
   return (
     <>
-      <Box
-        sx={{ justifyContent: isSender ? 'right' : 'left' }}
-        className="message-width"
-      >
+      <Box sx={{ justifyContent: isSender ? 'right' : 'left' }} className="message-width">
         {isSender ? (
           <>
             <img className="dot-msg" src={DotSVG} onClick={handleClickMenu} />
@@ -155,21 +152,13 @@ const MessageListTile = (props) => {
           className="msg-text"
           onClick={handleClick}
         >
-          <p style={{ cursor: props.type != 'text' ? 'pointer' : 'auto' }}>
-            {props.content}
-          </p>
+          <p style={{ cursor: props.type != 'text' ? 'pointer' : 'auto' }}>{props.content}</p>
         </Box>
-        {props.role === 'receiver' ? (
-          <img className="dot-msg" src={DotSVG} />
-        ) : null}
+        {props.role === 'receiver' ? <img className="dot-msg" src={DotSVG} /> : null}
         {isSender ? <img src={SeenSCG} /> : null}
       </Box>
 
-      {isSender ? (
-        <p style={{ textAlign: 'end', width: '95%', color: '#DBDBDB' }}>
-          {props?.lastseen}
-        </p>
-      ) : null}
+      {isSender ? <p style={{ textAlign: 'end', width: '95%', color: '#DBDBDB' }}>{props?.lastseen}</p> : null}
     </>
   );
 };

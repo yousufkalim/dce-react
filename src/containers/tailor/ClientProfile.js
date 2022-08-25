@@ -94,10 +94,7 @@ function TailorClientProfileScreen() {
                     }}
                     src={client.avatar ? assetsURL(client.avatar) : UserSVG}
                   />
-                  <p
-                    className="tailor_profile_screen_row1_column1_user_name_text"
-                    style={{ padding: '10px' }}
-                  >
+                  <p className="tailor_profile_screen_row1_column1_user_name_text" style={{ padding: '10px' }}>
                     {client.name}
                   </p>
                 </div>
@@ -114,20 +111,12 @@ function TailorClientProfileScreen() {
                     }}
                     onChange={(e) => _setState('phone', e.target.value)}
                   />
-                  <ProfileInput
-                    disabled
-                    name="Email"
-                    placeholder="Email"
-                    defaultValue={client.email}
-                    img={ProfileEmailSVG}
-                  />
+                  <ProfileInput disabled name="Email" placeholder="Email" defaultValue={client.email} img={ProfileEmailSVG} />
                   <ProfileInput
                     disabled
                     name="Date Of Birth"
                     placeholder={t('Date Of Birth')}
-                    defaultValue={new Date(client.dob).toLocaleDateString(
-                      'en-gb'
-                    )}
+                    defaultValue={new Date(client.dob).toLocaleDateString('en-gb')}
                     img={ProfileBirthdaySVG}
                     divStyle={{
                       marginBottom: '3%',
@@ -148,13 +137,7 @@ function TailorClientProfileScreen() {
                       borderTopRightRadius: '20px',
                     }}
                   />
-                  <ProfileInput
-                    disabled
-                    name="City"
-                    placeholder={t('City')}
-                    defaultValue={client.city}
-                    img={ProfileCitySVG}
-                  />
+                  <ProfileInput disabled name="City" placeholder={t('City')} defaultValue={client.city} img={ProfileCitySVG} />
                   <ProfileInput
                     disabled
                     name="Location"
@@ -191,17 +174,7 @@ function TailorClientProfileScreen() {
   );
 }
 
-function ProfileInput({
-  name,
-  onChange,
-  placeholder,
-  defaultValue,
-  inputType,
-  img,
-  label,
-  disabled,
-  divStyle,
-}) {
+function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, img, label, disabled, divStyle }) {
   return (
     <div
       className="tps_profile_input_container inputcontainer2"
@@ -278,16 +251,12 @@ function ClientProfileOrderListTile(props) {
           <hr className="hrline" />
           <div className="orderDiv">
             <p className="ordername">{t('Order Date')}</p>
-            <p className="ordername2">
-              {new Date(props.createdAt).toLocaleDateString('en-gb')}
-            </p>
+            <p className="ordername2">{new Date(props.createdAt).toLocaleDateString('en-gb')}</p>
           </div>
           <hr className="hrline" />
           <div className="orderDiv">
             <p className="ordername">{t('desired delivery date')}</p>
-            <p className="ordername2">
-              {new Date(props.delivery.date).toLocaleDateString('en-gb')}
-            </p>
+            <p className="ordername2">{new Date(props.delivery.date).toLocaleDateString('en-gb')}</p>
           </div>
         </div>
         <div className="orderLine"></div>

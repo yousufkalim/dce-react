@@ -12,7 +12,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AppLogoSVG from '../assets/AppLogo.svg';
-import { BsList } from "react-icons/bs";
+import { BsList } from 'react-icons/bs';
+
+const navBarArr = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
 
 function UnAuthAppBar() {
   const { t } = useTranslation();
@@ -21,10 +23,10 @@ function UnAuthAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const MainNavBar = ['About', 'Blog','Gallery', 'Register ', 'Login'];
   return (
     <AppBar position="fixed" className="auth_appbar_main">
       <Container maxWidth="xl" >
@@ -69,18 +71,7 @@ function UnAuthAppBar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton> */}
-           <BsList   color="black"  size="45" style={{marginLeft:"300px",marginTop:'10px'}} onClick={handleOpenNavMenu} />
-
+            <BsList color="black" size="45" style={{ marginLeft: '300px', marginTop: '10px' }} onClick={handleOpenNavMenu} />
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -99,17 +90,17 @@ function UnAuthAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {MainNavBar.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {navBarArr.map((_) => (
+                <MenuItem key={_} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center" className="auth_appbar_menus">
-                    {t(page)}
+                    {t(_)}
                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          <Box sx={{ width:"80%",  display: { xs: 'none', md: 'flex' }, justifyContent:"center"  }}>
+          <Box sx={{ width: '80%', display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
             <a style={{ textDecoration: 'none' }} className="animation_dec" href="#WhyChooseDCE">
               <Button
                 className="auth_appbar_menus"
@@ -148,16 +139,13 @@ function UnAuthAppBar() {
             </a>
             {/* ))} */}
           </Box>
-
-
-          <Box sx={{ flexGrow: 0,display: { xs: 'none', md: 'flex' }}}>
-            <Link to="/login">
+          <Box sx={{ flexGrow: 0 }}>
+            <Link to="/select_role_login">
               <Button className="auth_appbar_button_login" sx={{ p: 0 }}>
                 {t('Login')}
               </Button>
             </Link>
-
-            <Link to="/select_role">
+            <Link to="/select_role_register">
               <Button className="auth_appbar_button_register" sx={{ p: 0 }}>
                
                 {t('Registration')}
