@@ -32,7 +32,7 @@ function Landing() {
 
   useEffect(() => {
     lang();
-  });
+  },[]);
   const reviews = [
     {
       rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
@@ -105,7 +105,7 @@ function Landing() {
     },
   };
   return (
-    <div>
+    <div style={{overflowX:"hidden"}}>
       <UnAuthAppBar />
       {/* start hero section */}
       <div className="landing_main_container">
@@ -161,7 +161,7 @@ function Landing() {
         <div className="great_work" id="FindGreatWork">
         <div className="chose_title_main">
           <div className="chose_title">
-            <h3 style={{marginTop:"100px"}}>{t('I submit my idea')}</h3>
+            <h3 className='submit_h3' style={{marginTop:"100px"}}>{t('I submit my idea')}</h3>
             <div className="how_work">
               <h3 className='how_work_heading'>{t('You are a designer and you want to put your know-how at the service of the greatest number?')}</h3>        
               <h3 className='how_work_heading2' style={{fontSize:"40px"}}>{t('In a few clicks, D.C.E allows you to find sewing project missions')}</h3>        
@@ -195,16 +195,16 @@ function Landing() {
        
       <div className="chose_title_main">
           <div className="chose_title" style={{marginTop:"80px"}}>
-            <h3>{t('How it works ?')}</h3>
+            <h3 className='last_section_h3'>{t('How it works ?')}</h3>
             <div className="how_work">
-              <h3>1. {t('Find customers who match you!')}</h3>
-              <p className='how_work_p'>D.C.E puts you in touch with potential customers suited to your profile</p>
-              <h3>2. {t('Focus on the essentials!')}</h3>        
-              <p className='how_work_p' >D.C.E manages all the formalities relating to the provision of services</p>
-              <h3>3.  {t('Respond to an ad in just a few clicks!')}</h3>        
-              <p className='how_work_p' >As soon as your confection is finished, you will receive it at home!</p>
+              <h3 className='last_section_h33' >1. {t('Find customers who match you!')}</h3>
+              <p className='how_work_ppp'>D.C.E puts you in touch with potential customers suited to your profile</p>
+              <h3 className='last_section_h33'>2. {t('Focus on the essentials!')}</h3>        
+              <p className='how_work_ppp' >D.C.E manages all the formalities relating to the provision of services</p>
+              <h3 className='last_section_h33'>3.  {t('Respond to an ad in just a few clicks!')}</h3>        
+              <p className='how_work_ppp' >As soon as your confection is finished, you will receive it at home!</p>
             </div>
-            <h3 style={{marginTop:"120px",fontSize:"35px"}}>{t('Je souhaite mettre à profit mon savoir faire')}</h3>
+            <h3 className="how_work_ls" style={{marginTop:"120px",fontSize:"35px"}}>{t('Je souhaite mettre à profit mon savoir faire')}</h3>
      
           </div>
         </div>
