@@ -127,7 +127,7 @@ function Landing() {
               </Link>
               {/* <hr /> */}
               <div className="or">
-                {t('Or')}
+                {t('or')}
                 <Link to="/select_role">
                   {/* <span>{t('registered as a Designer')}</span> */}
                   <span>{t('Registered')}</span>

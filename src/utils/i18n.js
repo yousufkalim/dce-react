@@ -12,6 +12,8 @@ i18n
       en: {
         translations: {
           // landing
+          "or":"or",
+          "Registered":"Registered",
           "Design Ethical Confections":"Design Ethical Confections",
           "You receive your confection!":"You receive your confection!",
           "We make it happen!":"We make it happen!",
@@ -570,6 +572,8 @@ i18n
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
           // landing
+          "or":"ou",
+          "Registered":"Inscription",
           "Design Ethical Confections":"Design Confections Éthiques",
           "You receive your confection!":"Vous recevez votre confection !",
           "We make it happen!":"Nous la concrétisons !",
