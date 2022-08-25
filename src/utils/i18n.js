@@ -11,6 +11,33 @@ i18n
     resources: {
       en: {
         translations: {
+          // landing
+          'Make your sewing projects a reality in just a few clicks!':
+            'Make your sewing projects a reality in just a few clicks!',
+          'DESIGN Ethical Confections': 'DESIGN Ethical Confections',
+          'Platform for networking in the field of tailor-made fashion':
+            'Platform for networking in the field of tailor-made fashion',
+          'I submit my idea': 'I submit my idea',
+          'You are a designer and you want to put your know-how at the service of the greatest number?':
+            'You are a designer and you want to put your know-how at the service of the greatest number?',
+          'In a few clicks, D.C.E allows you to find sewing project missions':
+            'In a few clicks, D.C.E allows you to find sewing project missions',
+          'How it works ?': 'How it works ?',
+          'Find customers who match you!': 'Find customers who match you!',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E puts you in touch with potential customers suited to your profile',
+          'Focus on the essentials!': 'Focus on the essentials!',
+          'D.C.E manages all the formalities relating to the provision of services':
+            'D.C.E manages all the formalities relating to the provision of services',
+          'Respond to an ad in just a few clicks!': 'Respond to an ad in just a few clicks!',
+          About: 'About',
+          Blog: 'Blog',
+          Gallery: 'Gallery',
+          REGISTRATION: 'REGISTRATION',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E puts you in touch with potential customers suited to your profile',
+          'D.C.E manages all the formalities relating to the provision of services':
+            'D.C.E manages all the formalities relating to the provision of services',
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
@@ -571,7 +598,32 @@ i18n
       fr: {
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
-
+          // landing
+          'Make your sewing projects a reality in just a few clicks!': 'Concrétisez vos projets couture en un tour de clics !',
+          'DESIGN Ethical Confections': 'DESIGN Confections Éthiques',
+          'Platform for networking in the field of tailor-made fashion':
+            'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
+          'I submit my idea': 'Je soumets mon idée',
+          'You are a designer and you want to put your know-how at the service of the greatest number?':
+            'Vous êtes couturier(ères) et vous souhaitez mettre votre savoir faire au service du plus grand nombre ?',
+          'In a few clicks, D.C.E allows you to find sewing project missions':
+            'En quelques clics, D.C.E vous permet de trouver des missions projet couture',
+          'How it works ?': 'Comment ça marche ?',
+          'Find customers who match you!': 'Trouvez des clients qui vous correspondent !',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
+          'Focus on the essentials!': "Concentrez-vous sur l'essentiel !",
+          'D.C.E manages all the formalities relating to the provision of services':
+            "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
+          'Respond to an ad in just a few clicks!': 'Repondez à une annonce en quelques clics !',
+          About: 'À propos de',
+          Blog: 'Blog',
+          Gallery: 'Galerie',
+          REGISTRATION: 'INSCRIPTION',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
+          'D.C.E manages all the formalities relating to the provision of services':
+            "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
           // client home
           'Submit your idea,': 'Soumettez-nous votre idée,',
           'We make it real,': 'nous la concrétisons !',

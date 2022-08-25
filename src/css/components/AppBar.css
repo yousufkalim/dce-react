@@ -183,17 +183,22 @@
   .appbar_row2_input {
     width: 46vw;
   }
+  .auth_appbar_main {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    height: 65px !important;
+  }
 }
 
 /*  auth appbar */
 .auth_appbar_main {
   background: #ffffff !important;
   box-shadow: none !important;
+  height: 85px;
 }
 
 .auth_appbar_row1_img {
-  max-width: 8vh !important;
-
+  max-width: 12vh !important;
   vertical-align: top;
   cursor: pointer;
 }
@@ -229,6 +234,7 @@
   border: 1px solid #cc8e9c !important;
   box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
   border-radius: 20px !important;
+  width: 140px !important;
   text-transform: capitalize !important;
 }
 .auth_appbar_button_register {
@@ -240,7 +246,7 @@
   padding: 14px 40px !important;
   gap: 10px !important;
   position: absolute !important;
-  left: 87.38%;
+  left: 90.38%;
   right: 5.32%;
   top: 17.14%;
   bottom: 18.57%;
@@ -255,4 +261,5 @@
   box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
   border-radius: 20px !important;
   text-transform: capitalize !important;
+  width: 140px !important;
 }
