@@ -31,6 +31,7 @@ i18n
           'Do you have an idea for tailoring?': 'Do you have an idea for tailoring?',
           'Submit Your Project here!': 'Submit Your Project here!',
           'desired delivery date': 'desired delivery date',
+          'Find your sewing assignments': 'Find your sewing assignments',
           //client navbar
           Designers: 'Designers',
           Orders: 'Orders',
@@ -612,6 +613,7 @@ i18n
           'Do you have an idea for tailoring?': 'Vous avez une idée de confection couture ?',
           'Submit Your Project here!': 'DÉPOSEZ ici VOTRE PROJET !',
           'desired delivery date': 'date de livraison souhaitée',
+          'Find your sewing assignments': 'Trouvez vos devoirs de couture',
 
           //client navbar
           Designers: 'Professionnels',
@@ -980,7 +982,7 @@ i18n
           'Terms of Services': 'Conditions de services',
           and: 'et',
           'Privacy Policy': 'Politique de confidentialité',
-          'Publish Ad': "Publier l'annonce",
+          'Publish Ad': 'publier mon projet',
           Hip: 'Hanche',
           Thigh: 'La cuisse',
           'Head to floor height': 'Hauteur de la tête au sol',
@@ -1092,7 +1094,7 @@ i18n
           'Register now': "S'inscrire maintenant",
           'Register As a': 'Inscrivez-vous en tant que',
           Client: 'Client',
-          Designer: 'professionnelle',
+          Designer: 'professionnel',
           'Sign up': "S'inscrire",
           'Already have an account?': 'Avez-vous déjà un compte?',
           'Sign in now': 'Connectez vous maintenant',

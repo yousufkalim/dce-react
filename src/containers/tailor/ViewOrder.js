@@ -119,7 +119,7 @@ function TailorViewOrderScreen() {
             className='container'
             style={{
               background: '#FFE9A0',
-              height: '112vh',
+              height: '131vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>

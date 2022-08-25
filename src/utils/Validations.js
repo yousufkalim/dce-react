@@ -116,9 +116,9 @@ function parseAdBasicSection(data) {
     {
       validationFunction: () => Validators.selectValidator('Fabric', data['fabric']),
     },
-    {
-      validationFunction: () => Validators.checkBox('accept policies', data['create_catalog_after_completion']),
-    },
+    // {
+    //   validationFunction: () => Validators.checkBox('accept policies', data['create_catalog_after_completion']),
+    // },
   ];
 
   if (data['cut']) {

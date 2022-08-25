@@ -80,12 +80,13 @@ function TailorHomeScreen() {
         }}
       >
         <div className='client_home_screen_row1'>
-          <div className='client_home_screen_row1_column1_'>
-            <p className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
-              {t('Welcome to the')}
-            </p>
-            <p className='tailor_home_screen_row1_column1_text_2'>Design Confections Ethiques</p>
-            {/* <p
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10%' }}>
+            <div className='client_home_screen_row1_column1_'>
+              <p className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
+                {t('Welcome to the')} Design Confections Ethiques
+              </p>
+              {/* <p className='tailor_home_screen_row1_column1_text_2'>Design Confections Ethiques</p> */}
+              {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#A0805A",
@@ -93,7 +94,7 @@ function TailorHomeScreen() {
             >
               {t("Now You receive your")}
             </p> */}
-            {/* <p
+              {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#857B6F",
@@ -101,19 +102,20 @@ function TailorHomeScreen() {
             >
               {t("order here")}
             </p> */}
-            <button
-              className='tailor_home_screen_row1_column1_button'
-              style={{
-                backgroundColor: '#FFFFFF',
-              }}
-              onClick={navToQuotes}
-            >
-              {t('find your sewing assignments')}
-            </button>
-          </div>
-          <div className='client_home_screen_row1_column2'>
-            <div className='design_home_screen_row1_column2_img'>
-              <img style={{ width: '80%' }} src={TailorHomeSVG} />
+              <button
+                className='tailor_home_screen_row1_column1_button'
+                style={{
+                  backgroundColor: '#FFFFFF',
+                }}
+                onClick={navToQuotes}
+              >
+                {t('Find your sewing assignments')}
+              </button>
+            </div>
+            <div className='client_home_screen_row1_column2'>
+              <div className='design_home_screen_row1_column2_img'>
+                <img style={{ width: '100%' }} src={TailorHomeSVG} />
+              </div>
             </div>
           </div>
         </div>

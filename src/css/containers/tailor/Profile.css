@@ -22,7 +22,7 @@
   padding: 2% 0%;
 }
 .tailor-client_profile_screen_top {
-  height: 170vh;
+  height: 190vh;
 }
 .tailor_profile_screen_row1_column1 {
   height: 100%;
@@ -152,7 +152,7 @@
 .tailor_profile_screen_row3_list_container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
   width: 100%;
@@ -160,6 +160,7 @@
 .tailor_profile_screen_row3_list_container_ {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   /* justify-content: center;
   align-items: center; */
   
@@ -202,9 +203,9 @@
   width: 30%;
 }
 .tailor-new_order_list_tile {
-  padding: 8% 0%;
+  /* padding: 8% 0%;
   width: 15%;
-  height: 19px;
+  height: 19px; */
 }
 .create_ad_radio{
   width: 100%;

@@ -3,13 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 18.66%;
+  /* height: 100%; */
+  /* width: 18.66%; */
   margin-right: 1%;
   background-color: #ffffff;
   border-radius: 30px;
   cursor: pointer;
-  padding: 10.5% 0%;
+  /* padding: 10.5% 0%; */
+  padding: 0 1%;
 }
 
 .new_order_list_tile_img {
