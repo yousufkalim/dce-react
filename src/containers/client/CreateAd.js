@@ -49,6 +49,8 @@ function ClientCreateAdScreen() {
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
+    client_first_name: '',
+    client_last_name: '',
     address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
@@ -142,6 +144,11 @@ function ClientCreateAdScreen() {
       body.append('measurements', JSON.stringify(basicSection.measurements));
       body.append('color', basicSection.color);
       body.append('fabric', basicSection.fabric);
+      body.append('fabric_type', basicSection.fabric_type);
+      body.append('fabric_description', basicSection.fabric_description);
+      body.append('height', basicSection.height);
+      body.append('observation', basicSection.observation);
+
       body.append('includes_alteration_services', basicSection.includes_alteration_services);
       body.append('create_catalog_after_completion', basicSection.create_catalog_after_completion);
       body.append(
@@ -153,6 +160,8 @@ function ClientCreateAdScreen() {
           city: deliverySection.address.city,
           note: deliverySection.note,
           date: deliverySection.date,
+          client_first_name: deliverySection.client_first_name,
+          client_last_name: deliverySection.client_last_name,
         })
       );
       body.append(
@@ -172,6 +181,7 @@ function ClientCreateAdScreen() {
 
       if (response?.data?.success) {
         toast.success(t('Ad created successfully.'));
+        // console.log("response")
         navToMyAds();
       }
     } catch (e) {
