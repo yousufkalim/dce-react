@@ -36,6 +36,7 @@ function Landing() {
   useEffect(() => {
     lang();
   }, []);
+
   const reviews = [
     {
       rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
@@ -108,7 +109,7 @@ function Landing() {
     },
   };
   return (
-    <div>
+    <div style={{overflowX:"hidden"}}>
       <UnAuthAppBar />
       {/* start hero section */}
       <div className="landing_main_container">
@@ -117,7 +118,7 @@ function Landing() {
           <div className="landing_hero_section_info">
             <div className="landing_hero_section_info_heading">
               <h3>{t('Welcome to the Design Confection Ethiques')}</h3>
-              <h4>{t('Hire The Best Designers For Your Confection')}</h4>
+              <h4>{t('Make your sewing projects a reality in just a few clicks!')}</h4>
               <p>
                 {t(
                   ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam'
@@ -126,20 +127,13 @@ function Landing() {
               <Link style={{ textDecoration: 'none' }} to="/client_register">
                 <button type="button">{t('Hire Designer')}</button>
               </Link>
-              <hr />
+              {/* <hr /> */}
               <div className="or">
                 {t('Or')}
                 <Link to="/tailor_register">
                   <span>{t('register as a Designer')}</span>
                 </Link>
               </div>
-            </div>
-          </div>
-
-          {/* cl 2  */}
-          <div className="landing_hero_section_img">
-            <div>
-              <img src={Landinghero} alt="landing_hero_section" />
             </div>
           </div>
         </div>
@@ -150,150 +144,72 @@ function Landing() {
       <div className="chose_main_section" id="WhyChooseDCE">
         <div className="chose_title_main">
           <div className="chose_title">
-            <h3>{t('Why Choose DCE')}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut</p>
+            <h3>{t('How it works ?')}</h3>
+            <div className="how_work">
+              <h3>1. {t('You submit your sewing idea to us!')}</h3>
+              <p className='how_work_p' >You tell us your preferences, criteria, choice and style of your confections!</p>
+              <h3>2. {t('We make it happen!')}</h3>        
+              <p className='how_work_p' >You tell us your preferences, criteria, choice and style of your confections!</p>
+              <h3>3.  {t('You receive your confection!')}</h3>        
+              <p className='how_work_p' >As soon as your confection is finished, you will receive it at home!</p>
+            </div>
+     
           </div>
         </div>
 
-        {/* card section */}
-        <div className="card_main_section">
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={addpost} alt="addpost." />
-            </div>
-
-            <span className="card_title">{t('Post Ads')}</span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={chosedesgin} alt="addpost." />
-            </div>
-
-            <span className="card_title">{t('Choose Designer')}</span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={pay} alt="addpost." />
-            </div>
-
-            <span className="card_title">{t('Pay Safely')} </span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={door} alt="door." />
-            </div>
-
-            <span className="card_title">{t('At Your Door Step')} </span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={help} alt="help." />
-            </div>
-
-            <span className="card_title">{t('We Are Here To Help')}</span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-        </div>
-        {/* card section end */}
-
+        
         {/* fud great work  */}
 
         <div className="great_work" id="FindGreatWork">
-          <div className="great_work_left">
-            <img src={greatleft} alt="greate_work_image" />
-          </div>
-          <div className="great_work_right">
-            <div className="great_work_heading">
-              <h3>{t('Find Great Work')} </h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
-                veniam,
-              </p>
-            </div>
-
-            <div className="great_work_Card">
-              <div className="great_work_Card_inner">
+        <div className="chose_title_main">
+          <div className="chose_title">
+            <h3 className='submit_h3' style={{marginTop:"100px"}}>{t('I submit my idea')}</h3>
+            <div className="how_work">
+              <h3 className='how_work_heading'>{t('You are a designer and you want to put your know-how at the service of the greatest number?')}</h3>        
+              <h3 className='how_work_heading2' style={{fontSize:"40px"}}>{t('In a few clicks, D.C.E allows you to find sewing project missions')}</h3>        
+              <div className='submit_main_card'>
                 <div>
-                  <img src={tickicon} alt="icons" />
+                <h4 className='submit_main_cardh4'  >{t('Choisissez')}</h4>
+                <h4 className='submit_main_cardh4' >{t('vos missions')}</h4>
                 </div>
-                <div className="great_work_Card_inner_info">
-                  <h4>{t('FIND OPPORTUNITIES')}</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
-                    nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
-                  </p>
-                </div>
-              </div>
-              <div className="great_work_Card_inner">
-                <div>
-                  <img src={tickicon} />
-                </div>
-
                 <div className="great_work_Card_inner_info">
                   <h4>{t('EXPLORE DIFFERENT WAYS TO EARN')}</h4>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
                     nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
-                  </p>
+                  </p
                 </div>
-              </div>
-              <div className="great_work_Card_inner">
-                <div>
-                  <img src={tickicon} alt="tick icon" />
+                <div> 
+                <h4 className='submit_main_cardh4' >{t('Traitez')}</h4>
+                <h4 className='submit_main_cardh4' >{t('en direct')}</h4>
                 </div>
 
-                <div className="great_work_Card_inner_info">
-                  <h4>{t('CONTROL WHEN, WHERE, AND HOW YOU WORK')}</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
-                    nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
-                  </p>
-                </div>
               </div>
             </div>
+     
           </div>
+        </div>
+        
         </div>
       </div>
       {/* end chose Dec */}
 
       {/* Clients Review */}
       <div className="client_main_section">
-        <div className="clinet_handing_text">
-          <h3>{'Clients Review'}</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
-            veniam,
-          </p>
-        </div>
-        <div>
-          <div className="slider_main">
-            <Carousel showDots={true} arrows={false} className="carousel-control_custom" responsive={responsive}>
-              {reviews.map((reviews, index) => (
-                <div className="carousel_card">
-                  <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                  </p>
-                  <hr />
-                  <div className="slider_user_info">
-                    <img src={user} alt="user" />
-                    <div className="user_pic_slider">
-                      <h5>Rob Hope</h5>
-                      <span>Onepagelove.com</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </Carousel>
+       
+      <div className="chose_title_main">
+          <div className="chose_title" style={{marginTop:"80px"}}>
+            <h3 className='last_section_h3'>{t('How it works ?')}</h3>
+            <div className="how_work">
+              <h3 className='last_section_h33' >1. {t('Find customers who match you!')}</h3>
+              <p className='how_work_ppp'>D.C.E puts you in touch with potential customers suited to your profile</p>
+              <h3 className='last_section_h33'>2. {t('Focus on the essentials!')}</h3>        
+              <p className='how_work_ppp' >D.C.E manages all the formalities relating to the provision of services</p>
+              <h3 className='last_section_h33'>3.  {t('Respond to an ad in just a few clicks!')}</h3>        
+              <p className='how_work_ppp' >As soon as your confection is finished, you will receive it at home!</p>
+            </div>
+            <h3 className="how_work_ls" style={{marginTop:"120px",fontSize:"35px"}}>{t('Je souhaite mettre à profit mon savoir faire')}</h3>
+     
           </div>
         </div>
       </div>
