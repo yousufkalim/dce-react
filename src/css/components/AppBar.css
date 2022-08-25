@@ -1,7 +1,7 @@
 .appbar_container {
   display: flex;
   flex-direction: row;
-  height: 9vh;
+  height: 12vh;
   width: 100%;
   top: 0;
   z-index: 99;
@@ -25,14 +25,14 @@
 }
 
 .appbar_row1_img {
-  max-width: 6vh;
-  width: 6vh;
+  /* max-width: 6vh; */
+  width: 10vh;
   vertical-align: top;
   cursor: pointer;
 }
 
 .appbar_row1_tab_text {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
 }

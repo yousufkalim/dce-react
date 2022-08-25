@@ -82,32 +82,29 @@ function ClientHomeScreen() {
         <div className='container'>
           <div className='client_home_screen_row1'>
             <div
-              style={{
-                position: 'absolute',
-                zIndex: '1',
-                top: '25%',
-                left: '40%',
-                right: '5%',
-              }}
-            >
-              <div className='client_home_screen_row1_column2_img'>
-                <img style={{ width: '70%' }} src={ClientHomeSVG} />
-              </div>
-            </div>
-            <div className='client_home_screen_row1_column1' style={{ backgroundColor: '#FFEEEC', width: '70%' }}>
+            // style={{
+            //   position: 'absolute',
+            //   zIndex: '1',
+            //   top: '25%',
+            //   left: '40%',
+            //   right: '5%',
+            // }}
+            ></div>
+            <div className='client_home_screen_row1_column1' style={{ backgroundColor: '#FFEEEC', width: '75%' }}>
               {/* <div> */}
               {/* <p className='client_home_screen_row1_column1_text_1'>{t('Submit your idea,')}</p>
               <p className='client_home_screen_row1_column1_text_2'>{t('We make it real,')}</p> */}
-              <p className='client_home_screen_row1_column1_text_1'>{t('Do you have an idea for tailoring?')}</p>
-              <p
-                className='client_home_screen_row1_column1_text_1'
-                style={{
-                  color: '#A0805A',
-                }}
-              >
-                {t('Submit Your Project here!')}
-              </p>
-              {/* <p
+              <div style={{ width: '85%' }}>
+                <p className='client_home_screen_row1_column1_text-1'>{t('Do you have an idea for tailoring?')}</p>
+                <p
+                  className='client_home_screen_row1_column1_text_1'
+                  style={{
+                    color: '#A0805A',
+                  }}
+                >
+                  {t('Submit Your Project here!')}
+                </p>
+                {/* <p
                 className='client_home_screen_row1_column1_text_1'
                 style={{
                   color: '#857B6F',
@@ -115,21 +112,25 @@ function ClientHomeScreen() {
               >
                 {t('at home!')}
               </p> */}
-              <button
-                className='client_home_screen_row1_column1_button'
-                style={{
-                  backgroundColor: '#FFFFFF',
-                }}
-                onClick={navToCreateAd}
-              >
-                {t('I am concretizing my idea of tailoring')}
-              </button>
+                <button
+                  className='client_home_screen_row1_column1_button'
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                  }}
+                  onClick={navToCreateAd}
+                >
+                  {t('I am concretizing my idea of tailoring')}
+                </button>
+              </div>{' '}
+              <div className='client_home_screen_row1_column2_img'>
+                <img style={{ width: '90%' }} src={ClientHomeSVG} />
+              </div>
               {/* </div> */}
             </div>
             <div
               className='client_home_screen_row1_column2'
               style={{
-                width: '30%',
+                width: '25%',
                 backgroundColor: '#CC8E9C',
               }}
             ></div>
