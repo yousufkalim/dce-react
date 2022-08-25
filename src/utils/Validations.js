@@ -121,10 +121,16 @@ function parseAdBasicSection(data) {
     },
   ];
 
-  if (data['measurements'].type == 'static') {
+  if (data['cut']) {
     valArr.push({
-      validationFunction: () => Validators.nullValidator('Measurements', data['measurements'].value),
+      validationFunction: () => Validators.nullValidator('Size', data['cut']),
     });
+  } else {
+    if (data['measurements'].type == 'static') {
+      valArr.push({
+        validationFunction: () => Validators.nullValidator('Measurements', data['measurements'].value),
+      });
+    }
   }
 
   const validated = formValidator(null, valArr);

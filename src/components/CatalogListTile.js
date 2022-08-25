@@ -25,7 +25,7 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
   };
   return (
     <div
-      className="tailor_catalog_list_tile_container"
+      className='tailor_catalog_list_tile_container'
       style={{
         ...mainDivStyle,
         width: 'auto',
@@ -41,8 +41,10 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
       >
         <img
           style={{
-            width: '100%',
-            height: '100%',
+            // width: '100%',
+            // height: '100%',
+            width: '310px',
+            height: '200px',
             objectFit: 'contain',
             borderRadius: '20px',
           }}
@@ -50,7 +52,7 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
         />
         <CustomButton
           text={buttonText}
-          type="submit"
+          type='submit'
           onClick={onClickButtonCallback}
           style={{
             background: '#fff',
@@ -63,13 +65,13 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
             padding: '2% 8%',
             position: 'absolute',
             top: '0',
-            right: '5%',
+            right: '10%',
           }}
         />
-        <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
-        <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">{t('Stitching Price')}</p>
-          <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
+        <p className='tailor_catalog_list_tile_title'>{catalog.name}</p>
+        <div className='tailor_catalog_list_tile_details'>
+          <p className='tailor_catalog_list_tile_price_detail'>{t('Stitching Price')}</p>
+          <p className='tailor_catalog_list_tile_price'>${catalog.price}</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">

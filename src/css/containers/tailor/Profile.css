@@ -6,12 +6,12 @@
 }
 
 .tailor_profile_screen_row1 {
-  width: 100%;
+  width: 45%;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 2% 0%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2% 2%;
 }
 .designer_profile_screen_row1 {
   width: 100%;
@@ -68,7 +68,7 @@
 
 .tailor_profile_screen_row1_column2 {
   /* height: 100%; */
-  width: 38%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,6 +135,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  margin-bottom: 2%;
 }
 
 .tailor_profile_screen_row3_text {
@@ -144,7 +145,7 @@
   align-self: flex-end;
   letter-spacing: -0.5px;
   color: #a0a0a0;
-  padding-top: 2%;
+  padding-top: 7%;
   padding-bottom: 2%;
 }
 
@@ -172,7 +173,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 1.8% 0;
+  padding: 3% 3%;
   width: 96%;
   background-color: transparent;
   border-color: #dbdbdb;
@@ -205,7 +206,14 @@
   width: 15%;
   height: 19px;
 }
-
+.create_ad_radio{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 2%;
+  padding-right: 4%;
+}
 /* media queries */
 @media only screen and (max-width: 768px) {
   .tailor_profile_screen_row1 {
