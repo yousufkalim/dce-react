@@ -27,7 +27,7 @@ function UnAuthAppBar() {
   const MainNavBar = ['About', 'Blog','Gallery', 'Register ', 'Login'];
   return (
     <AppBar position="fixed" className="auth_appbar_main">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" >
         <Toolbar disableGutters>
           <Typography
             variant="h6"
