@@ -145,11 +145,11 @@ function Landing() {
             <h3>{t('How it works ?')}</h3>
             <div className="how_work">
               <h3>1. {t('You submit your sewing idea to us!')}</h3>
-              <p className='how_work_p' >You tell us your preferences, criteria, choice and style of your confections!</p>
+              <p className='how_work_p' >{t("You tell us your preferences, criteria, choice and style of your confections!")}</p>
               <h3>2. {t('We make it happen!')}</h3>        
-              <p className='how_work_p' >You tell us your preferences, criteria, choice and style of your confections!</p>
+              <p className='how_work_p' >{t("D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux dopigts de fée, passionné(es, au savoir-faire de qualité !")}</p>
               <h3>3.  {t('You receive your confection!')}</h3>        
-              <p className='how_work_p' >As soon as your confection is finished, you will receive it at home!</p>
+              <p className='how_work_p' >{t("Dés que votre confection est terminée, vous la recevez chez vous !")}</p>
             </div>
      
           </div>
@@ -202,9 +202,15 @@ function Landing() {
               <h3 className='last_section_h33'>2. {t('Focus on the essentials!')}</h3>        
               <p className='how_work_ppp' >{t("D.C.E manages all the formalities relating to the provision of services")}</p>
               <h3 className='last_section_h33'>3.  {t('Respond to an ad in just a few clicks!')}</h3>        
-              {/* <p className='how_work_ppp' >As soon as your confection is finished, you will receive it at home!</p> */}
+              
+            </div> 
+            <div style={{width:"100%" ,display:"flex", alignItems:"center", justifyContent:"center" , height:"30px"}}>
+            <Link to="/select_role" >
+            <button className="how_work_ls" style={{marginTop:"120px",fontSize:"35px"}}>{t('Je souhaite mettre à profit mon savoir faire')}</button>
+            </Link>
+          
             </div>
-            <h3 className="how_work_ls" style={{marginTop:"120px",fontSize:"35px"}}>{t('Je souhaite mettre à profit mon savoir faire')}</h3>
+            
      
           </div>
         </div>

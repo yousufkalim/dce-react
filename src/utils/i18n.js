@@ -27,10 +27,17 @@ i18n
          "About":"About",
          "Blog":"Blog",
          "Gallery":"Gallery",
-         "REGISTRATION":"REGISTRATION",
+         "Registration":"Registration",
           "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E puts you in touch with potential customers suited to your profile",
           "D.C.E manages all the formalities relating to the provision of services":"D.C.E manages all the formalities relating to the provision of services",
-                  //----------------------------------------------------------Client-------------------------------------------------------
+          "You tell us your preferences, criteria, choice and style of your confections!":"You tell us your preferences, criteria, choice and style of your confections!" ,
+         
+         'D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!':"D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!",
+         
+          "D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!":"D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux dopigts de fée, passionné(es, au savoir-faire de qualité !",
+         "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confections !",
+         "You tell us your preferences, criteria, choice and style of your confections!":"You tell us your preferences, criteria, choice and style of your confections!",
+          //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
           "Submit your idea,": "Submit your idea,",
@@ -568,10 +575,11 @@ i18n
           "About":"À propos de",
           "Blog":"Blog",
           "Gallery":"Galerie",
-          "REGISTRATION":"INSCRIPTION",
+          "Registration":"Inscription",
           "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
           "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-        // client home
+          "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confections !",
+          // client home
           "Submit your idea,": "Soumettez-nous votre idée,",
           "We make it real,": "nous la concrétisons !",
           "You receive your creation": "Vous recevez votre création",

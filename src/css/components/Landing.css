@@ -104,6 +104,22 @@ body {
         -moz-appearance: none;
         appearance: none;
 }
+.how_work_ls
+{
+
+    font-size: 22px !important;
+    background: #cc8e9c !important;
+  font-family: 'Montserrat' !important;
+  color: #ffffff !important;
+  border: 1px solid #cc8e9c !important;
+  box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06) !important;
+  border-radius: 30px !important;
+  width: 509px;;
+  padding: 10px  ;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
 
 
 .landing_hero_section_info_heading p {
@@ -158,8 +174,8 @@ body {
 
     font-family: 'Montserrat' !important;
     font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 900;
+    font-size: 20px;
     line-height: 24px !important;
     display: flex !important;
     align-items: center !important;
@@ -1288,8 +1304,21 @@ body {
     }
 
     .how_work_ls {
-        margin-top: 0px !important;
-        font-size: 16px !important;
-        padding: 20px !important;
+    font-size: 14px !important;
+     background: #cc8e9c !important;
+      font-family: 'Montserrat' !important;
+      color: #ffffff !important;
+      border: 1px solid #cc8e9c !important;
+      box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06) !important;
+      border-radius: 20px !important;
+      width: 309px;;
+
+      padding: 4px  !important;
+      /* padding-top: 20px; */
+      /* padding-bottom: 20px; */
+      cursor: pointer;
+      position: relative;
+      top: -60px;
     }
+
 }

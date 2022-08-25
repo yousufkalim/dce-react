@@ -44,13 +44,14 @@ function UnAuthAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img" style={{ marginRight: '5%' }} />
+            <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img"  />
           </Typography>
 
           <Typography
             variant="h5"
             noWrap
             component="a"
+       
             href=""
             sx={{
               mr: 2,
@@ -61,6 +62,7 @@ function UnAuthAppBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+            
             }}
           >
             <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img" />
@@ -157,7 +159,8 @@ function UnAuthAppBar() {
 
             <Link to="/select_role">
               <Button className="auth_appbar_button_register" sx={{ p: 0 }}>
-                {t('REGISTRATION')}
+               
+                {t('Registration')}
               </Button>
             </Link>
           </Box>
