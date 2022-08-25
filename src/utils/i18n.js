@@ -28,7 +28,8 @@ i18n
          "Blog":"Blog",
          "Gallery":"Gallery",
          "REGISTRATION":"REGISTRATION",
-
+          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E puts you in touch with potential customers suited to your profile",
+          "D.C.E manages all the formalities relating to the provision of services":"D.C.E manages all the formalities relating to the provision of services",
                   //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
@@ -568,6 +569,8 @@ i18n
           "Blog":"Blog",
           "Gallery":"Galerie",
           "REGISTRATION":"INSCRIPTION",
+          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
+          "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
         // client home
           "Submit your idea,": "Soumettez-nous votre idée,",
           "We make it real,": "nous la concrétisons !",
