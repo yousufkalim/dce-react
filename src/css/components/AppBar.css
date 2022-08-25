@@ -174,12 +174,14 @@
 .css-19r6kue-MuiContainer-root {
   padding-left: 0 !important;
   padding-right: 2px !important ;
+
 }
 .auth_appbar_row1_img {
   max-width: 14vh !important;
   vertical-align: top;
   cursor: pointer;
-}
+ 
+  }
 .animation_dec {
   scroll-behavior: smooth !important;
 }
@@ -266,4 +268,100 @@
   border-radius: 20px !important;
   text-transform: capitalize !important;
   width: 140px !important;
+}
+
+@media screen and (min-width: 1000px) and (max-width:1400px){
+  .auth_appbar_row1_img {
+    max-width: 12vh !important;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+    margin-left: 20px;
+    /* margin-top: 6px; */
+}
+.auth_appbar_button_login {
+  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center;
+  padding: 12px 36px !important;
+  gap: 10px !important;
+  position: absolute !important;
+  left: 75.22% !important;
+  right: 11.48% !important;
+  /* top: 17.14% !important; */
+  bottom: 28.57% !important;
+  /* margin-top: 20px !; */
+  background: #ffffff;
+  font-family: 'Montserrat' !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #a0a0a0 !important;
+  border: 1px solid #cc8e9c !important;
+  box-shadow: 0px 4px 20px rgb(200 164 164 / 6%);
+  border-radius: 20px !important;
+  width: 140px !important;
+  text-transform: capitalize !important;
+}
+.auth_appbar_button_register {
+  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center;
+  padding: 12px 36px !important;
+  gap: 10px !important;
+  position: absolute !important;
+  left: 87.38%;
+  right: 5.32%;
+  /* top: 30px !important; */
+  /* margin-top: 20px !important; */
+  /* top: 17.14%;, */
+  bottom: 28.57% !important;
+  background: #cc8e9c !important;
+  font-family: 'Montserrat' !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #ffffff !important;
+  border: 1px solid #cc8e9c !important;
+  box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
+  border-radius: 20px !important;
+  text-transform: capitalize !important;
+  width: 140px !important;
+}
+
+.auth_appbar_main {
+  /* background: #ffffff !important;
+  box-shadow: none !important;
+  height: 85px; */
+/* border: 2px solid red ; */
+  
+}
+
+.auth_appbar_row1_img {
+  /* border: 2px solid  blue  !important; */
+
+}
+.auth_appbar_menus {
+/* border: 2px solid green !important ; */
+font-size: 18px !important;
+/* margin-top: 15px !important; */
+position: relative;
+/* top: 6px; */
+  
+}
+/* .css-1bvv84h 
+{
+  border: 3px solid yellow ;
+} */
+.css-1cndkqf-MuiToolbar-root {
+  min-height: 85px !important;
+  /* border: 2px solid red; */
+}
+
 }

@@ -29,7 +29,7 @@ function UnAuthAppBar() {
   };
   return (
     <AppBar position="fixed" className="auth_appbar_main">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" >
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -46,13 +46,14 @@ function UnAuthAppBar() {
               textDecoration: 'none',
             }}
           >
-            <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img" style={{ marginRight: '5%' }} />
+            <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img"  />
           </Typography>
 
           <Typography
             variant="h5"
             noWrap
             component="a"
+       
             href=""
             sx={{
               mr: 2,
@@ -63,6 +64,7 @@ function UnAuthAppBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+            
             }}
           >
             <img src={AppLogoSVG} alt="logo" className="auth_appbar_row1_img" />
@@ -145,7 +147,8 @@ function UnAuthAppBar() {
             </Link>
             <Link to="/select_role_register">
               <Button className="auth_appbar_button_register" sx={{ p: 0 }}>
-                {t('REGISTRATION')}
+               
+                {t('Registration')}
               </Button>
             </Link>
           </Box>

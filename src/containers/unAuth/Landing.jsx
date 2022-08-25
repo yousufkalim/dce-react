@@ -32,7 +32,7 @@ function Landing() {
 
   useEffect(() => {
     lang();
-  }, []);
+  },[]);
   const reviews = [
     {
       rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
@@ -105,7 +105,7 @@ function Landing() {
     },
   };
   return (
-    <div style={{ overflowX: 'hidden' }}>
+    <div style={{overflowX:"hidden"}}>
       <UnAuthAppBar />
       {/* start hero section */}
       <div className="landing_main_container">
@@ -114,18 +114,23 @@ function Landing() {
 
           <div className="landing_hero_section_info">
             <div className="landing_hero_section_info_heading">
-              <h3>{t('Welcome to the Design Confection Ethiques')}</h3>
+              <h3>{t('Design Ethical Confections')}</h3>
               <h4>{t('Make your sewing projects a reality in just a few clicks!')}</h4>
-              <p>{t('Plateforme de mise en relation dans le domaine de la confection mode sur-mesure')}</p>
+              <p>
+                {t(
+                  'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
+                )}
+              </p>
 
               <Link style={{ textDecoration: 'none' }} to="/select_role">
-                <button type="button">{t('Hire Design')}</button>
+                <button type="button">{t('Login')}</button>
               </Link>
               {/* <hr /> */}
               <div className="or">
                 {t('Or')}
                 <Link to="/select_role">
-                  <span>{t('registered as a Designer')}</span>
+                  {/* <span>{t('registered as a Designer')}</span> */}
+                  <span>{t('Registered')}</span>
                 </Link>
               </div>
             </div>
@@ -141,74 +146,80 @@ function Landing() {
             <h3>{t('How it works ?')}</h3>
             <div className="how_work">
               <h3>1. {t('You submit your sewing idea to us!')}</h3>
-              <p className="how_work_p">{t('You tell us your preferences, criteria, choice and style of your confections!')}</p>
-              <h3>2. {t('We make it happen!')}</h3>
-              <p className="how_work_p">
-                {t(
-                  'D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux dopigts de fée, passionné(es, au savoir-faire de qualité !'
-                )}
-              </p>
-              <h3>3. {t('You receive your confection!')}</h3>
-              <p className="how_work_p">{t('Dés que votre confection est terminée, vous la recevez chez vous !')}</p>
+              <p className='how_work_p' >{t("You tell us your preferences, criteria, choice and style of your confections!")}</p>
+              <h3>2. {t('We make it happen!')}</h3>        
+              <p className='how_work_p how_work_p_s' >{t("D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!")}</p>
+              <h3>3.  {t('You receive your confection!')}</h3>        
+              <p className='how_work_p' >{t("Dés que votre confection est terminée, vous la recevez chez vous !")}</p>
+             <Link to="/tailor_register">
+             <button className="how_work_ls how_work_ls_s" style={{marginTop:"0px",fontSize:"35px"}}>{t('I submit my idea')}</button>
+             </Link>
+            
+              {/* <div className="chose_title">
+            <h3 className='submit_h3' style={{marginTop:"100px"}}>{t('I submit my idea')}</h3>
+            </div> */}
             </div>
+     
           </div>
         </div>
 
+        
         {/* fud great work  */}
 
         <div className="great_work" id="FindGreatWork">
-          <div className="chose_title_main">
-            <div className="chose_title">
-              <h3 className="submit_h3" style={{ marginTop: '100px' }}>
-                {t('I submit my idea')}
-              </h3>
-              <div className="how_work">
-                <h3 className="how_work_heading">
-                  {t('You are a designer and you want to put your know-how at the service of the greatest number?')}
-                </h3>
-                <h3 className="how_work_heading2" style={{ fontSize: '40px' }}>
-                  {t('In a few clicks, D.C.E allows you to find sewing project missions')}
-                </h3>
-                <div className="submit_main_card">
-                  <div>
-                    <h4 className="submit_main_cardh4">{t('Choisissez')}</h4>
-                    <h4 className="submit_main_cardh4">{t('vos missions')}</h4>
-                  </div>
-                  <div>
-                    <h4 className="submit_main_cardh4">{t('Fixez')}</h4>
-                    <h4 className="submit_main_cardh4">{t('vos conditions')}</h4>
-                  </div>
-                  <div>
-                    <h4 className="submit_main_cardh4">{t('Traitez')}</h4>
-                    <h4 className="submit_main_cardh4">{t('en direct')}</h4>
-                  </div>
+        <div className="chose_title_main">
+          <div className="chose_title">
+            {/* <h3 className='submit_h3' style={{marginTop:"100px"}}>{t('I submit my idea')}</h3> */}
+            <div className="how_work">
+              <h3 className='how_work_heading how_work_heading_s'>{t('You are a designer and you want to put your know-how at the service of the greatest number?')}</h3>        
+              <h3 className='how_work_heading2 how_work_heading2_s' style={{fontSize:"40px"}}>{t('In a few clicks, D.C.E allows you to find "sewing project" missions')}</h3>        
+              <div className='submit_main_card'>
+                <div className='card_ss'>
+                <h4 className='submit_main_cardh4'  >{t('Choose your')}</h4>
+                <h4 className='submit_main_cardh4' >{t('assignments')}</h4>
+               
                 </div>
+                <div className='card_ss'> 
+                <h4 className='submit_main_cardh4' >{t('Fixez vos')}</h4>
+                <h4 className='submit_main_cardh4' >{t('conditions')}</h4>
+                </div>
+                <div className='card_ss'> 
+                <h4 className='submit_main_cardh4' >{t('Traitez en')}</h4>
+                <h4 className='submit_main_cardh4' >{t('direct')}</h4>
+                </div>
+
               </div>
             </div>
+     
           </div>
+        </div>
+        
         </div>
       </div>
       {/* end  chose Dec */}
 
       {/*Clients Review  start*/}
-      <div className="client_main_section">
-        <div className="chose_title_main">
-          <div className="chose_title" style={{ marginTop: '80px' }}>
-            <h3 className="last_section_h3">{t('How it works ?')}</h3>
-            <div className="how_work">
-              <h3 className="last_section_h33">1. {t('Find customers who match you!')}</h3>
-              <p className="how_work_ppp">{t('D.C.E puts you in touch with potential customers suited to your profile')}</p>
-              <h3 className="last_section_h33">2. {t('Focus on the essentials!')}</h3>
-              <p className="how_work_ppp">{t('D.C.E manages all the formalities relating to the provision of services')}</p>
-              <h3 className="last_section_h33">3. {t('Respond to an ad in just a few clicks!')}</h3>
+      <div className="client_main_section client_main_section_scc">
+       
+      <div className="chose_title_main">
+          <div className="chose_title" style={{marginTop:"80px"}}>
+            <h3 className='last_section_h3 last_section_h3_s'>{t('How it works ?')}</h3>
+            <div className="how_work how_work_sss " >
+              <h3 className='last_section_h33' >1. {t('Find customers who match you!')}</h3>
+              <p className='how_work_ppp'>{t("D.C.E puts you in touch with potential customers suited to your profile")}</p>
+              <h3 className='last_section_h33'>2. {t('Focus on the essentials!')}</h3>        
+              <p className='how_work_ppp' >{t("D.C.E manages all the formalities relating to the provision of services")}</p>
+              <h3 className='last_section_h33'>3.  {t('Respond to an ad in just a few clicks!')}</h3>        
+              
+            </div> 
+            <div style={{width:"100%" ,display:"flex", alignItems:"center", justifyContent:"center" , height:"30px"}}>
+            <Link to="/client_register" >
+            <button className="how_work_ls how_work_ls_ssss" style={{marginTop:"120px",fontSize:"35px"}}>{t('Je souhaite mettre à profit mon savoir faire')}</button>
+            </Link>
+          
             </div>
-            <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30px' }}>
-              <Link to="/select_role">
-                <button className="how_work_ls" style={{ marginTop: '120px', fontSize: '35px' }}>
-                  {t('Je souhaite mettre à profit mon savoir faire')}
-                </button>
-              </Link>
-            </div>
+            
+     
           </div>
         </div>
       </div>
@@ -230,12 +241,13 @@ function Landing() {
             <div>
               <h4 className="footer_text_last_p">
                 © 2022 <span style={{ color: '#CC8E9C' }}>{t('Design Confection Ethiques,')}</span> {t('Developed by')}{' '}
-                <span style={{ color: '#0085FF' }}>{t('Falcon Consulting')}.</span> {t('All rights reserved.')}
+                <span style={{ color: '#0085FF' }}> <a href='https://falconconsulting.fr/' target='blank'>{t('Falcon Consulting')}</a> .</span> {t('All rights reserved.')}
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
-              <img src={facebook} />
-              <img src={instagram} />
+            <a href='https://www.facebook.com/Design-Confections-Ethiques-110075184902480' target="blank"> <img className='fb_ss' src={facebook} /></a>
+            <a href='https://www.instagram.com/designconfectionsethiques/' target="blank"> <img className='fb_ss' src={instagram} /></a>
+           
             </div>
           </div>
         </div>
