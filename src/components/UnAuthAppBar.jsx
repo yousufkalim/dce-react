@@ -24,7 +24,7 @@ function UnAuthAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const MainNavBar = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
+  const MainNavBar = ['About', 'Blog','Gallery', 'Register ', 'Login'];
   return (
     <AppBar position="fixed" className="auth_appbar_main">
       <Container maxWidth="xl">

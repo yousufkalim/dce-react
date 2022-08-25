@@ -183,6 +183,12 @@
   .appbar_row2_input {
     width: 46vw;
   }
+  .auth_appbar_main {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    height: 65px !important;
+
+  }
 }
 
 /*  auth appbar */
