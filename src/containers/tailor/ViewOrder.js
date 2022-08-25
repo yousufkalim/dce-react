@@ -48,6 +48,10 @@ function TailorViewOrderScreen() {
     includes_alteration_services: false,
     create_catalog_after_completion: false,
     userRole: '',
+    fabric_type: '',
+    fabric_description: '',
+    height: '',
+    observation: '',
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
@@ -107,17 +111,17 @@ function TailorViewOrderScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className="container-page">
-          <TailorAppBar color="#F8F4EF" activeTab={2} />
+        <div className='container-page'>
+          <TailorAppBar color='#F8F4EF' activeTab={2} />
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFE9A0',
               height: '112vh',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row1_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
                     fontSize: '30px',
@@ -137,14 +141,14 @@ function TailorViewOrderScreen() {
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
-              <div className="client_edit_ad_screen_row1_column2">
+              <div className='client_edit_ad_screen_row1_column2'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '8%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -153,7 +157,7 @@ function TailorViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
+                  <div className='pa_content_row'>
                     <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
                   </div>
                 </div>
@@ -161,20 +165,20 @@ function TailorViewOrderScreen() {
             </div>
           </div>
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFC396',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row2_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row2_column1'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '7%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -183,12 +187,12 @@ function TailorViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
+                  <div className='pa_content_row'>
                     <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
-              <div className="client_edit_ad_screen_row2_column2">
+              <div className='client_edit_ad_screen_row2_column2'>
                 <p
                   style={{
                     fontSize: '30px',
@@ -211,13 +215,13 @@ function TailorViewOrderScreen() {
             </div>
           </div>
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFFCFB',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row1_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
                     fontSize: '30px',
@@ -237,14 +241,14 @@ function TailorViewOrderScreen() {
                 </p>
                 <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
-              <div className="client_edit_ad_screen_row1_column2">
+              <div className='client_edit_ad_screen_row1_column2'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '7%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -253,7 +257,7 @@ function TailorViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
+                  <div className='pa_content_row'>
                     <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
                   </div>
                 </div>
@@ -283,7 +287,7 @@ const CompleteOrderSection = (props) => {
         background: '#FFEEEA',
       }}
     >
-      <div className="client_edit_ad_screen_row1">
+      <div className='client_edit_ad_screen_row1'>
         <p
           style={{
             fontSize: 28,
@@ -298,8 +302,8 @@ const CompleteOrderSection = (props) => {
         <Modal
           open={isCompleteOrderModal}
           onClose={handleCompleteOrderModalClose}
-          aria-labelledby="Complete Order"
-          onBackdropClick="false"
+          aria-labelledby='Complete Order'
+          onBackdropClick='false'
         >
           <CompleteOrderModal handleClose={handleCompleteOrderModalClose} order={props} />
         </Modal>
@@ -376,7 +380,7 @@ const CompleteOrderModal = (props) => {
   };
 
   return (
-    <div className="tqs_sqm_container">
+    <div className='tqs_sqm_container'>
       {/* <div
         className="tqs_sqm_input_container"
         style={{
@@ -400,19 +404,19 @@ const CompleteOrderModal = (props) => {
         </div>
       </div> */}
       <div
-        className="tqs_sqm_textarea_container"
+        className='tqs_sqm_textarea_container'
         style={{
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px',
           marginBottom: '2%',
         }}
       >
-        <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">{t('Details')}</p>
+        <div className='tqs_sqm_textarea_label'>
+          <p className='tqs_sqm_input_text'>{t('Details')}</p>
         </div>
-        <div className="tqs_sqm_input_input">
+        <div className='tqs_sqm_input_input'>
           <textarea
-            className="tqs_sqm_textarea_textarea"
+            className='tqs_sqm_textarea_textarea'
             placeholder={t('Describe about submit report')}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
@@ -420,7 +424,7 @@ const CompleteOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className='pa_profile_section_input_container'
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -428,25 +432,25 @@ const CompleteOrderModal = (props) => {
           padding: '1.6% 0',
         }}
       >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">{t('Attachments')}</p>
+        <div className='pa_profile_section_input_label'>
+          <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
         </div>
-        <div className="pa_profile_section_input_input">
-          <label className="upload-pic-label">
-            <input multiple type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
-            <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachments?.name ?? t('upload an illustration of your creation')}</span>
+        <div className='pa_profile_section_input_input'>
+          <label className='upload-pic-label'>
+            <input multiple type='file' accept='image/*' hidden id='filePicker' name='file' onChange={handleFileSelect} />
+            <div className='upload-img-text-cont'>
+              <span className='upload-img-text'>{attachments?.name ?? t('upload an illustration of your creation')}</span>
               <img src={UploadSVG} />
             </div>
           </label>
         </div>
       </div>
-      <div className="selected-images-container" style={{ margin: '0' }}>
+      <div className='selected-images-container' style={{ margin: '0' }}>
         {attachments?.map((val) => (
           <span>{val?.name}</span>
         ))}
       </div>
-      <div className="tvqs_sq_buttons">
+      <div className='tvqs_sq_buttons'>
         <CustomButton
           text={t('Cancel')}
           style={{

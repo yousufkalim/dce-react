@@ -77,10 +77,10 @@ function ClientHomeScreen() {
 
   return (
     <>
-      <div className="container-page">
-        <ClientAppBar color="#F8F4EF" />
-        <div className="container">
-          <div className="client_home_screen_row1">
+      <div className='container-page'>
+        <ClientAppBar color='#F8F4EF' />
+        <div className='container'>
+          <div className='client_home_screen_row1'>
             <div
               style={{
                 position: 'absolute',
@@ -90,17 +90,17 @@ function ClientHomeScreen() {
                 right: '5%',
               }}
             >
-              <div className="client_home_screen_row1_column2_img">
-                <img style={{ width: '60%' }} src={ClientHomeSVG} />
+              <div className='client_home_screen_row1_column2_img'>
+                <img style={{ width: '70%' }} src={ClientHomeSVG} />
               </div>
             </div>
-            <div className="client_home_screen_row1_column1" style={{ backgroundColor: '#FFEEEC', width: '70%' }}>
+            <div className='client_home_screen_row1_column1' style={{ backgroundColor: '#FFEEEC', width: '70%' }}>
               {/* <div> */}
               {/* <p className='client_home_screen_row1_column1_text_1'>{t('Submit your idea,')}</p>
               <p className='client_home_screen_row1_column1_text_2'>{t('We make it real,')}</p> */}
-              <p className="client_home_screen_row1_column1_text_1">{t('Do you have an idea for tailoring?')}</p>
+              <p className='client_home_screen_row1_column1_text_1'>{t('Do you have an idea for tailoring?')}</p>
               <p
-                className="client_home_screen_row1_column1_text_1"
+                className='client_home_screen_row1_column1_text_1'
                 style={{
                   color: '#A0805A',
                 }}
@@ -116,7 +116,7 @@ function ClientHomeScreen() {
                 {t('at home!')}
               </p> */}
               <button
-                className="client_home_screen_row1_column1_button"
+                className='client_home_screen_row1_column1_button'
                 style={{
                   backgroundColor: '#FFFFFF',
                 }}
@@ -127,7 +127,7 @@ function ClientHomeScreen() {
               {/* </div> */}
             </div>
             <div
-              className="client_home_screen_row1_column2"
+              className='client_home_screen_row1_column2'
               style={{
                 width: '30%',
                 backgroundColor: '#CC8E9C',
@@ -136,25 +136,25 @@ function ClientHomeScreen() {
           </div>
         </div>
         <div
-          className="container"
+          className='container'
           style={{
             background:
               'linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
           <div
-            className="client_home_screen_row2_row1"
+            className='client_home_screen_row2_row1'
             style={{
               borderBottomColor: '#DBDBDB',
               borderBottomStyle: 'solid',
               borderBottomWidth: '0.5px',
             }}
           >
-            <p className="client_home_screen_row2_row1_text">{t('Orders List')}</p>
-            <div className="client_home_screen_row2_row1_row_container">
+            <p className='client_home_screen_row2_row1_text'>{t('Orders List')}</p>
+            <div className='client_home_screen_row2_row1_row_container'>
               <NewOrderListTile />
               {orders.map((_) => (
-                <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == 'accepted')[0]} viewAs="client" />
+                <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == 'accepted')[0]} viewAs='client' />
               ))}
               <p
                 style={{
@@ -169,14 +169,14 @@ function ClientHomeScreen() {
               </p>
             </div>
           </div>
-          <div className="client_home_screen_row2_row1">
-            <p className="client_home_screen_row2_row1_text">{t('Designers')}</p>
-            <div className="client_home_screen_row2_row1_row_container">
+          <div className='client_home_screen_row2_row1'>
+            <p className='client_home_screen_row2_row1_text'>{t('Designers')}</p>
+            <div className='client_home_screen_row2_row1_row_container'>
               {tailors.map((_) => (
                 <DesignerListTile {..._} />
               ))}
               <div style={{ paddingLeft: '2%' }}>
-                <p className="see-all-text" onClick={navToTailors}>
+                <p className='see-all-text' onClick={navToTailors}>
                   {t('See all')}
                 </p>
               </div>
@@ -200,15 +200,15 @@ function DesignerListTile(props) {
   };
 
   return (
-    <div className="chs_designer_list_tile" onClick={navToViewTailor}>
+    <div className='chs_designer_list_tile' onClick={navToViewTailor}>
       <div
-        className="order_list_tile_img"
+        className='order_list_tile_img'
         style={{
           paddingBottom: '5%',
         }}
       >
         <img
-          className="image_container"
+          className='image_container'
           style={{
             height: '80pt',
             width: '80pt',
@@ -219,7 +219,7 @@ function DesignerListTile(props) {
         />
       </div>
       <p
-        className="chs_designer_list_tile_title_text"
+        className='chs_designer_list_tile_title_text'
         style={{
           paddingBottom: '2%',
         }}
@@ -227,7 +227,7 @@ function DesignerListTile(props) {
         {props.name}
       </p>
       <p
-        className="chs_designer_list_tile_location_text"
+        className='chs_designer_list_tile_location_text'
         style={{
           paddingBottom: '6%',
         }}

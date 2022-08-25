@@ -42,6 +42,10 @@ function ClientCreateAdScreen() {
     fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
+    fabric_type: '',
+    fabric_description: '',
+    height: '',
+    observation: '',
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
