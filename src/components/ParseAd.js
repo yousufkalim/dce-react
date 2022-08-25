@@ -663,8 +663,8 @@ function BasicSection({
               }}
               inputType='text'
               inputPlaceholder={t('Page création client (détaillée)')}
-              inputDefaultValue={state?.obervation}
-              onChange={(e) => _setState('obervation', e.target.value)}
+              inputDefaultValue={state?.observation}
+              onChange={(e) => _setState('observation', e.target.value)}
             />
           </div>
         </div>
@@ -970,8 +970,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               }}
               inputType='text'
               inputPlaceholder={t('First Name')}
-              // inputDefaultValue={state?.note}
-              // onChange={(e) => _setState('note', e.target.value)}
+              inputDefaultValue={state?.client_first_name}
+              onChange={(e) => _setState('client_first_name', e.target.value)}
             />
           </div>
         </div>
@@ -997,8 +997,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               }}
               inputType='text'
               inputPlaceholder={t('Last Name')}
-              // inputDefaultValue={state?.note}
-              // onChange={(e) => _setState('note', e.target.value)}
+              inputDefaultValue={state?.client_last_name}
+              onChange={(e) => _setState('client_last_name', e.target.value)}
             />
           </div>
         </div>
