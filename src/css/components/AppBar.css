@@ -200,9 +200,18 @@
 .auth_appbar_main {
   background: #ffffff !important;
   box-shadow: none !important;
-  height: 85px;
-}
 
+  /* height: 85px; */
+  height: auto;
+
+  
+
+}
+.css-1cndkqf-MuiToolbar-root {
+  min-height: 81px;
+  /* border: 2px solid red; */
+  padding: 10px;
+}
 .auth_appbar_row1_img {
   max-width: 12vh !important;
   vertical-align: top;
@@ -228,8 +237,8 @@
   position: absolute !important;
   left: 79.22% !important;
   right: 13.48% !important;
-  top: 17.14% !important;
-  bottom: 18.57% !important;
+  top: 22.14%;
+    bottom: 19.57%;
   background: #ffffff;
   font-family: 'Montserrat' !important;
   font-style: normal;
@@ -239,11 +248,38 @@
   color: #a0a0a0 !important;
   border: 1px solid #cc8e9c !important;
   box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
-  border-radius: 20px !important;
+  border-radius: 31px !important;
   width: 140px !important;
   text-transform: capitalize !important;
 }
-.auth_appbar_button_register {
+.auth_appbar_button_register
+{
+  box-sizing: border-box;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center;
+    padding: 12px -8px !important;
+    gap: 10px !important;
+    position: absolute !important;
+    left: 89.38%;
+    right: 5.32%;
+    top: 22.14%;
+    bottom: 19.57%;
+    background: #cc8e9c !important;
+    font-family: 'Montserrat' !important;
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    color: #ffffff !important;
+    border: 1px solid #cc8e9c !important;
+    box-shadow: 0px 4px 20px rgb(200 164 164 / 6%);
+    border-radius: 31px !important;
+    text-transform: capitalize !important;
+    width: 140px !important;
+}
+/* .auth_appbar_button_register {
   box-sizing: border-box;
   display: flex !important;
   flex-direction: row !important;
@@ -268,7 +304,7 @@
   border-radius: 20px !important;
   text-transform: capitalize !important;
   width: 140px !important;
-}
+} */
 
 @media screen and (min-width: 1000px) and (max-width:1400px){
   .auth_appbar_row1_img {
