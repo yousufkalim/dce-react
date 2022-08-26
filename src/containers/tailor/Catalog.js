@@ -49,18 +49,21 @@ const TailorCatalogScreen = () => {
   };
 
   return (
-    <div className="container-page">
-      <TailorAppBar color="#ffffff" activeTab={1} />
-      <div className="tailor_catalog_screen_row1">
-        <div className="tailor_catalog_screen_row1_column1" style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <p className="tailor_catalog_screen_row1_column1_text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    <div className='container-page'>
+      <TailorAppBar color='#ffffff' activeTab={1} />
+      <div className='tailor_catalog_screen_row1'>
+        <div className='tailor_catalog_screen_row1_column1' style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <p className='tailor_catalog_screen_row1_column1_text' style={{ paddingTop: '5%' }}>
+            {t(
+              'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.'
+            )}
           </p>
           <CustomButton
-            text={t('Add Catalogue')}
-            type="submit"
+            text={t('Add one of my creations')}
+            type='submit'
             style={{
               background: '#fff',
+              fontSize: '18px',
               color: '#CC8E9C',
               fontWeight: '600',
               boxShadow: 'none',
@@ -71,9 +74,9 @@ const TailorCatalogScreen = () => {
           />
         </div>
       </div>
-      <div className="tailor_catalog_screen_row2">
-        <p className="tailor_catalog_screen_row2_text">{t('My Catalogue')}</p>
-        <div className="tailor_catalog_screen_row2_list_container">
+      <div className='tailor_catalog_screen_row2'>
+        <p className='tailor_catalog_screen_row2_text'>{t('My Catalogue')}</p>
+        <div className='tailor_catalog_screen_row2_list_container'>
           {catalogs.map((_) => (
             <CatalogListTile
               catalog={_}

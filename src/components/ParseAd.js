@@ -230,7 +230,7 @@ function BasicSection({
           }}
         >
           <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Name')}</p>
+            <p className='pa_profile_section_input_text'>{t('Type')}</p>
           </div>
           <div className='pa_profile_section_input_input'>
             <CustomDropDown
@@ -240,7 +240,7 @@ function BasicSection({
               }}
               selectID='name'
               selectName='name'
-              selectNullValue={t('jupe longue')}
+              selectNullValue={t('Jupe longue')}
               selectValue={t(state.name)}
               onChange={(e) => _setState('name', e.target.value)}
               menuItems={
@@ -312,6 +312,7 @@ function BasicSection({
                 <MenuItem value={'L'}>L</MenuItem>,
                 <MenuItem value={'XL'}>XL</MenuItem>,
                 <MenuItem value={'XXL'}>XXL</MenuItem>,
+                <MenuItem value={'XXXL'}>XXXL</MenuItem>,
               ]}
             />
           </div>
@@ -452,10 +453,13 @@ function BasicSection({
             </div>
           </Tooltip>
         </div>
-        <p className='pa_profile_section_input_instructions_text'>{t("*I'm getting a tape measure")}</p>
-        <p className='pa_profile_section_input_instructions_text'>
-          {t('*depending on the garment, I measure certain parts of the body in circumference and/or length.')}
+        <p className='pa_profile_section_input_instructions_text' style={{ padding: '0 6%' }}>
+          {t("*I'm getting a tape measure. ")}
+          {t('Depending on the garment, I measure certain parts of the body in circumference and/or length.')}
         </p>
+        {/* <p className='pa_profile_section_input_instructions_text'>
+          {t('*depending on the garment, I measure certain parts of the body in circumference and/or length.')}
+        </p> */}
         <div
           className='pa_profile_section_input_container'
           style={{
@@ -662,7 +666,7 @@ function BasicSection({
                 fontSize: '12px',
               }}
               inputType='text'
-              inputPlaceholder={t('Page création client (détaillée)')}
+              inputPlaceholder={t('Details about my creation')}
               inputDefaultValue={state?.observation}
               onChange={(e) => _setState('observation', e.target.value)}
             />
