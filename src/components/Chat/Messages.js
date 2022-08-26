@@ -30,7 +30,7 @@ const Messages = ({}) => {
 
   return (
     <>
-      <div className="message-cont">
+      <div className='message-cont'>
         {store.messages.map((_) => (
           <MessageListTile {..._} />
         ))}
@@ -115,12 +115,12 @@ const MessageListTile = (props) => {
 
   return (
     <>
-      <Box sx={{ justifyContent: isSender ? 'right' : 'left' }} className="message-width">
+      <Box sx={{ justifyContent: isSender ? 'right' : 'left' }} className='message-width'>
         {isSender ? (
           <>
-            <img className="dot-msg" src={DotSVG} onClick={handleClickMenu} />
+            <img className='dot-msg' src={DotSVG} onClick={handleClickMenu} />
             <Menu
-              id="basic-menu"
+              id='basic-menu'
               anchorEl={anchorElMenu}
               open={openMenu}
               onClose={handleCloseMenu}
@@ -130,10 +130,10 @@ const MessageListTile = (props) => {
             >
               <MenuItem
                 style={{
-                  borderBottom: '1px solid #DBDBDB',
+                  // borderBottom: '1px solid #DBDBDB',
                   margin: '5px 20px',
                 }}
-                className="menu-item"
+                className='menu-item'
                 onClick={handleDelete}
               >
                 <p>{t('Delete')}</p>
@@ -149,12 +149,12 @@ const MessageListTile = (props) => {
             borderBottomRightRadius: isSender ? 'none' : '10px',
             borderTopLeftRadius: isSender ? '10px' : 'none',
           }}
-          className="msg-text"
+          className='msg-text'
           onClick={handleClick}
         >
           <p style={{ cursor: props.type != 'text' ? 'pointer' : 'auto' }}>{props.content}</p>
         </Box>
-        {props.role === 'receiver' ? <img className="dot-msg" src={DotSVG} /> : null}
+        {props.role === 'receiver' ? <img className='dot-msg' src={DotSVG} /> : null}
         {isSender ? <img src={SeenSCG} /> : null}
       </Box>
 

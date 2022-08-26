@@ -1,6 +1,6 @@
 .tailor_catalog_screen_row1 {
   width: 100vw;
-  height: 70vh;
+  height: 50vh;
   background: url('../../../assets/CatalogBackground.svg'), #c8a4a4;
   background-repeat: no-repeat;
   background-position: 0% 100%;
@@ -17,13 +17,13 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 59px;
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: -0.5px;
-  padding: 0 30%;
+  padding: 0 13%;
   margin-bottom: 2%;
   color: #ffffff;
 }

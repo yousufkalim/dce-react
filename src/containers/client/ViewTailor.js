@@ -199,21 +199,21 @@ function ClientViewTailorScreen() {
                     label={t('Diploma')}
                   />
 
-                  <ProfileInput
+                  {/* <ProfileInput
                     disabled
                     name='Area of Expertise'
                     placeholder={t('Area of Expertise')}
                     defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
                     // img={ProfileEmailSVG}
                     label={t('Area of Expertise')}
-                  />
+                  /> */}
                   <ProfileInput
                     disabled
-                    name='Shop name'
-                    placeholder={t('Shop Name')}
-                    defaultValue={tailor?.shop_name ? tailor?.shop_name : 'N/A'}
+                    name='Area of Expertise'
+                    placeholder={t('Area of Expertise')}
+                    defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
                     // img={ProfileBirthdaySVG}
-                    label={t('Shop name')}
+                    label={t('Area of Expertise')}
                     divStyle={{
                       marginBottom: '3%',
                       borderBottomLeftRadius: '10px',
@@ -268,7 +268,7 @@ function ClientViewTailorScreen() {
                     />
                   </div>
                 </div>
-                <div className='tailor_profile_screen_row1_column2'>
+                {/* <div className='tailor_profile_screen_row1_column2'>
                   <ProfileInput
                     divStyle={{
                       borderTopLeftRadius: '10px',
@@ -279,9 +279,9 @@ function ClientViewTailorScreen() {
                     placeholder={t('Country')}
                     defaultValue={tailor.name}
                     img={Profile}
-                    // label='Specialities'
+                    label='Specialities'
                   />
-                  {/* <ProfileInput disabled name='City' placeholder={t('City')} defaultValue={tailor.city} img={ProfileCitySVG} /> */}
+                  <ProfileInput disabled name='City' placeholder={t('City')} defaultValue={tailor.city} img={ProfileCitySVG} />
                   <ProfileInput
                     disabled
                     name='Location'
@@ -295,7 +295,7 @@ function ClientViewTailorScreen() {
                       marginBottom: '3%',
                     }}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div

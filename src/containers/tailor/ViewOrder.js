@@ -130,7 +130,7 @@ function TailorViewOrderScreen() {
                     fontWeight: '900',
                   }}
                 >
-                  {t('Client Basic')}
+                  {t('Details of the project submitted')}
                 </p>
                 <p
                   style={{
@@ -139,7 +139,7 @@ function TailorViewOrderScreen() {
                     marginBottom: '20%',
                   }}
                 >
-                  {t('Details')}
+                  {t('by the client')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
