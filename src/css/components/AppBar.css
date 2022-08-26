@@ -199,19 +199,13 @@
 /*  auth appbar */
 .auth_appbar_main {
   background: #ffffff !important;
+  z-index: 1;
   box-shadow: none !important;
-
-  /* height: 85px; */
+  position: sticky;
+  top: 0%;
   height: auto;
-
-  
-
 }
-.css-1cndkqf-MuiToolbar-root {
-  min-height: 81px;
-  /* border: 2px solid red; */
-  padding: 10px;
-}
+
 .auth_appbar_row1_img {
   max-width: 12vh !important;
   vertical-align: top;

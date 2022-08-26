@@ -732,7 +732,7 @@ i18n
           'D.C.E manages all the formalities relating to the provision of services':
             "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
           'Respond to an ad in just a few clicks!': 'Repondez à une annonce en quelques clics !',
-          About: 'À propos de',
+          About: 'À propos',
           Blog: 'Blog',
           Gallery: 'Galerie',
           REGISTRATION: 'INSCRIPTION',
