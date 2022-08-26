@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 
 const api = async (method = 'get', uri, body) => {
   // API Call
-  //const url = "http://192.168.0.145:5000/api" + uri;
-  const url = 'https://dce.falconit.com.pk/api' + uri;
+  const url = process.env.REACT_APP_SERVER_URL + uri;
   const token = localStorage.getItem('token');
   axios.defaults.headers = {
     Authorization: `Bearer ${token}`,
   };
+
   return new Promise((resolve, reject) => {
     axios[method](url, body)
       .then((res) => resolve(res))

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import FooterLogo from "../assets/FooterLogo.svg";
-import TwitterIcon from "../assets/TwitterIcon.svg";
-import InstagramIcon from "../assets/Instagram.svg";
-import { useTranslation } from "react-i18next";
-import Api from "../api/index";
+import React, { useState, useEffect } from 'react';
+import FooterLogo from '../assets/FooterLogo.svg';
+import TwitterIcon from '../assets/TwitterIcon.svg';
+import InstagramIcon from '../assets/Instagram.svg';
+import { useTranslation } from 'react-i18next';
+import Api from '../api/index';
 
-import { getToken } from "../utils/Auth";
+import { getToken } from '../utils/Auth';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   useEffect(() => {
@@ -21,34 +21,34 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const navToOrders = () => {
-    navigate("/orders");
+    navigate('/orders');
   };
 
   const navToQuotes = () => {
-    navigate("/quotes");
+    navigate('/quotes');
   };
 
   const navToCatalog = () => {
-    navigate("/catalog");
+    navigate('/catalog');
   };
 
   const navToSupport = () => {
-    navigate("/support_center");
+    navigate('/support_center');
   };
   const navToTermsAndConditions = () => {
-    navigate("/terms_and_conditions");
+    navigate('/terms_and_conditions');
   };
   const navToMyAds = () => {
-    navigate("/my_ads");
+    navigate('/my_ads');
   };
   const navToDesigner = () => {
-    navigate("/tailors");
+    navigate('/tailors');
   };
 
   const getProfile = async () => {
     let response;
     try {
-      response = await Api("get", `/auth`);
+      response = await Api('get', `/auth`);
       const userData = response.data.user;
       setProfile(userData);
     } catch (e) {
@@ -58,23 +58,23 @@ const Footer = () => {
   };
   return (
     <div className="footer_main_div">
-      <img src={FooterLogo} style={{ height: "50%" }}></img>
+      <img src={FooterLogo} style={{ height: '50%' }}></img>
 
       <div>
         <ul className="footer_list">
-          <li onClick={navToOrders}>{t("Orders")}</li>
-          {profile?.role === "client" ? <li onClick={navToMyAds}>{t("My Ads")}</li> : null}
-          {profile?.role === "client" ? <li onClick={navToDesigner}>{t("Designers")}</li> : null}
-          {profile?.role === "tailor" ? <li onClick={navToQuotes}>{t("Quotes")}</li> : null}
-          {profile?.role === "tailor" ? <li onClick={navToCatalog}>{t("Catalogue")}</li> : null}
-          <li onClick={navToSupport}>{t("Support")}</li>
-          <li onClick={navToTermsAndConditions}>{t("Terms and Conditions")}</li>
+          <li onClick={navToOrders}>{t('Orders')}</li>
+          {profile?.role === 'client' ? <li onClick={navToMyAds}>{t('My Ads')}</li> : null}
+          {profile?.role === 'client' ? <li onClick={navToDesigner}>{t('Designers')}</li> : null}
+          {profile?.role === 'tailor' ? <li onClick={navToQuotes}>{t('Quotes')}</li> : null}
+          {profile?.role === 'tailor' ? <li onClick={navToCatalog}>{t('Catalogue')}</li> : null}
+          <li onClick={navToSupport}>{t('Support')}</li>
+          <li onClick={navToTermsAndConditions}>{t('Terms and Conditions')}</li>
         </ul>
         <div className="footer_icon_div">
           <div>
             <p>
               © 2022 <span className="footer_bottom_text">Design Confections Ethiques</span>
-              {t(", Developed by Falcon Consulting. All rights reserved.")}
+              {t(', Developed by Falcon Consulting. All rights reserved.')}
             </p>
           </div>
           <div>

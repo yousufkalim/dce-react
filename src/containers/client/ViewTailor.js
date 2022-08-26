@@ -6,15 +6,19 @@ import AddCatalogSVG from '../../assets/AddOrder.svg';
 import ProfileBirthdaySVG from '../../assets/ProfileBirthday.svg';
 import ProfileCitySVG from '../../assets/ProfileCity.svg';
 import ProfileCountrySVG from '../../assets/ProfileCountry.svg';
+import Profile from '../../assets/profile_.svg';
+
 import ProfileEmailSVG from '../../assets/ProfileEmail.svg';
 import ProfileLocationSVG from '../../assets/ProfileLocation.svg';
 import ProfilePhoneSVG from '../../assets/ProfilePhone.svg';
 import dummy from '../../assets/dummy.jpeg';
 import { useTranslation } from 'react-i18next';
+import DesignElaborationSVG from '../../assets/profile-.svg';
 
 import ClientAppBar from '../../components/ClientAppBar';
 import Footer from '../../components/Footer';
 import CustomButton from '../../components/CustomButton';
+// import CustomInput from '../common/CustomInput';
 
 import CatalogListTile from '../../components/CatalogListTile';
 import OrderListTile from '../../components/OrderListTile';
@@ -86,6 +90,7 @@ function ClientViewTailorScreen() {
     try {
       response = await Api('get', `/tailors/${params.id}`);
       const userData = response.data.user;
+      console.log(userData, 'userData');
       setTailor(userData);
       setIsLoading(false);
     } catch (e) {
@@ -108,26 +113,27 @@ function ClientViewTailorScreen() {
 
   return (
     <>
+      {console.log('tailor', tailor)}
       {isLoading ? (
         <></>
       ) : (
         <div
           style={{
-            height: '190vh',
+            // height: '190vh',
             width: '100vw',
           }}
         >
-          <ClientAppBar color="#FCFCFC" activeTab={0} />
+          <ClientAppBar color='#FCFCFC' activeTab={0} />
 
           <div
-            className="client_profile_screen_top"
+            className='client_profile_screen_top'
             style={{
               background:
                 'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
-            <div className="designer-prof">
-              <p className="D-profile">Designer Profile</p>{' '}
+            <div className='designer-prof'>
+              <p className='D-profile'>Designer Profile</p>{' '}
               <CustomButton
                 padding={'15px 37px'}
                 style={{ borderRadius: '15px', boxShadow: 'none' }}
@@ -135,119 +141,179 @@ function ClientViewTailorScreen() {
                 onClick={navToChat}
               />
             </div>
-            <div
-              className="tailor_profile_screen_row1"
-              style={{
-                borderBottomColor: '#DBDBDB',
-                borderBottomStyle: 'solid',
-                borderBottomWidth: '1.5px',
-              }}
-            >
-              <div className="tailor_profile_screen_row1_column1">
-                <div className="tailor_profile_screen_row1_column1_header_text"></div>
-                <div
-                  className="tailor_profile_screen_row1_column1_img"
-                  style={{
-                    paddingBottom: '5%',
-                  }}
-                >
-                  <img
-                    className="image_container"
+
+            <div style={{ display: 'flex', width: '100%', padding: '0 3%', justifyContent: 'center' }}>
+              <div style={{ width: '40%' }}>
+                <img style={{ width: '88%' }} src={DesignElaborationSVG} />
+              </div>
+              <div
+                className='tailor_profile_screen_row1'
+                style={{
+                  borderBottomColor: '#DBDBDB',
+                  borderBottomStyle: 'solid',
+                  borderBottomWidth: '1.5px',
+                  background: '#ffff',
+                  borderRadius: '20px',
+                }}
+              >
+                <div className='tailor_profile_screen_row1_column1'>
+                  <div className='tailor_profile_screen_row1_column1_header_text'></div>
+                  <div
+                    className='tailor_profile_screen_row1_column1_img'
                     style={{
-                      height: '80pt',
-                      width: '80pt',
+                      paddingBottom: '5%',
                     }}
-                    src={tailor?.avatar ? assetsURL(tailor?.avatar) : dummy}
+                  >
+                    <img
+                      className='image_container'
+                      style={{
+                        height: '80pt',
+                        width: '80pt',
+                      }}
+                      src={tailor?.avatar ? assetsURL(tailor?.avatar) : dummy}
+                    />
+                  </div>
+                  <p className='tailor_profile_screen_row1_column1_user_name_text'>{tailor.name}</p>
+                </div>
+
+                <div className='tailor_profile_screen_row1_column2'>
+                  <ProfileInput
+                    disabled
+                    name='Experience'
+                    placeholder={t('Experience')}
+                    defaultValue={tailor.experience ? tailor.experience : 'N/A'}
+                    label={t('Experience')}
+                    // img={ProfilePhoneSVG}
+                    divStyle={{
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
+                    }}
+                    onChange={(e) => _setState('phone', e.target.value)}
+                  />
+                  <ProfileInput
+                    disabled
+                    name='Diploma'
+                    placeholder={t('Diploma')}
+                    defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
+                    // img={ProfileEmailSVG}
+                    label={t('Diploma')}
+                  />
+
+                  <ProfileInput
+                    disabled
+                    name='Area of Expertise'
+                    placeholder={t('Area of Expertise')}
+                    defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
+                    // img={ProfileEmailSVG}
+                    label={t('Area of Expertise')}
+                  />
+                  <ProfileInput
+                    disabled
+                    name='Shop name'
+                    placeholder={t('Shop Name')}
+                    defaultValue={tailor?.shop_name ? tailor?.shop_name : 'N/A'}
+                    // img={ProfileBirthdaySVG}
+                    label={t('Shop name')}
+                    divStyle={{
+                      marginBottom: '3%',
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
+                    }}
                   />
                 </div>
-                <p className="tailor_profile_screen_row1_column1_user_name_text">
-                  {tailor.name}
-                </p>
-              </div>
-              <div className="tailor_profile_screen_row1_column2">
-                <ProfileInput
-                  disabled
-                  name="Phone"
-                  placeholder={t('Phone')}
-                  defaultValue={tailor.phone}
-                  img={ProfilePhoneSVG}
-                  divStyle={{
-                    borderTopLeftRadius: '10px',
-                    borderTopRightRadius: '10px',
+                {/* <div
+                  className='pa_profile_section_input_container'
+                  style={{
+                    borderRadius: '20px',
+                    marginBottom: '1%',
+                    height: '80px',
                   }}
-                  onChange={(e) => _setState('phone', e.target.value)}
-                />
-                <ProfileInput
-                  disabled
-                  name="Email"
-                  placeholder={t('Email')}
-                  defaultValue={tailor.email}
-                  img={ProfileEmailSVG}
-                />
-                <ProfileInput
-                  disabled
-                  name="Date Of Birth"
-                  placeholder={t('Date Of Birth')}
-                  defaultValue={tailor?.dob? new Date(tailor?.dob).toLocaleDateString(
-                    'en-gb'
-                  ):""}
-                  img={ProfileBirthdaySVG}
-                  divStyle={{
-                    marginBottom: '3%',
-                    borderBottomLeftRadius: '10px',
-                    borderBottomRightRadius: '10px',
+                >
+                  <div className='pa_profile_section_input_label'>
+                    <p className='pa_profile_section_input_text'>{t('Observation')}</p>
+                  </div>
+                  <div className='pa_profile_section_input_input'>
+                    <CustomInput
+                      disabled={disabled}
+                      labelStyle={{
+                        display: 'none',
+                      }}
+                      inputStyle={{
+                        border: 'none',
+                        fontSize: '12px',
+                      }}
+                      inputType='text'
+                      inputPlaceholder={t('Page Creation client(detaillee)')}
+                      // inputDefaultValue={state?.obervation}
+                      // onChange={(e) => _setState('obervation', e.target.value)}
+                    />
+                  </div>
+                </div> */}
+                <div
+                  className='pa_profile_section_textarea_container'
+                  style={{
+                    borderRadius: '20px',
+                    marginTop: '2%',
+                    marginBottom: '5%',
+                    paddingTop: '2%',
                   }}
-                />
-              </div>
-              <div className="tailor_profile_screen_row1_column2">
-                <ProfileInput
-                  divStyle={{
-                    borderTopLeftRadius: '10px',
-                    borderTopRightRadius: '10px',
-                  }}
-                  disabled
-                  name="Country"
-                  placeholder={t('Country')}
-                  defaultValue={tailor.country}
-                  img={ProfileCountrySVG}
-                />
-                <ProfileInput
-                  disabled
-                  name="City"
-                  placeholder={t('City')}
-                  defaultValue={tailor.city}
-                  img={ProfileCitySVG}
-                />
-                <ProfileInput
-                  disabled
-                  name="Location"
-                  placeholder={t('Location')}
-                  defaultValue={tailor.address}
-                  img={ProfileLocationSVG}
-                  divStyle={{
-                    borderBottomLeftRadius: '10px',
-                    borderBottomRightRadius: '10px',
-                    marginBottom: '3%',
-                  }}
-                />
+                >
+                  <div className='pa_profile_section_textarea_label'>
+                    <p className='pa_profile_section_input_text'>{t('Bio')}</p>
+                  </div>
+                  <div className='pa_profile_section_input_input'>
+                    <textarea
+                      style={{ border: 'none', width: '100%', height: '80px', resize: 'none' }}
+                      placeholder='About Yourself'
+                    />
+                  </div>
+                </div>
+                <div className='tailor_profile_screen_row1_column2'>
+                  <ProfileInput
+                    divStyle={{
+                      borderTopLeftRadius: '10px',
+                      borderTopRightRadius: '10px',
+                    }}
+                    disabled
+                    name='Country'
+                    placeholder={t('Country')}
+                    defaultValue={tailor.name}
+                    img={Profile}
+                    // label='Specialities'
+                  />
+                  {/* <ProfileInput disabled name='City' placeholder={t('City')} defaultValue={tailor.city} img={ProfileCitySVG} /> */}
+                  <ProfileInput
+                    disabled
+                    name='Location'
+                    placeholder={t('Location')}
+                    defaultValue={tailor.address}
+                    img={ProfileLocationSVG}
+                    // label='Nick name'
+                    divStyle={{
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
+                      marginBottom: '3%',
+                    }}
+                  />
+                </div>
               </div>
             </div>
-            <div
-              className="tailor_profile_screen_row2"
+            {/* <div
+              className='tailor_profile_screen_row2'
               style={{
                 height: '20%',
               }}
             >
-              <div className="tailor_profile_screen_row2_list_container">
-                {/* <div className="tailor_profile_screen_row2_column1">
+              <div className='tailor_profile_screen_row2_list_container'>
+                <div className="tailor_profile_screen_row2_column1">
                   <p className="tailor_profile_screen_row2_column1_text">
                     Hourly Rate
                   </p>
-                </div> */}
-                <div className="tailor_profile_screen_row2_column2">
+                </div>
+                <div className='tailor_profile_screen_row2_column2'>
                   <ProfileInput
                     disabled
-                    name="Fixed price"
+                    name='Fixed price'
                     placeholder={t('Certain Amount')}
                     label={t('Fixed price')}
                     divStyle={{
@@ -259,11 +325,11 @@ function ClientViewTailorScreen() {
                   />
                   <ProfileInput
                     disabled
-                    name="Any Confection"
-                    placeholder="€120"
+                    name='Any Confection'
+                    placeholder='€120'
                     defaultValue={tailor.hourly_rate}
                     label={t('Any Confection')}
-                    inputType="number"
+                    inputType='number'
                     divStyle={{
                       borderBottomLeftRadius: '10px',
                       borderBottomRightRadius: '10px',
@@ -274,16 +340,16 @@ function ClientViewTailorScreen() {
                   />
                 </div>
               </div>
-              <div className="tailor_profile_screen_row2_list_container">
-                {/* <div className="tailor_profile_screen_row2_column1">
+              <div className='tailor_profile_screen_row2_list_container'>
+                <div className="tailor_profile_screen_row2_column1">
                   <p className="tailor_profile_screen_row2_column1_text">
                     Free Shipping
                   </p>
-                </div> */}
-                <div className="tailor_profile_screen_row2_column2">
+                </div>
+                <div className='tailor_profile_screen_row2_column2'>
                   <ProfileInput
                     disabled
-                    name="Free Shipping"
+                    name='Free Shipping'
                     placeholder={t('Certain Amount')}
                     label={t('Free Shipping')}
                     divStyle={{
@@ -295,34 +361,32 @@ function ClientViewTailorScreen() {
                   />
                   <ProfileInput
                     disabled
-                    name="Confection"
-                    placeholder="500€"
+                    name='Confection'
+                    placeholder='500€'
                     defaultValue={tailor.free_shipping_rate}
-                    label="Confection"
-                    inputType="number"
+                    label='Confection'
+                    inputType='number'
                     divStyle={{
                       borderBottomLeftRadius: '10px',
                       borderBottomRightRadius: '10px',
                       padding: '1.0% 0',
                     }}
-                    onChange={(e) =>
-                      _setState('free_shipping_rate', e.target.value)
-                    }
+                    onChange={(e) => _setState('free_shipping_rate', e.target.value)}
                     alignText={'textend'}
                   />
                 </div>
               </div>
-            </div>
-            <div className="tailor_profile_screen_row3">
+            </div> */}
+            <div className='tailor_profile_screen_row3'>
               <p
-                className="tailor_profile_screen_row3_text"
+                className='tailor_profile_screen_row3_text'
                 style={{
                   marginRight: '2%',
                 }}
               >
                 {t('Catalogue')}
               </p>
-              <div className="tailor_profile_screen_row3_list_container">
+              <div className='tailor_profile_screen_row3_list_container'>
                 {catalogs.map((_) => (
                   <CatalogListTile
                     catalog={_}
@@ -336,16 +400,16 @@ function ClientViewTailorScreen() {
                 ))}
               </div>
             </div>
-            <div className="tailor_profile_screen_row3">
+            <div className='tailor_profile_screen_row3'>
               <p
-                className="tailor_profile_screen_row3_text"
+                className='tailor_profile_screen_row3_text'
                 style={{
                   marginRight: '2%',
                 }}
               >
                 {t('Orders')}
               </p>
-              <div className="tailor_profile_screen_row3_list_container">
+              <div className='tailor_profile_screen_row3_list_container'>
                 <AddOrderListTile id={params.id} />
                 {orders.map((_) => (
                   <OrderListTile
@@ -354,7 +418,7 @@ function ClientViewTailorScreen() {
                     mainDivStyle={{
                       width: '14%',
                     }}
-                    viewAs="client"
+                    viewAs='client'
                   />
                 ))}
               </div>
@@ -367,23 +431,12 @@ function ClientViewTailorScreen() {
   );
 }
 
-function ProfileInput({
-  name,
-  onChange,
-  placeholder,
-  defaultValue,
-  inputType,
-  img,
-  label,
-  disabled,
-  divStyle,
-  alignText,
-}) {
+function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, img, label, disabled, divStyle, alignText }) {
   const { t } = useTranslation();
 
   return (
     <div
-      className="tps_profile_input_container"
+      className='tps_profile_input_container'
       style={{
         ...divStyle,
       }}
@@ -397,11 +450,7 @@ function ProfileInput({
       >
         <input
           disabled={disabled}
-          className={
-            alignText == 'textend'
-              ? 'tps_profile_input_text_end'
-              : 'tps_profile_input_input'
-          }
+          className={alignText == 'textend' ? 'tps_profile_input_text_end' : 'tps_profile_input_input'}
           name={name}
           onChange={onChange}
           placeholder={placeholder}
@@ -446,11 +495,11 @@ function AddOrderListTile(props) {
   };
 
   return (
-    <div className="new_order_list_tile order-now" onClick={navToCreateOrder}>
-      <div className="new_order_list_tile_img">
+    <div className='new_order_list_tile order-now' onClick={navToCreateOrder}>
+      <div className='new_order_list_tile_img'>
         <img style={{ width: '40%' }} src={AddCatalogSVG} />
       </div>
-      <p className="new_order_list_tile_text">{t('Place Order')}</p>
+      <p className='new_order_list_tile_text'>{t('Place Order')}</p>
     </div>
   );
 }

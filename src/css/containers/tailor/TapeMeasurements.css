@@ -1,25 +1,24 @@
-.measurement-container{
-    display: flex;
-    justify-content: space-between;
+.measurement-container {
+  display: flex;
+  justify-content: space-between;
 }
-.container-circumference{
-    width: 50%;
-}
-
-.container-length{
-width: 50%;
+.container-circumference {
+  width: 50%;
 }
 
-.heading-measurements{
-    font-family: 'Urbanist';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
-    line-height: 38px;
-    color: #A0A0A0;
-    padding: 2% 0%;
-}
-.cross-img-container{
-    text-align: end;
+.container-length {
+  width: 50%;
 }
 
+.heading-measurements {
+  font-family: 'Urbanist';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 38px;
+  color: #a0a0a0;
+  padding: 2% 0%;
+}
+.cross-img-container {
+  text-align: end;
+}

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import ClientAppBar from "../../components/ClientAppBar";
-import Footer from "../../components/Footer";
-import addicon from "../../assets/addicon.svg";
-import SearchIcon from "../../assets/search1.svg";
-import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
+import ClientAppBar from '../../components/ClientAppBar';
+import Footer from '../../components/Footer';
+import addicon from '../../assets/addicon.svg';
+import SearchIcon from '../../assets/search1.svg';
+import { useTranslation } from 'react-i18next';
 
-import error from "../../assets/errorfaqs.svg";
+import error from '../../assets/errorfaqs.svg';
 function Faqs() {
   const { t } = useTranslation();
 
@@ -13,18 +13,18 @@ function Faqs() {
   return (
     <>
       <ClientAppBar />
-      <div style={{ background: "#DFDFDF" }} className="container">
-        <div style={{ height: "100vh" }} className="faq-container">
-          <p className="frequently-asked-q">{t("Frequently Asked Question")}</p>
+      <div style={{ background: '#DFDFDF' }} className="container">
+        <div style={{ height: '100vh' }} className="faq-container">
+          <p className="frequently-asked-q">{t('Frequently Asked Question')}</p>
           <p className="freq-asked-text">
             {t(
-              "A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries"
+              'A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries'
             )}
           </p>
           <SearchInput />
           <div className="faq-q-container">
             {faqImage ? (
-              <img style={{ width: "40%" }} src={error} />
+              <img style={{ width: '40%' }} src={error} />
             ) : (
               <>
                 <Questions />
@@ -49,17 +49,17 @@ function SearchInput({}) {
     <>
       <div
         style={{
-          position: "relative",
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
+          position: 'relative',
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
         }}
       >
         <div
           style={{
-            justifyContent: "end",
-            alignItems: "end",
-            display: "flex",
+            justifyContent: 'end',
+            alignItems: 'end',
+            display: 'flex',
           }}
         >
           <input type="text" placeholder="Ask your Question" className="search-input-faqs" />

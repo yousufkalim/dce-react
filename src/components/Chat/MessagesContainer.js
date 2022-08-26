@@ -13,12 +13,7 @@ const MessagesContainer = ({ width, mobiletoggle, directUser }) => {
     <>
       <Box
         sx={{
-          display:
-            width <= 768 && mobiletoggle
-              ? 'block'
-              : width > 768
-              ? 'block'
-              : 'none',
+          display: width <= 768 && mobiletoggle ? 'block' : width > 768 ? 'block' : 'none',
           width: width <= 768 ? '100%' : '55%',
         }}
         className="c-body"

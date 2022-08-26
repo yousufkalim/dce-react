@@ -80,6 +80,20 @@
   border-width: 0.5px;
   cursor: pointer;
 }
+.pa_profile_section_textarea_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6% 0;
+  width: 96%;
+  background-color: transparent;
+  border-color: #DBDBDB;
+  border-style: solid;
+  border-width: 0.5px;
+  border-radius: 10px 10px 10px 10px !important;
+  cursor: pointer;
+}
 .dots-measurement {
   margin: 0px 7%;
   cursor: pointer;
@@ -91,6 +105,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
+}
+.pa_profile_section_textarea_label {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
 }
 
@@ -117,8 +138,7 @@
 .upload-pic-label {
   width: 93%;
 }
-a
-.size-measurement-cont {
+a .size-measurement-cont {
   display: flex;
   width: 65%;
   justify-content: space-between;

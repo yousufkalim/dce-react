@@ -92,13 +92,13 @@ const Landing = () => {
               <h3 className='how_work_heading2 how_work_heading2_s' style={{ fontSize: "40px" }}>{t('In a few clicks, D.C.E allows you to find "sewing project" missions')}</h3>
               <div className='submit_main_card'>
                 <div className='card_ss'>
-                  <h4 className='submit_main_cardh4'  >{t('Choose your')}</h4>
-                  <h4 className='submit_main_cardh4' >{t('assignments')}</h4>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b'  >{t('Choose your')}</h4>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('assignments')}</h4>
 
                 </div>
                 <div className='card_ss'>
-                  <h4 className='submit_main_cardh4' >{t('Fixez vos')}</h4>
-                  <h4 className='submit_main_cardh4' >{t('conditions')}</h4>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('Fixez vos')}</h4>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('conditions')}</h4>
                 </div>
                 <div className='card_ss'>
                   <h4 className='submit_main_cardh4' >{t('Traitez en')}</h4>

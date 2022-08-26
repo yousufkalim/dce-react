@@ -5,11 +5,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import assetsURL from '../utils/Assets';
 
-export default function CustomCarousel({
-  images,
-  displayImageIndex,
-  setDisplayImageIndex,
-}) {
+export default function CustomCarousel({ images, displayImageIndex, setDisplayImageIndex }) {
   return (
     <div
       style={{

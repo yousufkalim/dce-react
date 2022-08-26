@@ -23,12 +23,12 @@ function TailorVerifyEmailScreen() {
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [resendCode, setResendCode] = useState(false)
-  const [otpValue, setotpValue] = useState('')
+  const [resendCode, setResendCode] = useState(false);
+  const [otpValue, setotpValue] = useState('');
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password'] || !state?.['otp']) {
-      navigate('/login');
+      navigate('/tailor_login');
     }
   }, []);
 
@@ -51,15 +51,15 @@ function TailorVerifyEmailScreen() {
       return;
     }
 
-    if(resendCode){
-      if (data.get("Verification Code") != resendCode) {
-        toast.error("OTP is incorrect.");
+    if (resendCode) {
+      if (data.get('Verification Code') != resendCode) {
+        toast.error('OTP is incorrect.');
         return;
       }
     }
-    if(!resendCode){
-      if (data.get("Verification Code") != state.otp.otp) {
-        toast.error("OTP is incorrect.");
+    if (!resendCode) {
+      if (data.get('Verification Code') != state.otp.otp) {
+        toast.error('OTP is incorrect.');
         return;
       }
     }
@@ -103,10 +103,10 @@ function TailorVerifyEmailScreen() {
         email: state?.Email,
         password: state?.Password,
       };
-      response = await Api("post", "/otps", body);
+      response = await Api('post', '/otps', body);
       if (response?.data?.success) {
         toast.success(response.data.message);
-        setResendCode(response?.data?.otp?.otp)
+        setResendCode(response?.data?.otp?.otp);
       }
     } catch (e) {
       console.trace(e);
@@ -126,10 +126,7 @@ function TailorVerifyEmailScreen() {
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img">
-              <img
-                style={{ width: '35%', marginBottom: '5%' }}
-                src={AppLogoSVG}
-              />
+              <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
             </div>
             <div className="login_screen_row1_img">
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
@@ -169,9 +166,9 @@ function TailorVerifyEmailScreen() {
                   marginBottom: '6%',
                 }}
                 inputValue={otpValue}
-                onChange={(e)=>setotpValue(e.target.value.replace(/[^0-9]/g, ''))}
+                onChange={(e) => setotpValue(e.target.value.replace(/[^0-9]/g, ''))}
               />
-               <div onClick={resendVerificationCode} className="resend_code">
+              <div onClick={resendVerificationCode} className="resend_code">
                 <small>Resend Code</small>
               </div>
               <CustomButton
