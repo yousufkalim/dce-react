@@ -700,7 +700,7 @@ i18n
           "Registration":"Inscription",
           "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
           "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-          "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confections !",
+          "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confection !",
          "Choose your":"Choisissez vos",
          "assignments":"missions",
          "Fix your":"Fixez vos",
@@ -727,7 +727,7 @@ i18n
           'How it works ?': 'Comment ça marche ?',
           'Find customers who match you!': 'Trouvez des clients qui vous correspondent !',
           'D.C.E puts you in touch with potential customers suited to your profile':
-            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
+            'D.C.E vous met en relation avec des clients potentiels adaptés à votre profil',
           'Focus on the essentials!': "Concentrez-vous sur l'essentiel !",
           'D.C.E manages all the formalities relating to the provision of services':
             "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
@@ -737,7 +737,7 @@ i18n
           Gallery: 'Galerie',
           REGISTRATION: 'INSCRIPTION',
           'D.C.E puts you in touch with potential customers suited to your profile':
-            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
+            'D.C.E vous met en relation avec des clients potentiels adaptés à votre profil',
           'D.C.E manages all the formalities relating to the provision of services':
             "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
           // client home
