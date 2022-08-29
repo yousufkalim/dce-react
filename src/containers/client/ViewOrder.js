@@ -107,7 +107,7 @@ function ClientViewOrderScreen() {
         <div className='container-page'>
           <ClientAppBar color='#F8F4EF' activeTab={1} />
           <div
-            className='container'
+            className='containerOrder'
             style={{
               background: '#FFE9A0',
               height: '129vh',
@@ -161,7 +161,7 @@ function ClientViewOrderScreen() {
             className='container'
             style={{
               background: '#FFC396',
-              height: '80vh',
+              height: '90vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>

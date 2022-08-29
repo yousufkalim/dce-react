@@ -116,10 +116,10 @@ function TailorViewOrderScreen() {
         <div className='container-page'>
           <TailorAppBar color='#F8F4EF' activeTab={2} />
           <div
-            className='container'
+            className='containerOrder'
             style={{
               background: '#FFE9A0',
-              height: '131vh',
+              height: '138vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>
@@ -217,12 +217,12 @@ function TailorViewOrderScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className='container_'
             style={{
               background: '#FFFCFB',
             }}
           >
-            <div className='client_edit_ad_screen_row1'>
+            <div className='client_edit_ad_screen_row1' style={{ paddingTop: '5%' }}>
               <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
