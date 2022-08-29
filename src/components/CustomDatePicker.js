@@ -7,8 +7,10 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { InputAdornment } from '@mui/material';
 import Birthday from '../assets/Birthday.svg';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@mui/styles';
+import frLocale from 'date-fns/locale/fr';
+import enLocale from 'date-fns/locale/en-US';
 
 function CustomDatePicker({
   labelText,
@@ -21,12 +23,16 @@ function CustomDatePicker({
   labelStyle,
   dobinput,
   centeredText,
+  props,
 }) {
   const [open, setOpen] = useState(false);
-
+  React.useEffect(() => {
+    setLng(localStorage.getItem('i18nextLng'));
+  }, [localStorage.getItem('i18nextLng')]);
   const useStyles = makeStyles((theme) => ({
     textfield: {
       textAlign: 'center',
+      border: 'none',
     },
     inputLabels: {
       display: 'flex',
@@ -36,7 +42,6 @@ function CustomDatePicker({
       lineHeight: '151.02 !important%',
       color: '#363557 !important',
       '&  .MuiInputLabel-formControl': { textAlign: 'center !important' },
-
       '@media (max-width:992px)': {
         fontSize: '20px !important',
       },
@@ -47,16 +52,29 @@ function CustomDatePicker({
     },
   }));
   const classes = useStyles();
+  const { t } = useTranslation();
+  const [lng, setLng] = React.useState();
+
+  const localeMap = {
+    en: enLocale,
+    fr: frLocale,
+  };
+
+  const maskMap = {
+    fr: '__/__/____',
+    en: '__/__/____',
+  };
+
   return (
     <div
-      className="custom_input_container"
+      className='custom_input_container'
       style={{
         ...divStyle,
       }}
     >
       <label
         htmlFor={labelText}
-        className="custom_input_label"
+        className='custom_input_label'
         style={{
           ...labelStyle,
         }}
@@ -76,14 +94,23 @@ function CustomDatePicker({
         {centeredText ? (
           <>
             <div style={{ position: 'absolute', padding: '1%' }}>
-              <img src={Birthday} />
+              <p style={{ textAlign: 'center', fontSize: '12px', fontWeight: '500', marginTop: '7%' }}>{t('Date of Birth')}</p>
             </div>
           </>
-        ) : null}
+        ) : (
+          <>
+            {/* {props.birthday && (
+              <div style={{ position: 'absolute', padding: '1%' }}>
+                <img src={Birthday}></img>
+              </div>
+            )} */}
+          </>
+        )}
 
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[lng]}>
           <DesktopDatePicker
-            className="datepck"
+            mask={maskMap[lng]}
+            className='datepck'
             open={open}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
@@ -91,7 +118,7 @@ function CustomDatePicker({
             onChange={onChange}
             disablePast={disablePast}
             disableFuture={disableFuture}
-            inputFormat="dd/MM/yyyy"
+            inputFormat='dd/MM/yyyy'
             renderInput={(params) => (
               <TextField
                 {...params}

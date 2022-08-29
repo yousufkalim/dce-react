@@ -71,7 +71,7 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
         <p className='tailor_catalog_list_tile_title'>{catalog.name}</p>
         <div className='tailor_catalog_list_tile_details'>
           <p className='tailor_catalog_list_tile_price_detail'>{t('Stitching Price')}</p>
-          <p className='tailor_catalog_list_tile_price'>€{catalog.price}</p>
+          <p className='tailor_catalog_list_tile_price'>{catalog.price}€</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">

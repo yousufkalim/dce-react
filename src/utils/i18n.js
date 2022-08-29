@@ -38,6 +38,7 @@ i18n
             'D.C.E puts you in touch with potential customers suited to your profile',
           'D.C.E manages all the formalities relating to the provision of services':
             'D.C.E manages all the formalities relating to the provision of services',
+          WOMEN: 'WOMEN',
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
@@ -130,14 +131,14 @@ i18n
           Basic: 'Basic',
           Notes: 'Notes',
           Delivery: 'Delivery',
-          "*I'm getting a tape measure. ": "*I'm getting a tape measure",
+          "*I'm getting a tape measure.": "*I'm getting a tape measure.",
           '*depending on the garment, I measure certain parts of the body in circumference and/or length.':
             '*depending on the garment, I measure certain parts of the body in circumference and/or length.',
           'Dominant color': 'Dominant color',
           'Dominant Fabric': 'Dominant Fabric',
           'I select the category to which my con...': 'I select the category to which my con...',
           'I give a name to my confection': 'I give a name to my confection',
-          'My Measurements': 'My Measurements',
+          Measurements: 'Measurements',
           "I'm taking my measurements": "I'm taking my measurements",
           'upload an illustration of your creation': 'upload an illustration of your creation',
           size: 'size',
@@ -677,7 +678,7 @@ i18n
           'Submit Your Project here!': 'DÉPOSEZ ICI VOTRE PROJET !',
           'desired delivery date': 'date de livraison souhaitée',
           'Find your sewing assignments': 'Trouvez vos devoirs de couture',
-          Type: 'Taper',
+          Type: 'Type',
           //client navbar
           Designers: 'Professionnels',
           Orders: 'Commandes',
@@ -694,7 +695,7 @@ i18n
           View: 'Voir',
           'Delivery Note': 'Bon de livraison',
           'My Profile': 'Mon profil',
-
+          WOMEN: 'Femmes',
           //Profile
           Edit: 'Modifier',
           Phone: 'Téléphone',
@@ -704,7 +705,7 @@ i18n
           Country: 'Pays',
           Location: 'Localisation',
           'Last Password Changed': 'Dernier mot de passe modifié',
-          Password: 'Le mot de passe',
+          Password: 'Mot de passe',
           'Account Created': 'Compte crééle',
           'Ad updated successfully.': 'Annonce mise à jour avec succès.',
           'Place this Order': 'Passer commande',
@@ -739,14 +740,14 @@ i18n
           Delivery: 'Livraison',
           Payment: 'Paiement',
           'Profile updated successfully.': 'Mise à jour du profil réussie.',
-          "*I'm getting a tape measure": "Je me munis d'un mètre ruban",
+          "*I'm getting a tape measure.": "*Je me munis d'un mètre ruban. ",
           'Depending on the garment, I measure certain parts of the body in circumference and/or length.':
             'En fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur',
           'Dominant color': 'Couleur dominante',
           'Dominant Fabric': 'Tissu dominant',
           'I select the category to which my con...': 'Je sélectionne la catégorie à laquelle mon con...',
           'I give a name to my confection': 'Je donne un nom à ma confection',
-          'My Measurements': 'Mes mensurations',
+          Measurements: 'Mensurations',
           "I'm taking my measurements": 'Je prends mes mesures',
           'upload an illustration of your creation': 'Téléchargez une illustration de votre création',
           size: 'Taille',
@@ -944,7 +945,7 @@ i18n
           //order
           'Orders Requests': 'Projets déposés par les clients',
           'In Progress': 'Commandes en cours',
-          Completed: 'Commandes Terminés',
+          Completed: 'Commandes Terminées',
           Discarded: 'Commandes annulées',
           Offer: 'Offre',
 
@@ -1147,7 +1148,7 @@ i18n
           'ORDER COMPLETION ?': 'COMPLÉTER DE LA COMMANDE ?',
           pending: 'en attente',
           'in progress': 'en cours',
-          completed: 'Terminé',
+          completed: 'terminée',
           discarded: 'mis au rebut',
           'Sent you an order request.': 'Vous a envoyé une demande de commande.',
           'Order request accepted.': 'Demande de commande acceptée.',

@@ -421,8 +421,9 @@ function TailorProfileScreen() {
                       />
                       <CustomDatePicker
                         disabled={!toEdit}
-                        // centeredText={true}
+                        centeredText={true}
                         disableFuture
+                        dobinput
                         labelStyle={{
                           display: 'none',
                         }}
@@ -434,7 +435,46 @@ function TailorProfileScreen() {
                           marginTop: '2%',
                         }}
                       />
-                      <div style={{ width: '95%' }}>
+
+                      <div
+                        className='pa_profile_section_input_container_'
+                        style={{
+                          borderRadius: '20px',
+                          marginBottom: '2%',
+                          height: '45px',
+                          borderRadius: '10px !important',
+                          marginTop: '2%',
+                          width: '95%',
+                        }}
+                      >
+                        <div className='pa_profile_section_input_label_'>
+                          <p
+                            className='pa_profile_section_input_text_'
+                            style={{ width: '60% !important', marginLeft: '4% !important' }}
+                          >
+                            {t('Address')}
+                          </p>
+                        </div>
+                        <div className='pa_profile_section_input_input'>
+                          <div style={{ width: '100%' }}>
+                            <AutoComplete
+                              disabled={!toEdit}
+                              name='Address'
+                              required={true}
+                              label={'Address'}
+                              value={address?.label}
+                              options={addresses}
+                              placeholder={t('Address')}
+                              onChangeAddress={(e) => {
+                                handleInputAddress(e);
+                              }}
+                              onAddressSelect={(e) => handleSelectAddress(e)}
+                              defaultValue={address.label}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {/* <div style={{ width: '95%' }}>
                         <AutoComplete
                           disabled={!toEdit}
                           name='Address'
@@ -449,7 +489,7 @@ function TailorProfileScreen() {
                           onAddressSelect={(e) => handleSelectAddress(e)}
                           defaultValue={address.label}
                         />
-                      </div>
+                      </div> */}
                     </div>
                     <div className='tailor_profile_screen_row1_column2_'>
                       <ProfileInput
