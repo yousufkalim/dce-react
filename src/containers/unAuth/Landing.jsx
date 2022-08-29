@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // router link
-import { Link, useLocation  } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 //  translation
 import { useTranslation } from 'react-i18next';
 import UnAuthAppBar from '../../components/UnAuthAppBar'
 import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
-import {Helmet} from "react-helmet";
+
 const Landing = () => {
-  let {pathname} = useLocation();
+
   const { t, i18n } = useTranslation();
-  // const [first, setfirst] = useState(false)
+  
   const { language } = i18n;
   const lang = () => {
   
@@ -19,12 +19,6 @@ const Landing = () => {
   };
 
 
-
-
-useEffect(() => {
- var chat = document.getElementById('chats')
- console.log(chat)
-}, [])
 
   useEffect(() => {
     lang();
@@ -159,7 +153,7 @@ useEffect(() => {
             {' '}
             <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
               {' '}
-              {/* <span className="card_text_support card_text_support2">{t('Terms & Conditions')}</span> */}
+              
             </Link>
           </div>
           <div className="footer_text-last">
@@ -177,14 +171,8 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <div id='Chat_container'></div>
-{/* {first === true ? <> */}
-  {/* <Helmet id="chats">
-      <script src="//code.tidio.co/kzuvioyqy0zd2tdofproxrkgxrdkoryf.js" async></script>
-      </Helmet> */}
-      
-{/* </> : null} */}
-        
+     
+
 
     </div>
   )
