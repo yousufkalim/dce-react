@@ -953,7 +953,7 @@ i18n
           'Hourly Rate': 'Taux horaire',
           'Free Shipping': 'Livraison gratuite',
           'Add Catalogue': 'Ajouter un catalogue',
-
+          Catalogue: 'Catalogue',
           //quotes
           'Name of Creation': 'Nom de la création',
           'Ad for': 'Annonce pour',

@@ -86,7 +86,8 @@ function CustomDatePicker({
           position: 'relative',
           height: '100%',
           width: '100%',
-          border: dobinput == 'dob' ? '1px solid #CC8E9C' : '1px solid #DBDBDB',
+          // border: dobinput == 'dob' ? '1px solid #CC8E9C' : '1px solid #DBDBDB',
+          border: 'none',
           borderRadius: dobinput == 'dob' ? '10px' : '10px',
           borderWidth: dobinput == 'dob' ? '1.5px' : '1.5px',
         }}

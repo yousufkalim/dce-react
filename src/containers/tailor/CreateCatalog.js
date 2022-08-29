@@ -29,21 +29,21 @@ function TailorCreateCatalogScreen() {
   const { t } = useTranslation();
 
   return (
-    <div className="container-page">
-      <TailorAppBar color="#FFFAF9" activeTab={1} />
+    <div className='container-page'>
+      <TailorAppBar color='#FFFAF9' activeTab={1} />
       {/* <OrderAcceptForm/> */}
 
       <div
-        className="container"
+        className='container'
         style={{
           background: '#FFEEEA',
         }}
       >
-        <div className="tailor_create_catalog_screen_row1">
-          <div className="tailor_create_catalog_screen_row1_column1">
+        <div className='tailor_create_catalog_screen_row1'>
+          <div className='tailor_create_catalog_screen_row1_column1'>
             <img style={{ width: '60%' }} src={AddCatalogSVG} />
           </div>
-          <div className="tailor_create_catalog_screen_row1_column2">
+          <div className='tailor_create_catalog_screen_row1_column2'>
             <p
               style={{
                 marginTop: '10%',
@@ -52,10 +52,10 @@ function TailorCreateCatalogScreen() {
                 fontWeight: '900',
               }}
             >
-              {t('Add Catalogue')}
+              {t('Catalogue')}
             </p>
-            <div className="tccs_input_section_container" style={{}}>
-              <div className="pa_content_row">
+            <div className='tccs_input_section_container' style={{}}>
+              <div className='pa_content_row'>
                 <InputSection />
               </div>
             </div>
@@ -202,18 +202,18 @@ function InputSection() {
   return (
     <>
       <AlertBox open={open} setOpen={setOpen} handleClose={handleCloseAlert} />
-      <div className="pa_profile_section_container">
+      <div className='pa_profile_section_container'>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderTopLeftRadius: '20px',
             borderTopRightRadius: '20px',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Name')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Name')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomInput
               labelStyle={{
                 display: 'none',
@@ -222,24 +222,24 @@ function InputSection() {
                 border: 'none',
                 fontSize: '12px',
               }}
-              minmax="on"
+              minmax='on'
               inputPlaceholder={t('I give a name to my confection')}
               onChange={(e) => _setState('name', e.target.value)}
             />
           </div>
         </div>
 
-        <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Gender')}</p>
+        <div className='pa_profile_section_input_container'>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Gender')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               labelStyle={{
                 display: 'none',
               }}
-              selectID="gender"
-              selectName="gender"
+              selectID='gender'
+              selectName='gender'
               selectNullValue={t('Select gender')}
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
@@ -250,17 +250,17 @@ function InputSection() {
             />
           </div>
         </div>
-        <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Category')}</p>
+        <div className='pa_profile_section_input_container'>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Category')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               labelStyle={{
                 display: 'none',
               }}
-              selectID="category"
-              selectName="category"
+              selectID='category'
+              selectName='category'
               selectNullValue={t('Select category')}
               selectValue={t(state.category)}
               onChange={(e) => _setState('category', e.target.value)}
@@ -274,19 +274,19 @@ function InputSection() {
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderBottomLeftRadius: '20px',
             borderBottomRightRadius: '20px',
             marginBottom: '2%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Price')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Price')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomInput
-              inputType="tel"
+              inputType='tel'
               inputValue={state?.price}
               labelStyle={{
                 display: 'none',
@@ -295,61 +295,61 @@ function InputSection() {
                 border: 'none',
                 fontSize: '12px',
               }}
-              minmax="on"
+              minmax='on'
               inputPlaceholder={t('Set your Price')}
               onChange={(e) => _setState('price', e.target.value.replace(/[^0-9]/g, ''))}
             />
           </div>
         </div>
         <div
-          className="pa_payment_section_textarea_container"
+          className='pa_payment_section_textarea_container'
           style={{
             height: '30%',
             borderRadius: '20px',
             marginBottom: '2%',
           }}
         >
-          <div className="pa_payment_section_textarea_label">
-            <p className="pa_profile_section_input_text">{t('Description')}</p>
+          <div className='pa_payment_section_textarea_label'>
+            <p className='pa_profile_section_input_text'>{t('Description')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <textarea
-              className="pa_profile_section_textarea_textarea"
+              className='pa_profile_section_textarea_textarea'
               placeholder={t('Tell us about your service')}
               onChange={(e) => _setState('description', e.target.value)}
-              maxLength="300"
+              maxLength='300'
             ></textarea>
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginTop: '2%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Attachments</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>Attachments</p>
           </div>
-          <div className="pa_profile_section_input_input">
-            <label className="upload-pic-label" htmlFor="filePicker">
+          <div className='pa_profile_section_input_input'>
+            <label className='upload-pic-label' htmlFor='filePicker'>
               <input
-                type="file"
+                type='file'
                 multiple
-                accept=".jpg,.jpeg,.png"
+                accept='.jpg,.jpeg,.png'
                 hidden
-                id="filePicker"
-                name="file"
+                id='filePicker'
+                name='file'
                 onChange={handleImagesSelect}
               />
-              <div className="upload-img-text-cont">
-                <span className="upload-img-text">{t('upload an illustration of your creation')}</span>
+              <div className='upload-img-text-cont'>
+                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
           </div>
         </div>
-        <div className="selected-images-container">
+        <div className='selected-images-container'>
           {images?.map((_) => (
             <Attachment
               image={_}
@@ -374,7 +374,7 @@ function InputSection() {
             boxShadow: 'none',
           }}
         />
-        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby="View Image">
+        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>

@@ -331,22 +331,40 @@ function ClientProfileScreen() {
                       borderBottomRightRadius: '10px',
                     }}
                   />
-                  <CustomDatePicker
-                    disabled={!toEdit}
-                    disableFuture
-                    labelStyle={{
-                      display: 'none',
+                  <div
+                    className='pa_profile_section_input_container_'
+                    style={{
+                      borderRadius: '20px',
+                      height: '45px',
+                      borderRadius: '10px !important',
+                      marginTop: '2%',
                     }}
-                    centeredText={true}
-                    labelText='Date of Birth'
-                    value={dateOfBirth}
-                    label='Date of Birth'
-                    onChange={setDateOfBirth}
-                    divStyle={{
-                      width: '90%',
-                      marginTop: '1%',
-                    }}
-                  />
+                  >
+                    <div className='pa_profile_section_input_label__' style={{ width: '60% !important' }}>
+                      <p
+                        className='pa_profile_section_input_text_'
+                        style={{ width: '80% !important', marginLeft: '4% !important' }}
+                      >
+                        {t('Date of Birth')}
+                      </p>
+                    </div>
+                    <CustomDatePicker
+                      disabled={!toEdit}
+                      disableFuture
+                      labelStyle={{
+                        display: 'none',
+                      }}
+                      // centeredText={true}
+                      // labelText='Date of Birth'
+                      value={dateOfBirth}
+                      label='Date of Birth'
+                      onChange={setDateOfBirth}
+                      divStyle={{
+                        width: '90%',
+                        marginTop: '1%',
+                      }}
+                    />
+                  </div>
                   <div
                     className='pa_profile_section_input_container_'
                     style={{

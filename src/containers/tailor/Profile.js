@@ -419,7 +419,40 @@ function TailorProfileScreen() {
                           borderBottomRightRadius: '10px',
                         }}
                       />
-                      <CustomDatePicker
+
+                      <div
+                        className='pa_profile_section_input_container_client'
+                        style={{
+                          borderRadius: '20px',
+                          height: '45px',
+                          borderRadius: '10px !important',
+                          marginTop: '2%',
+                        }}
+                      >
+                        <div className='pa_profile_section_input_label__' style={{ width: '60% !important' }}>
+                          <p
+                            className='pa_profile_section_input_text_'
+                            style={{ width: '50% !important', marginLeft: '4% !important' }}
+                          >
+                            {t('Date of Birth')}
+                          </p>
+                        </div>
+                        <CustomDatePicker
+                          disabled={!toEdit}
+                          disableFuture
+                          dobinput
+                          labelStyle={{
+                            display: 'none',
+                          }}
+                          value={dateOfBirth}
+                          onChange={setDateOfBirth}
+                          divStyle={{
+                            width: '100%',
+                            marginTop: '2%',
+                          }}
+                        />
+                      </div>
+                      {/* <CustomDatePicker
                         disabled={!toEdit}
                         centeredText={true}
                         disableFuture
@@ -434,7 +467,7 @@ function TailorProfileScreen() {
                           width: '95%',
                           marginTop: '2%',
                         }}
-                      />
+                      /> */}
 
                       <div
                         className='pa_profile_section_input_container_'
@@ -444,7 +477,7 @@ function TailorProfileScreen() {
                           height: '45px',
                           borderRadius: '10px !important',
                           marginTop: '2%',
-                          width: '95%',
+                          width: '96%',
                         }}
                       >
                         <div className='pa_profile_section_input_label_'>
