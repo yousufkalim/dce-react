@@ -759,7 +759,7 @@ function ProfileInput({
         {enableEyes ? (
           <>
             <div
-              style={{ position: 'absolute', right: '9px', top: '0', paddingTop: '2px', textAlign: 'end' }}
+              style={{ position: 'absolute', right: '-9px', top: '0', paddingTop: '2px', textAlign: 'end' }}
               onClick={() => setshowPassword(!showPassword)}
             >
               <img src={InputEyeSVG} />
@@ -807,7 +807,7 @@ function AddCatalogListTile() {
       <div className='new_order_list_tile_img'>
         <img style={{ width: '40%' }} src={AddCatalogSVG} />
       </div>
-      <p className='new_order_list_tile_text'>{t('Add Catalogue')}</p>
+      <p className='new_order_list_tile_text'>{t('Add one of my creations')}</p>
     </div>
   );
 }

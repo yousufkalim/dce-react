@@ -97,6 +97,7 @@ function tailorCreateAccount(data) {
 }
 
 function parseAdBasicSection(data) {
+  console.log(data, 'data');
   const valArr = [
     // {
     //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
@@ -115,6 +116,15 @@ function parseAdBasicSection(data) {
     },
     {
       validationFunction: () => Validators.selectValidator('Fabric', data['fabric']),
+    },
+    {
+      validationFunction: () => Validators.selectValidator('Fabric Type', data['fabric_type']),
+    },
+    {
+      validationFunction: () =>
+        data['fabric_type'] == 'Patterned Fabric'
+          ? Validators.selectValidator('Fabric description', data['fabric_description'])
+          : '',
     },
     // {
     //   validationFunction: () => Validators.checkBox('accept policies', data['create_catalog_after_completion']),

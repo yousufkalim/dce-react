@@ -39,6 +39,7 @@ i18n
           'D.C.E manages all the formalities relating to the provision of services':
             'D.C.E manages all the formalities relating to the provision of services',
           WOMEN: 'WOMEN',
+          'About yourself': 'About yourself',
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
@@ -76,6 +77,7 @@ i18n
           'Ad updated successfully.': 'Ad updated successfully.',
           Reviews: 'Reviews',
           ', Developed by Falcon Consulting. All rights reserved.': ', Developed by Falcon Consulting. All rights reserved.',
+          'Developed by': 'Developed by',
           'Describe about submit report': 'Describe about submit report',
           Edit: 'Edit',
           Phone: 'Phone',
@@ -109,7 +111,7 @@ i18n
           'Image must be selected': 'Image must be selected',
           'Delivery Note': 'Delivery Note',
           'Catalogue created successfully.': 'Catalogue created successfully.',
-          'No Orders': 'No Orders',
+          'No Orders': 'Aucune commande',
           //my ads
           Ads: 'Ads',
           'Name of Creation': 'Name of Creation',
@@ -335,6 +337,7 @@ i18n
           'Hourly Rate': 'Hourly Rate',
           'Free Shipping': 'Free Shipping',
           'Add Catalogue': 'Add Catalogue',
+          Catalogue: 'Catalogue',
 
           //quotes
           'Name of Creation': 'Name of Creation',
@@ -870,6 +873,7 @@ i18n
           Price: 'Prix',
           Attachments: 'Pièces jointes',
           ', Developed by Falcon Consulting. All rights reserved.': ', Développé par Falcon Consulting. Tous droits réservés.',
+          'Developed by': 'Développé par',
           'Select gender for your creation': 'Sélectionnez le genre pour votre création',
           'Write Measurement here': 'Entrez les mensurations ici',
           'Order completed successfully.': 'Commande terminée avec succès.',
@@ -954,6 +958,7 @@ i18n
           'Free Shipping': 'Livraison gratuite',
           'Add Catalogue': 'Ajouter un catalogue',
           Catalogue: 'Catalogue',
+          'About yourself': 'Á propos de moi',
           //quotes
           'Name of Creation': 'Nom de la création',
           'Ad for': 'Annonce pour',

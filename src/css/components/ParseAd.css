@@ -167,6 +167,11 @@
 .pa_profile_section_input_text_ {
   font-size: 12px;
   font-weight: 500;
+  margin-left: 12%;
+}
+.pa_profile_section_input_text_client{
+  font-size: 12px;
+  font-weight: 500;
   margin-left: 4%;
 }
 .pa_profile_section_input_input {

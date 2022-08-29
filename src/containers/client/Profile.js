@@ -342,7 +342,7 @@ function ClientProfileScreen() {
                   >
                     <div className='pa_profile_section_input_label__' style={{ width: '60% !important' }}>
                       <p
-                        className='pa_profile_section_input_text_'
+                        className='pa_profile_section_input_text_client'
                         style={{ width: '80% !important', marginLeft: '4% !important' }}
                       >
                         {t('Date of Birth')}
@@ -377,7 +377,7 @@ function ClientProfileScreen() {
                   >
                     <div className='pa_profile_section_input_label_'>
                       <p
-                        className='pa_profile_section_input_text_'
+                        className='pa_profile_section_input_text_client'
                         style={{ width: '60% !important', marginLeft: '4% !important' }}
                       >
                         {t('Address')}
