@@ -111,7 +111,7 @@ i18n
           'Image must be selected': 'Image must be selected',
           'Delivery Note': 'Delivery Note',
           'Catalogue created successfully.': 'Catalogue created successfully.',
-          'No Orders': 'Aucune commande',
+          'No Orders': 'No Orders',
           //my ads
           Ads: 'Ads',
           'Name of Creation': 'Name of Creation',
@@ -890,6 +890,7 @@ i18n
           'Recent Orders': 'Dernières commandes',
           'Quote sent successfully.': 'Devis envoyé avec succès.',
           'Describe about submit report': 'Décrivez à propos de la soumission du rapport',
+          'No Orders': 'Aucune commande',
 
           //HOW IT WORKS ?
           'HOW IT WORKS ?': 'COMMENT ÇA FONCTIONNE ?',
