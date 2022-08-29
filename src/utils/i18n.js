@@ -676,7 +676,7 @@ i18n
           'I am concretizing my idea of tailoring': 'Je concrétise mon idée',
           'Do you have an idea for tailoring?': 'Vous avez une idée de confection couture ?',
           'Submit Your Project here!': 'DÉPOSEZ ICI VOTRE PROJET !',
-          'desired delivery date': 'date de livraison souhaitée',
+          'desired delivery date': 'Date de livraison souhaitée',
           'Find your sewing assignments': 'Trouvez vos devoirs de couture',
           Type: 'Type',
           //client navbar
