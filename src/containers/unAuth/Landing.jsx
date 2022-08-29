@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // router link
-import { Link, useLocation  } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 //  translation
 import { useTranslation } from 'react-i18next';
 import UnAuthAppBar from '../../components/UnAuthAppBar'
 import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
-import {Helmet} from "react-helmet";
+
 const Landing = () => {
-  let location = useLocation();
+
   const { t, i18n } = useTranslation();
+  
   const { language } = i18n;
   const lang = () => {
   
     i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
 
- 
- 
-  
+
 
   useEffect(() => {
     lang();
@@ -43,12 +42,12 @@ const Landing = () => {
                 )}
               </p>
               <div className='btn_section_group'>
-                <Link style={{ textDecoration: 'none' }} to="/select_role">
+                <Link style={{ textDecoration: 'none' }} to="/select_role_login">
                   <button type="button">{t('Login')}</button>
                 </Link>
                 <div className="or">
                   {t('or')}
-                  <Link to="/select_role">
+                  <Link to="/select_role_register">
                     {/* <span>{t('registered as a Designer')}</span> */}
                     <span>{t('Registered')}</span>
                   </Link>
@@ -154,7 +153,7 @@ const Landing = () => {
             {' '}
             <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
               {' '}
-              {/* <span className="card_text_support card_text_support2">{t('Terms & Conditions')}</span> */}
+              
             </Link>
           </div>
           <div className="footer_text-last">
@@ -172,11 +171,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
-
-
-        <Helmet>
-      <script src="//code.tidio.co/kzuvioyqy0zd2tdofproxrkgxrdkoryf.js" async></script>
-</Helmet>
+     
 
 
     </div>
