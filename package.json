@@ -28,6 +28,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^17.0.2",
     "react-error-overlay": "6.0.9",
+    "react-helmet": "^6.1.0",
     "react-i18next": "^11.16.6",
     "react-icons": "^4.4.0",
     "react-jwt": "^1.1.4",

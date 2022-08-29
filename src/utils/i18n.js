@@ -13,6 +13,7 @@ i18n
         translations: {
           // landing
           "or":"or",
+          "Developed by":"Developed by",
           "Registered":"Registered",
           "Design Ethical Confections":"Design Ethical Confections",
           "You receive your confection!":"You receive your confection!",
@@ -680,6 +681,7 @@ i18n
           //----------------------------------------------------------Client-------------------------------------------------------
           // landing
           "or":"ou",
+          "Developed by":"Développé par",
           "Registered":"Inscription",
           "Design Ethical Confections":"Design Confections Éthiques",
           "You receive your confection!":"Vous recevez votre confection !",
