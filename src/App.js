@@ -21,6 +21,10 @@ function App() {
     {
       document.getElementById("tidio-chat").style.display = "none"
     }
+    else 
+    {
+      document.getElementById("tidio-chat").style.display = "block"
+    }
   }, [pathname]);
 
   useEffect(() => {
