@@ -9,17 +9,22 @@ import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
 import {Helmet} from "react-helmet";
 const Landing = () => {
-  let location = useLocation();
+  let {pathname} = useLocation();
   const { t, i18n } = useTranslation();
+  // const [first, setfirst] = useState(false)
   const { language } = i18n;
   const lang = () => {
   
     i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
 
- 
- 
-  
+
+
+
+useEffect(() => {
+ var chat = document.getElementById('chats')
+ console.log(chat)
+}, [])
 
   useEffect(() => {
     lang();
@@ -43,12 +48,12 @@ const Landing = () => {
                 )}
               </p>
               <div className='btn_section_group'>
-                <Link style={{ textDecoration: 'none' }} to="/select_role">
+                <Link style={{ textDecoration: 'none' }} to="/select_role_login">
                   <button type="button">{t('Login')}</button>
                 </Link>
                 <div className="or">
                   {t('or')}
-                  <Link to="/select_role">
+                  <Link to="/select_role_register">
                     {/* <span>{t('registered as a Designer')}</span> */}
                     <span>{t('Registered')}</span>
                   </Link>
@@ -172,12 +177,14 @@ const Landing = () => {
           </div>
         </div>
       </div>
-
-
-        <Helmet>
+      <div id='Chat_container'></div>
+{/* {first === true ? <> */}
+  {/* <Helmet id="chats">
       <script src="//code.tidio.co/kzuvioyqy0zd2tdofproxrkgxrdkoryf.js" async></script>
-</Helmet>
-
+      </Helmet> */}
+      
+{/* </> : null} */}
+        
 
     </div>
   )

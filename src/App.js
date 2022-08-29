@@ -1,7 +1,9 @@
 // Init
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, Flip } from 'react-toastify';
-import {useLocation} from "react-router-dom"
+import { useLocation  } from 'react-router-dom';
+
+
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from './components/SplashScreen';
 
@@ -12,8 +14,14 @@ import './css/index.css';
 // Component
 function App() {
   const [loading, setLoading] = useState(true);
-  let location = useLocation();
+  let {pathname} = useLocation()
 
+  useEffect(() => {
+    if(pathname !== "/")
+    {
+      document.getElementById("tidio-chat").style.display = "none"
+    }
+  }, [pathname]);
 
   useEffect(() => {
     setLoading(false);
