@@ -183,7 +183,7 @@ function TailorViewQuoteScreen() {
             className='container'
             style={{
               background: '#FFE9A0',
-              height: '112vh',
+              height: '135vh',
               padding: '1% 0%',
             }}
           >
