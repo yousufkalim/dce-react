@@ -263,7 +263,7 @@ function ClientViewTailorScreen() {
                   </div>
                   <div className='pa_profile_section_input_input'>
                     <textarea
-                      style={{ border: 'none', width: '100%', height: '80px', resize: 'none' }}
+                      style={{ border: 'none', height: '80px', resize: 'none', textAlign: 'end', paddingLeft: '6%' }}
                       placeholder='About Yourself'
                     />
                   </div>
