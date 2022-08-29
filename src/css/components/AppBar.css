@@ -59,13 +59,13 @@
 }
 
 .appbar_row2_search_img {
-  position: absolute;
+  /* position: absolute;
   right: 10px;
   top: 1.4vh;
   max-width: 2.4vh;
   width: 2.4vh;
   vertical-align: top;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .appbar_row2_input {

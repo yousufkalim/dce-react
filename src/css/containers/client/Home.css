@@ -183,7 +183,12 @@
 }
 
 /* media queries */
+@media only screen and (max-width: 1366px) {
 
+  .client_home_screen_row1_column1_text-1 {
+    width: 96%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .client_home_screen_row2_row1_row_container {
     flex-direction: column;
