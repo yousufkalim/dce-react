@@ -1,20 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // router link
-import { Link } from 'react-router-dom';
+import { Link, useLocation  } from 'react-router-dom';
 //  translation
 import { useTranslation } from 'react-i18next';
 import UnAuthAppBar from '../../components/UnAuthAppBar'
 import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
-
+import {Helmet} from "react-helmet";
 const Landing = () => {
+  let location = useLocation();
   const { t, i18n } = useTranslation();
   const { language } = i18n;
-
   const lang = () => {
+  
     i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
+
+ 
+ 
+  
 
   useEffect(() => {
     lang();
@@ -63,11 +68,11 @@ const Landing = () => {
           <div className="chose_title">
             <h3>{t('How it works ?')}</h3>
             <div className="how_work">
-              <h3 style={{color:"black"}}>1.{t('You submit your sewing idea to us!')}</h3>
+              <h3 style={{color:"#666666"}}>1.{t('You submit your sewing idea to us!')}</h3>
               <p className='how_work_p'  >{t("You tell us your preferences, criteria, choice and style of your confections!")}</p>
-              <h3 style={{color:"black"}}>2. {t('We make it happen!')}</h3>
+              <h3 style={{color:"#666666"}}>2. {t('We make it happen!')}</h3>
               <p className='how_work_p how_work_p_s' >{t("D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!")}</p>
-              <h3 style={{color:"black"}}>3.  {t('You receive your confection!')}</h3>
+              <h3 style={{color:"#666666"}}>3.  {t('You receive your confection!')}</h3>
               <p className='how_work_p' >{t("Dés que votre confection est terminée, vous la recevez chez vous !")}</p>
               <div className='btn_section_group_2'>
                 <Link to="/client_register">
@@ -101,8 +106,8 @@ const Landing = () => {
                   <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('conditions')}</h4>
                 </div>
                 <div className='card_ss'>
-                  <h4 className='submit_main_cardh4' >{t('Traitez')}</h4>
-                  <h4 className='submit_main_cardh4' >{t('en direct')}</h4>
+                  <h4 className='submit_main_cardh4' >{t('Traitez en')}</h4>
+                  <h4 className='submit_main_cardh4' >{t('direct')}</h4>
                 </div>
 
               </div>
@@ -119,11 +124,11 @@ const Landing = () => {
           <div className="chose_title">
             <h3 >{t('How it works ?')}</h3>
             <div className="how_work">
-              <h3 style={{color:"black"}} >1. {t('Find customers who match you!')}</h3>
+              <h3 style={{color:"#666666"}} >1. {t('Find customers who match you!')}</h3>
               <p className='how_work_p' >{t("D.C.E puts you in touch with potential customers suited to your profile")}</p>
-              <h3 style={{color:"black"}} >2. {t('Focus on the essentials!')}</h3>
+              <h3 style={{color:"#666666"}} >2. {t('Focus on the essentials!')}</h3>
               <p className='how_work_p how_work_p_s'>{t("D.C.E manages all the formalities relating to the provision of services")}</p>
-              <h3 style={{color:"black"}} >3. {t('Respond to an ad in just a few clicks!')}</h3>
+              <h3 style={{color:"#666666"}} >3. {t('Respond to an ad in just a few clicks!')}</h3>
 
               <div className='btn_section_group_2'>
                 <Link to="/tailor_register" >
@@ -140,6 +145,9 @@ const Landing = () => {
 
       {/* footer */}
       <div class="footer_section_main" id="animation_dec">
+       <div id='chat_module'>
+
+       </div>
         <div className="footer_center_section">
           <img src={FooterLogo} />
           <div>
@@ -164,6 +172,13 @@ const Landing = () => {
           </div>
         </div>
       </div>
+
+
+        <Helmet>
+      <script src="//code.tidio.co/kzuvioyqy0zd2tdofproxrkgxrdkoryf.js" async></script>
+</Helmet>
+
+
     </div>
   )
 }
