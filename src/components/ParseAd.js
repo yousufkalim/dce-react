@@ -199,11 +199,11 @@ function BasicSection({
                 let category = e.target.value;
                 let name;
 
-                if (category == 'women') {
+                if (category == t('WOMEN')) {
                   name = adNames.women[0];
-                } else if (category == 'man') {
+                } else if (category == t('MAN')) {
                   name = adNames.man[0];
-                } else if (category == 'child') {
+                } else if (category == t('CHILD')) {
                   name = adNames.child[0];
                 }
 
@@ -214,9 +214,9 @@ function BasicSection({
                 });
               }}
               menuItems={[
-                <MenuItem value={'women'}>{t('WOMEN')}</MenuItem>,
-                <MenuItem value={'man'}>{t('MAN')}</MenuItem>,
-                <MenuItem value={'child'}>{t('CHILD')}</MenuItem>,
+                <MenuItem value={t('WOMEN')}>{t('WOMEN')}</MenuItem>,
+                <MenuItem value={t('MAN')}>{t('MAN')}</MenuItem>,
+                <MenuItem value={t('CHILD')}>{t('CHILD')}</MenuItem>,
               ]}
             />
           </div>
@@ -244,11 +244,11 @@ function BasicSection({
               selectValue={t(state.name)}
               onChange={(e) => _setState('name', e.target.value)}
               menuItems={
-                state.category == 'women' ? (
+                state.category == t('WOMEN') ? (
                   adNames.women.map((_) => <MenuItem value={_}>{t(_)}</MenuItem>)
-                ) : state.category == 'man' ? (
+                ) : state.category == t('MAN') ? (
                   adNames.man.map((_) => <MenuItem value={_}>{t(_)}</MenuItem>)
-                ) : state.category == 'child' ? (
+                ) : state.category == t('CHILD') ? (
                   adNames.child.map((_) => <MenuItem value={_}>{t(_)}</MenuItem>)
                 ) : (
                   <></>
@@ -360,7 +360,7 @@ function BasicSection({
           }}
         >
           <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('My Measurements')}</p>
+            <p className='pa_profile_section_input_text'>{t('Measurements')}</p>
           </div>
           <Tooltip
             arrow
@@ -454,7 +454,7 @@ function BasicSection({
           </Tooltip>
         </div>
         <p className='pa_profile_section_input_instructions_text' style={{ padding: '0 6%' }}>
-          {t("*I'm getting a tape measure. ")}
+          {t("*I'm getting a tape measure.")}
           {t('Depending on the garment, I measure certain parts of the body in circumference and/or length.')}
         </p>
         {/* <p className='pa_profile_section_input_instructions_text'>
@@ -545,7 +545,7 @@ function BasicSection({
               selectValue={state.fabric}
               onChange={(e) => _setState('fabric', e.target.value)}
               menuItems={materialFabrics.map((_) => (
-                <MenuItem value={_.title}>{t(_.title)}</MenuItem>
+                <MenuItem value={t(_.title)}>{t(_.title)}</MenuItem>
               ))}
             />
           </div>
@@ -1077,6 +1077,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           <div className='pa_profile_section_input_input'>
             <CustomDatePicker
               disablePast
+              centeredText={false}
               disabled={disabled}
               labelStyle={{
                 display: 'none',
@@ -1195,7 +1196,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                   value={state?.max_price}
                   defaultValue={state.max_price}
                   onChange={(e) => _setState('max_price', e.target.value.replace(/[^0-9]/g, ''))}
-                  placeholder='€0'
+                  placeholder='0€'
                   maxlength='15'
                 />
                 {state.max_price ? <span className='input-currency-sign'>€</span> : null}
@@ -1221,7 +1222,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 type='number'
                 defaultValue={state?.quotes[0]?.price}
                 onChange={(e) => _setState('min_price', e.target.value)}
-                placeholder='€0'
+                placeholder='0€'
               />
               {state?.quotes[0]?.price ? <span className='input-currency-sign'>€</span> : null}
             </div>
@@ -1246,7 +1247,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
                 paddingRight: '0.6%',
               }}
             >
-              {t('I agree with terms & condition & privacy policy of')} DESIGN Confections Ethicals
+              {t('I agree with terms & condition & privacy policy of')} DESIGN CONFECTIONS ETHIQUES
             </p>
             {/* <p
               className="terms-text"

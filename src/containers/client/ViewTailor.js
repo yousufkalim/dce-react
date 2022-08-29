@@ -133,7 +133,7 @@ function ClientViewTailorScreen() {
             }}
           >
             <div className='designer-prof'>
-              <p className='D-profile'>Designer Profile</p>{' '}
+              <p className='D-profile'>{t('Designer Profile')}</p>{' '}
               <CustomButton
                 padding={'15px 37px'}
                 style={{ borderRadius: '15px', boxShadow: 'none' }}
@@ -263,8 +263,8 @@ function ClientViewTailorScreen() {
                   </div>
                   <div className='pa_profile_section_input_input'>
                     <textarea
-                      style={{ border: 'none', width: '100%', height: '80px', resize: 'none' }}
-                      placeholder='About Yourself'
+                      style={{ border: 'none', height: '80px', resize: 'none', textAlign: 'end', paddingLeft: '6%' }}
+                      placeholder={t('About yourself')}
                     />
                   </div>
                 </div>

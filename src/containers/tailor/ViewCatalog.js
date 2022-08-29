@@ -51,22 +51,22 @@ function TailorViewCatalogScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className="container-page">
-          <TailorAppBar activeTab={1} color="#FFFAF9" />
+        <div className='container-page'>
+          <TailorAppBar activeTab={1} color='#FFFAF9' />
           <div
-            className="container"
+            className='container'
             style={{
               background: 'linear-gradient(to right, #EEEEEE , #FCEEE1)',
             }}
           >
-            <div className="view_catalog_screen_row1">
-              <div className="view_catalog_screen_row1_column1">
-                <p className="view_catalog_screen_row1_column1_text_1">{catalog.name}</p>
-                <p className="view_catalog_screen_row1_column1_text_2">{t('Description')}</p>
-                <p className="view_catalog_screen_row1_column1_text_3">{catalog.description}</p>
-                <div className="view_catalog_screen_row1_column1_section">
+            <div className='view_catalog_screen_row1'>
+              <div className='view_catalog_screen_row1_column1'>
+                <p className='view_catalog_screen_row1_column1_text_1'>{catalog.name}</p>
+                <p className='view_catalog_screen_row1_column1_text_2'>{t('Description')}</p>
+                <p className='view_catalog_screen_row1_column1_text_3'>{catalog.description}</p>
+                <div className='view_catalog_screen_row1_column1_section'>
                   <p
-                    className="view_catalog_screen_row1_column1_text_2"
+                    className='view_catalog_screen_row1_column1_text_2'
                     style={{
                       paddingRight: '10%',
                     }}
@@ -74,12 +74,12 @@ function TailorViewCatalogScreen() {
                     {t('Charges')}
                   </p>
                   <p
-                    className="view_catalog_screen_row1_column1_text_2"
+                    className='view_catalog_screen_row1_column1_text_2'
                     style={{
                       color: '#CC8E9C',
                     }}
                   >
-                    € {catalog.price}
+                    {catalog.price}€
                   </p>
                 </div>
                 {/* <div className="view_catalog_screen_row1_column1_section">
@@ -98,15 +98,15 @@ function TailorViewCatalogScreen() {
                 <CustomButton
                   text={t('Edit')}
                   onClick={navToEditCatalog}
-                  padding="1.6% 8%"
+                  padding='1.6% 8%'
                   style={{
                     marginTop: '4%',
                     boxShadow: 'none',
                   }}
                 />
               </div>
-              <div className="view_catalog_screen_row1_column2">
-                <div className="view_catalog_screen_row1_column2_img">
+              <div className='view_catalog_screen_row1_column2'>
+                <div className='view_catalog_screen_row1_column2_img'>
                   <img
                     style={{
                       width: '75%',

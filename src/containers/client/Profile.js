@@ -326,25 +326,83 @@ function ClientProfileScreen() {
                     defaultValue={profile.email}
                     // img={ProfileEmailSVG}
                     label={t('E-mail')}
-                  />
-                  <CustomDatePicker
-                    disabled={!toEdit}
-                    disableFuture
-                    labelStyle={{
-                      display: 'none',
-                    }}
-                    // centeredText={true}
-                    labelText='Date of Birth'
-                    value={dateOfBirth}
-                    label='Date of Birth'
-                    onChange={setDateOfBirth}
                     divStyle={{
-                      width: '90%',
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
+                    }}
+                  />
+                  <div
+                    className='pa_profile_section_input_container_'
+                    style={{
+                      borderRadius: '20px',
+                      height: '45px',
+                      borderRadius: '10px !important',
                       marginTop: '2%',
                     }}
-                  />
-
-                  <div style={{ width: '90%' }}>
+                  >
+                    <div className='pa_profile_section_input_label__' style={{ width: '60% !important' }}>
+                      <p
+                        className='pa_profile_section_input_text_client'
+                        style={{ width: '80% !important', marginLeft: '4% !important' }}
+                      >
+                        {t('Date of Birth')}
+                      </p>
+                    </div>
+                    <CustomDatePicker
+                      disabled={!toEdit}
+                      disableFuture
+                      labelStyle={{
+                        display: 'none',
+                      }}
+                      // centeredText={true}
+                      // labelText='Date of Birth'
+                      value={dateOfBirth}
+                      label='Date of Birth'
+                      onChange={setDateOfBirth}
+                      divStyle={{
+                        width: '90%',
+                        marginTop: '1%',
+                      }}
+                    />
+                  </div>
+                  <div
+                    className='pa_profile_section_input_container_'
+                    style={{
+                      borderRadius: '20px',
+                      marginBottom: '2%',
+                      height: '45px',
+                      borderRadius: '10px !important',
+                      marginTop: '2%',
+                    }}
+                  >
+                    <div className='pa_profile_section_input_label_'>
+                      <p
+                        className='pa_profile_section_input_text_client'
+                        style={{ width: '60% !important', marginLeft: '4% !important' }}
+                      >
+                        {t('Address')}
+                      </p>
+                    </div>
+                    <div className='pa_profile_section_input_input'>
+                      <div style={{ width: '100%' }}>
+                        <AutoComplete
+                          disabled={!toEdit}
+                          name='Address'
+                          required={true}
+                          label={'Address'}
+                          value={address?.label}
+                          options={addresses}
+                          placeholder={t('Address')}
+                          onChangeAddress={(e) => {
+                            handleInputAddress(e);
+                          }}
+                          onAddressSelect={(e) => handleSelectAddress(e)}
+                          defaultValue={address.label}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div style={{ width: '90%' }}>
                     <AutoComplete
                       disabled={!toEdit}
                       name='Address'
@@ -359,7 +417,7 @@ function ClientProfileScreen() {
                       onAddressSelect={(e) => handleSelectAddress(e)}
                       defaultValue={address.label}
                     />
-                  </div>
+                  </div> */}
                   <ProfileInput
                     disabled
                     name='Last Password Changed'
@@ -378,7 +436,7 @@ function ClientProfileScreen() {
                     name='Password'
                     placeholder='**********'
                     defaultValue=''
-                    label='Password'
+                    label={t('Password')}
                     onChange={(e) => _setState('password', e.target.value)}
                   />
                   <ProfileInput

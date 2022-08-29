@@ -18,7 +18,7 @@
   display: flex;
   width: 50%;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   /* padding-left: 6vw; */
 }
@@ -36,7 +36,7 @@
   font-weight: 900;
   color: #e9a555;
   line-height: 35px;
-  width: 96%;
+  width: 100%;
 }
 .client_home_screen_row1_column1_text_2 {
   font-size: 33px;
@@ -183,7 +183,12 @@
 }
 
 /* media queries */
+@media only screen and (max-width: 1366px) {
 
+  .client_home_screen_row1_column1_text-1 {
+    width: 96%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .client_home_screen_row2_row1_row_container {
     flex-direction: column;
