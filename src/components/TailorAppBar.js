@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { styled } from "@mui/material/styles";
-import AppLogoSVG from "../assets/AppLogo.svg";
-import UserSVG from "../assets/dummy.jpeg";
-import NotificationsSVG from "../assets/AppBarNotifications.svg";
-import SearchSVG from "../assets/AppBarSearch.svg";
-import dummy from "../assets/dummy.jpeg";
-import Nock from "../assets/Nock.svg";
-import EditIcon from "../assets/Edit.svg";
-import SupportIcon from "../assets/Support.svg";
-import TermsConditionsIcon from "../assets/TermsConditions.svg";
-import SignOutIcon from "../assets/SignOut.svg";
+import { styled } from '@mui/material/styles';
+import AppLogoSVG from '../assets/AppLogo.svg';
+import UserSVG from '../assets/dummy.jpeg';
+import NotificationsSVG from '../assets/AppBarNotifications.svg';
+import SearchSVG from '../assets/AppBarSearch.svg';
+import dummy from '../assets/dummy.jpeg';
+import Nock from '../assets/Nock.svg';
+import EditIcon from '../assets/Edit.svg';
+import SupportIcon from '../assets/Support.svg';
+import TermsConditionsIcon from '../assets/TermsConditions.svg';
+import SignOutIcon from '../assets/SignOut.svg';
 
-import GTranslateIcon from "@mui/icons-material/GTranslate";
+import GTranslateIcon from '@mui/icons-material/GTranslate';
 
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-import NotificationsListTile from "./NotificationsListTile";
+import NotificationsListTile from './NotificationsListTile';
 
-import { handleLogout } from "../utils/Auth";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { handleLogout } from '../utils/Auth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import Api from "../api";
-import assetsURL from "../utils/Assets";
-import { useTranslation } from "react-i18next";
+import Api from '../api';
+import assetsURL from '../utils/Assets';
+import { useTranslation } from 'react-i18next';
 
-import { Store, UpdateStore } from "../StoreContext";
+import { Store, UpdateStore } from '../StoreContext';
 const StyledMenu = styled((MenuProps) => (
   <Menu
     elevation={0}
     anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "right",
+      vertical: 'bottom',
+      horizontal: 'right',
     }}
     transformOrigin={{
-      vertical: "top",
-      horizontal: "right",
+      vertical: 'top',
+      horizontal: 'right',
     }}
     {...MenuProps}
   />
 ))(({ theme }) => ({
-  "& .MuiPaper-root": {
+  '& .MuiPaper-root': {
     borderRadius: 12,
     marginTop: theme.spacing(3),
-    padding: "2% 2% 1% 2%",
+    padding: '2% 2% 1% 2%',
     minWidth: 230,
-    color: theme.palette.mode === "light" ? "rgb(55, 65, 81)" : theme.palette.grey[300],
-    boxShadow: "0px 4px 20px rgba(160, 160, 160, 0.33)",
+    color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+    boxShadow: '0px 4px 20px rgba(160, 160, 160, 0.33)',
 
-    "& .MuiMenuItem-root": {
-      "& .MuiSvgIcon-root": {
+    '& .MuiMenuItem-root': {
+      '& .MuiSvgIcon-root': {
         color: theme.palette.text.secondary,
         marginRight: theme.spacing(1.5),
       },
@@ -96,28 +96,28 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
     setAnchorElNotifications(null);
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const store = Store();
   const updateStore = UpdateStore();
 
   const navToHome = () => {
-    navigate("/home");
+    navigate('/home');
   };
 
   const navToOrders = () => {
-    navigate("/orders");
+    navigate('/orders');
   };
 
   const navToCatalog = () => {
-    navigate("/catalog");
+    navigate('/catalog');
   };
 
   const navToQuotes = () => {
-    navigate("/quotes");
+    navigate('/quotes');
   };
 
   const navToChat = () => {
-    navigate("/chat");
+    navigate('/chat');
   };
 
   const navToSearch = () => {
@@ -130,17 +130,17 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
 
   const navToProfile = () => {
     handleCloseProfile();
-    navigate("/profile");
+    navigate('/profile');
   };
 
   const navToSupport = () => {
     handleCloseProfile();
-    navigate("/support_center");
+    navigate('/support_center');
   };
 
   const navToTermsAndConditions = () => {
     handleCloseProfile();
-    navigate("/terms_and_conditions");
+    navigate('/terms_and_conditions');
   };
 
   const handleLogoutSubmit = () => {
@@ -159,10 +159,9 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
   const getProfile = async () => {
     let response;
     try {
-      response = await Api("get", `/auth`);
+      response = await Api('get', `/auth`);
       const userData = response.data.user;
       setProfile(userData);
-      console.log(userData.role, "userData");
       updateStore({ userRole: userData.role });
     } catch (e) {
       console.trace(e);
@@ -173,7 +172,7 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
   const getNotifications = async () => {
     let response;
     try {
-      response = await Api("get", `/notifications`);
+      response = await Api('get', `/notifications`);
       const notificationsData = response.data.notifications.splice(-8);
       notificationsData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setNotifications(notificationsData);
@@ -186,8 +185,7 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
   const _readNotifications = async () => {
     let response;
     try {
-      response = await Api("post", `/notifications/read`);
-      console.log(response.data);
+      response = await Api('post', `/notifications/read`);
     } catch (e) {
       console.trace(e);
     }
@@ -196,67 +194,67 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
 
   return (
     <div
-      className="appbar_container"
+      className='appbar_container'
       style={{
         backgroundColor: color,
-        position: sticky ? "fixed" : "inherit",
+        position: sticky ? 'fixed' : 'inherit',
         ...divStyle,
       }}
     >
-      <div className="appbar_top">
-        <div className="appbar_row1">
-          <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: "5%" }} onClick={navToHome} />
+      <div className='appbar_top'>
+        <div className='appbar_row1'>
+          <img src={AppLogoSVG} className='appbar_row1_img' style={{ marginRight: '5%' }} onClick={navToHome} />
           <p
-            className="appbar_row1_tab_text"
+            className='appbar_row1_tab_text'
             style={{
-              paddingRight: "5%",
-              color: `${activeTab == 0 ? "#CC8E9C" : "#A0A0A0"}`,
+              paddingRight: '5%',
+              color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`,
             }}
             onClick={navToOrders}
           >
-            {t("Orders")}
+            {t('Orders')}
           </p>
           {/*  */}
           <p
-            className="appbar_row1_tab_text"
+            className='appbar_row1_tab_text'
             style={{
-              paddingRight: "5%",
-              color: `${activeTab == 1 ? "#CC8E9C" : "#A0A0A0"}`,
+              paddingRight: '5%',
+              color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`,
             }}
             onClick={navToCatalog}
           >
-            {t("Catalogue")}
+            {t('Catalogue')}
           </p>
           <p
-            className="appbar_row1_tab_text"
+            className='appbar_row1_tab_text'
             style={{
-              paddingRight: "5%",
-              color: `${activeTab == 2 ? "#CC8E9C" : "#A0A0A0"}`,
+              paddingRight: '5%',
+              color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`,
             }}
             onClick={navToQuotes}
           >
-            {t("Quotes")}
+            {t('Quotes')}
           </p>
           <p
-            className="appbar_row1_tab_text"
+            className='appbar_row1_tab_text'
             style={{
-              paddingRight: "5%",
-              color: `${activeTab == 3 ? "#CC8E9C" : "#A0A0A0"}`,
+              paddingRight: '5%',
+              color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`,
             }}
             onClick={navToChat}
           >
-            {t("Chats")}
+            {t('Chats')}
           </p>
         </div>
-        <div className="appbar_row2">
+        <div className='appbar_row2'>
           {!disableSearch ? <SearchInput setSearchQuery={setSearchQuery} callback={navToSearch} /> : <></>}
-          <div className="notifications_count_container" style={{ marginLeft: "3%" }}>
-            <img src={NotificationsSVG} className="appbar_row2_notifications_img" onClick={handleClickNotifications} />
+          <div className='notifications_count_container' style={{ marginLeft: '3%' }}>
+            <img src={NotificationsSVG} className='appbar_row2_notifications_img' onClick={handleClickNotifications} />
             {notifications.filter((_) => !_.is_read).length > 0 ? (
-              <div className="notifications_count_pos">
+              <div className='notifications_count_pos'>
                 <p
                   style={{
-                    fontSize: "14px",
+                    fontSize: '14px',
                   }}
                 >
                   {notifications.filter((_) => !_.is_read).length}
@@ -267,12 +265,12 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
             )}
           </div>
           <Menu
-            id="basic-menu"
+            id='basic-menu'
             anchorEl={anchorElNotifications}
             open={openNotifications}
             onClose={handleCloseNotifications}
             MenuListProps={{
-              "aria-labelledby": "basic-button",
+              'aria-labelledby': 'basic-button',
             }}
           >
             {notifications.map((_) => (
@@ -280,11 +278,11 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
             ))}
           </Menu>
           <img
-            className="appbar_row2_user_img image_container"
+            className='appbar_row2_user_img image_container'
             style={{
-              width: "6vh",
-              height: "6vh",
-              marginLeft: "3%",
+              width: '6vh',
+              height: '6vh',
+              marginLeft: '3%',
             }}
             src={profile?.avatar ? assetsURL(profile.avatar) : dummy}
             onClick={handleClickProfile}
@@ -300,43 +298,43 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
             }}
           > */}
           <StyledMenu
-            id="demo-customized-menu"
+            id='demo-customized-menu'
             MenuListProps={{
-              "aria-labelledby": "demo-customized-button",
+              'aria-labelledby': 'demo-customized-button',
             }}
             anchorEl={anchorElProfile}
             open={openProfile}
             onClose={handleCloseProfile}
           >
             {/* <img className="nock" src={Nock} /> */}
-            <div className="user-detail-conatiner">
+            <div className='user-detail-conatiner'>
               <img
-                className="image_container"
+                className='image_container'
                 src={profileImage ? URL.createObjectURL(profileImage) : profile?.avatar ? assetsURL(profile?.avatar) : dummy}
               />
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <p className="user-name">{profile?.name} </p>
-                <p className="user-email">{profile?.email}</p>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <p className='user-name'>{profile?.name} </p>
+                <p className='user-email'>{profile?.email}</p>
               </div>
             </div>
 
-            <MenuItem style={{ borderBottom: "1px solid #DBDBDB" }} className="menu-item" onClick={navToProfile}>
-              <img style={{ padding: "4% 0%" }} src={EditIcon} /> <p>{t("Profile")} </p>
+            <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className='menu-item' onClick={navToProfile}>
+              <img style={{ padding: '4% 0%' }} src={EditIcon} /> <p>{t('Profile')} </p>
             </MenuItem>
-            <MenuItem className="menu-item" onClick={() => changeLanguage(`${language == "en" ? "fr" : "en"}`)}>
-              <GTranslateIcon sx={{ width: "20px" }} />
-              {language == "fr" ? "French" : "English"}
+            <MenuItem className='menu-item' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
+              <GTranslateIcon sx={{ width: '20px' }} />
+              {language == 'fr' ? 'French' : 'English'}
             </MenuItem>
-            <MenuItem className="menu-item support-padding" onClick={navToSupport}>
-              <img style={{ width: "16px" }} src={SupportIcon} />
-              <p>{t("Support")}</p>
+            <MenuItem className='menu-item support-padding' onClick={navToSupport}>
+              <img style={{ width: '16px' }} src={SupportIcon} />
+              <p>{t('Support')}</p>
             </MenuItem>
             {/* <MenuItem className="menu-item" onClick={navToTermsAndConditions}>
               <img src={TermsConditionsIcon} />
               <p>{t("Terms and Conditions")}</p>
             </MenuItem> */}
-            <MenuItem className="menu-item sign-out-padding" onClick={handleLogoutSubmit}>
-              <img style={{ width: "16px" }} src={SignOutIcon} /> <p> {t("Sign out")} </p>
+            <MenuItem className='menu-item sign-out-padding' onClick={handleLogoutSubmit}>
+              <img style={{ width: '16px' }} src={SignOutIcon} /> <p> {t('Sign out')} </p>
             </MenuItem>
           </StyledMenu>
         </div>
@@ -352,18 +350,22 @@ function SearchInput({ setSearchQuery, callback }) {
     <div>
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          width: "100%",
+          position: 'relative',
+          height: '100%',
+          width: '100%',
+          background: '#ffff',
+          display: 'flex',
+          borderRadius: '10px',
+          paddingRight: '3%',
         }}
       >
         <input
-          type="text"
-          placeholder={t("Search")}
-          className="appbar_row2_input"
+          type='text'
+          placeholder={t('Search')}
+          className='appbar_row2_input'
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <img src={SearchSVG} className="appbar_row2_search_img" onClick={callback} />
+        <img src={SearchSVG} className='appbar_row2_search_img' onClick={callback} />
       </div>
     </div>
   );

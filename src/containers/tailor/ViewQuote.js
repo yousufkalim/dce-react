@@ -53,9 +53,15 @@ function TailorViewQuoteScreen() {
     fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
+    fabric_type: '',
+    fabric_description: '',
+    height: '',
+    observation: '',
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
+    client_first_name: '',
+    client_last_name: '',
     address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
@@ -171,25 +177,25 @@ function TailorViewQuoteScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className="container-page">
-          <TailorAppBar color="#F8F4EF" activeTab={2} />
+        <div className='container-page'>
+          <TailorAppBar color='#F8F4EF' activeTab={2} />
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFE9A0',
-              height: '112vh',
+              height: '135vh',
               padding: '1% 0%',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row1_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
                 >
-                  {t('Client Basic')}
+                  {t('Details of the project submitted')}
                 </p>
                 <p
                   style={{
@@ -198,118 +204,113 @@ function TailorViewQuoteScreen() {
                     marginBottom: '20%',
                   }}
                 >
-                  {t('Details')}
+                  {t('by the client')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
-              <div className="client_edit_ad_screen_row1_column2">
+              <div className='client_edit_ad_screen_row1_column2'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '10%',
                     paddingTop: '3%',
                     paddingBottom: '1%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
-                    <ParseAd.BasicSection
-                      disabled
-                      state={basicSection}
-                      setState={setBasicSection}
-                    />
+                  <div className='pa_content_row'>
+                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFC396',
               height: '100vh',
               padding: '1% 0%',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row2_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row2_column1'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '10%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      disabled
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                  <div className='pa_content_row'>
+                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
-              <div className="client_edit_ad_screen_row2_column2">
+              <div className='client_edit_ad_screen_row2_column2'>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
+                    width: '100%',
+                    marginBottom: '20%',
+                    textAlign: 'center',
                   }}
                 >
-                  {t('Delivery')}
+                  {t('Details of the delivery of the project submitted by the client')}
                 </p>
-                <p
+                {/* <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
                     marginBottom: '20%',
                   }}
                 >
-                  {t('Details')}
-                </p>
+                  {t('by the client')}
+                </p> */}
                 <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
           </div>
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFFCFB',
-              height: '100vh',
-              padding: '1% 0%',
+              height: '60vh',
+              padding: '0% 0% 5% 0%',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row1_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
+                    marginBottom: '10%',
+                    textAlign: 'center',
+                    width: '70%',
+                    // padding: '0 10% !important',
                   }}
                 >
-                  {t('Payment')}
+                  {t('Project budget submitted by the client')}
                 </p>
-                <p
+                {/* <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
@@ -317,33 +318,27 @@ function TailorViewQuoteScreen() {
                   }}
                 >
                   {t('Details')}
-                </p>
+                </p> */}
                 <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
-              <div className="client_edit_ad_screen_row1_column2">
+              <div className='client_edit_ad_screen_row1_column2'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '10%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {label}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
-                    <ParseAd.NotesSection
-                      disabled
-                      state={notesSection}
-                      setState={setNotesSection}
-                    />
+                  <div className='pa_content_row'>
+                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
                   </div>
                 </div>
               </div>
@@ -351,57 +346,58 @@ function TailorViewQuoteScreen() {
           </div>
           <div
             style={{
-              height: '80vh',
+              height: '50vh',
               width: '100vw',
               background: '#FFEEEA',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="tvqs_sq_container">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='tvqs_sq_container'>
                 <div
-                  className="tqs_sqm_input_container"
+                  className='tqs_sqm_input_container'
                   style={{
                     borderRadius: '15px',
                     marginBottom: '2%',
                   }}
                 >
-                  <div className="tqs_sqm_input_label">
-                    <p className="tqs_sqm_input_text">{t('Price')}</p>
+                  <div className='tqs_sqm_input_label'>
+                    <p className='tqs_sqm_input_text'>{t('Price')}</p>
                   </div>
-                  <div className="tqs_sqm_input_input">
+                  <div className='tqs_sqm_input_input'>
                     <CustomInput
-                      inputType="number"
+                      inputType='text'
                       labelStyle={{
                         display: 'none',
                       }}
+                      inputValue={price}
                       inputStyle={{
                         border: 'none',
                         fontSize: '12px',
                       }}
                       inputPlaceholder={t('Set Your Price')}
-                      onChange={(e) => setPrice(e.target.value)}
+                      onChange={(e) => setPrice(e.target.value.replace(/[^0-9]/g, ''))}
                     />
                   </div>
                 </div>
                 <div
-                  className="tqs_sqm_textarea_container"
+                  className='tqs_sqm_textarea_container'
                   style={{
                     borderRadius: '15px',
                     marginBottom: '10%',
                   }}
                 >
-                  <div className="tqs_sqm_textarea_label">
-                    <p className="tqs_sqm_input_text">{t('Description')}</p>
+                  <div className='tqs_sqm_textarea_label'>
+                    <p className='tqs_sqm_input_text'>{t('Description')}</p>
                   </div>
-                  <div className="tqs_sqm_input_input">
+                  <div className='tqs_sqm_input_input'>
                     <textarea
-                      className="tqs_sqm_textarea_textarea"
+                      className='tqs_sqm_textarea_textarea'
                       placeholder={t('Tell us')}
                       onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                   </div>
                 </div>
-                <div className="tvqs_sq_buttons">
+                <div className='tvqs_sq_buttons'>
                   <CustomButton
                     text={t('Send Offer')}
                     style={{

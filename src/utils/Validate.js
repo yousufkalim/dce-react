@@ -1,10 +1,5 @@
 import { toast } from 'react-toastify';
-import {
-  kRegExpEmail,
-  kRegExpPassword,
-  kRegExpPhone,
-  kRegExpUserName,
-} from './Constants';
+import { kRegExpEmail, kRegExpPassword, kRegExpPhone, kRegExpUserName } from './Constants';
 
 function isEmpty(str) {
   return !str || str.length === 0;
@@ -12,6 +7,18 @@ function isEmpty(str) {
 
 class Validators {
   static noValidator() {
+    return null;
+  }
+  static checkBox(name, value) {
+    if (!value) {
+      return `Please  ${name} to proceed`;
+    }
+    return null;
+  }
+  static addressValidator(name, label, zip, city) {
+    if (isEmpty(label) || isEmpty(zip) || isEmpty(city)) {
+      return `Invalid ${name}, Select address from dropdown list`;
+    }
     return null;
   }
 

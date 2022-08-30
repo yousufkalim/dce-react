@@ -1,9 +1,11 @@
 // Auth Screens
-import LoginScreen from '../containers/auth/Login';
-import SelectRoleScreen from '../containers/auth/SelectRole';
+import SelectRoleLoginScreen from '../containers/auth/SelectRoleLogin';
+import SelectRoleRegisterScreen from '../containers/auth/SelectRoleRegister';
+import ClientLoginScreen from '../containers/auth/ClientLogin';
 import ClientRegisterScreen from '../containers/auth/ClientRegister';
 import ClientVerifyEmailScreen from '../containers/auth/ClientVerifyEmail';
 import ClientCreateAccountScreen from '../containers/auth/ClientCreateAccount';
+import TailorLoginScreen from '../containers/auth/TailorLogin';
 import TailorRegisterScreen from '../containers/auth/TailorRegister';
 import TailorVerifyEmailScreen from '../containers/auth/TailorVerifyEmail';
 import TailorCreateAccountScreen from '../containers/auth/TailorCreateAccount';
@@ -118,16 +120,22 @@ const AuthRoutes = [
     element: UnAuthTermCondition,
   },
   {
-    path: '/login',
-    name: 'Login',
-    icon: <LoginIcon />,
-    element: LoginScreen,
+    path: '/select_role_login',
+    name: 'SelectRoleLoginScreen',
+    icon: <SelectRoleIcon />,
+    element: SelectRoleLoginScreen,
   },
   {
-    path: '/select_role',
-    name: 'SelectRoleScreen',
+    path: '/select_role_register',
+    name: 'SelectRoleRegisterScreen',
     icon: <SelectRoleIcon />,
-    element: SelectRoleScreen,
+    element: SelectRoleRegisterScreen,
+  },
+  {
+    path: '/client_login',
+    name: 'Login',
+    icon: <LoginIcon />,
+    element: ClientLoginScreen,
   },
   {
     path: '/client_register',
@@ -146,6 +154,12 @@ const AuthRoutes = [
     name: 'ClientCreateAccount',
     icon: <ClientCreateAccountIcon />,
     element: ClientCreateAccountScreen,
+  },
+  {
+    path: '/tailor_login',
+    name: 'Login',
+    icon: <LoginIcon />,
+    element: TailorLoginScreen,
   },
   {
     path: '/tailor_register',
@@ -167,6 +181,8 @@ const AuthRoutes = [
   },
   { path: '/reset-password/:token', element: ResetPasswordScreen },
 ];
+
+// TailorLoginScreen
 
 // Routes for Client
 const ClientRoutes = [

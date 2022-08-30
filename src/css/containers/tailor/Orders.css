@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  padding-top: 3%;
 }
 
 .tailor_orders_screen_row1 {
@@ -60,6 +61,7 @@
   padding: 1.5% 0;
   background-color: #ffffff;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 .tcos_order_list_tile_column1 {

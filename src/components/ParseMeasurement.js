@@ -36,9 +36,12 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
               border: 'none',
               fontSize: '12px',
             }}
+            inputType="text"
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.arm}
-            onChange={(e) => _setState('arm', e.target.value)}
+            inputValue={state.arm}
+            minmax="on"
+            onChange={(e) => _setState('arm', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -64,7 +67,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.chest}
-            onChange={(e) => _setState('chest', e.target.value)}
+            inputValue={state.chest}
+            inputType="text"
+            minmax="on"
+            onChange={(e) => _setState('chest', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -90,7 +96,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.waist}
-            onChange={(e) => _setState('waist', e.target.value)}
+            inputValue={state.waist}
+            inputType="text"
+            minmax="on"
+            onChange={(e) => _setState('waist', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -116,7 +125,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.hip}
-            onChange={(e) => _setState('hip', e.target.value)}
+            inputValue={state.hip}
+            inputType="text"
+            minmax="on"
+            onChange={(e) => _setState('hip', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -142,7 +154,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.thigh}
-            onChange={(e) => _setState('thigh', e.target.value)}
+            inputValue={state.thigh}
+            inputType="text"
+            minmax="on"
+            onChange={(e) => _setState('thigh', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -168,7 +183,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.calf}
-            onChange={(e) => _setState('calf', e.target.value)}
+            inputValue={state.calf}
+            inputType="text"
+            minmax="on"
+            onChange={(e) => _setState('calf', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -194,7 +212,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.ankle}
-            onChange={(e) => _setState('ankle', e.target.value)}
+            inputValue={state.ankle}
+            inputType="text"
+            minmax="on"
+            onChange={(e) => _setState('ankle', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -233,9 +254,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            {t('Head to floor height')}
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">{t('Head to floor height')}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -249,7 +268,10 @@ function LengthSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.head_to_floor}
-            onChange={(e) => _setState('head_to_floor', e.target.value)}
+            inputValue={state.head_to_floor}
+            minmax="on"
+            inputType="text"
+            onChange={(e) => _setState('head_to_floor', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -261,9 +283,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            {t('From shoulder to floor')}
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">{t('From shoulder to floor')}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -277,7 +297,10 @@ function LengthSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.shoulder_to_floor}
-            onChange={(e) => _setState('shoulder_to_floor', e.target.value)}
+            inputValue={state.shoulder_to_floor}
+            minmax="on"
+            inputType="text"
+            onChange={(e) => _setState('shoulder_to_floor', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -289,9 +312,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            {t('From waist to floor')}
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">{t('From waist to floor')}</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -305,7 +326,10 @@ function LengthSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.waist_to_floor}
-            onChange={(e) => _setState('waist_to_floor', e.target.value)}
+            inputValue={state.waist_to_floor}
+            minmax="on"
+            inputType="text"
+            onChange={(e) => _setState('waist_to_floor', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -318,8 +342,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
       >
         <div className="pa_profile_section_input_label">
           <p className="pa_profile_section_input_text measurement_profile_section">
-            {t('Arm length')}{' '}
-            <span style={{ color: '#A0A0A0' }}> {t('(handle)')} </span>
+            {t('Arm length')} <span style={{ color: '#A0A0A0' }}> {t('(handle)')} </span>
           </p>
         </div>
         <div className="pa_profile_section_input_input">
@@ -334,7 +357,10 @@ function LengthSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.arm_length}
-            onChange={(e) => _setState('arm_length', e.target.value)}
+            inputValue={state.arm_length}
+            minmax="on"
+            inputType="text"
+            onChange={(e) => _setState('arm_length', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>
@@ -346,9 +372,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
         }}
       >
         <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text measurement_profile_section">
-            Leg length
-          </p>
+          <p className="pa_profile_section_input_text measurement_profile_section">Leg length</p>
         </div>
         <div className="pa_profile_section_input_input">
           <CustomInput
@@ -362,7 +386,10 @@ function LengthSection({ state, setState, onClick, disabled }) {
             }}
             inputPlaceholder={t('Select size')}
             inputDefaultValue={state.leg_length}
-            onChange={(e) => _setState('leg_length', e.target.value)}
+            inputValue={state.leg_length}
+            minmax="on"
+            inputType="text"
+            onChange={(e) => _setState('leg_length', e.target.value.replace(/[^0-9]/g, ''))}
           />
         </div>
       </div>

@@ -9,16 +9,11 @@ import { useTranslation } from 'react-i18next';
 
 import { useNavigate } from 'react-router-dom';
 import dummy from '../assets/dummy.jpeg';
+import ron from '../assets/ron.jpeg';
 import assetsURL from '../utils/Assets';
 import { calculateRating, calculateRatingsCount } from '../utils/Helpers';
 
-function CatalogListTile({
-  catalog,
-  buttonText,
-  onClickButton,
-  onClick,
-  mainDivStyle,
-}) {
+function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivStyle }) {
   const { t } = useTranslation();
 
   const rating = calculateRating(catalog.ratings);
@@ -30,9 +25,10 @@ function CatalogListTile({
   };
   return (
     <div
-      className="tailor_catalog_list_tile_container"
+      className='tailor_catalog_list_tile_container'
       style={{
         ...mainDivStyle,
+        width: 'auto',
       }}
     >
       <div
@@ -45,40 +41,37 @@ function CatalogListTile({
       >
         <img
           style={{
-            width: '100%',
-            height: '100pt',
-            objectFit: 'contain',
+            // width: '100%',
+            // height: '100%',
+            width: '260px',
+            height: '200px',
+            // objectFit: 'contain',
             borderRadius: '20px',
           }}
-          src={
-            catalog?.attachments[0]
-              ? assetsURL(catalog.attachments[0])
-              : CatalogContent1SVG
-          }
+          src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}
         />
         <CustomButton
           text={buttonText}
-          type="submit"
+          type='submit'
           onClick={onClickButtonCallback}
           style={{
             background: '#fff',
             color: '#CC8E9C',
             fontWeight: '600',
+            fontSize: '12px',
             boxShadow: 'none',
             borderRadius: '20px',
             marginTop: '5%',
-            padding: '2% 5%',
+            padding: '2% 8%',
             position: 'absolute',
             top: '0',
-            right: '5%',
+            right: '10%',
           }}
         />
-        <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
-        <div className="tailor_catalog_list_tile_details">
-          <p className="tailor_catalog_list_tile_price_detail">
-            {t('Stitching Price')}
-          </p>
-          <p className="tailor_catalog_list_tile_price">${catalog.price}</p>
+        <p className='tailor_catalog_list_tile_title'>{catalog.name}</p>
+        <div className='tailor_catalog_list_tile_details'>
+          <p className='tailor_catalog_list_tile_price_detail'>{t('Stitching Price')}</p>
+          <p className='tailor_catalog_list_tile_price'>{catalog.price}€</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">

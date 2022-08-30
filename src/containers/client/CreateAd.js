@@ -42,9 +42,15 @@ function ClientCreateAdScreen() {
     fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
+    fabric_type: '',
+    fabric_description: '',
+    height: '',
+    observation: '',
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
+    client_first_name: '',
+    client_last_name: '',
     address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
@@ -52,6 +58,7 @@ function ClientCreateAdScreen() {
     min_price: '',
     max_price: '',
     note: '',
+    terms_conditions: true,
   });
 
   const handleImagesSelect = (event) => {
@@ -137,14 +144,13 @@ function ClientCreateAdScreen() {
       body.append('measurements', JSON.stringify(basicSection.measurements));
       body.append('color', basicSection.color);
       body.append('fabric', basicSection.fabric);
-      body.append(
-        'includes_alteration_services',
-        basicSection.includes_alteration_services
-      );
-      body.append(
-        'create_catalog_after_completion',
-        basicSection.create_catalog_after_completion
-      );
+      body.append('fabric_type', basicSection.fabric_type);
+      body.append('fabric_description', basicSection.fabric_description);
+      body.append('height', basicSection.height);
+      body.append('observation', basicSection.observation);
+
+      body.append('includes_alteration_services', basicSection.includes_alteration_services);
+      body.append('create_catalog_after_completion', basicSection.create_catalog_after_completion);
       body.append(
         'delivery',
         JSON.stringify({
@@ -154,6 +160,8 @@ function ClientCreateAdScreen() {
           city: deliverySection.address.city,
           note: deliverySection.note,
           date: deliverySection.date,
+          client_first_name: deliverySection.client_first_name,
+          client_last_name: deliverySection.client_last_name,
         })
       );
       body.append(
@@ -173,6 +181,7 @@ function ClientCreateAdScreen() {
 
       if (response?.data?.success) {
         toast.success(t('Ad created successfully.'));
+        // console.log("response")
         navToMyAds();
       }
     } catch (e) {
@@ -192,15 +201,15 @@ function ClientCreateAdScreen() {
 
   return (
     <>
-      <div className="container">
-        <ClientAppBar activeTab={2} color="#FFFAF9" />
+      <div className='container'>
+        <ClientAppBar activeTab={2} color='#FFFAF9' />
         <div
-          className="client_create_ad_screen_top"
+          className='client_create_ad_screen_top'
           style={{
             background: '#FFEEEA',
           }}
         >
-          <div className="client_create_ad_screen_column1">
+          <div className='client_create_ad_screen_column1'>
             <p
               style={{
                 fontSize: '20px',
@@ -215,31 +224,30 @@ function ClientCreateAdScreen() {
             </p>
             <img style={{ width: '70%' }} src={AdElaborationSVG} />
           </div>
-          <div className="client_create_ad_screen_column2">
+          <div className='client_create_ad_screen_column2'>
             <div
-              className="pa_container"
+              className='pa_container'
               style={{
                 marginTop: '8.5%',
               }}
             >
-              <div className="pa_steps_row">
+              <div className='pa_steps_row'>
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
-                      <StepLabel onClick={() => setActiveStep(i)}>
-                        {t(v)}
-                      </StepLabel>
+                      <StepLabel onClick={() => setActiveStep(i)}>{t(v)}</StepLabel>
                     </Step>
                   ))}
                 </Stepper>
               </div>
-              <div className="pa_content_row">
+              <div className='pa_content_row'>
                 {activeStep == 0 ? (
                   <ParseAd.BasicSection
                     state={basicSection}
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
                     images={images}
+                    setImages={setImages}
                     handleImagesSelect={handleImagesSelect}
                     handleImageDeselect={handleImageDeselect}
                   />
@@ -250,11 +258,7 @@ function ClientCreateAdScreen() {
                     onClick={deliverySectionCallback}
                   />
                 ) : activeStep == 2 ? (
-                  <ParseAd.NotesSection
-                    state={notesSection}
-                    setState={setNotesSection}
-                    onClick={notesSectionCallback}
-                  />
+                  <ParseAd.NotesSection state={notesSection} setState={setNotesSection} onClick={notesSectionCallback} />
                 ) : (
                   <></>
                 )}

@@ -23,7 +23,6 @@ const Main = () => {
 
   const store = Store();
   const updateStore = UpdateStore();
-
   useEffect(() => {
     document.querySelector('html').style.scrollBehavior = 'auto';
     window.scroll({ top: 0 });
@@ -37,7 +36,6 @@ const Main = () => {
 
   useEffect(() => {
     Object.assign(SS, store);
-    // console.log(SS, `_SS_`);
   }, [store]);
 
   return (
@@ -45,13 +43,7 @@ const Main = () => {
       <div className="main-container">
         <Routes>
           {token && isMyTokenExpired == false ? (
-            <>
-              {user.role == 'client' ? (
-                <>{getRoutes(RoutesObj.ClientRoutes)}</>
-              ) : (
-                <>{getRoutes(RoutesObj.TailorRoutes)}</>
-              )}
-            </>
+            <>{user.role == 'client' ? <>{getRoutes(RoutesObj.ClientRoutes)}</> : <>{getRoutes(RoutesObj.TailorRoutes)}</>}</>
           ) : (
             <>{getRoutes(RoutesObj.AuthRoutes)}</>
           )}

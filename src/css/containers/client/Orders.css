@@ -6,6 +6,7 @@
   min-height: 100vh;
   height: 100%;
   width: 100%;
+  padding-top: 3%;
 }
 
 .client_orders_screen_row1 {
@@ -50,6 +51,7 @@
   padding: 1.5% 0;
   background-color: #ffffff;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 .cos_order_list_tile_column1 {
@@ -163,7 +165,16 @@
   align-items: center;
   justify-content: space-between;
 }
-
+@media only screen and (max-width: 1180px) {
+  .containerOrder{
+    height: 150vh !important;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .containerOrder{
+    height: 150vh !important;
+  }
+}
 @media only screen and (max-width: 768px) {
   .cos_order_list_tile_container {
     display: flex;

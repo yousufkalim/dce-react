@@ -44,9 +44,15 @@ function ClientEditAdScreen() {
     fabric: '',
     includes_alteration_services: false,
     create_catalog_after_completion: false,
+    fabric_type: '',
+    fabric_description: '',
+    height: '',
+    observation: '',
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
+    client_first_name: '',
+    client_last_name: '',
     address: { zip: '', label: '', city: '', lat: '', lng: '' },
   });
   const [notesSection, setNotesSection] = useState({
@@ -116,6 +122,7 @@ function ClientEditAdScreen() {
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
         note: adData?.budget.note,
+        terms_conditions: true,
       });
     } catch (e) {
       console.trace(e);
@@ -152,14 +159,8 @@ function ClientEditAdScreen() {
       body.append('measurements', JSON.stringify(basicSection.measurements));
       body.append('color', basicSection.color);
       body.append('fabric', basicSection.fabric);
-      body.append(
-        'includes_alteration_services',
-        basicSection.includes_alteration_services
-      );
-      body.append(
-        'create_catalog_after_completion',
-        basicSection.create_catalog_after_completion
-      );
+      body.append('includes_alteration_services', basicSection.includes_alteration_services);
+      body.append('create_catalog_after_completion', basicSection.create_catalog_after_completion);
       body.append(
         'delivery',
         JSON.stringify({
@@ -207,20 +208,17 @@ function ClientEditAdScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className="container-page">
-          <ClientAppBar color="#F8F4EF" activeTab={2} />
+        <div className='container-page'>
+          <ClientAppBar color='#F8F4EF' activeTab={2} />
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFE9A0',
-              height: '118vh',
+              height: '135vh',
             }}
           >
-            <div
-              style={{ height: '100%' }}
-              className="client_edit_ad_screen_row1"
-            >
-              <div className="client_edit_ad_screen_row1_column1">
+            <div style={{ height: '100%' }} className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
                     fontSize: '30px',
@@ -240,29 +238,28 @@ function ClientEditAdScreen() {
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
-              <div className="client_edit_ad_screen_row1_column2">
+              <div className='client_edit_ad_screen_row1_column2'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '10%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
+                  <div className='pa_content_row'>
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
                       images={images}
+                      setImages={setImages}
                       handleImagesSelect={handleImagesSelect}
                       handleImageDeselect={handleImageDeselect}
                     />
@@ -272,40 +269,35 @@ function ClientEditAdScreen() {
             </div>
           </div>
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFC396',
               paddingBottom: '1%',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row2_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row2_column1'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '10%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
-                    <ParseAd.DeliverySection
-                      state={deliverySection}
-                      setState={setDeliverySection}
-                    />
+                  <div className='pa_content_row'>
+                    <ParseAd.DeliverySection state={deliverySection} setState={setDeliverySection} />
                   </div>
                 </div>
               </div>
-              <div className="client_edit_ad_screen_row2_column2">
+              <div className='client_edit_ad_screen_row2_column2'>
                 <p
                   style={{
                     fontSize: '30px',
@@ -328,14 +320,14 @@ function ClientEditAdScreen() {
             </div>
           </div>
           <div
-            className="container"
+            className='container'
             style={{
               background: '#FFFCFB',
               paddingBottom: '2%',
             }}
           >
-            <div className="client_edit_ad_screen_row1">
-              <div className="client_edit_ad_screen_row1_column1">
+            <div className='client_edit_ad_screen_row1'>
+              <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{
                     fontSize: '30px',
@@ -355,30 +347,24 @@ function ClientEditAdScreen() {
                 </p>
                 <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
-              <div className="client_edit_ad_screen_row1_column2">
+              <div className='client_edit_ad_screen_row1_column2'>
                 <div
-                  className="pa_container"
+                  className='pa_container'
                   style={{
                     marginTop: '10%',
                   }}
                 >
-                  <div className="pa_steps_row">
+                  <div className='pa_steps_row'>
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>
-                            {t(label)}
-                          </StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className="pa_content_row">
-                    <ParseAd.NotesSection
-                      state={notesSection}
-                      setState={setNotesSection}
-                      onClick={handleSubmit}
-                    />
+                  <div className='pa_content_row'>
+                    <ParseAd.NotesSection state={notesSection} setState={setNotesSection} onClick={handleSubmit} />
                   </div>
                 </div>
               </div>

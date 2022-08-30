@@ -31,6 +31,7 @@ function TailorEditCatalogScreen() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [catalog, setCatalog] = useState(null);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     getCatalog();
@@ -40,6 +41,9 @@ function TailorEditCatalogScreen() {
     let response;
     try {
       response = await Api('get', `/catalogs/${params.id}`);
+
+      let updatedAttachments = response?.data?.catalog?.attachments?.map((val) => (val = `https://dce.falconit.com.pk/${val}`));
+      setImages(updatedAttachments);
       const catalogData = response.data.catalog;
       setCatalog(catalogData);
       setIsLoading(false);
@@ -78,7 +82,7 @@ function TailorEditCatalogScreen() {
                 </p>
                 <div className="tccs_input_section_container" style={{}}>
                   <div className="pa_content_row">
-                    <InputSection {...catalog} />
+                    <InputSection {...catalog} images={images} setImages={setImages} />
                   </div>
                 </div>
               </div>
@@ -96,7 +100,7 @@ function InputSection(props) {
   const params = useParams();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [images, setImages] = useState([]);
+
   const [viewImage, setViewImage] = useState(null);
 
   const [isViewImageModal, setIsViewImageModal] = useState(false);
@@ -108,7 +112,7 @@ function InputSection(props) {
   };
 
   const handleImagesSelect = (event) => {
-    if (event.target.files.length + images.length > 5) {
+    if (event.target.files.length + props?.images.length > 5) {
       toast.error('You can select a maximum of 5 files.');
       return;
     }
@@ -121,19 +125,21 @@ function InputSection(props) {
       }
     }
 
-    if (event.target.files.length + images.length > 5) {
+    if (event.target.files.length + props?.images.length > 5) {
       toast.error('You can select a maximum of 5 files.');
       return;
     }
-    setImages([...images, ...event.target.files]);
+    props?.setImages([...props?.images, ...event.target.files]);
   };
   const handleImageDeselect = (image) => {
-    const _images = [...images];
+    console.log(image, 'image');
+    console.log(typeof image, 'type');
+    const _images = [...props?.images];
     const index = _images.map((_) => _.name).indexOf(image.name);
     if (index > -1) {
       _images.splice(index, 1);
     }
-    setImages([..._images]);
+    props?.setImages([..._images]);
   };
 
   const [state, setState] = useState({
@@ -159,6 +165,8 @@ function InputSection(props) {
   };
 
   const handleSubmit = async (event) => {
+    console.log(state);
+    console.log(props?.images, 'check');
     event.preventDefault();
 
     const isValidated = FormValidations.tailorCreateCatalog(state);
@@ -171,21 +179,17 @@ function InputSection(props) {
     }
 
     let response;
-
     try {
       setIsProcessing(true);
-
       const body = new FormData();
-
       body.append('name', state.name);
       body.append('gender', state.gender);
       body.append('category', state.category);
       body.append('price', state.price);
       body.append('description', state.description);
-      for (let i = 0; i < images.length; i++) {
-        body.append('images', images[i]);
+      for (let i = 0; i < props?.images.length; i++) {
+        body.append('images', props?.images[i]);
       } // Multipart files share the same field name
-
       response = await Api('put', `/catalogs/${params.id}`, body);
 
       if (response?.data?.success) {
@@ -203,7 +207,6 @@ function InputSection(props) {
     navigate('/catalog');
   };
   const { t } = useTranslation();
-
   return (
     <>
       <div className="pa_profile_section_container">
@@ -252,10 +255,7 @@ function InputSection(props) {
               selectNullValue={t('Select gender')}
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
-              menuItems={[
-                <MenuItem value={'male'}>{t('Male')}</MenuItem>,
-                <MenuItem value={'female'}>{t('Female')}</MenuItem>,
-              ]}
+              menuItems={[<MenuItem value={'male'}>{t('Male')}</MenuItem>, <MenuItem value={'female'}>{t('Female')}</MenuItem>]}
               selectSX={{
                 fontSize: '12px',
               }}
@@ -332,11 +332,13 @@ function InputSection(props) {
             </textarea>
           </div>
         </div>
+
         <div
           className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
             marginTop: '2%',
+            cursor: 'pointer',
           }}
         >
           <div className="pa_profile_section_input_label">
@@ -344,26 +346,17 @@ function InputSection(props) {
           </div>
           <div className="pa_profile_section_input_input">
             <label className="upload-pic-label" htmlFor="filePicker">
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                hidden
-                id="filePicker"
-                name="file"
-                onChange={handleImagesSelect}
-              />
-              <div className="upload-img-text-cont">
-                <span className="upload-img-text">
-                  {t('upload an illustration of your creation')}
-                </span>
+              <input type="file" multiple accept="image/*" hidden id="filePicker" name="file" onChange={handleImagesSelect} />
+              <div style={{ cursor: 'pointer' }} className="upload-img-text-cont">
+                <span className="upload-img-text">{t('upload an illustration of your creation')}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
           </div>
         </div>
         <div className="selected-images-container">
-          {images?.map((_) => (
+          {console.log(props?.images, 'images')}
+          {props?.images?.map((_) => (
             <Attachment
               image={_}
               view={() => {
@@ -384,15 +377,8 @@ function InputSection(props) {
             boxShadow: 'none',
           }}
         />
-        <Modal
-          open={isViewImageModal}
-          onClose={handleIsViewImageModalClose}
-          aria-labelledby="View Image"
-        >
-          <ViewImageModal
-            src={viewImage}
-            handleClose={handleIsViewImageModalClose}
-          />
+        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby="View Image">
+          <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>
     </>

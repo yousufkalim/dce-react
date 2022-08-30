@@ -23,10 +23,12 @@ function ClientVerifyEmailScreen() {
   const { state } = useLocation();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [resendCode, setResendCode] = useState(false);
+  const [otpValue, setotpValue] = useState('');
 
   useEffect(() => {
     if (!state?.['Email'] || !state?.['Password'] || !state?.['otp']) {
-      navigate('/login');
+      navigate('/client_login');
     }
   }, []);
 
@@ -36,24 +38,29 @@ function ClientVerifyEmailScreen() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (isProcessing) {
       return;
     }
 
     const data = new FormData(event.currentTarget);
-
     const isValidated = FormValidations.clientVerifyEmail(data);
 
     if (!isValidated) {
       return;
     }
 
-    if (data.get('Verification Code') != state.otp.otp) {
-      toast.error('OTP is incorrect.');
-      return;
+    if (resendCode) {
+      if (data.get('Verification Code') != resendCode) {
+        toast.error('OTP is incorrect.');
+        return;
+      }
     }
-
+    if (!resendCode) {
+      if (data.get('Verification Code') != state.otp.otp) {
+        toast.error('OTP is incorrect.');
+        return;
+      }
+    }
     let response;
 
     try {
@@ -76,10 +83,27 @@ function ClientVerifyEmailScreen() {
     } catch (e) {
       console.trace(e);
     }
-
     setIsProcessing(false);
   };
+  const resendVerificationCode = async () => {
+    let response;
+    try {
+      setIsProcessing(true);
 
+      const body = {
+        email: state?.Email,
+        password: state?.Password,
+      };
+      response = await Api('post', '/otps', body);
+      if (response?.data?.success) {
+        toast.success(response.data.message);
+        setResendCode(response?.data?.otp?.otp);
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+    setIsProcessing(false);
+  };
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
@@ -92,10 +116,7 @@ function ClientVerifyEmailScreen() {
         <div className="login_screen_top">
           <div className="login_screen_row1">
             <div className="login_screen_row1_img">
-              <img
-                style={{ width: '35%', marginBottom: '5%' }}
-                src={AppLogoSVG}
-              />
+              <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
             </div>
             <div className="login_screen_row1_img">
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
@@ -134,12 +155,17 @@ function ClientVerifyEmailScreen() {
                 divStyle={{
                   marginBottom: '6%',
                 }}
+                inputValue={otpValue}
+                onChange={(e) => setotpValue(e.target.value.replace(/[^0-9]/g, ''))}
               />
+              <div onClick={resendVerificationCode} className="resend_code">
+                <small>Resend Code</small>
+              </div>
               <CustomButton
                 text={t('Create Account')}
                 type="submit"
                 style={{
-                  marginBottom: '10%',
+                  margin: '3% 0% 10% 0%',
                 }}
               />
             </div>

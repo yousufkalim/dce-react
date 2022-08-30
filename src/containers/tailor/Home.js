@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TailorHomeSVG from '../../assets/TailorHome.svg';
+import TailorHomeSVG from '../../assets/TailorHome_.svg';
 import UserSVG from '../../assets/dummy.jpeg';
 import AppBar from '../../components/TailorAppBar';
 import OrderListTile from '../../components/OrderListTile';
@@ -71,26 +71,22 @@ function TailorHomeScreen() {
   };
 
   return (
-    <div className="container-page">
-      <AppBar color="#F8F4EF" />
+    <div className='container-page'>
+      <AppBar color='#F8F4EF' />
       <div
-        className="container"
+        className='container'
         style={{
           background: '#FAFAFA',
         }}
       >
-        <div className="client_home_screen_row1">
-          <div className="client_home_screen_row1_column1">
-            <p
-              className="client_home_screen_row1_column1_text_1"
-              style={{ color: '#CC8E9C' }}
-            >
-              {t('Welcome to the')}
-            </p>
-            <p className="tailor_home_screen_row1_column1_text_2">
-              Design Confections Ethiques
-            </p>
-            {/* <p
+        <div className='client_home_screen_row1'>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10%' }}>
+            <div className='client_home_screen_row1_column1_'>
+              <p className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
+                {t('Welcome to the')} Design Confections Ethiques
+              </p>
+              {/* <p className='tailor_home_screen_row1_column1_text_2'>Design Confections Ethiques</p> */}
+              {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#A0805A",
@@ -98,7 +94,7 @@ function TailorHomeScreen() {
             >
               {t("Now You receive your")}
             </p> */}
-            {/* <p
+              {/* <p
               className="client_home_screen_row1_column1_text_1"
               style={{
                 color: "#857B6F",
@@ -106,44 +102,43 @@ function TailorHomeScreen() {
             >
               {t("order here")}
             </p> */}
-            <button
-              className="client_home_screen_row1_column1_button"
-              style={{
-                backgroundColor: '#FFFFFF',
-              }}
-              onClick={navToQuotes}
-            >
-              {t('find your sewing assignments')}
-            </button>
-          </div>
-          <div className="client_home_screen_row1_column2">
-            <div className="client_home_screen_row1_column2_img">
-              <img style={{ width: '90%' }} src={TailorHomeSVG} />
+              <button
+                className='tailor_home_screen_row1_column1_button'
+                style={{
+                  backgroundColor: '#FFFFFF',
+                }}
+                onClick={navToQuotes}
+              >
+                {t('Find your sewing assignments')}
+              </button>
+            </div>
+            <div className='client_home_screen_row1_column2'>
+              <div className='design_home_screen_row1_column2_img'>
+                <img style={{ width: '100%' }} src={TailorHomeSVG} />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        className="container"
+        className='container'
         style={{
           background:
             'linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
         <div
-          className="client_home_screen_row2_row1"
+          className='client_home_screen_row2_row1'
           style={{
             borderBottomColor: '#DBDBDB',
             borderBottomStyle: 'solid',
             borderBottomWidth: '0.5px',
           }}
         >
-          <p className="client_home_screen_row2_row1_text">
-            {t('Order Requests')}
-          </p>
-          <div className="client_home_screen_row2_row1_row_container">
+          <p className='client_home_screen_row2_row1_text'>{t('Order Requests')}</p>
+          <div className='client_home_screen_row2_row1_row_container'>
             {ordersRequest.map((_) => (
-              <OrderListTile order={_} viewAs="tailor" />
+              <OrderListTile order={_} viewAs='tailor' />
             ))}
             <p
               style={{
@@ -159,16 +154,11 @@ function TailorHomeScreen() {
             </p>
           </div>
         </div>
-        <div className="client_home_screen_row2_row1">
-          <p className="client_home_screen_row2_row1_text">
-            {t('Recent Orders')}
-          </p>
-          <div className="client_home_screen_row2_row1_row_container">
+        <div className='client_home_screen_row2_row1'>
+          <p className='client_home_screen_row2_row1_text'>{t('Recent Orders')}</p>
+          <div className='client_home_screen_row2_row1_row_container'>
             {ordersInProgress.map((_) => (
-              <OrderListTile
-                order={_}
-                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
-              />
+              <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == 'accepted')[0]} />
             ))}
             <p
               style={{

@@ -12,6 +12,7 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Attachment from '../../components/Attachment';
 import ViewImageModal from '../../components/ViewImageModal';
+import AlertBox from '../../components/AlertBox';
 
 import MenuItem from '@mui/material/MenuItem';
 import { Modal } from '@mui/material';
@@ -28,19 +29,21 @@ function TailorCreateCatalogScreen() {
   const { t } = useTranslation();
 
   return (
-    <div className="container-page">
-      <TailorAppBar color="#FFFAF9" activeTab={1} />
+    <div className='container-page'>
+      <TailorAppBar color='#FFFAF9' activeTab={1} />
+      {/* <OrderAcceptForm/> */}
+
       <div
-        className="container"
+        className='container'
         style={{
           background: '#FFEEEA',
         }}
       >
-        <div className="tailor_create_catalog_screen_row1">
-          <div className="tailor_create_catalog_screen_row1_column1">
+        <div className='tailor_create_catalog_screen_row1'>
+          <div className='tailor_create_catalog_screen_row1_column1'>
             <img style={{ width: '60%' }} src={AddCatalogSVG} />
           </div>
-          <div className="tailor_create_catalog_screen_row1_column2">
+          <div className='tailor_create_catalog_screen_row1_column2'>
             <p
               style={{
                 marginTop: '10%',
@@ -49,10 +52,10 @@ function TailorCreateCatalogScreen() {
                 fontWeight: '900',
               }}
             >
-              {t('Add Catalogue')}
+              {t('Catalogue')}
             </p>
-            <div className="tccs_input_section_container" style={{}}>
-              <div className="pa_content_row">
+            <div className='tccs_input_section_container' style={{}}>
+              <div className='pa_content_row'>
                 <InputSection />
               </div>
             </div>
@@ -65,6 +68,8 @@ function TailorCreateCatalogScreen() {
 }
 
 function InputSection() {
+  const [open, setOpen] = useState(false);
+  const [imageToDeleteConfirmation, setImageToDeleteConfirmation] = useState();
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -80,6 +85,18 @@ function InputSection() {
   });
 
   const [isViewImageModal, setIsViewImageModal] = useState(false);
+
+  const handleCloseAlert = (confirmation) => {
+    if (confirmation) {
+      const _images = [...images];
+      const index = _images.map((_) => _.name).indexOf(imageToDeleteConfirmation.name);
+      if (index > -1) {
+        _images.splice(index, 1);
+      }
+      setImages([..._images]);
+    }
+    setOpen(false);
+  };
   const handleIsViewImageModalClose = () => {
     setIsViewImageModal(false);
   };
@@ -108,14 +125,19 @@ function InputSection() {
     setImages([...images, ...event.target.files]);
   };
 
-  const handleImageDeselect = (image) => {
-    const _images = [...images];
-    const index = _images.map((_) => _.name).indexOf(image.name);
-    if (index > -1) {
-      _images.splice(index, 1);
-    }
-    setImages([..._images]);
-  };
+  //const handleImageDeselect = (image) => {
+  //setOpen(true)
+  //console.log("confirmation");
+  // if(!open){
+  //   const _images = [...images];
+  //   const index = _images.map((_) => _.name).indexOf(image.name);
+  //   if (index > -1) {
+  //     _images.splice(index, 1);
+  //   }
+  //   setImages([..._images]);
+  // }
+
+  //};
 
   const _setState = (key, value) => {
     const obj = {};
@@ -179,18 +201,19 @@ function InputSection() {
 
   return (
     <>
-      <div className="pa_profile_section_container">
+      <AlertBox open={open} setOpen={setOpen} handleClose={handleCloseAlert} />
+      <div className='pa_profile_section_container'>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderTopLeftRadius: '20px',
             borderTopRightRadius: '20px',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Name')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Name')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomInput
               labelStyle={{
                 display: 'none',
@@ -199,47 +222,45 @@ function InputSection() {
                 border: 'none',
                 fontSize: '12px',
               }}
+              minmax='on'
               inputPlaceholder={t('I give a name to my confection')}
               onChange={(e) => _setState('name', e.target.value)}
             />
           </div>
         </div>
 
-        <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Gender')}</p>
+        <div className='pa_profile_section_input_container'>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Gender')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               labelStyle={{
                 display: 'none',
               }}
-              selectID="gender"
-              selectName="gender"
+              selectID='gender'
+              selectName='gender'
               selectNullValue={t('Select gender')}
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
-              menuItems={[
-                <MenuItem value={'male'}>{t('Male')}</MenuItem>,
-                <MenuItem value={'female'}>{t('Female')}</MenuItem>,
-              ]}
+              menuItems={[<MenuItem value={'male'}>{t('Male')}</MenuItem>, <MenuItem value={'female'}>{t('Female')}</MenuItem>]}
               selectSX={{
                 fontSize: '12px',
               }}
             />
           </div>
         </div>
-        <div className="pa_profile_section_input_container">
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Category')}</p>
+        <div className='pa_profile_section_input_container'>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Category')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomDropDown
               labelStyle={{
                 display: 'none',
               }}
-              selectID="category"
-              selectName="category"
+              selectID='category'
+              selectName='category'
               selectNullValue={t('Select category')}
               selectValue={t(state.category)}
               onChange={(e) => _setState('category', e.target.value)}
@@ -253,19 +274,20 @@ function InputSection() {
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderBottomLeftRadius: '20px',
             borderBottomRightRadius: '20px',
             marginBottom: '2%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">{t('Price')}</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>{t('Price')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <CustomInput
-              inputType="number"
+              inputType='tel'
+              inputValue={state?.price}
               labelStyle={{
                 display: 'none',
               }}
@@ -273,61 +295,61 @@ function InputSection() {
                 border: 'none',
                 fontSize: '12px',
               }}
+              minmax='on'
               inputPlaceholder={t('Set your Price')}
-              onChange={(e) => _setState('price', e.target.value)}
+              onChange={(e) => _setState('price', e.target.value.replace(/[^0-9]/g, ''))}
             />
           </div>
         </div>
         <div
-          className="pa_payment_section_textarea_container"
+          className='pa_payment_section_textarea_container'
           style={{
             height: '30%',
             borderRadius: '20px',
             marginBottom: '2%',
           }}
         >
-          <div className="pa_payment_section_textarea_label">
-            <p className="pa_profile_section_input_text">{t('Description')}</p>
+          <div className='pa_payment_section_textarea_label'>
+            <p className='pa_profile_section_input_text'>{t('Description')}</p>
           </div>
-          <div className="pa_profile_section_input_input">
+          <div className='pa_profile_section_input_input'>
             <textarea
-              className="pa_profile_section_textarea_textarea"
+              className='pa_profile_section_textarea_textarea'
               placeholder={t('Tell us about your service')}
               onChange={(e) => _setState('description', e.target.value)}
+              maxLength='300'
             ></textarea>
           </div>
         </div>
         <div
-          className="pa_profile_section_input_container"
+          className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
             marginTop: '2%',
           }}
         >
-          <div className="pa_profile_section_input_label">
-            <p className="pa_profile_section_input_text">Attachments</p>
+          <div className='pa_profile_section_input_label'>
+            <p className='pa_profile_section_input_text'>Attachments</p>
           </div>
-          <div className="pa_profile_section_input_input">
-            <label className="upload-pic-label" htmlFor="filePicker">
+          <div className='pa_profile_section_input_input'>
+            <label className='upload-pic-label' htmlFor='filePicker'>
               <input
-                type="file"
+                type='file'
                 multiple
-                accept="image/*"
+                accept='.jpg,.jpeg,.png'
                 hidden
-                id="filePicker"
-                name="file"
+                id='filePicker'
+                name='file'
                 onChange={handleImagesSelect}
               />
-              <div className="upload-img-text-cont">
-                <span className="upload-img-text">
-                  {t('upload an illustration of your creation')}
-                </span>
+              <div className='upload-img-text-cont'>
+                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
           </div>
         </div>
-        <div className="selected-images-container">
+        <div className='selected-images-container'>
           {images?.map((_) => (
             <Attachment
               image={_}
@@ -335,7 +357,10 @@ function InputSection() {
                 setViewImage(_);
                 handleIsViewImageModalOpen();
               }}
-              deselect={() => handleImageDeselect(_)}
+              deselect={() => {
+                setOpen(true);
+                setImageToDeleteConfirmation(_);
+              }}
             />
           ))}
         </div>
@@ -349,15 +374,8 @@ function InputSection() {
             boxShadow: 'none',
           }}
         />
-        <Modal
-          open={isViewImageModal}
-          onClose={handleIsViewImageModalClose}
-          aria-labelledby="View Image"
-        >
-          <ViewImageModal
-            src={viewImage}
-            handleClose={handleIsViewImageModalClose}
-          />
+        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
+          <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>
     </>

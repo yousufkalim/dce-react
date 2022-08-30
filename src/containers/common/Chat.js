@@ -80,10 +80,7 @@ const ChatScreen = () => {
         chats: chatsData,
       });
       if (directUser) {
-        const isDirectUserInvalid = chatsData.some(
-          (_) =>
-            _.tailor._id == directUser._id || _.client._id == directUser._id
-        );
+        const isDirectUserInvalid = chatsData.some((_) => _.tailor._id == directUser._id || _.client._id == directUser._id);
         if (isDirectUserInvalid) {
           setDirectUser(null);
         } else {
@@ -118,42 +115,31 @@ const ChatScreen = () => {
 
   return (
     <>
-      <div
-        style={{ background: '#DFDFDF' }}
-        className="container-page-vertical"
-      >
-        {user.role == 'client' ? (
-          <ClientAppBar activeTab={3} color="#FCFCFC" />
-        ) : (
-          <TailorAppBar activeTab={3} color="#FCFCFC" />
-        )}
-        <div className="client_orders_screen_top">
-          <div className="chat">
+      <div style={{ background: '#DFDFDF' }} className='container-page-vertical'>
+        {user.role == 'client' ? <ClientAppBar activeTab={3} color='#FCFCFC' /> : <TailorAppBar activeTab={3} color='#FCFCFC' />}
+        <div className='client_orders_screen_top' style={{ paddingTop: '6% !important' }}>
+          <div className='chat'>
             <Box
               sx={{
                 display: mobiletoggle && width <= '768' ? 'none' : 'block',
               }}
               onClick={OpenChat}
-              className="chat-left-bar"
+              className='chat-left-bar'
             >
               <h4>{t('Chats')}</h4>
-              <div className="recentchats">
+              <div className='recentchats'>
                 <p> {t('Recent Chats')}</p>
-                <img className="recent-down-icon" src={ArrowSVG} />
+                <img className='recent-down-icon' src={ArrowSVG} />
               </div>
-              <div className="search-msg-cont">
-                <img className="srch-icon" src={SearchSVG} />
-                <input className="search-msg-input" placeholder={t('Search')} />
+              <div className='search-msg-cont'>
+                <img className='srch-icon' src={SearchSVG} />
+                <input className='search-msg-input' placeholder={t('Search')} />
               </div>
-              <div className="user-card-container">
+              <div className='user-card-container'>
                 <ConversationsContainer />
               </div>
             </Box>
-            <MessagesContainer
-              width={width}
-              mobiletoggle={mobiletoggle}
-              directUser={directUser}
-            />
+            <MessagesContainer width={width} mobiletoggle={mobiletoggle} directUser={directUser} />
           </div>
         </div>
       </div>

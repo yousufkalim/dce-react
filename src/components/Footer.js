@@ -5,11 +5,17 @@ import InstagramIcon from '../assets/Instagram.svg';
 import { useTranslation } from 'react-i18next';
 import Api from '../api/index';
 
+import { getToken } from '../utils/Auth';
+
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   useEffect(() => {
-    getProfile();
+    const token = getToken();
+    if (token) {
+      getProfile();
+    }
   }, []);
   const { t } = useTranslation();
   const [profile, setProfile] = useState(null);
@@ -52,40 +58,31 @@ const Footer = () => {
     return;
   };
   return (
-    <div className="footer_main_div">
+    <div className='footer_main_div'>
       <img src={FooterLogo} style={{ height: '50%' }}></img>
 
       <div>
-        <ul className="footer_list">
+        <ul className='footer_list'>
           <li onClick={navToOrders}>{t('Orders')}</li>
-          {profile?.role === 'client' ? (
-            <li onClick={navToMyAds}>{t('My Ads')}</li>
-          ) : null}
-          {profile?.role === 'client' ? (
-            <li onClick={navToDesigner}>{t('Designers')}</li>
-          ) : null}
-          {profile?.role === 'tailor' ? (
-            <li onClick={navToQuotes}>{t('Quotes')}</li>
-          ) : null}
-          {profile?.role === 'tailor' ? (
-            <li onClick={navToCatalog}>{t('Catalogue')}</li>
-          ) : null}
+          {profile?.role === 'client' ? <li onClick={navToMyAds}>{t('My Ads')}</li> : null}
+          {profile?.role === 'client' ? <li onClick={navToDesigner}>{t('Designers')}</li> : null}
+          {profile?.role === 'tailor' ? <li onClick={navToQuotes}>{t('Quotes')}</li> : null}
+          {profile?.role === 'tailor' ? <li onClick={navToCatalog}>{t('Catalogue')}</li> : null}
           <li onClick={navToSupport}>{t('Support')}</li>
           <li onClick={navToTermsAndConditions}>{t('Terms and Conditions')}</li>
         </ul>
-        <div className="footer_icon_div">
+        <div className='footer_icon_div'>
           <div>
             <p>
-              © 2022{' '}
-              <span className="footer_bottom_text">
-                Design Confections Ethiques
-              </span>
+              © 2022 <span className='footer_bottom_text'>Design Confections Ethiques</span>
               {t(', Developed by Falcon Consulting. All rights reserved.')}
             </p>
           </div>
           <div>
-            <img src={InstagramIcon} className="footer_icon"></img>
-            <img src={TwitterIcon} className="footer_icon"></img>
+            <Link to='https://www.instagram.com/designconfectionsethiques/'>
+              <img src={InstagramIcon} className='footer_icon'></img>
+            </Link>
+            <img src={TwitterIcon} className='footer_icon'></img>
           </div>
         </div>
       </div>

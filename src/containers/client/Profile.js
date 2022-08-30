@@ -145,7 +145,7 @@ function ClientProfileScreen() {
 
       if (response?.data?.success) {
         toast.success(t('Profile updated successfully.'));
-        navToHome();
+        // navToHome();
       }
     } catch (e) {
       console.trace(e);
@@ -228,24 +228,21 @@ function ClientProfileScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className="container">
-          <ClientAppBar color="#FCFCFC" />
+        <div className='container'>
+          <ClientAppBar color='#FCFCFC' />
           <div
-            className="client_profile_screen_top"
+            className='client_profile_screen_top'
             style={{
               background:
                 'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
-            <div className="client_profile_screen_row1">
-              <p
-                className="client_profile_screen_row1_text"
-                style={{ paddingLeft: '3%' }}
-              >
-                {t('Profile')}
+            <div className='client_profile_screen_row1'>
+              <p className='client_profile_screen_row1_text' style={{ paddingLeft: '3%' }}>
+                {t('My Profile')}
               </p>
               <CustomButton
-                type="submit"
+                type='submit'
                 onClick={toEditCallback}
                 text={toEdit ? t('Save') : t('Edit')}
                 style={{
@@ -254,18 +251,15 @@ function ClientProfileScreen() {
                 }}
               />
             </div>
-            <div className="client_profile_screen_row2">
-              <div className="client_profile_screen_row2_column1">
-                <div className="prof-img">
-                  <img style={{ width: '86%' }} src={DesignElaborationSVG} />
+            <div className='client_profile_screen_row2'>
+              <div className='client_profile_screen_row2_column1'>
+                <div className='prof-img'>
+                  <img style={{ width: '88%' }} src={DesignElaborationSVG} />
                 </div>
               </div>
-              <div className="client_profile_screen_row2_column2">
-                <div className="cps_profile_container">
-                  <div
-                    className="cps_profile_img"
-                    style={{ paddingBottom: '2%' }}
-                  >
+              <div className='client_profile_screen_row2_column2'>
+                <div className='cps_profile_container'>
+                  <div className='cps_profile_img' style={{ paddingBottom: '2%' }}>
                     <label>
                       <input
                         style={{
@@ -273,8 +267,8 @@ function ClientProfileScreen() {
                           cursor: 'none',
                         }}
                         disabled={!toEdit}
-                        type="file"
-                        accept="image/*"
+                        type='file'
+                        accept='image/*'
                         onChange={handleImageSelect}
                       />
                       <div
@@ -285,17 +279,13 @@ function ClientProfileScreen() {
                         }}
                       >
                         <img
-                          className="image_container"
+                          className='image_container'
                           style={{
                             height: '80pt',
                             width: '80pt',
                           }}
                           src={
-                            profileImage
-                              ? URL.createObjectURL(profileImage)
-                              : profile.avatar
-                              ? assetsURL(profile.avatar)
-                              : dummy
+                            profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy
                           }
                         />
                         {toEdit ? (
@@ -312,19 +302,17 @@ function ClientProfileScreen() {
                       </div>
                     </label>
                   </div>
-                  <p
-                    className="cps_profile_text"
-                    style={{ paddingBottom: '10px' }}
-                  >
+                  <p className='cps_profile_text' style={{ paddingBottom: '10px' }}>
                     {profile.name}
                   </p>
                   <ProfileInput
                     disabled={!toEdit}
-                    name="Phone"
+                    name='Phone'
                     placeholder={t('Phone')}
                     defaultValue={profile.phone}
-                    img={ProfilePhoneSVG}
-                    minmax="on"
+                    // img={ProfilePhoneSVG}
+                    label={t('Phone number')}
+                    minmax='on'
                     divStyle={{
                       borderTopLeftRadius: '10px',
                       borderTopRightRadius: '10px',
@@ -333,29 +321,91 @@ function ClientProfileScreen() {
                   />
                   <ProfileInput
                     disabled
-                    name="Email"
-                    placeholder={t('Email')}
+                    name='Email'
+                    placeholder={t('E-mail')}
                     defaultValue={profile.email}
-                    img={ProfileEmailSVG}
-                  />
-                  <CustomDatePicker
-                    disabled={!toEdit}
-                    disableFuture
-                    labelStyle={{
-                      display: 'none',
-                    }}
-                    labelText="Date of Birth"
-                    value={dateOfBirth}
-                    onChange={setDateOfBirth}
+                    // img={ProfileEmailSVG}
+                    label={t('E-mail')}
                     divStyle={{
-                      width: '90%',
+                      borderBottomLeftRadius: '10px',
+                      borderBottomRightRadius: '10px',
+                    }}
+                  />
+                  <div
+                    className='pa_profile_section_input_container_'
+                    style={{
+                      borderRadius: '20px',
+                      height: '45px',
+                      borderRadius: '10px !important',
                       marginTop: '2%',
                     }}
-                  />
-                  <div style={{ width: '90%' }}>
+                  >
+                    <div className='pa_profile_section_input_label__' style={{ width: '60% !important' }}>
+                      <p
+                        className='pa_profile_section_input_text_client'
+                        style={{ width: '80% !important', marginLeft: '4% !important' }}
+                      >
+                        {t('Date of Birth')}
+                      </p>
+                    </div>
+                    <CustomDatePicker
+                      disabled={!toEdit}
+                      disableFuture
+                      labelStyle={{
+                        display: 'none',
+                      }}
+                      // centeredText={true}
+                      // labelText='Date of Birth'
+                      value={dateOfBirth}
+                      label='Date of Birth'
+                      onChange={setDateOfBirth}
+                      divStyle={{
+                        width: '90%',
+                        marginTop: '1%',
+                      }}
+                    />
+                  </div>
+                  <div
+                    className='pa_profile_section_input_container_'
+                    style={{
+                      borderRadius: '20px',
+                      marginBottom: '2%',
+                      height: '45px',
+                      borderRadius: '10px !important',
+                      marginTop: '2%',
+                    }}
+                  >
+                    <div className='pa_profile_section_input_label_'>
+                      <p
+                        className='pa_profile_section_input_text_client'
+                        style={{ width: '60% !important', marginLeft: '4% !important' }}
+                      >
+                        {t('Address')}
+                      </p>
+                    </div>
+                    <div className='pa_profile_section_input_input'>
+                      <div style={{ width: '100%' }}>
+                        <AutoComplete
+                          disabled={!toEdit}
+                          name='Address'
+                          required={true}
+                          label={'Address'}
+                          value={address?.label}
+                          options={addresses}
+                          placeholder={t('Address')}
+                          onChangeAddress={(e) => {
+                            handleInputAddress(e);
+                          }}
+                          onAddressSelect={(e) => handleSelectAddress(e)}
+                          defaultValue={address.label}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div style={{ width: '90%' }}>
                     <AutoComplete
                       disabled={!toEdit}
-                      name="Address"
+                      name='Address'
                       required={true}
                       label={'Address'}
                       value={address?.label}
@@ -367,17 +417,13 @@ function ClientProfileScreen() {
                       onAddressSelect={(e) => handleSelectAddress(e)}
                       defaultValue={address.label}
                     />
-                  </div>
+                  </div> */}
                   <ProfileInput
                     disabled
-                    name="Last Password Changed"
+                    name='Last Password Changed'
                     placeholder={t('Last Password Changed')}
                     defaultValue={
-                      profile.last_password_changed
-                        ? new Date(
-                            profile.last_password_changed
-                          ).toLocaleDateString('en-gb')
-                        : 'N/A'
+                      profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString('en-gb') : 'N/A'
                     }
                     label={t('Last Password Changed')}
                     divStyle={{
@@ -387,19 +433,17 @@ function ClientProfileScreen() {
                   />
                   <ProfileInput
                     disabled={!toEdit}
-                    name="Password"
-                    placeholder="**********"
-                    defaultValue=""
-                    label="Password"
+                    name='Password'
+                    placeholder='**********'
+                    defaultValue=''
+                    label={t('Password')}
                     onChange={(e) => _setState('password', e.target.value)}
                   />
                   <ProfileInput
                     disabled
-                    name="Account Created"
+                    name='Account Created'
                     placeholder={t('Account Created')}
-                    defaultValue={new Date(
-                      profile.createdAt
-                    ).toLocaleDateString('en-GB')}
+                    defaultValue={new Date(profile.createdAt).toLocaleDateString('en-GB')}
                     label={t('Account Created')}
                     divStyle={{
                       borderBottomLeftRadius: '10px',
@@ -417,20 +461,10 @@ function ClientProfileScreen() {
   );
 }
 
-function ProfileInput({
-  disabled,
-  name,
-  onChange,
-  placeholder,
-  defaultValue,
-  img,
-  label,
-  divStyle,
-  minmax,
-}) {
+function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img, label, divStyle, minmax }) {
   return (
     <div
-      className="cps_profile_input_container"
+      className='cps_profile_input_container'
       style={{
         ...divStyle,
       }}
@@ -444,7 +478,7 @@ function ProfileInput({
       >
         <input
           disabled={disabled}
-          className="cps_profile_input_input"
+          className='cps_profile_input_input'
           name={name}
           maxlength={minmax === 'on' && '10'}
           onChange={onChange}

@@ -5,6 +5,7 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+  margin-top: 3%;
 }
 
 .client_create_ad_screen_column1 {
@@ -58,5 +59,6 @@
   }
   .pa_steps_row {
     padding-bottom: 4%;
+    cursor: pointer;
   }
 }

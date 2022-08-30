@@ -1,332 +1,181 @@
 import React, { useEffect } from 'react';
-
-import { Link } from 'react-router-dom';
-// import slider
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+// router link
+import { Link  } from 'react-router-dom';
 //  translation
 import { useTranslation } from 'react-i18next';
-import UnAuthAppBar from '../../components/UnAuthAppBar';
-
-// assets
-import Landinghero from '../../assets/Landinghero.png';
-import addpost from '../../assets/addpost.png';
-import chosedesgin from '../../assets/chosedesgin.png';
-import pay from '../../assets/pay.png';
-import door from '../../assets/door.png';
-import help from '../../assets/help.png';
-import greatleft from '../../assets/greatleft.png';
-import tickicon from '../../assets/tickicon.png';
+import UnAuthAppBar from '../../components/UnAuthAppBar'
 import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
-import user from '../../assets/user.png';
 
-function Landing() {
+const Landing = () => {
+
   const { t, i18n } = useTranslation();
+  
   const { language } = i18n;
-
   const lang = () => {
+  
     i18n.changeLanguage(language === 'fr' ? 'fr' : 'en');
   };
 
+
+
   useEffect(() => {
     lang();
-  });
-  const reviews = [
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-    {
-      rv: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores',
-      name: 'Rob Hope',
-      web: 'Onepagelove.com',
-    },
-  ];
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+  }, []);
   return (
-    <div>
+    <div >
       <UnAuthAppBar />
-      {/* start hero section */}
+
+      {/* 1 section  */}
       <div className="landing_main_container">
         <div className="landing_hero_section">
           {/* cl 1  */}
 
           <div className="landing_hero_section_info">
             <div className="landing_hero_section_info_heading">
-              <h3>{t('Welcome to the Design Confection Ethiques')}</h3>
-              <h4>{t('Hire The Best Designers For Your Confection')}</h4>
+              <h3>{t('Design Ethical Confections')}</h3>
+              <h4>{t('Make your sewing projects a reality in just a few clicks!')}</h4>
               <p>
                 {t(
-                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam',
+                  'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
                 )}
               </p>
-
-              <Link style={{ textDecoration: 'none' }} to="/select_role">
-                <button type="button">{t('Hire Design')}</button>
-              </Link>
-              <hr />
-              <div className="or">
-                {t('Or')}
-                <Link to="/select_role">
-                  <span>{t('registered as a Designer')}</span>
+              <div className='btn_section_group'>
+                <Link style={{ textDecoration: 'none' }} to="/select_role_login">
+                  <button type="button">{t('Login')}</button>
                 </Link>
+                <div className="or">
+                  {t('or')}
+                  <Link to="/select_role_register">
+                    {/* <span>{t('registered as a Designer')}</span> */}
+                    <span>{t('Registered')}</span>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* cl 2  */}
-          <div className="landing_hero_section_img">
-            <div>
-              <img src={Landinghero} alt="landing_hero_section" />
             </div>
+
           </div>
         </div>
       </div>
-      {/* ending Hero section */}
 
-      {/* why chose Dec */}
+
+      {/*  2 section */}
       <div className="chose_main_section" id="WhyChooseDCE">
         <div className="chose_title_main">
           <div className="chose_title">
-            <h3>{t('Why Choose DCE')}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut</p>
+            <h3>{t('How it works ?')}</h3>
+            <div className="how_work">
+              <h3 style={{color:"#666666"}}>1.{t('You submit your sewing idea to us!')}</h3>
+              <p className='how_work_p'  >{t("You tell us your preferences, criteria, choice and style of your confections!")}</p>
+              <h3 style={{color:"#666666"}}>2. {t('We make it happen!')}</h3>
+              <p className='how_work_p how_work_p_s' >{t("D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!")}</p>
+              <h3 style={{color:"#666666"}}>3.  {t('You receive your confection!')}</h3>
+              <p className='how_work_p' >{t("Dés que votre confection est terminée, vous la recevez chez vous !")}</p>
+              <div className='btn_section_group_2'>
+                <Link to="/client_register">
+                  <button className="how_work_ls how_work_ls_s" style={{ marginTop: "0px", fontSize: "35px" }}>{t('I submit my idea')}</button>
+                </Link>
+              </div>
+
+            </div>
+
           </div>
         </div>
 
-        {/* card section */}
-        <div className="card_main_section">
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={addpost} alt="addpost." />
-            </div>
-
-            <span className="card_title">{t('Post Ads')}</span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={chosedesgin} alt="addpost." />
-            </div>
-
-            <span className="card_title">{t('Choose Designer')}</span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={pay} alt="addpost." />
-            </div>
-
-            <span className="card_title">{t('Pay Safely')} </span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={door} alt="door." />
-            </div>
-
-            <span className="card_title">{t('At Your Door Step')} </span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-          <div className="card_inner">
-            <div className="card_inner_circle">
-              <img src={help} alt="help." />
-            </div>
-
-            <span className="card_title">{t('We Are Here To Help')}</span>
-            <hr className="card_inner_line" />
-            <p className="card_text">Formalization of the need in a clear and synthetic way. The Falcon </p>
-          </div>
-        </div>
-        {/* card section end */}
-
-        {/* fud great work  */}
-
-        <div className="great_work" id="FindGreatWork">
-          <div className="great_work_left">
-            <img src={greatleft} alt="greate_work_image" />
-          </div>
-          <div className="great_work_right">
-            <div className="great_work_heading">
-              <h3>{t('Find Great Work')} </h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
-                veniam,
-              </p>
-            </div>
-
-            <div className="great_work_Card">
-              <div className="great_work_Card_inner">
-                <div>
-                  <img src={tickicon} alt="icons" />
-                </div>
-                <div className="great_work_Card_inner_info">
-                  <h4>{t('FIND OPPORTUNITIES')}</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
-                    nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
-                  </p>
-                </div>
-              </div>
-              <div className="great_work_Card_inner">
-                <div>
-                  <img src={tickicon} />
-                </div>
-
-                <div className="great_work_Card_inner_info">
-                  <h4>{t('Explore Different Ways Earn')}</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
-                    nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
-                  </p>
-                </div>
-              </div>
-              <div className="great_work_Card_inner">
-                <div>
-                  <img src={tickicon} alt="tick icon" />
-                </div>
-
-                <div className="great_work_Card_inner_info">
-                  <h4>{t('CONTROL WHEN, WHERE, AND HOW YOU WORK')}</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
-                    nullam lobortis enim. Faucibus amet etiam tincidunt rhoncus, ullamcorper{' '}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      {/* end  chose Dec */}
 
-      {/*Clients Review  start*/}
-      <div className="client_main_section">
-        <div className="clinet_handing_text">
-          <h3>{'Clients Review'}</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim
-            veniam,
-          </p>
-        </div>
-        <div>
-          <div className="slider_main">
-            <Carousel showDots={true} arrows={false} className="carousel-control_custom" responsive={responsive}>
-              {reviews.map((reviews, index) => (
-                <div className="carousel_card">
-                  <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                  </p>
-                  <hr />
-                  <div className="slider_user_info">
-                    <img src={user} alt="user" />
-                    <div className="user_pic_slider">
-                      <h5>Rob Hope</h5>
-                      <span>Onepagelove.com</span>
-                    </div>
-                  </div>
+      {/* 3 section  */}
+      <div className="great_work" id="FindGreatWork">
+        <div className="chose_title_main">
+          <div className="chose_title">
+            {/* <h3 className='submit_h3' style={{marginTop:"100px"}}>{t('I submit my idea')}</h3> */}
+            <div className="how_work">
+              <h3 className='how_work_heading how_work_heading_s' style={{color:"#CC8E9C"}} >{t('You are a designer and you want to put your know-how at the service of the greatest number?')}</h3>
+              <h3 className='how_work_heading2 how_work_heading2_s'  style={{ fontSize: "40px", color:"#8b7964" }}>{t('In a few clicks, D.C.E allows you to find "sewing project" missions')}</h3>
+              <div className='submit_main_card'>
+                <div className='card_ss'>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b'  >{t('Choose your')}</h4>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('assignments')}</h4>
+
                 </div>
-              ))}
-            </Carousel>
+                <div className='card_ss'>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('Fixez vos')}</h4>
+                  <h4 className='submit_main_cardh4 submit_main_cardh4_b' >{t('conditions')}</h4>
+                </div>
+                <div className='card_ss'>
+                  <h4 className='submit_main_cardh4' >{t('Traitez en')}</h4>
+                  <h4 className='submit_main_cardh4' >{t('direct')}</h4>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
+
       </div>
-      {/*Clients Review  end */}
 
-      {/* footer start  */}
+      {/* section 4  */}
+      <div className="chose_main_section" id="WhyChooseDCE">
+        <div className="chose_title_main">
+          <div className="chose_title">
+            <h3 >{t('How it works ?')}</h3>
+            <div className="how_work">
+              <h3 style={{color:"#666666"}} >1. {t('Find customers who match you!')}</h3>
+              <p className='how_work_p' >{t("D.C.E puts you in touch with potential customers suited to your profile")}</p>
+              <h3 style={{color:"#666666"}} >2. {t('Focus on the essentials!')}</h3>
+              <p className='how_work_p how_work_p_s'>{t("D.C.E manages all the formalities relating to the provision of services")}</p>
+              <h3 style={{color:"#666666"}} >3. {t('Respond to an ad in just a few clicks!')}</h3>
 
+              <div className='btn_section_group_2'>
+                <Link to="/tailor_register" >
+                  <button className="how_work_ls how_work_ls_ssss" style={{ marginTop: "0px", fontSize: "35px" }}>{t('Je souhaite mettre à profit mon savoir faire')}</button>
+                </Link>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      {/* footer */}
       <div class="footer_section_main" id="animation_dec">
+       <div id='chat_module'>
+
+       </div>
         <div className="footer_center_section">
           <img src={FooterLogo} />
           <div>
             {' '}
             <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
               {' '}
-              <span className="card_text_support card_text_support2">{t('Terms & Conditions')}</span>
+              
             </Link>
           </div>
           <div className="footer_text-last">
             <div>
               <h4 className="footer_text_last_p">
                 © 2022 <span style={{ color: '#CC8E9C' }}>{t('Design Confection Ethiques,')}</span> {t('Developed by')}{' '}
-                <span style={{ color: '#0085FF' }}>{t('Falcon Consulting')}.</span> {t('All rights reserved.')}
+                <span style={{ color: '#0085FF' }}> <a href='https://falconconsulting.fr/' target='blank'>{t('Falcon Consulting')}</a> .</span>  <span style={{paddingLeft:"10px"}}>{t('Terms & Conditions')}</span>    
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
-              <img src={facebook} />
-              <img src={instagram} />
+              <a href='https://www.facebook.com/Design-Confections-Ethiques-110075184902480' target="blank"> <img className='fb_ss' src={facebook} /></a>
+              <a href='https://www.instagram.com/designconfectionsethiques/' target="blank"> <img className='fb_ss' src={instagram} /></a>
+
             </div>
           </div>
         </div>
       </div>
-      {/* footer end  */}
+     
+
+
     </div>
-  );
+  )
 }
 
-export default Landing;
+export default Landing

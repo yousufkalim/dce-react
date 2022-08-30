@@ -36,3 +36,7 @@
   left: calc(-57% + 20px) !important;
   right: calc(43% + 20px) !important;
 }
+
+.css-a5nipc.MuiStepLabel-alternativeLabel {
+  cursor: pointer;
+}

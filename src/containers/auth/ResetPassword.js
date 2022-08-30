@@ -26,7 +26,7 @@ function ResetPasswordScreen() {
       await Api('get', `/clients/verify-token/${token}`);
     } catch (err) {
       toast.error('Link has been expired');
-      navigate('/login');
+      navigate('/client_login');
     }
   };
 
@@ -43,7 +43,6 @@ function ResetPasswordScreen() {
   };
 
   const handleSubmit = async (e) => {
-    console.log('check', passwords.password, passwords.confirmPassword);
     e.preventDefault();
     const { password, confirmPassword } = passwords;
 
@@ -63,7 +62,7 @@ function ResetPasswordScreen() {
       password: '',
       confirmPassword: '',
     });
-    navigate('/login');
+    navigate('/client_login');
   };
   return (
     <>
@@ -78,10 +77,7 @@ function ResetPasswordScreen() {
           <div className="login_screen_top">
             <div className="login_screen_row1">
               <div className="login_screen_row1_img">
-                <img
-                  style={{ width: '35%', marginBottom: '5%' }}
-                  src={AppLogoSVG}
-                />
+                <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
               </div>
               <div className="login_screen_row1_img">
                 <img style={{ width: '70%' }} src={DesignElaborationSVG} />

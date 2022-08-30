@@ -102,10 +102,7 @@ const SendMessage = ({ directUser }) => {
 
   return (
     <>
-      <div
-        className="send-msg-cont"
-        style={{ pointerEvents: isProcessing ? 'none' : 'all' }}
-      >
+      <div className="send-msg-cont" style={{ pointerEvents: isProcessing ? 'none' : 'all' }}>
         <div className="send-attachments cursor-pointer">
           <Box className={iconsToggle ? 'inptwo' : 'inp'}>
             <div className="send-att-img cursor-pointer">
@@ -149,11 +146,7 @@ const SendMessage = ({ directUser }) => {
             </div>
           </Box>
           <div onClick={ToggleIcon} className="toggle-icons">
-            {iconsToggle ? (
-              <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} />
-            ) : (
-              <img src={MinusSVG} />
-            )}
+            {iconsToggle ? <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} /> : <img src={MinusSVG} />}
           </div>
         </div>
         <input

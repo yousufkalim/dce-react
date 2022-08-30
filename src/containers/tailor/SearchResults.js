@@ -81,10 +81,7 @@ function TailorSearchResultsScreen() {
           </p>
         </div>
         {orders.map((_) => (
-          <SingleResult
-            order={_}
-            quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
-          />
+          <SingleResult order={_} quote={_.quotes.filter((__) => __.status == 'accepted')[0]} />
         ))}
         <CustomButton
           text={t('See All')}
@@ -115,11 +112,7 @@ function SearchInput({ setSearchQuery, callback }) {
         className="tsrs_search_input"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <img
-        src={SearchIcon}
-        className="tsrs_search_input_icon"
-        onClick={callback}
-      />
+      <img src={SearchIcon} className="tsrs_search_input_icon" onClick={callback} />
     </div>
   );
 }
@@ -138,11 +131,7 @@ function SingleResult(props) {
               cursor: 'pointer',
               marginBottom: '4%',
             }}
-            src={
-              props.order.client.avatar
-                ? assetsURL(props.order.client.avatar)
-                : UserSVG
-            }
+            src={props?.order?.client?.avatar ? assetsURL(props?.order?.client?.avatar) : UserSVG}
           />
           <div>
             <h3
@@ -152,7 +141,7 @@ function SingleResult(props) {
                 fonWeight: '600',
               }}
             >
-              {props.order.client.name}
+              {props?.order?.client?.name}
             </h3>
             <p
               style={{
@@ -162,18 +151,12 @@ function SingleResult(props) {
                 lineHeight: '1.4',
               }}
             >
-              {props.order.name}
+              {props?.order?.name}
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Stack spacing={1}>
-              <Rating
-                name="half-rating-read"
-                defaultValue={4.5}
-                precision={0.5}
-                readOnly
-                style={{ color: 'grey' }}
-              />
+              <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly style={{ color: 'grey' }} />
             </Stack>
             <p style={{ color: 'grey', paddingLeft: '6px' }}> 4.5(32k)</p>
           </div>

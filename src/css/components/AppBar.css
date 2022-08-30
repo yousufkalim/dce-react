@@ -1,10 +1,10 @@
 .appbar_container {
   display: flex;
   flex-direction: row;
-  height: 7vh;
+  height: 12vh;
   width: 100%;
   top: 0;
-  z-index: 1;
+  z-index: 99;
 }
 
 .appbar_top {
@@ -18,21 +18,21 @@
 .appbar_row1 {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 55%;
   align-items: center;
   justify-content: flex-start;
   padding-left: 4vw;
 }
 
 .appbar_row1_img {
-  max-width: 6vh;
-  width: 6vh;
+  /* max-width: 6vh; */
+  width: 10vh;
   vertical-align: top;
   cursor: pointer;
 }
 
 .appbar_row1_tab_text {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -59,13 +59,13 @@
 }
 
 .appbar_row2_search_img {
-  position: absolute;
+  /* position: absolute;
   right: 10px;
   top: 1.4vh;
   max-width: 2.4vh;
   width: 2.4vh;
   vertical-align: top;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .appbar_row2_input {
@@ -171,11 +171,17 @@
   color: #cc8e9c;
   font-size: 11px;
 }
+.css-19r6kue-MuiContainer-root {
+  padding-left: 0 !important;
+  padding-right: 2px !important ;
+
+}
 .auth_appbar_row1_img {
   max-width: 14vh !important;
   vertical-align: top;
   cursor: pointer;
-}
+ 
+  }
 .animation_dec {
   scroll-behavior: smooth !important;
 }
@@ -183,17 +189,25 @@
   .appbar_row2_input {
     width: 46vw;
   }
+  .auth_appbar_main {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    height: 65px !important;
+  }
 }
 
 /*  auth appbar */
 .auth_appbar_main {
   background: #ffffff !important;
+  z-index: 1;
   box-shadow: none !important;
+  position: sticky;
+  top: 0%;
+  height: auto;
 }
 
 .auth_appbar_row1_img {
-  max-width: 8vh !important;
-
+  max-width: 12vh !important;
   vertical-align: top;
   cursor: pointer;
 }
@@ -201,7 +215,7 @@
   font-family: 'Montserrat' !important ;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px !important;
+  font-size: 18px !important;
   line-height: 22px !important;
   color: #a0a0a0 !important;
 }
@@ -217,8 +231,8 @@
   position: absolute !important;
   left: 79.22% !important;
   right: 13.48% !important;
-  top: 17.14% !important;
-  bottom: 18.57% !important;
+  top: 22.14%;
+    bottom: 19.57%;
   background: #ffffff;
   font-family: 'Montserrat' !important;
   font-style: normal;
@@ -228,10 +242,38 @@
   color: #a0a0a0 !important;
   border: 1px solid #cc8e9c !important;
   box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
-  border-radius: 20px !important;
+  border-radius: 31px !important;
+  width: 140px !important;
   text-transform: capitalize !important;
 }
-.auth_appbar_button_register {
+.auth_appbar_button_register
+{
+  box-sizing: border-box;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center;
+    padding: 12px -8px !important;
+    gap: 10px !important;
+    position: absolute !important;
+    left: 89.38%;
+    right: 5.32%;
+    top: 22.14%;
+    bottom: 19.57%;
+    background: #cc8e9c !important;
+    font-family: 'Montserrat' !important;
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    color: #ffffff !important;
+    border: 1px solid #cc8e9c !important;
+    box-shadow: 0px 4px 20px rgb(200 164 164 / 6%);
+    border-radius: 31px !important;
+    text-transform: capitalize !important;
+    width: 140px !important;
+}
+/* .auth_appbar_button_register {
   box-sizing: border-box;
   display: flex !important;
   flex-direction: row !important;
@@ -240,7 +282,7 @@
   padding: 14px 40px !important;
   gap: 10px !important;
   position: absolute !important;
-  left: 87.38%;
+  left: 90.38%;
   right: 5.32%;
   top: 17.14%;
   bottom: 18.57%;
@@ -255,4 +297,114 @@
   box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
   border-radius: 20px !important;
   text-transform: capitalize !important;
+  width: 140px !important;
+} */
+
+@media screen and (min-width: 1000px) and (max-width:1400px){
+  .auth_appbar_row1_img {
+    max-width: 12vh !important;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+    margin-left: 20px;
+    /* margin-top: 6px; */
+}
+.auth_appbar_button_login {
+  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center;
+  padding: 12px 36px !important;
+  gap: 10px !important;
+  position: absolute !important;
+  left: 75.22% !important;
+  right: 11.48% !important;
+  /* top: 17.14% !important; */
+  bottom: 28.57% !important;
+  /* margin-top: 20px !; */
+  background: #ffffff;
+  font-family: 'Montserrat' !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #a0a0a0 !important;
+  border: 1px solid #cc8e9c !important;
+  box-shadow: 0px 4px 20px rgb(200 164 164 / 6%);
+  border-radius: 20px !important;
+  width: 140px !important;
+  text-transform: capitalize !important;
+}
+.auth_appbar_button_register {
+  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center;
+  padding: 12px 36px !important;
+  gap: 10px !important;
+  position: absolute !important;
+  left: 87.38%;
+  right: 5.32%;
+  /* top: 30px !important; */
+  /* margin-top: 20px !important; */
+  /* top: 17.14%;, */
+  bottom: 28.57% !important;
+  background: #cc8e9c !important;
+  font-family: 'Montserrat' !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #ffffff !important;
+  border: 1px solid #cc8e9c !important;
+  box-shadow: 0px 4px 20px rgba(200, 164, 164, 0.06);
+  border-radius: 20px !important;
+  text-transform: capitalize !important;
+  width: 140px !important;
+}
+
+.auth_appbar_main {
+  /* background: #ffffff !important;
+  box-shadow: none !important;
+  height: 85px; */
+/* border: 2px solid red ; */
+  
+}
+
+.auth_appbar_row1_img {
+  /* border: 2px solid  blue  !important; */
+
+}
+.auth_appbar_menus {
+/* border: 2px solid green !important ; */
+font-size: 18px !important;
+/* margin-top: 15px !important; */
+position: relative;
+/* top: 6px; */
+  
+}
+/* .css-1bvv84h 
+{
+  border: 3px solid yellow ;
+} */
+.css-1cndkqf-MuiToolbar-root {
+  min-height: 85px !important;
+  /* border: 2px solid red; */
+}
+
+}
+
+@media screen and (min-width: 1000px) and (max-width:2000px){
+  .auth_appbar_main {
+    background: #ffffff !important;
+
+    z-index: 1;
+    box-shadow: none !important;
+    position: sticky;
+    top: 0%;
+    padding: 10px;
+    height: auto;
+  }
 }

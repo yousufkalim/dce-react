@@ -21,8 +21,9 @@ export default function ComboBox(props) {
       fontSize: '14px !important',
       lineHeight: '151.02 !important%',
       color: '#363557 !important',
-      '&  .MuiInputLabel-formControl': { textAlign: 'center !important' },
-
+      '&  .MuiInputLabel-formControl': { textAlign: 'center !important', border: 'none' },
+      '& .makeStyles-textfield-101': { border: 'none' },
+      '& .makeStyles-textfield-17': { border: 'none' },
       '@media (max-width:992px)': {
         fontSize: '20px !important',
       },
@@ -35,12 +36,10 @@ export default function ComboBox(props) {
       border: props.componenet == 'parseaddress' ? '' : '1px solid #CC8E9C',
       borderRadius: '10px',
       borderWidth: '1.5px',
+      border: 'none !important',
       fontStyle: 'normal !important',
-      fontSize:
-        props.componenet == 'parseaddress'
-          ? '12px !important'
-          : '14px !important',
-      lineHeight: '151.02% !important',
+      fontSize: props.componenet == 'parseaddress' ? '12px !important' : '14px !important',
+      // lineHeight: '151.02% !important',
       color: 'black !important',
       fontWeight: '300 !important',
       marginTop: props.componenet == 'parseaddress' ? '0px' : '10px !important',
@@ -53,6 +52,9 @@ export default function ComboBox(props) {
           textAlign: 'center !important',
         },
       },
+    },
+    noBorder: {
+      border: 'none',
     },
     helper: {},
   }));
@@ -69,10 +71,7 @@ export default function ComboBox(props) {
         disab
         sx={{
           width: '100%',
-          height:
-            props.componenet == 'parseaddress'
-              ? '42px !important'
-              : '72px !important',
+          height: props.componenet == 'parseaddress' ? '42px !important' : '72px !important',
           border: 'none',
         }}
         getOptionLabel={(option) => option.label}
@@ -83,17 +82,15 @@ export default function ComboBox(props) {
         renderInput={(params) => (
           <TextField
             {...params}
-            type="text"
+            type='text'
             placeholder={props.placeholder}
             sx={{
               width: '100% !important',
               height: '72px !important',
-              border: 'none',
+              border: '0px !important',
             }}
             onChange={(e) => {
-              props.onChangeAddress
-                ? props.onChangeAddress(e)
-                : props.onChangeLanguage(e);
+              props.onChangeAddress ? props.onChangeAddress(e) : props.onChangeLanguage(e);
             }}
             inputProps={{
               ...params.inputProps,
