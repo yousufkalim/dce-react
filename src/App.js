@@ -1,8 +1,7 @@
 // Init
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, Flip } from 'react-toastify';
-import { useLocation } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom'l
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from './components/SplashScreen';
 
@@ -14,6 +13,8 @@ import './css/index.css';
 function App() {
   const [loading, setLoading] = useState(true);
   let { pathname } = useLocation();
+
+
 
   useEffect(() => {
     if (pathname === '/') {
@@ -29,6 +30,7 @@ function App() {
     }
   }, [pathname]);
 
+  
   useEffect(() => {
     setLoading(false);
   }, []);
