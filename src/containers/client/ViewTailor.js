@@ -143,7 +143,7 @@ function ClientViewTailorScreen() {
             </div>
 
             <div style={{ display: 'flex', width: '100%', padding: '0 3%', justifyContent: 'center' }}>
-              <div style={{ width: '40%' }}>
+              <div style={{ width: '40%' }} className='view_tailor_image'>
                 <img style={{ width: '88%' }} src={DesignElaborationSVG} />
               </div>
               <div
@@ -497,7 +497,7 @@ function AddOrderListTile(props) {
   return (
     <div className='new_order_list_tile order-now' onClick={navToCreateOrder}>
       <div className='new_order_list_tile_img'>
-        <img style={{ width: '40%' }} src={AddCatalogSVG} />
+        <img style={{ width: '40%' }} src={AddCatalogSVG} className='orderTileImage' />
       </div>
       <p className='new_order_list_tile_text'>{t('Place Order')}</p>
     </div>

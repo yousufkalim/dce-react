@@ -45,7 +45,7 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
             // height: '100%',
             width: '260px',
             height: '200px',
-            // objectFit: 'contain',
+            objectFit: 'cover',
             borderRadius: '20px',
           }}
           src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}

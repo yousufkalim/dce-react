@@ -78,7 +78,7 @@ const Footer = () => {
               {t(', Developed by Falcon Consulting. All rights reserved.')}
             </p>
           </div>
-          <div>
+          <div className='footer_icons_div'>
             <Link to='https://www.instagram.com/designconfectionsethiques/'>
               <img src={InstagramIcon} className='footer_icon'></img>
             </Link>

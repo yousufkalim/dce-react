@@ -1,8 +1,7 @@
 // Init
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, Flip } from 'react-toastify';
-import { useLocation  } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from './components/SplashScreen';
@@ -14,25 +13,27 @@ import './css/index.css';
 // Component
 function App() {
   const [loading, setLoading] = useState(true);
-  let {pathname} = useLocation()
+  let { pathname } = useLocation();
 
   useEffect(() => {
-    if(pathname !== "/")
-    {
-      document.getElementById("tidio-chat").style.display = "none"
+    if (document.getElementById('tidio-chat-iframe')) {
+      if (pathname !== '/') {
+        document.getElementById('tidio-chat-iframe').style.display = 'none';
+      } else {
+        document.getElementById('tidio-chat-iframe').style.display = 'block';
+      }
+      document.getElementById('tidio-chat-iframe').style.display = 'none';
     }
-   
   }, [pathname]);
 
   useEffect(() => {
     setLoading(false);
-
   }, []);
-  
+
   return (
-    <div className="App">
+    <div className='App'>
       {/* toastify Container for Notification */}
-      <ToastContainer position="bottom-right" autoClose={3000} hideProgressBar={true} transition={Flip} />
+      <ToastContainer position='bottom-right' autoClose={3000} hideProgressBar={true} transition={Flip} />
 
       {/* Routes */}
       {loading ? <SplashScreen /> : <Main />}

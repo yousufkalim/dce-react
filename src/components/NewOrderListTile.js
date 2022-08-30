@@ -15,7 +15,7 @@ function NewOrderListTile() {
   return (
     <div className='new_order_list_tile' style={{ height: '100%' }} onClick={navToCreateAd}>
       <div className='new_order_list_tile_img'>
-        <img style={{ width: '40%' }} src={AddOrderSVG} />
+        <img style={{ width: '40%' }} src={AddOrderSVG} className='orderTileImage' />
       </div>
       <p className='new_order_list_tile_text'>{t('New Order')}</p>
     </div>

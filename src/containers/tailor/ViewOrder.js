@@ -75,6 +75,7 @@ function TailorViewOrderScreen() {
     try {
       response = await Api('get', `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log('adData', adData);
       setAd(adData);
       setBasicSection({
         gender: adData.gender,
@@ -84,6 +85,11 @@ function TailorViewOrderScreen() {
         measurements: adData.measurements,
         color: adData.color,
         fabric: adData.fabric,
+        fabric_type: adData.fabric_type,
+        fabric_description: adData.fabric_description,
+        observation: adData.observation,
+
+        height: adData.height,
         includes_alteration_services: adData.includes_alteration_services,
         create_catalog_after_completion: adData.create_catalog_after_completion,
       });

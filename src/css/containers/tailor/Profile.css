@@ -225,6 +225,7 @@
     height: auto;
     padding-top: 14%;
     overflow-y: unset;
+    width: 70%;
   }
   .tailor-profile-edit-container {
     margin-top: 15%;
@@ -248,11 +249,11 @@
     margin: 5% 0%;
   }
   .tailor_profile_screen_row1_column2 {
-    width: 93%;
+    width: 100%;
   }
   .tailor_profile_screen_row3 {
     overflow-y: unset;
-    margin: 5% 0%;
+    /* margin: 5% 0%; */
     height: auto;
   }
   .tailor_profile_screen_row3_list_container {
@@ -267,5 +268,14 @@
   .tailor-new_order_list_tile {
     width: 79%;
     height: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .tailor_profile_screen_row1 {
+    
+    width: 100%;
+  }
+  .designer-prof {
+    margin: 10% auto 3% auto;
   }
 }

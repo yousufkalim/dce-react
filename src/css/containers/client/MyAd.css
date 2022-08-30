@@ -199,3 +199,41 @@
   align-items: center;
   justify-content: center;
 }
+@media only screen and (max-width: 600px) {
+  .my_add_budget{
+font-size: 12px !important;
+  }
+  .cas_ad_list_tile_column2_description{
+    font-size: 12px !important;
+  }
+  .cas_ad_list_tile_column1_item_key {
+    font-size: 12px !important;
+  }
+  .cas_ad_list_tile_column1_item_value{
+font-size: 12px !important;
+  }
+  .cas_ad_list_tile_container_collapsible{
+    padding: 2% !important;
+  }
+  .cas_quote_list_tile_container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: auto;
+    width: 100%;
+    padding: 5% 0;
+    /* width: 80% !important; */
+    /* height: none !important; */
+  }
+  .myAdd_collapse{
+    width: 90% !important;
+  }
+  .cas_quote_list_tile_column1 {
+width: auto !important;
+padding: 0 !important;
+  }
+  .css-qivjh0-MuiStepLabel-label.MuiStepLabel-alternativeLabel{
+    font-size: 10px !important;
+  }
+}
+/* .my_add_budget */

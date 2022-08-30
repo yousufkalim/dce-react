@@ -81,20 +81,14 @@ function ClientHomeScreen() {
         <ClientAppBar color='#F8F4EF' />
         <div className='container'>
           <div className='client_home_screen_row1'>
-            <div
-            // style={{
-            //   position: 'absolute',
-            //   zIndex: '1',
-            //   top: '25%',
-            //   left: '40%',
-            //   right: '5%',
-            // }}
-            ></div>
             <div className='client_home_screen_row1_column1' style={{ backgroundColor: '#FFEEEC', width: '75%' }}>
               {/* <div> */}
               {/* <p className='client_home_screen_row1_column1_text_1'>{t('Submit your idea,')}</p>
               <p className='client_home_screen_row1_column1_text_2'>{t('We make it real,')}</p> */}
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <div
+                style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+                className='homepage_header'
+              >
                 <p className='client_home_screen_row1_column1_text-1'>{t('Do you have an idea for tailoring?')}</p>
                 <p
                   className='client_home_screen_row1_column1_text_1'

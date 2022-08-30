@@ -209,13 +209,17 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
         <div className='appbar_top'>
           <div className='appbar_row1'>
             <img src={AppLogoSVG} className='appbar_row1_img' style={{ marginRight: '5%' }} onClick={navToHome} />
-            {width > 768 ? (
-              <>
-                <NavlinkDesktop activeTab={activeTab} />
-              </>
-            ) : (
-              <img className='cursor-pointer' onClick={mobilemenu} src={dotted} />
-            )}
+            <div style={{ display: 'flex', paddingRight: '4%' }}>
+              {width > 768 ? (
+                <>
+                  <NavlinkDesktop activeTab={activeTab} />
+                </>
+              ) : (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <img className='cursor-pointer' onClick={mobilemenu} src={dotted} />
+                </div>
+              )}
+            </div>
           </div>
 
           <div className='appbar_row2'>
@@ -308,7 +312,7 @@ function SearchInput({ setSearchQuery, callback }) {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div className='nav_searchBox'>
       <div
         style={{
           position: 'relative',
