@@ -582,7 +582,7 @@
 
 .how_work_p {
     text-align: center !important;
-    width: 90% !important;
+    width: 100% !important;
     margin: auto;
     font-size: 28px !important;
     line-height: 30px ;
@@ -591,6 +591,10 @@
     
 
 
+}
+.how_work_p_s
+{
+    width: 90% !important;
 }
 
 .clinet_handing_text {

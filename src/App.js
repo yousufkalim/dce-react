@@ -15,17 +15,24 @@ function App() {
   const [loading, setLoading] = useState(true);
   let { pathname } = useLocation();
 
+
+
+
   useEffect(() => {
-    if (document.getElementById('tidio-chat-iframe')) {
-      if (pathname !== '/') {
-        document.getElementById('tidio-chat-iframe').style.display = 'none';
-      } else {
-        document.getElementById('tidio-chat-iframe').style.display = 'block';
+    if (pathname === '/') {
+      let tidio_chat = document.createElement('script');
+      tidio_chat.async = true;
+      tidio_chat.src = '//code.tidio.co/kzuvioyqy0zd2tdofproxrkgxrdkoryf.js';
+      document.body.appendChild(tidio_chat);
+    } else {
+      let elm = document.getElementById('tidio-chat');
+      if (elm) {
+        elm.style.display = 'none';
       }
-      document.getElementById('tidio-chat-iframe').style.display = 'none';
     }
   }, [pathname]);
 
+  
   useEffect(() => {
     setLoading(false);
   }, []);
