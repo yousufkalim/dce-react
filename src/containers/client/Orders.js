@@ -64,17 +64,17 @@ function ClientOrdersScreen() {
   };
   return (
     <>
-      <div className="container-page-vertical">
-        <ClientAppBar activeTab={1} color="#FCFCFC" />
+      <div className='container-page-vertical'>
+        <ClientAppBar activeTab={1} color='#FCFCFC' />
         <div
-          className="client_orders_screen_top"
+          className='client_orders_screen_top'
           style={{
             background:
               'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
-          <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t('Orders List')}</p>
+          <div className='client_orders_screen_row1'>
+            <p className='client_orders_screen_row1_text'>{t('Orders List')}</p>
             <CustomButton
               padding={'15px 45px'}
               style={{ borderRadius: '15px', boxShadow: 'none' }}
@@ -82,7 +82,7 @@ function ClientOrdersScreen() {
               onClick={navToCreateAd}
             />
           </div>
-          <div className="client_orders_screen_row2">
+          <div className='client_orders_screen_row2'>
             {orders.map((_) => (
               <OrderListTile
                 order={_}
@@ -93,7 +93,7 @@ function ClientOrdersScreen() {
           </div>
           {orders?.length === 0 ? (
             <>
-              <NoOrders RenderText="No Orders" />)
+              <NoOrders RenderText={t('No Orders')} />)
             </>
           ) : null}
         </div>
@@ -139,22 +139,22 @@ function OrderListTile(props) {
 
   return (
     <div
-      className="cos_order_list_tile_container"
+      className='cos_order_list_tile_container'
       onClick={() => {
         if (!isFeedbackOrderModal && !isContactSupportOrderModal && !isInvoiceGenerateModal) {
           props.navToViewOrder(props.order._id);
         } // This prevents the trigger when clicking inside opened modals
       }}
     >
-      <div className="cos_order_list_tile_column1">
+      <div className='cos_order_list_tile_column1'>
         <div
-          className="cos_order_list_tile_column1_img"
+          className='cos_order_list_tile_column1_img'
           style={{
             paddingBottom: '5%',
           }}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '70pt',
               width: '70pt',
@@ -168,47 +168,47 @@ function OrderListTile(props) {
             }
           />
         </div>
-        <p className="cos_order_list_tile_column1_title_text">
+        <p className='cos_order_list_tile_column1_title_text'>
           {props?.quote?.tailor?.name ?? props?.order?.tailor?.name ?? 'N/A'}
         </p>
       </div>
       <div
-        className="cos_order_list_tile_column2"
+        className='cos_order_list_tile_column2'
         style={{
           padding: '3%',
         }}
       >
         <div
-          className="cos_order_list_tile_column2_item"
+          className='cos_order_list_tile_column2_item'
           style={{
             padding: '3% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Order')}</p>
-          <p className="cos_order_list_tile_column2_item_value">{props.order.name}</p>
+          <p className='cos_order_list_tile_column2_item_key'>{t('Order')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>{props.order.name}</p>
         </div>
         <div
-          className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
+          className='cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders'
           style={{
             padding: '3% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Order Date')}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
+          <p className='cos_order_list_tile_column2_item_key'>{t('Order Date')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
         </div>
         <div
-          className="cos_order_list_tile_column2_item"
+          className='cos_order_list_tile_column2_item'
           style={{
             padding: '3% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Delivery Date')}</p>
-          <p className="cos_order_list_tile_column2_item_value">
+          <p className='cos_order_list_tile_column2_item_key'>{t('Delivery Date')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>
             {new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
       </div>
-      <div className="cos_order_list_tile_column1">
+      <div className='cos_order_list_tile_column1'>
         {/* <p style={{ fontSize: "20px", fontWeight: "bold", paddingBottom: "10%" }}>
           {`${props?.quote?.price ?? props?.order?.budget?.min_price ?? "0"}€`}
         </p> */}
@@ -219,7 +219,7 @@ function OrderListTile(props) {
           {t('Bill')}
         </p>
       </div>
-      <div className="cos_order_list_tile_column4">
+      <div className='cos_order_list_tile_column4'>
         {props.order.status == 'completed' && props.order.client_submission ? (
           <CustomButton
             text={t('Support')}
@@ -253,20 +253,20 @@ function OrderListTile(props) {
       <Modal
         open={isFeedbackOrderModal}
         onClose={handleFeedbackOrderModalClose}
-        aria-labelledby="Feedback Order"
-        onBackdropClick="false"
+        aria-labelledby='Feedback Order'
+        onBackdropClick='false'
       >
         <FeedbackOrderModal handleClose={handleFeedbackOrderModalClose} order={props.order} />
       </Modal>
       <Modal
         open={isContactSupportOrderModal}
         onClose={handleContactSupportOrderModalClose}
-        aria-labelledby="Contact Support Order"
-        onBackdropClick="false"
+        aria-labelledby='Contact Support Order'
+        onBackdropClick='false'
       >
         <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
       </Modal>
-      <Modal open={isInvoiceGenerateModal} onClose={handleInvoiceGenerateModalClose} aria-labelledby="Order Invoice">
+      <Modal open={isInvoiceGenerateModal} onClose={handleInvoiceGenerateModalClose} aria-labelledby='Order Invoice'>
         <InvoiceOrderModal handleClose={handleInvoiceGenerateModalClose} order={props.order} quote={props.quote} />
       </Modal>
     </div>
@@ -327,7 +327,7 @@ const FeedbackOrderModal = (props) => {
   };
 
   return (
-    <div className="tqs_sqm_container">
+    <div className='tqs_sqm_container'>
       {/* <div
         className="tqs_sqm_input_container"
         style={{
@@ -351,26 +351,26 @@ const FeedbackOrderModal = (props) => {
         </div>
       </div> */}
       <div
-        className="tqs_sqm_textarea_container"
+        className='tqs_sqm_textarea_container'
         style={{
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px',
           marginBottom: '2%',
         }}
       >
-        <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">{t('Details')}</p>
+        <div className='tqs_sqm_textarea_label'>
+          <p className='tqs_sqm_input_text'>{t('Details')}</p>
         </div>
-        <div className="tqs_sqm_input_input">
+        <div className='tqs_sqm_input_input'>
           <textarea
-            className="tqs_sqm_textarea_textarea"
-            placeholder="Describe about submit report"
+            className='tqs_sqm_textarea_textarea'
+            placeholder='Describe about submit report'
             value={details}
             onChange={(e) => setDetails(e.target.value)}
           />
         </div>
       </div>
-      <div className="tvqs_sq_buttons">
+      <div className='tvqs_sq_buttons'>
         <CustomButton
           text={t('Cancel')}
           style={{
@@ -457,9 +457,9 @@ const ContactSupportOrderModal = (props) => {
   };
 
   return (
-    <div className="tqs_sqm_container">
+    <div className='tqs_sqm_container'>
       <div
-        className="tqs_sqm_input_container"
+        className='tqs_sqm_input_container'
         style={{
           borderTopLeftRadius: '20px',
           borderTopLeftRadius: '20px',
@@ -469,10 +469,10 @@ const ContactSupportOrderModal = (props) => {
           padding: '1.6% 0',
         }}
       >
-        <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">{t('Reason')}</p>
+        <div className='tqs_sqm_input_label'>
+          <p className='tqs_sqm_input_text'>{t('Reason')}</p>
         </div>
-        <div className="tqs_sqm_input_input">
+        <div className='tqs_sqm_input_input'>
           <CustomInput
             labelStyle={{
               display: 'none',
@@ -487,7 +487,7 @@ const ContactSupportOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="tqs_sqm_textarea_container"
+        className='tqs_sqm_textarea_container'
         style={{
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px',
@@ -496,12 +496,12 @@ const ContactSupportOrderModal = (props) => {
           marginBottom: '2%',
         }}
       >
-        <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">{t('Details')}</p>
+        <div className='tqs_sqm_textarea_label'>
+          <p className='tqs_sqm_input_text'>{t('Details')}</p>
         </div>
-        <div className="tqs_sqm_input_input">
+        <div className='tqs_sqm_input_input'>
           <textarea
-            className="tqs_sqm_textarea_textarea"
+            className='tqs_sqm_textarea_textarea'
             placeholder={t('Details')}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
@@ -509,7 +509,7 @@ const ContactSupportOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className='pa_profile_section_input_container'
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -517,20 +517,20 @@ const ContactSupportOrderModal = (props) => {
           padding: '1.6% 0',
         }}
       >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">{t('Attachments')}</p>
+        <div className='pa_profile_section_input_label'>
+          <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
         </div>
-        <div className="pa_profile_section_input_input">
-          <label className="upload-pic-label">
-            <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
-            <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachment?.name ?? t('upload an illustration of your creation')}</span>
+        <div className='pa_profile_section_input_input'>
+          <label className='upload-pic-label'>
+            <input type='file' accept='image/*' hidden id='filePicker' name='file' onChange={handleFileSelect} />
+            <div className='upload-img-text-cont'>
+              <span className='upload-img-text'>{attachment?.name ?? t('upload an illustration of your creation')}</span>
               <img src={UploadSVG} />
             </div>
           </label>
         </div>
       </div>
-      <div className="tvqs_sq_buttons">
+      <div className='tvqs_sq_buttons'>
         <CustomButton
           text={t('Cancel')}
           style={{
@@ -563,10 +563,10 @@ const InvoiceOrderModal = (props) => {
   };
 
   return (
-    <div className="tqs_sqm_container cos_oim_container">
-      <div className="cos_oim_row1" ref={ref}>
+    <div className='tqs_sqm_container cos_oim_container'>
+      <div className='cos_oim_row1' ref={ref}>
         <div
-          className="cos_oim_column1"
+          className='cos_oim_column1'
           style={{
             paddingLeft: '5%',
           }}
@@ -594,7 +594,7 @@ const InvoiceOrderModal = (props) => {
               Design confections Ethiques
             </p>
             <div
-              className="cos_oim_column1_section"
+              className='cos_oim_column1_section'
               style={{
                 marginTop: '20%',
               }}
@@ -617,7 +617,7 @@ const InvoiceOrderModal = (props) => {
               </p>
             </div>
             <div
-              className="cos_oim_column1_section"
+              className='cos_oim_column1_section'
               style={{
                 marginTop: '5%',
               }}
@@ -642,7 +642,7 @@ const InvoiceOrderModal = (props) => {
           </div>
         </div>
         <div
-          className="cos_oim_column1"
+          className='cos_oim_column1'
           style={{
             alignItems: 'flex-end',
           }}
@@ -673,15 +673,15 @@ const InvoiceOrderModal = (props) => {
               width: '100%',
             }}
           >
-            <_InvoiceR1C2Section title="Date:" description={new Date().toLocaleDateString('en-gb')} />
-            <_InvoiceR1C2Section title="Payment Terms:" description="Bank Deposit" />
+            <_InvoiceR1C2Section title='Date:' description={new Date().toLocaleDateString('en-gb')} />
+            <_InvoiceR1C2Section title='Payment Terms:' description='Bank Deposit' />
             <_InvoiceR1C2Section
-              title="Due Date:"
+              title='Due Date:'
               description={new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
             />
-            <_InvoiceR1C2Section title="PO Number:" description="N/A" />
+            <_InvoiceR1C2Section title='PO Number:' description='N/A' />
             <div
-              className="cos_oim_column1_section"
+              className='cos_oim_column1_section'
               style={{
                 justifyContent: 'space-between',
                 marginTop: '2%',
@@ -711,13 +711,13 @@ const InvoiceOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="cos_oim_row1"
+        className='cos_oim_row1'
         style={{
           marginTop: '2%',
         }}
       >
         <div
-          className="cos_oim_column1"
+          className='cos_oim_column1'
           style={{
             backgroundColor: '#3A3A3A',
             borderTopLeftRadius: '10px',
@@ -737,7 +737,7 @@ const InvoiceOrderModal = (props) => {
           </p>
         </div>
         <div
-          className="cos_oim_column1"
+          className='cos_oim_column1'
           style={{
             backgroundColor: '#3A3A3A',
             borderTopRightRadius: '10px',
@@ -758,7 +758,7 @@ const InvoiceOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="cos_oim_row1"
+        className='cos_oim_row1'
         style={{
           marginTop: '4%',
           height: '20vh',
@@ -770,28 +770,28 @@ const InvoiceOrderModal = (props) => {
           }}
         >
           <_InvoiceR1C2Section
-            title="Subtotal:"
+            title='Subtotal:'
             description={`US$${props.quote.price}`}
             divStyle={{
               paddingLeft: '80%',
             }}
           />
           <_InvoiceR1C2Section
-            title="Tax (0%):"
-            description="US$0.00"
+            title='Tax (0%):'
+            description='US$0.00'
             divStyle={{
               paddingLeft: '80%',
             }}
           />
           <_InvoiceR1C2Section
-            title="Shipping:"
-            description="US$0.00"
+            title='Shipping:'
+            description='US$0.00'
             divStyle={{
               paddingLeft: '80%',
             }}
           />
           <_InvoiceR1C2Section
-            title="Total:"
+            title='Total:'
             description={`US$${props.quote.price}`}
             divStyle={{
               paddingLeft: '80%',
@@ -823,7 +823,7 @@ const InvoiceOrderModal = (props) => {
         </p>
         <p style={{ fontSize: '14px' }}>decorative items or linens or any other creations</p>
         <CustomButton
-          text="Download Invoice"
+          text='Download Invoice'
           style={{
             alignSelf: 'flex-end',
             marginTop: '20px',
@@ -838,7 +838,7 @@ const InvoiceOrderModal = (props) => {
 function _InvoiceR1C2Section({ title, description, divStyle }) {
   return (
     <div
-      className="cos_oim_column1_section"
+      className='cos_oim_column1_section'
       style={{
         justifyContent: 'space-between',
         marginTop: '2%',

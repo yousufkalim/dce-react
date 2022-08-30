@@ -133,7 +133,7 @@ function ClientViewTailorScreen() {
             }}
           >
             <div className='designer-prof'>
-              <p className='D-profile'>Designer Profile</p>{' '}
+              <p className='D-profile'>{t('Designer Profile')}</p>{' '}
               <CustomButton
                 padding={'15px 37px'}
                 style={{ borderRadius: '15px', boxShadow: 'none' }}
@@ -199,21 +199,21 @@ function ClientViewTailorScreen() {
                     label={t('Diploma')}
                   />
 
-                  <ProfileInput
+                  {/* <ProfileInput
                     disabled
                     name='Area of Expertise'
                     placeholder={t('Area of Expertise')}
                     defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
                     // img={ProfileEmailSVG}
                     label={t('Area of Expertise')}
-                  />
+                  /> */}
                   <ProfileInput
                     disabled
-                    name='Shop name'
-                    placeholder={t('Shop Name')}
-                    defaultValue={tailor?.shop_name ? tailor?.shop_name : 'N/A'}
+                    name='Area of Expertise'
+                    placeholder={t('Area of Expertise')}
+                    defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
                     // img={ProfileBirthdaySVG}
-                    label={t('Shop name')}
+                    label={t('Area of Expertise')}
                     divStyle={{
                       marginBottom: '3%',
                       borderBottomLeftRadius: '10px',
@@ -263,12 +263,12 @@ function ClientViewTailorScreen() {
                   </div>
                   <div className='pa_profile_section_input_input'>
                     <textarea
-                      style={{ border: 'none', width: '100%', height: '80px', resize: 'none' }}
-                      placeholder='About Yourself'
+                      style={{ border: 'none', height: '80px', resize: 'none', textAlign: 'end', paddingLeft: '6%' }}
+                      placeholder={t('About yourself')}
                     />
                   </div>
                 </div>
-                <div className='tailor_profile_screen_row1_column2'>
+                {/* <div className='tailor_profile_screen_row1_column2'>
                   <ProfileInput
                     divStyle={{
                       borderTopLeftRadius: '10px',
@@ -279,9 +279,9 @@ function ClientViewTailorScreen() {
                     placeholder={t('Country')}
                     defaultValue={tailor.name}
                     img={Profile}
-                    // label='Specialities'
+                    label='Specialities'
                   />
-                  {/* <ProfileInput disabled name='City' placeholder={t('City')} defaultValue={tailor.city} img={ProfileCitySVG} /> */}
+                  <ProfileInput disabled name='City' placeholder={t('City')} defaultValue={tailor.city} img={ProfileCitySVG} />
                   <ProfileInput
                     disabled
                     name='Location'
@@ -295,7 +295,7 @@ function ClientViewTailorScreen() {
                       marginBottom: '3%',
                     }}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div

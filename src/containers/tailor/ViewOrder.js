@@ -116,10 +116,10 @@ function TailorViewOrderScreen() {
         <div className='container-page'>
           <TailorAppBar color='#F8F4EF' activeTab={2} />
           <div
-            className='container'
+            className='containerOrder'
             style={{
               background: '#FFE9A0',
-              height: '112vh',
+              height: '138vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>
@@ -130,7 +130,7 @@ function TailorViewOrderScreen() {
                     fontWeight: '900',
                   }}
                 >
-                  {t('Client Basic')}
+                  {t('Details of the project submitted')}
                 </p>
                 <p
                   style={{
@@ -139,7 +139,7 @@ function TailorViewOrderScreen() {
                     marginBottom: '20%',
                   }}
                 >
-                  {t('Details')}
+                  {t('by the client')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
@@ -217,12 +217,12 @@ function TailorViewOrderScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className='container_'
             style={{
               background: '#FFFCFB',
             }}
           >
-            <div className='client_edit_ad_screen_row1'>
+            <div className='client_edit_ad_screen_row1' style={{ paddingTop: '5%' }}>
               <div className='client_edit_ad_screen_row1_column1'>
                 <p
                   style={{

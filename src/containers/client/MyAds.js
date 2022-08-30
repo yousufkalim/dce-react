@@ -126,20 +126,20 @@ function ClientAdsScreen() {
   };
   return (
     <>
-      <div className="container-page-vertical">
-        <ClientAppBar activeTab={2} color="#FCFCFC" />
+      <div className='container-page-vertical'>
+        <ClientAppBar activeTab={2} color='#FCFCFC' />
         <div
-          className="client_orders_screen_top"
+          className='client_orders_screen_top'
           style={{
             background:
               'linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
-          <div className="client_ads_screen_row1">
-            <p className="client_orders_screen_row1_text">{t('Ads')}</p>
+          <div className='client_ads_screen_row1'>
+            <p className='client_orders_screen_row1_text'>{t('Ads')}</p>
             <CustomButton
               text={t('Place New Ad')}
-              padding="8px 20px"
+              padding='8px 20px'
               style={{
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
@@ -150,7 +150,7 @@ function ClientAdsScreen() {
               onClick={navToCreateAd}
             />
           </div>
-          <div className="client_ads_screen_row2">
+          <div className='client_ads_screen_row2'>
             {ads.map((_) => (
               <AdListTile {..._} />
             ))}
@@ -168,7 +168,7 @@ function ClientAdsScreen() {
               >
                 {t("No Orders")}
               </div> */}
-              <NoOrders RenderText="No Ads Yet" />
+              <NoOrders RenderText='No Ads Yet' />
             </>
           ) : null}
         </div>
@@ -189,23 +189,23 @@ function AdListTile(props) {
     navigate(`/edit_ad/${props._id}`);
   };
   return (
-    <div className="cas_ad_list_tile_container_collapsible">
-      <div className="cas_ad_list_tile_container" onClick={() => setExpanded(!expanded)}>
+    <div className='cas_ad_list_tile_container_collapsible'>
+      <div className='cas_ad_list_tile_container' onClick={() => setExpanded(!expanded)}>
         <div
-          className="cas_ad_list_tile_column1"
+          className='cas_ad_list_tile_column1'
           style={{
             padding: '3%',
           }}
         >
           <div
-            className="cas_ad_list_tile_column1_item"
+            className='cas_ad_list_tile_column1_item'
             style={{
               padding: '2% 0',
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">{t('Name of Creation')}</p>
+            <p className='cas_ad_list_tile_column1_item_key'>{t('Name of Creation')}</p>
             <p
-              className="cas_ad_list_tile_column1_item_value"
+              className='cas_ad_list_tile_column1_item_value'
               style={{
                 fontWeight: '900',
               }}
@@ -214,39 +214,40 @@ function AdListTile(props) {
             </p>
           </div>
           <div
-            className="cas_ad_list_tile_column1_item cas_ad_list_tile_column1_item_borders"
+            className='cas_ad_list_tile_column1_item cas_ad_list_tile_column1_item_borders'
             style={{
               padding: '2% 0',
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">{t('Ad for')}</p>
-            <p className="cas_ad_list_tile_column1_item_value">{props?.category}</p>
+            <p className='cas_ad_list_tile_column1_item_key'>{t('Ad for')}</p>
+            <p className='cas_ad_list_tile_column1_item_value'>{props?.category}</p>
           </div>
           <div
-            className="cas_ad_list_tile_column1_item"
+            className='cas_ad_list_tile_column1_item'
             style={{
               padding: '2% 0',
             }}
           >
-            <p className="cas_ad_list_tile_column1_item_key">{t('desired delivery date')}</p>
-            <p className="cas_ad_list_tile_column1_item_value">{new Date(props?.delivery?.date).toLocaleDateString('en-gb')}</p>
+            <p className='cas_ad_list_tile_column1_item_key'>{t('desired delivery date')}</p>
+            <p className='cas_ad_list_tile_column1_item_value'>{new Date(props?.delivery?.date).toLocaleDateString('en-gb')}</p>
           </div>
         </div>
-        <div className="cas_ad_list_tile_column2">
+        <div className='cas_ad_list_tile_column2'>
           {/* <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
           <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}€`}</p> */}
-          <p className="cas_ad_list_tile_column2_title">{t('max')}</p>
-          <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.max_price}€`}</p>
           <p
             style={{
               fontSize: '16px',
               color: '#CC8E9C',
+              paddingBottom: '3%',
             }}
           >
-            {t('Range')}
+            {t('Budget')}
           </p>
+          <p className='cas_ad_list_tile_column2_description'>{`${props?.budget?.max_price}€`}</p>
+          <p className='cas_ad_list_tile_column2_title'>{t('max')}</p>
         </div>
-        <div className="cas_ad_list_tile_column2">
+        <div className='cas_ad_list_tile_column2'>
           <p
             style={{
               fontSize: '40px',
@@ -258,7 +259,7 @@ function AdListTile(props) {
           </p>
           <p style={{ fontSize: '12px', fontWeight: '200', color: '#CC8E9C' }}>{t('Responses')}</p>
         </div>
-        <div className="cas_ad_list_tile_column4">
+        <div className='cas_ad_list_tile_column4'>
           <p
             onClick={navToEditAd}
             style={{
@@ -272,7 +273,7 @@ function AdListTile(props) {
           </p>
         </div>
       </div>
-      <Collapse sx={{ paddingBottom: '2%' }} in={expanded} timeout="auto" unmountOnExit>
+      <Collapse sx={{ paddingBottom: '2%' }} in={expanded} timeout='auto' unmountOnExit>
         {props?.quotes
           ?.filter((_) => _?.status != 'rejected')
           .map((__) => (
@@ -332,16 +333,16 @@ function AdQuoteListTile(props) {
     navigate(`/chat`, { state: { directUser: props.quote.tailor } });
   };
   return (
-    <div className="cas_quote_list_tile_container">
-      <div className="cas_quote_list_tile_column1">
+    <div className='cas_quote_list_tile_container'>
+      <div className='cas_quote_list_tile_column1'>
         <div
-          className="cas_quote_list_tile_column1_img"
+          className='cas_quote_list_tile_column1_img'
           style={{
             paddingBottom: '5%',
           }}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '65pt',
               width: '65pt',
@@ -351,24 +352,24 @@ function AdQuoteListTile(props) {
         </div>
       </div>
       <div
-        className="cas_quote_list_tile_column1"
+        className='cas_quote_list_tile_column1'
         style={{
           padding: '3%',
           alignItems: 'flex-start',
         }}
       >
         <p
-          className="cas_quote_list_tile_column1_title_text"
+          className='cas_quote_list_tile_column1_title_text'
           style={{
             paddingBottom: '10px',
           }}
         >
           {props?.quote?.tailor?.name}
         </p>
-        <p className="cas_quote_list_tile_column1_description_text">{props?.quote?.tailor?.speciality}</p>
+        <p className='cas_quote_list_tile_column1_description_text'>{props?.quote?.tailor?.speciality}</p>
       </div>
       <div
-        className="cas_quote_list_tile_column1"
+        className='cas_quote_list_tile_column1'
         style={{
           padding: '3%',
         }}
@@ -382,7 +383,7 @@ function AdQuoteListTile(props) {
           {/* {rating}({ratingsCount}) */}
         </p>
       </div>
-      <div className="cas_quote_list_tile_column1">
+      <div className='cas_quote_list_tile_column1'>
         <p
           style={{
             fontSize: '12px',
@@ -396,12 +397,12 @@ function AdQuoteListTile(props) {
         <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{`${props?.quote?.price}€`}</p>
       </div>
       <div
-        className="cas_quote_list_tile_column5"
+        className='cas_quote_list_tile_column5'
         style={{
           marginRight: '5vw',
         }}
       >
-        <div className="cas_quote_list_tile_column5_buttons">
+        <div className='cas_quote_list_tile_column5_buttons'>
           <CustomButton
             text={t('Accept')}
             onClick={(e) => acceptQuote(e, props)}
@@ -422,7 +423,7 @@ function AdQuoteListTile(props) {
           </p>
         </div>
       </div>
-      <div className="cas_quote_list_tile_column1">
+      <div className='cas_quote_list_tile_column1'>
         <p style={{ fontSize: '14px', fontWeight: '900', cursor: 'pointer' }} onClick={navToChat}>
           {t('Chat Here')}
         </p>
@@ -430,16 +431,16 @@ function AdQuoteListTile(props) {
       <Modal
         open={isAcceptQuoteModal}
         onClose={handleIsAcceptQuoteModalClose}
-        aria-labelledby="Accept Quote"
-        onBackdropClick="false"
+        aria-labelledby='Accept Quote'
+        onBackdropClick='false'
       >
         <AcceptQuoteModal order={props?.order} quote={props?.quote} handleClose={handleIsAcceptQuoteModalClose} />
       </Modal>
       <Modal
         open={isRejectQuoteModal}
         onClose={handleIsRejectQuoteModalClose}
-        aria-labelledby="Reject Quote"
-        onBackdropClick="false"
+        aria-labelledby='Reject Quote'
+        onBackdropClick='false'
       >
         <RejectQuoteModal order={props?.order} quote={props?.quote} handleClose={handleIsRejectQuoteModalClose} />
       </Modal>
@@ -527,7 +528,7 @@ const AcceptQuoteModal = (props) => {
 
   return (
     <div
-      className="tqs_sqm_container"
+      className='tqs_sqm_container'
       style={{
         height: '40vh',
       }}
@@ -565,9 +566,9 @@ const AcceptQuoteModal = (props) => {
           )}
         </p>
       </div>
-      <div className="tvqs_sq_buttons">
+      <div className='tvqs_sq_buttons'>
         <CustomButton
-          text="Cancel"
+          text='Cancel'
           style={{
             boxShadow: 'none',
             marginRight: '10pt',
@@ -585,8 +586,8 @@ const AcceptQuoteModal = (props) => {
       <Modal
         open={isScheduleCallModal}
         onClose={handleIsScheduleCallModalClose}
-        aria-labelledby="Schedule Call"
-        onBackdropClick="false"
+        aria-labelledby='Schedule Call'
+        onBackdropClick='false'
       >
         <ScheduleCallModal order={props.order} quote={props.quote} handleClose={handleIsScheduleCallModalClose} />
       </Modal>
@@ -653,7 +654,7 @@ const ScheduleCallModal = (props) => {
 
   return (
     <div
-      className="tqs_sqm_container"
+      className='tqs_sqm_container'
       style={{
         height: '40vh',
       }}
@@ -668,17 +669,17 @@ const ScheduleCallModal = (props) => {
         {t('Book call (on schedule) for measurement')}
       </p>
       <div
-        className="pa_profile_section_input_container"
+        className='pa_profile_section_input_container'
         style={{
           borderRadius: '20px',
           marginTop: '2%',
           marginBottom: '1%',
         }}
       >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Set Date</p>
+        <div className='pa_profile_section_input_label'>
+          <p className='pa_profile_section_input_text'>Set Date</p>
         </div>
-        <div className="pa_profile_section_input_input">
+        <div className='pa_profile_section_input_input'>
           <CustomDatePicker
             disablePast
             labelStyle={{
@@ -690,17 +691,17 @@ const ScheduleCallModal = (props) => {
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className='pa_profile_section_input_container'
         style={{
           borderRadius: '20px',
           marginTop: '2%',
           marginBottom: '1%',
         }}
       >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">Set a Time</p>
+        <div className='pa_profile_section_input_label'>
+          <p className='pa_profile_section_input_text'>Set a Time</p>
         </div>
-        <div className="pa_profile_section_input_input">
+        <div className='pa_profile_section_input_input'>
           <CustomTimePicker
             labelStyle={{
               display: 'none',
@@ -711,13 +712,13 @@ const ScheduleCallModal = (props) => {
         </div>
       </div>
       <div
-        className="tvqs_sq_buttons"
+        className='tvqs_sq_buttons'
         style={{
           marginTop: '2%',
         }}
       >
         <CustomButton
-          text="Cancel"
+          text='Cancel'
           style={{
             boxShadow: 'none',
             marginRight: '10pt',
@@ -778,7 +779,7 @@ const RejectQuoteModal = (props) => {
 
   return (
     <div
-      className="tqs_sqm_container"
+      className='tqs_sqm_container'
       style={{
         height: '40vh',
       }}
@@ -793,9 +794,9 @@ const RejectQuoteModal = (props) => {
       >
         Voulez-vous vraiment supprimer ce devis de paiement ?
       </p>
-      <div className="tvqs_sq_buttons">
+      <div className='tvqs_sq_buttons'>
         <CustomButton
-          text="Cancel"
+          text='Cancel'
           style={{
             boxShadow: 'none',
             marginRight: '10pt',

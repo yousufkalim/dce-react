@@ -1,7 +1,7 @@
 .appbar_container {
   display: flex;
   flex-direction: row;
-  height: 9vh;
+  height: 12vh;
   width: 100%;
   top: 0;
   z-index: 99;
@@ -18,21 +18,21 @@
 .appbar_row1 {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 55%;
   align-items: center;
   justify-content: flex-start;
   padding-left: 4vw;
 }
 
 .appbar_row1_img {
-  max-width: 6vh;
-  width: 6vh;
+  /* max-width: 6vh; */
+  width: 10vh;
   vertical-align: top;
   cursor: pointer;
 }
 
 .appbar_row1_tab_text {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -59,13 +59,13 @@
 }
 
 .appbar_row2_search_img {
-  position: absolute;
+  /* position: absolute;
   right: 10px;
   top: 1.4vh;
   max-width: 2.4vh;
   width: 2.4vh;
   vertical-align: top;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .appbar_row2_input {

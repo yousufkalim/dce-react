@@ -67,7 +67,7 @@
   margin-top: 5%;
 }
 
-.pa_profile_section_input_container {
+.pa_profile_section_input_container{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -77,6 +77,34 @@
   background-color: transparent;
   border-color: #f7c9d0;
   border-style: solid;
+  border-width: 0.5px;
+  cursor: pointer;
+}
+.pa_profile_section_input_container_ {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6% 0;
+  width: 90%;
+  background-color: transparent;
+  border-color: #DBDBDB;
+  border-style: solid;
+  border-radius: 10px !important;
+  border-width: 0.5px;
+  cursor: pointer;
+}
+.pa_profile_section_input_container_client{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6% 0;
+  width: 96%;
+  background-color: transparent;
+  border-color: #DBDBDB;
+  border-style: solid;
+  border-radius: 10px !important;
   border-width: 0.5px;
   cursor: pointer;
 }
@@ -107,6 +135,22 @@
   align-items: center;
   justify-content: flex-start;
 }
+.pa_profile_section_input_label_ {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.pa_profile_section_input_label__ {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
 .pa_profile_section_textarea_label {
   width: 30%;
   height: 100%;
@@ -120,7 +164,16 @@
   font-weight: 500;
   margin-left: 15%;
 }
-
+.pa_profile_section_input_text_ {
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 12%;
+}
+.pa_profile_section_input_text_client{
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 4%;
+}
 .pa_profile_section_input_input {
   width: 70%;
   height: 100%;
@@ -134,6 +187,7 @@
   line-height: 17px;
   color: #a0a0a0;
   margin-left: 3%;
+  margin-right: 4%;
 }
 .upload-pic-label {
   width: 93%;
@@ -151,6 +205,7 @@ a .size-measurement-cont {
   color: #cc8e9c;
   margin-right: 5%;
   padding: 1% 0% 2% 0%;
+  line-height: 18px;
 }
 
 .pa_payment_section_textarea_container {

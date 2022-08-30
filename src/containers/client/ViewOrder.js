@@ -107,10 +107,10 @@ function ClientViewOrderScreen() {
         <div className='container-page'>
           <ClientAppBar color='#F8F4EF' activeTab={1} />
           <div
-            className='container'
+            className='containerOrder'
             style={{
               background: '#FFE9A0',
-              height: '118vh',
+              height: '129vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>
@@ -127,7 +127,7 @@ function ClientViewOrderScreen() {
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
+                    marginBottom: '50%',
                   }}
                 >
                   {t('Details')}
@@ -161,7 +161,7 @@ function ClientViewOrderScreen() {
             className='container'
             style={{
               background: '#FFC396',
-              height: '80vh',
+              height: '90vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>
@@ -212,7 +212,7 @@ function ClientViewOrderScreen() {
             className='container'
             style={{
               background: '#FFFCFB',
-              height: '90vh',
+              height: '45vh',
             }}
           >
             <div className='client_edit_ad_screen_row1'>
@@ -229,7 +229,7 @@ function ClientViewOrderScreen() {
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
+                    marginBottom: '8%',
                   }}
                 >
                   {t('Details')}
@@ -239,9 +239,11 @@ function ClientViewOrderScreen() {
               <div className='client_edit_ad_screen_row1_column2'>
                 <div
                   className='pa_container'
-                  style={{
-                    marginTop: '10%',
-                  }}
+                  style={
+                    {
+                      // marginTop: '10%',
+                    }
+                  }
                 >
                   <div className='pa_steps_row'>
                     <Stepper activeStep={2} alternativeLabel>

@@ -199,31 +199,31 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
   return (
     <>
       <div
-        className="appbar_container"
+        className='appbar_container'
         style={{
           backgroundColor: color,
           position: sticky ? 'fixed' : 'inherit',
           ...divStyle,
         }}
       >
-        <div className="appbar_top">
-          <div className="appbar_row1">
-            <img src={AppLogoSVG} className="appbar_row1_img" style={{ marginRight: '5%' }} onClick={navToHome} />
+        <div className='appbar_top'>
+          <div className='appbar_row1'>
+            <img src={AppLogoSVG} className='appbar_row1_img' style={{ marginRight: '5%' }} onClick={navToHome} />
             {width > 768 ? (
               <>
                 <NavlinkDesktop activeTab={activeTab} />
               </>
             ) : (
-              <img className="cursor-pointer" onClick={mobilemenu} src={dotted} />
+              <img className='cursor-pointer' onClick={mobilemenu} src={dotted} />
             )}
           </div>
 
-          <div className="appbar_row2">
+          <div className='appbar_row2'>
             {!disableSearch ? <SearchInput setSearchQuery={setSearchQuery} callback={navToSearch} /> : <></>}
-            <div className="notifications_count_container" style={{ marginLeft: '3%' }}>
-              <img src={NotificationsSVG} className="appbar_row2_notifications_img" onClick={handleClickNotifications} />
+            <div className='notifications_count_container' style={{ marginLeft: '3%' }}>
+              <img src={NotificationsSVG} className='appbar_row2_notifications_img' onClick={handleClickNotifications} />
               {notifications.filter((_) => !_.is_read).length > 0 ? (
-                <div className="notifications_count_pos">
+                <div className='notifications_count_pos'>
                   <p
                     style={{
                       fontSize: '14px',
@@ -237,7 +237,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               )}
             </div>
             <Menu
-              id="basic-menu"
+              id='basic-menu'
               anchorEl={anchorElNotifications}
               open={openNotifications}
               onClose={handleCloseNotifications}
@@ -250,7 +250,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               ))}
             </Menu>
             <img
-              className="appbar_row2_user_img image_container"
+              className='appbar_row2_user_img image_container'
               style={{
                 width: '6vh',
                 height: '6vh',
@@ -260,7 +260,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               onClick={handleClickProfile}
             />
             <StyledMenu
-              id="demo-customized-menu"
+              id='demo-customized-menu'
               MenuListProps={{
                 'aria-labelledby': 'demo-customized-button',
               }}
@@ -268,31 +268,31 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               open={openProfile}
               onClose={handleCloseProfile}
             >
-              <img className="nock" src={Nock} />
+              <img className='nock' src={Nock} />
 
-              <div className="user-detail-conatiner">
+              <div className='user-detail-conatiner'>
                 <img
-                  className="image_container"
+                  className='image_container'
                   src={profileImage ? URL.createObjectURL(profileImage) : profile?.avatar ? assetsURL(profile?.avatar) : dummy}
                 />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className="user-name">{profile?.name} </p>
-                  <p className="user-email">{profile?.email}</p>
+                  <p className='user-name'>{profile?.name} </p>
+                  <p className='user-email'>{profile?.email}</p>
                 </div>
               </div>
 
-              <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className="menu-item" onClick={navToProfile}>
+              <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className='menu-item' onClick={navToProfile}>
                 <img style={{ padding: '4% 0%' }} src={EditIcon} /> <p> {t('Profile')} </p>
               </MenuItem>
-              <MenuItem className="menu-item support-padding" onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
+              <MenuItem className='menu-item support-padding' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
                 <GTranslateIcon sx={{ width: '20px' }} />
                 {language == 'fr' ? 'French' : 'English'}
               </MenuItem>
-              <MenuItem className="menu-item" onClick={navToSupport}>
+              <MenuItem className='menu-item' onClick={navToSupport}>
                 <img style={{ width: '16px' }} src={SupportIcon} />
                 <p> {t('Support')}</p>
               </MenuItem>
-              <MenuItem className="menu-item sign-out-padding" onClick={handleLogoutSubmit}>
+              <MenuItem className='menu-item sign-out-padding' onClick={handleLogoutSubmit}>
                 <img style={{ width: '16px' }} src={SignOutIcon} /> <p> {t('Sign out')}</p>
               </MenuItem>
             </StyledMenu>
@@ -314,15 +314,19 @@ function SearchInput({ setSearchQuery, callback }) {
           position: 'relative',
           height: '100%',
           width: '100%',
+          background: '#ffff',
+          display: 'flex',
+          borderRadius: '10px',
+          paddingRight: '3%',
         }}
       >
         <input
-          type="text"
+          type='text'
           placeholder={t('Search')}
-          className="appbar_row2_input"
+          className='appbar_row2_input'
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <img src={SearchSVG} className="appbar_row2_search_img" onClick={callback} />
+        <img src={SearchSVG} className='appbar_row2_search_img' onClick={callback} />
       </div>
     </div>
   );
@@ -350,7 +354,7 @@ function NavlinkDesktop({ activeTab }) {
   return (
     <>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -360,7 +364,7 @@ function NavlinkDesktop({ activeTab }) {
         {t('Designers')}
       </p>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -370,7 +374,7 @@ function NavlinkDesktop({ activeTab }) {
         {t('Orders')}
       </p>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -380,7 +384,7 @@ function NavlinkDesktop({ activeTab }) {
         {t('My Ads')}
       </p>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -415,9 +419,9 @@ function NavlinkMobile({ activeTab }) {
   };
 
   return (
-    <div className="mobile-nav">
+    <div className='mobile-nav'>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -427,7 +431,7 @@ function NavlinkMobile({ activeTab }) {
         {t('Designers')}
       </p>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -437,7 +441,7 @@ function NavlinkMobile({ activeTab }) {
         {t('Orders')}
       </p>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`,
@@ -447,7 +451,7 @@ function NavlinkMobile({ activeTab }) {
         {t('My Ads')}
       </p>
       <p
-        className="appbar_row1_tab_text"
+        className='appbar_row1_tab_text'
         style={{
           paddingRight: '5%',
           color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`,

@@ -77,6 +77,8 @@ i18n
             'D.C.E puts you in touch with potential customers suited to your profile',
           'D.C.E manages all the formalities relating to the provision of services':
             'D.C.E manages all the formalities relating to the provision of services',
+          WOMEN: 'WOMEN',
+          'About yourself': 'About yourself',
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
@@ -97,6 +99,7 @@ i18n
           'Do you have an idea for tailoring?': 'Do you have an idea for tailoring?',
           'Submit Your Project here!': 'Submit Your Project here!',
           'desired delivery date': 'desired delivery date',
+          'Find your sewing assignments': 'Find your sewing assignments',
           //client navbar
           Designers: 'Designers',
           Orders: 'Orders',
@@ -113,6 +116,7 @@ i18n
           'Ad updated successfully.': 'Ad updated successfully.',
           Reviews: 'Reviews',
           ', Developed by Falcon Consulting. All rights reserved.': ', Developed by Falcon Consulting. All rights reserved.',
+          'Developed by': 'Developed by',
           'Describe about submit report': 'Describe about submit report',
           Edit: 'Edit',
           Phone: 'Phone',
@@ -124,6 +128,15 @@ i18n
           'Last Password Changed': 'Last Password Changed',
           Password: 'Password',
           'Account Created': 'Account Created',
+          Type: 'Type',
+          'My Profile': 'My Profile',
+          'Phone number': 'Phone number',
+          'Details of the project submitted': 'Details of the project submitted',
+          'by the client': 'by the client',
+          'Details of the delivery of the project submitted by the client':
+            'Details of the delivery of the project submitted by the client',
+          'Project budget submitted by the client': 'Project budget submitted by the client',
+          'Add one of my creations': 'Add one of my creations',
 
           //order
           Order: 'Order',
@@ -159,14 +172,14 @@ i18n
           Basic: 'Basic',
           Notes: 'Notes',
           Delivery: 'Delivery',
-          "*I'm getting a tape measure": "*I'm getting a tape measure",
+          "*I'm getting a tape measure.": "*I'm getting a tape measure.",
           '*depending on the garment, I measure certain parts of the body in circumference and/or length.':
             '*depending on the garment, I measure certain parts of the body in circumference and/or length.',
           'Dominant color': 'Dominant color',
           'Dominant Fabric': 'Dominant Fabric',
           'I select the category to which my con...': 'I select the category to which my con...',
           'I give a name to my confection': 'I give a name to my confection',
-          'My Measurements': 'My Measurements',
+          Measurements: 'Measurements',
           "I'm taking my measurements": "I'm taking my measurements",
           'upload an illustration of your creation': 'upload an illustration of your creation',
           size: 'size',
@@ -217,7 +230,8 @@ i18n
           'Frequently Asked Question': 'Frequently Asked Question',
           'A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries':
             'A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries',
-
+          'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.':
+            'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.',
           //measurements
           Measurements: 'Measurements',
           'Get a tape': 'Get a tape',
@@ -257,7 +271,7 @@ i18n
           //view tailor
           'Designer Profile': 'Designer Profile',
           'Quote sent successfully.': 'Mission sent successfully.',
-
+          'Details about my creation': 'Details about my creation',
           //--------------------------------------------------------------Designer--------------------------------------------------
           //catalogue
           'My Catalogue': 'My Catalogue',
@@ -362,6 +376,7 @@ i18n
           'Hourly Rate': 'Hourly Rate',
           'Free Shipping': 'Free Shipping',
           'Add Catalogue': 'Add Catalogue',
+          Catalogue: 'Catalogue',
 
           //quotes
           'Name of Creation': 'Name of Creation',
@@ -527,6 +542,7 @@ i18n
           Sponge: 'Sponge',
           '100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.':
             '100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.',
+
           // TODO: TRANS REMAINING
 
           //colors
@@ -742,12 +758,13 @@ i18n
           Feedback: 'Retour',
           'I am concretizing my idea of tailoring': 'Je concrétise mon idée',
           'Do you have an idea for tailoring?': 'Vous avez une idée de confection couture ?',
-          'Submit Your Project here!': 'DÉPOSEZ ici VOTRE PROJET !',
-          'desired delivery date': 'date de livraison souhaitée',
-
+          'Submit Your Project here!': 'DÉPOSEZ ICI VOTRE PROJET !',
+          'desired delivery date': 'Date de livraison souhaitée',
+          'Find your sewing assignments': 'Trouvez vos devoirs de couture',
+          Type: 'Type',
           //client navbar
           Designers: 'Professionnels',
-          Orders: 'Ordres',
+          Orders: 'Commandes',
           'My Ads': 'Mes annonces',
           Chats: 'Chats',
           'Terms and Conditions': 'Termes et conditions',
@@ -760,7 +777,8 @@ i18n
           'Send Message': 'Envoyer le message',
           View: 'Voir',
           'Delivery Note': 'Bon de livraison',
-
+          'My Profile': 'Mon profil',
+          WOMEN: 'Femmes',
           //Profile
           Edit: 'Modifier',
           Phone: 'Téléphone',
@@ -771,10 +789,10 @@ i18n
           Location: 'Localisation',
           'Last Password Changed': 'Dernier mot de passe modifié',
           Password: 'Mot de passe',
-          'Account Created': 'Compte créé',
+          'Account Created': 'Compte crééle',
           'Ad updated successfully.': 'Annonce mise à jour avec succès.',
           'Place this Order': 'Passer commande',
-
+          'Phone number': 'Numéro de téléphone',
           //order
 
           Order: 'Commande',
@@ -784,7 +802,7 @@ i18n
           'Coming soon!': 'Bientôt disponible!',
           Rating: 'Évaluation',
           Cancel: 'Annuler',
-          Details: 'Détails',
+          Details: 'Détails du projet déposé ',
           'Place Your Order': 'Passer commande',
           'Feedback provided successfully.': 'Commentaires envoyés avec succès.',
           'No Order': 'Aucune commande',
@@ -805,16 +823,16 @@ i18n
           Delivery: 'Livraison',
           Payment: 'Paiement',
           'Profile updated successfully.': 'Mise à jour du profil réussie.',
-          "*I'm getting a tape measure": "Je me munis d'un mètre ruban",
-          '*depending on the garment, I measure certain parts of the body in circumference and/or length.':
-            'en fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur',
+          "*I'm getting a tape measure.": "*Je me munis d'un mètre ruban. ",
+          'Depending on the garment, I measure certain parts of the body in circumference and/or length.':
+            'En fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur',
           'Dominant color': 'Couleur dominante',
-          'Dominant Fabric': 'TISSU dominant',
+          'Dominant Fabric': 'Tissu dominant',
           'I select the category to which my con...': 'Je sélectionne la catégorie à laquelle mon con...',
           'I give a name to my confection': 'Je donne un nom à ma confection',
-          'My Measurements': 'Des mesures',
-          "I'm taking my measurements": 'je prends mes mesures',
-          'upload an illustration of your creation': 'téléchargez une illustration de votre création',
+          Measurements: 'Mensurations',
+          "I'm taking my measurements": 'Je prends mes mesures',
+          'upload an illustration of your creation': 'Téléchargez une illustration de votre création',
           size: 'Taille',
           'I do desired not that my creation appears on the site': 'Je ne souhaite pas que ma création apparaisse sur le site',
           'MY PROJECT': 'Mon projet',
@@ -823,26 +841,26 @@ i18n
           'First Name': 'Prénom',
           'Last Name': 'Nom de famille',
           Height: 'Hauteur',
-          'Plain Fabric': 'tissu uni',
-          'Patterned Fabric': 'tissu à motif',
+          'Plain Fabric': 'Tissu uni',
+          'Patterned Fabric': 'Tissu à motif',
           'Fabric Description': 'Description du tissu',
-          'any note (s) concerning the delivery': 'toute note concernant la livraison',
+          'any note (s) concerning the delivery': 'Note concernant la livraison',
           'I agree with terms & condition & privacy policy of':
             "J'accepte les conditions générales et la politique de confidentialité de",
           Flowers: 'Fleurs',
-          Cotton: 'coton',
-          Muslin: 'mousseline',
-          Satin: 'satin',
-          Jersey: 'jersey',
-          Garbadine: 'garbadine',
-          Jacquard: 'jacquard',
-          Wool: 'laine',
-          Linen: 'lin',
-          Polar: 'polaire',
-          'Imitation Leather': 'simili cuir',
-          Velvet: 'velours',
-          Viscose: 'viscose',
-          'OTHER: to write': 'AUTRE: à écrire',
+          Cotton: 'Coton',
+          Muslin: 'Mousseline',
+          Satin: 'Satin',
+          Jersey: 'Jersey',
+          Garbadine: 'Garbadine',
+          Jacquard: 'Jacquard',
+          Wool: 'Laine',
+          Linen: 'Lin',
+          Polar: 'Polaire',
+          'Imitation Leather': 'Simili cuir',
+          Velvet: 'Velours',
+          Viscose: 'Viscose',
+          'OTHER: to write': 'Autre: écrivez',
           Experience: 'Experiences',
           Diploma: 'Diplome',
           'Area of Expertise': 'Domaine de competence',
@@ -865,7 +883,9 @@ i18n
           'Frequently Asked Question': 'Question fréquemment posée',
           'A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries':
             'La liste de questions fréquemment posées est souvent utilisée dans les articles, les sites Web, les listes de diffusion et les forums en ligne où les questions courantes ont tendance à se reproduire, par exemple via des publications ou des requêtes.',
-
+          'Details of the delivery of the project submitted by the client':
+            'Détails de la livraision du projet déposé par le client',
+          'Project budget submitted by the client': 'Budget du projet déposé par le client',
           //measurements
           Measurements: 'Mensurations',
           'Get a tape': 'Prenez une bande métrique',
@@ -877,6 +897,7 @@ i18n
           Measure: 'Mesure',
           'Tape Measurements': 'Mesures par bande métrique',
           Circumference: 'Circonférence',
+          'by the client': 'par le client',
 
           //orderFromCatalog
           'Catalogue Price': 'Prix ​​catalogue',
@@ -900,7 +921,7 @@ i18n
           'Select one category for your ad': 'Sélectionnez une catégorie pour votre annonce',
 
           //viewOrder
-          'Client Basic': 'Client de base',
+          'Client Basic': 'par le client',
 
           //view tailor
           'Designer Profile': 'Profil du professionnel',
@@ -932,6 +953,7 @@ i18n
           Price: 'Prix',
           Attachments: 'Pièces jointes',
           ', Developed by Falcon Consulting. All rights reserved.': ', Développé par Falcon Consulting. Tous droits réservés.',
+          'Developed by': 'Développé par',
           'Select gender for your creation': 'Sélectionnez le genre pour votre création',
           'Write Measurement here': 'Entrez les mensurations ici',
           'Order completed successfully.': 'Commande terminée avec succès.',
@@ -948,6 +970,7 @@ i18n
           'Recent Orders': 'Dernières commandes',
           'Quote sent successfully.': 'Devis envoyé avec succès.',
           'Describe about submit report': 'Décrivez à propos de la soumission du rapport',
+          'No Orders': 'Aucune commande',
 
           //HOW IT WORKS ?
           'HOW IT WORKS ?': 'COMMENT ÇA FONCTIONNE ?',
@@ -986,9 +1009,9 @@ i18n
           Available: 'Disponible',
           Skills: 'Compétences',
           'Delivery Type': 'Type de livraison',
-          small: 'petit',
+          small: 'Petit',
           'Attachment must be selected': 'La pièce jointe doit être sélectionnée',
-
+          'Details of the project submitted': 'Détails du projet déposé',
           Save: 'Sauver',
           'Know how': 'Savoir-faire',
           'General skills': 'Compétences générales',
@@ -1005,17 +1028,18 @@ i18n
           Cut: 'Couper',
 
           //order
-          'Orders Requests': 'Commandes',
-          'In Progress': 'En cours',
-          Completed: 'Terminé',
-          Discarded: 'Mis au rebut',
+          'Orders Requests': 'Projets déposés par les clients',
+          'In Progress': 'Commandes en cours',
+          Completed: 'Commandes Terminées',
+          Discarded: 'Commandes annulées',
           Offer: 'Offre',
 
           //profile
           'Hourly Rate': 'Taux horaire',
           'Free Shipping': 'Livraison gratuite',
           'Add Catalogue': 'Ajouter un catalogue',
-
+          Catalogue: 'Catalogue',
+          'About yourself': 'Á propos de moi',
           //quotes
           'Name of Creation': 'Nom de la création',
           'Ad for': 'Annonce pour',
@@ -1029,7 +1053,7 @@ i18n
           Review: 'La revue',
           'Bride Dress': 'Robe de mariée',
           Pending: 'En attente',
-          Completed: 'Terminé',
+          Completed: 'Commandes Terminés',
           'Support Center': 'Centre de soutien',
           'Chat With Us': 'Discute avec nous',
           'Image must be selected': "L'image doit être sélectionnée",
@@ -1064,9 +1088,12 @@ i18n
           'Cancellation of contract': 'Annulation de contrat',
           'The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.':
             "Le prestataire (en l'occurrence la couturière) est libre de suspendre (pour cause de maladie, maternité ou autre), ou de résilier le contrat qui le lie avec Design CONFECTIONS ETHIQUES, uniquement s'il n'a pas de mission en cours. Il doit en informer Design CONFECTIONS ETHIQUES dans les meilleurs délais.",
-
+          'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.':
+            'Ce catalogue vous permet de partager vos créations avec les clients de D.C.E et ainsi de mettre en avant vos talents et votre savoir-faire.',
+          'Add one of my creations': 'Ajouter une de mes créations',
           //viewOrder
           'Want to complete this order': 'Vous souhaitez finaliser cette commande',
+          'Details of the delivery of the project submitted': 'Détails de la livraision du projet déposé',
 
           //placeholders
           'Name of your Creation': 'Nom de votre Création',
@@ -1096,7 +1123,7 @@ i18n
           'Select one colour for your Creations': 'Sélectionnez une couleur pour vos Créations',
           'Material Fabrics': 'Matériaux Tissus',
           'Select Fabric Style': 'Sélectionnez le style de tissu',
-
+          'Details about my creation': 'Précisions sur ma création',
           'Do you Want': 'Veux-tu',
           'ALTREATION SERVICE ?': 'SERVICE DE MODIFICATION ?',
           '*Select Delivery Type according to your Demands': '*Sélectionnez le type de livraison en fonction de vos demandes',
@@ -1112,7 +1139,7 @@ i18n
           'Terms of Services': 'Conditions de services',
           and: 'et',
           'Privacy Policy': 'Politique de confidentialité',
-          'Publish Ad': "Publier l'annonce",
+          'Publish Ad': 'publier mon projet',
           Hip: 'Hanche',
           Thigh: 'La cuisse',
           'Head to floor height': 'Hauteur de la tête au sol',
@@ -1127,8 +1154,8 @@ i18n
           '(handle)': '(manipuler)',
           'Leg length': 'Longueur de jambe',
           Next: 'Suivant',
-          large: 'grand',
-          medium: 'moyen',
+          large: 'Grand',
+          medium: 'Moyen',
           Basic: 'Basique',
           Delivery: 'Livraison',
           Notes: 'Remarques',
@@ -1207,7 +1234,7 @@ i18n
           'ORDER COMPLETION ?': 'COMPLÉTER DE LA COMMANDE ?',
           pending: 'en attente',
           'in progress': 'en cours',
-          completed: 'terminé',
+          completed: 'terminée',
           discarded: 'mis au rebut',
           'Sent you an order request.': 'Vous a envoyé une demande de commande.',
           'Order request accepted.': 'Demande de commande acceptée.',
@@ -1224,7 +1251,7 @@ i18n
           'Register now': "S'inscrire maintenant",
           'Register As a': 'Inscrivez-vous en tant que',
           Client: 'Client',
-          Designer: 'professionnelle',
+          Designer: 'Professionnel',
           'Sign up': "S'inscrire",
           'Already have an account?': 'Avez-vous déjà un compte?',
           'Sign in now': 'Connectez vous maintenant',
@@ -1278,7 +1305,7 @@ i18n
           Woolen: 'Woolen',
           'Soft woolen fabric': 'Soft woolen fabric',
           Lange: 'Lange',
-          Linen: 'LanLinene',
+          Linen: 'Lin',
           Meshes: 'Meshes',
           Quilted: 'Quilted',
           Honeycomb: 'Honeycomb',
@@ -1287,7 +1314,7 @@ i18n
           'PUL washable diapers': 'PUL washable diapers',
           'Faux leather': 'Faux cuir',
           Tulle: 'Tulle',
-          Velvet: 'Velvet',
+          Velvet: 'Velours',
           Gingham: 'Vichy',
 
           // V2
@@ -1304,7 +1331,7 @@ i18n
           'Choose Designer': 'Choisissez le concepteur',
           'Pay Safely': 'Payez en toute sécurité',
           'At Your Door Step': 'À votre porte',
-          'We Are Here To Help': 'Nous sommes ici pour aider',
+          'We Are Here To Help': 'Nous sommes ICI pour aider',
           'Find Great Work': 'Trouver un excellent travail',
           'FIND OPPORTUNITIES': 'TROUVEZ DES OPPORTUNITÉS',
           'EXPLORE DIFFERENT WAYS TO EARN': 'EXPLOREZ DIFFÉRENTES FAÇONS DE GAGNER',

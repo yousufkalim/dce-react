@@ -214,7 +214,7 @@ function ClientEditAdScreen() {
             className='container'
             style={{
               background: '#FFE9A0',
-              height: '118vh',
+              height: '135vh',
             }}
           >
             <div style={{ height: '100%' }} className='client_edit_ad_screen_row1'>

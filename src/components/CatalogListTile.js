@@ -43,9 +43,9 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
           style={{
             // width: '100%',
             // height: '100%',
-            width: '310px',
+            width: '260px',
             height: '200px',
-            objectFit: 'contain',
+            // objectFit: 'contain',
             borderRadius: '20px',
           }}
           src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}
@@ -71,7 +71,7 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
         <p className='tailor_catalog_list_tile_title'>{catalog.name}</p>
         <div className='tailor_catalog_list_tile_details'>
           <p className='tailor_catalog_list_tile_price_detail'>{t('Stitching Price')}</p>
-          <p className='tailor_catalog_list_tile_price'>${catalog.price}</p>
+          <p className='tailor_catalog_list_tile_price'>{catalog.price}€</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">

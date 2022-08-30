@@ -183,7 +183,7 @@ function TailorViewQuoteScreen() {
             className='container'
             style={{
               background: '#FFE9A0',
-              height: '112vh',
+              height: '135vh',
               padding: '1% 0%',
             }}
           >
@@ -195,7 +195,7 @@ function TailorViewQuoteScreen() {
                     fontWeight: '900',
                   }}
                 >
-                  {t('Client Basic')}
+                  {t('Details of the project submitted')}
                 </p>
                 <p
                   style={{
@@ -204,7 +204,7 @@ function TailorViewQuoteScreen() {
                     marginBottom: '20%',
                   }}
                 >
-                  {t('Details')}
+                  {t('by the client')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
@@ -268,19 +268,22 @@ function TailorViewQuoteScreen() {
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
+                    width: '100%',
+                    marginBottom: '20%',
+                    textAlign: 'center',
                   }}
                 >
-                  {t('Delivery')}
+                  {t('Details of the delivery of the project submitted by the client')}
                 </p>
-                <p
+                {/* <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
                     marginBottom: '20%',
                   }}
                 >
-                  {t('Details')}
-                </p>
+                  {t('by the client')}
+                </p> */}
                 <img style={{ width: '70%' }} src={AdEdit2SVG} />
               </div>
             </div>
@@ -289,8 +292,8 @@ function TailorViewQuoteScreen() {
             className='container'
             style={{
               background: '#FFFCFB',
-              height: '100vh',
-              padding: '1% 0%',
+              height: '60vh',
+              padding: '0% 0% 5% 0%',
             }}
           >
             <div className='client_edit_ad_screen_row1'>
@@ -299,11 +302,15 @@ function TailorViewQuoteScreen() {
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
+                    marginBottom: '10%',
+                    textAlign: 'center',
+                    width: '70%',
+                    // padding: '0 10% !important',
                   }}
                 >
-                  {t('Payment')}
+                  {t('Project budget submitted by the client')}
                 </p>
-                <p
+                {/* <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
@@ -311,7 +318,7 @@ function TailorViewQuoteScreen() {
                   }}
                 >
                   {t('Details')}
-                </p>
+                </p> */}
                 <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
               <div className='client_edit_ad_screen_row1_column2'>
@@ -339,7 +346,7 @@ function TailorViewQuoteScreen() {
           </div>
           <div
             style={{
-              height: '80vh',
+              height: '50vh',
               width: '100vw',
               background: '#FFEEEA',
             }}
