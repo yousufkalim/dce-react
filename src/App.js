@@ -14,16 +14,14 @@ import './css/index.css';
 // Component
 function App() {
   const [loading, setLoading] = useState(true);
+  const [chats, setchats] = useState(false);
+  
   let {pathname} = useLocation()
 
-  useEffect(() => {
-    if(pathname !== "/")
-    {
-      document.getElementById("tidio-chat").style.display = "none"
-    }
-   
-  }, [pathname]);
 
+  
+
+  
   useEffect(() => {
     setLoading(false);
 

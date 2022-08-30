@@ -683,7 +683,7 @@ i18n
           "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
         "Focus on the essentials!":"Concentrez-vous sur l'essentiel !",
         "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-        "Respond to an ad in just a few clicks!":"Repondez à une annonce en quelques clics !",
+        "Respond to an ad in just a few clicks!":"Répondez à une annonce en quelques clics !",
           "About":"À propos",
           "Blog":"Blog",
           "Gallery":"Galerie",
@@ -721,7 +721,7 @@ i18n
           'Focus on the essentials!': "Concentrez-vous sur l'essentiel !",
           'D.C.E manages all the formalities relating to the provision of services':
             "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-          'Respond to an ad in just a few clicks!': 'Repondez à une annonce en quelques clics !',
+          'Respond to an ad in just a few clicks!': 'Répondez à une annonce en quelques clics !',
           About: 'À propos',
           Blog: 'Blog',
           Gallery: 'Galerie',
