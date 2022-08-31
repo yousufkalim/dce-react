@@ -5,16 +5,15 @@ const kRegExpPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
 const kRegExpUserName = /^[a-zA-Z0-9_\.]+$/;
 
 const adNames = {
-  women: ['SHIRT / BLOUSE', 'JUMPSUIT / DUNGAREES', 'VEST', 'SKIRT', 'TROUSERS / SHORTS', 'DRESS', 'TUNIC', 'JACKET'],
+  women: ['SHIRT/BLOUSE', 'JUMPSUIT/DUNGAREES', 'VEST', 'SKIRT', 'TROUSERS / SHORTS', 'DRESS', 'TUNIC', 'JACKET'],
   man: ['SHIRT', 'VEST', 'PANTS', 'JACKET'],
   child: [
     // Girl
-    'SHIRT / BLOUSE',
-    'JUMPSUIT / DUNGAREES',
+    'SHIRT/BLOUSE',
+    'JUMPSUIT/DUNGAREES',
     'VEST',
     'SKIRT',
     'TROUSERS / SHORTS',
-    'PYJAMAS',
     'DRESS',
     'TUNIC',
     'JACKET',

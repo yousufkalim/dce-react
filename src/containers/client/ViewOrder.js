@@ -120,6 +120,7 @@ function ClientViewOrderScreen() {
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Client Basic')}
                 </p>
@@ -129,10 +130,11 @@ function ClientViewOrderScreen() {
                     fontWeight: '900',
                     marginBottom: '50%',
                   }}
+                  className='view_add_heading edit_add_title'
                 >
                   {t('Details')}
                 </p>
-                <img style={{ width: '55%' }} src={AdEdit1SVG} />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} className='view_add_image' />
               </div>
               <div className='client_edit_ad_screen_row1_column2'>
                 <div
@@ -192,6 +194,7 @@ function ClientViewOrderScreen() {
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Delivery')}
                 </p>
@@ -201,10 +204,11 @@ function ClientViewOrderScreen() {
                     fontWeight: '900',
                     marginBottom: '20%',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Details')}
                 </p>
-                <img style={{ width: '70%' }} src={AdEdit2SVG} />
+                <img style={{ width: '70%' }} src={AdEdit2SVG} className='view_add_image' />
               </div>
             </div>
           </div>
@@ -222,6 +226,7 @@ function ClientViewOrderScreen() {
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Payment')}
                 </p>
@@ -231,10 +236,11 @@ function ClientViewOrderScreen() {
                     fontWeight: '900',
                     marginBottom: '8%',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Details')}
                 </p>
-                <img style={{ width: '20%' }} src={AdEdit3SVG} />
+                <img style={{ width: '20%' }} src={AdEdit3SVG} className='view_add_image' />
               </div>
               <div className='client_edit_ad_screen_row1_column2'>
                 <div

@@ -12,45 +12,57 @@ i18n
       en: {
         translations: {
           // landing
-          "or":"or",
-          "Developed by":"Developed by",
-          "Registered":"Registered",
-          "Design Ethical Confections":"Design Ethical Confections",
-          "You receive your confection!":"You receive your confection!",
-          "We make it happen!":"We make it happen!",
-          "You submit your sewing idea to us!":"You submit your sewing idea to us!",
-          "Make your sewing projects a reality in just a few clicks!":"Make your sewing projects a reality in just a few clicks!",
-          "DESIGN Ethical Confections":"DESIGN Ethical Confections",
-          "Platform for networking in the field of tailor-made fashion":"Platform for networking in the field of tailor-made fashion",
-          "I submit my idea":"I submit my idea",
-          "You are a designer and you want to put your know-how at the service of the greatest number?":"You are a designer and you want to put your know-how at the service of the greatest number?",
-         'In a few clicks, D.C.E allows you to find "sewing project" missions':'In a few clicks, D.C.E allows you to find "sewing project" missions',
-         "How it works ?":"How it works ?",
-         "Find customers who match you!":"Find customers who match you!",
-         "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E puts you in touch with potential customers suited to your profile",
-         "Focus on the essentials!":"Focus on the essentials!",
-         "D.C.E manages all the formalities relating to the provision of services":"D.C.E manages all the formalities relating to the provision of services",
-         "Respond to an ad in just a few clicks!":"Respond to an ad in just a few clicks!",
-         "About":"About",
-         "Blog":"Blog",
-         "Gallery":"Gallery",
-         "Registration":"Registration",
-          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E puts you in touch with potential customers suited to your profile",
-          "D.C.E manages all the formalities relating to the provision of services":"D.C.E manages all the formalities relating to the provision of services",
-          "You tell us your preferences, criteria, choice and style of your confections!":"You tell us your preferences, criteria, choice and style of your confections!" ,
-         
-         'D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!':"D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!",
-         
-          "D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!":"D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!",
-         "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confections !",
-         "You tell us your preferences, criteria, choice and style of your confections!":"You tell us your preferences, criteria, choice and style of your confections!",
-        "Choose your":"Choose your",
-        "assignments":"assignments",
-        "Fix your":"Fix your",
-        "deal with":"deal with",
-        
+          or: 'or',
+          'Developed by': 'Developed by',
+          Registered: 'Registered',
+          'Design Ethical Confections': 'Design Ethical Confections',
+          'You receive your confection!': 'You receive your confection!',
+          'We make it happen!': 'We make it happen!',
+          'You submit your sewing idea to us!': 'You submit your sewing idea to us!',
+          'Make your sewing projects a reality in just a few clicks!':
+            'Make your sewing projects a reality in just a few clicks!',
+          'DESIGN Ethical Confections': 'DESIGN Ethical Confections',
+          'Platform for networking in the field of tailor-made fashion':
+            'Platform for networking in the field of tailor-made fashion',
+          'I submit my idea': 'I submit my idea',
+          'You are a designer and you want to put your know-how at the service of the greatest number?':
+            'You are a designer and you want to put your know-how at the service of the greatest number?',
+          'In a few clicks, D.C.E allows you to find "sewing project" missions':
+            'In a few clicks, D.C.E allows you to find "sewing project" missions',
+          'How it works ?': 'How it works ?',
+          'Find customers who match you!': 'Find customers who match you!',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E puts you in touch with potential customers suited to your profile',
+          'Focus on the essentials!': 'Focus on the essentials!',
+          'D.C.E manages all the formalities relating to the provision of services':
+            'D.C.E manages all the formalities relating to the provision of services',
+          'Respond to an ad in just a few clicks!': 'Respond to an ad in just a few clicks!',
+          About: 'About',
+          Blog: 'Blog',
+          Gallery: 'Gallery',
+          Registration: 'Registration',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E puts you in touch with potential customers suited to your profile',
+          'D.C.E manages all the formalities relating to the provision of services':
+            'D.C.E manages all the formalities relating to the provision of services',
+          'You tell us your preferences, criteria, choice and style of your confections!':
+            'You tell us your preferences, criteria, choice and style of your confections!',
 
-         //----------------------------------------------------------Client-------------------------------------------------------
+          'D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!':
+            'D.C.E has selected for you professional seamstresses with fairy fingers, passionate, with quality know-how!',
+
+          'D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!':
+            'D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!',
+          'You tell us your preferences, criteria, choice and style of your confections!':
+            'Vous nous indiquez vos préférences, critères, choix et style de votre confections !',
+          'You tell us your preferences, criteria, choice and style of your confections!':
+            'You tell us your preferences, criteria, choice and style of your confections!',
+          'Choose your': 'Choose your',
+          assignments: 'assignments',
+          'Fix your': 'Fix your',
+          'deal with': 'deal with',
+
+          //----------------------------------------------------------Client-------------------------------------------------------
           'Make your sewing projects a reality in just a few clicks!':
             'Make your sewing projects a reality in just a few clicks!',
           'DESIGN Ethical Confections': 'DESIGN Ethical Confections',
@@ -604,8 +616,8 @@ i18n
 
           // TransFile
           // XYZ1
-          'SHIRT / BLOUSE': 'SHIRT / BLOUSE',
-          'JUMPSUIT / DUNGAREES': 'JUMPSUIT / DUNGAREES',
+          'SHIRT/BLOUSE': 'SHIRT/BLOUSE',
+          'JUMPSUIT/DUNGAREES': 'JUMPSUIT/DUNGAREES',
           VEST: 'VEST',
           SKIRT: 'SKIRT',
           'TROUSERS / SHORTS': 'TROUSERS / SHORTS',
@@ -616,6 +628,8 @@ i18n
           PYJAMAS: 'PYJAMAS',
           'SCHOOL APRON': 'SCHOOL APRON',
           DISGUISE: 'DISGUISE',
+          SHIRT: 'SHIRT',
+          PANTS: 'PANTS',
 
           // XYZ2
           INVOICE: 'INVOICE',
@@ -680,6 +694,7 @@ i18n
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
           // landing
+
           "or":"ou",
           "Developed by":"Développé par",
           "Registered":"Inscription",
@@ -712,15 +727,15 @@ i18n
          "Fix your":"Fixez vos",
          "deal with":"Traitez en",
           // client home
-          "Submit your idea,": "Soumettez-nous votre idée,",
-          "We make it real,": "nous la concrétisons !",
-          "You receive your creation": "Vous recevez votre création",
-          "at home!": "à la maison!",
-          "Place Your Ad": "Placez votre annonce",
-          "Orders List": "Liste des commandes",
-          "See all": "Voir tout",
-          Search: "Recherche",
-          Feedback: "Retour",
+          'Submit your idea,': 'Soumettez-nous votre idée,',
+          'We make it real,': 'nous la concrétisons !',
+          'You receive your creation': 'Vous recevez votre création',
+          'at home!': 'à la maison!',
+          'Place Your Ad': 'Placez votre annonce',
+          'Orders List': 'Liste des commandes',
+          'See all': 'Voir tout',
+          Search: 'Recherche',
+          Feedback: 'Retour',
           'Make your sewing projects a reality in just a few clicks!': 'Concrétisez vos projets couture en un tour de clics !',
           'DESIGN Ethical Confections': 'DESIGN Confections Éthiques',
           'Platform for networking in the field of tailor-made fashion':
@@ -794,7 +809,17 @@ i18n
           'Place this Order': 'Passer commande',
           'Phone number': 'Numéro de téléphone',
           //order
-
+          'SHIRT/BLOUSE': 'CHEMISE / BLOUSE',
+          'JUMPSUIT/DUNGAREES': 'COMBINAISON / SALOPETTE',
+          VEST: 'GILET',
+          SKIRT: 'JUPE',
+          'TROUSERS / SHORTS': 'PANTALONS / SHORT',
+          DRESS: 'ROBE',
+          TUNIC: 'TUNIQUE',
+          JACKET: 'VESTE',
+          'SCHOOL APRON': "TABLIER D'ÉCOLE",
+          SHIRT: 'CHEMISE',
+          PANTS: 'LES PANTALONS',
           Order: 'Commande',
           'Order Date': 'Date de commande',
           'New Order': 'Nouvelle commande',
@@ -1266,18 +1291,18 @@ i18n
 
           // TransFile
           // XYZ1
-          'SHIRT / BLOUSE': 'SHIRT / BLOUSE',
-          'JUMPSUIT / DUNGAREES': 'JUMPSUIT / DUNGAREES',
-          VEST: 'VEST',
-          SKIRT: 'SKIRT',
-          'TROUSERS / SHORTS': 'TROUSERS / SHORTS',
-          DRESS: 'DRESS',
-          TUNIC: 'TUNIC',
-          JACKET: 'JACKET',
-          PANTS: 'PANTS',
-          PYJAMAS: 'PYJAMAS',
-          'SCHOOL APRON': 'SCHOOL APRON',
-          DISGUISE: 'DISGUISE',
+          // 'SHIRT / BLOUSE': 'SHIRT / BLOUSE',
+          // 'JUMPSUIT / DUNGAREES': 'JUMPSUIT / DUNGAREES',
+          // VEST: 'VEST',
+          // SKIRT: 'SKIRT',
+          // 'TROUSERS / SHORTS': 'TROUSERS / SHORTS',
+          // DRESS: 'DRESS',
+          // TUNIC: 'TUNIC',
+          // JACKET: 'JACKET',
+          // PANTS: 'PANTS',
+          // PYJAMAS: 'PYJAMAS',
+          // 'SCHOOL APRON': 'SCHOOL APRON',
+          // DISGUISE: 'DISGUISE',
 
           // XYZ2
           INVOICE: 'FACTURE',

@@ -47,8 +47,9 @@ export default function ComboBox(props) {
         fontSize: '16px !important',
       },
       '@media (max-width:600px)': {
-        height: '60px !important',
+        height: '35px !important',
         '& .MuiInput-input': {
+          fontSize: '11px !important',
           textAlign: 'center !important',
         },
       },

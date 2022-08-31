@@ -241,6 +241,7 @@ function AdListTile(props) {
               color: '#CC8E9C',
               paddingBottom: '3%',
             }}
+            className='my_add_budget'
           >
             {t('Budget')}
           </p>
@@ -254,10 +255,13 @@ function AdListTile(props) {
               fontWeight: 'bold',
               paddingBottom: '2.5%',
             }}
+            className='my_add_budget'
           >
             {props?.quotes?.length}
           </p>
-          <p style={{ fontSize: '12px', fontWeight: '200', color: '#CC8E9C' }}>{t('Responses')}</p>
+          <p style={{ fontSize: '12px', fontWeight: '200', color: '#CC8E9C' }} className='my_add_budget'>
+            {t('Responses')}
+          </p>
         </div>
         <div className='cas_ad_list_tile_column4'>
           <p
@@ -268,12 +272,13 @@ function AdListTile(props) {
               color: '#CC8E9C',
               cursor: 'pointer',
             }}
+            className='my_add_budget'
           >
             {t('Edit')}
           </p>
         </div>
       </div>
-      <Collapse sx={{ paddingBottom: '2%' }} in={expanded} timeout='auto' unmountOnExit>
+      <Collapse sx={{ paddingBottom: '2%' }} in={expanded} timeout='auto' unmountOnExit className='myAdd_collapse'>
         {props?.quotes
           ?.filter((_) => _?.status != 'rejected')
           .map((__) => (

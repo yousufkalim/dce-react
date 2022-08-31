@@ -170,9 +170,14 @@
     height: 150vh !important;
   }
 }
+@media only screen and (max-width: 1080px) {
+  .containerOrder{
+    height: 100vh !important;
+  }
+}
 @media only screen and (max-width: 1024px) {
   .containerOrder{
-    height: 150vh !important;
+    height: 100vh !important;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -194,5 +199,14 @@
   }
   .cos_order_list_tile_column2 {
     border: none;
+  }
+  .view_add_image{
+    display: none;
+  }
+  .view_add_heading{
+    margin-bottom: 0% !important;
+  }
+   .containerOrder{
+    height: 120vh !important;
   }
 }

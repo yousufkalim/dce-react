@@ -1,7 +1,8 @@
 // Init
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, Flip } from 'react-toastify';
-import { useLocation } from 'react-router-dom'l
+import { useLocation } from 'react-router-dom';
+
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from './components/SplashScreen';
 
@@ -13,6 +14,7 @@ import './css/index.css';
 function App() {
   const [loading, setLoading] = useState(true);
   let { pathname } = useLocation();
+
 
 
 
@@ -36,9 +38,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       {/* toastify Container for Notification */}
-      <ToastContainer position="bottom-right" autoClose={3000} hideProgressBar={true} transition={Flip} />
+      <ToastContainer position='bottom-right' autoClose={3000} hideProgressBar={true} transition={Flip} />
 
       {/* Routes */}
       {loading ? <SplashScreen /> : <Main />}

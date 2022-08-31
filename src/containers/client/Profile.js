@@ -494,6 +494,7 @@ function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img
               left: '2%',
               top: '1%',
             }}
+            className='cps_profile_input_label'
           >
             {label}
           </p>

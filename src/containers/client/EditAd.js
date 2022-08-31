@@ -224,6 +224,7 @@ function ClientEditAdScreen() {
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Ad Basic')}
                 </p>
@@ -233,6 +234,7 @@ function ClientEditAdScreen() {
                     fontWeight: '900',
                     marginBottom: '20%',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Details')}
                 </p>
@@ -249,7 +251,9 @@ function ClientEditAdScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)} className='stepper_label'>
+                            {t(label)}
+                          </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -303,6 +307,7 @@ function ClientEditAdScreen() {
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
+                  className='edit_add_title'
                 >
                   {t('My delivery')}
                 </p>
@@ -312,6 +317,7 @@ function ClientEditAdScreen() {
                     fontWeight: '900',
                     marginBottom: '20%',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Details')}
                 </p>
@@ -333,6 +339,7 @@ function ClientEditAdScreen() {
                     fontSize: '30px',
                     fontWeight: '900',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Payment')}
                 </p>
@@ -342,6 +349,7 @@ function ClientEditAdScreen() {
                     fontWeight: '900',
                     marginBottom: '20%',
                   }}
+                  className='edit_add_title'
                 >
                   {t('Details')}
                 </p>

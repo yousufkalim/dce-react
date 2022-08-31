@@ -136,3 +136,11 @@
   padding-top: 2%;
   resize: none;
 }
+@media only screen and (max-width: 600px) {
+
+  .tqs_sqm_container {
+    width: 90% !important;
+    padding: 5% 4% !important;
+    height: auto !important;
+  }
+}

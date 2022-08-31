@@ -96,8 +96,9 @@
 
 .mobile-nav {
   position: fixed;
-  height: 25%;
-  top: 7%;
+  /* height: 25%; */
+  margin-top: 8%;
+  top: 4%;
   background: #dfdfdf;
   width: 100%;
   text-align: center;
@@ -193,6 +194,9 @@
     background: #ffffff !important;
     box-shadow: none !important;
     height: 65px !important;
+  }
+  .nav_searchBox{
+    display: none;
   }
 }
 
@@ -407,4 +411,29 @@ position: relative;
     padding: 10px;
     height: auto;
   }
+}
+@media only screen and (max-width: 880px) {
+ 
+  .appbar_row1_tab_text{
+    font-size: 10px;
+  }
+
+}
+@media only screen and (max-width: 1080px) {
+  .appbar_row1{
+    width: 97% !important;
+  }
+  .appbar_row1_tab_text{
+    font-size: 11px;
+  }
+
+}
+@media only screen and (max-width: 1080px) {
+
+.appbar_container {
+  height: 8vh !important;
+}
+.appbar_row1_img {
+  width: 7vh;
+}
 }

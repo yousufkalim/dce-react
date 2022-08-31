@@ -27,3 +27,8 @@
   color: #cc8e9c;
   text-align: center;
 }
+@media only screen and (max-width: 768px) {
+  .orderTileImage{
+    width: 10% !important;
+  }
+}

@@ -805,7 +805,7 @@ function AddCatalogListTile() {
   return (
     <div className='new_order_list_tile tailor-new_order_list_tile' onClick={navToCreateCatalog}>
       <div className='new_order_list_tile_img'>
-        <img style={{ width: '40%' }} src={AddCatalogSVG} />
+        <img style={{ width: '40%' }} src={AddCatalogSVG} className='orderTileImage' />
       </div>
       <p className='new_order_list_tile_text'>{t('Add one of my creations')}</p>
     </div>
