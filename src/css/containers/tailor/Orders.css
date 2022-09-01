@@ -105,3 +105,14 @@
   align-items: center;
   justify-content: center;
 }
+@media only screen and (max-width: 600px){
+  .tos_order_list_tile_column2{
+    width: 85vw;
+  }
+  .tos_order_list_tile_column4{
+width: 75vw !important;
+  }
+  .tcos_order_list_tile_container {
+    padding: 1.5% 4% !important;
+  }
+}

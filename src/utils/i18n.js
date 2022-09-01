@@ -61,7 +61,28 @@ i18n
           assignments: 'assignments',
           'Fix your': 'Fix your',
           'deal with': 'deal with',
-
+          'Logged In': 'Logged In',
+          'No Internet': 'No Internet',
+          'Something went wrong': 'Something went wrong',
+          'Chat deleted successfully': 'Chat deleted successfully',
+          'Messagee deleted successfully': 'Messagee deleted successfully',
+          'Please type message to send': 'Please type message to send',
+          'Files greater than 10 MB are not allowed.': 'Files greater than 10 MB are not allowed.',
+          'Registered successfully!': 'Registered successfully!',
+          'Please check your email to reset your password': 'Please check your email to reset your password',
+          'OTP sent': 'OTP sent',
+          'OTP is incorrect.': 'OTP is incorrect.',
+          'OTP verified': 'OTP verified',
+          'Link has been expired': 'Link has been expired',
+          'Password and confirm password are not same': 'Password and confirm password are not same',
+          'Password should be minimum 8 characters long': 'Password should be minimum 8 characters long',
+          'Password changed successfully, Please login to continue.': 'Password changed successfully, Please login to continue.',
+          "Store Name can't be empty.": "Store Name can't be empty.",
+          'Registered successfully!': 'Registered successfully!',
+          'Please check your email to reset your password': 'Please check your email to reset your password',
+          'You can select a maximum of 5 files.': 'You can select a maximum of 5 files.',
+          'File sizes greater than 5 MB are not allowed.': 'File sizes greater than 5 MB are not allowed.',
+          'At least one image must be selected.': 'At least one image must be selected.',
           //----------------------------------------------------------Client-------------------------------------------------------
           'Make your sewing projects a reality in just a few clicks!':
             'Make your sewing projects a reality in just a few clicks!',
@@ -91,6 +112,10 @@ i18n
             'D.C.E manages all the formalities relating to the provision of services',
           WOMEN: 'WOMEN',
           'About yourself': 'About yourself',
+          'Please Login with client role': 'Please Login with client role',
+          'Please Login with tailor role': 'Please Login with tailor role',
+          'User not found Please Register Yourself': 'User not found Please Register Yourself',
+          'is invalid': 'is invalid',
           //----------------------------------------------------------Client-------------------------------------------------------
 
           // client home
@@ -769,6 +794,37 @@ i18n
             'D.C.E vous met en relation avec des clients potentiels adaptés à votre profil',
           'D.C.E manages all the formalities relating to the provision of services':
             "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
+          'Logged In': 'Connecté',
+          'No Internet': "Pas d'Internet",
+          'Something went wrong': "Quelque chose s'est mal passé",
+          'Chat deleted successfully': 'Chat supprimé avec succès',
+          'Messagee deleted successfully': 'Message supprimé avec succès',
+          'Please type message to send': 'Veuillez saisir le message à envoyer',
+          'Files greater than 10 MB are not allowed.': 'Les fichiers de plus de 10 Mo ne sont pas autorisés.',
+          'Registered successfully!': 'Enregistré avec succès!',
+          'Please check your email to reset your password':
+            'Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe',
+
+          'OTP sent': 'OTP envoyé',
+          'OTP is incorrect.': 'OTP est incorrect.',
+          'OTP verified': 'OTP vérifié',
+          'Link has been expired': 'Le lien a expiré',
+          'Password and confirm password are not same':
+            'Le mot de passe et le mot de passe de confirmation ne sont pas identiques',
+          'Password should be minimum 8 characters long': 'Le mot de passe doit comporter au moins 8 caractères',
+          'Password changed successfully, Please login to continue.':
+            'Le mot de passe a été modifié avec succès, veuillez vous connecter pour continuer.',
+          "Store Name can't be empty.": 'Le nom du magasin ne peut pas être vide.',
+          'Registered successfully!': 'Enregistré avec succès!',
+          'Please check your email to reset your password':
+            'Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe',
+          'You can select a maximum of 5 files.': 'Vous pouvez sélectionner un maximum de 5 fichiers.',
+          'File sizes greater than 5 MB are not allowed.': 'Les tailles de fichiers supérieures à 5 Mo ne sont pas autorisées.',
+          'At least one image must be selected.': 'Au moins une image doit être sélectionnée.',
+          'Please Login with client role': 'Veuillez vous connecter avec le rôle client',
+          'Please Login with tailor role': 'Veuillez vous connecter avec un rôle de Professionnel',
+          'User not found Please Register Yourself': 'Utilisateur introuvable Veuillez vous inscrire',
+          'is invalid': 'is invalid',
           // client home
           'Submit your idea,': 'Soumettez-nous votre idée,',
           'We make it real,': 'nous la concrétisons !',

@@ -209,4 +209,7 @@
    .containerOrder{
     height: 120vh !important;
   }
+  .client_orders_screen_row1_text{
+    font-size: 15px !important;
+  }
 }

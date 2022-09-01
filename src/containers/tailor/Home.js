@@ -74,34 +74,21 @@ function TailorHomeScreen() {
     <div className='container-page'>
       <AppBar color='#F8F4EF' />
       <div
-        className='container'
+        className='designer_container'
         style={{
           background: '#FAFAFA',
         }}
       >
-        <div className='client_home_screen_row1'>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10%' }}>
-            <div className='client_home_screen_row1_column1_'>
+        <div className='designer_home_screen_row1'>
+          <div
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10%' }}
+            className='designer_header'
+          >
+            <div className='designer_home_screen_row1_column1_'>
               <p className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
                 {t('Welcome to the')} Design Confections Ethiques
               </p>
-              {/* <p className='tailor_home_screen_row1_column1_text_2'>Design Confections Ethiques</p> */}
-              {/* <p
-              className="client_home_screen_row1_column1_text_1"
-              style={{
-                color: "#A0805A",
-              }}
-            >
-              {t("Now You receive your")}
-            </p> */}
-              {/* <p
-              className="client_home_screen_row1_column1_text_1"
-              style={{
-                color: "#857B6F",
-              }}
-            >
-              {t("order here")}
-            </p> */}
+
               <button
                 className='tailor_home_screen_row1_column1_button'
                 style={{
@@ -112,7 +99,7 @@ function TailorHomeScreen() {
                 {t('Find your sewing assignments')}
               </button>
             </div>
-            <div className='client_home_screen_row1_column2'>
+            <div className='designer_home_screen_row1_column2'>
               <div className='design_home_screen_row1_column2_img'>
                 <img style={{ width: '100%' }} src={TailorHomeSVG} />
               </div>

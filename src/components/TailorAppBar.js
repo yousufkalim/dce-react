@@ -321,10 +321,10 @@ function TailorAppBar({ activeTab, color, sticky = true, disableSearch = false, 
             <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className='menu-item' onClick={navToProfile}>
               <img style={{ padding: '4% 0%' }} src={EditIcon} /> <p>{t('Profile')} </p>
             </MenuItem>
-            <MenuItem className='menu-item' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
+            {/* <MenuItem className='menu-item' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
               <GTranslateIcon sx={{ width: '20px' }} />
               {language == 'fr' ? 'French' : 'English'}
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem className='menu-item support-padding' onClick={navToSupport}>
               <img style={{ width: '16px' }} src={SupportIcon} />
               <p>{t('Support')}</p>
@@ -347,7 +347,7 @@ function SearchInput({ setSearchQuery, callback }) {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div className='prof_search'>
       <div
         style={{
           position: 'relative',

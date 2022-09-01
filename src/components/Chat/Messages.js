@@ -88,7 +88,7 @@ const MessageListTile = (props) => {
 
       if (response?.data?.success) {
         handleCloseMenu();
-        toast.success('Messagee deleted successfully');
+        toast.success(t('Messagee deleted successfully'));
         _loadMessages();
       }
     } catch (e) {

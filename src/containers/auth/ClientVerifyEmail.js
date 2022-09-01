@@ -51,13 +51,13 @@ function ClientVerifyEmailScreen() {
 
     if (resendCode) {
       if (data.get('Verification Code') != resendCode) {
-        toast.error('OTP is incorrect.');
+        toast.error(t('OTP is incorrect.'));
         return;
       }
     }
     if (!resendCode) {
       if (data.get('Verification Code') != state.otp.otp) {
-        toast.error('OTP is incorrect.');
+        toast.error(t('OTP is incorrect.'));
         return;
       }
     }
@@ -74,7 +74,7 @@ function ClientVerifyEmailScreen() {
       response = await Api('put', '/otps', body);
 
       if (response?.data?.success) {
-        toast.success(response.data.message);
+        toast.success(t(response.data.message));
         navToCreateAccount({
           Email: state['Email'],
           Password: state['Password'],
@@ -96,7 +96,7 @@ function ClientVerifyEmailScreen() {
       };
       response = await Api('post', '/otps', body);
       if (response?.data?.success) {
-        toast.success(response.data.message);
+        toast.success(t(response.data.message));
         setResendCode(response?.data?.otp?.otp);
       }
     } catch (e) {
@@ -107,29 +107,29 @@ function ClientVerifyEmailScreen() {
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
-        className="container"
+        className='container'
         style={{
           background:
             'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
-        <div className="login_screen_top">
-          <div className="login_screen_row1">
-            <div className="login_screen_row1_img">
+        <div className='login_screen_top'>
+          <div className='login_screen_row1'>
+            <div className='login_screen_row1_img'>
               <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
             </div>
-            <div className="login_screen_row1_img">
+            <div className='login_screen_row1_img'>
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
-          <div className="login_screen_row2">
-            <div className="login_screen_row2_container">
+          <div className='login_screen_row2'>
+            <div className='login_screen_row2_container'>
               <CustomInput
                 disabled
                 labelText={t('Email')}
-                inputType="email"
-                inputName="Email"
-                inputPlaceholder="abc@xyz.com"
+                inputType='email'
+                inputName='Email'
+                inputPlaceholder='abc@xyz.com'
                 inputDefaultValue={state?.['Email']}
                 divStyle={{
                   marginBottom: '6%',
@@ -138,9 +138,9 @@ function ClientVerifyEmailScreen() {
               <CustomInput
                 disabled
                 labelText={t('Password')}
-                inputType="password"
-                inputName="Password"
-                inputPlaceholder="********"
+                inputType='password'
+                inputName='Password'
+                inputPlaceholder='********'
                 inputDefaultValue={state?.['Password']}
                 divStyle={{
                   marginBottom: '6%',
@@ -148,9 +148,9 @@ function ClientVerifyEmailScreen() {
               />
               <CustomInput
                 labelText={t('Verification Code')}
-                inputType="password"
-                inputName="Verification Code"
-                inputPlaceholder="Verification Code"
+                inputType='password'
+                inputName='Verification Code'
+                inputPlaceholder='Verification Code'
                 enableEyes={true}
                 divStyle={{
                   marginBottom: '6%',
@@ -158,12 +158,12 @@ function ClientVerifyEmailScreen() {
                 inputValue={otpValue}
                 onChange={(e) => setotpValue(e.target.value.replace(/[^0-9]/g, ''))}
               />
-              <div onClick={resendVerificationCode} className="resend_code">
+              <div onClick={resendVerificationCode} className='resend_code'>
                 <small>Resend Code</small>
               </div>
               <CustomButton
                 text={t('Create Account')}
-                type="submit"
+                type='submit'
                 style={{
                   margin: '3% 0% 10% 0%',
                 }}

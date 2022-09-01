@@ -108,7 +108,12 @@ const Landing = () => {
                   <h4 className='submit_main_cardh4' >{t('Traitez en')}</h4>
                   <h4 className='submit_main_cardh4' >{t('direct')}</h4>
                 </div>
-
+               
+              </div>
+              <div className='btn_section_group_2'>
+                <Link to="/tailor_register" >
+                  <button className="how_work_ls how_work_ls_ssss" style={{ marginTop: "0px", fontSize: "35px" }}>{t('Je souhaite mettre à profit mon savoir faire')}</button>
+                </Link>
               </div>
             </div>
 
@@ -118,8 +123,20 @@ const Landing = () => {
       </div>
 
       {/* section 4  */}
-      <div className="chose_main_section" id="WhyChooseDCE">
-        <div className="chose_title_main">
+      <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
+      <iframe width="100%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      {/* <video controls poster="">
+      <source 
+src="https://www.youtube.com/embed/Lpp8vrY3TEo" 
+                type="video/web"/>
+  Your browser does not support the video tag.
+</video> */}
+        {/* <video poster='https://helpx.adobe.com/photoshop/using/convert-color-image-black-white.html'>
+        <source src="https://www.youtube.com/" type="video/mp4"/> 
+        </video> */}
+      {/* <iframe src="https://www.youtube.com/" title="description"></iframe> */}
+
+        {/* <div className="chose_title_main">
           <div className="chose_title">
             <h3 >{t('How it works ?')}</h3>
             <div className="how_work">
@@ -138,7 +155,7 @@ const Landing = () => {
             </div>
 
           </div>
-        </div>
+        </div> */}
 
       </div>
 

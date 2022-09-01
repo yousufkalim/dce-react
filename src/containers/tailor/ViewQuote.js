@@ -23,6 +23,8 @@ import { Store, UpdateStore } from '../../StoreContext';
 import { toast } from 'react-toastify';
 
 import * as FormValidations from '../../utils/Validations';
+import { add } from 'date-fns';
+import { AddModeratorSharp } from '@mui/icons-material';
 
 const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
@@ -92,6 +94,11 @@ function TailorViewQuoteScreen() {
         measurements: adData.measurements,
         color: adData.color,
         fabric: adData.fabric,
+        fabric_type: adData.fabric_type,
+        fabric_description: adData.fabric_description,
+        height: adData.height,
+        observation: adData.observation,
+
         includes_alteration_services: adData.includes_alteration_services,
         create_catalog_after_completion: adData.create_catalog_after_completion,
       });

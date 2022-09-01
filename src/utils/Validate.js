@@ -11,38 +11,38 @@ class Validators {
   }
   static checkBox(name, value) {
     if (!value) {
-      return `Please  ${name} to proceed`;
+      return `S'il vous plaît ${name} procéder`;
     }
     return null;
   }
   static addressValidator(name, label, zip, city) {
     if (isEmpty(label) || isEmpty(zip) || isEmpty(city)) {
-      return `Invalid ${name}, Select address from dropdown list`;
+      return `Non valide ${name}, Sélectionnez l'adresse dans la liste déroulante`;
     }
     return null;
   }
 
   static nullValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
     return null;
   }
 
   static selectValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} must be selected`;
+      return `${name} doit être sélectionné`;
     }
     return null;
   }
 
   static lengthValidator(name, value, length) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
 
     if (String(value).length < length) {
-      return `${name} can't be less than ${length} characters`;
+      return `${name} ne peut pas être inférieur à ${length} personnages`;
     }
 
     return null;
@@ -50,13 +50,13 @@ class Validators {
 
   static emailValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
 
     const regexMatch = value.match(kRegExpEmail);
 
     if (!regexMatch) {
-      return `${name} is invalid`;
+      return `${name} est invalide`;
     }
 
     return null;
@@ -64,13 +64,13 @@ class Validators {
 
   static passwordValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
 
     const regexMatch = value.match(kRegExpPassword);
 
     if (!regexMatch) {
-      return `${name} must be 8 characters and include uppercase, lowercase, special character and number`;
+      return `${name} doit comporter 8 caractères et inclure des majuscules, des minuscules, des caractères spéciaux et des chiffres`;
     }
 
     return null;
@@ -78,13 +78,13 @@ class Validators {
 
   static phoneNoValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
 
     const regexMatch = value.match(kRegExpPhone);
 
     if (!regexMatch) {
-      return `${name} is invalid`;
+      return `${name} est invalide`;
     }
 
     return null;
@@ -92,13 +92,13 @@ class Validators {
 
   static userNameValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
 
     const regexMatch = value.match(kRegExpUserName);
 
     if (!regexMatch) {
-      return `${name} can only contain alphabets, numbers or underscore`;
+      return `${name} ne peut contenir que des lettres, des chiffres ou un trait de soulignement`;
     }
 
     return null;
@@ -106,11 +106,11 @@ class Validators {
 
   static moneyValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} can't be empty`;
+      return `${name} ne peut pas être vide`;
     }
 
     if (parseInt(value) > 10000) {
-      return `${name} can't be greater than 10000`;
+      return `${name} ne peut pas être supérieur à 10000`;
     }
 
     return null;

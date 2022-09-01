@@ -66,7 +66,7 @@ const ChatHeader = ({ directUser }) => {
 
       if (response?.data?.success) {
         handleCloseMenu();
-        toast.success('Chat deleted successfully');
+        toast.success(t('Chat deleted successfully'));
         _loadChats();
       }
     } catch (e) {

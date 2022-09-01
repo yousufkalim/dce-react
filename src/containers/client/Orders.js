@@ -133,7 +133,7 @@ function OrderListTile(props) {
     if (props.order.status == 'completed') {
       setIsInvoiceGenerateModal(true);
     } else {
-      toast.error('Order must be completed for billing.');
+      toast.error(t('Order must be completed for billing.'));
     }
   };
 

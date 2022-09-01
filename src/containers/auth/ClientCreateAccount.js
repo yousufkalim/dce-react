@@ -72,7 +72,7 @@ function ClientCreateAccountScreen() {
       response = await Api('post', '/clients', body);
 
       if (response?.data?.success) {
-        toast.success('Registered successfully!');
+        toast.success(t('Registered successfully!'));
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
@@ -86,15 +86,15 @@ function ClientCreateAccountScreen() {
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
-        className="container"
+        className='container'
         style={{
           background:
             'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
-        <div className="login_screen_top">
-          <div className="login_screen_row1">
-            <div className="login_screen_row1_img create_account_screen_row1_img">
+        <div className='login_screen_top'>
+          <div className='login_screen_row1'>
+            <div className='login_screen_row1_img create_account_screen_row1_img'>
               <img style={{ width: '15%', marginBottom: '5%' }} src={AppLogoSVG} />
               <div>
                 <p
@@ -113,24 +113,24 @@ function ClientCreateAccountScreen() {
                 </p>
               </div>
             </div>
-            <div className="login_screen_row1_img">
+            <div className='login_screen_row1_img'>
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
-          <div className="login_screen_row2">
-            <div className="create_account_screen_row2_container">
+          <div className='login_screen_row2'>
+            <div className='create_account_screen_row2_container'>
               <CustomInput
-                labelText="Full Name"
-                inputName="Full Name"
-                inputPlaceholder="Full Name"
+                labelText='Full Name'
+                inputName='Full Name'
+                inputPlaceholder='Full Name'
                 divStyle={{
                   marginBottom: '6%',
                 }}
               />
               <CustomInput
-                labelText="Phone Number"
-                inputName="Phone Number"
-                inputPlaceholder="Phone Number"
+                labelText='Phone Number'
+                inputName='Phone Number'
+                inputPlaceholder='Phone Number'
                 divStyle={{
                   marginBottom: '6%',
                 }}
@@ -140,14 +140,14 @@ function ClientCreateAccountScreen() {
               />
               <div style={{ width: '100%', border: 'none' }}>
                 <div>
-                  <p className="custom_input_label">{t('Category')}</p>
+                  <p className='custom_input_label'>{t('Category')}</p>
                 </div>
                 <CustomDropDown
                   labelStyle={{
                     display: 'none',
                   }}
-                  selectID="gender"
-                  selectName="gender"
+                  selectID='gender'
+                  selectName='gender'
                   selectNullValue={t('Select your gender')}
                   selectValue={gender}
                   onChange={(e) => setGender(e.target.value)}
@@ -165,8 +165,8 @@ function ClientCreateAccountScreen() {
                 />
               </div>
               <CustomButton
-                text="Save"
-                type="submit"
+                text='Save'
+                type='submit'
                 style={{
                   marginBottom: '10%',
                 }}
