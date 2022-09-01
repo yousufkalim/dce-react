@@ -8,7 +8,8 @@ import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
 import Youtubeicon from "../../assets/Youtubeicon.png"
-
+import LeftBgImage from "../../assets/landingBgLeft.svg"
+import RightBgImage from "../../assets/landingBgRight.svg"
 const Landing = () => {
 
   const { t, i18n } = useTranslation();
@@ -29,12 +30,20 @@ const Landing = () => {
       <UnAuthAppBar />
 
       {/* 1 section  */}
-      <div className="landing_main_container">
+      <div className="landing_main_container" >
+        <div style={{width:"100%",height:"100%",top :"25px",position:"absolute",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{width:"25%",height:"70%",display:"flex",flexDirection:"column",justifyContent:"flex-end",paddingLeft:"5%"}}>
+           <img style={{width:"100%"}} src={LeftBgImage}/>
+          </div> 
+          <div style={{width:"15%",height:"92%",display:"flex",flexDirection:"column", justifyContent:"flex-end",paddingRight:"2%"}}>
+          <img style={{width:"100%"}}  src={RightBgImage}/>
+          </div>
+        </div>
         <div className="landing_hero_section">
           {/* cl 1  */}
 
-          <div className="landing_hero_section_info">
-            <div className="landing_hero_section_info_heading">
+          <div className="landing_hero_section_info" >
+            <div className="landing_hero_section_info_heading" >
               <h3>{t('Design Ethical Confections')}</h3>
               <h4>{t('Make your sewing projects a reality in just a few clicks!')}</h4>
               <p>
