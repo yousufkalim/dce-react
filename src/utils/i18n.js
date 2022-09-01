@@ -719,46 +719,38 @@ i18n
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
           // landing
-          or: 'ou',
-          'Developed by': 'Développé par',
-          Registered: 'Inscription',
-          'Design Ethical Confections': 'Design Confections Éthiques',
-          'You receive your confection!': 'Vous recevez votre confection !',
-          'We make it happen!': 'Nous la concrétisons !',
-          'You submit your sewing idea to us!': 'Vous nous soumettez votre idée couture !',
-          'D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!':
-            'D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux doigts de fée, passionné(es), au savoir-faire de qualité !',
-          'Make your sewing projects a reality in just a few clicks!': 'Concrétisez vos projets couture en un tour de clics !',
-          'DESIGN Ethical Confections': 'DESIGN Confections Éthiques',
-          'Platform for networking in the field of tailor-made fashion':
-            'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
-          'I submit my idea': 'Je soumets mon idée',
-          'You are a designer and you want to put your know-how at the service of the greatest number?':
-            'Vous êtes couturier(ères) et vous souhaitez mettre votre savoir faire au service du plus grand nombre ?',
-          'In a few clicks, D.C.E allows you to find "sewing project" missions':
-            'En quelques clics, D.C.E vous permet de trouver des missions "projet couture"',
-          'How it works ?': 'Comment ça marche ?',
-          'Find customers who match you!': 'Trouvez des clients qui vous correspondent !',
-          'D.C.E puts you in touch with potential customers suited to your profile':
-            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
-          'Focus on the essentials!': "Concentrez-vous sur l'essentiel !",
-          'D.C.E manages all the formalities relating to the provision of services':
-            "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-          'Respond to an ad in just a few clicks!': 'Repondez à une annonce en quelques clics !',
-          About: 'À propos',
-          Blog: 'Blog',
-          Gallery: 'Galerie',
-          Registration: 'Inscription',
-          'D.C.E puts you in touch with potential customers suited to your profile':
-            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
-          'D.C.E manages all the formalities relating to the provision of services':
-            "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-          'You tell us your preferences, criteria, choice and style of your confections!':
-            'Vous nous indiquez vos préférences, critères, choix et style de votre confection !',
-          'Choose your': 'Choisissez vos',
-          assignments: 'missions',
-          'Fix your': 'Fixez vos',
-          'deal with': 'Traitez en',
+
+          "or":"ou",
+          "Developed by":"Développé par",
+          "Registered":"Inscription",
+          "Design Ethical Confections":"Design Confections Éthiques",
+          "You receive your confection!":"Vous recevez votre confection !",
+          "We make it happen!":"Nous la concrétisons !",
+          "You submit your sewing idea to us!":"Vous nous soumettez votre idée couture !",
+          "D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!":"D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux doigts de fée, passionné(es), au savoir-faire de qualité !",
+          "Make your sewing projects a reality in just a few clicks!":"Concrétisez vos projets couture en un tour de clics !",
+          "DESIGN Ethical Confections":"DESIGN Confections Éthiques",
+          "Platform for networking in the field of tailor-made fashion":"Plateforme de mise en relation dans le domaine de la confection mode sur-mesure",
+         "I submit my idea":"Je soumets mon idée",
+         "You are a designer and you want to put your know-how at the service of the greatest number?":"Vous êtes couturier(ères) et vous souhaitez mettre votre savoir faire au service du plus grand nombre ?",
+         'In a few clicks, D.C.E allows you to find "sewing project" missions':'En quelques clics, D.C.E vous permet de trouver des missions "projet couture"',
+          "How it works ?":"Comment ça marche ?",
+          "Find customers who match you!":"Trouvez des clients qui vous correspondent !",
+          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
+        "Focus on the essentials!":"Concentrez-vous sur l'essentiel !",
+        "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
+        "Respond to an ad in just a few clicks!":"Répondez à une annonce en quelques clics !",
+          "About":"À propos",
+          "Blog":"Blog",
+          "Gallery":"Galerie",
+          "Registration":"Inscription",
+          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
+          "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
+          "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confection !",
+         "Choose your":"Choisissez vos",
+         "assignments":"missions",
+         "Fix your":"Fixez vos",
+         "deal with":"Traitez en",
           // client home
           'Submit your idea,': 'Soumettez-nous votre idée,',
           'We make it real,': 'nous la concrétisons !',
@@ -785,7 +777,7 @@ i18n
           'Focus on the essentials!': "Concentrez-vous sur l'essentiel !",
           'D.C.E manages all the formalities relating to the provision of services':
             "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-          'Respond to an ad in just a few clicks!': 'Repondez à une annonce en quelques clics !',
+          'Respond to an ad in just a few clicks!': 'Répondez à une annonce en quelques clics !',
           About: 'À propos',
           Blog: 'Blog',
           Gallery: 'Galerie',

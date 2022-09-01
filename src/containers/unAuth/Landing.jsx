@@ -7,6 +7,7 @@ import UnAuthAppBar from '../../components/UnAuthAppBar'
 import FooterLogo from '../../assets/FooterLogo.svg';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
+import Youtubeicon from "../../assets/Youtubeicon.png"
 
 const Landing = () => {
 
@@ -181,6 +182,7 @@ src="https://www.youtube.com/embed/Lpp8vrY3TEo"
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>
+              <a href='https://www.youtube.com/channel/UCzVE2HfNNKJS2axFurs4qkQ' target="blank"> <img className='fb_ss' src={Youtubeicon} /></a>
               <a href='https://www.facebook.com/Design-Confections-Ethiques-110075184902480' target="blank"> <img className='fb_ss' src={facebook} /></a>
               <a href='https://www.instagram.com/designconfectionsethiques/' target="blank"> <img className='fb_ss' src={instagram} /></a>
 
