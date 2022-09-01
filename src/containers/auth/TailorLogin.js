@@ -144,7 +144,7 @@ function TailorLoginScreen() {
                   <img style={{ width: '30%', marginBottom: '5%' }} src={AppLogoSVG} />
                 </div>
                 <div style={{ display: 'flex' }}>
-                  <div className='login_screen_row1_img_designer_' style={{ paddingTop: '6%' }}>
+                  <div className='login_screen_row1_img_designer_' style={{ paddingTop: '8%' }}>
                     <p className='login_designer_heading' style={{ paddingBottom: '4%' }}>
                       Comment ça marche ?
                     </p>

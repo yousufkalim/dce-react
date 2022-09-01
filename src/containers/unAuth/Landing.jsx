@@ -125,7 +125,7 @@ const Landing = () => {
 
       {/* section 4  */}
       <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
-      <iframe width="100%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="60%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       {/* <video controls poster="">
       <source 
 src="https://www.youtube.com/embed/Lpp8vrY3TEo" 
