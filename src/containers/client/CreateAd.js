@@ -21,14 +21,16 @@ import * as FormValidations from '../../utils/Validations';
 
 const steps = ['MY PROJECT', 'My delivery', 'Remarks'];
 
-function ClientCreateAdScreen() {
+function ClientCreateAdScreen(props) {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
+
   const [activeStep, setActiveStep] = useState(0);
   const [images, setImages] = useState([]);
+  const [openColorPicker, setOpenColorPicker] = useState(false);
   const [basicSection, setBasicSection] = useState({
     // gender: "",
     category: '',
@@ -63,20 +65,20 @@ function ClientCreateAdScreen() {
 
   const handleImagesSelect = (event) => {
     if (event.target.files.length + images.length > 5) {
-      toast.error('You can select a maximum of 5 files.');
+      toast.error(t('You can select a maximum of 5 files.'));
       return;
     }
 
     for (let i = 0; i < event.target.files.length; i++) {
       const obj = event.target.files[i];
       if (obj.size / 1024 > 5000) {
-        toast.error('File sizes greater than 5 MB are not allowed.');
+        toast.error(t('File sizes greater than 5 MB are not allowed.'));
         return;
       }
     }
 
     if (event.target.files.length + images.length > 5) {
-      toast.error('You can select a maximum of 5 files.');
+      toast.error(t('You can select a maximum of 5 files.'));
       return;
     }
     setImages([...images, ...event.target.files]);
@@ -90,6 +92,9 @@ function ClientCreateAdScreen() {
     setImages([..._images]);
   };
 
+  const handleCloseColorPicker = () => {
+    // setOpenColorPicker(!openColorPicker);
+  };
   const basicSectionCallback = () => {
     const isValidated = FormValidations.parseAdBasicSection(basicSection);
     if (!isValidated) {
@@ -201,7 +206,7 @@ function ClientCreateAdScreen() {
 
   return (
     <>
-      <div className='container'>
+      <div className='container' onClick={handleCloseColorPicker}>
         <ClientAppBar activeTab={2} color='#FFFAF9' />
         <div
           className='client_create_ad_screen_top'
@@ -244,8 +249,11 @@ function ClientCreateAdScreen() {
                 {activeStep == 0 ? (
                   <ParseAd.BasicSection
                     state={basicSection}
+                    openColorPicker={openColorPicker}
+                    setOpenColorPicker={setOpenColorPicker}
                     setState={setBasicSection}
                     onClick={basicSectionCallback}
+                    handleCloseColorPicker={handleCloseColorPicker}
                     images={images}
                     setImages={setImages}
                     handleImagesSelect={handleImagesSelect}

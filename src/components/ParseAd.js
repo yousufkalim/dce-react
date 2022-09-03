@@ -17,7 +17,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import Tooltip from '@mui/material/Tooltip';
-import { Modal } from '@mui/material';
 
 import { ChromePicker } from 'react-color';
 import { SketchPicker, GithubPicker, CompactPicker } from 'react-color';
@@ -40,12 +39,15 @@ import { grey } from '@mui/material/colors';
 
 import { materialFabrics, adNames, colors } from '../utils/Constants';
 import UploadSVG from '../assets/upload.svg';
-
+import Modal from '@mui/material/Modal';
 import { Store } from '../StoreContext';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 const fabricTypes = ['Plain Fabric', 'Patterned Fabric'];
 function BasicSection({
+  props,
+  openColorPicker,
+  setOpenColorPicker,
   state,
   setState,
   onClick,
@@ -54,6 +56,7 @@ function BasicSection({
   images,
   setImages,
   handleImagesSelect,
+  handleCloseColorPicker,
   handleImageDeselect,
 }) {
   const { t } = useTranslation();
@@ -115,7 +118,7 @@ function BasicSection({
   }));
   const classes = useStyles();
 
-  const [openColorPicker, setOpenColorPicker] = useState(false);
+  // const [openColorPicker, setOpenColorPicker] = useState(false);
   const [viewImage, setViewImage] = useState(null);
   const [open, setOpen] = useState(false);
   const [imageToDeleteConfirmation, setImageToDeleteConfirmation] = useState();
@@ -141,6 +144,7 @@ function BasicSection({
     }
     setOpen(false);
   };
+
   /////
   return (
     <>
@@ -480,16 +484,23 @@ function BasicSection({
           <div
             style={{ width: '100%', height: '30pt' }}
             className='pa_profile_section_input_input'
-            onClick={() => setOpenColorPicker(!openColorPicker)}
+            onClick={() => {
+              console.log('🚀 ~ file: ParseAd.js ~ line 62 ~ openColorPicker', openColorPicker);
+              setOpenColorPicker(!openColorPicker);
+            }}
           >
             {openColorPicker ? (
               <div
+                // open={openColorPicker}
+                // onClose={handleCloseColorPicker}
                 style={{
                   position: 'absolute',
                   top: '50%',
-                  left: '50%',
+                  // left: '50%',
                   transform: 'translateX(80%)',
                   marginTop: 15,
+                  background: 'green !important',
+                  // padding: '5%',
                 }}
               >
                 {/* <ChromePicker
@@ -502,6 +513,8 @@ function BasicSection({
                   style={{
                     maxHeight: '200px',
                     overflow: 'scroll',
+                    // margin: '5%',
+                    // background: 'black',
                   }}
                 >
                   <CompactPicker

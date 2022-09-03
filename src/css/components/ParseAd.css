@@ -331,6 +331,9 @@ a .size-measurement-cont {
 .css-i44wyl {
   border: none !important;
 }
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
+background-color:rgba(0, 0, 0, 0) !important;
+}
 /* media-queries */
 
 @media only screen and (max-width: 768px) {

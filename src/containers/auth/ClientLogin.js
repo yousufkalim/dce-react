@@ -56,7 +56,7 @@ function ClientLoginScreen() {
     let res = await Api('post', '/clients/forget-password', { email });
     if (res) {
       setOpen(false);
-      toast.success('Please check your email to reset your password');
+      toast.success(t('Please check your email to reset your password'));
     }
     setEmail('');
     // } else {
@@ -93,11 +93,15 @@ function ClientLoginScreen() {
       //   toast.error("You have been blocked");
       // } else
       if (response?.data?.success) {
-        toast.success('Logged In');
+        toast.success(t('Logged In'));
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
     } catch (e) {
+      toast.error(`${t(e.response.data.message)}`);
+      if (e.response?.data?.role) {
+        navigate(`/${e.response?.data?.role}_login`);
+      }
       console.trace(e);
     }
 
@@ -122,37 +126,37 @@ function ClientLoginScreen() {
     <>
       <form noValidate={true} onSubmit={handleSubmit}>
         <div
-          className="container"
+          className='container'
           style={{
             background:
               'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
-          <div className="login_screen_top">
-            <div className="login_screen_row1">
-              <div className="login_screen_row1_img">
+          <div className='login_screen_top'>
+            <div className='login_screen_row1'>
+              <div className='login_screen_row1_img'>
                 <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
               </div>
-              <div className="login_screen_row1_img">
+              <div className='login_screen_row1_img'>
                 <img style={{ width: '70%' }} src={DesignElaborationSVG} />
               </div>
             </div>
-            <div className="login_screen_row2">
-              <div className="login_screen_row2_container">
+            <div className='login_screen_row2'>
+              <div className='login_screen_row2_container'>
                 <CustomInput
                   labelText={t('Email')}
-                  inputType="email"
-                  inputName="Email"
-                  inputPlaceholder="abc@xyz.com"
+                  inputType='email'
+                  inputName='Email'
+                  inputPlaceholder='abc@xyz.com'
                   divStyle={{
                     marginBottom: '6%',
                   }}
                 />
                 <CustomInput
                   labelText={t('Password')}
-                  inputType="password"
-                  inputName="Password"
-                  inputPlaceholder="********"
+                  inputType='password'
+                  inputName='Password'
+                  inputPlaceholder='********'
                   enableEyes={true}
                   divStyle={{
                     marginBottom: '6%',
@@ -172,7 +176,7 @@ function ClientLoginScreen() {
                 </p>
                 <CustomButton
                   text={t('Login')}
-                  type="submit"
+                  type='submit'
                   style={{
                     marginBottom: '10%',
                   }}
@@ -205,26 +209,26 @@ function ClientLoginScreen() {
           </div>
         </div>
       </form>
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-        <Box sx={style} className="forget-modal">
-          <div className="cross-img">
+      <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description'>
+        <Box sx={style} className='forget-modal'>
+          <div className='cross-img'>
             <img src={Cross} style={{ width: '15px', cursor: 'pointer' }} onClick={handleClose} />
           </div>
-          <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ textAlign: 'center' }}>
+          <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ textAlign: 'center' }}>
             Forgot Password?
           </Typography>
           <Typography
-            id="modal-modal-description"
+            id='modal-modal-description'
             sx={{ mt: 1, mb: 3, textAlign: 'center' }}
-            className="forget-modal-description"
+            className='forget-modal-description'
           >
             Enter your email, So we can send you a verification code
           </Typography>
           <CustomInput
-            labelText="Email"
-            inputType="email"
-            inputName="Email"
-            inputPlaceholder="abc@xyz.com"
+            labelText='Email'
+            inputType='email'
+            inputName='Email'
+            inputPlaceholder='abc@xyz.com'
             onChange={handleInput}
             divStyle={{
               marginBottom: '10%',

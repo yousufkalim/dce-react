@@ -44,6 +44,9 @@ function TailorLoginScreen() {
   const navToHome = () => {
     navigate('/home');
   };
+  const navToLogin = () => {
+    navigate('/select_role_login');
+  };
 
   const navToSelectRole = (e) => {
     navigate('/select_role_register');
@@ -56,7 +59,7 @@ function TailorLoginScreen() {
     let res = await Api('post', '/clients/forget-password', { email });
     if (res) {
       setOpen(false);
-      toast.success('Please check your email to reset your password');
+      toast.success(t('Please check your email to reset your password'));
     }
     setEmail('');
     // } else {
@@ -93,11 +96,17 @@ function TailorLoginScreen() {
       //   toast.error("You have been blocked");
       // } else
       if (response?.data?.success) {
-        toast.success('Logged In');
+        console.log('respone', response);
+        toast.success(t('Logged In'));
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
     } catch (e) {
+      toast.error(`${t(e.response.data.message)}`);
+
+      if (e.response?.data?.role) {
+        navigate(`/${e.response?.data?.role}_login`);
+      }
       console.trace(e);
     }
 
@@ -123,37 +132,51 @@ function TailorLoginScreen() {
       <>
         <form noValidate={true} onSubmit={handleSubmit}>
           <div
-            className="container"
+            className='container'
             style={{
               background:
                 'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
-            <div className="login_screen_top">
-              <div className="login_screen_row1">
-                <div className="login_screen_row1_img">
-                  <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
+            <div className='login_screen_top'>
+              <div className='login_screen_row1_designer'>
+                <div className='login_screen_row1_img_designer'>
+                  <img style={{ width: '30%', marginBottom: '5%' }} src={AppLogoSVG} />
                 </div>
-                <div className="login_screen_row1_img">
-                  <img style={{ width: '70%' }} src={DesignElaborationSVG} />
+                <div style={{ display: 'flex' }}>
+                  <div className='login_screen_row1_img_designer_' style={{ paddingTop: '8%' }}>
+                    <p className='login_designer_heading' style={{ paddingBottom: '4%' }}>
+                      Comment ça marche ?
+                    </p>
+                    <p className='login_designer_point'>1 . Trouvez des clients qui vous correspondent !</p>
+                    <p className='login_designer_para' style={{ marginBottom: '2%' }}>
+                      D.C.E vous met en relation avec des clients potentiels adaptés à votre profil
+                    </p>
+                    <p className='login_designer_point'>2 . Concentrez-vous sur l'essentiel !</p>
+                    <p className='login_designer_para' style={{ marginBottom: '2%' }}>
+                      D.C.E gère l'ensemble des formalités relatives à la prestation de service
+                    </p>
+                    <p className='login_designer_point'>3 . Répondez à une annonce en quelques clics !</p>
+                  </div>
+                  <div>{/* <div className='empty'></div> */}</div>
                 </div>
               </div>
-              <div className="login_screen_row2">
-                <div className="login_screen_row2_container">
+              <div className='login_screen_row2'>
+                <div className='login_screen_row2_container'>
                   <CustomInput
                     labelText={t('Email')}
-                    inputType="email"
-                    inputName="Email"
-                    inputPlaceholder="abc@xyz.com"
+                    inputType='email'
+                    inputName='Email'
+                    inputPlaceholder='abc@xyz.com'
                     divStyle={{
                       marginBottom: '6%',
                     }}
                   />
                   <CustomInput
                     labelText={t('Password')}
-                    inputType="password"
-                    inputName="Password"
-                    inputPlaceholder="********"
+                    inputType='password'
+                    inputName='Password'
+                    inputPlaceholder='********'
                     enableEyes={true}
                     divStyle={{
                       marginBottom: '6%',
@@ -173,7 +196,7 @@ function TailorLoginScreen() {
                   </p>
                   <CustomButton
                     text={t('Login')}
-                    type="submit"
+                    type='submit'
                     style={{
                       marginBottom: '10%',
                     }}
@@ -206,26 +229,26 @@ function TailorLoginScreen() {
             </div>
           </div>
         </form>
-        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-          <Box sx={style} className="forget-modal">
-            <div className="cross-img">
+        <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description'>
+          <Box sx={style} className='forget-modal'>
+            <div className='cross-img'>
               <img src={Cross} style={{ width: '15px', cursor: 'pointer' }} onClick={handleClose} />
             </div>
-            <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ textAlign: 'center' }}>
+            <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ textAlign: 'center' }}>
               Forgot Password?
             </Typography>
             <Typography
-              id="modal-modal-description"
+              id='modal-modal-description'
               sx={{ mt: 1, mb: 3, textAlign: 'center' }}
-              className="forget-modal-description"
+              className='forget-modal-description'
             >
               Enter your email, So we can send you a verification code
             </Typography>
             <CustomInput
-              labelText="Email"
-              inputType="email"
-              inputName="Email"
-              inputPlaceholder="abc@xyz.com"
+              labelText='Email'
+              inputType='email'
+              inputName='Email'
+              inputPlaceholder='abc@xyz.com'
               onChange={handleInput}
               divStyle={{
                 marginBottom: '10%',
