@@ -5,11 +5,12 @@ import Helpers from './services/socket.io/utils/Helpers';
 
 import SS from './services/socket.io/utils/state';
 import * as EventHandlers from './services/socket.io/EventHandlers';
+import { socketUrl } from '../config';
 
 export const initSocket = (updateStore) => {
   const token = localStorage.getItem('token');
   if (!SS.socket && token) {
-    const socket = require('socket.io-client')(process.env.REACT_APP_SOCKET_URL, {
+    const socket = require('socket.io-client')(socketUrl, {
       query: {
         token: `Bearer ${token}`,
       },
