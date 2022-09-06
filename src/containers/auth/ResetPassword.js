@@ -25,7 +25,7 @@ function ResetPasswordScreen() {
     try {
       await Api('get', `/clients/verify-token/${token}`);
     } catch (err) {
-      toast.error('Link has been expired');
+      toast.error(t('Link has been expired'));
       navigate('/client_login');
     }
   };
@@ -47,16 +47,16 @@ function ResetPasswordScreen() {
     const { password, confirmPassword } = passwords;
 
     if (password !== confirmPassword) {
-      return toast.error('Password and confirm password are not same');
+      return toast.error(t('Password and confirm password are not same'));
     } else if (password.length < 8) {
-      return toast.error('Password should be minimum 8 characters long');
+      return toast.error(t('Password should be minimum 8 characters long'));
     }
 
     let res = await Api('put', `/clients/reset-password/${token}`, {
       password,
     });
     if (res) {
-      toast.success('Password changed successfully, Please login to continue.');
+      toast.success(t('Password changed successfully, Please login to continue.'));
     }
     setPasswords({
       password: '',
@@ -68,23 +68,23 @@ function ResetPasswordScreen() {
     <>
       <form>
         <div
-          className="container"
+          className='container'
           style={{
             background:
               'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
-          <div className="login_screen_top">
-            <div className="login_screen_row1">
-              <div className="login_screen_row1_img">
+          <div className='login_screen_top'>
+            <div className='login_screen_row1'>
+              <div className='login_screen_row1_img'>
                 <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
               </div>
-              <div className="login_screen_row1_img">
+              <div className='login_screen_row1_img'>
                 <img style={{ width: '70%' }} src={DesignElaborationSVG} />
               </div>
             </div>
-            <div className="login_screen_row2">
-              <div className="login_screen_row2_container">
+            <div className='login_screen_row2'>
+              <div className='login_screen_row2_container'>
                 <div
                   style={{
                     cursor: 'pointer',
@@ -112,9 +112,9 @@ function ResetPasswordScreen() {
                 </div>
                 <CustomInput
                   labelText={t('Password')}
-                  inputType="password"
-                  inputName="password"
-                  inputPlaceholder="********"
+                  inputType='password'
+                  inputName='password'
+                  inputPlaceholder='********'
                   enableEyes={true}
                   value={passwords.password}
                   onChange={handleInput}
@@ -124,10 +124,10 @@ function ResetPasswordScreen() {
                 />
                 <CustomInput
                   labelText={t('Password')}
-                  inputType="password"
-                  inputName="confirmPassword"
+                  inputType='password'
+                  inputName='confirmPassword'
                   value={passwords.confirmPassword}
-                  inputPlaceholder="********"
+                  inputPlaceholder='********'
                   enableEyes={true}
                   onChange={handleInput}
                   divStyle={{
@@ -137,7 +137,7 @@ function ResetPasswordScreen() {
 
                 <CustomButton
                   text={t('Change Password')}
-                  type="submit"
+                  type='submit'
                   onClick={handleSubmit}
                   style={{
                     marginBottom: '10%',

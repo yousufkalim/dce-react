@@ -417,7 +417,9 @@ position: relative;
   .appbar_row1_tab_text{
     font-size: 10px;
   }
-
+.prof_search{
+  display: none;
+}
 }
 @media only screen and (max-width: 1080px) {
   .appbar_row1{
@@ -435,5 +437,11 @@ position: relative;
 }
 .appbar_row1_img {
   width: 7vh;
+}
+}
+@media only screen and (max-width: 600px) {
+
+.notifications_count_container {
+  display: none;
 }
 }

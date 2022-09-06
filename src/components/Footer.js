@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FooterLogo from '../assets/FooterLogo.svg';
 import TwitterIcon from '../assets/TwitterIcon.svg';
 import InstagramIcon from '../assets/Instagram.svg';
+import Youtube from '../assets/youtube.png';
 import { useTranslation } from 'react-i18next';
 import Api from '../api/index';
 
@@ -79,10 +80,13 @@ const Footer = () => {
             </p>
           </div>
           <div className='footer_icons_div'>
-            <Link to='https://www.instagram.com/designconfectionsethiques/'>
+            <a href='https://www.instagram.com/designconfectionsethiques/'>
               <img src={InstagramIcon} className='footer_icon'></img>
-            </Link>
+            </a>
             <img src={TwitterIcon} className='footer_icon'></img>
+            <a href='https://www.youtube.com/channel/UCzVE2HfNNKJS2axFurs4qkQ/featured'>
+              <img src={Youtube} className='footer_icon'></img>
+            </a>
           </div>
         </div>
       </div>

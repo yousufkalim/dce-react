@@ -61,7 +61,7 @@ function TailorRegisterScreen() {
       response = await Api('post', '/otps', body);
 
       if (response?.data?.success) {
-        toast.success(response.data.message);
+        toast.success(t(response.data.message));
         navToVerifyEmail({
           Email: data.get('Email'),
           Password: data.get('Password'),
@@ -81,37 +81,37 @@ function TailorRegisterScreen() {
     <>
       <form noValidate={true} onSubmit={handleSubmit}>
         <div
-          className="container"
+          className='container'
           style={{
             background:
               'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
-          <div className="login_screen_top">
-            <div className="login_screen_row1">
-              <div className="login_screen_row1_img">
+          <div className='login_screen_top'>
+            <div className='login_screen_row1'>
+              <div className='login_screen_row1_img'>
                 <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
               </div>
-              <div className="login_screen_row1_img">
+              <div className='login_screen_row1_img'>
                 <img style={{ width: '70%' }} src={DesignElaborationSVG} />
               </div>
             </div>
-            <div className="login_screen_row2">
-              <div className="login_screen_row2_container">
+            <div className='login_screen_row2'>
+              <div className='login_screen_row2_container'>
                 <CustomInput
                   labelText={t('Email')}
-                  inputType="email"
-                  inputName="Email"
-                  inputPlaceholder="abc@xyz.com"
+                  inputType='email'
+                  inputName='Email'
+                  inputPlaceholder='abc@xyz.com'
                   divStyle={{
                     marginBottom: '6%',
                   }}
                 />
                 <CustomInput
                   labelText={t('Password')}
-                  inputType="password"
-                  inputName="Password"
-                  inputPlaceholder="********"
+                  inputType='password'
+                  inputName='Password'
+                  inputPlaceholder='********'
                   enableEyes={true}
                   divStyle={{
                     marginBottom: '6%',
@@ -119,7 +119,7 @@ function TailorRegisterScreen() {
                 />
                 <CustomButton
                   text={t('Sign up')}
-                  type="submit"
+                  type='submit'
                   style={{
                     marginBottom: '10%',
                   }}

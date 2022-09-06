@@ -68,7 +68,7 @@ function TailorCreateAccountScreen() {
       setIsProcessing(true);
       if (hasPhysicalStore) {
         if (!data.get('Store Name')) {
-          toast.error("Store Name can't be empty.");
+          toast.error(t("Store Name can't be empty."));
           return;
         }
         body['store_name'] = data.get('Store Name');
@@ -76,7 +76,7 @@ function TailorCreateAccountScreen() {
       response = await Api('post', '/tailors', body);
 
       if (response?.data?.success) {
-        toast.success('Registered successfully!');
+        toast.success(t('Registered successfully!'));
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
       }
@@ -90,15 +90,15 @@ function TailorCreateAccountScreen() {
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
-        className="container"
+        className='container'
         style={{
           background:
             'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
-        <div className="login_screen_top">
-          <div className="login_screen_row1">
-            <div className="login_screen_row1_img create_account_screen_row1_img">
+        <div className='login_screen_top'>
+          <div className='login_screen_row1'>
+            <div className='login_screen_row1_img create_account_screen_row1_img'>
               <img style={{ width: '15%', marginBottom: '5%' }} src={AppLogoSVG} />
               <div>
                 <p
@@ -117,12 +117,12 @@ function TailorCreateAccountScreen() {
                 </p>
               </div>
             </div>
-            <div className="login_screen_row1_img">
+            <div className='login_screen_row1_img'>
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
-          <div className="login_screen_row2">
-            <div className="create_account_screen_row2_container">
+          <div className='login_screen_row2'>
+            <div className='create_account_screen_row2_container'>
               {/* <CustomInput
                 labelText={t("Name of your company")}
                 inputName="Name of your company"
@@ -133,7 +133,7 @@ function TailorCreateAccountScreen() {
               /> */}
               <CustomInput
                 labelText={t('Name')}
-                inputName="Name"
+                inputName='Name'
                 inputPlaceholder={t('Name')}
                 divStyle={{
                   marginBottom: '6%',
@@ -142,7 +142,7 @@ function TailorCreateAccountScreen() {
               />
               <CustomInput
                 labelText={t('Phone No')}
-                inputName="Phone No"
+                inputName='Phone No'
                 inputPlaceholder={t('Phone No')}
                 divStyle={{
                   marginBottom: '2%',
@@ -184,7 +184,7 @@ function TailorCreateAccountScreen() {
               {hasPhysicalStore ? (
                 <CustomInput
                   labelText={t('Store Name')}
-                  inputName="Store Name"
+                  inputName='Store Name'
                   inputPlaceholder={t('Store Name')}
                   labelStyle={{
                     display: 'none',
@@ -199,7 +199,7 @@ function TailorCreateAccountScreen() {
               )}
               <CustomButton
                 text={t('Save')}
-                type="submit"
+                type='submit'
                 style={{
                   marginBottom: '10%',
                 }}

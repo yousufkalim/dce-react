@@ -12,6 +12,15 @@
   align-items: center;
   justify-content: center;
 }
+.login_screen_row1_designer {
+  display: flex;
+  width: 45%;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding-left: 5%;
+  padding-top: 5%;
+}
 
 .login_screen_row1_img {
   display: flex;
@@ -22,10 +31,55 @@
   align-items: center;
   justify-content: flex-end;
 }
+.login_screen_row1_img_designer{
+  display: flex;
+  /* flex: 1; */
+  flex-direction: column;
+  width: 100%;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
+  
+}
+.login_screen_row1_img_designer_{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
+  
+}
+.login_designer_heading{
+  background: linear-gradient(180deg, #E9A454 39.58%, rgba(0, 0, 0, 0) 100%);
+  -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            font-weight: 700;
+font-size: 34px;
+/* line-height: 49px; */
 
+}
+.login_designer_point{
+  font-weight: 600;
+font-size: 18px;
+line-height: 34px;
+
+
+color: #CC8E9C;
+}
+.login_designer_para{
+  font-weight: 400;
+font-size: 15px;
+line-height: 24px;
+display: flex;
+align-items: center;
+
+/* Grey - Design Confection Ethiques */
+
+color: #A0A0A0;
+}
 .login_screen_row2 {
   display: flex;
-  width: 60%;
+  width: 55%;
   flex-direction: column;
   align-items: center;
   justify-content: center;

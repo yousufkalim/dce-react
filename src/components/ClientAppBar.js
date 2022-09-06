@@ -209,17 +209,17 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
         <div className='appbar_top'>
           <div className='appbar_row1'>
             <img src={AppLogoSVG} className='appbar_row1_img' style={{ marginRight: '5%' }} onClick={navToHome} />
-            <div style={{ display: 'flex', paddingRight: '4%' }}>
-              {width > 768 ? (
-                <>
-                  <NavlinkDesktop activeTab={activeTab} />
-                </>
-              ) : (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <img className='cursor-pointer' onClick={mobilemenu} src={dotted} />
-                </div>
-              )}
-            </div>
+            {/* <div style={{ display: 'flex', paddingRight: '4%' }}> */}
+            {width > 768 ? (
+              <>
+                <NavlinkDesktop activeTab={activeTab} />
+              </>
+            ) : (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img className='cursor-pointer' onClick={mobilemenu} src={dotted} />
+              </div>
+            )}
+            {/* </div> */}
           </div>
 
           <div className='appbar_row2'>
@@ -288,10 +288,10 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className='menu-item' onClick={navToProfile}>
                 <img style={{ padding: '4% 0%' }} src={EditIcon} /> <p> {t('Profile')} </p>
               </MenuItem>
-              <MenuItem className='menu-item support-padding' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
+              {/* <MenuItem className='menu-item support-padding' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
                 <GTranslateIcon sx={{ width: '20px' }} />
                 {language == 'fr' ? 'French' : 'English'}
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem className='menu-item' onClick={navToSupport}>
                 <img style={{ width: '16px' }} src={SupportIcon} />
                 <p> {t('Support')}</p>
