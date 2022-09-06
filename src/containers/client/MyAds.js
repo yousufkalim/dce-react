@@ -111,7 +111,7 @@ function ClientAdsScreen() {
       response = await Api('post', '/quotes/reject', body);
 
       if (response?.data?.success) {
-        toast.success(response.data.message);
+        toast.success(t(response.data.message));
         getAds();
       }
     } catch (e) {
@@ -767,7 +767,7 @@ const RejectQuoteModal = (props) => {
       response = await Api('post', '/quotes/reject', body);
 
       if (response?.data?.success) {
-        toast.success(response.data.message);
+        toast.success(t(response.data.message));
         navToAds();
       }
     } catch (e) {

@@ -27,7 +27,7 @@ const SendMessage = ({ directUser }) => {
 
   const sendTextMessage = () => {
     if (!text) {
-      toast.error('Please type message to send.');
+      toast.error(t('Please type message to send'));
     }
 
     store.socket.emit('send_message', {
@@ -44,7 +44,7 @@ const SendMessage = ({ directUser }) => {
     const file = e.target.files[0];
 
     if (file.size / 1024 > 10000) {
-      toast.error('Files greater than 10 MB are not allowed.');
+      toast.error(t('Files greater than 10 MB are not allowed.'));
       return;
     }
 
@@ -102,70 +102,70 @@ const SendMessage = ({ directUser }) => {
 
   return (
     <>
-      <div className="send-msg-cont" style={{ pointerEvents: isProcessing ? 'none' : 'all' }}>
-        <div className="send-attachments cursor-pointer">
+      <div className='send-msg-cont' style={{ pointerEvents: isProcessing ? 'none' : 'all' }}>
+        <div className='send-attachments cursor-pointer'>
           <Box className={iconsToggle ? 'inptwo' : 'inp'}>
-            <div className="send-att-img cursor-pointer">
-              <label htmlFor="videoPicker">
+            <div className='send-att-img cursor-pointer'>
+              <label htmlFor='videoPicker'>
                 <input
-                  type="file"
-                  accept=".mp4"
+                  type='file'
+                  accept='.mp4'
                   hidden
-                  id="videoPicker"
+                  id='videoPicker'
                   onChange={(e) => sendAssetMessage(e, 'video')}
-                  name="video"
+                  name='video'
                 />
                 <img src={MovieSVG} />
               </label>
             </div>
-            <div className="send-att-img cursor-pointer">
-              <label htmlFor="imgPicker">
+            <div className='send-att-img cursor-pointer'>
+              <label htmlFor='imgPicker'>
                 <input
-                  type="file"
-                  accept=".jpeg,.png,.jpg"
+                  type='file'
+                  accept='.jpeg,.png,.jpg'
                   hidden
-                  id="imgPicker"
+                  id='imgPicker'
                   onChange={(e) => sendAssetMessage(e, 'image')}
-                  name="image"
+                  name='image'
                 />
                 <img src={ImageSVG} />
               </label>
             </div>
-            <div className="send-att-img cursor-pointer">
-              <label htmlFor="filePicker">
+            <div className='send-att-img cursor-pointer'>
+              <label htmlFor='filePicker'>
                 <input
-                  type="file"
-                  accept="*"
+                  type='file'
+                  accept='*'
                   hidden
-                  id="filePicker"
+                  id='filePicker'
                   onChange={(e) => sendAssetMessage(e, 'attachment')}
-                  name="file"
+                  name='file'
                 />
                 <img src={DocumentSVG} />
               </label>
             </div>
           </Box>
-          <div onClick={ToggleIcon} className="toggle-icons">
+          <div onClick={ToggleIcon} className='toggle-icons'>
             {iconsToggle ? <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} /> : <img src={MinusSVG} />}
           </div>
         </div>
         <input
-          className="msg-input"
+          className='msg-input'
           placeholder={t('Type a message here')}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
         {
           <>
-            <img className="emoji-init" onClick={EmojiOpen} src={chatemoji} />
+            <img className='emoji-init' onClick={EmojiOpen} src={chatemoji} />
             {Open ? (
-              <div className="emoji-open">
+              <div className='emoji-open'>
                 <Picker onEmojiClick={onEmojiClick} />
               </div>
             ) : null}
           </>
         }
-        <div className="send-btn cursor-pointer" onClick={sendTextMessage}>
+        <div className='send-btn cursor-pointer' onClick={sendTextMessage}>
           <img src={SendSVG} />
         </div>
       </div>

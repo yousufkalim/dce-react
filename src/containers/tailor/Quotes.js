@@ -104,7 +104,7 @@ function QuoteListTile(props) {
 
   return (
     <>
-      <div className='cas_ad_list_tile_container' onClick={navToViewQuote}>
+      <div className='cas_ad_list_tile_container_quotes' onClick={navToViewQuote}>
         <div className='tqs_quote_list_tile_column0'>
           <div
             className='tqs_quote_list_tile_column0_img'
@@ -164,7 +164,7 @@ function QuoteListTile(props) {
             <p className='cas_ad_list_tile_column1_item_value'>{new Date(props?.delivery?.date).toLocaleDateString('en-gb')}</p>
           </div>
         </div>
-        <div className='cas_ad_list_tile_column2'>
+        <div className='cas_ad_list_tile_column2_quote'>
           {/* <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
           <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.min_price}€`}</p> */}
           <p
@@ -179,7 +179,7 @@ function QuoteListTile(props) {
           <p className='cas_ad_list_tile_column2_description'>{`${props?.budget?.max_price}€`}</p>
           <p className='cas_ad_list_tile_column2_title'>{t('max')}</p>
         </div>
-        <div className='cas_ad_list_tile_column2'>
+        <div className='cas_ad_list_tile_column2_quote'>
           <p
             style={{
               fontSize: '40px',
