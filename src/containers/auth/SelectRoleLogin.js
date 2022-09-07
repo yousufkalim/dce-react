@@ -26,33 +26,37 @@ const SelectRoleLoginScreen = () => {
   return (
     <>
       <div
-        className="container"
+        className='container'
         style={{
           background:
             'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
         }}
       >
-        <div className="login_screen_top">
-          <div className="login_screen_row1">
-            <div className="login_screen_row1_img">
+        <div className='login_screen_top'>
+          <div className='login_screen_row1'>
+            <div className='login_screen_row1_img'>
               <img style={{ width: '35%', marginBottom: '5%' }} src={AppLogoSVG} />
             </div>
-            <div className="login_screen_row1_img">
+            <div className='login_screen_row1_img'>
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
-          <div className="login_screen_row2">
-            <h1 className="select_role_screen_heading">{t('Register As a')}</h1>
-            <div className="select_role_screen_row2_container">
-              <div className="select_role_screen_tile" style={{ marginRight: '15%' }} onClick={navToClientLogin}>
+          <div className='login_screen_row2'>
+            <h1 className='select_role_screen_heading'>{t('Register As a')}</h1>
+            <div className='select_role_screen_row2_container'>
+              <div
+                className='select_role_screen_tile'
+                style={{ marginRight: '15%' }}
+                onClick={navToClientLogin}
+              >
                 <img src={ClientRole} style={{ height: '90%' }}></img>
-                <p className="select_role_screen_tile_text" style={{ marginTop: '16%' }}>
+                <p className='select_role_screen_tile_text' style={{ marginTop: '16%' }}>
                   {t('Client')}
                 </p>
               </div>
-              <div className="select_role_screen_tile" onClick={navToTailorLogin}>
+              <div className='select_role_screen_tile' onClick={navToTailorLogin}>
                 <img src={DesignerRole}></img>
-                <p className="select_role_screen_tile_text" style={{ marginTop: '16%' }}>
+                <p className='select_role_screen_tile_text' style={{ marginTop: '16%' }}>
                   {t('Designer')}
                 </p>
               </div>

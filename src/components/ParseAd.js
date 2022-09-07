@@ -349,7 +349,8 @@ function BasicSection({
               },
             ].map((_) => (
               <div>
-                <span className='size'>{t(_.size)} </span> <span className='measurements'>{_.measurements}</span>{' '}
+                <span className='size'>{t(_.size)} </span>{' '}
+                <span className='measurements'>{_.measurements}</span>{' '}
               </div>
             ))}
           </div>
@@ -369,12 +370,18 @@ function BasicSection({
           <Tooltip
             arrow
             title={
-              state?.measurements?.value?.length == 0 ? '' : <p style={{ fontSize: '14px' }}>{state?.measurements?.value}</p>
+              state?.measurements?.value?.length == 0 ? (
+                ''
+              ) : (
+                <p style={{ fontSize: '14px' }}>{state?.measurements?.value}</p>
+              )
             }
           >
             <div className='pa_profile_section_input_input'>
               <CustomInput
-                disabled={disabled || state.measurements.type == 'tape' || state.measurements.type == 'call'}
+                disabled={
+                  disabled || state.measurements.type == 'tape' || state.measurements.type == 'call'
+                }
                 labelStyle={{
                   display: 'none',
                 }}
@@ -404,7 +411,11 @@ function BasicSection({
                   });
                 }}
               />
-              <img className='dots-measurement' src={DottedSVG} onClick={!disabled ? handleClickMeasurements : null} />
+              <img
+                className='dots-measurement'
+                src={DottedSVG}
+                onClick={!disabled ? handleClickMeasurements : null}
+              />
               <Menu
                 id='basic-menu'
                 anchorEl={anchorElMeasurements}
@@ -418,7 +429,11 @@ function BasicSection({
                   <p>{t('Static')}</p>
                   <Tooltip
                     arrow
-                    title={<p style={{ fontSize: '14px' }}>{t('Measurements are entered in this input box right away.')}</p>}
+                    title={
+                      <p style={{ fontSize: '14px' }}>
+                        {t('Measurements are entered in this input box right away.')}
+                      </p>
+                    }
                   >
                     <InfoIcon sx={{ height: '20px', width: '20px', marginLeft: '5px' }} />
                   </Tooltip>
@@ -433,7 +448,9 @@ function BasicSection({
                     arrow
                     title={
                       <p style={{ fontSize: '14px' }}>
-                        {t('Measurements will be entered in a detailed form once the order is accepted.')}
+                        {t(
+                          'Measurements will be entered in a detailed form once the order is accepted.'
+                        )}
                       </p>
                     }
                   >
@@ -459,7 +476,9 @@ function BasicSection({
         </div>
         <p className='pa_profile_section_input_instructions_text' style={{ padding: '0 6%' }}>
           {t("*I'm getting a tape measure.")}
-          {t('Depending on the garment, I measure certain parts of the body in circumference and/or length.')}
+          {t(
+            'Depending on the garment, I measure certain parts of the body in circumference and/or length.'
+          )}
         </p>
         {/* <p className='pa_profile_section_input_instructions_text'>
           {t('*depending on the garment, I measure certain parts of the body in circumference and/or length.')}
@@ -475,7 +494,9 @@ function BasicSection({
         >
           <div style={{ width: '42%' }} className='pa_profile_section_input_label'>
             <p
-              style={{ color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff' }}
+              style={{
+                color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff',
+              }}
               className='pa_profile_section_input_text'
             >
               {t('Dominant color')}
@@ -635,7 +656,9 @@ function BasicSection({
                 onChange={handleImagesSelect}
               />
               <div className='upload-img-text-cont'>
-                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
+                <span className='upload-img-text'>
+                  {t('upload an illustration of your creation')}
+                </span>
                 <img src={UploadSVG} />
               </div>
             </label>
@@ -719,7 +742,9 @@ function BasicSection({
           />
           <label>
             {' '}
-            <span className='duw-text'>{t('I do desired not that my creation appears on the site')}</span>{' '}
+            <span className='duw-text'>
+              {t('I do desired not that my creation appears on the site')}
+            </span>{' '}
             {/* <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "} */}
           </label>
         </div>
@@ -736,11 +761,22 @@ function BasicSection({
             onClick={onClick}
           />
         )}
-        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
+        <Modal
+          open={isViewImageModal}
+          onClose={handleIsViewImageModalClose}
+          aria-labelledby='View Image'
+        >
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
-        <Modal open={isTapeMeasurementModal} onClose={handleIsTapeMeasurementModalClose} aria-labelledby='Tape Measurement'>
-          <TapeMeasurementsModal _setState={_setState} handleClose={handleIsTapeMeasurementModalClose} />
+        <Modal
+          open={isTapeMeasurementModal}
+          onClose={handleIsTapeMeasurementModalClose}
+          aria-labelledby='Tape Measurement'
+        >
+          <TapeMeasurementsModal
+            _setState={_setState}
+            handleClose={handleIsTapeMeasurementModalClose}
+          />
         </Modal>
       </div>
     </>
@@ -842,7 +878,9 @@ function TapeMeasurementsModal(props) {
             'REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.'
           )}
         </p>
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <div
+          style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+        >
           <img src={MeasurementDetailsSVG} style={{ width: '70%' }} />
           <img style={{ width: '70%' }} src={MeasurementChartSVG} />
         </div>
@@ -876,7 +914,11 @@ function TapeMeasurementsModal(props) {
                 onClick={circumferenceSectionCallback}
               />
             ) : activeStep == 1 ? (
-              <ParseMeasurement.LengthSection state={lengthSection} setState={setLengthSection} onClick={lengthSectionCallback} />
+              <ParseMeasurement.LengthSection
+                state={lengthSection}
+                setState={setLengthSection}
+                onClick={lengthSectionCallback}
+              />
             ) : (
               <></>
             )}
@@ -1056,7 +1098,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
           }}
         >
           <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('any note (s) concerning the delivery')}</p>
+            <p className='pa_profile_section_input_text'>
+              {t('any note (s) concerning the delivery')}
+            </p>
           </div>
           <div className='pa_profile_section_input_input'>
             <CustomInput
@@ -1075,7 +1119,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             />
           </div>
         </div>
-        <p className='pa_profile_section_input_instructions_text'>{t('*Select Delivery Type according to your Demands')}</p>
+        <p className='pa_profile_section_input_instructions_text'>
+          {t('*Select Delivery Type according to your Demands')}
+        </p>
         <div
           className='pa_profile_section_input_container'
           style={{
@@ -1100,7 +1146,9 @@ function DeliverySection({ state, setState, onClick, disabled }) {
             />
           </div>
         </div>
-        <p className='pa_profile_section_input_instructions_text'>{t('*Select Date for delivery')}</p>
+        <p className='pa_profile_section_input_instructions_text'>
+          {t('*Select Date for delivery')}
+        </p>
         {!onClick ? (
           <></>
         ) : (
@@ -1217,7 +1265,8 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             </div>
           </>
         ) : null}
-        {(store.userRole == 'tailor' || state?.quotes?.length > 0) && state?.quotes[0]?.price > 0 ? (
+        {(store.userRole == 'tailor' || state?.quotes?.length > 0) &&
+        state?.quotes[0]?.price > 0 ? (
           <div
             className='pa_payment_section_input_container'
             style={{

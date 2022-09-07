@@ -41,7 +41,7 @@ function TailorCreateCatalogScreen() {
       >
         <div className='tailor_create_catalog_screen_row1'>
           <div className='tailor_create_catalog_screen_row1_column1'>
-            <img style={{ width: '60%' }} src={AddCatalogSVG} />
+            <img style={{ width: '100%' }} src={AddCatalogSVG} />
           </div>
           <div className='tailor_create_catalog_screen_row1_column2'>
             <p
@@ -243,7 +243,10 @@ function InputSection() {
               selectNullValue={t('Select gender')}
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
-              menuItems={[<MenuItem value={'male'}>{t('Male')}</MenuItem>, <MenuItem value={'female'}>{t('Female')}</MenuItem>]}
+              menuItems={[
+                <MenuItem value={'male'}>{t('Male')}</MenuItem>,
+                <MenuItem value={'female'}>{t('Female')}</MenuItem>,
+              ]}
               selectSX={{
                 fontSize: '12px',
               }}
@@ -343,7 +346,9 @@ function InputSection() {
                 onChange={handleImagesSelect}
               />
               <div className='upload-img-text-cont'>
-                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
+                <span className='upload-img-text'>
+                  {t('upload an illustration of your creation')}
+                </span>
                 <img src={UploadSVG} />
               </div>
             </label>
@@ -374,7 +379,11 @@ function InputSection() {
             boxShadow: 'none',
           }}
         />
-        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
+        <Modal
+          open={isViewImageModal}
+          onClose={handleIsViewImageModalClose}
+          aria-labelledby='View Image'
+        >
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>
