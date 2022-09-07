@@ -282,7 +282,7 @@ function BasicSection({
                 fontSize: '12px',
               }}
               inputType='text'
-              inputPlaceholder={t(' 1.70m taille')}
+              inputPlaceholder={t(' 1.70m')}
               inputDefaultValue={state?.height}
               onChange={(e) => _setState('height', e.target.value)}
             />

@@ -246,6 +246,8 @@ function InputSection() {
               menuItems={[
                 <MenuItem value={'male'}>{t('Male')}</MenuItem>,
                 <MenuItem value={'female'}>{t('Female')}</MenuItem>,
+                <MenuItem value={'enfant'}>{t('Enfant')}</MenuItem>,
+                <MenuItem value={'autre'}>{t('Autre')}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: '12px',
@@ -328,7 +330,7 @@ function InputSection() {
           className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
-            marginTop: '2%',
+            // marginTop: '1%',
           }}
         >
           <div className='pa_profile_section_input_label'>

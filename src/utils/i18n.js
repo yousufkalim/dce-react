@@ -895,7 +895,7 @@ i18n
           Location: 'Localisation',
           'Last Password Changed': 'Dernier mot de passe modifié',
           Password: 'Mot de passe',
-          'Account Created': 'Compte crééle',
+          'Account Created': 'Compte créé le',
           'Ad updated successfully.': 'Annonce mise à jour avec succès.',
           'Place this Order': 'Passer commande',
           'Phone number': 'Numéro de téléphone',
@@ -1003,8 +1003,7 @@ i18n
           'Frequently Asked Question': 'Question fréquemment posée',
           'A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries':
             'La liste de questions fréquemment posées est souvent utilisée dans les articles, les sites Web, les listes de diffusion et les forums en ligne où les questions courantes ont tendance à se reproduire, par exemple via des publications ou des requêtes.',
-          'Details of the delivery of the project submitted by the client':
-            'Détails de la livraision du projet déposé par le client',
+          'Details of the delivery of the project submitted by the client': 'Ma livraison',
           'Project budget submitted by the client': 'Budget du projet déposé par le client',
           //measurements
           Measurements: 'Mensurations',
@@ -1154,9 +1153,9 @@ i18n
           Cut: 'Couper',
 
           //order
-          Submit: 'Soumettre',
-          Reason: 'Raison',
-          'Enter Reason': 'Entrez la raison',
+          Submit: 'Envoyer',
+          Reason: 'Annulée',
+          'Enter Reason': 'Entrez un objet pour la demande de support',
           'Orders Requests': 'Projets déposés par les clients',
           'In Progress': 'Commandes en cours',
           Completed: 'Commandes Terminées',
@@ -1222,7 +1221,7 @@ i18n
           'The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.':
             "Le prestataire (en l'occurrence la couturière) est libre de suspendre (pour cause de maladie, maternité ou autre), ou de résilier le contrat qui le lie avec Design CONFECTIONS ETHIQUES, uniquement s'il n'a pas de mission en cours. Il doit en informer Design CONFECTIONS ETHIQUES dans les meilleurs délais.",
           'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.':
-            'Ce catalogue vous permet de partager vos créations avec les clients de D.C.E et ainsi de mettre en avant vos talents et votre savoir-faire.',
+            "Ce catalogue vous permet de partager vos créations avec les clients de D.C.E et ainsi de mettre en avant vos talents et votre savoir-faire. Vous pouvez ajouter jusqu'à 5 photos par création.",
           'Add one of my creations': 'Ajouter une de mes créations',
           //viewOrder
           'Want to complete this order': 'Vous souhaitez finaliser cette commande',
@@ -1396,7 +1395,7 @@ i18n
           'Name of your company': 'Nom de votre entreprise',
           'Phone No': 'Numéro de téléphone',
           'I Have Physical Store': "J'ai un magasin physique",
-          'Store Name': 'nom atelier/ boutique eventuel',
+          'Store Name': 'Nom atelier / boutique éventuel',
           'Date of Birth': 'Date de naissance',
           'Select your gender': 'Sélectionnez votre genre',
 
