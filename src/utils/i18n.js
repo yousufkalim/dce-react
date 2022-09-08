@@ -176,6 +176,9 @@ i18n
           'Add one of my creations': 'Add one of my creations',
 
           //order
+          Submit: 'Submit',
+          Reason: 'Reason',
+          'Enter Reason': 'Enter Reason',
           Order: 'Order',
           'Order Date': 'Order Date',
           'Delivery Date': 'Delivery Date',
@@ -720,37 +723,46 @@ i18n
           //----------------------------------------------------------Client-------------------------------------------------------
           // landing
 
-          "or":"ou",
-          "Developed by":"Développé par",
-          "Registered":"Inscription",
-          "Design Ethical Confections":"Design Confections Éthiques",
-          "You receive your confection!":"Vous recevez votre confection !",
-          "We make it happen!":"Nous la concrétisons !",
-          "You submit your sewing idea to us!":"Vous nous soumettez votre idée couture !",
-          "D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!":"D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux doigts de fée, passionné(es), au savoir-faire de qualité !",
-          "Make your sewing projects a reality in just a few clicks!":"Concrétisez vos projets couture en un tour de clics !",
-          "DESIGN Ethical Confections":"DESIGN Confections Éthiques",
-          "Platform for networking in the field of tailor-made fashion":"Plateforme de mise en relation dans le domaine de la confection mode sur-mesure",
-         "I submit my idea":"Je soumets mon idée",
-         "You are a designer and you want to put your know-how at the service of the greatest number?":"Vous êtes couturier(ères) et vous souhaitez mettre votre savoir faire au service du plus grand nombre ?",
-         'In a few clicks, D.C.E allows you to find "sewing project" missions':'En quelques clics, D.C.E vous permet de trouver des missions "projet couture"',
-          "How it works ?":"Comment ça marche ?",
-          "Find customers who match you!":"Trouvez des clients qui vous correspondent !",
-          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
-        "Focus on the essentials!":"Concentrez-vous sur l'essentiel !",
-        "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-        "Respond to an ad in just a few clicks!":"Répondez à une annonce en quelques clics !",
-          "About":"À propos",
-          "Blog":"Blog",
-          "Gallery":"Galerie",
-          "Registration":"Inscription",
-          "D.C.E puts you in touch with potential customers suited to your profile":"D.C.E vous met en relation avec des clients potentils adaptés à votre profil",
-          "D.C.E manages all the formalities relating to the provision of services":"D.C.E gère l'ensemble des formalités relatives à la prestation de service",
-          "You tell us your preferences, criteria, choice and style of your confections!":"Vous nous indiquez vos préférences, critères, choix et style de votre confection !",
-         "Choose your":"Choisissez vos",
-         "assignments":"missions",
-         "Fix your":"Fixez vos",
-         "deal with":"Traitez en",
+          or: 'ou',
+          'Developed by': 'Développé par',
+          Registered: 'Inscription',
+          'Design Ethical Confections': 'Design Confections Éthiques',
+          'You receive your confection!': 'Vous recevez votre confection !',
+          'We make it happen!': 'Nous la concrétisons !',
+          'You submit your sewing idea to us!': 'Vous nous soumettez votre idée couture !',
+          'D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!':
+            'D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux doigts de fée, passionné(es), au savoir-faire de qualité !',
+          'Make your sewing projects a reality in just a few clicks!': 'Concrétisez vos projets couture en un tour de clics !',
+          'DESIGN Ethical Confections': 'DESIGN Confections Éthiques',
+          'Platform for networking in the field of tailor-made fashion':
+            'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
+          'I submit my idea': 'Je soumets mon idée',
+          'You are a designer and you want to put your know-how at the service of the greatest number?':
+            'Vous êtes couturier(ères) et vous souhaitez mettre votre savoir faire au service du plus grand nombre ?',
+          'In a few clicks, D.C.E allows you to find "sewing project" missions':
+            'En quelques clics, D.C.E vous permet de trouver des missions "projet couture"',
+          'How it works ?': 'Comment ça marche ?',
+          'Find customers who match you!': 'Trouvez des clients qui vous correspondent !',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
+          'Focus on the essentials!': "Concentrez-vous sur l'essentiel !",
+          'D.C.E manages all the formalities relating to the provision of services':
+            "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
+          'Respond to an ad in just a few clicks!': 'Répondez à une annonce en quelques clics !',
+          About: 'À propos',
+          Blog: 'Blog',
+          Gallery: 'Galerie',
+          Registration: 'Inscription',
+          'D.C.E puts you in touch with potential customers suited to your profile':
+            'D.C.E vous met en relation avec des clients potentils adaptés à votre profil',
+          'D.C.E manages all the formalities relating to the provision of services':
+            "D.C.E gère l'ensemble des formalités relatives à la prestation de service",
+          'You tell us your preferences, criteria, choice and style of your confections!':
+            'Vous nous indiquez vos préférences, critères, choix et style de votre confection !',
+          'Choose your': 'Choisissez vos',
+          assignments: 'missions',
+          'Fix your': 'Fixez vos',
+          'deal with': 'Traitez en',
           // client home
           'Submit your idea,': 'Soumettez-nous votre idée,',
           'We make it real,': 'nous la concrétisons !',
@@ -835,12 +847,12 @@ i18n
           Type: 'Type',
           //client navbar
           Designers: 'Professionnels',
-          Orders: 'Commandes',
+          Orders: 'Mes Commandes',
           'My Ads': 'Mes annonces',
-          Chats: 'Chats',
+          Chats: 'Messagerie',
           'Terms and Conditions': 'Termes et conditions',
           Profile: 'Profil',
-          Quotes: 'Devis',
+          Quotes: 'Mes Devis',
           'Privacy Policy': 'Politique de confidentialité',
           'Place New Ad': 'Créer une nouvelle annonce',
           Support: 'Support',
@@ -860,7 +872,7 @@ i18n
           Location: 'Localisation',
           'Last Password Changed': 'Dernier mot de passe modifié',
           Password: 'Mot de passe',
-          'Account Created': 'Compte crééle',
+          'Account Created': 'Compte créé le',
           'Ad updated successfully.': 'Annonce mise à jour avec succès.',
           'Place this Order': 'Passer commande',
           'Phone number': 'Numéro de téléphone',
@@ -921,7 +933,8 @@ i18n
           Remarks: 'Mon budget',
           'First Name': 'Prénom',
           'Last Name': 'Nom de famille',
-          Height: 'Hauteur',
+          Height: 'Je mesure',
+          Observation: 'Observation(s)',
           'Plain Fabric': 'Tissu uni',
           'Patterned Fabric': 'Tissu à motif',
           'Fabric Description': 'Description du tissu',
@@ -951,7 +964,7 @@ i18n
           //chats
           Online: 'En ligne',
           'Last Online': 'Dernière connexion',
-          Chats: 'Chats',
+          Chats: 'Messagerie',
           'Recent Chats': 'Chats récents',
           "Search Input can't be empty": 'La recherche ne peut pas être vide',
 
@@ -964,8 +977,7 @@ i18n
           'Frequently Asked Question': 'Question fréquemment posée',
           'A frequently asked questions list is often used in articles, websites, email lists, and online forums where common questions tend to recur, for example through posts or queries':
             'La liste de questions fréquemment posées est souvent utilisée dans les articles, les sites Web, les listes de diffusion et les forums en ligne où les questions courantes ont tendance à se reproduire, par exemple via des publications ou des requêtes.',
-          'Details of the delivery of the project submitted by the client':
-            'Détails de la livraision du projet déposé par le client',
+          'Details of the delivery of the project submitted by the client': 'Ma livraison',
           'Project budget submitted by the client': 'Budget du projet déposé par le client',
           //measurements
           Measurements: 'Mensurations',
@@ -1109,17 +1121,20 @@ i18n
           Cut: 'Couper',
 
           //order
+          Submit: 'Envoyer',
+          Reason: 'Annulée',
+          'Enter Reason': 'Entrez un objet pour la demande de support',
           'Orders Requests': 'Projets déposés par les clients',
           'In Progress': 'Commandes en cours',
           Completed: 'Commandes Terminées',
-          Discarded: 'Commandes annulées',
+          Discarded: 'Commandes annulée',
           Offer: 'Offre',
 
           //profile
           'Hourly Rate': 'Taux horaire',
           'Free Shipping': 'Livraison gratuite',
           'Add Catalogue': 'Ajouter un catalogue',
-          Catalogue: 'Catalogue',
+          Catalogue: 'Mon Catalogue',
           'About yourself': 'Á propos de moi',
           //quotes
           'Name of Creation': 'Nom de la création',
@@ -1134,7 +1149,7 @@ i18n
           Review: 'La revue',
           'Bride Dress': 'Robe de mariée',
           Pending: 'En attente',
-          Completed: 'Commandes Terminés',
+          Completed: 'Commandes Terminées',
           'Support Center': 'Centre de soutien',
           'Chat With Us': 'Discute avec nous',
           'Image must be selected': "L'image doit être sélectionnée",
@@ -1170,7 +1185,7 @@ i18n
           'The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.':
             "Le prestataire (en l'occurrence la couturière) est libre de suspendre (pour cause de maladie, maternité ou autre), ou de résilier le contrat qui le lie avec Design CONFECTIONS ETHIQUES, uniquement s'il n'a pas de mission en cours. Il doit en informer Design CONFECTIONS ETHIQUES dans les meilleurs délais.",
           'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.':
-            'Ce catalogue vous permet de partager vos créations avec les clients de D.C.E et ainsi de mettre en avant vos talents et votre savoir-faire.',
+            "Ce catalogue vous permet de partager vos créations avec les clients de D.C.E et ainsi de mettre en avant vos talents et votre savoir-faire. Vous pouvez ajouter jusqu'à 5 photos par création.",
           'Add one of my creations': 'Ajouter une de mes créations',
           //viewOrder
           'Want to complete this order': 'Vous souhaitez finaliser cette commande',
@@ -1315,7 +1330,7 @@ i18n
           'ORDER COMPLETION ?': 'COMPLÉTER DE LA COMMANDE ?',
           pending: 'en attente',
           'in progress': 'en cours',
-          completed: 'terminée',
+          completed: 'Terminée',
           discarded: 'mis au rebut',
           'Sent you an order request.': 'Vous a envoyé une demande de commande.',
           'Order request accepted.': 'Demande de commande acceptée.',
@@ -1341,7 +1356,7 @@ i18n
           'Name of your company': 'Nom de votre entreprise',
           'Phone No': 'Numéro de téléphone',
           'I Have Physical Store': "J'ai un magasin physique",
-          'Store Name': 'Nom du magasin',
+          'Store Name': 'Nom atelier / boutique éventuel',
           'Date of Birth': 'Date de naissance',
           'Select your gender': 'Sélectionnez votre genre',
 

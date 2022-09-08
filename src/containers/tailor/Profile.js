@@ -388,7 +388,10 @@ function TailorProfileScreen() {
                           </div>
                         </label>
                       </div>
-                      <p className='tailor_profile_screen_row1_column1_user_name_text' style={{ paddingBottom: '2%' }}>
+                      <p
+                        className='tailor_profile_screen_row1_column1_user_name_text'
+                        style={{ paddingBottom: '2%' }}
+                      >
                         {profile.name}
                       </p>
                     </div>
@@ -420,7 +423,7 @@ function TailorProfileScreen() {
                         }}
                       />
 
-                      <div
+                      {/* <div
                         className='pa_profile_section_input_container_client'
                         style={{
                           borderRadius: '20px',
@@ -451,7 +454,7 @@ function TailorProfileScreen() {
                             marginTop: '2%',
                           }}
                         />
-                      </div>
+                      </div> */}
                       {/* <CustomDatePicker
                         disabled={!toEdit}
                         centeredText={true}
@@ -525,7 +528,7 @@ function TailorProfileScreen() {
                       </div> */}
                     </div>
                     <div className='tailor_profile_screen_row1_column2_'>
-                      <ProfileInput
+                      {/* <ProfileInput
                         disabled
                         name='Last Password Changed'
                         placeholder={t('Last Password Changed')}
@@ -539,7 +542,7 @@ function TailorProfileScreen() {
                           borderTopLeftRadius: '10px',
                           borderTopRightRadius: '10px',
                         }}
-                      />
+                      /> */}
 
                       <ProfileInput
                         disabled={!toEdit}
@@ -747,7 +750,9 @@ function ProfileInput({
         <input
           disabled={disabled}
           // className="tps_profile_input_input"
-          className={alignText == 'textend' ? 'tps_profile_input_text_end' : 'tps_profile_input_input'}
+          className={
+            alignText == 'textend' ? 'tps_profile_input_text_end' : 'tps_profile_input_input'
+          }
           name={name}
           onChange={onChange}
           placeholder={placeholder}
@@ -759,7 +764,13 @@ function ProfileInput({
         {enableEyes ? (
           <>
             <div
-              style={{ position: 'absolute', right: '-9px', top: '0', paddingTop: '2px', textAlign: 'end' }}
+              style={{
+                position: 'absolute',
+                right: '-9px',
+                top: '0',
+                paddingTop: '2px',
+                textAlign: 'end',
+              }}
               onClick={() => setshowPassword(!showPassword)}
             >
               <img src={InputEyeSVG} />

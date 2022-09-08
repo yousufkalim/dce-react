@@ -147,7 +147,7 @@ function ClientViewOrderScreen() {
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -178,7 +178,7 @@ function ClientViewOrderScreen() {
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>
@@ -255,7 +255,7 @@ function ClientViewOrderScreen() {
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+                          <StepLabel onClick={() => setActiveStep(index)}>{t(label)}</StepLabel>
                         </Step>
                       ))}
                     </Stepper>

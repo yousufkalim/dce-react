@@ -41,7 +41,7 @@ function TailorCreateCatalogScreen() {
       >
         <div className='tailor_create_catalog_screen_row1'>
           <div className='tailor_create_catalog_screen_row1_column1'>
-            <img style={{ width: '60%' }} src={AddCatalogSVG} />
+            <img style={{ width: '100%' }} src={AddCatalogSVG} />
           </div>
           <div className='tailor_create_catalog_screen_row1_column2'>
             <p
@@ -243,14 +243,19 @@ function InputSection() {
               selectNullValue={t('Select gender')}
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
-              menuItems={[<MenuItem value={'male'}>{t('Male')}</MenuItem>, <MenuItem value={'female'}>{t('Female')}</MenuItem>]}
+              menuItems={[
+                <MenuItem value={t('MAN')}>{t('MAN')}</MenuItem>,
+                <MenuItem value={t('WOMEN')}>{t('WOMEN')}</MenuItem>,
+                <MenuItem value={t('CHILD')}>{t('CHILD')}</MenuItem>,
+                <MenuItem value={t('Other')}>{t('Other')}</MenuItem>,
+              ]}
               selectSX={{
                 fontSize: '12px',
               }}
             />
           </div>
         </div>
-        <div className='pa_profile_section_input_container'>
+        {/* <div className='pa_profile_section_input_container'>
           <div className='pa_profile_section_input_label'>
             <p className='pa_profile_section_input_text'>{t('Category')}</p>
           </div>
@@ -272,7 +277,7 @@ function InputSection() {
               ]}
             />
           </div>
-        </div>
+        </div> */}
         <div
           className='pa_profile_section_input_container'
           style={{
@@ -325,7 +330,7 @@ function InputSection() {
           className='pa_profile_section_input_container'
           style={{
             borderRadius: '20px',
-            marginTop: '2%',
+            // marginTop: '1%',
           }}
         >
           <div className='pa_profile_section_input_label'>

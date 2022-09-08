@@ -42,7 +42,9 @@ function TailorEditCatalogScreen() {
     try {
       response = await Api('get', `/catalogs/${params.id}`);
 
-      let updatedAttachments = response?.data?.catalog?.attachments?.map((val) => (val = `https://dce.falconit.com.pk/${val}`));
+      let updatedAttachments = response?.data?.catalog?.attachments?.map(
+        (val) => (val = `https://dce.falconit.com.pk/${val}`)
+      );
       setImages(updatedAttachments);
       const catalogData = response.data.catalog;
       setCatalog(catalogData);
@@ -255,7 +257,10 @@ function InputSection(props) {
               selectNullValue={t('Select gender')}
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
-              menuItems={[<MenuItem value={'male'}>{t('Male')}</MenuItem>, <MenuItem value={'female'}>{t('Female')}</MenuItem>]}
+              menuItems={[
+                <MenuItem value={'male'}>{t('Male')}</MenuItem>,
+                <MenuItem value={'female'}>{t('Female')}</MenuItem>,
+              ]}
               selectSX={{
                 fontSize: '12px',
               }}
@@ -346,9 +351,19 @@ function InputSection(props) {
           </div>
           <div className='pa_profile_section_input_input'>
             <label className='upload-pic-label' htmlFor='filePicker'>
-              <input type='file' multiple accept='image/*' hidden id='filePicker' name='file' onChange={handleImagesSelect} />
+              <input
+                type='file'
+                multiple
+                accept='image/*'
+                hidden
+                id='filePicker'
+                name='file'
+                onChange={handleImagesSelect}
+              />
               <div style={{ cursor: 'pointer' }} className='upload-img-text-cont'>
-                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
+                <span className='upload-img-text'>
+                  {t('upload an illustration of your creation')}
+                </span>
                 <img src={UploadSVG} />
               </div>
             </label>
@@ -377,7 +392,11 @@ function InputSection(props) {
             boxShadow: 'none',
           }}
         />
-        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
+        <Modal
+          open={isViewImageModal}
+          onClose={handleIsViewImageModalClose}
+          aria-labelledby='View Image'
+        >
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>

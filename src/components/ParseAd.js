@@ -19,7 +19,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Tooltip from '@mui/material/Tooltip';
 
 import { ChromePicker } from 'react-color';
-import { SketchPicker, GithubPicker, CompactPicker } from 'react-color';
+import { SketchPicker, GithubPicker, CompactPicker, CirclePicker } from 'react-color';
 
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -282,7 +282,7 @@ function BasicSection({
                 fontSize: '12px',
               }}
               inputType='text'
-              inputPlaceholder={t(' 1.70m taille')}
+              inputPlaceholder={t(' 1.70m')}
               inputDefaultValue={state?.height}
               onChange={(e) => _setState('height', e.target.value)}
             />
@@ -475,7 +475,9 @@ function BasicSection({
         >
           <div style={{ width: '42%' }} className='pa_profile_section_input_label'>
             <p
-              style={{ color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff' }}
+              style={{
+                color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff',
+              }}
               className='pa_profile_section_input_text'
             >
               {t('Dominant color')}
@@ -517,13 +519,14 @@ function BasicSection({
                     // background: 'black',
                   }}
                 >
-                  <CompactPicker
+                  <CirclePicker
                     width='225px'
                     style={{
                       maxHeight: '30px',
                       overflow: 'scroll',
                     }}
                     colors={colors}
+                    circleSize={28}
                     // color={this.state.background}
                     onChange={handleChange}
                     onChangeComplete={handleChangeComplete}

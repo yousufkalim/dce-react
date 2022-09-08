@@ -77,11 +77,11 @@ const Landing = () => {
           <div className="chose_title">
             <h3>{t('How it works ?')}</h3>
             <div className="how_work">
-              <h3 style={{color:"#666666"}}>1.{t('You submit your sewing idea to us!')}</h3>
+              <h3 style={{color:"#666666"}}>1. {t('You submit your sewing idea to us!')}</h3>
               <p className='how_work_p'  >{t("You tell us your preferences, criteria, choice and style of your confections!")}</p>
               <h3 style={{color:"#666666"}}>2. {t('We make it happen!')}</h3>
               <p className='how_work_p how_work_p_s' >{t("D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!")}</p>
-              <h3 style={{color:"#666666"}}>3.  {t('You receive your confection!')}</h3>
+              <h3 style={{color:"#666666"}}>3. {t('You receive your confection!')}</h3>
               <p className='how_work_p' >{t("Dés que votre confection est terminée, vous la recevez chez vous !")}</p>
               <div className='btn_section_group_2'>
                 <Link to="/client_register">
