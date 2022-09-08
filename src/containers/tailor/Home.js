@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TailorHomeSVG from '../../assets/TailorHome_.svg';
+import TailorHomeSVG from '../../assets/sewing.svg';
 import UserSVG from '../../assets/dummy.jpeg';
 import AppBar from '../../components/TailorAppBar';
 import OrderListTile from '../../components/OrderListTile';
@@ -76,19 +76,30 @@ function TailorHomeScreen() {
       <div
         className='designer_container'
         style={{
-          background: '#FAFAFA',
+          background: '#CC8E9C30',
         }}
       >
         <div className='designer_home_screen_row1'>
           <div
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10%' }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 15%' }}
             className='designer_header'
           >
             <div className='designer_home_screen_row1_column1_'>
-              <p className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
+              {/* <p className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
                 {t('Welcome to the')} Design Confections Ethiques
+              </p> */}
+              <h3 className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
+                {t('Design Ethical Confections')}
+              </h3>
+              <h4 className='client_home_screen_row1_column1_text_1' style={{ color: ' #8b7964', fontSize: '22px' }}>
+                {t('Make your sewing projects a reality in just a few clicks!')}
+              </h4>
+              <p
+                className='client_home_screen_row1_column1_text_1'
+                style={{ color: ' #0d0c0c', opacity: '0.5', fontSize: '18px' }}
+              >
+                {t('Plateforme de mise en relation dans le domaine de la confection mode sur-mesure')}
               </p>
-
               <button
                 className='tailor_home_screen_row1_column1_button'
                 style={{
@@ -101,7 +112,7 @@ function TailorHomeScreen() {
             </div>
             <div className='designer_home_screen_row1_column2'>
               <div className='design_home_screen_row1_column2_img'>
-                <img style={{ width: '100%' }} src={TailorHomeSVG} />
+                <img style={{ width: '103%' }} src={TailorHomeSVG} />
               </div>
             </div>
           </div>

@@ -244,10 +244,10 @@ function InputSection() {
               selectValue={state.gender}
               onChange={(e) => _setState('gender', e.target.value)}
               menuItems={[
-                <MenuItem value={'male'}>{t('Male')}</MenuItem>,
-                <MenuItem value={'female'}>{t('Female')}</MenuItem>,
-                <MenuItem value={'enfant'}>{t('Enfant')}</MenuItem>,
-                <MenuItem value={'autre'}>{t('Autre')}</MenuItem>,
+                <MenuItem value={t('MAN')}>{t('MAN')}</MenuItem>,
+                <MenuItem value={t('WOMEN')}>{t('WOMEN')}</MenuItem>,
+                <MenuItem value={t('CHILD')}>{t('CHILD')}</MenuItem>,
+                <MenuItem value={t('Other')}>{t('Other')}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: '12px',
@@ -255,7 +255,7 @@ function InputSection() {
             />
           </div>
         </div>
-        <div className='pa_profile_section_input_container'>
+        {/* <div className='pa_profile_section_input_container'>
           <div className='pa_profile_section_input_label'>
             <p className='pa_profile_section_input_text'>{t('Category')}</p>
           </div>
@@ -277,7 +277,7 @@ function InputSection() {
               ]}
             />
           </div>
-        </div>
+        </div> */}
         <div
           className='pa_profile_section_input_container'
           style={{
@@ -348,9 +348,7 @@ function InputSection() {
                 onChange={handleImagesSelect}
               />
               <div className='upload-img-text-cont'>
-                <span className='upload-img-text'>
-                  {t('upload an illustration of your creation')}
-                </span>
+                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
                 <img src={UploadSVG} />
               </div>
             </label>
@@ -381,11 +379,7 @@ function InputSection() {
             boxShadow: 'none',
           }}
         />
-        <Modal
-          open={isViewImageModal}
-          onClose={handleIsViewImageModalClose}
-          aria-labelledby='View Image'
-        >
+        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>

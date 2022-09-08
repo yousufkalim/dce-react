@@ -131,88 +131,128 @@ function TailorOrdersScreen() {
 
   return (
     <>
-      <div className="container-page-vertical">
-        <TailorAppBar activeTab={0} color="#FCFCFC" />
+      <div className='container-page-vertical'>
+        <TailorAppBar activeTab={0} color='#FCFCFC' />
         <div
-          className="tailor_orders_screen_top"
+          className='tailor_orders_screen_top'
           style={{
             background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
-          <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t('Orders Requests')}</p>
+          <div className='client_orders_screen_row1'>
+            <p className='client_orders_screen_row1_text'>{t('Orders Requests')}</p>
             <CustomButton text={t('See All Requests')} />
           </div>
-          <div className="client_orders_screen_row2">
-            {ordersRequest.map((_) => (
-              <OrderRequestListTile
-                order={_}
-                acceptOrder={acceptOrder}
-                discardOrder={discardOrder}
-                navToViewOrder={navToViewOrder}
-              />
-            ))}
+          <div className='client_orders_screen_row2'>
+            {ordersRequest.length > 0 ? (
+              <>
+                {ordersRequest.map((_) => (
+                  <OrderRequestListTile
+                    order={_}
+                    acceptOrder={acceptOrder}
+                    discardOrder={discardOrder}
+                    navToViewOrder={navToViewOrder}
+                  />
+                ))}
+              </>
+            ) : (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>
+                  Aucun projet déposé par les clients
+                </p>
+              </div>
+            )}
           </div>
         </div>
         <div
-          className="tailor_orders_screen_top"
+          className='tailor_orders_screen_top'
           style={{
             background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
-          <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t('In Progress')}</p>
+          <div className='tailor_orders_screen_row1'>
+            <p className='client_orders_screen_row1_text'>{t('In Progress')}</p>
             <CustomButton text={t('See All Orders')} />
           </div>
-          <div className="client_orders_screen_row2">
-            {ordersInProgress.map((_) => (
-              <OrderInProgressListTile
-                order={_}
-                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
-                discardOrder={discardOrder}
-                navToViewOrder={navToViewOrder}
-              />
-            ))}
+          <div className='client_orders_screen_row2'>
+            {ordersInProgress.length > 0 ? (
+              <>
+                {ordersInProgress.map((_) => (
+                  <OrderInProgressListTile
+                    order={_}
+                    quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
+                    discardOrder={discardOrder}
+                    navToViewOrder={navToViewOrder}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                  <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>Aucune commande en cours</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div
-          className="tailor_orders_screen_top"
+          className='tailor_orders_screen_top'
           style={{
             background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
-          <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t('Completed')}</p>
+          <div className='tailor_orders_screen_row1'>
+            <p className='client_orders_screen_row1_text'>{t('Completed')}</p>
             <CustomButton text={t('See All Orders')} />
           </div>
-          <div className="client_orders_screen_row2">
-            {ordersCompleted.map((_) => (
-              <OrderCompletedListTile
-                order={_}
-                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
-                navToViewOrder={navToViewOrder}
-              />
-            ))}
+          <div className='client_orders_screen_row2'>
+            {ordersCompleted.length > 0 ? (
+              <>
+                {ordersCompleted.map((_) => (
+                  <OrderCompletedListTile
+                    order={_}
+                    quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
+                    navToViewOrder={navToViewOrder}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                  <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>Aucune commande terminée</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div
-          className="tailor_orders_screen_top"
+          className='tailor_orders_screen_top'
           style={{
             background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
           }}
         >
-          <div className="tailor_orders_screen_row1">
-            <p className="client_orders_screen_row1_text">{t('Discarded')}</p>
+          <div className='tailor_orders_screen_row1'>
+            <p className='client_orders_screen_row1_text'>{t('Discarded')}</p>
             <CustomButton text={t('See All Orders')} />
           </div>
-          <div className="client_orders_screen_row2">
-            {ordersDiscarded.map((_) => (
-              <OrderDiscardedListTile
-                order={_}
-                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
-                navToViewOrder={navToViewOrder}
-              />
-            ))}
+          <div className='client_orders_screen_row2'>
+            {ordersDiscarded.length > 0 ? (
+              <>
+                {ordersDiscarded.map((_) => (
+                  <OrderDiscardedListTile
+                    order={_}
+                    quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
+                    navToViewOrder={navToViewOrder}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                  <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>Aucune commande annulée</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
         <Footer />
@@ -236,16 +276,16 @@ function OrderRequestListTile(props) {
   };
 
   return (
-    <div className="cos_order_list_tile_container" onClick={() => props.navToViewOrder(props.order._id)}>
-      <div className="cos_order_list_tile_column1">
+    <div className='cos_order_list_tile_container' onClick={() => props.navToViewOrder(props.order._id)}>
+      <div className='cos_order_list_tile_column1'>
         <div
-          className="cos_order_list_tile_column1_img"
+          className='cos_order_list_tile_column1_img'
           style={{
             paddingBottom: '5%',
           }}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '65pt',
               width: '65pt',
@@ -253,40 +293,40 @@ function OrderRequestListTile(props) {
             src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
           />
         </div>
-        <p className="cos_order_list_tile_column1_title_text">{props.order.client.name}</p>
+        <p className='cos_order_list_tile_column1_title_text'>{props.order.client.name}</p>
       </div>
       <div
-        className="tos_order_list_tile_column2"
+        className='tos_order_list_tile_column2'
         style={{
           padding: '3%',
         }}
       >
         <div
-          className="cos_order_list_tile_column2_item"
+          className='cos_order_list_tile_column2_item'
           style={{
             padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Order')}</p>
-          <p className="cos_order_list_tile_column2_item_value">{props.order.name}</p>
+          <p className='cos_order_list_tile_column2_item_key'>{t('Order')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>{props.order.name}</p>
         </div>
         <div
-          className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
+          className='cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders'
           style={{
             padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Order Date')}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
+          <p className='cos_order_list_tile_column2_item_key'>{t('Order Date')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
         </div>
         <div
-          className="cos_order_list_tile_column2_item"
+          className='cos_order_list_tile_column2_item'
           style={{
             padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Delivery Date')}</p>
-          <p className="cos_order_list_tile_column2_item_value">
+          <p className='cos_order_list_tile_column2_item_key'>{t('Delivery Date')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>
             {new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
@@ -297,8 +337,8 @@ function OrderRequestListTile(props) {
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
       </div> */}
-      <div className="tos_order_list_tile_column4">
-        <div className="tos_order_list_tile_column4_buttons">
+      <div className='tos_order_list_tile_column4'>
+        <div className='tos_order_list_tile_column4_buttons'>
           <CustomButton
             text={t('Accept')}
             onClick={(e) => props.acceptOrder(e, props.order._id)}
@@ -340,16 +380,16 @@ function OrderInProgressListTile(props) {
   };
 
   return (
-    <div className="cos_order_list_tile_container" onClick={() => props.navToViewOrder(props.order._id)}>
-      <div className="cos_order_list_tile_column1">
+    <div className='cos_order_list_tile_container' onClick={() => props.navToViewOrder(props.order._id)}>
+      <div className='cos_order_list_tile_column1'>
         <div
-          className="cos_order_list_tile_column1_img"
+          className='cos_order_list_tile_column1_img'
           style={{
             paddingBottom: '5%',
           }}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '65pt',
               width: '65pt',
@@ -357,40 +397,40 @@ function OrderInProgressListTile(props) {
             src={props.order.client.avatar ? assetsURL(props.order.client.avatar) : UserSVG}
           />
         </div>
-        <p className="cos_order_list_tile_column1_title_text">{props.order.client.name}</p>
+        <p className='cos_order_list_tile_column1_title_text'>{props.order.client.name}</p>
       </div>
       <div
-        className="tos_order_list_tile_column2"
+        className='tos_order_list_tile_column2'
         style={{
           padding: '3%',
         }}
       >
         <div
-          className="cos_order_list_tile_column2_item"
+          className='cos_order_list_tile_column2_item'
           style={{
             padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Order')}</p>
-          <p className="cos_order_list_tile_column2_item_value">{props.order.name}</p>
+          <p className='cos_order_list_tile_column2_item_key'>{t('Order')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>{props.order.name}</p>
         </div>
         <div
-          className="cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders"
+          className='cos_order_list_tile_column2_item cos_order_list_tile_column2_item_borders'
           style={{
             padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Order Date')}</p>
-          <p className="cos_order_list_tile_column2_item_value">{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
+          <p className='cos_order_list_tile_column2_item_key'>{t('Order Date')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
         </div>
         <div
-          className="cos_order_list_tile_column2_item"
+          className='cos_order_list_tile_column2_item'
           style={{
             padding: '2% 0',
           }}
         >
-          <p className="cos_order_list_tile_column2_item_key">{t('Delivery Date')}</p>
-          <p className="cos_order_list_tile_column2_item_value">
+          <p className='cos_order_list_tile_column2_item_key'>{t('Delivery Date')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>
             {new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
@@ -401,11 +441,11 @@ function OrderInProgressListTile(props) {
         </p>
         <p style={{ fontSize: "12px", fontWeight: "200", color: "#CC8E9C" }}>{t("Bill")}</p>
       </div> */}
-      <div className="tos_order_list_tile_column4">
+      <div className='tos_order_list_tile_column4'>
         <p style={{ fontSize: '16px', fontWeight: '900', cursor: 'pointer' }} onClick={navToChat}>
           {t('Chat Here')}
         </p>
-        <div className="tos_order_list_tile_column4_buttons">
+        <div className='tos_order_list_tile_column4_buttons'>
           <CustomButton
             text={t('Discard')}
             style={{
@@ -436,22 +476,22 @@ function OrderCompletedListTile(props) {
 
   return (
     <div
-      className="tcos_order_list_tile_container"
+      className='tcos_order_list_tile_container'
       onClick={() => {
         if (!isContactSupportOrderModal) {
           props.navToViewOrder(props.order._id);
         }
       }}
     >
-      <div className="tcos_order_list_tile_column1">
+      <div className='tcos_order_list_tile_column1'>
         <div
-          className="tcos_order_list_tile_column1_img"
+          className='tcos_order_list_tile_column1_img'
           style={{
             paddingBottom: '5%',
           }}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '50pt',
               width: '50pt',
@@ -461,24 +501,24 @@ function OrderCompletedListTile(props) {
         </div>
       </div>
       <div
-        className="tcos_order_list_tile_column1"
+        className='tcos_order_list_tile_column1'
         style={{
           padding: '3%',
           alignItems: 'flex-start',
         }}
       >
         <p
-          className="tcos_order_list_tile_column1_title_text"
+          className='tcos_order_list_tile_column1_title_text'
           style={{
             paddingBottom: '10px',
           }}
         >
           {props.order.client.name}
         </p>
-        <p className="tcos_order_list_tile_column1_description_text">{props.order.name}</p>
+        <p className='tcos_order_list_tile_column1_description_text'>{props.order.name}</p>
       </div>
       <div
-        className="tcos_order_list_tile_column1"
+        className='tcos_order_list_tile_column1'
         style={{
           padding: '3%',
         }}
@@ -492,7 +532,7 @@ function OrderCompletedListTile(props) {
           {/* {rating}({ratingsCount}) */}
         </p>
       </div>
-      <div className="tcos_order_list_tile_column1">
+      <div className='tcos_order_list_tile_column1'>
         <p
           style={{
             fontSize: '12px',
@@ -508,12 +548,12 @@ function OrderCompletedListTile(props) {
         </p> */}
       </div>
       <div
-        className="tcos_order_list_tile_column5"
+        className='tcos_order_list_tile_column5'
         style={{
           marginRight: '5vw',
         }}
       >
-        <div className="tcos_order_list_tile_column5_buttons">
+        <div className='tcos_order_list_tile_column5_buttons'>
           <CustomButton
             text={t('Support')}
             style={{
@@ -529,8 +569,8 @@ function OrderCompletedListTile(props) {
       <Modal
         open={isContactSupportOrderModal}
         onClose={handleContactSupportOrderModalClose}
-        aria-labelledby="Contact Support Order"
-        onBackdropClick="false"
+        aria-labelledby='Contact Support Order'
+        onBackdropClick='false'
       >
         <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
       </Modal>
@@ -559,23 +599,23 @@ function OrderDiscardedListTile(props) {
 
   return (
     <div
-      className="tcos_order_list_tile_container"
+      className='tcos_order_list_tile_container'
       onClick={() => {
         if (!isContactSupportOrderModal) {
           props.navToViewOrder(props.order._id);
         }
       }}
     >
-      <div className="tcos_order_list_tile_column1">
+      <div className='tcos_order_list_tile_column1'>
         <div
-          className="tcos_order_list_tile_column1_img"
+          className='tcos_order_list_tile_column1_img'
           style={{
             paddingBottom: '5%',
           }}
           onClick={navtoClientProfile}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '50pt',
               width: '50pt',
@@ -585,24 +625,24 @@ function OrderDiscardedListTile(props) {
         </div>
       </div>
       <div
-        className="tcos_order_list_tile_column1"
+        className='tcos_order_list_tile_column1'
         style={{
           padding: '3%',
           alignItems: 'flex-start',
         }}
       >
         <p
-          className="tcos_order_list_tile_column1_title_text"
+          className='tcos_order_list_tile_column1_title_text'
           style={{
             paddingBottom: '10px',
           }}
         >
           {props.order.client.name}
         </p>
-        <p className="tcos_order_list_tile_column1_description_text">{props.order.name}</p>
+        <p className='tcos_order_list_tile_column1_description_text'>{props.order.name}</p>
       </div>
       <div
-        className="tcos_order_list_tile_column1"
+        className='tcos_order_list_tile_column1'
         style={{
           padding: '3%',
         }}
@@ -616,7 +656,7 @@ function OrderDiscardedListTile(props) {
           {/* {rating}({ratingsCount}) */}
         </p>
       </div>
-      <div className="tcos_order_list_tile_column1">
+      <div className='tcos_order_list_tile_column1'>
         <p
           style={{
             fontSize: '12px',
@@ -632,12 +672,12 @@ function OrderDiscardedListTile(props) {
         </p> */}
       </div>
       <div
-        className="tcos_order_list_tile_column5"
+        className='tcos_order_list_tile_column5'
         style={{
           marginRight: '5vw',
         }}
       >
-        <div className="tcos_order_list_tile_column5_buttons">
+        <div className='tcos_order_list_tile_column5_buttons'>
           <CustomButton
             text={t('Support')}
             style={{
@@ -653,8 +693,8 @@ function OrderDiscardedListTile(props) {
       <Modal
         open={isContactSupportOrderModal}
         onClose={handleContactSupportOrderModalClose}
-        aria-labelledby="Contact Support Order"
-        onBackdropClick="false"
+        aria-labelledby='Contact Support Order'
+        onBackdropClick='false'
       >
         <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
       </Modal>
@@ -729,9 +769,9 @@ const ContactSupportOrderModal = (props) => {
   };
 
   return (
-    <div className="tqs_sqm_container">
+    <div className='tqs_sqm_container'>
       <div
-        className="tqs_sqm_input_container"
+        className='tqs_sqm_input_container'
         style={{
           borderTopLeftRadius: '20px',
           borderTopLeftRadius: '20px',
@@ -741,10 +781,10 @@ const ContactSupportOrderModal = (props) => {
           padding: '1.6% 0',
         }}
       >
-        <div className="tqs_sqm_input_label">
-          <p className="tqs_sqm_input_text">{t('Reason')}</p>
+        <div className='tqs_sqm_input_label'>
+          <p className='tqs_sqm_input_text'>{t('Reason')}</p>
         </div>
-        <div className="tqs_sqm_input_input">
+        <div className='tqs_sqm_input_input'>
           <CustomInput
             labelStyle={{
               display: 'none',
@@ -759,7 +799,7 @@ const ContactSupportOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="tqs_sqm_textarea_container"
+        className='tqs_sqm_textarea_container'
         style={{
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px',
@@ -768,12 +808,12 @@ const ContactSupportOrderModal = (props) => {
           marginBottom: '2%',
         }}
       >
-        <div className="tqs_sqm_textarea_label">
-          <p className="tqs_sqm_input_text">{t('Details')}</p>
+        <div className='tqs_sqm_textarea_label'>
+          <p className='tqs_sqm_input_text'>{t('Details')}</p>
         </div>
-        <div className="tqs_sqm_input_input">
+        <div className='tqs_sqm_input_input'>
           <textarea
-            className="tqs_sqm_textarea_textarea"
+            className='tqs_sqm_textarea_textarea'
             placeholder={t('Details')}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
@@ -781,7 +821,7 @@ const ContactSupportOrderModal = (props) => {
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className='pa_profile_section_input_container'
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -789,20 +829,20 @@ const ContactSupportOrderModal = (props) => {
           padding: '1.6% 0',
         }}
       >
-        <div className="pa_profile_section_input_label">
-          <p className="pa_profile_section_input_text">{t('Attachments')}</p>
+        <div className='pa_profile_section_input_label'>
+          <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
         </div>
-        <div className="pa_profile_section_input_input">
-          <label className="upload-pic-label">
-            <input type="file" accept="image/*" hidden id="filePicker" name="file" onChange={handleFileSelect} />
-            <div className="upload-img-text-cont">
-              <span className="upload-img-text">{attachment?.name ?? t('upload an illustration of your creation')}</span>
+        <div className='pa_profile_section_input_input'>
+          <label className='upload-pic-label'>
+            <input type='file' accept='image/*' hidden id='filePicker' name='file' onChange={handleFileSelect} />
+            <div className='upload-img-text-cont'>
+              <span className='upload-img-text'>{attachment?.name ?? t('upload an illustration of your creation')}</span>
               <img src={UploadSVG} />
             </div>
           </label>
         </div>
       </div>
-      <div className="tvqs_sq_buttons">
+      <div className='tvqs_sq_buttons'>
         <CustomButton
           text={t('Cancel')}
           style={{
