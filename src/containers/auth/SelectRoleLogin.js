@@ -55,7 +55,7 @@ const SelectRoleLoginScreen = () => {
                 <p style={{ textAlign: 'center', color: '#cc8e9c', fontWeight: '600' }}>Je me connecte</p>
               </div>
             </div>
-            <h1 className='select_role_screen_heading'>{t('Register As a')}</h1>
+            <h1 className='select_role_screen_heading'>{t('Se connecter en tant que')}</h1>
             <div className='select_role_screen_row2_container'>
               <div style={{ display: 'flex', flexDirection: 'column', width: '200px', marginRight: '10%' }}>
                 <div
@@ -73,7 +73,7 @@ const SelectRoleLoginScreen = () => {
                     className='select_role_screen_tile_text'
                     style={{ marginTop: '10%', lineHeight: '20px', textAlign: 'center' }}
                   >
-                    {t('Je souhaite concrétiser mon projet couture')}
+                    {t('Client')}
                   </p>
                 </div>
               </div>
@@ -89,7 +89,7 @@ const SelectRoleLoginScreen = () => {
                     className='select_role_screen_tile_text'
                     style={{ marginTop: '10%', textAlign: 'center', lineHeight: '20px' }}
                   >
-                    {t('Je souhaite mettre à profit mon savoir-faire')}
+                    {t('Professionnels')}
                   </p>
                 </div>
               </div>

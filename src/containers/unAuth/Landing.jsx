@@ -10,7 +10,47 @@ import instagram from '../../assets/instagram.png';
 import Youtubeicon from "../../assets/Youtubeicon.png"
 import LeftBgImage from "../../assets/landingBgLeft.svg"
 import RightBgImage from "../../assets/landingBgRight.svg"
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import axios from 'axios';
+import {youtubeChannelId,youtubeApiKey} from "../../config"
 const Landing = () => {
+
+
+  useEffect(() => {
+    getVideos();
+  }, []);
+  let getVideos = async () => {
+    // setLoading(true);
+    let res = await axios.get(
+      `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&channelId=${youtubeChannelId}&part=snippet,id&order=date&maxResults=20`,
+      { 'Access-Control-Allow-Origin': '*', withCredentials: false }
+    );
+    if (res) {
+      console.log("youtubee",res)
+      // updateStore({ channelVideos: res?.data?.items });
+    }
+    // setLoading(false);
+  };
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   const { t, i18n } = useTranslation();
   
@@ -133,41 +173,38 @@ const Landing = () => {
       </div>
 
       {/* section 4  */}
+      <Carousel responsive={responsive}
+      // swipeable={false}
+      // draggable={false}
+      // showDots={false}
+      // ssr={true} // means to render carousel on server-side.
+      // infinite={true}
+      autoPlay={true}
+      // autoPlaySpeed={3000}
+      // keyBoardControl={true}
+      // customTransition="all .5"
+      // transitionDuration={1000}
+      // containerClass="carousel-container"
+      // removeArrowOnDeviceType={["tablet", "mobile"]}
+      // dotListClass="custom-dot-list-style"
+      // itemClass="carousel-item-padding-40-px"
+      transitionDuration={10}
+            slidesToSlide={1}
+            renderArrowNext={true}
+            infinite={true}
+            arrows={true}
+      >
+
       <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
       <iframe width="60%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      {/* <video controls poster="">
-      <source 
-src="https://www.youtube.com/embed/Lpp8vrY3TEo" 
-                type="video/web"/>
-  Your browser does not support the video tag.
-</video> */}
-        {/* <video poster='https://helpx.adobe.com/photoshop/using/convert-color-image-black-white.html'>
-        <source src="https://www.youtube.com/" type="video/mp4"/> 
-        </video> */}
-      {/* <iframe src="https://www.youtube.com/" title="description"></iframe> */}
-
-        {/* <div className="chose_title_main">
-          <div className="chose_title">
-            <h3 >{t('How it works ?')}</h3>
-            <div className="how_work">
-              <h3 style={{color:"#666666"}} >1. {t('Find customers who match you!')}</h3>
-              <p className='how_work_p' >{t("D.C.E puts you in touch with potential customers suited to your profile")}</p>
-              <h3 style={{color:"#666666"}} >2. {t('Focus on the essentials!')}</h3>
-              <p className='how_work_p how_work_p_s'>{t("D.C.E manages all the formalities relating to the provision of services")}</p>
-              <h3 style={{color:"#666666"}} >3. {t('Respond to an ad in just a few clicks!')}</h3>
-
-              <div className='btn_section_group_2'>
-                <Link to="/tailor_register" >
-                  <button className="how_work_ls how_work_ls_ssss" style={{ marginTop: "0px", fontSize: "35px" }}>{t('Je souhaite mettre à profit mon savoir faire')}</button>
-                </Link>
-              </div>
-
-            </div>
-
-          </div>
-        </div> */}
-
       </div>
+      <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
+      <iframe width="60%" height="500" src="https://www.youtube.com/embed/CU3l9QGe6SA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      {/* <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
+      <iframe width="60%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div> */}
+      </Carousel>
 
       {/* footer */}
       <div class="footer_section_main" id="animation_dec">

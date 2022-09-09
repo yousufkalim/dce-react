@@ -1,6 +1,8 @@
 let baseUrl = 'http://localhost:5000/api';
 let socketUrl = 'http://localhost:5000/';
 let assetsUrl = 'http://localhost:5000/';
+let youtubeChannelId = 'UCLcuFnQASrPRn0y2KHeK8Kg';
+let youtubeApiKey = 'GOOGLE_API_KEY_REDACTED';
 
 if (window.location.host === 'dce-dev.falconweb.app') {
   baseUrl = 'https://dce-api-dev.falconweb.app/api';
@@ -19,4 +21,4 @@ if (window.location.host === 'dce-dev.falconweb.app') {
   socketUrl = 'https://dce-api-prod.falconweb.app/';
   assetsUrl = 'https://dce-api-prod.falconweb.app/';
 }
-module.exports = { baseUrl, socketUrl, assetsUrl };
+module.exports = { baseUrl, socketUrl, assetsUrl, youtubeChannelId, youtubeApiKey };
