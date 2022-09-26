@@ -12,10 +12,10 @@ if (window.location.host === 'dce-dev.falconweb.app') {
   baseUrl = 'https://dce-api-qa.falconweb.app/api';
   socketUrl = 'https://dce-api-qa.falconweb.app/';
   assetsUrl = 'https://dce-api-qa.falconweb.app/';
-} else if (window.location.host === 'dce-stagging.falconweb.app') {
-  baseUrl = 'https://dce-api-stagging.falconweb.app/api';
-  socketUrl = 'https://dce-api-stagging.falconweb.app/';
-  assetsUrl = 'https://dce-api-stagging.falconweb.app/';
+} else if (window.location.host === 'dce-staging.falconweb.app') {
+  baseUrl = 'https://dce-api-staging.falconweb.app/api';
+  socketUrl = 'https://dce-api-staging.falconweb.app/';
+  assetsUrl = 'https://dce-api-staging.falconweb.app/';
 } else if (window.location.host === 'dce-prod.falconweb.app') {
   baseUrl = 'https://dce-api-prod.falconweb.app/api';
   socketUrl = 'https://dce-api-prod.falconweb.app/';
