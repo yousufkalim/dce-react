@@ -112,18 +112,24 @@ function UnAuthAppBar() {
                 {t('About')}
               </Button>
             </a>
-            <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
+            <Link to="/blog" style={{textDecoration:"none",marginTop:"13px"}}>
+              <Button className="blogbutton" >
+               
+                {t('BLOGS')}
+              </Button>
+            </Link> 
+            {/* <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
               <Button
                 className="auth_appbar_menus"
                 style={{ display: 'inline-block' }}
-                // key={page}
+                
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {/* {page} */}
+                
                 {t('Blog')}
               </Button>
-            </a>
+            </a> */}
 
             <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
               <Button
@@ -137,6 +143,12 @@ function UnAuthAppBar() {
                 {t('Gallery')}
               </Button>
             </a>
+            {/* <Link to="/blog" style={{textDecoration:"none",marginTop:"13px"}}>
+              <Button className="blogbutton" >
+               
+                {t('Blogs')}
+              </Button>
+            </Link>  */}
             {/* ))} */}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
@@ -150,8 +162,10 @@ function UnAuthAppBar() {
                
                 {t('Registration')}
               </Button>
-            </Link>
+            </Link> 
+            
           </Box>
+       
         </Toolbar>
       </Container>
     </AppBar>
