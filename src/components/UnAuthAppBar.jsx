@@ -137,6 +137,12 @@ function UnAuthAppBar() {
                 {t('Gallery')}
               </Button>
             </a>
+            <Link to="/blog" style={{textDecoration:"none",marginTop:"13px"}}>
+              <Button className="blogbutton" >
+               
+                {t('Blogs')}
+              </Button>
+            </Link> 
             {/* ))} */}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
@@ -150,8 +156,10 @@ function UnAuthAppBar() {
                
                 {t('Registration')}
               </Button>
-            </Link>
+            </Link> 
+            
           </Box>
+       
         </Toolbar>
       </Container>
     </AppBar>

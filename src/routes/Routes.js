@@ -27,6 +27,9 @@ import ClientFaqsScreen from '../containers/client/Faqs';
 import ClientSearchResultsScreen from '../containers/client/SearchResults';
 import ClientSupportCenterScreen from '../containers/client/SupportCenter';
 import ClientViewOrderScreen from '../containers/client/ViewOrder';
+// Blog
+import Blog from '../containers/blog/Blog.js';
+import Article from '../containers/blog/Article.js';
 
 // Tailor Screens
 import TailorHomeScreen from '../containers/tailor/Home';
@@ -105,81 +108,95 @@ const AuthRoutes = [
     path: '*',
     name: 'landing',
     icon: <LoginIcon />,
-    element: Landing,
+    element: Landing
   },
+
   {
     path: '/',
     name: 'landing',
     icon: <LoginIcon />,
-    element: Landing,
+    element: Landing
   },
   {
     path: '/terms_conditions',
     name: 'TermConditionsScreen',
     icon: <ClientTermsAndConditionsIcon />,
-    element: UnAuthTermCondition,
+    element: UnAuthTermCondition
   },
+
   {
     path: '/select_role_login',
     name: 'SelectRoleLoginScreen',
     icon: <SelectRoleIcon />,
-    element: SelectRoleLoginScreen,
+    element: SelectRoleLoginScreen
   },
   {
     path: '/select_role_register',
     name: 'SelectRoleRegisterScreen',
     icon: <SelectRoleIcon />,
-    element: SelectRoleRegisterScreen,
+    element: SelectRoleRegisterScreen
+  },
+  {
+    path: '/blog',
+    name: 'Blogs',
+    icon: <ClientOrdersIcon />,
+    element: Blog
+  },
+  {
+    path: '/blog/:id',
+    name: 'Article',
+    icon: <ClientOrdersIcon />,
+    element: Article
   },
   {
     path: '/client_login',
     name: 'Login',
     icon: <LoginIcon />,
-    element: ClientLoginScreen,
+    element: ClientLoginScreen
   },
   {
     path: '/client_register',
     name: 'ClientRegister',
     icon: <ClientRegisterIcon />,
-    element: ClientRegisterScreen,
+    element: ClientRegisterScreen
   },
   {
     path: '/client_verify_email',
     name: 'ClientVerifyEmail',
     icon: <ClientVerifyEmailIcon />,
-    element: ClientVerifyEmailScreen,
+    element: ClientVerifyEmailScreen
   },
   {
     path: '/client_create_account',
     name: 'ClientCreateAccount',
     icon: <ClientCreateAccountIcon />,
-    element: ClientCreateAccountScreen,
+    element: ClientCreateAccountScreen
   },
   {
     path: '/tailor_login',
     name: 'Login',
     icon: <LoginIcon />,
-    element: TailorLoginScreen,
+    element: TailorLoginScreen
   },
   {
     path: '/tailor_register',
     name: 'TailorRegister',
     icon: <TailorRegisterIcon />,
-    element: TailorRegisterScreen,
+    element: TailorRegisterScreen
   },
   {
     path: '/tailor_verify_email',
     name: 'TailorVerifyEmail',
     icon: <TailorVerifyEmailIcon />,
-    element: TailorVerifyEmailScreen,
+    element: TailorVerifyEmailScreen
   },
   {
     path: '/tailor_create_account',
     name: 'TailorCreateAccount',
     icon: <TailorCreateAccountIcon />,
-    element: TailorCreateAccountScreen,
+    element: TailorCreateAccountScreen
   },
-  { path: '/reset-password/:token', element: ResetPasswordScreen },
+  { path: '/reset-password/:token', element: ResetPasswordScreen }
 ];
 
 // TailorLoginScreen
@@ -190,110 +207,105 @@ const ClientRoutes = [
     path: '*',
     name: 'ClientHome',
     icon: <ClientHomeIcon />,
-    element: ClientHomeScreen,
+    element: ClientHomeScreen
   },
-  {
-    path: '/home',
-    name: 'ClientHome',
-    icon: <ClientHomeIcon />,
-    element: ClientHomeScreen,
-  },
+
   {
     path: '/orders',
     name: 'ClientOrders',
     icon: <ClientOrdersIcon />,
-    element: ClientOrdersScreen,
+    element: ClientOrdersScreen
   },
   {
     path: '/tailors',
     name: 'ClientDesigners',
     icon: <ClientTailorsIcon />,
-    element: ClientTailorsScreen,
+    element: ClientTailorsScreen
   },
   {
     path: '/faqs',
     name: 'Faqs',
     icon: <ClientTailorsIcon />,
-    element: ClientFaqsScreen,
+    element: ClientFaqsScreen
   },
   {
     path: '/view_tailor/:id',
     name: 'ClientViewTailorScreen',
     icon: <ClientViewTailorIcon />,
-    element: ClientViewTailorScreen,
+    element: ClientViewTailorScreen
   },
   {
     path: '/view_catalog/:id',
     name: 'CailorViewCatalog',
     icon: <ClientViewCatalogIcon />,
-    element: ClientViewCatalogScreen,
+    element: ClientViewCatalogScreen
   },
   {
     path: '/order_from_catalog/:id',
     name: 'ClientOrderFromCatalog',
     icon: <ClientOrderFromCatalogIcon />,
-    element: ClientOrderFromCatalogScreen,
+    element: ClientOrderFromCatalogScreen
   },
   {
     path: '/create_order/:id',
     name: 'ClientCreateOrder',
     icon: <ClientCreateOrderIcon />,
-    element: ClientCreateOrderScreen,
+    element: ClientCreateOrderScreen
   },
   {
     path: '/support_center',
     name: 'ClientSupportCenter',
     icon: <ClientSupportCenterIcon />,
-    element: ClientSupportCenterScreen,
+    element: ClientSupportCenterScreen
   },
   {
     path: '/profile',
     name: 'ClientProfile',
     icon: <ClientProfileIcon />,
-    element: ClientProfileScreen,
+    element: ClientProfileScreen
   },
   {
     path: '/terms_and_conditions',
     name: 'TailorTermsAndConditions',
     icon: <ClientTermsAndConditionsIcon />,
-    element: ClientTermsAndConditionsScreen,
+    element: ClientTermsAndConditionsScreen
   },
   {
     path: '/search_results',
     name: 'ClientSearchResults',
     icon: <ClientSearchResultsIcon />,
-    element: ClientSearchResultsScreen,
+    element: ClientSearchResultsScreen
   },
   {
     path: '/create_ad',
     name: 'ClientCreateAd',
     icon: <ClientCreateAdIcon />,
-    element: ClientCreateAdScreen,
+    element: ClientCreateAdScreen
   },
   {
     path: '/my_ads',
     name: 'ClientAds',
     icon: <ClientAdsIcon />,
-    element: ClientAdsScreen,
+    element: ClientAdsScreen
   },
   {
     path: '/edit_ad/:id',
     name: 'ClientEditAd',
     icon: <ClientEditAdIcon />,
-    element: ClientEditAdScreen,
+    element: ClientEditAdScreen
   },
   {
     path: '/chat',
     name: 'ClientChat',
     icon: <ChatIcon />,
-    element: ChatScreen,
+    element: ChatScreen
   },
   {
     path: '/view_order/:id',
     name: 'ClientViewOrder',
     icon: <ClientViewOrderIcon />,
-    element: ClientViewOrderScreen,
-  },
+    element: ClientViewOrderScreen
+  }
 ];
 
 // Routes for Tailor
@@ -302,111 +314,111 @@ const TailorRoutes = [
     path: '*',
     name: 'TailorHome',
     icon: <TailorHomeIcon />,
-    element: TailorHomeScreen,
+    element: TailorHomeScreen
   },
   {
     path: '/home',
     name: 'TailorHome',
     icon: <TailorHomeIcon />,
-    element: TailorHomeScreen,
+    element: TailorHomeScreen
   },
   {
     path: '/catalog',
     name: 'TailorCatalog',
     icon: <TailorCatalogIcon />,
-    element: TailorCatalogScreen,
+    element: TailorCatalogScreen
   },
   {
     path: '/view_catalog/:id',
     name: 'TailorViewCatalog',
     icon: <TailorViewCatalogIcon />,
-    element: TailorViewCatalogScreen,
+    element: TailorViewCatalogScreen
   },
   {
     path: '/create_catalog',
     name: 'TailorCreateCatalog',
     icon: <TailorCreateCatalogIcon />,
-    element: TailorCreateCatalogScreen,
+    element: TailorCreateCatalogScreen
   },
   {
     path: '/edit_catalog/:id',
     name: 'TailorEditCatalog',
     icon: <TailorEditCatalogIcon />,
-    element: TailorEditCatalogScreen,
+    element: TailorEditCatalogScreen
   },
   {
     path: '/orders',
     name: 'TailorOrders',
     icon: <TailorOrdersIcon />,
-    element: TailorOrdersScreen,
+    element: TailorOrdersScreen
   },
   {
     path: '/quotes',
     name: 'TailorQuote',
     icon: <TailorQuotesIcon />,
-    element: TailorQuotesScreen,
+    element: TailorQuotesScreen
   },
   {
     path: '/view_quote/:id',
     name: 'TailorViewQuote',
     icon: <TailorViewQuoteIcon />,
-    element: TailorViewQuoteScreen,
+    element: TailorViewQuoteScreen
   },
   {
     path: '/profile',
     name: 'TailorProfile',
     icon: <TailorProfileIcon />,
-    element: TailorProfileScreen,
+    element: TailorProfileScreen
   },
   {
     path: '/how_it_works',
     name: 'TailorHowItWorks',
     icon: <TailorHowItWorksIcon />,
-    element: TailorHowItWorksScreen,
+    element: TailorHowItWorksScreen
   },
   {
     path: '/terms_and_conditions',
     name: 'TailorTermsAndConditions',
     icon: <TailorTermsAndConditionsIcon />,
-    element: TailorTermsAndConditionsScreen,
+    element: TailorTermsAndConditionsScreen
   },
   {
     path: '/search_results',
     name: 'TailorSearchResults',
     icon: <TailorSearchResultsIcon />,
-    element: TailorSearchResultsScreen,
+    element: TailorSearchResultsScreen
   },
   {
     path: '/support_center',
     name: 'TailorSupportCenter',
     icon: <TailorSupportCenterIcon />,
-    element: TailorSupportCenterScreen,
+    element: TailorSupportCenterScreen
   },
   {
     path: '/client_profile/:id',
     name: 'clientprofile',
     icon: <TailorClientProfileIcon />,
-    element: TailorClientProfileScreen,
+    element: TailorClientProfileScreen
   },
   {
     path: '/chat',
     name: 'TailorChat',
     icon: <ChatIcon />,
-    element: ChatScreen,
+    element: ChatScreen
   },
   {
     path: '/view_order/:id',
     name: 'TailorViewOrder',
     icon: <TailorViewOrderIcon />,
-    element: TailorViewOrderScreen,
-  },
+    element: TailorViewOrderScreen
+  }
 ];
 
 // Getting all routes
 const RoutesObj = {
   AuthRoutes,
   ClientRoutes,
-  TailorRoutes,
+  TailorRoutes
 };
 
 export default RoutesObj;

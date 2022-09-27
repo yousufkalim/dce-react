@@ -23,13 +23,15 @@ export function StoreProvider({ children }) {
     chat: null,
     messages: [],
     userRole: '',
+    singlBlog: null,
+    blogs: null
   });
 
   const updateStore = (data) => {
     setStore((prev) => {
       return {
         ...prev,
-        ...data,
+        ...data
       };
     });
   };
@@ -37,7 +39,9 @@ export function StoreProvider({ children }) {
   // Render
   return (
     <storeContext.Provider value={store}>
-      <storeUpdateContext.Provider value={updateStore}>{children}</storeUpdateContext.Provider>
+      <storeUpdateContext.Provider value={updateStore}>
+        {children}
+      </storeUpdateContext.Provider>
     </storeContext.Provider>
   );
 }
