@@ -205,7 +205,7 @@ function ClientCreateOrderScreen() {
                 marginBottom: '8%',
               }}
             >
-              {t('Place Your Order')}
+              {t('Placer une annonce')}
             </p>
             <img style={{ width: '70%' }} src={AdElaborationSVG} />
           </div>
@@ -245,7 +245,7 @@ function ClientCreateOrderScreen() {
                   <ParseAd.NotesSection
                     state={notesSection}
                     setState={setNotesSection}
-                    buttonText={t('Place Order')}
+                    buttonText={t('Placer l’annonce')}
                     onClick={notesSectionCallback}
                   />
                 ) : (

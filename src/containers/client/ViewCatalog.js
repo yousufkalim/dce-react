@@ -113,7 +113,11 @@ function ClientViewCatalogScreen() {
                       objectFit: 'cover',
                       borderTopLeftRadius: '20px',
                     }}
-                    src={catalog?.attachments?.length > 0 ? assetsURL(catalog.attachments[displayImageIndex]) : ViewCatalogSVG}
+                    src={
+                      catalog?.attachments?.length > 0
+                        ? assetsURL(catalog.attachments[displayImageIndex])
+                        : ViewCatalogSVG
+                    }
                   />
                   <CustomCarousel
                     images={catalog?.attachments}

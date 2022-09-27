@@ -31,19 +31,19 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
   return (
     <>
       <div
-        className="order_list_tile"
+        className='order_list_tile'
         style={{
           ...mainDivStyle,
         }}
       >
         <div
-          className="order_list_tile_img"
+          className='order_list_tile_img'
           style={{
             paddingBottom: '5%',
           }}
         >
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '50pt',
               width: '50pt',
@@ -62,20 +62,24 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
           />
         </div>
         <p
-          className="order_list_tile_title_text"
+          className='order_list_tile_title_text'
           style={{
             paddingBottom: '8%',
           }}
         >
-          {viewAs == 'client' ? order?.tailor?.name ?? '' : viewAs == 'tailor' ? order?.client?.name ?? '' : ''}
+          {viewAs == 'client'
+            ? order?.tailor?.name ?? ''
+            : viewAs == 'tailor'
+            ? order?.client?.name ?? ''
+            : ''}
         </p>
-        <div className="order_list_tile_divider" />
-        <div className="order_list_tile_item">
+        <div className='order_list_tile_divider' />
+        <div className='order_list_tile_item'>
           <p
             style={{
               opacity: Opacity(order.status),
             }}
-            className="order_list_tile_item_key"
+            className='order_list_tile_item_key'
           >
             {t('Order')}
           </p>
@@ -83,17 +87,17 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             style={{
               color: Color(order.status),
             }}
-            className="order_list_tile_item_value"
+            className='order_list_tile_item_value'
           >
             {order.name}
           </p>
         </div>
-        <div className="order_list_tile_item">
+        <div className='order_list_tile_item'>
           <p
             style={{
               opacity: Opacity(order.status),
             }}
-            className="order_list_tile_item_key"
+            className='order_list_tile_item_key'
           >
             {t('Order Date')}
           </p>
@@ -101,17 +105,17 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             style={{
               color: Color(order.status),
             }}
-            className="order_list_tile_item_value"
+            className='order_list_tile_item_value'
           >
             {new Date(order.createdAt).toLocaleDateString('en-gb')}
           </p>
         </div>
-        <div className="order_list_tile_item">
+        <div className='order_list_tile_item'>
           <p
             style={{
               opacity: Opacity(order.status),
             }}
-            className="order_list_tile_item_key"
+            className='order_list_tile_item_key'
           >
             {t('desired delivery date')}
           </p>
@@ -119,13 +123,13 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             style={{
               color: Color(order.status),
             }}
-            className="order_list_tile_item_value"
+            className='order_list_tile_item_value'
           >
             {new Date(order.delivery.date).toLocaleDateString('en-gb')}
           </p>
         </div>
         <div
-          className="order_list_tile_item"
+          className='order_list_tile_item'
           style={{
             paddingTop: '6%',
             paddingBottom: '4%',
@@ -135,7 +139,7 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             style={{
               opacity: Opacity(order.status),
             }}
-            className="order_list_tile_item_key"
+            className='order_list_tile_item_key'
           >
             {t('Bill')}
           </p>
@@ -150,9 +154,9 @@ function OrderListTile({ order, quote, mainDivStyle, viewAs }) {
             {quote?.price ?? order.budget.min_price}€
           </p> */}
         </div>
-        <div className="order_list_tile_divider" />
+        <div className='order_list_tile_divider' />
         <p
-          className="order_list_tile_title_text_bottom"
+          className='order_list_tile_title_text_bottom'
           style={{
             padding: '4% 0',
             color: Color(order.status),

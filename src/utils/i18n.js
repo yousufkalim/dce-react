@@ -13,6 +13,7 @@ i18n
         translations: {
           // landing
           or: 'or',
+          'Sign out': 'Sign out',
           'Developed by': 'Developed by',
           Registered: 'Registered',
           'Design Ethical Confections': 'Design Ethical Confections',
@@ -69,19 +70,25 @@ i18n
           'Please type message to send': 'Please type message to send',
           'Files greater than 10 MB are not allowed.': 'Files greater than 10 MB are not allowed.',
           'Registered successfully!': 'Registered successfully!',
-          'Please check your email to reset your password': 'Please check your email to reset your password',
+          'Please check your email to reset your password':
+            'Please check your email to reset your password',
           'OTP sent': 'OTP sent',
           'OTP is incorrect.': 'OTP is incorrect.',
           'OTP verified': 'OTP verified',
           'Link has been expired': 'Link has been expired',
-          'Password and confirm password are not same': 'Password and confirm password are not same',
-          'Password should be minimum 8 characters long': 'Password should be minimum 8 characters long',
-          'Password changed successfully, Please login to continue.': 'Password changed successfully, Please login to continue.',
+          'Password and confirm password are not same':
+            'Password and confirm password are not same',
+          'Password should be minimum 8 characters long':
+            'Password should be minimum 8 characters long',
+          'Password changed successfully, Please login to continue.':
+            'Password changed successfully, Please login to continue.',
           "Store Name can't be empty.": "Store Name can't be empty.",
           'Registered successfully!': 'Registered successfully!',
-          'Please check your email to reset your password': 'Please check your email to reset your password',
+          'Please check your email to reset your password':
+            'Please check your email to reset your password',
           'You can select a maximum of 5 files.': 'You can select a maximum of 5 files.',
-          'File sizes greater than 5 MB are not allowed.': 'File sizes greater than 5 MB are not allowed.',
+          'File sizes greater than 5 MB are not allowed.':
+            'File sizes greater than 5 MB are not allowed.',
           'At least one image must be selected.': 'At least one image must be selected.',
           //----------------------------------------------------------Client-------------------------------------------------------
           'Make your sewing projects a reality in just a few clicks!':
@@ -111,6 +118,7 @@ i18n
           'D.C.E manages all the formalities relating to the provision of services':
             'D.C.E manages all the formalities relating to the provision of services',
           WOMEN: 'WOMEN',
+          women: 'women',
           'About yourself': 'About yourself',
           'Please Login with client role': 'Please Login with client role',
           'Please Login with tailor role': 'Please Login with tailor role',
@@ -152,7 +160,8 @@ i18n
           'Order created successfully.': 'Order created successfully.',
           'Ad updated successfully.': 'Ad updated successfully.',
           Reviews: 'Reviews',
-          ', Developed by Falcon Consulting. All rights reserved.': ', Developed by Falcon Consulting. All rights reserved.',
+          ', Developed by Falcon Consulting. All rights reserved.':
+            ', Developed by Falcon Consulting. All rights reserved.',
           'Developed by': 'Developed by',
           'Describe about submit report': 'Describe about submit report',
           Edit: 'Edit',
@@ -200,6 +209,8 @@ i18n
           max: 'max',
           Range: 'Range',
           Responses: 'Responses',
+          'Offer Sent': 'Offer Sent',
+
           Offer: 'Offer',
           Discard: 'Discard',
           'Standard size': 'Standard size',
@@ -223,7 +234,8 @@ i18n
           "I'm taking my measurements": "I'm taking my measurements",
           'upload an illustration of your creation': 'upload an illustration of your creation',
           size: 'size',
-          'I do desired not that my creation appears on the site': 'I do desired not that my creation appears on the site',
+          'I do desired not that my creation appears on the site':
+            'I do desired not that my creation appears on the site',
           'My PROJECT': 'My PROJECT',
           'My Delivery': 'My Delivery',
           Remarks: 'Remarks',
@@ -234,7 +246,8 @@ i18n
           'Patterned Fabric': 'Patterned Fabric',
           'Fabric Description': 'Fabric Description',
           'any note (s) concerning the delivery': 'any note (s) concerning the delivery',
-          'I agree with terms & condition & privacy policy of': 'I agree with terms & condition & privacy policy of',
+          'I agree with terms & condition & privacy policy of':
+            'I agree with terms & condition & privacy policy of',
           Cotton: 'Cotton',
           Muslin: 'Muslin',
           Satin: 'Satin',
@@ -327,13 +340,17 @@ i18n
 
           //Edit Catalogue
           'Edit Catalogue': 'Edit Catalogue',
+          'Edit catalogue': 'Edit Catalogue',
           Name: 'Name',
           Gender: 'Gender',
           Male: 'Male',
+          male: 'male',
           Female: 'Female',
+          female: 'female',
           Category: 'Category',
           WOMEN: 'WOMEN',
           MAN: 'MAN',
+          man: 'man',
           CHILD: 'CHILD',
           Other: 'Other',
           Price: 'Price',
@@ -365,7 +382,8 @@ i18n
             'in the production and manufacture of clothing, decorative elements.',
 
           'or household linen.': 'or household linen.',
-          'Write any note regarding Payment (Optional)': 'Write any note regarding Payment (Optional)',
+          'Write any note regarding Payment (Optional)':
+            'Write any note regarding Payment (Optional)',
 
           '1 . Find the right clients for you': '1 . Find the right clients for you',
           'Design creation puts you in touch with potential customers suited to your profile':
@@ -373,9 +391,11 @@ i18n
           '2 . Focus on the essentials': '2 . Focus on the essentials',
           'Design creation manages all the formalities relating to the provision of services':
             'Design creation manages all the formalities relating to the provision of services',
-          '3 . Post your ad (offer) in just a few clicks': '3 . Post your ad (offer) in just a few clicks',
+          '3 . Post your ad (offer) in just a few clicks':
+            '3 . Post your ad (offer) in just a few clicks',
           'Post your add in 3 steps': 'Post your add in 3 steps',
-          'Seamstress selection based on the following criteria:': 'Seamstress selection based on the following criteria:',
+          'Seamstress selection based on the following criteria:':
+            'Seamstress selection based on the following criteria:',
           'Reliability / Seriousness': 'Reliability / Seriousness',
           'Rating on the site': 'Rating on the site',
           "Customers' opinion": "Customers' opinion",
@@ -453,9 +473,11 @@ i18n
           'Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new clients, with natural persons (individuals) and/or legal persons (companies) looking for a service: tailor-made tailoring clothing, decorative items or linens or any other creations':
             'Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new clients, with natural persons (individuals) and/or legal persons (companies) looking for a service: tailor-made tailoring clothing, decorative items or linens or any other creations',
           'requiring the services of a designer': 'requiring the services of a designer',
-          'Your responsibilities if you breach these Terms': 'Your responsibilities if you breach these Terms',
+          'Your responsibilities if you breach these Terms':
+            'Your responsibilities if you breach these Terms',
           'Delivery Address': 'Delivery Address',
-          'Write any note regarding Delivery (Optional)': 'Write any note regarding Delivery (Optional)',
+          'Write any note regarding Delivery (Optional)':
+            'Write any note regarding Delivery (Optional)',
           'As a seamstress you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.':
             'As a seamstress you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.',
 
@@ -480,7 +502,8 @@ i18n
             'The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.',
           'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ':
             'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ',
-
+          'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.':
+            'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.',
           //viewOrder
           'Want to complete this order': 'Want to complete this order',
           'Create Catalogue': 'Create Catalogue',
@@ -504,7 +527,8 @@ i18n
           'Select Fabric Style': 'Select Fabric Style',
           'Do you Want': 'Do you Want',
           'ALTREATION SERVICE ?': 'ALTREATION SERVICE ?',
-          '*Select Delivery Type according to your Demands': '*Select Delivery Type according to your Demands',
+          '*Select Delivery Type according to your Demands':
+            '*Select Delivery Type according to your Demands',
           '*Select Date for delivery': '*Select Date for delivery',
           'Write Here': 'Write Here',
           'Choose Method': 'Choose Method',
@@ -702,7 +726,8 @@ i18n
           'How Its Work': 'How Its Work',
           Register: 'Register',
           'Welcome to the Design Confection Ethiques': 'Welcome to the Design Confection Ethiques',
-          'Hire The Best Designers For Your Confection': 'Hire The Best Designers For Your Confection',
+          'Hire The Best Designers For Your Confection':
+            'Hire The Best Designers For Your Confection',
           'Hire Designer': 'Hire Designer',
           Or: 'Or',
           'register as a Designer': 'register as a Designer',
@@ -722,6 +747,7 @@ i18n
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
           // landing
+          'Sign out': 'Se déconnecter',
 
           or: 'ou',
           'Developed by': 'Développé par',
@@ -732,7 +758,8 @@ i18n
           'You submit your sewing idea to us!': 'Vous nous soumettez votre idée couture !',
           'D.C.E has selected for you professional seamstresses with nimble fingers, passionate, with quality know-how!':
             'D.C.E a selectionné pour vous des couturièr(es) professionnel(les) aux doigts de fée, passionné(es), au savoir-faire de qualité !',
-          'Make your sewing projects a reality in just a few clicks!': 'Concrétisez vos projets couture en un tour de clics !',
+          'Make your sewing projects a reality in just a few clicks!':
+            'Concrétisez vos projets couture en un tour de clics !',
           'DESIGN Ethical Confections': 'DESIGN Confections Éthiques',
           'Platform for networking in the field of tailor-made fashion':
             'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
@@ -772,8 +799,9 @@ i18n
           'Orders List': 'Liste des commandes',
           'See all': 'Voir tout',
           Search: 'Recherche',
-          Feedback: 'Retour',
-          'Make your sewing projects a reality in just a few clicks!': 'Concrétisez vos projets couture en un tour de clics !',
+          Feedback: 'Signaler',
+          'Make your sewing projects a reality in just a few clicks!':
+            'Concrétisez vos projets couture en un tour de clics !',
           'DESIGN Ethical Confections': 'DESIGN Confections Éthiques',
           'Platform for networking in the field of tailor-made fashion':
             'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure',
@@ -804,7 +832,8 @@ i18n
           'Chat deleted successfully': 'Chat supprimé avec succès',
           'Messagee deleted successfully': 'Message supprimé avec succès',
           'Please type message to send': 'Veuillez saisir le message à envoyer',
-          'Files greater than 10 MB are not allowed.': 'Les fichiers de plus de 10 Mo ne sont pas autorisés.',
+          'Files greater than 10 MB are not allowed.':
+            'Les fichiers de plus de 10 Mo ne sont pas autorisés.',
           'Registered successfully!': 'Enregistré avec succès!',
           'Please check your email to reset your password':
             'Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe',
@@ -815,19 +844,23 @@ i18n
           'Link has been expired': 'Le lien a expiré',
           'Password and confirm password are not same':
             'Le mot de passe et le mot de passe de confirmation ne sont pas identiques',
-          'Password should be minimum 8 characters long': 'Le mot de passe doit comporter au moins 8 caractères',
+          'Password should be minimum 8 characters long':
+            'Le mot de passe doit comporter au moins 8 caractères',
           'Password changed successfully, Please login to continue.':
             'Le mot de passe a été modifié avec succès, veuillez vous connecter pour continuer.',
           "Store Name can't be empty.": 'Le nom du magasin ne peut pas être vide.',
           'Registered successfully!': 'Enregistré avec succès!',
           'Please check your email to reset your password':
             'Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe',
-          'You can select a maximum of 5 files.': 'Vous pouvez sélectionner un maximum de 5 fichiers.',
-          'File sizes greater than 5 MB are not allowed.': 'Les tailles de fichiers supérieures à 5 Mo ne sont pas autorisées.',
+          'You can select a maximum of 5 files.':
+            'Vous pouvez sélectionner un maximum de 5 fichiers.',
+          'File sizes greater than 5 MB are not allowed.':
+            'Les tailles de fichiers supérieures à 5 Mo ne sont pas autorisées.',
           'At least one image must be selected.': 'Au moins une image doit être sélectionnée.',
           'Please Login with client role': 'Veuillez vous connecter avec le rôle client',
-          'Please Login with tailor role': 'Veuillez vous connecter avec un rôle de Professionnel',
-          'User not found Please Register Yourself': 'Utilisateur introuvable Veuillez vous inscrire',
+          'Please Login with tailor role': 'Veuillez-vous connecter en tant que professionnel',
+          'User not found Please Register Yourself':
+            'Utilisateur introuvable Veuillez vous inscrire',
           'is invalid': 'is invalid',
           // client home
           'Submit your idea,': 'Soumettez-nous votre idée,',
@@ -838,7 +871,7 @@ i18n
           'Orders List': 'Liste des commandes',
           'See all': 'Voir tout',
           Search: 'Recherche',
-          Feedback: 'Retour',
+          Feedback: 'Signaler',
           'I am concretizing my idea of tailoring': 'Je concrétise mon idée',
           'Do you have an idea for tailoring?': 'Vous avez une idée de confection couture ?',
           'Submit Your Project here!': 'DÉPOSEZ ICI VOTRE PROJET !',
@@ -846,7 +879,7 @@ i18n
           'Find your sewing assignments': 'Trouvez vos devoirs de couture',
           Type: 'Type',
           //client navbar
-          Designers: 'Professionnels',
+          Designers: 'Professionnel',
           Orders: 'Mes Commandes',
           'My Ads': 'Mes annonces',
           Chats: 'Messagerie',
@@ -854,14 +887,15 @@ i18n
           Profile: 'Profil',
           Quotes: 'Mes Devis',
           'Privacy Policy': 'Politique de confidentialité',
-          'Place New Ad': 'Créer une nouvelle annonce',
+          'Place New Ad': 'Placer une annonce',
           Support: 'Support',
           Logout: 'Se déconnecter',
           'Send Message': 'Envoyer le message',
           View: 'Voir',
           'Delivery Note': 'Bon de livraison',
           'My Profile': 'Mon profil',
-          WOMEN: 'Femmes',
+          WOMEN: 'Femme',
+          women: 'Femme',
           //Profile
           Edit: 'Modifier',
           Phone: 'Téléphone',
@@ -881,13 +915,13 @@ i18n
           'JUMPSUIT/DUNGAREES': 'COMBINAISON / SALOPETTE',
           VEST: 'GILET',
           SKIRT: 'JUPE',
-          'TROUSERS / SHORTS': 'PANTALONS / SHORT',
+          'TROUSERS / SHORTS': 'PANTALON / SHORT',
           DRESS: 'ROBE',
           TUNIC: 'TUNIQUE',
           JACKET: 'VESTE',
           'SCHOOL APRON': "TABLIER D'ÉCOLE",
           SHIRT: 'CHEMISE',
-          PANTS: 'LES PANTALONS',
+          PANTS: 'PANTALON',
           Order: 'Commande',
           'Order Date': 'Date de commande',
           'New Order': 'Nouvelle commande',
@@ -908,10 +942,11 @@ i18n
           min: 'min',
           max: 'max',
           Range: 'Fourchette',
-          Responses: 'Réponses',
+          Responses: 'Réponse(s)',
+          'Offer Sent': 'Offre envoyée',
           Offer: 'Commande',
           Discard: 'Annuler',
-          'Chat Here': 'Chattez ici',
+          'Chat Here': ' Contacter le client',
           'Ad Basic': 'Annonce de base',
           Delivery: 'Livraison',
           Payment: 'Paiement',
@@ -921,13 +956,15 @@ i18n
             'En fonction du vêtement, je mesure certaines parties du corps en circonférence et/ou en longueur',
           'Dominant color': 'Couleur dominante',
           'Dominant Fabric': 'Tissu dominant',
-          'I select the category to which my con...': 'Je sélectionne la catégorie à laquelle mon con...',
+          'I select the category to which my con...':
+            'Je sélectionne la catégorie à laquelle mon con...',
           'I give a name to my confection': 'Je donne un nom à ma confection',
           Measurements: 'Mensurations',
           "I'm taking my measurements": 'Je prends mes mesures',
-          'upload an illustration of your creation': 'Téléchargez une illustration de votre création',
+          'upload an illustration of your creation': 'Chargez une illustration de votre création',
           size: 'Taille',
-          'I do desired not that my creation appears on the site': 'Je ne souhaite pas que ma création apparaisse sur le site',
+          'I do desired not that my creation appears on the site':
+            'Je ne souhaite pas que ma création apparaisse sur le site',
           'MY PROJECT': 'Mon projet',
           'My delivery': 'Ma livraison',
           Remarks: 'Mon budget',
@@ -938,7 +975,7 @@ i18n
           'Plain Fabric': 'Tissu uni',
           'Patterned Fabric': 'Tissu à motif',
           'Fabric Description': 'Description du tissu',
-          'any note (s) concerning the delivery': 'Note concernant la livraison',
+          'any note (s) concerning the delivery': 'Instructions concernant la livraison',
           'I agree with terms & condition & privacy policy of':
             "J'accepte les conditions générales et la politique de confidentialité de",
           Flowers: 'Fleurs',
@@ -954,12 +991,12 @@ i18n
           'Imitation Leather': 'Simili cuir',
           Velvet: 'Velours',
           Viscose: 'Viscose',
-          'OTHER: to write': 'Autre: écrivez',
+          'OTHER: to write': 'Autre : précisez',
           Experience: 'Experiences',
           Diploma: 'Diplome',
           'Area of Expertise': 'Domaine de competence',
           'Shop name': 'Nom de la boutique',
-          Bio: 'Bio',
+          Bio: 'Biographie',
 
           //chats
           Online: 'En ligne',
@@ -970,7 +1007,7 @@ i18n
 
           Messages: 'Messages',
           Delete: 'Supprimer',
-          'Stitching Price': 'Prix ​​de couture',
+          'Stitching Price': 'Prix de la création',
           Reviews: 'Commentaires',
 
           //faq
@@ -1003,9 +1040,10 @@ i18n
           Speciality: 'Spécialité',
 
           //Terms & Conditions
-          'Terms & Conditions': 'Termes et conditions',
+          'Terms & Conditions': 'Mentions légales',
           'Select size': 'Sélectionnez la taille',
-          'You have already sent quote for this ad.': 'Vous avez déjà envoyé un devis pour cette annonce.',
+          'You have already sent quote for this ad.':
+            'Vous avez déjà envoyé un devis pour cette annonce.',
 
           //ViewCatalog
           Description: 'Description',
@@ -1033,19 +1071,24 @@ i18n
           'Delivery Date': 'Date de livraison',
 
           //Edit Catalogue
-          'Edit Catalogue': 'Modifier le catalogue',
+          'Edit Catalogue': 'Modifier une création du catalogue',
+          'Edit catalogue': 'Sauvegarder',
           Name: 'Nom',
           Gender: 'Genre',
           Male: 'Homme',
+          male: 'Homme',
           Female: 'Femme',
+          female: 'Femme',
           Category: 'Catégorie',
           WOMAN: 'Femme',
           MAN: 'Homme',
+          man: 'Homme',
           CHILD: 'Enfant',
           Other: 'Autre',
           Price: 'Prix',
           Attachments: 'Pièces jointes',
-          ', Developed by Falcon Consulting. All rights reserved.': ', Développé par Falcon Consulting. Tous droits réservés.',
+          ', Developed by Falcon Consulting. All rights reserved.':
+            ', Développé par Falcon Consulting. Tous droits réservés.',
           'Developed by': 'Développé par',
           'Select gender for your creation': 'Sélectionnez le genre pour votre création',
           'Write Measurement here': 'Entrez les mensurations ici',
@@ -1062,14 +1105,15 @@ i18n
           'See all': 'Voir tout',
           'Recent Orders': 'Dernières commandes',
           'Quote sent successfully.': 'Devis envoyé avec succès.',
-          'Describe about submit report': 'Décrivez à propos de la soumission du rapport',
+          'Describe about submit report':
+            'Décrivez précisément votre problème avant de le soumettre',
           'No Orders': 'Aucune commande',
 
           //HOW IT WORKS ?
           'HOW IT WORKS ?': 'COMMENT ÇA FONCTIONNE ?',
           in_progress: 'en cours',
           completed: 'terminé',
-          discarded: 'mis au rebut',
+          discarded: 'annulée',
           Help: 'Aide',
           'Privacy Policy': 'Politique de confidentialité',
           'In just a few clicks, Design Créations allows you to find one-off assignments':
@@ -1082,17 +1126,22 @@ i18n
 
           'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.In just a few clicks, Design Créations allows you to find one-off assignments ':
             "En quelques clics, Design Créations vous permet de trouver des missions ponctuelles dans la production et la confection de vêtements, d'éléments de décoration ou de linge de maison. En quelques clics, Design Créations vous permet de trouver des missions ponctuelles",
+          'In just a few clicks, Design Créations allows you to find one-off assignments in the production and manufacture of clothing, decorative elements or household linen.':
+            ' En quelques clics vous pouvez discuter avec nous ou obtenir de l’aide par rapport à une de vos commandes',
           '1 . Find the right clients for you': '1 . Trouvez les bons clients pour vous',
           'Design creation puts you in touch with potential customers suited to your profile':
             'La création de design vous met en relation avec des clients potentiels adaptés à votre profil',
           '2 . Focus on the essentials': "2 . Concentrez-vous sur l'essentiel",
           'Design creation manages all the formalities relating to the provision of services':
             'Design création gère toutes les formalités liées à la prestation de services',
-          '3 . Post your ad (offer) in just a few clicks': '3 . Déposez votre annonce (offre) en quelques clics',
+          '3 . Post your ad (offer) in just a few clicks':
+            '3 . Déposez votre annonce (offre) en quelques clics',
           'Post your add in 3 steps': 'Publiez votre annonce en 3 étapes',
-          'Upload Drawing, Photo, Document, etc.': 'Télécharger un dessin, une photo, un document, etc.',
+          'Upload Drawing, Photo, Document, etc.':
+            'Télécharger un dessin, une photo, un document, etc.',
 
-          'Seamstress selection based on the following criteria:': 'Sélection des couturières selon les critères suivants :',
+          'Seamstress selection based on the following criteria:':
+            'Sélection des couturières selon les critères suivants :',
           'Reliability / Seriousness': 'Fiabilité / Sérieux',
           'Rating on the site': 'Note sur le site',
           "Customers' opinion": 'Avis des clients',
@@ -1110,7 +1159,8 @@ i18n
           'General skills': 'Compétences générales',
           'Know and master the techniques of making a garment (cutting, stitching, etc.)':
             "Connaître et maîtriser les techniques de confection d'un vêtement (coupe, couture, etc.)",
-          'Have knowledge of the different fabrics, materials, colors': 'Connaître les différents tissus, matières, couleurs',
+          'Have knowledge of the different fabrics, materials, colors':
+            'Connaître les différents tissus, matières, couleurs',
           'Make drawings, sketches': 'Faire des dessins, des croquis',
           'Operate the right machinery': 'Utiliser les bonnes machines',
           'Prepare detailed quotes': 'Préparer des devis détaillés',
@@ -1143,15 +1193,17 @@ i18n
           //searchResults
           'Orders Found': 'Commandes trouvées',
           offer: 'offre',
-          'Write any note regarding Delivery (Optional)': 'Écrivez toute note concernant la livraison (facultatif)',
-          'Write any note regarding Payment (Optional)': 'Écrivez toute note concernant le paiement (facultatif)',
+          'Write any note regarding Delivery (Optional)':
+            'Écrivez toute note concernant la livraison (facultatif)',
+          'Write any note regarding Payment (Optional)':
+            'Écrivez toute note concernant le paiement (facultatif)',
           //support center
           Review: 'La revue',
           'Bride Dress': 'Robe de mariée',
           Pending: 'En attente',
           Completed: 'Commandes Terminées',
-          'Support Center': 'Centre de soutien',
-          'Chat With Us': 'Discute avec nous',
+          'Support Center': 'Support',
+          'Chat With Us': 'Contactez-nous',
           'Image must be selected': "L'image doit être sélectionnée",
           'Ad created successfully.': 'Annonce créée avec succès.',
           'Order created successfully.': 'Commande créée avec succès.',
@@ -1163,7 +1215,8 @@ i18n
           'Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new clients, with natural persons (individuals) and/or legal persons (companies) looking for a service: tailor-made tailoring clothing, decorative items or linens or any other creations':
             "Design CONFECTIONS ETHIQUES met en relation des tailleurs à la recherche de nouvelles missions et/ou de nouveaux clients, avec des personnes physiques (particuliers) et/ou morales (entreprises) à la recherche d'un service : confection sur-mesure de vêtements, d'objets de décoration ou de linge de maison ou toutes autres créations",
           'requiring the services of a designer': "nécessitant les services d'un designer",
-          'Your responsibilities if you breach these Terms': 'Vos responsabilités si vous enfreignez ces Conditions',
+          'Your responsibilities if you breach these Terms':
+            'Vos responsabilités si vous enfreignez ces Conditions',
           'As a seamstress you are bound by the general conditions of sale below, in the event of non-compliance (and this after 2 warnings from Design CRÉATIONS following dissatisfied customers), Design CONFECTIONS ETHIQUES reserves the right to remove you. definitely from his site.':
             'En tant que couturière vous êtes lié par les conditions générales de vente ci-dessous, en cas de non-respect (et ce après 2 avertissements de Design CRÉATIONS suite à des clients insatisfaits), Design CONFECTIONS ETHIQUES se réserve le droit de vous retirer définitivement de son site .',
           'The seamstress is also required to provide neat and quality work with selected quality materials.The seamstress must reside in France in order to respect the “made in France” label.':
@@ -1176,7 +1229,8 @@ i18n
             "Le client a le choix entre différents délais de livraison : 2 semaines, 1 mois ou saisir un délai de livraison. Il peut cocher la case indifférent s'il n'est pas trop pressé.",
           'The customer pays his entire order (+ delivery costs) directly online. The seamstress is paid (24 hours later) up to 30% (order - 20% commission) at the start of the mission and 70% (order - 20% commission) 48 hours after the end of the mission.':
             "Le client paie l'intégralité de sa commande (+ frais de livraison) directement en ligne. La couturière est payée (24h après) à hauteur de 30% (commande - 20% commission) au début de la mission et 70% (commande - 20% commission) 48h après la fin de la mission.",
-          'Cancellation of an order/return procedure': "Annulation d'une commande/procédure de retour",
+          'Cancellation of an order/return procedure':
+            "Annulation d'une commande/procédure de retour",
           'The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.':
             "Le prestataire (en l'occurrence la couturière) est libre de suspendre (pour cause de maladie, maternité ou autre), ou de résilier le contrat qui le lie avec Design CONFECTIONS ETHIQUES, uniquement s'il n'a pas de mission en cours. Il doit en informer Design CONFECTIONS ETHIQUES dans les meilleurs délais.",
           'The service provider (in this case the seamstress) is free to suspend (due to illness, maternity or other), or to terminate the contract that binds it with Design CONFECTIONS ETHIQUES, only if it has no mission In progress. It must inform Design CONFECTIONS ETHIQUES as soon as possible.':
@@ -1189,7 +1243,8 @@ i18n
           'Add one of my creations': 'Ajouter une de mes créations',
           //viewOrder
           'Want to complete this order': 'Vous souhaitez finaliser cette commande',
-          'Details of the delivery of the project submitted': 'Détails de la livraision du projet déposé',
+          'Details of the delivery of the project submitted':
+            'Détails de la livraision du projet déposé',
 
           //placeholders
           'Name of your Creation': 'Nom de votre Création',
@@ -1222,7 +1277,8 @@ i18n
           'Details about my creation': 'Précisions sur ma création',
           'Do you Want': 'Veux-tu',
           'ALTREATION SERVICE ?': 'SERVICE DE MODIFICATION ?',
-          '*Select Delivery Type according to your Demands': '*Sélectionnez le type de livraison en fonction de vos demandes',
+          '*Select Delivery Type according to your Demands':
+            '*Sélectionnez le type de livraison en fonction de vos demandes',
           '*Select Date for delivery': '*Sélectionnez la date de livraison',
           'Write Here': 'Écrivez ici',
           'Choose Method': 'Choisir la méthode',
@@ -1235,7 +1291,7 @@ i18n
           'Terms of Services': 'Conditions de services',
           and: 'et',
           'Privacy Policy': 'Politique de confidentialité',
-          'Publish Ad': 'publier mon projet',
+          'Publish Ad': 'Sauvegarder mes modifications',
           Hip: 'Hanche',
           Thigh: 'La cuisse',
           'Head to floor height': 'Hauteur de la tête au sol',
@@ -1316,7 +1372,8 @@ i18n
 
           // Umar's
           'I agree': "Je suis d'accord",
-          'Book call (on schedule) for measurement': 'Rendez-vous téléphonique pour la prise de mesure',
+          'Book call (on schedule) for measurement':
+            'Rendez-vous téléphonique pour la prise de mesure',
           'I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer be able to become a service provider on DCE.':
             "Je comprends également que toute adresse incomplète, date de naissance altérée, utilisation d'une identité différente de la mienne, ou tout document falsifié entraînera la suspension immédiate et définitive de mon compte et que je ne pourrai donc plus travailler sur DCE.",
           'I declare on my honor that the information provided is accurate, as well as the identity document attached above is authentic, belongs to me, and meets all the required conditions.':
@@ -1328,10 +1385,10 @@ i18n
           Address: 'Adresse',
           'Create Catalog After': 'Créer un catalogue après',
           'ORDER COMPLETION ?': 'COMPLÉTER DE LA COMMANDE ?',
-          pending: 'en attente',
+          pending: 'En attente',
           'in progress': 'en cours',
           completed: 'Terminée',
-          discarded: 'mis au rebut',
+          discarded: 'annulée',
           'Sent you an order request.': 'Vous a envoyé une demande de commande.',
           'Order request accepted.': 'Demande de commande acceptée.',
           'Order discarded.': 'Commande rejetée.',
@@ -1417,8 +1474,10 @@ i18n
           'Why DCE': 'Pourquoi DCE',
           'How Its Work': 'Comment ça marche',
           Register: "S'inscrire",
-          'Welcome to the Design Confection Ethiques': "Bienvenue à l'éthique de la conception de la confection",
-          'Hire The Best Designers For Your Confection': 'Engagez les meilleurs designers pour votre confection',
+          'Welcome to the Design Confection Ethiques':
+            "Bienvenue à l'éthique de la conception de la confection",
+          'Hire The Best Designers For Your Confection':
+            'Engagez les meilleurs designers pour votre confection',
           'Hire Designer': 'Embaucher un concepteur',
           Or: 'Ou',
           'register as a Designer': 'inscrivez-vous en tant que designer',

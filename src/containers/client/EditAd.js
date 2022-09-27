@@ -297,7 +297,10 @@ function ClientEditAdScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.DeliverySection state={deliverySection} setState={setDeliverySection} />
+                    <ParseAd.DeliverySection
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
                   </div>
                 </div>
               </div>
@@ -353,7 +356,8 @@ function ClientEditAdScreen() {
                 >
                   {t('Details')}
                 </p>
-                <img style={{ width: '20%' }} src={AdEdit3SVG} />
+                <p style={{ fontSize: '15rem', fontWeight: '700' }}>€</p>
+                {/* <img style={{ width: '20%' }} src={AdEdit3SVG} /> */}
               </div>
               <div className='client_edit_ad_screen_row1_column2'>
                 <div
@@ -372,7 +376,11 @@ function ClientEditAdScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.NotesSection state={notesSection} setState={setNotesSection} onClick={handleSubmit} />
+                    <ParseAd.NotesSection
+                      state={notesSection}
+                      setState={setNotesSection}
+                      onClick={handleSubmit}
+                    />
                   </div>
                 </div>
               </div>

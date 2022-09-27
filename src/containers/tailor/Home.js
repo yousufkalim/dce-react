@@ -81,7 +81,12 @@ function TailorHomeScreen() {
       >
         <div className='designer_home_screen_row1'>
           <div
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 15%' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0 5%',
+            }}
             className='designer_header'
           >
             <div className='designer_home_screen_row1_column1_'>
@@ -91,14 +96,19 @@ function TailorHomeScreen() {
               <h3 className='client_home_screen_row1_column1_text_1' style={{ color: '#CC8E9C' }}>
                 {t('Design Ethical Confections')}
               </h3>
-              <h4 className='client_home_screen_row1_column1_text_1' style={{ color: ' #8b7964', fontSize: '22px' }}>
+              <h4
+                className='client_home_screen_row1_column1_text_1'
+                style={{ color: ' #8b7964', fontSize: '22px' }}
+              >
                 {t('Make your sewing projects a reality in just a few clicks!')}
               </h4>
               <p
                 className='client_home_screen_row1_column1_text_1'
                 style={{ color: ' #0d0c0c', opacity: '0.5', fontSize: '18px' }}
               >
-                {t('Plateforme de mise en relation dans le domaine de la confection mode sur-mesure')}
+                {t(
+                  'Plateforme de mise en relation dans le domaine de la confection mode sur-mesure'
+                )}
               </p>
               <button
                 className='tailor_home_screen_row1_column1_button'
@@ -112,7 +122,7 @@ function TailorHomeScreen() {
             </div>
             <div className='designer_home_screen_row1_column2'>
               <div className='design_home_screen_row1_column2_img'>
-                <img style={{ width: '103%' }} src={TailorHomeSVG} />
+                <img style={{ width: '100%' }} src={TailorHomeSVG} />
               </div>
             </div>
           </div>
@@ -156,7 +166,10 @@ function TailorHomeScreen() {
           <p className='client_home_screen_row2_row1_text'>{t('Recent Orders')}</p>
           <div className='client_home_screen_row2_row1_row_container'>
             {ordersInProgress.map((_) => (
-              <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == 'accepted')[0]} />
+              <OrderListTile
+                order={_}
+                quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
+              />
             ))}
             <p
               style={{

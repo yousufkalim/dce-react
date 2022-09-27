@@ -393,7 +393,7 @@ function TailorViewQuoteScreen() {
                         border: 'none',
                         fontSize: '12px',
                       }}
-                      inputPlaceholder={t('Set Your Price')}
+                      inputPlaceholder={t('Set your Price')}
                       onChange={(e) => setPrice(e.target.value.replace(/[^0-9]/g, ''))}
                     />
                   </div>

@@ -348,7 +348,9 @@ function InputSection() {
                 onChange={handleImagesSelect}
               />
               <div className='upload-img-text-cont'>
-                <span className='upload-img-text'>{t('upload an illustration of your creation')}</span>
+                <span className='upload-img-text'>
+                  {t('upload an illustration of your creation')}
+                </span>
                 <img src={UploadSVG} />
               </div>
             </label>
@@ -379,7 +381,11 @@ function InputSection() {
             boxShadow: 'none',
           }}
         />
-        <Modal open={isViewImageModal} onClose={handleIsViewImageModalClose} aria-labelledby='View Image'>
+        <Modal
+          open={isViewImageModal}
+          onClose={handleIsViewImageModalClose}
+          aria-labelledby='View Image'
+        >
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>

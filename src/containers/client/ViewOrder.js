@@ -122,7 +122,7 @@ function ClientViewOrderScreen() {
                   }}
                   className='edit_add_title'
                 >
-                  {t('Client Basic')}
+                  {t('Details')}
                 </p>
                 <p
                   style={{
@@ -132,7 +132,7 @@ function ClientViewOrderScreen() {
                   }}
                   className='view_add_heading edit_add_title'
                 >
-                  {t('Details')}
+                  {t('Client Basic')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} className='view_add_image' />
               </div>
@@ -153,7 +153,11 @@ function ClientViewOrderScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
+                    <ParseAd.BasicSection
+                      disabled
+                      state={basicSection}
+                      setState={setBasicSection}
+                    />
                   </div>
                 </div>
               </div>
@@ -184,7 +188,11 @@ function ClientViewOrderScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
+                    <ParseAd.DeliverySection
+                      disabled
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
                   </div>
                 </div>
               </div>
@@ -205,9 +213,7 @@ function ClientViewOrderScreen() {
                     marginBottom: '20%',
                   }}
                   className='edit_add_title'
-                >
-                  {t('Details')}
-                </p>
+                ></p>
                 <img style={{ width: '70%' }} src={AdEdit2SVG} className='view_add_image' />
               </div>
             </div>
@@ -238,9 +244,10 @@ function ClientViewOrderScreen() {
                   }}
                   className='edit_add_title'
                 >
-                  {t('Details')}
+                  {/* {t('Details')} */}
                 </p>
-                <img style={{ width: '20%' }} src={AdEdit3SVG} className='view_add_image' />
+                <p style={{ fontSize: '18rem' }}>€</p>
+                {/* <img style={{ width: '20%' }} src={AdEdit3SVG} className='view_add_image' /> */}
               </div>
               <div className='client_edit_ad_screen_row1_column2'>
                 <div
@@ -261,7 +268,11 @@ function ClientViewOrderScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
+                    <ParseAd.NotesSection
+                      disabled
+                      state={notesSection}
+                      setState={setNotesSection}
+                    />
                   </div>
                 </div>
               </div>

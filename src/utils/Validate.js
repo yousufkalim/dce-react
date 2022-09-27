@@ -31,7 +31,7 @@ class Validators {
 
   static selectValidator(name, value) {
     if (isEmpty(value)) {
-      return `${name} doit être sélectionné`;
+      return `${name} doit être sélectionnée`;
     }
     return null;
   }

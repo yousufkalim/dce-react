@@ -98,7 +98,6 @@ const Landing = () => {
                 <div className="or">
                   {t('or')}
                   <Link to="/select_role_register">
-                    {/* <span>{t('registered as a Designer')}</span> */}
                     <span>{t('Registered')}</span>
                   </Link>
                 </div>
@@ -143,7 +142,7 @@ const Landing = () => {
             {/* <h3 className='submit_h3' style={{marginTop:"100px"}}>{t('I submit my idea')}</h3> */}
             <div className="how_work">
               <h3 className='how_work_heading how_work_heading_s' style={{color:"#CC8E9C"}} >{t('You are a designer and you want to put your know-how at the service of the greatest number?')}</h3>
-              <h3 className='how_work_heading2 how_work_heading2_s'  style={{ fontSize: "40px", color:"#8b7964" }}>{t('In a few clicks, D.C.E allows you to find "sewing project" missions')}</h3>
+              <h4 className='how_work_heading2 how_work_heading2_s'  style={{ fontSize: "20px", color:"#8b7964" }}>{t('In a few clicks, D.C.E allows you to find "sewing project" missions')}</h4>
               <div className='submit_main_card'>
                 <div className='card_ss'>
                   <h4 className='submit_main_cardh4 submit_main_cardh4_b'  >{t('Choose your')}</h4>
@@ -180,7 +179,7 @@ const Landing = () => {
       // ssr={true} // means to render carousel on server-side.
       // infinite={true}
       autoPlay={true}
-      // autoPlaySpeed={3000}
+      autoPlaySpeed={10000}
       // keyBoardControl={true}
       // customTransition="all .5"
       // transitionDuration={1000}
@@ -215,16 +214,19 @@ const Landing = () => {
           <img src={FooterLogo} />
           <div>
             {' '}
-            <Link style={{ textDecoration: 'none' }} to="/terms_conditions">
+            {/* <Link  to="/terms_conditions">
               {' '}
               
-            </Link>
+            </Link> */}
           </div>
           <div className="footer_text-last">
             <div>
               <h4 className="footer_text_last_p">
                 © 2022 <span style={{ color: '#CC8E9C' }}>{t('Design Confection Ethiques,')}</span> {t('Developed by')}{' '}
-                <span style={{ color: '#0085FF' }}> <a href='https://falconconsulting.fr/' target='blank'>{t('Falcon Consulting')}</a> .</span>  <span style={{paddingLeft:"10px"}}>{t('Terms & Conditions')}</span>    
+                <span style={{ color: '#0085FF' }}> <a href='https://falconconsulting.fr/' target='blank'>{t('Falcon Consulting')}</a> .</span> 
+                <Link style={{color:"#d1d5db", textDecoration: 'none' }} to='/terms_conditions'>
+                <span style={{paddingLeft:"10px"}}>{t('Terms & Conditions')}</span>
+                </Link>     
               </h4>
             </div>
             <div className="footer_incons_main" style={{ color: 'white' }}>

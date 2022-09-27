@@ -72,36 +72,39 @@ function TailorClientProfileScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className="container-page-vertical">
-          <TailorAppBar color="#FDFDFC" />
+        <div className='container-page-vertical'>
+          <TailorAppBar color='#FDFDFC' />
           <div
-            className="client_orders_screen_top"
+            className='client_orders_screen_top'
             style={{
               background:
                 'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
             }}
           >
-            <img src={Background} className="backgrounimg" />
-            <div className="thiw_qna_standard_screen_row1">
-              <div className="clientProfilediv">{t('Client Profile')}</div>
-              <div className="clientProfileRow">
-                <div className="clientProfilePic">
+            <img src={Background} className='backgrounimg' />
+            <div className='thiw_qna_standard_screen_row1'>
+              <div className='clientProfilediv'>{t('Client Profile')}</div>
+              <div className='clientProfileRow'>
+                <div className='clientProfilePic'>
                   <img
-                    className="image_container"
+                    className='image_container'
                     style={{
                       height: '80pt',
                       width: '80pt',
                     }}
                     src={client.avatar ? assetsURL(client.avatar) : UserSVG}
                   />
-                  <p className="tailor_profile_screen_row1_column1_user_name_text" style={{ padding: '10px' }}>
+                  <p
+                    className='tailor_profile_screen_row1_column1_user_name_text'
+                    style={{ padding: '10px' }}
+                  >
                     {client.name}
                   </p>
                 </div>
-                <div className="clientInfoleftdiv orderclientinfo">
+                <div className='clientInfoleftdiv orderclientinfo'>
                   <ProfileInput
                     disabled
-                    name="Phone"
+                    name='Phone'
                     placeholder={t('Phone')}
                     defaultValue={client.phone}
                     img={ProfilePhoneSVG}
@@ -111,10 +114,16 @@ function TailorClientProfileScreen() {
                     }}
                     onChange={(e) => _setState('phone', e.target.value)}
                   />
-                  <ProfileInput disabled name="Email" placeholder="Email" defaultValue={client.email} img={ProfileEmailSVG} />
                   <ProfileInput
                     disabled
-                    name="Date Of Birth"
+                    name='Email'
+                    placeholder='Email'
+                    defaultValue={client.email}
+                    img={ProfileEmailSVG}
+                  />
+                  <ProfileInput
+                    disabled
+                    name='Date Of Birth'
                     placeholder={t('Date Of Birth')}
                     defaultValue={new Date(client.dob).toLocaleDateString('en-gb')}
                     img={ProfileBirthdaySVG}
@@ -125,10 +134,10 @@ function TailorClientProfileScreen() {
                     }}
                   />
                 </div>
-                <div className="clientinfoRightDiv orderclientinfo">
+                <div className='clientinfoRightDiv orderclientinfo'>
                   <ProfileInput
                     disabled
-                    name="Country"
+                    name='Country'
                     placeholder={t('Country')}
                     defaultValue={client.country}
                     img={ProfileCountrySVG}
@@ -137,10 +146,16 @@ function TailorClientProfileScreen() {
                       borderTopRightRadius: '20px',
                     }}
                   />
-                  <ProfileInput disabled name="City" placeholder={t('City')} defaultValue={client.city} img={ProfileCitySVG} />
                   <ProfileInput
                     disabled
-                    name="Location"
+                    name='City'
+                    placeholder={t('City')}
+                    defaultValue={client.city}
+                    img={ProfileCitySVG}
+                  />
+                  <ProfileInput
+                    disabled
+                    name='Location'
                     placeholder={t('Location')}
                     defaultValue={client.address}
                     img={ProfileLocationSVG}
@@ -161,8 +176,8 @@ function TailorClientProfileScreen() {
                 opacity: '0.2',
               }}
             ></div>
-            <div className="ClientOrder">
-              <div className="clientorderdiv">{t('Client Orders')}</div>
+            <div className='ClientOrder'>
+              <div className='clientorderdiv'>{t('Client Orders')}</div>
               {orders.map((_) => (
                 <ClientProfileOrderListTile {..._} />
               ))}
@@ -174,10 +189,20 @@ function TailorClientProfileScreen() {
   );
 }
 
-function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, img, label, disabled, divStyle }) {
+function ProfileInput({
+  name,
+  onChange,
+  placeholder,
+  defaultValue,
+  inputType,
+  img,
+  label,
+  disabled,
+  divStyle,
+}) {
   return (
     <div
-      className="tps_profile_input_container inputcontainer2"
+      className='tps_profile_input_container inputcontainer2'
       style={{
         ...divStyle,
       }}
@@ -191,7 +216,7 @@ function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, im
       >
         <input
           disabled={disabled}
-          className="tps_profile_input_input"
+          className='tps_profile_input_input'
           name={name}
           onChange={onChange}
           placeholder={t(placeholder)}
@@ -229,44 +254,46 @@ function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, im
 
 function ClientProfileOrderListTile(props) {
   return (
-    <div className="ordermainDiv">
-      <div className="ordercol1">
-        <div className="orderimgdiv">
+    <div className='ordermainDiv'>
+      <div className='ordercol1'>
+        <div className='orderimgdiv'>
           <img
-            className="image_container"
+            className='image_container'
             style={{
               height: '80pt',
               width: '80pt',
             }}
             src={props.client.avatar ? assetsURL(props.client.avatar) : UserSVG}
           />
-          <p className="clientName">{props.client.name}</p>
+          <p className='clientName'>{props.client.name}</p>
         </div>
-        <div className="orderLine"></div>
-        <div className="orderabovediv">
-          <div className="orderDiv">
-            <p className="ordername">{t('Order')}</p>
-            <p className="ordername2">{props.name}</p>
+        <div className='orderLine'></div>
+        <div className='orderabovediv'>
+          <div className='orderDiv'>
+            <p className='ordername'>{t('Order')}</p>
+            <p className='ordername2'>{props.name}</p>
           </div>
-          <hr className="hrline" />
-          <div className="orderDiv">
-            <p className="ordername">{t('Order Date')}</p>
-            <p className="ordername2">{new Date(props.createdAt).toLocaleDateString('en-gb')}</p>
+          <hr className='hrline' />
+          <div className='orderDiv'>
+            <p className='ordername'>{t('Order Date')}</p>
+            <p className='ordername2'>{new Date(props.createdAt).toLocaleDateString('en-gb')}</p>
           </div>
-          <hr className="hrline" />
-          <div className="orderDiv">
-            <p className="ordername">{t('desired delivery date')}</p>
-            <p className="ordername2">{new Date(props.delivery.date).toLocaleDateString('en-gb')}</p>
+          <hr className='hrline' />
+          <div className='orderDiv'>
+            <p className='ordername'>{t('desired delivery date')}</p>
+            <p className='ordername2'>
+              {new Date(props.delivery.date).toLocaleDateString('en-gb')}
+            </p>
           </div>
         </div>
-        <div className="orderLine"></div>
+        <div className='orderLine'></div>
         {/* <div className="orderofferDiv">
           <h3 className="orderofferPrice">{props.budget.min_price}€</h3>
           <h3 className="orderofferheading">{t("Bill")}</h3>
         </div> */}
-        <div className="orderLine"></div>
+        <div className='orderLine'></div>
         <div>
-          <h1 className="ordercompleteStatus">{props.status}</h1>
+          <h1 className='ordercompleteStatus'>{props.status}</h1>
         </div>
       </div>
     </div>

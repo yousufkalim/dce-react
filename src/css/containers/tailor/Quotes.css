@@ -148,19 +148,15 @@
   border-right-width: 1.5px;
 }
 @media only screen and (max-width: 600px) {
-
   .tqs_sqm_container {
     width: 90% !important;
     padding: 5% 4% !important;
     height: auto !important;
   }
   .tqs_quote_list_tile_column1 {
-  
     width: 75vw;
-    
   }
   .cas_ad_list_tile_column2_quote {
     width: 75vw;
-
   }
 }

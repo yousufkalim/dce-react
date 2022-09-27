@@ -215,8 +215,7 @@ function InputSection(props) {
         <div
           className='pa_profile_section_input_container'
           style={{
-            borderBottomLeftRadius: '20px',
-            borderBottomRightRadius: '20px',
+            borderRadius: '20px',
           }}
         >
           <div className='pa_profile_section_input_label'>
@@ -255,11 +254,11 @@ function InputSection(props) {
               selectID='gender'
               selectName='gender'
               selectNullValue={t('Select gender')}
-              selectValue={state.gender}
+              selectValue={t(state.gender)}
               onChange={(e) => _setState('gender', e.target.value)}
               menuItems={[
-                <MenuItem value={'male'}>{t('Male')}</MenuItem>,
-                <MenuItem value={'female'}>{t('Female')}</MenuItem>,
+                <MenuItem value={t('male')}>{t('Male')}</MenuItem>,
+                <MenuItem value={t('female')}>{t('Female')}</MenuItem>,
               ]}
               selectSX={{
                 fontSize: '12px',
@@ -279,7 +278,7 @@ function InputSection(props) {
               selectID='category'
               selectName='category'
               selectNullValue={t('Select category')}
-              selectValue={state.category}
+              selectValue={t(state.category)}
               onChange={(e) => _setState('category', e.target.value)}
               menuItems={[
                 <MenuItem value={'WOMEN'}>{t('WOMEN')}</MenuItem>,
@@ -311,7 +310,7 @@ function InputSection(props) {
                 fontSize: '12px',
               }}
               inputPlaceholder={t('Set your Price')}
-              inputDefaultValue={state.price}
+              inputDefaultValue={t(state.price)}
               onChange={(e) => _setState('price', e.target.value)}
             />
           </div>
@@ -347,7 +346,7 @@ function InputSection(props) {
           }}
         >
           <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>Attachments</p>
+            <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
           </div>
           <div className='pa_profile_section_input_input'>
             <label className='upload-pic-label' htmlFor='filePicker'>
@@ -383,7 +382,7 @@ function InputSection(props) {
           ))}
         </div>
         <CustomButton
-          text={t('Edit Catalogue')}
+          text={t('Edit catalogue')}
           onClick={handleSubmit}
           style={{
             marginTop: '3%',
