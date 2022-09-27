@@ -36,10 +36,6 @@ export default function LatestArticle({ blogs, loading, setLoading }) {
                 }}
                 style={{ textDecoration: 'none', cursor: 'pointer' }}
               >
-                {console.log(
-                  'blogs[0]?.blog_images ',
-                  assetsUrl + blogs[0]?.blog_images
-                )}
                 <div className="latestArticleLeft">
                   <img
                     // src={blogImg}
@@ -76,7 +72,7 @@ export default function LatestArticle({ blogs, loading, setLoading }) {
               {blogs.slice(1, 4).map((item) => (
                 <>
                   <Link
-                    to={`blog/${item._id}`}
+                    to={`/blog/${item._id}`}
                     style={{ textDecoration: 'none', color: 'white' }}
                   >
                     <div className="latestArticleRight">
