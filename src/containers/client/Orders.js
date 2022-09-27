@@ -78,7 +78,7 @@ function ClientOrdersScreen() {
             <CustomButton
               padding={'15px 45px'}
               style={{ borderRadius: '15px', boxShadow: 'none' }}
-              text={t('Place Your Order')}
+              text={t('Placer une annonce')}
               onClick={navToCreateAd}
             />
           </div>
@@ -194,7 +194,9 @@ function OrderListTile(props) {
           }}
         >
           <p className='cos_order_list_tile_column2_item_key'>{t('Order Date')}</p>
-          <p className='cos_order_list_tile_column2_item_value'>{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>
+            {new Date(props.order.createdAt).toLocaleDateString('en-gb')}
+          </p>
         </div>
         <div
           className='cos_order_list_tile_column2_item'
@@ -248,7 +250,9 @@ function OrderListTile(props) {
           <></>
         )}
 
-        <p style={{ fontSize: '15px', fontWeight: '600' }}>{t(props.order.status.replace('_', ' '))}</p>
+        <p style={{ fontSize: '15px', fontWeight: '600' }}>
+          {t(props.order.status.replace('_', ' '))}
+        </p>
       </div>
       <Modal
         open={isFeedbackOrderModal}
@@ -264,10 +268,21 @@ function OrderListTile(props) {
         aria-labelledby='Contact Support Order'
         onBackdropClick='false'
       >
-        <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
+          order={props.order}
+        />
       </Modal>
-      <Modal open={isInvoiceGenerateModal} onClose={handleInvoiceGenerateModalClose} aria-labelledby='Order Invoice'>
-        <InvoiceOrderModal handleClose={handleInvoiceGenerateModalClose} order={props.order} quote={props.quote} />
+      <Modal
+        open={isInvoiceGenerateModal}
+        onClose={handleInvoiceGenerateModalClose}
+        aria-labelledby='Order Invoice'
+      >
+        <InvoiceOrderModal
+          handleClose={handleInvoiceGenerateModalClose}
+          order={props.order}
+          quote={props.quote}
+        />
       </Modal>
     </div>
   );
@@ -350,6 +365,11 @@ const FeedbackOrderModal = (props) => {
           />
         </div>
       </div> */}
+      <div>
+        <h2 style={{ marginBottom: '10%', fontSize: '2rem', fontWeight: '600' }}>
+          Signaler un problème
+        </h2>
+      </div>
       <div
         className='tqs_sqm_textarea_container'
         style={{
@@ -364,7 +384,7 @@ const FeedbackOrderModal = (props) => {
         <div className='tqs_sqm_input_input'>
           <textarea
             className='tqs_sqm_textarea_textarea'
-            placeholder='Describe about submit report'
+            placeholder={t('Describe about submit report')}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
           />
@@ -522,9 +542,18 @@ const ContactSupportOrderModal = (props) => {
         </div>
         <div className='pa_profile_section_input_input'>
           <label className='upload-pic-label'>
-            <input type='file' accept='image/*' hidden id='filePicker' name='file' onChange={handleFileSelect} />
+            <input
+              type='file'
+              accept='image/*'
+              hidden
+              id='filePicker'
+              name='file'
+              onChange={handleFileSelect}
+            />
             <div className='upload-img-text-cont'>
-              <span className='upload-img-text'>{attachment?.name ?? t('upload an illustration of your creation')}</span>
+              <span className='upload-img-text'>
+                {attachment?.name ?? t('upload an illustration of your creation')}
+              </span>
               <img src={UploadSVG} />
             </div>
           </label>
@@ -673,7 +702,10 @@ const InvoiceOrderModal = (props) => {
               width: '100%',
             }}
           >
-            <_InvoiceR1C2Section title='Date:' description={new Date().toLocaleDateString('en-gb')} />
+            <_InvoiceR1C2Section
+              title='Date:'
+              description={new Date().toLocaleDateString('en-gb')}
+            />
             <_InvoiceR1C2Section title='Payment Terms:' description='Bank Deposit' />
             <_InvoiceR1C2Section
               title='Due Date:'
@@ -704,7 +736,7 @@ const InvoiceOrderModal = (props) => {
                   fontWeight: 'bold',
                 }}
               >
-                {`US$${props.quote.price}`}
+                {`€${props.quote.price}`}
               </p>
             </div>
           </div>
@@ -753,7 +785,7 @@ const InvoiceOrderModal = (props) => {
               padding: '4%',
             }}
           >
-            {`US$${props.quote.price}`}
+            {`€${props.quote.price}`}
           </p>
         </div>
       </div>
@@ -771,28 +803,28 @@ const InvoiceOrderModal = (props) => {
         >
           <_InvoiceR1C2Section
             title='Subtotal:'
-            description={`US$${props.quote.price}`}
+            description={`€${props.quote.price}`}
             divStyle={{
               paddingLeft: '80%',
             }}
           />
           <_InvoiceR1C2Section
             title='Tax (0%):'
-            description='US$0.00'
+            description='€0.00'
             divStyle={{
               paddingLeft: '80%',
             }}
           />
           <_InvoiceR1C2Section
             title='Shipping:'
-            description='US$0.00'
+            description='€0.00'
             divStyle={{
               paddingLeft: '80%',
             }}
           />
           <_InvoiceR1C2Section
             title='Total:'
-            description={`US$${props.quote.price}`}
+            description={`€${props.quote.price}`}
             divStyle={{
               paddingLeft: '80%',
             }}
@@ -811,19 +843,24 @@ const InvoiceOrderModal = (props) => {
       >
         <p style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px' }}>Notes:</p>
         <p style={{ fontSize: '14px' }}>
-          Design CONFECTIONS ETHIQUES is an online platform (with free registration) allowing independent designers to
+          Design CONFECTIONS ETHIQUES is an online platform (with free registration) allowing
+          independent designers to
         </p>
         <p style={{ fontSize: '14px' }}>unearth their customers in whole or in part</p>
-        <p style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px', marginTop: '10px' }}>Terms:</p>
-        <p style={{ fontSize: '14px' }}>
-          Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new clients, with natural
+        <p style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px', marginTop: '10px' }}>
+          Terms:
         </p>
         <p style={{ fontSize: '14px' }}>
-          persons (individuals) and/or legal persons (companies) looking for a service: tailor-made tailoring clothing,
+          Design CONFECTIONS ETHIQUES connects tailors looking for new assignments and/or new
+          clients, with natural
+        </p>
+        <p style={{ fontSize: '14px' }}>
+          persons (individuals) and/or legal persons (companies) looking for a service: tailor-made
+          tailoring clothing,
         </p>
         <p style={{ fontSize: '14px' }}>decorative items or linens or any other creations</p>
         <CustomButton
-          text='Download Invoice'
+          text='Télécharger'
           style={{
             alignSelf: 'flex-end',
             marginTop: '20px',

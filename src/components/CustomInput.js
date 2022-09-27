@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputEyeSVG from '../assets/InputEye.svg';
+import { useTranslation } from 'react-i18next';
 
 function CustomInput({
   labelText,
@@ -20,20 +21,21 @@ function CustomInput({
   minmax,
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { t } = useTranslation();
 
   const handlePasswordVisible = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
   return (
     <div
-      className="custom_input_container"
+      className='custom_input_container'
       style={{
         ...divStyle,
       }}
     >
       <label
         htmlFor={labelText}
-        className="custom_input_label"
+        className='custom_input_label'
         style={{
           ...labelStyle,
         }}
@@ -50,15 +52,17 @@ function CustomInput({
         <input
           disabled={disabled}
           ref={ref}
-          type={enableEyes ? (!isPasswordVisible ? 'password' : 'text') : inputType ? inputType : 'text'}
+          type={
+            enableEyes ? (!isPasswordVisible ? 'password' : 'text') : inputType ? inputType : 'text'
+          }
           name={inputName}
           accept={accept}
           onChange={onChange}
-          placeholder={inputPlaceholder}
+          placeholder={t(inputPlaceholder)}
           defaultValue={inputDefaultValue}
           value={inputValue}
           maxlength={minmax ? 30 : 100}
-          className="custom_input_input"
+          className='custom_input_input'
           style={{
             ...inputStyle,
           }}

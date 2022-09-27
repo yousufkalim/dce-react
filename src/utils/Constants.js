@@ -5,7 +5,16 @@ const kRegExpPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
 const kRegExpUserName = /^[a-zA-Z0-9_\.]+$/;
 
 const adNames = {
-  women: ['SHIRT/BLOUSE', 'JUMPSUIT/DUNGAREES', 'VEST', 'SKIRT', 'TROUSERS / SHORTS', 'DRESS', 'TUNIC', 'JACKET'],
+  women: [
+    'SHIRT/BLOUSE',
+    'JUMPSUIT/DUNGAREES',
+    'VEST',
+    'SKIRT',
+    'TROUSERS / SHORTS',
+    'DRESS',
+    'TUNIC',
+    'JACKET',
+  ],
   man: ['SHIRT', 'VEST', 'PANTS', 'JACKET'],
   child: [
     // Girl
@@ -18,11 +27,10 @@ const adNames = {
     'TUNIC',
     'JACKET',
     'SCHOOL APRON',
-    'DISGUISE',
+    'Déguisement',
 
     // Boy
     'SHIRT',
-    'PANTS',
   ],
 };
 
@@ -188,9 +196,28 @@ const materialFabrics = [
   // },
 ];
 
-let colors = ['#474893', '#3cec35', '#1c65cb', '#5d1d0c', '#2d7d2a', '#ff3420', '#5cdd87', '#a259a4', '#e4ac44', '#1bede6'];
+let colors = [
+  '#474893',
+  '#3cec35',
+  '#1c65cb',
+  '#5d1d0c',
+  '#2d7d2a',
+  '#ff3420',
+  '#5cdd87',
+  '#a259a4',
+  '#e4ac44',
+  '#1bede6',
+];
 
-export { kRegExpEmail, kRegExpPassword, kRegExpPhone, kRegExpUserName, materialFabrics, adNames, colors };
+export {
+  kRegExpEmail,
+  kRegExpPassword,
+  kRegExpPhone,
+  kRegExpUserName,
+  materialFabrics,
+  adNames,
+  colors,
+};
 
 // '#63b598',
 // '#8798a4',

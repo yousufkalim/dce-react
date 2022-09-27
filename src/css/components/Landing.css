@@ -83,6 +83,11 @@
 
 .how_work {
   margin-top: 40px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  text-align: center;
+  align-items: center;
 }
 
 .how_work p {
@@ -175,6 +180,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 40px;
+  z-index: 9;
 }
 .btn_section_group_2 {
   display: flex;
@@ -251,7 +257,8 @@
 /* chose us css  */
 .chose_main_section {
   width: 100%;
-  min-height: auto;
+  height: 100%;
+  /* min-height: auto; */
   border: 0px solid blue;
   position: relative;
   top: 30px;
@@ -259,6 +266,10 @@
   padding-bottom: 120px;
 
   background-image: url('././../../assets/choseUs.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  overflow: hidden;
   background-size: 100% 100%;
 }
 
@@ -272,6 +283,7 @@
   align-items: center;
 }
 .how_work_heading_s {
+  width: 87%;
   color: #cc8e9c;
 }
 .chose_title_main h3 {
@@ -295,11 +307,14 @@
 }
 
 .how_work_heading2 {
-  width: 80%;
+  width: 90%;
   margin: auto;
   /* border: 3px solid red; */
 
   text-align: center;
+}
+.how_work_heading2_s {
+  font-size: 20px !important;
 }
 
 .chose_title_main p {
@@ -415,6 +430,8 @@
   border: 0px solid red;
   padding-bottom: 120px;
   /* margin-top: 200px; */
+  overflow: hidden;
+  margin-top: 30px;
 }
 .card_ss {
   /* border: 3px solid red; */
@@ -541,7 +558,7 @@
   padding-bottom: 30px;
 }
 .how_work_p_s {
-  width: 90% !important;
+  width: 80% !important;
 }
 
 .clinet_handing_text {
@@ -1278,12 +1295,11 @@
     color: #000000 !important;
   }
 
-  .how_work h3 {
-    /* border: 3px solid red; */
+  /* .how_work h3 {
     font-size: 18px;
     position: relative;
     top: -23px;
-  }
+  } */
 
   /* .how_work_p {
         text-align: center !important;
@@ -1439,5 +1455,10 @@
     position: relative;
     left: -10px;
     top: 30px;
+  }
+  .how_work_heading2_s {
+    font-size: 30px !important;
+    font-style: normal;
+    font-weight: 700;
   }
 }

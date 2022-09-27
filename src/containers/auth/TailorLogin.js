@@ -139,16 +139,18 @@ function TailorLoginScreen() {
             }}
           >
             <div className='login_screen_top'>
-              <div className='login_screen_row1_designer' style={{ paddingLeft: '15%' }}>
+              <div className='login_screen_row1_designer'>
                 <div className='login_screen_row1_img_designer'>
                   <img style={{ width: '50%', marginBottom: '5%' }} src={AppLogoSVG} />
                 </div>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', width: '100%' }}>
                   <div className='login_screen_row1_img_designer_' style={{ paddingTop: '3%' }}>
                     <p className='login_designer_heading' style={{ paddingBottom: '4%' }}>
                       Comment ça marche ?
                     </p>
-                    <p className='login_designer_point'>1 . Trouvez des clients qui vous correspondent !</p>
+                    <p className='login_designer_point'>
+                      1 . Trouvez des clients qui vous correspondent !
+                    </p>
                     <p className='login_designer_para' style={{ marginBottom: '2%' }}>
                       D.C.E vous met en relation avec des clients potentiels adaptés à votre profil
                     </p>
@@ -156,7 +158,9 @@ function TailorLoginScreen() {
                     <p className='login_designer_para' style={{ marginBottom: '2%' }}>
                       D.C.E gère l'ensemble des formalités relatives à la prestation de service
                     </p>
-                    <p className='login_designer_point'>3 . Répondez à une annonce en quelques clics !</p>
+                    <p className='login_designer_point'>
+                      3 . Répondez à une annonce en quelques clics !
+                    </p>
                   </div>
                   <div>{/* <div className='empty'></div> */}</div>
                 </div>
@@ -229,12 +233,22 @@ function TailorLoginScreen() {
             </div>
           </div>
         </form>
-        <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description'>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
           <Box sx={style} className='forget-modal'>
             <div className='cross-img'>
               <img src={Cross} style={{ width: '15px', cursor: 'pointer' }} onClick={handleClose} />
             </div>
-            <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ textAlign: 'center' }}>
+            <Typography
+              id='modal-modal-title'
+              variant='h6'
+              component='h2'
+              sx={{ textAlign: 'center' }}
+            >
               Forgot Password?
             </Typography>
             <Typography

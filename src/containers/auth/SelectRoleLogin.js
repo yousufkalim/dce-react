@@ -51,13 +51,25 @@ const SelectRoleLoginScreen = () => {
           <div className='login_screen_row2'>
             <div style={{ position: 'absolute', top: '6%', right: '9%' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <AccountCircleIcon style={{ color: '#e9a555', fontSize: '50px', cursor: 'pointer' }} onClick={navToSelectRole} />
-                <p style={{ textAlign: 'center', color: '#cc8e9c', fontWeight: '600' }}>Je me connecte</p>
+                <AccountCircleIcon
+                  style={{ color: '#e9a555', fontSize: '50px', cursor: 'pointer' }}
+                  onClick={navToSelectRole}
+                />
+                <p style={{ textAlign: 'center', color: '#cc8e9c', fontWeight: '600' }}>
+                  Je me connecte
+                </p>
               </div>
             </div>
             <h1 className='select_role_screen_heading'>{t('Se connecter en tant que')}</h1>
             <div className='select_role_screen_row2_container'>
-              <div style={{ display: 'flex', flexDirection: 'column', width: '200px', marginRight: '10%' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  width: '200px',
+                  marginRight: '10%',
+                }}
+              >
                 <div
                   className='select_role_screen_tile'
                   style={{ marginRight: '15%', height: '220px', width: '200px' }}
@@ -78,7 +90,11 @@ const SelectRoleLoginScreen = () => {
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', width: '200px' }}>
-                <div className='select_role_screen_tile' onClick={navToTailorLogin} style={{ height: '220px', width: '200px' }}>
+                <div
+                  className='select_role_screen_tile'
+                  onClick={navToTailorLogin}
+                  style={{ height: '220px', width: '200px' }}
+                >
                   <img src={DesignerRole} style={{ height: '150px', width: '150px' }}></img>
                   {/* <p className='select_role_screen_tile_text' style={{ marginTop: '16%' }}>
                   {t('Designer')}
@@ -89,7 +105,7 @@ const SelectRoleLoginScreen = () => {
                     className='select_role_screen_tile_text'
                     style={{ marginTop: '10%', textAlign: 'center', lineHeight: '20px' }}
                   >
-                    {t('Professionnels')}
+                    {t('Professionnel')}
                   </p>
                 </div>
               </div>

@@ -166,7 +166,11 @@ function TailorViewOrderScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.BasicSection disabled state={basicSection} setState={setBasicSection} />
+                    <ParseAd.BasicSection
+                      disabled
+                      state={basicSection}
+                      setState={setBasicSection}
+                    />
                   </div>
                 </div>
               </div>
@@ -196,7 +200,11 @@ function TailorViewOrderScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.DeliverySection disabled state={deliverySection} setState={setDeliverySection} />
+                    <ParseAd.DeliverySection
+                      disabled
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
                   </div>
                 </div>
               </div>
@@ -266,7 +274,11 @@ function TailorViewOrderScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.NotesSection disabled state={notesSection} setState={setNotesSection} />
+                    <ParseAd.NotesSection
+                      disabled
+                      state={notesSection}
+                      setState={setNotesSection}
+                    />
                   </div>
                 </div>
               </div>
@@ -445,9 +457,19 @@ const CompleteOrderModal = (props) => {
         </div>
         <div className='pa_profile_section_input_input'>
           <label className='upload-pic-label'>
-            <input multiple type='file' accept='image/*' hidden id='filePicker' name='file' onChange={handleFileSelect} />
+            <input
+              multiple
+              type='file'
+              accept='image/*'
+              hidden
+              id='filePicker'
+              name='file'
+              onChange={handleFileSelect}
+            />
             <div className='upload-img-text-cont'>
-              <span className='upload-img-text'>{attachments?.name ?? t('upload an illustration of your creation')}</span>
+              <span className='upload-img-text'>
+                {attachments?.name ?? t('upload an illustration of your creation')}
+              </span>
               <img src={UploadSVG} />
             </div>
           </label>

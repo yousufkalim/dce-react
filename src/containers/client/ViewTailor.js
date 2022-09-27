@@ -137,12 +137,14 @@ function ClientViewTailorScreen() {
               <CustomButton
                 padding={'15px 37px'}
                 style={{ borderRadius: '15px', boxShadow: 'none' }}
-                text={t('Send Message')}
+                text={t('Contacter')}
                 onClick={navToChat}
               />
             </div>
 
-            <div style={{ display: 'flex', width: '100%', padding: '0 3%', justifyContent: 'center' }}>
+            <div
+              style={{ display: 'flex', width: '100%', padding: '0 3%', justifyContent: 'center' }}
+            >
               <div style={{ width: '40%' }} className='view_tailor_image'>
                 <img style={{ width: '88%' }} src={DesignElaborationSVG} />
               </div>
@@ -263,7 +265,13 @@ function ClientViewTailorScreen() {
                   </div>
                   <div className='pa_profile_section_input_input'>
                     <textarea
-                      style={{ border: 'none', height: '80px', resize: 'none', textAlign: 'end', paddingLeft: '6%' }}
+                      style={{
+                        border: 'none',
+                        height: '80px',
+                        resize: 'none',
+                        textAlign: 'end',
+                        paddingLeft: '6%',
+                      }}
                       placeholder={t('About yourself')}
                     />
                   </div>
@@ -431,7 +439,18 @@ function ClientViewTailorScreen() {
   );
 }
 
-function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, img, label, disabled, divStyle, alignText }) {
+function ProfileInput({
+  name,
+  onChange,
+  placeholder,
+  defaultValue,
+  inputType,
+  img,
+  label,
+  disabled,
+  divStyle,
+  alignText,
+}) {
   const { t } = useTranslation();
 
   return (
@@ -450,7 +469,9 @@ function ProfileInput({ name, onChange, placeholder, defaultValue, inputType, im
       >
         <input
           disabled={disabled}
-          className={alignText == 'textend' ? 'tps_profile_input_text_end' : 'tps_profile_input_input'}
+          className={
+            alignText == 'textend' ? 'tps_profile_input_text_end' : 'tps_profile_input_input'
+          }
           name={name}
           onChange={onChange}
           placeholder={placeholder}
@@ -499,7 +520,7 @@ function AddOrderListTile(props) {
       <div className='new_order_list_tile_img'>
         <img style={{ width: '40%' }} src={AddCatalogSVG} className='orderTileImage' />
       </div>
-      <p className='new_order_list_tile_text'>{t('Place Order')}</p>
+      <p className='new_order_list_tile_text'>{t('Placer une annonce')}</p>
     </div>
   );
 }

@@ -50,7 +50,9 @@ function TailorOrdersScreen() {
     try {
       response = await Api('post', `/orders/byQuery`, { tailor: user._id });
       const ordersData = response.data.orders;
-      const _ordersRequest = ordersData.filter((_) => _.type == 'direct' && _.status == 'pending').splice(-4);
+      const _ordersRequest = ordersData
+        .filter((_) => _.type == 'direct' && _.status == 'pending')
+        .splice(-4);
       setOrdersRequest(_ordersRequest);
       const _ordersInProgress = ordersData.filter((_) => _.status == 'in_progress').splice(-4);
       setOrdersInProgress(_ordersInProgress);
@@ -156,7 +158,14 @@ function TailorOrdersScreen() {
                 ))}
               </>
             ) : (
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
+              >
                 <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>
                   Aucun projet déposé par les clients
                 </p>
@@ -188,8 +197,19 @@ function TailorOrdersScreen() {
               </>
             ) : (
               <>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                  <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>Aucune commande en cours</p>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <p
+                    style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}
+                  >
+                    Aucune commande en cours
+                  </p>
                 </div>
               </>
             )}
@@ -218,8 +238,19 @@ function TailorOrdersScreen() {
               </>
             ) : (
               <>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                  <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>Aucune commande terminée</p>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <p
+                    style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}
+                  >
+                    Aucune commande terminée
+                  </p>
                 </div>
               </>
             )}
@@ -248,8 +279,19 @@ function TailorOrdersScreen() {
               </>
             ) : (
               <>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                  <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>Aucune commande annulée</p>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <p
+                    style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}
+                  >
+                    Aucune commande annulée
+                  </p>
                 </div>
               </>
             )}
@@ -276,7 +318,10 @@ function OrderRequestListTile(props) {
   };
 
   return (
-    <div className='cos_order_list_tile_container' onClick={() => props.navToViewOrder(props.order._id)}>
+    <div
+      className='cos_order_list_tile_container'
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className='cos_order_list_tile_column1'>
         <div
           className='cos_order_list_tile_column1_img'
@@ -317,7 +362,9 @@ function OrderRequestListTile(props) {
           }}
         >
           <p className='cos_order_list_tile_column2_item_key'>{t('Order Date')}</p>
-          <p className='cos_order_list_tile_column2_item_value'>{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>
+            {new Date(props.order.createdAt).toLocaleDateString('en-gb')}
+          </p>
         </div>
         <div
           className='cos_order_list_tile_column2_item'
@@ -380,7 +427,10 @@ function OrderInProgressListTile(props) {
   };
 
   return (
-    <div className='cos_order_list_tile_container' onClick={() => props.navToViewOrder(props.order._id)}>
+    <div
+      className='cos_order_list_tile_container'
+      onClick={() => props.navToViewOrder(props.order._id)}
+    >
       <div className='cos_order_list_tile_column1'>
         <div
           className='cos_order_list_tile_column1_img'
@@ -421,7 +471,9 @@ function OrderInProgressListTile(props) {
           }}
         >
           <p className='cos_order_list_tile_column2_item_key'>{t('Order Date')}</p>
-          <p className='cos_order_list_tile_column2_item_value'>{new Date(props.order.createdAt).toLocaleDateString('en-gb')}</p>
+          <p className='cos_order_list_tile_column2_item_value'>
+            {new Date(props.order.createdAt).toLocaleDateString('en-gb')}
+          </p>
         </div>
         <div
           className='cos_order_list_tile_column2_item'
@@ -515,7 +567,7 @@ function OrderCompletedListTile(props) {
         >
           {props.order.client.name}
         </p>
-        <p className='tcos_order_list_tile_column1_description_text'>{props.order.name}</p>
+        <p className='tcos_order_list_tile_column1_description_text'>{t(props.order.name)}</p>
       </div>
       <div
         className='tcos_order_list_tile_column1'
@@ -563,7 +615,9 @@ function OrderCompletedListTile(props) {
               handleContactSupportOrderModalOpen(e);
             }}
           />
-          <p style={{ fontSize: '13px', fontWeight: '900', marginTop: '10px' }}>{t(props.order.status.replace('_', ' '))}</p>
+          <p style={{ fontSize: '13px', fontWeight: '900', marginTop: '10px' }}>
+            {t(props.order.status.replace('_', ' '))}
+          </p>
         </div>
       </div>
       <Modal
@@ -572,7 +626,10 @@ function OrderCompletedListTile(props) {
         aria-labelledby='Contact Support Order'
         onBackdropClick='false'
       >
-        <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
+          order={props.order}
+        />
       </Modal>
     </div>
   );
@@ -639,7 +696,7 @@ function OrderDiscardedListTile(props) {
         >
           {props.order.client.name}
         </p>
-        <p className='tcos_order_list_tile_column1_description_text'>{props.order.name}</p>
+        <p className='tcos_order_list_tile_column1_description_text'>{t(props.order.name)}</p>
       </div>
       <div
         className='tcos_order_list_tile_column1'
@@ -687,7 +744,9 @@ function OrderDiscardedListTile(props) {
               handleContactSupportOrderModalOpen(e);
             }}
           />
-          <p style={{ fontSize: '13px', fontWeight: '900', marginTop: '10px' }}>{t(props.order.status.replace('_', ' '))}</p>
+          <p style={{ fontSize: '13px', fontWeight: '900', marginTop: '10px' }}>
+            {t(props.order.status.replace('_', ' '))}
+          </p>
         </div>
       </div>
       <Modal
@@ -696,7 +755,10 @@ function OrderDiscardedListTile(props) {
         aria-labelledby='Contact Support Order'
         onBackdropClick='false'
       >
-        <ContactSupportOrderModal handleClose={handleContactSupportOrderModalClose} order={props.order} />
+        <ContactSupportOrderModal
+          handleClose={handleContactSupportOrderModalClose}
+          order={props.order}
+        />
       </Modal>
     </div>
   );
@@ -834,9 +896,18 @@ const ContactSupportOrderModal = (props) => {
         </div>
         <div className='pa_profile_section_input_input'>
           <label className='upload-pic-label'>
-            <input type='file' accept='image/*' hidden id='filePicker' name='file' onChange={handleFileSelect} />
+            <input
+              type='file'
+              accept='image/*'
+              hidden
+              id='filePicker'
+              name='file'
+              onChange={handleFileSelect}
+            />
             <div className='upload-img-text-cont'>
-              <span className='upload-img-text'>{attachment?.name ?? t('upload an illustration of your creation')}</span>
+              <span className='upload-img-text'>
+                {attachment?.name ?? t('upload an illustration of your creation')}
+              </span>
               <img src={UploadSVG} />
             </div>
           </label>

@@ -126,7 +126,8 @@ function OrderFromCatalogScreen() {
     event.preventDefault();
 
     const isValidated =
-      FormValidations.parseAdBasicSection(basicSection) && FormValidations.parseAdDeliverySection(deliverySection);
+      FormValidations.parseAdBasicSection(basicSection) &&
+      FormValidations.parseAdDeliverySection(deliverySection);
     if (!isValidated) {
       return;
     }
@@ -291,7 +292,10 @@ function OrderFromCatalogScreen() {
                     </Stepper>
                   </div>
                   <div className='pa_content_row'>
-                    <ParseAd.DeliverySection state={deliverySection} setState={setDeliverySection} />
+                    <ParseAd.DeliverySection
+                      state={deliverySection}
+                      setState={setDeliverySection}
+                    />
                   </div>
                 </div>
               </div>

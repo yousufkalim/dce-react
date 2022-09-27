@@ -253,9 +253,12 @@ function ClientProfileScreen() {
             </div>
             <div className='client_profile_screen_row2'>
               <div className='client_profile_screen_row2_column1'>
-                <div className='prof-img'>
-                  <img style={{ width: '88%' }} src={DesignElaborationSVG} />
-                </div>
+                {/* <div className='prof-img'> */}
+                <img
+                  // style={{ width: '88%' }}
+                  src={DesignElaborationSVG}
+                />
+                {/* </div> */}
               </div>
               <div className='client_profile_screen_row2_column2'>
                 <div className='cps_profile_container'>
@@ -285,7 +288,11 @@ function ClientProfileScreen() {
                             width: '80pt',
                           }}
                           src={
-                            profileImage ? URL.createObjectURL(profileImage) : profile.avatar ? assetsURL(profile.avatar) : dummy
+                            profileImage
+                              ? URL.createObjectURL(profileImage)
+                              : profile.avatar
+                              ? assetsURL(profile.avatar)
+                              : dummy
                           }
                         />
                         {toEdit ? (
@@ -340,7 +347,10 @@ function ClientProfileScreen() {
                       marginTop: '2%',
                     }}
                   >
-                    <div className='pa_profile_section_input_label__' style={{ width: '60% !important' }}>
+                    <div
+                      className='pa_profile_section_input_label__'
+                      style={{ width: '60% !important' }}
+                    >
                       <p
                         className='pa_profile_section_input_text_client'
                         style={{ width: '80% !important', marginLeft: '4% !important' }}
@@ -423,7 +433,9 @@ function ClientProfileScreen() {
                     name='Last Password Changed'
                     placeholder={t('Last Password Changed')}
                     defaultValue={
-                      profile.last_password_changed ? new Date(profile.last_password_changed).toLocaleDateString('en-gb') : 'N/A'
+                      profile.last_password_changed
+                        ? new Date(profile.last_password_changed).toLocaleDateString('en-gb')
+                        : 'N/A'
                     }
                     label={t('Last Password Changed')}
                     divStyle={{
@@ -461,7 +473,17 @@ function ClientProfileScreen() {
   );
 }
 
-function ProfileInput({ disabled, name, onChange, placeholder, defaultValue, img, label, divStyle, minmax }) {
+function ProfileInput({
+  disabled,
+  name,
+  onChange,
+  placeholder,
+  defaultValue,
+  img,
+  label,
+  divStyle,
+  minmax,
+}) {
   return (
     <div
       className='cps_profile_input_container'

@@ -45,21 +45,21 @@ function ClientTailorsScreen() {
 
   return (
     <>
-      <div className="container-page-vertical">
-        <ClientAppBar activeTab={0} color="#FCFCFC" />
+      <div className='container-page-vertical'>
+        <ClientAppBar activeTab={0} color='#FCFCFC' />
         <div
-          className="client_orders_screen_top"
+          className='client_orders_screen_top'
           style={{
             background:
               'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
           }}
         >
-          <div className="client_orders_screen_row1">
-            <p className="client_orders_screen_row1_text" style={{ paddingLeft: '3%' }}>
-              {t('Designers')}
+          <div className='client_orders_screen_row1'>
+            <p className='client_orders_screen_row1_text' style={{ paddingLeft: '3%' }}>
+              {t('Professionnels présents sur notre plateforme')}
             </p>
           </div>
-          <div className="client_orders_screen_row2">
+          <div className='client_orders_screen_row2'>
             {tailors.map((_) => (
               <TailorListTile {..._} />
             ))}
@@ -94,16 +94,16 @@ function TailorListTile(props) {
   };
   return (
     <>
-      <div className="cds_tailor_list_tile_container">
-        <div className="cds_tailor_list_tile_column1">
+      <div className='cds_tailor_list_tile_container'>
+        <div className='cds_tailor_list_tile_column1'>
           <div
-            className="cds_tailor_list_tile_column1_img"
+            className='cds_tailor_list_tile_column1_img'
             style={{
               paddingBottom: '5%',
             }}
           >
             <img
-              className="image_container"
+              className='image_container'
               style={{
                 height: '80pt',
                 width: '80pt',
@@ -114,7 +114,7 @@ function TailorListTile(props) {
             />
           </div>
         </div>
-        <div className="cds_tailor_list_tile_column1" onClick={navToViewTailor}>
+        <div className='cds_tailor_list_tile_column1' onClick={navToViewTailor}>
           <p
             style={{
               fontSize: '16px',
@@ -129,7 +129,7 @@ function TailorListTile(props) {
             {props.city}, {props.country}
           </p>
         </div>
-        <div className="cds_tailor_list_tile_column3">
+        <div className='cds_tailor_list_tile_column3'>
           {/* <div
             style={{
               display: "flex",
@@ -151,8 +151,12 @@ function TailorListTile(props) {
             </p>
           </div> */}
         </div>
-        <div className="cds_tailor_list_tile_column1">
-          <CustomButton text={t('Chat Here')} style={{ borderRadius: '20px' }} onClick={navToChat} />
+        <div className='cds_tailor_list_tile_column1'>
+          <CustomButton
+            text={t('Contacter')}
+            style={{ borderRadius: '20px' }}
+            onClick={navToChat}
+          />
         </div>
       </div>
     </>
