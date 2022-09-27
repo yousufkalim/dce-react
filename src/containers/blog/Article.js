@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 // import Blog1 from "../assets/img/1.jpeg";
 import api from '../../api';
 import { Store, UpdateStore } from '../../StoreContext';
+import Footer from '../../components/Footer';
 
 export default function Article() {
   const [activeStep, setActiveStep] = useState(1);
@@ -47,7 +48,8 @@ export default function Article() {
     <>
       <div
         style={{
-          backgroundColor: '#835353',
+          backgroundColor: 'rgb(217 159 159)',
+
           minHeight: '100vh',
           overflowX: 'hidden',
           overflowY: 'hidden'
@@ -56,6 +58,7 @@ export default function Article() {
         {console.log('article', singlBlog, blogs)}
 
         <ArticleBody loading={loading} />
+        <Footer />
       </div>
     </>
   );

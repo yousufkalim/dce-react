@@ -24,7 +24,7 @@ export default function YouMayLike({ loading }) {
       ) : (
         <Grid container spacing={1}>
           {/* <p className="youMayLikeheading">Lisez aussi</p> */}
-          {blogs?.slice(0, 3)?.map((item, i) => (
+          {getblogs()?.map((item, i) => (
             <>
               <Grid item xs={12} sm={4}>
                 <>

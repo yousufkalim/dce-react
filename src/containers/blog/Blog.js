@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 // import Footer from '../components/Footer';
 import UnAuthAppBar from '../../components/UnAuthAppBar';
 import BlogBody from '../../components/blog/BlogBody';
+import Footer from '../../components/Footer';
 // import Contactus from '../utils/Contactus';
 
 export default function Blog() {
@@ -12,10 +13,10 @@ export default function Blog() {
   const [statetextforscroll, setStatetextforscroll] = useState('');
   return (
     <div style={{}}>
-      <UnAuthAppBar />
+      {/* <UnAuthAppBar /> */}
       <BlogBody />
       {/* <Contactus /> */}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
