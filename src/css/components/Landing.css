@@ -25,6 +25,7 @@
   background: #faf4f5;
   margin-top: 65px;
   min-height: auto;
+  /* height: 100vh; */
   position: relative !important;
   padding-bottom: 120px;
   top: 25px;
@@ -167,7 +168,7 @@
   font-weight: 200;
   font-size: 34px;
   line-height: 33px;
-  width: 70%;
+  width: 85%;
   padding: 65px;
   text-align: center;
   line-height: 50px;
@@ -265,7 +266,7 @@
   padding-top: 90px !important;
   padding-bottom: 120px;
 
-  background-image: url('././../../assets/choseUs.png');
+  /* background-image: url('././../../assets/choseUs.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom right;

@@ -13,7 +13,7 @@ const adNames = {
     'TROUSERS / SHORTS',
     'DRESS',
     'TUNIC',
-    'JACKET',
+    'JACKET'
   ],
   man: ['SHIRT', 'VEST', 'PANTS', 'JACKET'],
   child: [
@@ -30,65 +30,66 @@ const adNames = {
     'Déguisement',
 
     // Boy
-    'SHIRT',
+    'SHIRT'
   ],
+  Autre: ['Précisez le type']
 };
 
 const materialFabrics = [
   {
     title: 'Cotton',
-    description: '',
+    description: ''
   },
   {
     title: 'Muslin',
-    description: '',
+    description: ''
   },
   {
     title: 'Satin',
-    description: '',
+    description: ''
   },
   {
     title: 'Jersey',
     description:
-      'Custom cotton fabrics: Polka dots, stars, stripes, checks, flowers... Light cotton fabrics for children and adults.',
+      'Custom cotton fabrics: Polka dots, stars, stripes, checks, flowers... Light cotton fabrics for children and adults.'
   },
   {
     title: 'Garbadine',
-    description: '',
+    description: ''
   },
   {
     title: 'Jacquard',
-    description: '',
+    description: ''
   },
   {
     title: 'Wool',
-    description: '',
+    description: ''
   },
   {
     title: 'Linen',
-    description: '',
+    description: ''
   },
   {
     title: 'Polar',
-    description: '',
+    description: ''
   },
   {
     title: 'Imitation Leather',
-    description: '',
+    description: ''
   },
   {
     title: 'Velvet',
     description:
-      '100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.',
+      '100% Oeko-tex certified cotton terry, thick quality 350 and 430 g/m² Very absorbent white and colored bamboo terry and microfiber, special washable diaper.'
   },
   {
     title: 'Viscose',
-    description: '',
+    description: ''
   },
   {
     title: 'OTHER: to write',
-    description: 'Party fabrics, decoration, disguise, tulle, taffeta, sequins',
-  },
+    description: 'Party fabrics, decoration, disguise, tulle, taffeta, sequins'
+  }
   // {
   //   title: 'Felt',
   //   description:
@@ -206,7 +207,7 @@ let colors = [
   '#5cdd87',
   '#a259a4',
   '#e4ac44',
-  '#1bede6',
+  '#1bede6'
 ];
 
 export {
@@ -216,7 +217,7 @@ export {
   kRegExpUserName,
   materialFabrics,
   adNames,
-  colors,
+  colors
 };
 
 // '#63b598',

@@ -33,7 +33,7 @@ function ClientViewOrderScreen() {
     cut: '',
     measurements: {
       type: 'static',
-      value: '',
+      value: ''
     },
     color: '',
     fabric: '',
@@ -42,18 +42,18 @@ function ClientViewOrderScreen() {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: '',
+    observation: ''
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
-    address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    address: { zip: '', label: '', city: '', lat: '', lng: '' }
   });
   const [notesSection, setNotesSection] = useState({
     note: '',
     min_price: '',
-    max_price: '',
+    max_price: ''
   });
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function ClientViewOrderScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
-        create_catalog_after_completion: adData.create_catalog_after_completion,
+        create_catalog_after_completion: adData.create_catalog_after_completion
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -84,14 +84,14 @@ function ClientViewOrderScreen() {
         address: {
           zip: adData.delivery.zipcode,
           label: adData.delivery.address,
-          city: adData.delivery.city,
-        },
+          city: adData.delivery.city
+        }
       });
       setNotesSection({
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes: adData?.quotes.filter((_) => _.status === 'accepted'),
+        quotes: adData?.quotes.filter(_ => _.status === 'accepted')
       });
     } catch (e) {
       console.trace(e);
@@ -104,46 +104,42 @@ function ClientViewOrderScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className='container-page'>
-          <ClientAppBar color='#F8F4EF' activeTab={1} />
+        <div className="container-page">
+          <ClientAppBar color="#F8F4EF" activeTab={1} />
           <div
-            className='containerOrder'
+            className="containerOrder"
             style={{
               background: '#FFE9A0',
-              height: '129vh',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              height: '129vh'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
+                    fontWeight: '900'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Details')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '50%',
+                    marginBottom: '50%'
                   }}
-                  className='view_add_heading edit_add_title'
-                >
+                  className="view_add_heading edit_add_title">
                   {t('Client Basic')}
                 </p>
-                <img style={{ width: '55%' }} src={AdEdit1SVG} className='view_add_image' />
+                <img style={{ width: '55%' }} src={AdEdit1SVG} className="view_add_image" />
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -152,7 +148,7 @@ function ClientViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.BasicSection
                       disabled
                       state={basicSection}
@@ -164,21 +160,19 @@ function ClientViewOrderScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFC396',
-              height: '90vh',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row2_column1'>
+              height: '90vh'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row2_column1">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -187,7 +181,7 @@ function ClientViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.DeliverySection
                       disabled
                       state={deliverySection}
@@ -196,69 +190,63 @@ function ClientViewOrderScreen() {
                   </div>
                 </div>
               </div>
-              <div className='client_edit_ad_screen_row2_column2'>
+              <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
+                    fontWeight: '900'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Delivery')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
+                    marginBottom: '20%'
                   }}
-                  className='edit_add_title'
-                ></p>
-                <img style={{ width: '70%' }} src={AdEdit2SVG} className='view_add_image' />
+                  className="edit_add_title"></p>
+                <img style={{ width: '70%' }} src={AdEdit2SVG} className="view_add_image" />
               </div>
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFFCFB',
-              height: '45vh',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              height: '45vh'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
+                    fontWeight: '900'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Payment')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '8%',
+                    marginBottom: '8%'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {/* {t('Details')} */}
                 </p>
-                <p style={{ fontSize: '18rem' }}>€</p>
+                <p style={{ color: 'gray', fontSize: '18rem' }}>€</p>
                 {/* <img style={{ width: '20%' }} src={AdEdit3SVG} className='view_add_image' /> */}
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={
                     {
                       // marginTop: '10%',
                     }
-                  }
-                >
-                  <div className='pa_steps_row'>
+                  }>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -267,7 +255,7 @@ function ClientViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.NotesSection
                       disabled
                       state={notesSection}

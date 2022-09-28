@@ -39,7 +39,7 @@ function ClientCreateOrderScreen() {
     cut: '',
     measurements: {
       type: 'static',
-      value: '',
+      value: ''
     },
     color: '',
     fabric: '',
@@ -48,22 +48,22 @@ function ClientCreateOrderScreen() {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: '',
+    observation: ''
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
-    address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    address: { zip: '', label: '', city: '', lat: '', lng: '' }
   });
   const [notesSection, setNotesSection] = useState({
     type: '',
     min_price: '',
     max_price: '',
-    note: '',
+    note: ''
   });
 
-  const handleImagesSelect = (event) => {
+  const handleImagesSelect = event => {
     if (event.target.files.length + images.length > 5) {
       toast.error(t('You can select a maximum of 5 files.'));
       return;
@@ -79,9 +79,9 @@ function ClientCreateOrderScreen() {
 
     setImages([...images, ...event.target.files]);
   };
-  const handleImageDeselect = (image) => {
+  const handleImageDeselect = image => {
     const _images = [...images];
-    const index = _images.map((_) => _.name).indexOf(image.name);
+    const index = _images.map(_ => _.name).indexOf(image.name);
     if (index > -1) {
       _images.splice(index, 1);
     }
@@ -108,7 +108,7 @@ function ClientCreateOrderScreen() {
     setActiveStep(2);
   };
 
-  const notesSectionCallback = async (event) => {
+  const notesSectionCallback = async event => {
     event.preventDefault();
 
     const isValidated =
@@ -154,7 +154,7 @@ function ClientCreateOrderScreen() {
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          date: deliverySection.date,
+          date: deliverySection.date
         })
       );
       body.append(
@@ -163,7 +163,7 @@ function ClientCreateOrderScreen() {
           type: notesSection.type,
           min_price: notesSection.min_price,
           max_price: notesSection.max_price,
-          note: notesSection.note,
+          note: notesSection.note
         })
       );
       for (let i = 0; i < images.length; i++) {
@@ -189,34 +189,31 @@ function ClientCreateOrderScreen() {
 
   return (
     <>
-      <div className='container'>
-        <ClientAppBar activeTab={2} color='#FFFAF9' />
+      <div>
+        <ClientAppBar activeTab={2} color="#FFFAF9" />
         <div
-          className='client_create_ad_screen_top'
+          className="client_create_ad_screen_top"
           style={{
-            background: '#FFEEEA',
-          }}
-        >
-          <div className='client_create_ad_screen_column1'>
+            background: '#FFEEEA'
+          }}>
+          <div className="client_create_ad_screen_column1">
             <p
               style={{
                 fontSize: '30px',
                 fontWeight: '900',
-                marginBottom: '8%',
-              }}
-            >
+                marginBottom: '8%'
+              }}>
               {t('Placer une annonce')}
             </p>
             <img style={{ width: '70%' }} src={AdElaborationSVG} />
           </div>
-          <div className='client_create_ad_screen_column2'>
+          <div className="client_create_ad_screen_column2">
             <div
-              className='pa_container'
+              className="pa_container"
               style={{
-                marginTop: '10%',
-              }}
-            >
-              <div className='pa_steps_row'>
+                marginTop: '10%'
+              }}>
+              <div className="pa_steps_row">
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
@@ -225,7 +222,7 @@ function ClientCreateOrderScreen() {
                   ))}
                 </Stepper>
               </div>
-              <div className='pa_content_row'>
+              <div className="pa_content_row">
                 {activeStep == 0 ? (
                   <ParseAd.BasicSection
                     state={basicSection}

@@ -146,7 +146,11 @@ const SendMessage = ({ directUser }) => {
             </div>
           </Box>
           <div onClick={ToggleIcon} className='toggle-icons'>
-            {iconsToggle ? <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} /> : <img src={MinusSVG} />}
+            {iconsToggle ? (
+              <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} />
+            ) : (
+              <img src={MinusSVG} />
+            )}
           </div>
         </div>
         <input

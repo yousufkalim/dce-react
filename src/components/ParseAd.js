@@ -57,7 +57,7 @@ function BasicSection({
   setImages,
   handleImagesSelect,
   handleCloseColorPicker,
-  handleImageDeselect,
+  handleImageDeselect
 }) {
   const { t } = useTranslation();
 
@@ -66,13 +66,13 @@ function BasicSection({
     obj[key] = value;
     setState({
       ...state,
-      ...obj,
+      ...obj
     });
   };
 
   const [anchorElMeasurements, setAnchorElMeasurements] = useState(null);
   const openMeasurements = Boolean(anchorElMeasurements);
-  const handleClickMeasurements = (event) => {
+  const handleClickMeasurements = event => {
     setAnchorElMeasurements(event.currentTarget);
   };
   const handleCloseMeasurements = () => {
@@ -95,26 +95,26 @@ function BasicSection({
     setIsTapeMeasurementModal(true);
   };
 
-  const selectMeasurementsType = (_) => {
+  const selectMeasurementsType = _ => {
     setState({
       ...state,
       measurements: {
         type: _,
-        value: '',
-      },
+        value: ''
+      }
     });
     handleCloseMeasurements();
   };
 
   const store = Store();
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     inputRoot: {
       color: '#ffffff',
       '& .MuiOutlinedInput-input.Mui-disabled': {
-        '-webkit-text-fill-color': '#ffffff',
-      },
-    },
+        '-webkit-text-fill-color': '#ffffff'
+      }
+    }
   }));
   const classes = useStyles();
 
@@ -123,7 +123,7 @@ function BasicSection({
   const [open, setOpen] = useState(false);
   const [imageToDeleteConfirmation, setImageToDeleteConfirmation] = useState();
   /////test code
-  const handleChangeComplete = (color) => {
+  const handleChangeComplete = color => {
     // console.log("on change complete");
     // console.log(color.hex,"h");
     _setState('color', color.hex);
@@ -133,10 +133,10 @@ function BasicSection({
   const handleChange = (color, event) => {
     console.log(color, '132col');
   };
-  const handleCloseAlert = (confirmation) => {
+  const handleCloseAlert = confirmation => {
     if (confirmation) {
       const _images = [...images];
-      const index = _images.map((_) => _.name).indexOf(imageToDeleteConfirmation.name);
+      const index = _images.map(_ => _.name).indexOf(imageToDeleteConfirmation.name);
       if (index > -1) {
         _images.splice(index, 1);
       }
@@ -148,7 +148,7 @@ function BasicSection({
   /////
   return (
     <>
-      <div className='pa_profile_section_container'>
+      <div className="pa_profile_section_container">
         <AlertBox open={open} setOpen={setOpen} handleClose={handleCloseAlert} />
         {/* <div
           className="pa_profile_section_input_container"
@@ -181,24 +181,23 @@ function BasicSection({
         <div
           style={{
             borderTopLeftRadius: '20px',
-            borderTopRightRadius: '20px',
+            borderTopRightRadius: '20px'
           }}
-          className='pa_profile_section_input_container'
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Category')}</p>
+          className="pa_profile_section_input_container">
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Category')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDropDown
               disabled={disabled || disables?.includes('category')}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
-              selectID='category'
-              selectName='category'
+              selectID="category"
+              selectName="category"
               selectNullValue={t('Female')}
               selectValue={t(state.category)}
-              onChange={(e) => {
+              onChange={e => {
                 _setState('category', e.target.value);
                 let category = e.target.value;
                 let name;
@@ -209,51 +208,85 @@ function BasicSection({
                   name = adNames.man[0];
                 } else if (category == t('CHILD')) {
                   name = adNames.child[0];
+                } else if (category == t('Autre : précisez')) {
+                  name = adNames.Autre[0];
                 }
 
                 setState({
                   ...state,
                   category: category,
-                  name: name,
+                  name: name
                 });
               }}
               menuItems={[
                 <MenuItem value={t('WOMEN')}>{t('WOMEN')}</MenuItem>,
                 <MenuItem value={t('MAN')}>{t('MAN')}</MenuItem>,
                 <MenuItem value={t('CHILD')}>{t('CHILD')}</MenuItem>,
+                <MenuItem value={t('Autre : précisez')}>{t('Autre : précisez')}</MenuItem>
               ]}
             />
           </div>
         </div>
+        {state.category === 'Autre : précisez' && (
+          <>
+            <div
+              className="pa_profile_section_input_container"
+              style={{
+                height: '45px'
+              }}>
+              <div className="pa_profile_section_input_label">
+                <p className="pa_profile_section_input_text">{t('Précisez le type')}</p>
+              </div>
+              <div className="pa_profile_section_input_input">
+                <CustomInput
+                  disabled={disabled}
+                  labelStyle={{
+                    display: 'none'
+                  }}
+                  inputStyle={{
+                    border: 'none',
+                    fontSize: '12px'
+                  }}
+                  inputType="text"
+                  inputPlaceholder={t('Précisez le type')}
+                  // inputDefaultValue={state?.observation}
+                  // onChange={e => _setState('observation', e.target.value)}
+                />
+              </div>
+            </div>
+          </>
+        )}
+
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderBottomLeftRadius: '20px',
             borderBottomRightRadius: '20px',
-            marginBottom: '2%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Type')}</p>
+            marginBottom: '2%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Type')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDropDown
               disabled={disabled || disables?.includes('name')}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
-              selectID='name'
-              selectName='name'
+              selectID="name"
+              selectName="name"
               selectNullValue={t('Jupe longue')}
               selectValue={t(state.name)}
-              onChange={(e) => _setState('name', e.target.value)}
+              onChange={e => _setState('name', e.target.value)}
               menuItems={
                 state.category == t('WOMEN') ? (
-                  adNames.women.map((_) => <MenuItem value={_}>{t(_)}</MenuItem>)
+                  adNames.women.map(_ => <MenuItem value={_}>{t(_)}</MenuItem>)
                 ) : state.category == t('MAN') ? (
-                  adNames.man.map((_) => <MenuItem value={_}>{t(_)}</MenuItem>)
+                  adNames.man.map(_ => <MenuItem value={_}>{t(_)}</MenuItem>)
                 ) : state.category == t('CHILD') ? (
-                  adNames.child.map((_) => <MenuItem value={_}>{t(_)}</MenuItem>)
+                  adNames.child.map(_ => <MenuItem value={_}>{t(_)}</MenuItem>)
+                ) : state.category == t('Autre : précisez') ? (
+                  adNames.Autre.map(_ => <MenuItem value={_}>{t(_)}</MenuItem>)
                 ) : (
                   <></>
                 )
@@ -262,53 +295,51 @@ function BasicSection({
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Height')}</p>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Height')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomInput
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               inputStyle={{
                 border: 'none',
-                fontSize: '12px',
+                fontSize: '12px'
               }}
-              inputType='text'
+              inputType="text"
               inputPlaceholder={t(' 1.70m')}
               inputDefaultValue={state?.height}
-              onChange={(e) => _setState('height', e.target.value)}
+              onChange={e => _setState('height', e.target.value)}
             />
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('size')}</p>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('size')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDropDown
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
-              selectID='cut'
-              selectName='cut'
+              selectID="cut"
+              selectName="cut"
               selectNullValue={t('Select size')}
               selectValue={state.cut}
-              onChange={(e) => _setState('cut', e.target.value)}
+              onChange={e => _setState('cut', e.target.value)}
               menuItems={[
                 <MenuItem value={'XS'}>XS</MenuItem>,
                 <MenuItem value={'S'}>S</MenuItem>,
@@ -316,7 +347,7 @@ function BasicSection({
                 <MenuItem value={'L'}>L</MenuItem>,
                 <MenuItem value={'XL'}>XL</MenuItem>,
                 <MenuItem value={'XXL'}>XXL</MenuItem>,
-                <MenuItem value={'XXXL'}>XXXL</MenuItem>,
+                <MenuItem value={'XXXL'}>XXXL</MenuItem>
               ]}
             />
           </div>
@@ -327,45 +358,43 @@ function BasicSection({
             display: 'flex',
             justifyContent: 'space-between',
             width: '80%',
-            marginLeft: '4%',
-          }}
-        >
+            marginLeft: '4%'
+          }}>
           <div>
-            <span className='measurements'> {t('Standard size')}</span>{' '}
+            <span className="measurements"> {t('Standard size')}</span>{' '}
           </div>
-          <div className='size-measurement-cont'>
+          <div className="size-measurement-cont">
             {[
               {
                 size: 'small',
-                measurements: '28,30,32',
+                measurements: '28,30,32'
               },
               {
                 size: 'medium',
-                measurements: '36,38,40',
+                measurements: '36,38,40'
               },
               {
                 size: 'large',
-                measurements: '42,44,46',
-              },
-            ].map((_) => (
+                measurements: '42,44,46'
+              }
+            ].map(_ => (
               <div>
-                <span className='size'>{t(_.size)} </span>{' '}
-                <span className='measurements'>{_.measurements}</span>{' '}
+                <span className="size">{t(_.size)} </span>{' '}
+                <span className="measurements">{_.measurements}</span>{' '}
               </div>
             ))}
           </div>
         </div>
 
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
             marginTop: '2%',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Measurements')}</p>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Measurements')}</p>
           </div>
           <Tooltip
             arrow
@@ -375,19 +404,18 @@ function BasicSection({
               ) : (
                 <p style={{ fontSize: '14px' }}>{state?.measurements?.value}</p>
               )
-            }
-          >
-            <div className='pa_profile_section_input_input'>
+            }>
+            <div className="pa_profile_section_input_input">
               <CustomInput
                 disabled={
                   disabled || state.measurements.type == 'tape' || state.measurements.type == 'call'
                 }
                 labelStyle={{
-                  display: 'none',
+                  display: 'none'
                 }}
                 inputStyle={{
                   border: 'none',
-                  fontSize: '12px',
+                  fontSize: '12px'
                 }}
                 inputPlaceholder={
                   state.measurements.type == 'static'
@@ -400,32 +428,31 @@ function BasicSection({
                 }
                 inputValue={state?.measurements?.value}
                 inputDefaultValue={state?.measurements?.value}
-                minmax='on'
-                onChange={(e) => {
+                minmax="on"
+                onChange={e => {
                   setState({
                     ...state,
                     measurements: {
                       type: 'static',
-                      value: e.target.value.replace(/[^0-9]/g, ''),
-                    },
+                      value: e.target.value.replace(/[^0-9]/g, '')
+                    }
                   });
                 }}
               />
               <img
-                className='dots-measurement'
+                className="dots-measurement"
                 src={DottedSVG}
                 onClick={!disabled ? handleClickMeasurements : null}
               />
               <Menu
-                id='basic-menu'
+                id="basic-menu"
                 anchorEl={anchorElMeasurements}
                 open={openMeasurements}
                 onClose={handleCloseMeasurements}
                 MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
-                <MenuItem onClick={(e) => selectMeasurementsType('static')}>
+                  'aria-labelledby': 'basic-button'
+                }}>
+                <MenuItem onClick={e => selectMeasurementsType('static')}>
                   <p>{t('Statique')}</p>
                   <Tooltip
                     arrow
@@ -433,16 +460,14 @@ function BasicSection({
                       <p style={{ fontSize: '14px' }}>
                         {t('Les mensurations sont à entrer manuellement dans le champ prévu')}
                       </p>
-                    }
-                  >
+                    }>
                     <InfoIcon sx={{ height: '20px', width: '20px', marginLeft: '5px' }} />
                   </Tooltip>
                 </MenuItem>
                 <MenuItem
-                  onClick={(e) => {
+                  onClick={e => {
                     handleIsTapeMeasurementModalOpen();
-                  }}
-                >
+                  }}>
                   <p>{t('Mesurer avec mètre ruban')}</p>
                   <Tooltip
                     arrow
@@ -452,8 +477,7 @@ function BasicSection({
                           'Les mensurations seront à prendre avec un mètre ruban une fois la commande acceptée'
                         )}
                       </p>
-                    }
-                  >
+                    }>
                     <InfoIcon sx={{ height: '20px', width: '20px', marginLeft: '5px' }} />
                   </Tooltip>
                 </MenuItem>
@@ -474,7 +498,7 @@ function BasicSection({
             </div>
           </Tooltip>
         </div>
-        <p className='pa_profile_section_input_instructions_text' style={{ padding: '0 6%' }}>
+        <p className="pa_profile_section_input_instructions_text" style={{ padding: '0 6%' }}>
           {t("*I'm getting a tape measure.")}
           {t(
             'Depending on the garment, I measure certain parts of the body in circumference and/or length.'
@@ -484,32 +508,29 @@ function BasicSection({
           {t('*depending on the garment, I measure certain parts of the body in circumference and/or length.')}
         </p> */}
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderTopLeftRadius: '20px',
             borderTopRightRadius: '20px',
             marginTop: '2%',
-            backgroundColor: state.color == '#000000' ? '#ffffff' : state.color,
-          }}
-        >
-          <div style={{ width: '42%' }} className='pa_profile_section_input_label'>
+            backgroundColor: state.color == '#000000' ? '#ffffff' : state.color
+          }}>
+          <div style={{ width: '42%' }} className="pa_profile_section_input_label">
             <p
               style={{
-                color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff',
+                color: state.color == '#000000' ? '#000000' : !state.color ? '' : '#ffffff'
               }}
-              className='pa_profile_section_input_text'
-            >
+              className="pa_profile_section_input_text">
               {t('Dominant color')}
             </p>
           </div>
           <div
             style={{ width: '100%', height: '30pt' }}
-            className='pa_profile_section_input_input'
+            className="pa_profile_section_input_input"
             onClick={() => {
               console.log('🚀 ~ file: ParseAd.js ~ line 62 ~ openColorPicker', openColorPicker);
               setOpenColorPicker(!openColorPicker);
-            }}
-          >
+            }}>
             {openColorPicker ? (
               <div
                 // open={openColorPicker}
@@ -520,10 +541,9 @@ function BasicSection({
                   // left: '50%',
                   transform: 'translateX(80%)',
                   marginTop: 15,
-                  background: 'green !important',
+                  background: 'green !important'
                   // padding: '5%',
-                }}
-              >
+                }}>
                 {/* <ChromePicker
                   color={state.color}
                   onChangeComplete={(e) => {
@@ -533,16 +553,15 @@ function BasicSection({
                 <div
                   style={{
                     maxHeight: '200px',
-                    overflow: 'scroll',
+                    overflow: 'scroll'
                     // margin: '5%',
                     // background: 'black',
-                  }}
-                >
+                  }}>
                   <CirclePicker
-                    width='225px'
+                    width="225px"
                     style={{
                       maxHeight: '30px',
-                      overflow: 'scroll',
+                      overflow: 'scroll'
                     }}
                     colors={colors}
                     circleSize={28}
@@ -559,44 +578,74 @@ function BasicSection({
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
-            borderBottomLeftRadius: '20px',
-            borderBottomRightRadius: '20px',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Dominant Fabric')}</p>
+            borderBottomLeftRadius: state.fabric === 'Autre : précisez' ? '0' : '20px',
+            borderBottomRightRadius: state.fabric === 'Autre : précisez' ? '0' : '20px'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Dominant Fabric')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDropDown
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
-              selectID='materialFabrics'
-              selectName='materialFabrics'
+              selectID="materialFabrics"
+              selectName="materialFabrics"
               selectNullValue={t('Select Fabric Style')}
               selectValue={state.fabric}
-              onChange={(e) => _setState('fabric', e.target.value)}
-              menuItems={materialFabrics.map((_) => (
+              onChange={e => _setState('fabric', e.target.value)}
+              menuItems={materialFabrics.map(_ => (
                 <MenuItem value={t(_.title)}>{t(_.title)}</MenuItem>
               ))}
             />
           </div>
         </div>
-        <div className='create_ad_radio'>
-          {fabricTypes.map((_) => (
+        {state.fabric === 'Autre : précisez' && (
+          <>
+            <div
+              className="pa_profile_section_input_container"
+              style={{
+                borderBottomLeftRadius: '20px',
+                borderBottomRightRadius: '20px',
+                height: '45px'
+              }}>
+              <div className="pa_profile_section_input_label">
+                <p className="pa_profile_section_input_text">{t('Précisez le tissu')}</p>
+              </div>
+              <div className="pa_profile_section_input_input">
+                <CustomInput
+                  disabled={disabled}
+                  labelStyle={{
+                    display: 'none'
+                  }}
+                  inputStyle={{
+                    border: 'none',
+                    fontSize: '12px'
+                  }}
+                  inputType="text"
+                  inputPlaceholder={t('Précisez le tissu')}
+                  // inputDefaultValue={state?.observation}
+                  // onChange={e => _setState('observation', e.target.value)}
+                />
+              </div>
+            </div>
+          </>
+        )}
+        <div className="create_ad_radio">
+          {fabricTypes.map(_ => (
             <>
               <input
-                type='radio'
+                type="radio"
                 style={{ marginRight: '2%', fontSize: '14px' }}
                 checked={state.fabric_type == _}
-                onChange={(e) => {
+                onChange={e => {
                   _setState('fabric_type', _);
                 }}
               />
-              <label for='html' style={{ marginRight: '2%', fontSize: '12px' }}>
+              <label for="html" style={{ marginRight: '2%', fontSize: '12px' }}>
                 {t(_)}
               </label>
             </>
@@ -605,59 +654,57 @@ function BasicSection({
         {state.fabric_type == fabricTypes[1] ? (
           <>
             <div
-              className='pa_profile_section_input_container'
+              className="pa_profile_section_input_container"
               style={{
                 borderRadius: '20px',
                 marginBottom: '1%',
-                marginTop: '1%',
-              }}
-            >
-              <div className='pa_profile_section_input_label'>
-                <p className='pa_profile_section_input_text'>{t('Fabric Description')}</p>
+                marginTop: '1%'
+              }}>
+              <div className="pa_profile_section_input_label">
+                <p className="pa_profile_section_input_text">{t('Fabric Description')}</p>
               </div>
-              <div className='pa_profile_section_input_input'>
+              <div className="pa_profile_section_input_input">
                 <CustomInput
                   disabled={disabled}
                   labelStyle={{
-                    display: 'none',
+                    display: 'none'
                   }}
                   inputStyle={{
                     border: 'none',
-                    fontSize: '12px',
+                    fontSize: '12px'
                   }}
-                  inputType='text'
+                  inputType="text"
                   inputPlaceholder={t('Flowers')}
                   inputDefaultValue={state?.fabric_description}
-                  onChange={(e) => _setState('fabric_description', e.target.value)}
+                  onChange={e => _setState('fabric_description', e.target.value)}
                 />
               </div>
             </div>
           </>
         ) : null}
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
-            marginTop: '2%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
+            marginTop: '2%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Attachments')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
-            <label className='upload-pic-label' htmlFor='filePicker'>
+          <div className="pa_profile_section_input_input">
+            <label className="upload-pic-label" htmlFor="filePicker">
               <input
                 disabled={disabled}
                 multiple
-                type='file'
-                accept='image/*'
+                type="file"
+                accept="image/*"
                 hidden
-                id='filePicker'
-                name='file'
+                id="filePicker"
+                name="file"
                 onChange={handleImagesSelect}
               />
-              <div className='upload-img-text-cont'>
-                <span className='upload-img-text'>
+              <div className="upload-img-text-cont">
+                <span className="upload-img-text">
                   {t('upload an illustration of your creation')}
                 </span>
                 <img src={UploadSVG} />
@@ -665,8 +712,8 @@ function BasicSection({
             </label>
           </div>
         </div>
-        <div className='selected-images-container'>
-          {images?.map((_) => (
+        <div className="selected-images-container">
+          {images?.map(_ => (
             <Attachment
               image={_}
               view={() => {
@@ -682,30 +729,29 @@ function BasicSection({
           ))}
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
             marginBottom: '1%',
-            height: '80px',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Observation')}</p>
+            height: '80px'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Observation')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomInput
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               inputStyle={{
                 border: 'none',
-                fontSize: '12px',
+                fontSize: '12px'
               }}
-              inputType='text'
+              inputType="text"
               inputPlaceholder={t('Details about my creation')}
               inputDefaultValue={state?.observation}
-              onChange={(e) => _setState('observation', e.target.value)}
+              onChange={e => _setState('observation', e.target.value)}
             />
           </div>
         </div>
@@ -728,7 +774,7 @@ function BasicSection({
             <span className="alteration-txt">{t("ALTREATION SERVICE ?")} </span>
           </label>
         </div> */}
-        <div className='checkbox-container'>
+        <div className="checkbox-container">
           <Checkbox
             {...label}
             disabled={disabled || disables?.includes('create_catalog_after_completion')}
@@ -736,14 +782,14 @@ function BasicSection({
             sx={{
               color: grey[900],
               '&.Mui-checked': {
-                color: grey[900],
-              },
+                color: grey[900]
+              }
             }}
-            onChange={(e) => _setState('create_catalog_after_completion', e.target.checked)}
+            onChange={e => _setState('create_catalog_after_completion', e.target.checked)}
           />
           <label>
             {' '}
-            <span className='duw-text'>
+            <span className="duw-text">
               {t('I do desired not that my creation appears on the site')}
             </span>{' '}
             {/* <span className="alteration-txt">{t("ORDER COMPLETION ?")} </span>{" "} */}
@@ -757,7 +803,7 @@ function BasicSection({
             style={{
               marginBottom: '6%',
               padding: '1.7% 5%',
-              boxShadow: 'none',
+              boxShadow: 'none'
             }}
             onClick={onClick}
           />
@@ -765,15 +811,13 @@ function BasicSection({
         <Modal
           open={isViewImageModal}
           onClose={handleIsViewImageModalClose}
-          aria-labelledby='View Image'
-        >
+          aria-labelledby="View Image">
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
         <Modal
           open={isTapeMeasurementModal}
           onClose={handleIsTapeMeasurementModalClose}
-          aria-labelledby='Tape Measurement'
-        >
+          aria-labelledby="Tape Measurement">
           <TapeMeasurementsModal
             _setState={_setState}
             handleClose={handleIsTapeMeasurementModalClose}
@@ -796,14 +840,14 @@ function TapeMeasurementsModal(props) {
     hip: '',
     thigh: '',
     calf: '',
-    ankle: '',
+    ankle: ''
   });
   const [lengthSection, setLengthSection] = useState({
     head_to_floor: '',
     shoulder_to_floor: '',
     waist_to_floor: '',
     arm_length: '',
-    leg_length: '',
+    leg_length: ''
   });
 
   const circumferenceSectionCallback = () => {
@@ -814,7 +858,7 @@ function TapeMeasurementsModal(props) {
     setActiveStep(1);
   };
 
-  const lengthSectionCallback = async (event) => {
+  const lengthSectionCallback = async event => {
     event.preventDefault();
 
     const isValidated =
@@ -829,7 +873,7 @@ function TapeMeasurementsModal(props) {
       const str = JSON.stringify(measurements).replace(/"([^"]+)":/g, '$1:');
       props._setState('measurements', {
         type: 'tape',
-        value: str,
+        value: str
       });
       props.handleClose();
     } catch (e) {
@@ -850,55 +894,50 @@ function TapeMeasurementsModal(props) {
       ShoulderToFloorLength: lengthSection.shoulder_to_floor,
       WaistToFloorLength: lengthSection.waist_to_floor,
       ArmLength: lengthSection.arm_length,
-      LegLength: lengthSection.leg_length,
+      LegLength: lengthSection.leg_length
     };
     return DATA;
   };
 
   return (
     <div
-      className='tqs_sqm_container'
+      className="tqs_sqm_container"
       style={{
         maxHeight: '95vh',
         width: '60vw',
         overflow: 'scroll',
-        height: '90vh',
-      }}
-    >
-      <div style={{ width: '95%' }} className='client_create_ad_screen_column2'>
+        height: '90vh'
+      }}>
+      <div style={{ width: '95%' }} className="client_create_ad_screen_column2">
         <p
           style={{
             padding: '2% 0%',
             color: '#990000',
             fontSize: '12pt',
             fontWeight: 'bold',
-            lineHeight: '20px',
-          }}
-        >
+            lineHeight: '20px'
+          }}>
           {t(
-            'REMINDER : Once the measurements have been filled in and validated, D.C.E will use these measurements to make your outfit. D.C.E will in no way be responsible for incorrect measurements. No complaints about the measurements of your outfits will be possible. Any alterations due to incorrect measurements will be invoiced to you and the shipments will be at your expense.'
+            'RAPPEL : Une fois les mesures renseignées et validées, D.C.E utilisera ces mesures pour confectionner votre tenue. D.C.E ne sera en aucun cas responsable des mesures erronées. Aucune réclamation sur les mensurations de vos tenues ne sera possible. Toute modification due à des mesures erronées vous sera facturée et les envois seront à votre charge.'
           )}
         </p>
         <div
-          style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-        >
+          style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
           <img src={MeasurementDetailsSVG} style={{ width: '70%' }} />
           <img style={{ width: '70%' }} src={MeasurementChartSVG} />
         </div>
         <div
-          className='pa_container'
+          className="pa_container"
           style={{
             height: '100%',
-            width: '100%',
-          }}
-        >
+            width: '100%'
+          }}>
           <div
-            className='pa_steps_row'
+            className="pa_steps_row"
             style={{
               paddingBottom: '4%',
-              paddingTop: '2%',
-            }}
-          >
+              paddingTop: '2%'
+            }}>
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((v, i) => (
                 <Step key={v}>
@@ -907,7 +946,7 @@ function TapeMeasurementsModal(props) {
               ))}
             </Stepper>
           </div>
-          <div className='pa_content_row'>
+          <div className="pa_content_row">
             {activeStep == 0 ? (
               <ParseMeasurement.CircumferenceSection
                 state={circumferenceSection}
@@ -938,20 +977,20 @@ function DeliverySection({ state, setState, onClick, disabled }) {
     obj[key] = value;
     setState({
       ...state,
-      ...obj,
+      ...obj
     });
   };
-  const _setAddress = (_) => {
+  const _setAddress = _ => {
     _setState('address', { ...state.address, ..._ });
   };
-  const handleSelectAddress = (e) => {
+  const handleSelectAddress = e => {
     if (e) {
       _setAddress({
         label: e.label,
         zip: e.PostalCode,
         city: e.city,
         lat: e.lat,
-        lng: e.lng,
+        lng: e.lng
       });
     } else {
       _setAddress({
@@ -959,40 +998,40 @@ function DeliverySection({ state, setState, onClick, disabled }) {
         zip: '',
         city: '',
         lat: '',
-        lng: '',
+        lng: ''
       });
     }
   };
-  const handleInputAddress = async (e) => {
+  const handleInputAddress = async e => {
     if (e.target.value === '') {
       _setAddress({
         label: '',
         zip: '',
         city: '',
         lat: '',
-        lng: '',
+        lng: ''
       });
       setAddresses([]);
     } else {
       _setAddress({
-        label: e.target.value,
+        label: e.target.value
       });
       const config = {
         method: 'get',
-        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
+        url: `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`
       };
       axios.defaults.headers = null;
       try {
         const response = await axios(config);
         const addressToSet = [];
         response.data.features
-          .map((item) => {
+          .map(item => {
             addressToSet.push({
               label: item.properties.label,
               city: item.properties.city,
               PostalCode: item.properties.postcode,
               lat: item.geometry.coordinates[1],
-              lng: item.geometry.coordinates[0],
+              lng: item.geometry.coordinates[0]
             });
             setAddresses(addressToSet);
           })
@@ -1007,147 +1046,144 @@ function DeliverySection({ state, setState, onClick, disabled }) {
   };
   return (
     <>
-      <div className='pa_profile_section_container'>
+      <div className="pa_profile_section_container">
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('First Name')}</p>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Last Name')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomInput
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               inputStyle={{
                 border: 'none',
-                fontSize: '12px',
+                fontSize: '12px'
               }}
-              inputType='text'
-              inputPlaceholder={t('First Name')}
-              inputDefaultValue={state?.client_first_name}
-              onChange={(e) => _setState('client_first_name', e.target.value)}
-            />
-          </div>
-        </div>
-        <div
-          className='pa_profile_section_input_container'
-          style={{
-            borderRadius: '20px',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Last Name')}</p>
-          </div>
-          <div className='pa_profile_section_input_input'>
-            <CustomInput
-              disabled={disabled}
-              labelStyle={{
-                display: 'none',
-              }}
-              inputStyle={{
-                border: 'none',
-                fontSize: '12px',
-              }}
-              inputType='text'
+              inputType="text"
               inputPlaceholder={t('Last Name')}
               inputDefaultValue={state?.client_last_name}
-              onChange={(e) => _setState('client_last_name', e.target.value)}
+              onChange={e => _setState('client_last_name', e.target.value)}
             />
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
-            marginBottom: '2%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Delivery Address')}</p>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('First Name')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
+            <CustomInput
+              disabled={disabled}
+              labelStyle={{
+                display: 'none'
+              }}
+              inputStyle={{
+                border: 'none',
+                fontSize: '12px'
+              }}
+              inputType="text"
+              inputPlaceholder={t('First Name')}
+              inputDefaultValue={state?.client_first_name}
+              onChange={e => _setState('client_first_name', e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div
+          className="pa_profile_section_input_container"
+          style={{
+            borderRadius: '20px',
+            marginBottom: '2%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Delivery Address')}</p>
+          </div>
+          <div className="pa_profile_section_input_input">
             <div style={{ width: '100%' }}>
               <AutoComplete
+                noOptionsText={'Aucune adresse trouvée'}
                 disabled={disabled}
-                name='Address'
+                name="Address"
                 required={true}
                 label={'Address'}
                 value={state?.address?.label}
                 options={addresses}
                 placeholder={t('Address')}
-                componenet='parseaddress'
-                onChangeAddress={(e) => {
+                componenet="parseaddress"
+                onChangeAddress={e => {
                   handleInputAddress(e);
                 }}
-                onAddressSelect={(e) => handleSelectAddress(e)}
+                onAddressSelect={e => handleSelectAddress(e)}
               />
             </div>
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">
               {t('any note (s) concerning the delivery')}
             </p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomInput
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               inputStyle={{
                 border: 'none',
-                fontSize: '12px',
+                fontSize: '12px'
               }}
-              inputType='text'
+              inputType="text"
               inputPlaceholder={t('Write any note regarding Delivery (Optional)')}
               inputDefaultValue={state?.note}
-              onChange={(e) => _setState('note', e.target.value)}
+              onChange={e => _setState('note', e.target.value)}
             />
           </div>
         </div>
-        <p className='pa_profile_section_input_instructions_text'>
+        <p className="pa_profile_section_input_instructions_text">
           {t('*Select Delivery Type according to your Demands')}
         </p>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
             marginTop: '2%',
-            marginBottom: '1%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('desired delivery date')}</p>
+            marginBottom: '1%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('desired delivery date')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDatePicker
               disablePast
               centeredText={false}
               disabled={disabled}
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               value={state?.date}
-              onChange={(e) => _setState('date', e)}
+              onChange={e => _setState('date', e)}
             />
           </div>
         </div>
-        <p className='pa_profile_section_input_instructions_text'>
+        <p className="pa_profile_section_input_instructions_text">
           {t('*Select Date for delivery')}
         </p>
         {!onClick ? (
@@ -1159,7 +1195,7 @@ function DeliverySection({ state, setState, onClick, disabled }) {
               marginTop: '3%',
               marginBottom: '10%',
               padding: '1.5% 5%',
-              boxShadow: 'none',
+              boxShadow: 'none'
             }}
             onClick={onClick}
           />
@@ -1177,13 +1213,13 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
     obj[key] = value;
     setState({
       ...state,
-      ...obj,
+      ...obj
     });
   };
   const store = Store();
   return (
     <>
-      <div className='pa_profile_section_container'>
+      <div className="pa_profile_section_container">
         {state?.quotes?.length === 0 || !state.quotes ? (
           <>
             {/* <div
@@ -1241,27 +1277,26 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
               </div>
             </div> */}
             <div
-              className='pa_payment_section_input_container'
+              className="pa_payment_section_input_container"
               style={{
                 borderRadius: '20px',
-                marginBottom: '2%',
-              }}
-            >
-              <div className='pa_payment_section_input_label'>
-                <p className='pa_payment_section_input_text'>{t('Set Maximum Price')}</p>
+                marginBottom: '2%'
+              }}>
+              <div className="pa_payment_section_input_label">
+                <p className="pa_payment_section_input_text">{t('Set Maximum Price')}</p>
               </div>
-              <div className='pa_payment_section_input_input_container'>
+              <div className="pa_payment_section_input_input_container">
                 <input
                   disabled={disabled}
-                  className='pa_payment_section_input_input'
-                  type='tel'
+                  className="pa_payment_section_input_input"
+                  type="tel"
                   value={state?.max_price}
                   defaultValue={state.max_price}
-                  onChange={(e) => _setState('max_price', e.target.value.replace(/[^0-9]/g, ''))}
-                  placeholder='0€'
-                  maxlength='15'
+                  onChange={e => _setState('max_price', e.target.value.replace(/[^0-9]/g, ''))}
+                  placeholder="0€"
+                  maxlength="15"
                 />
-                {state.max_price ? <span className='input-currency-sign'>€</span> : null}
+                {state.max_price ? <span className="input-currency-sign">€</span> : null}
               </div>
             </div>
           </>
@@ -1269,47 +1304,45 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
         {(store.userRole == 'tailor' || state?.quotes?.length > 0) &&
         state?.quotes[0]?.price > 0 ? (
           <div
-            className='pa_payment_section_input_container'
+            className="pa_payment_section_input_container"
             style={{
               borderRadius: '25px',
-              marginBottom: '2%',
-            }}
-          >
-            <div className='pa_payment_section_input_label'>
-              <p className='pa_payment_section_input_text'>{t('Prix final')}</p>
+              marginBottom: '2%'
+            }}>
+            <div className="pa_payment_section_input_label">
+              <p className="pa_payment_section_input_text">{t('Prix final')}</p>
             </div>
-            <div className='pa_payment_section_input_input_container'>
+            <div className="pa_payment_section_input_input_container">
               <input
                 disabled={disabled}
-                className='pa_payment_section_input_input'
-                type='number'
+                className="pa_payment_section_input_input"
+                type="number"
                 defaultValue={state?.quotes[0]?.price}
-                onChange={(e) => _setState('min_price', e.target.value)}
-                placeholder='0€'
+                onChange={e => _setState('min_price', e.target.value)}
+                placeholder="0€"
               />
-              {state?.quotes[0]?.price ? <span className='input-currency-sign'>€</span> : null}
+              {state?.quotes[0]?.price ? <span className="input-currency-sign">€</span> : null}
             </div>
           </div>
         ) : null}
         {!onClick ? (
           <></>
         ) : (
-          <div className='pa_payment_section_consent_container'>
+          <div className="pa_payment_section_consent_container">
             <Checkbox
-              onChange={(e) => _setState('terms_conditions', e.target.checked)}
+              onChange={e => _setState('terms_conditions', e.target.checked)}
               style={{
                 transform: 'scale(0.8)',
                 color: '#000000',
-                paddingRight: '2%',
+                paddingRight: '2%'
               }}
               defaultChecked
             />
             <p
-              className='terms-text'
+              className="terms-text"
               style={{
-                paddingRight: '0.6%',
-              }}
-            >
+                paddingRight: '0.6%'
+              }}>
               {t('I agree with terms & condition & privacy policy of')} DESIGN CONFECTIONS ETHIQUES
             </p>
             {/* <p
@@ -1348,7 +1381,7 @@ function NotesSection({ state, setState, buttonText, onClick, disabled }) {
             style={{
               margin: '7%',
               padding: '1.5% 5%',
-              boxShadow: 'none',
+              boxShadow: 'none'
             }}
           />
         )}

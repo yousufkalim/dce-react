@@ -73,7 +73,7 @@ const Landing = () => {
       <div className="landing_main_container" >
         <div style={{width:"100%",height:"100%",top :"25px",position:"absolute",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <div style={{width:"25%",height:"70%",display:"flex",flexDirection:"column",justifyContent:"flex-end",paddingLeft:"5%"}}>
-           <img style={{width:"100%"}} src={LeftBgImage}/>
+           <img style={{width:"100%" , filter: "grayscale(70%)"}} src={LeftBgImage}/>
           </div> 
           <div style={{width:"15%",height:"92%",display:"flex",flexDirection:"column", justifyContent:"flex-end",paddingRight:"2%"}}>
           <img style={{width:"100%"}}  src={RightBgImage}/>

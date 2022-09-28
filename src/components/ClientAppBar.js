@@ -30,16 +30,16 @@ import assetsURL from '../utils/Assets';
 import { Store, UpdateStore } from '../StoreContext';
 import { useTranslation } from 'react-i18next';
 
-const StyledMenu = styled((MenuProps) => (
+const StyledMenu = styled(MenuProps => (
   <Menu
     elevation={0}
     anchorOrigin={{
       vertical: 'bottom',
-      horizontal: 'right',
+      horizontal: 'right'
     }}
     transformOrigin={{
       vertical: 'top',
-      horizontal: 'right',
+      horizontal: 'right'
     }}
     {...MenuProps}
   />
@@ -55,16 +55,16 @@ const StyledMenu = styled((MenuProps) => (
     '& .MuiMenuItem-root': {
       '& .MuiSvgIcon-root': {
         color: theme.palette.text.secondary,
-        marginRight: theme.spacing(1.5),
-      },
+        marginRight: theme.spacing(1.5)
+      }
       // '&:active': {
       //   backgroundColor: alpha(
       //     theme.palette.primary.main,
       //     theme.palette.action.selectedOpacity,
       //   ),
       // },
-    },
-  },
+    }
+  }
 }));
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth]);
@@ -89,7 +89,7 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
 
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const openProfile = Boolean(anchorElProfile);
-  const handleClickProfile = (event) => {
+  const handleClickProfile = event => {
     setAnchorElProfile(event.currentTarget);
   };
   const handleCloseProfile = () => {
@@ -98,9 +98,9 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
 
   const [anchorElNotifications, setAnchorElNotifications] = React.useState(null);
   const openNotifications = Boolean(anchorElNotifications);
-  const handleClickNotifications = (event) => {
+  const handleClickNotifications = event => {
     setAnchorElNotifications(event.currentTarget);
-    if (notifications.filter((_) => !_.is_read).length > 0) {
+    if (notifications.filter(_ => !_.is_read).length > 0) {
       _readNotifications();
     }
   };
@@ -170,7 +170,9 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
     try {
       response = await Api('get', `/notifications`);
       const notificationsData = response.data.notifications.splice(-8);
-      notificationsData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      notificationsData.sort(
+        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
       setNotifications(notificationsData);
     } catch (e) {
       console.trace(e);
@@ -192,23 +194,27 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
     setToggle(!toggle);
   };
 
-  const changeLanguage = (lng) => {
+  const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
 
   return (
     <>
       <div
-        className='appbar_container'
+        className="appbar_container"
         style={{
           backgroundColor: color,
           position: sticky ? 'fixed' : 'inherit',
-          ...divStyle,
-        }}
-      >
-        <div className='appbar_top'>
-          <div className='appbar_row1'>
-            <img src={AppLogoSVG} className='appbar_row1_img' style={{ marginRight: '5%' }} onClick={navToHome} />
+          ...divStyle
+        }}>
+        <div className="appbar_top">
+          <div className="appbar_row1">
+            <img
+              src={AppLogoSVG}
+              className="appbar_row1_img"
+              style={{ marginRight: '5%' }}
+              onClick={navToHome}
+            />
             {/* <div style={{ display: 'flex', paddingRight: '4%' }}> */}
             {width > 768 ? (
               <>
@@ -216,24 +222,31 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               </>
             ) : (
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img className='cursor-pointer' onClick={mobilemenu} src={dotted} />
+                <img className="cursor-pointer" onClick={mobilemenu} src={dotted} />
               </div>
             )}
             {/* </div> */}
           </div>
 
-          <div className='appbar_row2'>
-            {!disableSearch ? <SearchInput setSearchQuery={setSearchQuery} callback={navToSearch} /> : <></>}
-            <div className='notifications_count_container' style={{ marginLeft: '3%' }}>
-              <img src={NotificationsSVG} className='appbar_row2_notifications_img' onClick={handleClickNotifications} />
-              {notifications.filter((_) => !_.is_read).length > 0 ? (
-                <div className='notifications_count_pos'>
+          <div className="appbar_row2">
+            {!disableSearch ? (
+              <SearchInput setSearchQuery={setSearchQuery} callback={navToSearch} />
+            ) : (
+              <></>
+            )}
+            <div className="notifications_count_container" style={{ marginLeft: '3%' }}>
+              <img
+                src={NotificationsSVG}
+                className="appbar_row2_notifications_img"
+                onClick={handleClickNotifications}
+              />
+              {notifications.filter(_ => !_.is_read).length > 0 ? (
+                <div className="notifications_count_pos">
                   <p
                     style={{
-                      fontSize: '14px',
-                    }}
-                  >
-                    {notifications.filter((_) => !_.is_read).length}
+                      fontSize: '14px'
+                    }}>
+                    {notifications.filter(_ => !_.is_read).length}
                   </p>
                 </div>
               ) : (
@@ -241,62 +254,69 @@ function ClientAppBar({ activeTab, color, sticky = true, disableSearch = false, 
               )}
             </div>
             <Menu
-              id='basic-menu'
+              id="basic-menu"
               anchorEl={anchorElNotifications}
               open={openNotifications}
               onClose={handleCloseNotifications}
               MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              {notifications.map((_) => (
+                'aria-labelledby': 'basic-button'
+              }}>
+              {notifications.map(_ => (
                 <NotificationsListTile {..._} handleClose={handleCloseNotifications} />
               ))}
             </Menu>
             <img
-              className='appbar_row2_user_img image_container'
+              className="appbar_row2_user_img image_container"
               style={{
                 width: '6vh',
                 height: '6vh',
-                marginLeft: '3%',
+                marginLeft: '3%'
               }}
               src={profile?.avatar ? assetsURL(profile.avatar) : dummy}
               onClick={handleClickProfile}
             />
             <StyledMenu
-              id='demo-customized-menu'
+              id="demo-customized-menu"
               MenuListProps={{
-                'aria-labelledby': 'demo-customized-button',
+                'aria-labelledby': 'demo-customized-button'
               }}
               anchorEl={anchorElProfile}
               open={openProfile}
-              onClose={handleCloseProfile}
-            >
-              <img className='nock' src={Nock} />
+              onClose={handleCloseProfile}>
+              <img className="nock" src={Nock} />
 
-              <div className='user-detail-conatiner'>
+              <div className="user-detail-conatiner">
                 <img
-                  className='image_container'
-                  src={profileImage ? URL.createObjectURL(profileImage) : profile?.avatar ? assetsURL(profile?.avatar) : dummy}
+                  className="image_container"
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : profile?.avatar
+                      ? assetsURL(profile?.avatar)
+                      : dummy
+                  }
                 />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className='user-name'>{profile?.name} </p>
-                  <p className='user-email'>{profile?.email}</p>
+                  <p className="user-name">{profile?.name} </p>
+                  <p className="user-email">{profile?.email}</p>
                 </div>
               </div>
 
-              <MenuItem style={{ borderBottom: '1px solid #DBDBDB' }} className='menu-item' onClick={navToProfile}>
+              <MenuItem
+                style={{ borderBottom: '1px solid #DBDBDB' }}
+                className="menu-item"
+                onClick={navToProfile}>
                 <img style={{ padding: '4% 0%' }} src={EditIcon} /> <p> {t('Profile')} </p>
               </MenuItem>
               {/* <MenuItem className='menu-item support-padding' onClick={() => changeLanguage(`${language == 'en' ? 'fr' : 'en'}`)}>
                 <GTranslateIcon sx={{ width: '20px' }} />
                 {language == 'fr' ? 'French' : 'English'}
               </MenuItem> */}
-              <MenuItem className='menu-item' onClick={navToSupport}>
+              <MenuItem className="menu-item" onClick={navToSupport}>
                 <img style={{ width: '16px' }} src={SupportIcon} />
                 <p> {t('Support')}</p>
               </MenuItem>
-              <MenuItem className='menu-item sign-out-padding' onClick={handleLogoutSubmit}>
+              <MenuItem className="menu-item sign-out-padding" onClick={handleLogoutSubmit}>
                 <img style={{ width: '16px' }} src={SignOutIcon} /> <p> {t('Sign out')}</p>
               </MenuItem>
             </StyledMenu>
@@ -312,7 +332,7 @@ function SearchInput({ setSearchQuery, callback }) {
   const { t } = useTranslation();
 
   return (
-    <div className='nav_searchBox'>
+    <div className="nav_searchBox">
       <div
         style={{
           position: 'relative',
@@ -321,16 +341,15 @@ function SearchInput({ setSearchQuery, callback }) {
           background: '#ffff',
           display: 'flex',
           borderRadius: '10px',
-          paddingRight: '3%',
-        }}
-      >
+          paddingRight: '3%'
+        }}>
         <input
-          type='text'
+          type="text"
           placeholder={t('Search')}
-          className='appbar_row2_input'
-          onChange={(e) => setSearchQuery(e.target.value)}
+          className="appbar_row2_input"
+          onChange={e => setSearchQuery(e.target.value)}
         />
-        <img src={SearchSVG} className='appbar_row2_search_img' onClick={callback} />
+        <img src={SearchSVG} className="appbar_row2_search_img" onClick={callback} />
       </div>
     </div>
   );
@@ -358,43 +377,39 @@ function NavlinkDesktop({ activeTab }) {
   return (
     <>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToDesigners}
-      >
-        {t('Designers')}
+        onClick={navToDesigners}>
+        {t('Professionnels')}
       </p>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToOrders}
-      >
+        onClick={navToOrders}>
         {t('Orders')}
       </p>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToMyAds}
-      >
+        onClick={navToMyAds}>
         {t('My Ads')}
       </p>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToChat}
-      >
+        onClick={navToChat}>
         {t('Chats')}
       </p>
     </>
@@ -423,45 +438,41 @@ function NavlinkMobile({ activeTab }) {
   };
 
   return (
-    <div className='mobile-nav'>
+    <div className="mobile-nav">
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 0 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToDesigners}
-      >
+        onClick={navToDesigners}>
         {t('Designers')}
       </p>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 1 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToOrders}
-      >
+        onClick={navToOrders}>
         {t('Orders')}
       </p>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 2 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToMyAds}
-      >
+        onClick={navToMyAds}>
         {t('My Ads')}
       </p>
       <p
-        className='appbar_row1_tab_text'
+        className="appbar_row1_tab_text"
         style={{
           paddingRight: '5%',
-          color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`,
+          color: `${activeTab == 3 ? '#CC8E9C' : '#A0A0A0'}`
         }}
-        onClick={navToChat}
-      >
+        onClick={navToChat}>
         {t('Chats')}
       </p>
     </div>

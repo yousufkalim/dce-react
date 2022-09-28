@@ -40,27 +40,29 @@ const TailorCatalogScreen = () => {
     navigate('/create_catalog');
   };
 
-  const navToViewCatalog = (id) => {
+  const navToViewCatalog = id => {
     navigate(`/view_catalog/${id}`);
   };
 
-  const navToEditCatalog = (id) => {
+  const navToEditCatalog = id => {
     navigate(`/edit_catalog/${id}`);
   };
 
   return (
-    <div className='container-page'>
-      <TailorAppBar color='#ffffff' activeTab={1} />
-      <div className='tailor_catalog_screen_row1'>
-        <div className='tailor_catalog_screen_row1_column1' style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <p className='tailor_catalog_screen_row1_column1_text' style={{ paddingTop: '5%' }}>
+    <div className="container-page">
+      <TailorAppBar color="#ffffff" activeTab={1} />
+      <div className="tailor_catalog_screen_row1">
+        <div
+          className="tailor_catalog_screen_row1_column1"
+          style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <p className="tailor_catalog_screen_row1_column1_text" style={{ paddingTop: '5%' }}>
             {t(
               'This catalog allows you to share your creations with D.C.E customers and thus highlight your talents and know-how.'
             )}
           </p>
           <CustomButton
             text={t('Add one of my creations')}
-            type='submit'
+            type="submit"
             style={{
               background: '#fff',
               fontSize: '18px',
@@ -68,23 +70,39 @@ const TailorCatalogScreen = () => {
               fontWeight: '600',
               boxShadow: 'none',
               marginTop: '0%',
-              padding: '1% 2% 1% 2%',
+              padding: '1% 2% 1% 2%'
             }}
             onClick={navToCreateCatalog}
           />
         </div>
       </div>
-      <div className='tailor_catalog_screen_row2'>
-        <p className='tailor_catalog_screen_row2_text'>{t('My Catalogue')}</p>
-        <div className='tailor_catalog_screen_row2_list_container'>
-          {catalogs.map((_) => (
-            <CatalogListTile
-              catalog={_}
-              buttonText={t('Edit')}
-              onClick={() => navToViewCatalog(_._id)}
-              onClickButton={() => navToEditCatalog(_._id)}
-            />
-          ))}
+      <div className="tailor_catalog_screen_row2">
+        <p className="tailor_catalog_screen_row2_text">{t('My Catalogue')}</p>
+        <div className="tailor_catalog_screen_row2_list_container">
+          {catalogs.length > 0 ? (
+            <>
+              {catalogs.map(_ => (
+                <CatalogListTile
+                  catalog={_}
+                  buttonText={t('Edit')}
+                  onClick={() => navToViewCatalog(_._id)}
+                  onClickButton={() => navToEditCatalog(_._id)}
+                />
+              ))}
+            </>
+          ) : (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%'
+              }}>
+              <p style={{ textAlign: 'center', fontWeight: '500', color: 'rgb(160, 160, 160)' }}>
+                Le catalogue de ce professionnel est vide
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <Footer />

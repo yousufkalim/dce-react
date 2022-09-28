@@ -43,7 +43,7 @@ function TailorCreateAccountScreen() {
     navigate('/home');
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
     if (isProcessing) {
       return;
@@ -63,7 +63,7 @@ function TailorCreateAccountScreen() {
         password: state['Password'],
         // shop_name: data.get("Name of your company"),
         name: data.get('Name'),
-        phone: data.get('Phone No'),
+        phone: data.get('Phone No')
       };
       setIsProcessing(true);
       if (hasPhysicalStore) {
@@ -90,39 +90,36 @@ function TailorCreateAccountScreen() {
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
-        className='container'
+        className="container"
         style={{
           background:
-            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
-        }}
-      >
-        <div className='login_screen_top'>
-          <div className='login_screen_row1'>
-            <div className='login_screen_row1_img create_account_screen_row1_img'>
+            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))'
+        }}>
+        <div className="login_screen_top">
+          <div className="login_screen_row1">
+            <div className="login_screen_row1_img create_account_screen_row1_img">
               <img style={{ width: '15%', marginBottom: '5%' }} src={AppLogoSVG} />
               <div>
                 <p
                   style={{
-                    fontSize: '32px',
-                  }}
-                >
-                  Introduce
+                    fontSize: '32px'
+                  }}>
+                  Introduire
                 </p>
                 <p
                   style={{
-                    fontSize: '32px',
-                  }}
-                >
-                  yourself
+                    fontSize: '32px'
+                  }}>
+                  toi-même
                 </p>
               </div>
             </div>
-            <div className='login_screen_row1_img'>
+            <div className="login_screen_row1_img">
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
-          <div className='login_screen_row2'>
-            <div className='create_account_screen_row2_container'>
+          <div className="login_screen_row2">
+            <div className="create_account_screen_row2_container">
               {/* <CustomInput
                 labelText={t("Name of your company")}
                 inputName="Name of your company"
@@ -133,23 +130,23 @@ function TailorCreateAccountScreen() {
               /> */}
               <CustomInput
                 labelText={t('Name')}
-                inputName='Name'
+                inputName="Name"
                 inputPlaceholder={t('Name')}
                 divStyle={{
-                  marginBottom: '6%',
+                  marginBottom: '6%'
                 }}
                 minmax={true}
               />
               <CustomInput
                 labelText={t('Phone No')}
-                inputName='Phone No'
+                inputName="Phone No"
                 inputPlaceholder={t('Phone No')}
                 divStyle={{
-                  marginBottom: '2%',
+                  marginBottom: '2%'
                 }}
                 minmax={true}
                 inputValue={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
+                onChange={e => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
               />
               <div
                 style={{
@@ -157,41 +154,39 @@ function TailorCreateAccountScreen() {
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '2%',
-                }}
-              >
+                  marginBottom: '2%'
+                }}>
                 <Checkbox
                   checked={hasPhysicalStore}
                   sx={{
                     color: grey[900],
                     '&.Mui-checked': {
-                      color: grey[900],
-                    },
+                      color: grey[900]
+                    }
                   }}
-                  onChange={(e) => setHasPhysicalStore(e.target.checked)}
+                  onChange={e => setHasPhysicalStore(e.target.checked)}
                 />
                 <p
                   style={{
                     fontSize: '14px',
                     fontWeight: '400',
                     color: '#A0A0A0',
-                    paddingLeft: '10px',
-                  }}
-                >
+                    paddingLeft: '10px'
+                  }}>
                   {t('I Have Physical Store')}
                 </p>
               </div>
               {hasPhysicalStore ? (
                 <CustomInput
                   labelText={t('Store Name')}
-                  inputName='Store Name'
+                  inputName="Store Name"
                   inputPlaceholder={t('Store Name')}
                   labelStyle={{
-                    display: 'none',
+                    display: 'none'
                   }}
                   divStyle={{
                     marginBottom: '6%',
-                    width: '48%',
+                    width: '48%'
                   }}
                 />
               ) : (
@@ -199,9 +194,9 @@ function TailorCreateAccountScreen() {
               )}
               <CustomButton
                 text={t('Save')}
-                type='submit'
+                type="submit"
                 style={{
-                  marginBottom: '10%',
+                  marginBottom: '10%'
                 }}
               />
             </div>

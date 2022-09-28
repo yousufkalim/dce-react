@@ -38,7 +38,7 @@ function ClientCreateAdScreen(props) {
     cut: '',
     measurements: {
       type: 'static',
-      value: '',
+      value: ''
     },
     color: '',
     fabric: '',
@@ -47,23 +47,23 @@ function ClientCreateAdScreen(props) {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: '',
+    observation: ''
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
-    address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    address: { zip: '', label: '', city: '', lat: '', lng: '' }
   });
   const [notesSection, setNotesSection] = useState({
     type: '',
     min_price: '',
     max_price: '',
     note: '',
-    terms_conditions: true,
+    terms_conditions: true
   });
 
-  const handleImagesSelect = (event) => {
+  const handleImagesSelect = event => {
     if (event.target.files.length + images.length > 5) {
       toast.error(t('You can select a maximum of 5 files.'));
       return;
@@ -83,9 +83,9 @@ function ClientCreateAdScreen(props) {
     }
     setImages([...images, ...event.target.files]);
   };
-  const handleImageDeselect = (image) => {
+  const handleImageDeselect = image => {
     const _images = [...images];
-    const index = _images.map((_) => _.name).indexOf(image.name);
+    const index = _images.map(_ => _.name).indexOf(image.name);
     if (index > -1) {
       _images.splice(index, 1);
     }
@@ -115,7 +115,7 @@ function ClientCreateAdScreen(props) {
     setActiveStep(2);
   };
 
-  const notesSectionCallback = async (event) => {
+  const notesSectionCallback = async event => {
     event.preventDefault();
 
     const isValidated =
@@ -166,7 +166,7 @@ function ClientCreateAdScreen(props) {
           note: deliverySection.note,
           date: deliverySection.date,
           client_first_name: deliverySection.client_first_name,
-          client_last_name: deliverySection.client_last_name,
+          client_last_name: deliverySection.client_last_name
         })
       );
       body.append(
@@ -175,7 +175,7 @@ function ClientCreateAdScreen(props) {
           type: notesSection.type,
           min_price: notesSection.min_price,
           max_price: notesSection.max_price,
-          note: notesSection.note,
+          note: notesSection.note
         })
       );
       for (let i = 0; i < images.length; i++) {
@@ -206,37 +206,34 @@ function ClientCreateAdScreen(props) {
 
   return (
     <>
-      <div className='container' onClick={handleCloseColorPicker}>
-        <ClientAppBar activeTab={2} color='#FFFAF9' />
+      <div onClick={handleCloseColorPicker}>
+        <ClientAppBar activeTab={2} color="#FFFAF9" />
         <div
-          className='client_create_ad_screen_top'
+          className="client_create_ad_screen_top"
           style={{
-            background: '#FFEEEA',
-          }}
-        >
-          <div className='client_create_ad_screen_column1'>
+            background: '#FFEEEA'
+          }}>
+          <div className="client_create_ad_screen_column1">
             <p
               style={{
                 fontSize: '20px',
                 fontWeight: '900',
                 marginBottom: '6%',
                 width: '50%',
-                lineHeight: '23px',
+                lineHeight: '23px'
               }}
-              onClick={navToCreateAd}
-            >
+              onClick={navToCreateAd}>
               {t('I am concretizing my idea of tailoring')}
             </p>
             <img style={{ width: '70%' }} src={AdElaborationSVG} />
           </div>
-          <div className='client_create_ad_screen_column2'>
+          <div className="client_create_ad_screen_column2">
             <div
-              className='pa_container'
+              className="pa_container"
               style={{
-                marginTop: '8.5%',
-              }}
-            >
-              <div className='pa_steps_row'>
+                marginTop: '8.5%'
+              }}>
+              <div className="pa_steps_row">
                 <Stepper activeStep={activeStep} alternativeLabel>
                   {steps.map((v, i) => (
                     <Step key={v}>
@@ -245,7 +242,7 @@ function ClientCreateAdScreen(props) {
                   ))}
                 </Stepper>
               </div>
-              <div className='pa_content_row'>
+              <div className="pa_content_row">
                 {activeStep == 0 ? (
                   <ParseAd.BasicSection
                     state={basicSection}
@@ -266,7 +263,11 @@ function ClientCreateAdScreen(props) {
                     onClick={deliverySectionCallback}
                   />
                 ) : activeStep == 2 ? (
-                  <ParseAd.NotesSection state={notesSection} setState={setNotesSection} onClick={notesSectionCallback} />
+                  <ParseAd.NotesSection
+                    state={notesSection}
+                    setState={setNotesSection}
+                    onClick={notesSectionCallback}
+                  />
                 ) : (
                   <></>
                 )}
