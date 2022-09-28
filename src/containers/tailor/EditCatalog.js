@@ -43,7 +43,7 @@ function TailorEditCatalogScreen() {
       response = await Api('get', `/catalogs/${params.id}`);
 
       let updatedAttachments = response?.data?.catalog?.attachments?.map(
-        (val) => (val = `https://dce.falconit.com.pk/${val}`)
+        val => (val = `https://dce.falconit.com.pk/${val}`)
       );
       setImages(updatedAttachments);
       const catalogData = response.data.catalog;
@@ -59,31 +59,29 @@ function TailorEditCatalogScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className='container-page'>
-          <TailorAppBar color='#FFFAF9' activeTab={1} />
+        <div className="container-page">
+          <TailorAppBar color="#FFFAF9" activeTab={1} />
           <div
-            className='container'
+            className="container"
             style={{
-              background: '#FFEEEA',
-            }}
-          >
-            <div className='tailor_create_catalog_screen_row1'>
-              <div className='tailor_create_catalog_screen_row1_column1'>
+              background: '#FFEEEA'
+            }}>
+            <div className="tailor_create_catalog_screen_row1">
+              <div className="tailor_create_catalog_screen_row1_column1">
                 <img style={{ width: '60%' }} src={AddCatalogSVG} />
               </div>
-              <div className='tailor_create_catalog_screen_row1_column2'>
+              <div className="tailor_create_catalog_screen_row1_column2">
                 <p
                   style={{
                     marginTop: '10%',
                     marginBottom: '2.5%',
                     fontSize: '18px',
-                    fontWeight: '900',
-                  }}
-                >
+                    fontWeight: '900'
+                  }}>
                   {t('Edit Catalogue')}
                 </p>
-                <div className='tccs_input_section_container' style={{}}>
-                  <div className='pa_content_row'>
+                <div className="tccs_input_section_container" style={{}}>
+                  <div className="pa_content_row">
                     <InputSection {...catalog} images={images} setImages={setImages} />
                   </div>
                 </div>
@@ -113,7 +111,7 @@ function InputSection(props) {
     setIsViewImageModal(true);
   };
 
-  const handleImagesSelect = (event) => {
+  const handleImagesSelect = event => {
     if (event.target.files.length + props?.images.length > 5) {
       toast.error(t('You can select a maximum of 5 files.'));
       return;
@@ -133,11 +131,11 @@ function InputSection(props) {
     }
     props?.setImages([...props?.images, ...event.target.files]);
   };
-  const handleImageDeselect = (image) => {
+  const handleImageDeselect = image => {
     console.log(image, 'image');
     console.log(typeof image, 'type');
     const _images = [...props?.images];
-    const index = _images.map((_) => _.name).indexOf(image.name);
+    const index = _images.map(_ => _.name).indexOf(image.name);
     if (index > -1) {
       _images.splice(index, 1);
     }
@@ -149,10 +147,10 @@ function InputSection(props) {
     gender: props.gender ?? '',
     category: props.category ?? '',
     price: props.price ?? '',
-    description: props.description ?? '',
+    description: props.description ?? ''
   });
 
-  const handleImageSelect = (event) => {
+  const handleImageSelect = event => {
     const file = event.target.files[0];
     setImage(file);
   };
@@ -162,11 +160,11 @@ function InputSection(props) {
     obj[key] = value;
     setState({
       ...state,
-      ...obj,
+      ...obj
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     console.log(state);
     console.log(props?.images, 'check');
     event.preventDefault();
@@ -211,156 +209,150 @@ function InputSection(props) {
   const { t } = useTranslation();
   return (
     <>
-      <div className='pa_profile_section_container'>
+      <div className="pa_profile_section_container">
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
-            borderRadius: '20px',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Name')}</p>
+            borderRadius: '20px'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Name')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomInput
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               inputStyle={{
                 border: 'none',
-                fontSize: '12px',
+                fontSize: '12px'
               }}
               inputPlaceholder={t('I give a name to my confection')}
               inputDefaultValue={state.name}
-              onChange={(e) => _setState('name', e.target.value)}
+              onChange={e => _setState('name', e.target.value)}
             />
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderTopLeftRadius: '20px',
-            borderTopRightRadius: '20px',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Gender')}</p>
+            borderTopRightRadius: '20px'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Gender')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDropDown
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
-              selectID='gender'
-              selectName='gender'
+              selectID="gender"
+              selectName="gender"
               selectNullValue={t('Select gender')}
               selectValue={t(state.gender)}
-              onChange={(e) => _setState('gender', e.target.value)}
+              onChange={e => _setState('gender', e.target.value)}
               menuItems={[
                 <MenuItem value={t('male')}>{t('Male')}</MenuItem>,
-                <MenuItem value={t('female')}>{t('Female')}</MenuItem>,
+                <MenuItem value={t('female')}>{t('Female')}</MenuItem>
               ]}
               selectSX={{
-                fontSize: '12px',
+                fontSize: '12px'
               }}
             />
           </div>
         </div>
-        <div className='pa_profile_section_input_container'>
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Category')}</p>
+        <div className="pa_profile_section_input_container">
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Category')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomDropDown
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
-              selectID='category'
-              selectName='category'
+              selectID="category"
+              selectName="category"
               selectNullValue={t('Select category')}
               selectValue={t(state.category)}
-              onChange={(e) => _setState('category', e.target.value)}
+              onChange={e => _setState('category', e.target.value)}
               menuItems={[
                 <MenuItem value={'WOMEN'}>{t('WOMEN')}</MenuItem>,
                 <MenuItem value={'MAN'}>{t('MAN')}</MenuItem>,
                 <MenuItem value={'CHILD'}>{t('CHILD')}</MenuItem>,
-                <MenuItem value={'Other'}>{t('Other')}</MenuItem>,
+                <MenuItem value={'Other'}>{t('Other')}</MenuItem>
               ]}
             />
           </div>
         </div>
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderBottomLeftRadius: '20px',
             borderBottomRightRadius: '20px',
-            marginBottom: '2%',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Price')}</p>
+            marginBottom: '2%'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Price')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <CustomInput
               labelStyle={{
-                display: 'none',
+                display: 'none'
               }}
               inputStyle={{
                 border: 'none',
-                fontSize: '12px',
+                fontSize: '12px'
               }}
               inputPlaceholder={t('Set your Price')}
-              inputDefaultValue={t(state.price)}
-              onChange={(e) => _setState('price', e.target.value)}
+              inputDefaultValue={`${t(state.price)}€`}
+              onChange={e => _setState('price', e.target.value)}
             />
           </div>
         </div>
         <div
-          className='pa_payment_section_textarea_container'
+          className="pa_payment_section_textarea_container"
           style={{
             height: '30%',
             borderRadius: '20px',
-            marginBottom: '2%',
-          }}
-        >
-          <div className='pa_payment_section_textarea_label'>
-            <p className='pa_profile_section_input_text'>{t('Description')}</p>
+            marginBottom: '2%'
+          }}>
+          <div className="pa_payment_section_textarea_label">
+            <p className="pa_profile_section_input_text">{t('Description')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
+          <div className="pa_profile_section_input_input">
             <textarea
-              className='pa_profile_section_textarea_textarea'
+              className="pa_profile_section_textarea_textarea"
               placeholder={t('Tell us about your service')}
-              onChange={(e) => _setState('description', e.target.value)}
-            >
+              onChange={e => _setState('description', e.target.value)}>
               {state.description}
             </textarea>
           </div>
         </div>
 
         <div
-          className='pa_profile_section_input_container'
+          className="pa_profile_section_input_container"
           style={{
             borderRadius: '20px',
             marginTop: '2%',
-            cursor: 'pointer',
-          }}
-        >
-          <div className='pa_profile_section_input_label'>
-            <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
+            cursor: 'pointer'
+          }}>
+          <div className="pa_profile_section_input_label">
+            <p className="pa_profile_section_input_text">{t('Attachments')}</p>
           </div>
-          <div className='pa_profile_section_input_input'>
-            <label className='upload-pic-label' htmlFor='filePicker'>
+          <div className="pa_profile_section_input_input">
+            <label className="upload-pic-label" htmlFor="filePicker">
               <input
-                type='file'
+                type="file"
                 multiple
-                accept='image/*'
+                accept="image/*"
                 hidden
-                id='filePicker'
-                name='file'
+                id="filePicker"
+                name="file"
                 onChange={handleImagesSelect}
               />
-              <div style={{ cursor: 'pointer' }} className='upload-img-text-cont'>
-                <span className='upload-img-text'>
+              <div style={{ cursor: 'pointer' }} className="upload-img-text-cont">
+                <span className="upload-img-text">
                   {t('upload an illustration of your creation')}
                 </span>
                 <img src={UploadSVG} />
@@ -368,9 +360,9 @@ function InputSection(props) {
             </label>
           </div>
         </div>
-        <div className='selected-images-container'>
+        <div className="selected-images-container">
           {console.log(props?.images, 'images')}
-          {props?.images?.map((_) => (
+          {props?.images?.map(_ => (
             <Attachment
               image={_}
               view={() => {
@@ -388,14 +380,13 @@ function InputSection(props) {
             marginTop: '3%',
             marginBottom: '2%',
             padding: '1.2% 5%',
-            boxShadow: 'none',
+            boxShadow: 'none'
           }}
         />
         <Modal
           open={isViewImageModal}
           onClose={handleIsViewImageModalClose}
-          aria-labelledby='View Image'
-        >
+          aria-labelledby="View Image">
           <ViewImageModal src={viewImage} handleClose={handleIsViewImageModalClose} />
         </Modal>
       </div>

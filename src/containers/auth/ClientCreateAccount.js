@@ -42,7 +42,7 @@ function ClientCreateAccountScreen() {
     navigate('/home');
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     if (isProcessing) {
@@ -67,7 +67,7 @@ function ClientCreateAccountScreen() {
         password: state['Password'],
         name: data.get('Full Name'),
         phone: data.get('Phone Number'),
-        gender: gender,
+        gender: gender
       };
       response = await Api('post', '/clients', body);
 
@@ -86,89 +86,86 @@ function ClientCreateAccountScreen() {
   return (
     <form noValidate={true} onSubmit={handleSubmit}>
       <div
-        className='container'
+        className="container"
         style={{
           background:
-            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
-        }}
-      >
-        <div className='login_screen_top'>
-          <div className='login_screen_row1'>
-            <div className='login_screen_row1_img create_account_screen_row1_img'>
+            'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))'
+        }}>
+        <div className="login_screen_top">
+          <div className="login_screen_row1">
+            <div className="login_screen_row1_img create_account_screen_row1_img">
               <img style={{ width: '15%', marginBottom: '5%' }} src={AppLogoSVG} />
               <div>
                 <p
                   style={{
-                    fontSize: '32px',
-                  }}
-                >
-                  Building
+                    fontSize: '32px'
+                  }}>
+                  Imeuble
                 </p>
                 <p
                   style={{
-                    fontSize: '32px',
-                  }}
-                >
-                  Profile
+                    fontSize: '32px'
+                  }}>
+                  Profil
                 </p>
               </div>
             </div>
-            <div className='login_screen_row1_img'>
+            <div className="login_screen_row1_img">
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />
             </div>
           </div>
-          <div className='login_screen_row2'>
-            <div className='create_account_screen_row2_container'>
+          <div className="login_screen_row2">
+            <div className="create_account_screen_row2_container">
               <CustomInput
-                labelText='Full Name'
-                inputName='Full Name'
-                inputPlaceholder='Full Name'
+                labelText="Full Name"
+                inputName="Full Name"
+                inputPlaceholder="Full Name"
                 divStyle={{
-                  marginBottom: '6%',
+                  marginBottom: '6%'
                 }}
               />
               <CustomInput
-                labelText='Phone Number'
-                inputName='Phone Number'
-                inputPlaceholder='Phone Number'
+                labelText="Phone Number"
+                inputName="Phone Number"
+                inputPlaceholder="Phone Number"
                 divStyle={{
-                  marginBottom: '6%',
+                  marginBottom: '6%'
                 }}
                 minmax={true}
                 inputValue={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
+                onChange={e => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
               />
               <div style={{ width: '100%', border: 'none' }}>
                 <div>
-                  <p className='custom_input_label'>{t('Category')}</p>
+                  <p className="custom_input_label">{t('Category')}</p>
                 </div>
                 <CustomDropDown
                   labelStyle={{
-                    display: 'none',
+                    display: 'none'
                   }}
-                  selectID='gender'
-                  selectName='gender'
+                  selectID="gender"
+                  selectName="gender"
                   selectNullValue={t('Select your gender')}
                   selectValue={gender}
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={e => setGender(e.target.value)}
                   menuItems={[
                     <MenuItem value={'male'}>{t('Male')}</MenuItem>,
-                    <MenuItem value={'female'}>{t('Female')}</MenuItem>,
+                    <MenuItem value={'female'}>{t('Female')}</MenuItem>
                   ]}
                   selectSX={{
                     fontSize: '12px',
                     border: '2px solid #CC8E9C',
                     padding: '2%',
                     borderRadius: '10px',
-                    marginBottom: '3%',
+                    marginBottom: '3%'
                   }}
                 />
               </div>
               <CustomButton
-                text='Save'
-                type='submit'
+                text="Save"
+                type="submit"
                 style={{
-                  marginBottom: '10%',
+                  marginBottom: '10%'
                 }}
               />
             </div>

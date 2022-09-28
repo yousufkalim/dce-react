@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import UserSVG from '../../assets/dummy.jpeg';
 import AddCatalogSVG from '../../assets/AddOrder.svg';
-
 import ProfileBirthdaySVG from '../../assets/ProfileBirthday.svg';
 import ProfileCitySVG from '../../assets/ProfileCity.svg';
 import ProfileCountrySVG from '../../assets/ProfileCountry.svg';
@@ -19,7 +18,7 @@ import ClientAppBar from '../../components/ClientAppBar';
 import Footer from '../../components/Footer';
 import CustomButton from '../../components/CustomButton';
 // import CustomInput from '../common/CustomInput';
-
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import CatalogListTile from '../../components/CatalogListTile';
 import OrderListTile from '../../components/OrderListTile';
 
@@ -75,7 +74,7 @@ function ClientViewTailorScreen() {
     try {
       response = await Api('post', `/orders/byQuery`, {
         tailor: params.id,
-        client: user._id,
+        client: user._id
       });
       const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);
@@ -99,14 +98,14 @@ function ClientViewTailorScreen() {
     return;
   };
 
-  const navToViewCatalog = (id) => {
+  const navToViewCatalog = id => {
     navigate(`/view_catalog/${id}`);
   };
 
   const navToChat = () => {
     updateStore({
       chat: null,
-      messages: [],
+      messages: []
     });
     navigate(`/chat`, { state: { directUser: tailor } });
   };
@@ -120,20 +119,18 @@ function ClientViewTailorScreen() {
         <div
           style={{
             // height: '190vh',
-            width: '100vw',
-          }}
-        >
-          <ClientAppBar color='#FCFCFC' activeTab={0} />
+            width: '100vw'
+          }}>
+          <ClientAppBar color="#FCFCFC" activeTab={0} />
 
           <div
-            className='client_profile_screen_top'
+            className="client_profile_screen_top"
             style={{
               background:
-                'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
-            }}
-          >
-            <div className='designer-prof'>
-              <p className='D-profile'>{t('Designer Profile')}</p>{' '}
+                'linear-gradient(to left top, #EEE9DC 0%, #F0EEEB 50%, #EEEEEE 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))'
+            }}>
+            <div className="designer-prof">
+              <p className="D-profile">{t('Designer Profile')}</p>{' '}
               <CustomButton
                 padding={'15px 37px'}
                 style={{ borderRadius: '15px', boxShadow: 'none' }}
@@ -143,58 +140,64 @@ function ClientViewTailorScreen() {
             </div>
 
             <div
-              style={{ display: 'flex', width: '100%', padding: '0 3%', justifyContent: 'center' }}
-            >
-              <div style={{ width: '40%' }} className='view_tailor_image'>
+              style={{
+                display: 'flex',
+                width: '100%',
+                padding: '0 3%',
+                justifyContent: 'center',
+                position: 'relative'
+              }}>
+              <div className="client_profile_screen_arrow_animation">
+                <ArrowDownwardIcon fontSize="large" />
+              </div>
+              <div style={{ width: '40%' }} className="view_tailor_image">
                 <img style={{ width: '88%' }} src={DesignElaborationSVG} />
               </div>
               <div
-                className='tailor_profile_screen_row1'
+                className="tailor_profile_screen_row1"
                 style={{
                   borderBottomColor: '#DBDBDB',
                   borderBottomStyle: 'solid',
                   borderBottomWidth: '1.5px',
                   background: '#ffff',
-                  borderRadius: '20px',
-                }}
-              >
-                <div className='tailor_profile_screen_row1_column1'>
-                  <div className='tailor_profile_screen_row1_column1_header_text'></div>
+                  borderRadius: '20px'
+                }}>
+                <div className="tailor_profile_screen_row1_column1">
+                  <div className="tailor_profile_screen_row1_column1_header_text"></div>
                   <div
-                    className='tailor_profile_screen_row1_column1_img'
+                    className="tailor_profile_screen_row1_column1_img"
                     style={{
-                      paddingBottom: '5%',
-                    }}
-                  >
+                      paddingBottom: '5%'
+                    }}>
                     <img
-                      className='image_container'
+                      className="image_container"
                       style={{
                         height: '80pt',
-                        width: '80pt',
+                        width: '80pt'
                       }}
                       src={tailor?.avatar ? assetsURL(tailor?.avatar) : dummy}
                     />
                   </div>
-                  <p className='tailor_profile_screen_row1_column1_user_name_text'>{tailor.name}</p>
+                  <p className="tailor_profile_screen_row1_column1_user_name_text">{tailor.name}</p>
                 </div>
 
-                <div className='tailor_profile_screen_row1_column2'>
+                <div className="tailor_profile_screen_row1_column2">
                   <ProfileInput
                     disabled
-                    name='Experience'
+                    name="Experience"
                     placeholder={t('Experience')}
                     defaultValue={tailor.experience ? tailor.experience : 'N/A'}
                     label={t('Experience')}
                     // img={ProfilePhoneSVG}
                     divStyle={{
                       borderTopLeftRadius: '10px',
-                      borderTopRightRadius: '10px',
+                      borderTopRightRadius: '10px'
                     }}
-                    onChange={(e) => _setState('phone', e.target.value)}
+                    onChange={e => _setState('phone', e.target.value)}
                   />
                   <ProfileInput
                     disabled
-                    name='Diploma'
+                    name="Diploma"
                     placeholder={t('Diploma')}
                     defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
                     // img={ProfileEmailSVG}
@@ -211,7 +214,7 @@ function ClientViewTailorScreen() {
                   /> */}
                   <ProfileInput
                     disabled
-                    name='Area of Expertise'
+                    name="Area of Expertise"
                     placeholder={t('Area of Expertise')}
                     defaultValue={tailor.diploma ? tailor.diploma : 'N/A'}
                     // img={ProfileBirthdaySVG}
@@ -219,7 +222,7 @@ function ClientViewTailorScreen() {
                     divStyle={{
                       marginBottom: '3%',
                       borderBottomLeftRadius: '10px',
-                      borderBottomRightRadius: '10px',
+                      borderBottomRightRadius: '10px'
                     }}
                   />
                 </div>
@@ -252,25 +255,24 @@ function ClientViewTailorScreen() {
                   </div>
                 </div> */}
                 <div
-                  className='pa_profile_section_textarea_container'
+                  className="pa_profile_section_textarea_container"
                   style={{
                     borderRadius: '20px',
                     marginTop: '2%',
                     marginBottom: '5%',
-                    paddingTop: '2%',
-                  }}
-                >
-                  <div className='pa_profile_section_textarea_label'>
-                    <p className='pa_profile_section_input_text'>{t('Bio')}</p>
+                    paddingTop: '2%'
+                  }}>
+                  <div className="pa_profile_section_textarea_label">
+                    <p className="pa_profile_section_input_text">{t('Bio')}</p>
                   </div>
-                  <div className='pa_profile_section_input_input'>
+                  <div className="pa_profile_section_input_input">
                     <textarea
                       style={{
                         border: 'none',
                         height: '80px',
                         resize: 'none',
                         textAlign: 'end',
-                        paddingLeft: '6%',
+                        paddingLeft: '6%'
                       }}
                       placeholder={t('About yourself')}
                     />
@@ -385,50 +387,90 @@ function ClientViewTailorScreen() {
                 </div>
               </div>
             </div> */}
-            <div className='tailor_profile_screen_row3'>
+            <div className="tailor_profile_screen_row3">
               <p
-                className='tailor_profile_screen_row3_text'
+                className="tailor_profile_screen_row3_text"
                 style={{
-                  marginRight: '2%',
-                }}
-              >
+                  marginRight: '2%'
+                }}>
                 {t('Catalogue')}
               </p>
-              <div className='tailor_profile_screen_row3_list_container'>
-                {catalogs.map((_) => (
-                  <CatalogListTile
-                    catalog={_}
-                    buttonText={t('View')}
-                    onClickButton={() => navToViewCatalog(_._id)}
-                    onClick={console.log('XYZZ')}
-                    mainDivStyle={{
-                      width: '160pt',
-                    }}
-                  />
-                ))}
+              <div className="tailor_profile_screen_row3_list_container">
+                {catalogs.length > 0 ? (
+                  <>
+                    {catalogs.map(_ => (
+                      <CatalogListTile
+                        catalog={_}
+                        buttonText={t('View')}
+                        onClickButton={() => navToViewCatalog(_._id)}
+                        onClick={console.log('XYZZ')}
+                        mainDivStyle={{
+                          width: '160pt'
+                        }}
+                      />
+                    ))}
+                  </>
+                ) : (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}>
+                    <p
+                      style={{
+                        textAlign: 'center',
+                        fontWeight: '500',
+                        color: 'rgb(160, 160, 160)'
+                      }}>
+                      Le catalogue de ce professionnel est vide
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
-            <div className='tailor_profile_screen_row3'>
+            <div className="tailor_profile_screen_row3">
               <p
-                className='tailor_profile_screen_row3_text'
+                className="tailor_profile_screen_row3_text"
                 style={{
-                  marginRight: '2%',
-                }}
-              >
+                  marginRight: '2%'
+                }}>
                 {t('Orders')}
               </p>
-              <div className='tailor_profile_screen_row3_list_container'>
+              <div className="tailor_profile_screen_row3_list_container">
                 <AddOrderListTile id={params.id} />
-                {orders.map((_) => (
-                  <OrderListTile
-                    order={_}
-                    quote={_.quotes.filter((__) => __.status == 'accepted')[0]}
-                    mainDivStyle={{
-                      width: '14%',
-                    }}
-                    viewAs='client'
-                  />
-                ))}
+                {catalogs.length > 0 ? (
+                  <>
+                    {orders.map(_ => (
+                      <OrderListTile
+                        order={_}
+                        quote={_.quotes.filter(__ => __.status == 'accepted')[0]}
+                        mainDivStyle={{
+                          width: '16%'
+                        }}
+                        viewAs="client"
+                      />
+                    ))}
+                  </>
+                ) : (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}>
+                    <p
+                      style={{
+                        textAlign: 'center',
+                        fontWeight: '500',
+                        color: 'rgb(160, 160, 160)'
+                      }}>
+                      Vous n’avez passé aucune commande avec ce professionne
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -449,24 +491,22 @@ function ProfileInput({
   label,
   disabled,
   divStyle,
-  alignText,
+  alignText
 }) {
   const { t } = useTranslation();
 
   return (
     <div
-      className='tps_profile_input_container'
+      className="tps_profile_input_container"
       style={{
-        ...divStyle,
-      }}
-    >
+        ...divStyle
+      }}>
       <div
         style={{
           position: 'relative',
           height: '100%',
-          width: '100%',
-        }}
-      >
+          width: '100%'
+        }}>
         <input
           disabled={disabled}
           className={
@@ -485,9 +525,8 @@ function ProfileInput({
               fontWeight: '500',
               position: 'absolute',
               left: '2%',
-              top: '1%',
-            }}
-          >
+              top: '1%'
+            }}>
             {label}
           </p>
         ) : (
@@ -497,7 +536,7 @@ function ProfileInput({
               width: '16px',
               position: 'absolute',
               left: '2%',
-              top: '1%',
+              top: '1%'
             }}
           />
         )}
@@ -516,11 +555,11 @@ function AddOrderListTile(props) {
   };
 
   return (
-    <div className='new_order_list_tile order-now' onClick={navToCreateOrder}>
-      <div className='new_order_list_tile_img'>
-        <img style={{ width: '40%' }} src={AddCatalogSVG} className='orderTileImage' />
+    <div className="new_order_list_tile order-now" onClick={navToCreateOrder}>
+      <div className="new_order_list_tile_img">
+        <img style={{ width: '40%' }} src={AddCatalogSVG} className="orderTileImage" />
       </div>
-      <p className='new_order_list_tile_text'>{t('Placer une annonce')}</p>
+      <p className="new_order_list_tile_text">{t('Placer une annonce')}</p>
     </div>
   );
 }

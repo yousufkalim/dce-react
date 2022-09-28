@@ -41,7 +41,7 @@ function ClientAdsScreen() {
       response = await Api('post', `/orders/byQuery`, {
         client: user._id,
         type: 'ad',
-        status: 'pending',
+        status: 'pending'
       });
       const adsData = response.data.orders;
       setAds(adsData);
@@ -55,7 +55,7 @@ function ClientAdsScreen() {
       let id = quote._id;
       let response = await Api('post', `/payments/Checkout`, {
         line_items: line_items,
-        metaData: { id },
+        metaData: { id }
       });
       window.location = response.data.url;
     } catch (e) {
@@ -78,12 +78,12 @@ function ClientAdsScreen() {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: 'Order',
+              name: 'Order'
             },
-            unit_amount: quote.price * 100,
+            unit_amount: quote.price * 100
           },
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ];
       getSessionUrl(quote, line_items);
     } catch (e) {
@@ -105,7 +105,7 @@ function ClientAdsScreen() {
       setIsProcessing(true);
 
       const body = {
-        quote: id,
+        quote: id
       };
 
       response = await Api('post', '/quotes/reject', body);
@@ -126,32 +126,31 @@ function ClientAdsScreen() {
   };
   return (
     <>
-      <div className='container-page-vertical'>
-        <ClientAppBar activeTab={2} color='#FCFCFC' />
+      <div className="container-page-vertical">
+        <ClientAppBar activeTab={2} color="#FCFCFC" />
         <div
-          className='client_orders_screen_top'
+          className="client_orders_screen_top"
           style={{
             background:
-              'linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
-          }}
-        >
-          <div className='client_ads_screen_row1'>
-            <p className='client_orders_screen_row1_text'>{t('Mes annonces')}</p>
+              'linear-gradient(to left top, #F2DCD7 0%, #F3E0E1 50%, #F2DFE2 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))'
+          }}>
+          <div className="client_ads_screen_row1">
+            <p className="client_orders_screen_row1_text">{t('Mes annonces')}</p>
             <CustomButton
               text={t('Place New Ad')}
-              padding='8px 20px'
+              padding="8px 20px"
               style={{
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 boxShadow: 'none',
                 fontSize: '12px',
-                fontWeight: '600',
+                fontWeight: '600'
               }}
               onClick={navToCreateAd}
             />
           </div>
-          <div className='client_ads_screen_row2'>
-            {ads.map((_) => (
+          <div className="client_ads_screen_row2">
+            {ads.map(_ => (
               <AdListTile {..._} />
             ))}
           </div>
@@ -168,7 +167,7 @@ function ClientAdsScreen() {
               >
                 {t("No Orders")}
               </div> */}
-              <NoOrders RenderText='No Ads Yet' />
+              <NoOrders RenderText="No Ads Yet" />
             </>
           ) : null}
         </div>
@@ -189,96 +188,87 @@ function AdListTile(props) {
     navigate(`/edit_ad/${props._id}`);
   };
   return (
-    <div className='cas_ad_list_tile_container_collapsible'>
-      <div className='cas_ad_list_tile_container' onClick={() => setExpanded(!expanded)}>
+    <div className="cas_ad_list_tile_container_collapsible">
+      <div className="cas_ad_list_tile_container" onClick={() => setExpanded(!expanded)}>
         <div
-          className='cas_ad_list_tile_column1'
+          className="cas_ad_list_tile_column1"
           style={{
-            padding: '3%',
-          }}
-        >
+            padding: '3%'
+          }}>
           <div
-            className='cas_ad_list_tile_column1_item'
+            className="cas_ad_list_tile_column1_item"
             style={{
-              padding: '2% 0',
-            }}
-          >
-            <p className='cas_ad_list_tile_column1_item_key'>{t('Name of Creation')}</p>
+              padding: '2% 0'
+            }}>
+            <p className="cas_ad_list_tile_column1_item_key">{t('Name of Creation')}</p>
             <p
-              className='cas_ad_list_tile_column1_item_value'
+              className="cas_ad_list_tile_column1_item_value"
               style={{
-                fontWeight: '900',
-              }}
-            >
+                fontWeight: '900'
+              }}>
               {t(props?.name)}
             </p>
           </div>
           <div
-            className='cas_ad_list_tile_column1_item cas_ad_list_tile_column1_item_borders'
+            className="cas_ad_list_tile_column1_item cas_ad_list_tile_column1_item_borders"
             style={{
-              padding: '2% 0',
-            }}
-          >
-            <p className='cas_ad_list_tile_column1_item_key'>{t('Ad for')}</p>
-            <p className='cas_ad_list_tile_column1_item_value'>{t(props?.category)}</p>
+              padding: '2% 0'
+            }}>
+            <p className="cas_ad_list_tile_column1_item_key">{t('Ad for')}</p>
+            <p className="cas_ad_list_tile_column1_item_value">{t(props?.category)}</p>
           </div>
           <div
-            className='cas_ad_list_tile_column1_item'
+            className="cas_ad_list_tile_column1_item"
             style={{
-              padding: '2% 0',
-            }}
-          >
-            <p className='cas_ad_list_tile_column1_item_key'>{t('desired delivery date')}</p>
-            <p className='cas_ad_list_tile_column1_item_value'>
+              padding: '2% 0'
+            }}>
+            <p className="cas_ad_list_tile_column1_item_key">{t('desired delivery date')}</p>
+            <p className="cas_ad_list_tile_column1_item_value">
               {new Date(props?.delivery?.date).toLocaleDateString('en-gb')}
             </p>
           </div>
         </div>
-        <div className='cas_ad_list_tile_column2'>
+        <div className="cas_ad_list_tile_column2">
           {/* <p className="cas_ad_list_tile_column2_title">{t("min")}</p>
           <p className="cas_ad_list_tile_column2_description">{`${props.budget.min_price}€`}</p> */}
           <p
             style={{
               fontSize: '16px',
               color: '#CC8E9C',
-              paddingBottom: '3%',
+              paddingBottom: '3%'
             }}
-            className='my_add_budget'
-          >
+            className="my_add_budget">
             {t('Budget')}
           </p>
-          <p className='cas_ad_list_tile_column2_description'>{`${props?.budget?.max_price}€`}</p>
-          <p className='cas_ad_list_tile_column2_title'>{t('max')}</p>
+          <p className="cas_ad_list_tile_column2_description">{`${props?.budget?.max_price}€`}</p>
+          <p className="cas_ad_list_tile_column2_title">{t('max')}</p>
         </div>
-        <div className='cas_ad_list_tile_column2'>
+        <div className="cas_ad_list_tile_column2">
           <p
             style={{
               fontSize: '40px',
               fontWeight: 'bold',
-              paddingBottom: '2.5%',
+              paddingBottom: '2.5%'
             }}
-            className='my_add_budget'
-          >
+            className="my_add_budget">
             {props?.quotes?.length}
           </p>
           <p
             style={{ fontSize: '12px', fontWeight: '200', color: '#CC8E9C' }}
-            className='my_add_budget'
-          >
+            className="my_add_budget">
             {t('Responses')}
           </p>
         </div>
-        <div className='cas_ad_list_tile_column4'>
+        <div className="cas_ad_list_tile_column4">
           <p
             onClick={navToEditAd}
             style={{
               fontSize: '16px',
               fontWeight: 'bold',
               color: '#CC8E9C',
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
-            className='my_add_budget'
-          >
+            className="my_add_budget">
             {t('Edit')}
           </p>
         </div>
@@ -286,13 +276,12 @@ function AdListTile(props) {
       <Collapse
         sx={{ paddingBottom: '2%' }}
         in={expanded}
-        timeout='auto'
+        timeout="auto"
         unmountOnExit
-        className='myAdd_collapse'
-      >
+        className="myAdd_collapse">
         {props?.quotes
-          ?.filter((_) => _?.status != 'rejected')
-          .map((__) => (
+          ?.filter(_ => _?.status != 'rejected')
+          .map(__ => (
             <AdQuoteListTile order={props} quote={__} />
           ))}
         {/* {props.quotes.map((_) => (
@@ -315,117 +304,110 @@ function AdQuoteListTile(props) {
   const [isAcceptQuoteModal, setIsAcceptQuoteModal] = useState(false);
   const [isRejectQuoteModal, setIsRejectQuoteModal] = useState(false);
 
-  const handleIsAcceptQuoteModalClose = (e) => {
+  const handleIsAcceptQuoteModalClose = e => {
     setIsAcceptQuoteModal(false);
   };
 
-  const handleIsAcceptQuoteModalOpen = (e) => {
+  const handleIsAcceptQuoteModalOpen = e => {
     e.stopPropagation();
     setIsAcceptQuoteModal(true);
   };
 
-  const handleIsRejectQuoteModalClose = (e) => {
+  const handleIsRejectQuoteModalClose = e => {
     setIsRejectQuoteModal(false);
   };
 
-  const handleIsRejectQuoteModalOpen = (e) => {
+  const handleIsRejectQuoteModalOpen = e => {
     e.stopPropagation();
     setIsRejectQuoteModal(true);
   };
 
-  const acceptQuote = async (e) => {
+  const acceptQuote = async e => {
     handleIsAcceptQuoteModalOpen(e);
   };
 
-  const rejectQuote = async (e) => {
+  const rejectQuote = async e => {
     handleIsRejectQuoteModalOpen(e);
   };
 
   const navToChat = () => {
     updateStore({
       chat: null,
-      messages: [],
+      messages: []
     });
     navigate(`/chat`, { state: { directUser: props.quote.tailor } });
   };
   return (
-    <div className='cas_quote_list_tile_container'>
-      <div className='cas_quote_list_tile_column1'>
+    <div className="cas_quote_list_tile_container">
+      <div className="cas_quote_list_tile_column1">
         <div
-          className='cas_quote_list_tile_column1_img'
+          className="cas_quote_list_tile_column1_img"
           style={{
-            paddingBottom: '5%',
-          }}
-        >
+            paddingBottom: '5%'
+          }}>
           <img
-            className='image_container'
+            className="image_container"
             style={{
               height: '65pt',
-              width: '65pt',
+              width: '65pt'
             }}
             src={props?.quote?.tailor?.avatar ? assetsURL(props?.quote?.tailor?.avatar) : UserSVG}
           />
         </div>
       </div>
       <div
-        className='cas_quote_list_tile_column1'
+        className="cas_quote_list_tile_column1"
         style={{
           padding: '3%',
-          alignItems: 'flex-start',
-        }}
-      >
+          alignItems: 'flex-start'
+        }}>
         <p
-          className='cas_quote_list_tile_column1_title_text'
+          className="cas_quote_list_tile_column1_title_text"
           style={{
-            paddingBottom: '10px',
-          }}
-        >
+            paddingBottom: '10px'
+          }}>
           {t(props?.quote?.tailor?.name)}
         </p>
-        <p className='cas_quote_list_tile_column1_description_text'>
+        <p className="cas_quote_list_tile_column1_description_text">
           {t(props?.quote?.tailor?.speciality)}
         </p>
       </div>
       <div
-        className='cas_quote_list_tile_column1'
+        className="cas_quote_list_tile_column1"
         style={{
-          padding: '3%',
-        }}
-      >
+          padding: '3%'
+        }}>
         <p
           style={{
             fontSize: '12px',
-            color: '#A0A0A0',
-          }}
-        >
+            color: '#A0A0A0'
+          }}>
           {/* {rating}({ratingsCount}) */}
         </p>
       </div>
-      <div className='cas_quote_list_tile_column1'>
+      <div className="cas_quote_list_tile_column1">
         <p
           style={{
             fontSize: '12px',
             fontWeight: '200',
             color: '#A0A0A0',
-            paddingBottom: '3%',
-          }}
-        >
+            paddingBottom: '3%'
+          }}>
           {t('Offer')}
         </p>
         <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{`${props?.quote?.price}€`}</p>
       </div>
       <div
-        className='cas_quote_list_tile_column5'
+        className="cas_quote_list_tile_column5"
         style={{
-          marginRight: '5vw',
-        }}
-      >
-        <div className='cas_quote_list_tile_column5_buttons'>
+          marginRight: '5vw'
+        }}>
+        <div className="cas_quote_list_tile_column5_buttons">
           <CustomButton
             text={t('Accept')}
-            onClick={(e) => acceptQuote(e, props)}
+            onClick={e => acceptQuote(e, props)}
             style={{
-              boxShadow: 'none',
+              boxShadow: 'none'
             }}
           />
           <p
@@ -433,15 +415,14 @@ function AdQuoteListTile(props) {
               fontSize: '13px',
               fontWeight: '900',
               marginTop: '10px',
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
-            onClick={rejectQuote}
-          >
+            onClick={rejectQuote}>
             {t('Refuser')}
           </p>
         </div>
       </div>
-      <div className='cas_quote_list_tile_column1'>
+      <div className="cas_quote_list_tile_column1">
         <p style={{ fontSize: '14px', fontWeight: '900', cursor: 'pointer' }} onClick={navToChat}>
           {t('Contacter')}
         </p>
@@ -449,9 +430,8 @@ function AdQuoteListTile(props) {
       <Modal
         open={isAcceptQuoteModal}
         onClose={handleIsAcceptQuoteModalClose}
-        aria-labelledby='Accept Quote'
-        onBackdropClick='false'
-      >
+        aria-labelledby="Accept Quote"
+        onBackdropClick="false">
         <AcceptQuoteModal
           order={props?.order}
           quote={props?.quote}
@@ -461,9 +441,8 @@ function AdQuoteListTile(props) {
       <Modal
         open={isRejectQuoteModal}
         onClose={handleIsRejectQuoteModalClose}
-        aria-labelledby='Reject Quote'
-        onBackdropClick='false'
-      >
+        aria-labelledby="Reject Quote"
+        onBackdropClick="false">
         <RejectQuoteModal
           order={props?.order}
           quote={props?.quote}
@@ -474,24 +453,24 @@ function AdQuoteListTile(props) {
   );
 }
 
-const AcceptQuoteModal = (props) => {
+const AcceptQuoteModal = props => {
   const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
 
   const [isScheduleCallModal, setIsScheduleCallModal] = useState(false);
 
-  const handleIsScheduleCallModalClose = (e) => {
+  const handleIsScheduleCallModalClose = e => {
     setIsScheduleCallModal(false);
   };
 
-  const handleIsScheduleCallModalOpen = (e) => {
+  const handleIsScheduleCallModalOpen = e => {
     e.stopPropagation();
     setIsScheduleCallModal(true);
   };
 
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     if (props.order.measurements.type == 'static') {
       handleMeasurements();
@@ -519,12 +498,12 @@ const AcceptQuoteModal = (props) => {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: 'Order',
+              name: 'Order'
             },
-            unit_amount: props.quote.price * 100,
+            unit_amount: props.quote.price * 100
           },
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ];
       getSessionUrl(props.quote, line_items);
     } catch (e) {
@@ -540,7 +519,7 @@ const AcceptQuoteModal = (props) => {
       const type = 'static';
       const response = await Api('post', '/payments/Checkout', {
         line_items: line_items,
-        metaData: { id, type },
+        metaData: { id, type }
       });
       window.location = response.data.url;
     } catch (e) {
@@ -548,25 +527,23 @@ const AcceptQuoteModal = (props) => {
     }
   };
 
-  const handleCallMeasurements = async (e) => {
+  const handleCallMeasurements = async e => {
     handleIsScheduleCallModalOpen(e);
   };
 
   return (
     <div
-      className='tqs_sqm_container'
+      className="tqs_sqm_container"
       style={{
-        height: '40vh',
-      }}
-    >
+        height: '40vh'
+      }}>
       <p
         style={{
           color: '#ACACAC',
           fontSize: '16px',
           fontWeight: '100',
-          marginBottom: '5%',
-        }}
-      >
+          marginBottom: '5%'
+        }}>
         {t(
           'I also understand that any incomplete address, altered date of birth, use of an identity different from mine, or any falsified document will lead to the immediate and definitive suspension of my account and that I will therefore no longer be able to become a service provider on DCE.'
         )}
@@ -577,34 +554,32 @@ const AcceptQuoteModal = (props) => {
           flexDirection: 'row',
           justifyContent: 'flex-start',
           alignItems: 'flex-start',
-          marginBottom: '5%',
-        }}
-      >
-        <Checkbox checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} />
+          marginBottom: '5%'
+        }}>
+        <Checkbox checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
         <p
           style={{
             fontSize: '13px',
-            fontWeight: '100',
-          }}
-        >
+            fontWeight: '100'
+          }}>
           {t(
             'I declare on my honor that the information provided is accurate, as well as the identity document attached above is authentic, belongs to me, and meets all the required conditions.'
           )}
         </p>
       </div>
-      <div className='tvqs_sq_buttons'>
+      <div className="tvqs_sq_buttons">
         <CustomButton
-          text='Cancel'
+          text="Cancel"
           style={{
             boxShadow: 'none',
-            marginRight: '10pt',
+            marginRight: '10pt'
           }}
           onClick={props.handleClose}
         />
         <CustomButton
           text={t('I agree')}
           style={{
-            boxShadow: 'none',
+            boxShadow: 'none'
           }}
           onClick={handleSubmit}
         />
@@ -612,9 +587,8 @@ const AcceptQuoteModal = (props) => {
       <Modal
         open={isScheduleCallModal}
         onClose={handleIsScheduleCallModalClose}
-        aria-labelledby='Schedule Call'
-        onBackdropClick='false'
-      >
+        aria-labelledby="Schedule Call"
+        onBackdropClick="false">
         <ScheduleCallModal
           order={props.order}
           quote={props.quote}
@@ -625,7 +599,7 @@ const AcceptQuoteModal = (props) => {
   );
 };
 
-const ScheduleCallModal = (props) => {
+const ScheduleCallModal = props => {
   const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [date, setDate] = useState(new Date());
@@ -652,7 +626,7 @@ const ScheduleCallModal = (props) => {
       );
       const body = {
         quote: props.quote._id,
-        call_at: parsedDate,
+        call_at: parsedDate
       };
       setIsProcessing(true);
       const call = body.call_at;
@@ -661,12 +635,12 @@ const ScheduleCallModal = (props) => {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: 'Call Payment',
+              name: 'Call Payment'
             },
-            unit_amount: 8 * 100,
+            unit_amount: 8 * 100
           },
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ];
       getTapeUrl(props.quote, line_items, call);
     } catch (e) {
@@ -682,7 +656,7 @@ const ScheduleCallModal = (props) => {
       let type = 'call';
       let response = await Api('post', '/payments/Checkout', {
         line_items: line_items,
-        metaData: { id, type, call },
+        metaData: { id, type, call }
       });
       window.location = response.data.url;
     } catch (e) {
@@ -692,81 +666,76 @@ const ScheduleCallModal = (props) => {
 
   return (
     <div
-      className='tqs_sqm_container'
+      className="tqs_sqm_container"
       style={{
-        height: '40vh',
-      }}
-    >
+        height: '40vh'
+      }}>
       <p
         style={{
           fontSize: '20px',
           fontWeight: '900',
-          marginBottom: '5%',
-        }}
-      >
+          marginBottom: '5%'
+        }}>
         {t('Book call (on schedule) for measurement')}
       </p>
       <div
-        className='pa_profile_section_input_container'
+        className="pa_profile_section_input_container"
         style={{
           borderRadius: '20px',
           marginTop: '2%',
-          marginBottom: '1%',
-        }}
-      >
-        <div className='pa_profile_section_input_label'>
-          <p className='pa_profile_section_input_text'>Set Date</p>
+          marginBottom: '1%'
+        }}>
+        <div className="pa_profile_section_input_label">
+          <p className="pa_profile_section_input_text">Set Date</p>
         </div>
-        <div className='pa_profile_section_input_input'>
+        <div className="pa_profile_section_input_input">
           <CustomDatePicker
             disablePast
             labelStyle={{
-              display: 'none',
+              display: 'none'
             }}
             value={date}
-            onChange={(e) => setDate(e)}
+            onChange={e => setDate(e)}
           />
         </div>
       </div>
       <div
-        className='pa_profile_section_input_container'
+        className="pa_profile_section_input_container"
         style={{
           borderRadius: '20px',
           marginTop: '2%',
-          marginBottom: '1%',
-        }}
-      >
-        <div className='pa_profile_section_input_label'>
-          <p className='pa_profile_section_input_text'>Set a Time</p>
+          marginBottom: '1%'
+        }}>
+        <div className="pa_profile_section_input_label">
+          <p className="pa_profile_section_input_text">Set a Time</p>
         </div>
-        <div className='pa_profile_section_input_input'>
+        <div className="pa_profile_section_input_input">
           <CustomTimePicker
             labelStyle={{
-              display: 'none',
+              display: 'none'
             }}
             value={time}
-            onChange={(e) => setTime(e)}
+            onChange={e => setTime(e)}
           />
         </div>
       </div>
       <div
-        className='tvqs_sq_buttons'
+        className="tvqs_sq_buttons"
         style={{
-          marginTop: '2%',
-        }}
-      >
+          marginTop: '2%'
+        }}>
         <CustomButton
-          text='Cancel'
+          text="Cancel"
           style={{
             boxShadow: 'none',
-            marginRight: '10pt',
+            marginRight: '10pt'
           }}
           onClick={props.handleClose}
         />
         <CustomButton
           text={t('I agree')}
           style={{
-            boxShadow: 'none',
+            boxShadow: 'none'
           }}
           onClick={handleSubmit}
         />
@@ -775,13 +744,13 @@ const ScheduleCallModal = (props) => {
   );
 };
 
-const RejectQuoteModal = (props) => {
+const RejectQuoteModal = props => {
   const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     if (isProcessing) {
@@ -794,7 +763,7 @@ const RejectQuoteModal = (props) => {
       setIsProcessing(true);
 
       const body = {
-        quote: props.quote._id,
+        quote: props.quote._id
       };
 
       response = await Api('post', '/quotes/reject', body);
@@ -817,36 +786,39 @@ const RejectQuoteModal = (props) => {
 
   return (
     <div
-      className='tqs_sqm_container'
+      className="tqs_sqm_container"
       style={{
-        height: '40vh',
-      }}
-    >
+        height: '40vh'
+      }}>
       <p
         style={{
           color: '#ACACAC',
           fontSize: '16px',
           fontWeight: '100',
-          marginBottom: '5%',
-        }}
-      >
-        Voulez-vous vraiment supprimer ce devis de paiement ?
+          marginBottom: '5%'
+        }}>
+        Voulez-vous refuser l’offre ?
       </p>
-      <div className='tvqs_sq_buttons'>
+      <div className="tvqs_sq_buttons">
         <CustomButton
-          text='Cancel'
+          text={t('Oui')}
           style={{
             boxShadow: 'none',
             marginRight: '10pt',
-          }}
-          onClick={props.handleClose}
-        />
-        <CustomButton
-          text={t('I agree')}
-          style={{
-            boxShadow: 'none',
+            padding: '1.3% 3%'
           }}
           onClick={handleSubmit}
+        />
+        <CustomButton
+          text="Non"
+          style={{
+            boxShadow: 'none',
+            color: '#cc8e9c',
+            fontWeight: '600',
+            backgroundColor: '#ffffff',
+            border: '1px solid #cc8e9c'
+          }}
+          onClick={props.handleClose}
         />
       </div>
     </div>

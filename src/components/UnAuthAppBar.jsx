@@ -112,10 +112,10 @@ function UnAuthAppBar() {
                 {t('About')}
               </Button>
             </a>
-            <Link to="/blog" style={{textDecoration:"none",marginTop:"13px"}}>
-              <Button className="blogbutton" >
+            <Link to="/blog" style={{textDecoration:"none",marginTop:"15px"}}>
+              <Button className="auth_appbar_menus" >
                
-                {t('BLOGS')}
+                {t('BLOG')}
               </Button>
             </Link> 
             {/* <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
@@ -137,7 +137,7 @@ function UnAuthAppBar() {
                 style={{ display: 'inline-block' }}
                 // key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 1.8, color: 'white', display: 'block' }}
               >
                 {/* {page} */}
                 {t('Gallery')}

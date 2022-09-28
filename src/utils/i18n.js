@@ -11,6 +11,8 @@ i18n
     resources: {
       en: {
         translations: {
+          // toast
+          'Quote discarded successfully': 'Quote discarded successfully',
           // landing
           or: 'or',
           'Sign out': 'Sign out',
@@ -562,6 +564,7 @@ i18n
           'Leg length': 'Leg length',
 
           //colors
+          Color: 'Color',
           White: 'White',
           'Silver Grey': 'Silver Grey',
           'Pink Purple': 'Pink Purple',
@@ -740,12 +743,15 @@ i18n
           'Find Great Work': 'Find Great Work',
           'FIND OPPORTUNITIES': 'FIND OPPORTUNITIES',
           'EXPLORE DIFFERENT WAYS TO EARN': 'EXPLORE DIFFERENT WAYS TO EARN',
-          'CONTROL WHEN, WHERE, AND HOW YOU WORK': 'CONTROL WHEN, WHERE, AND HOW YOU WORK',
-        },
+          'CONTROL WHEN, WHERE, AND HOW YOU WORK': 'CONTROL WHEN, WHERE, AND HOW YOU WORK'
+        }
       },
       fr: {
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
+          // toast
+          'Quote discarded successfully': 'Offre refusée',
+
           // landing
           'Sign out': 'Se déconnecter',
 
@@ -883,7 +889,7 @@ i18n
           Orders: 'Mes Commandes',
           'My Ads': 'Mes annonces',
           Chats: 'Messagerie',
-          'Terms and Conditions': 'Termes et conditions',
+          'Terms and Conditions': 'Mentions légales',
           Profile: 'Profil',
           Quotes: 'Mes Devis',
           'Privacy Policy': 'Politique de confidentialité',
@@ -911,17 +917,17 @@ i18n
           'Place this Order': 'Passer commande',
           'Phone number': 'Numéro de téléphone',
           //order
-          'SHIRT/BLOUSE': 'CHEMISE / BLOUSE',
-          'JUMPSUIT/DUNGAREES': 'COMBINAISON / SALOPETTE',
-          VEST: 'GILET',
-          SKIRT: 'JUPE',
-          'TROUSERS / SHORTS': 'PANTALON / SHORT',
-          DRESS: 'ROBE',
-          TUNIC: 'TUNIQUE',
-          JACKET: 'VESTE',
-          'SCHOOL APRON': "TABLIER D'ÉCOLE",
-          SHIRT: 'CHEMISE',
-          PANTS: 'PANTALON',
+          'SHIRT/BLOUSE': 'Chemise / Blouse',
+          'JUMPSUIT/DUNGAREES': 'Combinaison / Salopette',
+          VEST: 'Gilet',
+          SKIRT: 'Jupe',
+          'TROUSERS / SHORTS': 'Pantalon / Short',
+          DRESS: 'Robe',
+          TUNIC: 'Tunique',
+          JACKET: 'Veste',
+          'SCHOOL APRON': "Tabliew d'école",
+          SHIRT: 'Chemise',
+          PANTS: 'Pantalon',
           Order: 'Commande',
           'Order Date': 'Date de commande',
           'New Order': 'Nouvelle commande',
@@ -1313,6 +1319,8 @@ i18n
           Notes: 'Remarques',
           'Catalogue created successfully.': 'Catalogue créé avec succès.',
           //colors
+          Color: 'La couleur',
+
           White: 'blanche',
           'Silver Grey': 'Gris Argenté',
           'Pink Purple': 'Rose-mauve',
@@ -1388,7 +1396,7 @@ i18n
           pending: 'En attente',
           'in progress': 'en cours',
           completed: 'Terminée',
-          discarded: 'annulée',
+          discarded: 'Annulée',
           'Sent you an order request.': 'Vous a envoyé une demande de commande.',
           'Order request accepted.': 'Demande de commande acceptée.',
           'Order discarded.': 'Commande rejetée.',
@@ -1490,9 +1498,9 @@ i18n
           'Find Great Work': 'Trouver un excellent travail',
           'FIND OPPORTUNITIES': 'TROUVEZ DES OPPORTUNITÉS',
           'EXPLORE DIFFERENT WAYS TO EARN': 'EXPLOREZ DIFFÉRENTES FAÇONS DE GAGNER',
-          'CONTROL WHEN, WHERE, AND HOW YOU WORK': 'CONTRÔLEZ QUAND, OÙ ET COMMENT VOUS TRAVAILLEZ',
-        },
-      },
+          'CONTROL WHEN, WHERE, AND HOW YOU WORK': 'CONTRÔLEZ QUAND, OÙ ET COMMENT VOUS TRAVAILLEZ'
+        }
+      }
     },
 
     lng: 'fr', // default language
@@ -1505,8 +1513,8 @@ i18n
 
     keySeparator: false, // we use content as keys
     interpolation: {
-      escapeValue: false,
-    },
+      escapeValue: false
+    }
   });
 
 export default i18n;

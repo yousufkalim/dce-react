@@ -26,7 +26,7 @@ function TailorSupportCenterScreen() {
     try {
       response = await Api('post', `/orders/byQuery`, {
         tailor: user._id,
-        tailor_support: true,
+        tailor_support: true
       });
       const supportOrdersData = response.data.orders;
       setSupportOrders(supportOrdersData);
@@ -42,9 +42,8 @@ function TailorSupportCenterScreen() {
       <div
         className="client_orders_screen_top"
         style={{
-          background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)',
-        }}
-      >
+          background: 'linear-gradient(to right, #EEEEEE , #FDF3EA)'
+        }}>
         <div className="thiw_qna_standard_screen_row1">
           <h1 className="supportheading">{t('Support Center')}</h1>
           <p className="suppordesc">
@@ -53,10 +52,10 @@ function TailorSupportCenterScreen() {
             )}
           </p>
         </div>
-        {supportOrders.map((_) => (
+        {supportOrders.map(_ => (
           <SupportListTile {..._} />
         ))}
-        {supportOrders.length == 0 ? <NoOrders RenderText="No Support Orders" /> : <></>}
+        {supportOrders.length == 0 ? <NoOrders RenderText="Aucune demande de support" /> : <></>}
       </div>
       <Footer />
     </div>
@@ -75,7 +74,10 @@ function SupportListTile(props) {
   return (
     <div className="supportmainDiv">
       <div className="supportcol1">
-        <img src={props.client.avatar ? assetsURL(props.client.avatar) : dummy} style={{ width: '10%', padding: '25px 25px' }} />
+        <img
+          src={props.client.avatar ? assetsURL(props.client.avatar) : dummy}
+          style={{ width: '10%', padding: '25px 25px' }}
+        />
         <div className="supportName">
           <h3 className="supportnameh3">{props.name}</h3>
         </div>
@@ -83,10 +85,9 @@ function SupportListTile(props) {
           <button
             className="chatBtn"
             style={{
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
-            onClick={navToChat}
-          >
+            onClick={navToChat}>
             {t('Chat With Us')}
           </button>
         </div>

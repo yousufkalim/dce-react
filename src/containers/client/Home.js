@@ -41,7 +41,7 @@ function ClientHomeScreen() {
     try {
       response = await Api('post', `/orders/byQuery`, {
         client: user._id,
-        tailor: { $ne: null },
+        tailor: { $ne: null }
       });
       const ordersData = response.data.orders.splice(-4);
       setOrders(ordersData);
@@ -77,25 +77,32 @@ function ClientHomeScreen() {
 
   return (
     <>
-      <div className='container-page'>
-        <ClientAppBar color='#F8F4EF' />
-        <div className='container'>
-          <div className='client_home_screen_row1'>
-            <div className='client_home_screen_row1_column1' style={{ backgroundColor: '#FFEEEC', width: '75%' }}>
+      <div className="container-page">
+        <ClientAppBar color="#F8F4EF" />
+        <div className="container">
+          <div className="client_home_screen_row1">
+            <div
+              className="client_home_screen_row1_column1"
+              style={{ backgroundColor: '#FFEEEC', width: '75%' }}>
               {/* <div> */}
               {/* <p className='client_home_screen_row1_column1_text_1'>{t('Submit your idea,')}</p>
               <p className='client_home_screen_row1_column1_text_2'>{t('We make it real,')}</p> */}
               <div
-                style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
-                className='homepage_header'
-              >
-                <p className='client_home_screen_row1_column1_text-1'>{t('Do you have an idea for tailoring?')}</p>
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+                className="homepage_header">
+                <p className="client_home_screen_row1_column1_text-1">
+                  {t('Do you have an idea for tailoring?')}
+                </p>
                 <p
-                  className='client_home_screen_row1_column1_text_1'
+                  className="client_home_screen_row1_column1_text_1"
                   style={{
-                    color: '#A0805A',
-                  }}
-                >
+                    color: '#A0805A'
+                  }}>
                   {t('Submit Your Project here!')}
                 </p>
                 {/* <p
@@ -107,71 +114,70 @@ function ClientHomeScreen() {
                 {t('at home!')}
               </p> */}
                 <button
-                  className='client_home_screen_row1_column1_button'
+                  className="client_home_screen_row1_column1_button"
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#FFFFFF'
                   }}
-                  onClick={navToCreateAd}
-                >
+                  onClick={navToCreateAd}>
                   {t('I am concretizing my idea of tailoring')}
                 </button>
               </div>{' '}
-              <div className='client_home_screen_row1_column2_img'>
+              <div className="client_home_screen_row1_column2_img">
                 <img style={{ width: '90%' }} src={ClientHomeSVG} />
               </div>
               {/* </div> */}
             </div>
             <div
-              className='client_home_screen_row1_column2'
+              className="client_home_screen_row1_column2"
               style={{
                 width: '25%',
-                backgroundColor: '#CC8E9C',
-              }}
-            ></div>
+                backgroundColor: '#CC8E9C'
+              }}></div>
           </div>
         </div>
         <div
-          className='container'
+          className="container"
           style={{
             background:
-              'linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))',
-          }}
-        >
+              'linear-gradient(to left top, #F5F1EA 0%, #F4F2F0 50%, #F5F5F5 100%), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))'
+          }}>
           <div
-            className='client_home_screen_row2_row1'
+            className="client_home_screen_row2_row1"
             style={{
               borderBottomColor: '#DBDBDB',
               borderBottomStyle: 'solid',
-              borderBottomWidth: '0.5px',
-            }}
-          >
-            <p className='client_home_screen_row2_row1_text'>{t('Orders List')}</p>
-            <div className='client_home_screen_row2_row1_row_container'>
+              borderBottomWidth: '0.5px'
+            }}>
+            <p className="client_home_screen_row2_row1_text">{t('Orders List')}</p>
+            <div className="client_home_screen_row2_row1_row_container">
               <NewOrderListTile />
-              {orders.map((_) => (
-                <OrderListTile order={_} quote={_.quotes.filter((__) => __.status == 'accepted')[0]} viewAs='client' />
+              {orders.map(_ => (
+                <OrderListTile
+                  order={_}
+                  quote={_.quotes.filter(__ => __.status == 'accepted')[0]}
+                  viewAs="client"
+                />
               ))}
               <p
                 style={{
                   color: '#CC8E9C',
                   fontWeight: '800',
                   paddingLeft: '2%',
-                  cursor: 'pointer',
+                  cursor: 'pointer'
                 }}
-                onClick={navToOrders}
-              >
+                onClick={navToOrders}>
                 {t('See all')}
               </p>
             </div>
           </div>
-          <div className='client_home_screen_row2_row1'>
-            <p className='client_home_screen_row2_row1_text'>{t('Designers')}</p>
-            <div className='client_home_screen_row2_row1_row_container'>
-              {tailors.map((_) => (
+          <div className="client_home_screen_row2_row1">
+            <p className="client_home_screen_row2_row1_text">{t('Designers')}</p>
+            <div className="client_home_screen_row2_row1_row_container">
+              {tailors.map(_ => (
                 <DesignerListTile {..._} />
               ))}
               <div style={{ paddingLeft: '2%' }}>
-                <p className='see-all-text' onClick={navToTailors}>
+                <p className="see-all-text" onClick={navToTailors}>
                   {t('See all')}
                 </p>
               </div>
@@ -195,38 +201,35 @@ function DesignerListTile(props) {
   };
 
   return (
-    <div className='chs_designer_list_tile' onClick={navToViewTailor}>
+    <div className="chs_designer_list_tile" onClick={navToViewTailor}>
       <div
-        className='order_list_tile_img'
+        className="order_list_tile_img"
         style={{
-          paddingBottom: '5%',
-        }}
-      >
+          paddingBottom: '5%'
+        }}>
         <img
-          className='image_container'
+          className="image_container"
           style={{
             height: '80pt',
             width: '80pt',
             cursor: 'pointer',
-            marginBottom: '4%',
+            marginBottom: '4%'
           }}
           src={props.avatar ? assetsURL(props.avatar) : dummy}
         />
       </div>
       <p
-        className='chs_designer_list_tile_title_text'
+        className="chs_designer_list_tile_title_text"
         style={{
-          paddingBottom: '2%',
-        }}
-      >
+          paddingBottom: '2%'
+        }}>
         {props.name}
       </p>
       <p
-        className='chs_designer_list_tile_location_text'
+        className="chs_designer_list_tile_location_text"
         style={{
-          paddingBottom: '6%',
-        }}
-      >
+          paddingBottom: '6%'
+        }}>
         {`${props.city}`}
       </p>
       {/* <div className="stars">

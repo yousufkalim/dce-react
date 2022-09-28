@@ -7,12 +7,12 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 
 export default function ComboBox(props) {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     formControl: {
       width: '100% !important',
       '@media (max-width:600px)': {
-        width: '100% !important',
-      },
+        width: '100% !important'
+      }
     },
     inputLabels: {
       display: 'flex',
@@ -25,12 +25,12 @@ export default function ComboBox(props) {
       '& .makeStyles-textfield-101': { border: 'none' },
       '& .makeStyles-textfield-17': { border: 'none' },
       '@media (max-width:992px)': {
-        fontSize: '20px !important',
+        fontSize: '20px !important'
       },
       '@media (max-width:600px)': {
         width: '200% !important',
-        textAlign: 'center !important',
-      },
+        textAlign: 'center !important'
+      }
     },
     textfield: {
       border: props.componenet == 'parseaddress' ? '' : '1px solid #CC8E9C',
@@ -44,20 +44,20 @@ export default function ComboBox(props) {
       fontWeight: '300 !important',
       marginTop: props.componenet == 'parseaddress' ? '0px' : '10px !important',
       '@media (max-width:992px)': {
-        fontSize: '16px !important',
+        fontSize: '16px !important'
       },
       '@media (max-width:600px)': {
         height: '35px !important',
         '& .MuiInput-input': {
           fontSize: '11px !important',
-          textAlign: 'center !important',
-        },
-      },
+          textAlign: 'center !important'
+        }
+      }
     },
     noBorder: {
-      border: 'none',
+      border: 'none'
     },
-    helper: {},
+    helper: {}
   }));
   const classes = useStyles();
 
@@ -66,31 +66,31 @@ export default function ComboBox(props) {
       className={classes.formControl}
       error={props.error ? true : false}
       variant={props.variant || 'standard'}
-      {...props.FormControlProps}
-    >
+      {...props.FormControlProps}>
       <Autocomplete
+        noOptionsText={props.noOptionsText}
         disab
         sx={{
           width: '100%',
           height: props.componenet == 'parseaddress' ? '42px !important' : '72px !important',
-          border: 'none',
+          border: 'none'
         }}
-        getOptionLabel={(option) => option.label}
+        getOptionLabel={option => option.label}
         disabled={props.disabled}
         options={props.options}
         defaultValue={props.defaultValue}
         onChange={(event, value) => props.onAddressSelect(value)}
-        renderInput={(params) => (
+        renderInput={params => (
           <TextField
             {...params}
-            type='text'
+            type="text"
             placeholder={props.placeholder}
             sx={{
               width: '100% !important',
               height: '72px !important',
-              border: '0px !important',
+              border: '0px !important'
             }}
-            onChange={(e) => {
+            onChange={e => {
               props.onChangeAddress ? props.onChangeAddress(e) : props.onChangeLanguage(e);
             }}
             inputProps={{
@@ -99,8 +99,8 @@ export default function ComboBox(props) {
               Autocomplete: '#####autoComplete',
               value: props.value,
               form: {
-                autocomplete: props.disabled ? 'off' : 'on',
-              },
+                autocomplete: props.disabled ? 'off' : 'on'
+              }
             }}
           />
         )}

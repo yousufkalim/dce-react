@@ -49,7 +49,7 @@ function TailorViewQuoteScreen() {
     cut: '',
     measurements: {
       type: 'static',
-      value: '',
+      value: ''
     },
     color: '',
     fabric: '',
@@ -58,18 +58,18 @@ function TailorViewQuoteScreen() {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: '',
+    observation: ''
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
-    address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    address: { zip: '', label: '', city: '', lat: '', lng: '' }
   });
   const [notesSection, setNotesSection] = useState({
     note: '',
     min_price: '',
-    max_price: '',
+    max_price: ''
   });
 
   const [price, setPrice] = useState('');
@@ -100,7 +100,7 @@ function TailorViewQuoteScreen() {
         observation: adData.observation,
 
         includes_alteration_services: adData.includes_alteration_services,
-        create_catalog_after_completion: adData.create_catalog_after_completion,
+        create_catalog_after_completion: adData.create_catalog_after_completion
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -108,14 +108,14 @@ function TailorViewQuoteScreen() {
         address: {
           zip: adData.delivery.zipcode,
           label: adData.delivery.address,
-          city: adData.delivery.city,
-        },
+          city: adData.delivery.city
+        }
       });
       setNotesSection({
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes: adData?.quotes.filter((_) => _.status === 'accepted'),
+        quotes: adData?.quotes.filter(_ => _.status === 'accepted')
       });
     } catch (e) {
       console.trace(e);
@@ -123,17 +123,17 @@ function TailorViewQuoteScreen() {
     setIsLoading(false);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
-    if (ad.quotes.some((_) => _.tailor._id == user._id)) {
+    if (ad.quotes.some(_ => _.tailor._id == user._id)) {
       toast.error(t('You have already sent quote for this ad.'));
       return;
     }
 
     const isValidated = FormValidations.sendQuote({
       price,
-      description,
+      description
     });
 
     if (!isValidated) {
@@ -152,7 +152,7 @@ function TailorViewQuoteScreen() {
       const body = {
         order: params.id,
         price: price,
-        description: description,
+        description: description
       };
 
       response = await Api('post', `/quotes`, body);
@@ -175,7 +175,7 @@ function TailorViewQuoteScreen() {
   const navToChat = () => {
     updateStore({
       chat: null,
-      messages: [],
+      messages: []
     });
     navigate(`/chat`, { state: { directUser: ad.client } });
   };
@@ -184,47 +184,43 @@ function TailorViewQuoteScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className='container-page'>
-          <TailorAppBar color='#F8F4EF' activeTab={2} />
+        <div className="container-page">
+          <TailorAppBar color="#F8F4EF" activeTab={2} />
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFE9A0',
               height: '135vh',
-              padding: '1% 0%',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              padding: '1% 0%'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
-                  }}
-                >
+                    fontWeight: '900'
+                  }}>
                   {t('Details of the project submitted')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
-                  }}
-                >
+                    marginBottom: '20%'
+                  }}>
                   {t('by the client')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
                     marginTop: '10%',
                     paddingTop: '3%',
-                    paddingBottom: '1%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    paddingBottom: '1%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -233,7 +229,7 @@ function TailorViewQuoteScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.BasicSection
                       disabled
                       state={basicSection}
@@ -245,22 +241,20 @@ function TailorViewQuoteScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFC396',
               height: '100vh',
-              padding: '1% 0%',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row2_column1'>
+              padding: '1% 0%'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row2_column1">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -269,7 +263,7 @@ function TailorViewQuoteScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.DeliverySection
                       disabled
                       state={deliverySection}
@@ -278,16 +272,15 @@ function TailorViewQuoteScreen() {
                   </div>
                 </div>
               </div>
-              <div className='client_edit_ad_screen_row2_column2'>
+              <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
                     width: '100%',
                     marginBottom: '20%',
-                    textAlign: 'center',
-                  }}
-                >
+                    textAlign: 'center'
+                  }}>
                   {t('Details of the delivery of the project submitted by the client')}
                 </p>
                 {/* <p
@@ -304,25 +297,23 @@ function TailorViewQuoteScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFFCFB',
               height: '60vh',
-              padding: '0% 0% 5% 0%',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              padding: '0% 0% 5% 0%'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
                     marginBottom: '10%',
                     textAlign: 'center',
-                    width: '70%',
+                    width: '70%'
                     // padding: '0 10% !important',
-                  }}
-                >
+                  }}>
                   {t('Project budget submitted by the client')}
                 </p>
                 {/* <p
@@ -334,16 +325,16 @@ function TailorViewQuoteScreen() {
                 >
                   {t('Details')}
                 </p> */}
-                <img style={{ width: '20%' }} src={AdEdit3SVG} />
+                {/* <img style={{ width: '20%' }} src={AdEdit3SVG} /> */}
+                <p style={{ color: 'gray', fontSize: '15rem', fontWeight: '700' }}>€</p>
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -352,7 +343,7 @@ function TailorViewQuoteScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.NotesSection
                       disabled
                       state={notesSection}
@@ -367,68 +358,64 @@ function TailorViewQuoteScreen() {
             style={{
               height: '50vh',
               width: '100vw',
-              background: '#FFEEEA',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='tvqs_sq_container'>
+              background: '#FFEEEA'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="tvqs_sq_container">
                 <div
-                  className='tqs_sqm_input_container'
+                  className="tqs_sqm_input_container"
                   style={{
                     borderRadius: '15px',
-                    marginBottom: '2%',
-                  }}
-                >
-                  <div className='tqs_sqm_input_label'>
-                    <p className='tqs_sqm_input_text'>{t('Price')}</p>
+                    marginBottom: '2%'
+                  }}>
+                  <div className="tqs_sqm_input_label">
+                    <p className="tqs_sqm_input_text">{t('Price')}</p>
                   </div>
-                  <div className='tqs_sqm_input_input'>
+                  <div className="tqs_sqm_input_input">
                     <CustomInput
-                      inputType='text'
+                      inputType="text"
                       labelStyle={{
-                        display: 'none',
+                        display: 'none'
                       }}
                       inputValue={price}
                       inputStyle={{
                         border: 'none',
-                        fontSize: '12px',
+                        fontSize: '12px'
                       }}
                       inputPlaceholder={t('Set your Price')}
-                      onChange={(e) => setPrice(e.target.value.replace(/[^0-9]/g, ''))}
+                      onChange={e => setPrice(e.target.value.replace(/[^0-9]/g, ''))}
                     />
                   </div>
                 </div>
                 <div
-                  className='tqs_sqm_textarea_container'
+                  className="tqs_sqm_textarea_container"
                   style={{
                     borderRadius: '15px',
-                    marginBottom: '10%',
-                  }}
-                >
-                  <div className='tqs_sqm_textarea_label'>
-                    <p className='tqs_sqm_input_text'>{t('Description')}</p>
+                    marginBottom: '10%'
+                  }}>
+                  <div className="tqs_sqm_textarea_label">
+                    <p className="tqs_sqm_input_text">{t('Description')}</p>
                   </div>
-                  <div className='tqs_sqm_input_input'>
+                  <div className="tqs_sqm_input_input">
                     <textarea
-                      className='tqs_sqm_textarea_textarea'
+                      className="tqs_sqm_textarea_textarea"
                       placeholder={t('Tell us')}
-                      onChange={(e) => setDescription(e.target.value)}
-                    ></textarea>
+                      onChange={e => setDescription(e.target.value)}></textarea>
                   </div>
                 </div>
-                <div className='tvqs_sq_buttons'>
+                <div className="tvqs_sq_buttons">
                   <CustomButton
                     text={t('Send Offer')}
                     style={{
                       boxShadow: 'none',
-                      marginRight: '10pt',
+                      marginRight: '10pt'
                     }}
                     onClick={handleSubmit}
                   />
                   <CustomButton
                     text={t('Chat Here')}
                     style={{
-                      boxShadow: 'none',
+                      boxShadow: 'none'
                     }}
                     onClick={navToChat}
                   />

@@ -38,7 +38,7 @@ function ClientEditAdScreen() {
     cut: '',
     measurements: {
       type: 'static',
-      value: '',
+      value: ''
     },
     color: '',
     fabric: '',
@@ -47,22 +47,22 @@ function ClientEditAdScreen() {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: '',
+    observation: ''
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
-    address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    address: { zip: '', label: '', city: '', lat: '', lng: '' }
   });
   const [notesSection, setNotesSection] = useState({
     type: '',
     min_price: '',
     max_price: '',
-    note: '',
+    note: ''
   });
 
-  const handleImagesSelect = (event) => {
+  const handleImagesSelect = event => {
     if (event.target.files.length + images.length > 5) {
       toast.error(t('You can select a maximum of 5 files.'));
       return;
@@ -78,9 +78,9 @@ function ClientEditAdScreen() {
 
     setImages([...images, ...event.target.files]);
   };
-  const handleImageDeselect = (image) => {
+  const handleImageDeselect = image => {
     const _images = [...images];
-    const index = _images.map((_) => _.name).indexOf(image.name);
+    const index = _images.map(_ => _.name).indexOf(image.name);
     if (index > -1) {
       _images.splice(index, 1);
     }
@@ -106,7 +106,7 @@ function ClientEditAdScreen() {
         color: adData.color,
         fabric: adData.fabric,
         includes_alteration_services: adData.includes_alteration_services,
-        create_catalog_after_completion: adData.create_catalog_after_completion,
+        create_catalog_after_completion: adData.create_catalog_after_completion
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -114,15 +114,15 @@ function ClientEditAdScreen() {
         address: {
           zip: adData.delivery.zipcode,
           label: adData.delivery.address,
-          city: adData.delivery.city,
-        },
+          city: adData.delivery.city
+        }
       });
       setNotesSection({
         type: adData?.budget.type,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
         note: adData?.budget.note,
-        terms_conditions: true,
+        terms_conditions: true
       });
     } catch (e) {
       console.trace(e);
@@ -130,7 +130,7 @@ function ClientEditAdScreen() {
     setIsLoading(false);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     const isValidated =
@@ -169,7 +169,7 @@ function ClientEditAdScreen() {
           zipcode: deliverySection.address.zip,
           city: deliverySection.address.city,
           note: deliverySection.note,
-          date: deliverySection.date,
+          date: deliverySection.date
         })
       );
       body.append('note', notesSection.note);
@@ -179,7 +179,7 @@ function ClientEditAdScreen() {
           type: notesSection.type,
           min_price: notesSection.min_price,
           max_price: notesSection.max_price,
-          note: notesSection.note,
+          note: notesSection.note
         })
       );
       for (let i = 0; i < images.length; i++) {
@@ -208,57 +208,53 @@ function ClientEditAdScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className='container-page'>
-          <ClientAppBar color='#F8F4EF' activeTab={2} />
+        <div className="container-page">
+          <ClientAppBar color="#F8F4EF" activeTab={2} />
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFE9A0',
-              height: '135vh',
-            }}
-          >
-            <div style={{ height: '100%' }} className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              height: '135vh'
+            }}>
+            <div style={{ height: '100%' }} className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
+                    fontWeight: '900'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Ad Basic')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
+                    marginBottom: '20%'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Details')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
-                          <StepLabel onClick={() => setActiveStep(index)} className='stepper_label'>
+                          <StepLabel onClick={() => setActiveStep(index)} className="stepper_label">
                             {t(label)}
                           </StepLabel>
                         </Step>
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.BasicSection
                       state={basicSection}
                       setState={setBasicSection}
@@ -273,21 +269,19 @@ function ClientEditAdScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFC396',
-              paddingBottom: '1%',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row2_column1'>
+              paddingBottom: '1%'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row2_column1">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -296,7 +290,7 @@ function ClientEditAdScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.DeliverySection
                       state={deliverySection}
                       setState={setDeliverySection}
@@ -304,24 +298,22 @@ function ClientEditAdScreen() {
                   </div>
                 </div>
               </div>
-              <div className='client_edit_ad_screen_row2_column2'>
+              <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
+                    fontWeight: '900'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('My delivery')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
+                    marginBottom: '20%'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Details')}
                 </p>
                 <img style={{ width: '70%' }} src={AdEdit2SVG} />
@@ -329,44 +321,40 @@ function ClientEditAdScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
               background: '#FFFCFB',
-              paddingBottom: '2%',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              paddingBottom: '2%'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
+                    fontWeight: '900'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Payment')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
+                    marginBottom: '20%'
                   }}
-                  className='edit_add_title'
-                >
+                  className="edit_add_title">
                   {t('Details')}
                 </p>
-                <p style={{ fontSize: '15rem', fontWeight: '700' }}>€</p>
+                <p style={{ color: 'gray', fontSize: '15rem', fontWeight: '700' }}>€</p>
                 {/* <img style={{ width: '20%' }} src={AdEdit3SVG} /> */}
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '10%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '10%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -375,7 +363,7 @@ function ClientEditAdScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.NotesSection
                       state={notesSection}
                       setState={setNotesSection}
