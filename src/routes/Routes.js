@@ -30,6 +30,8 @@ import ClientViewOrderScreen from '../containers/client/ViewOrder';
 // Blog
 import Blog from '../containers/blog/Blog.js';
 import Article from '../containers/blog/Article.js';
+// Galllery
+import Gallery from '../containers/gallery/Gallery';
 
 // Tailor Screens
 import TailorHomeScreen from '../containers/tailor/Home';
@@ -141,6 +143,12 @@ const AuthRoutes = [
     name: 'Blogs',
     icon: <ClientOrdersIcon />,
     element: Blog
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    icon: <ClientOrdersIcon />,
+    element: Gallery
   },
   {
     path: '/blog/:id',

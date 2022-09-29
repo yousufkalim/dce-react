@@ -31,8 +31,7 @@ export default function YouMayLike({ loading }) {
                   <div className="blogdiv1">
                     <Link
                       to={`/blog/${item._id}`}
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
+                      style={{ textDecoration: 'none', color: 'white' }}>
                       <img
                         // src={blogImg}
                         src={assetsUrl + item.blog_images}
@@ -54,13 +53,9 @@ export default function YouMayLike({ loading }) {
                       <p>
                         <Link
                           to={`/blog/${item._id}`}
-                          style={{ textDecoration: 'none', color: 'white' }}
-                        >
+                          style={{ textDecoration: 'underLine', color: 'black' }}>
                           {' '}
-                          <span
-                            className="seemore"
-                            style={{ color: '#E7411B' }}
-                          >
+                          <span className="seemore" style={{ color: 'black' }}>
                             {' '}
                             Lire l’article
                           </span>

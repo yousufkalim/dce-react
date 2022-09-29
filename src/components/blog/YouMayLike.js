@@ -24,18 +24,14 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
 
   return (
     <div className="youMayLikecontainer">
-      <p
-        className={`${
-          language == 'ar' && 'arabicyouMayLikeheading'
-        } youMayLikeheading`}
-      >
+      <p className={`${language == 'ar' && 'arabicyouMayLikeheading'} youMayLikeheading`}>
         {t('Lisez aussi :')}
       </p>
       {loading ? (
         <h1>{t('Chargement en cours')}</h1>
       ) : (
         <Grid container spacing={1}>
-          {getblogs()?.map((item) => (
+          {getblogs()?.map(item => (
             <>
               <Grid item xs={12} sm={6} lg={3}>
                 <>
@@ -43,8 +39,7 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
                     <Link
                       to={`/blog/${item._id}`}
                       params={{ testvalue: 'hello' }}
-                      style={{ textDecoration: 'none', cursor: 'pointer' }}
-                    >
+                      style={{ textDecoration: 'none', cursor: 'pointer' }}>
                       <img
                         // src={blogImg}
                         src={assetsUrl + item.blog_images}
@@ -68,12 +63,12 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
                           to={`/blog/${item._id}`}
                           params={{ testvalue: 'hello' }}
                           style={{
-                            textDecoration: 'none',
+                            textDecoration: 'underLine',
+                            color: 'black',
                             cursor: 'pointer'
-                          }}
-                        >
+                          }}>
                           {' '}
-                          <span className="seemore">
+                          <span className="seemore" style={{ color: 'black' }}>
                             {' '}
                             {t('Lire l’article')}
                           </span>

@@ -13,7 +13,7 @@ export default function Blog() {
   const [statetextforscroll, setStatetextforscroll] = useState('');
   return (
     <div style={{}}>
-      {/* <UnAuthAppBar /> */}
+      <UnAuthAppBar />
       <BlogBody />
       {/* <Contactus /> */}
       <Footer />

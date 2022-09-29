@@ -49,7 +49,6 @@ export default function Article() {
       <div
         style={{
           backgroundColor: 'rgb(217 159 159)',
-
           minHeight: '100vh',
           overflowX: 'hidden',
           overflowY: 'hidden'
