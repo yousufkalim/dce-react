@@ -137,21 +137,20 @@ function UnAuthAppBar() {
               </Button>
             </a> */}
 
-            <AnchorLink  style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
+            <Link to="/gallery" style={{ textDecoration: 'none' }} className="animation_work" >
               <Button
                 className="auth_appbar_menus"
                 style={{ display: 'inline-block' }}
                 // key={page}
                 onClick={()=>{
                   handleCloseNavMenu();
-                  navigate('/')
                 }}
                 sx={{ my: 1.8, color: 'white', display: 'block' }}
               >
                 {/* {page} */}
                 {t('Gallery')}
               </Button>
-            </AnchorLink>
+            </Link>
             {/* <Link to="/blog" style={{textDecoration:"none",marginTop:"13px"}}>
               <Button className="blogbutton" >
                

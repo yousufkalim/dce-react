@@ -6,8 +6,26 @@ import BlogBodyimg from '../../assets/blogimg5.svg';
 import blogImg from '../../assets/blogimg.jpeg';
 import MeasurementChartSVG from '../../assets/MeasurementChart.svg';
 import { assetsUrl } from '../../config';
+import api from '../../api';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Blog() {
+  const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState([]);
+  useEffect(() => {
+    // get blogs
+    getAllImages();
+  }, []);
+
+  let getAllImages = async () => {
+    setLoading(true);
+    let res = await api('get', '/images');
+    if (res) {
+      setImages(res?.data);
+    }
+    setLoading(false);
+  };
+  console.log('assetsUrl', assetsUrl + 'uploads/blogImages/');
   let imgArray = [
     {
       a: AppLogoSVG,
@@ -80,9 +98,35 @@ export default function Blog() {
   ];
   return (
     <>
-      <div style={{ background: '#e3d5d8' }}>
-        <h1>Gallary</h1>
-      </div>
+      <UnAuthAppBar />
+      {loading ? (
+        <h1 style={{ textAlign: 'center', padding: '20%' }}>
+          <CircularProgress color="secondary" />
+        </h1>
+      ) : (
+        <>
+          <div className="maindivG" style={{ background: '#e3d5d8' }}>
+            <div className="titleDiv">
+              {/* <h1 className="titleGallery">erkendalkonferansen</h1>
+              <h1 className="titleGallery">erkendalkonferansen</h1> */}
+            </div>
+            <div className="galleryMainDiv">
+              {images?.map(img => (
+                <>
+                  <div className="imgdiv">
+                    <img
+                      src={assetsUrl + 'uploads/blogImages/' + img}
+                      // src={img.a}
+                      className="galleryimg"
+                      alt="img"
+                    />
+                  </div>
+                </>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

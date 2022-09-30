@@ -1,6 +1,9 @@
 .imgdiv{
     /* width: 80%; */
 }
+.maindivG{
+    margin-top: 6%;
+}
 .titleDiv{
     display: flex;
 }

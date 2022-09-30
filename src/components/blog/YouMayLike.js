@@ -7,6 +7,7 @@ import { assetsUrl } from '../../config';
 import { Link } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import { Store, UpdateStore } from '../../StoreContext';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function YouMayLike({ blogs, loading, setLoading }) {
   const { t, i18n } = useTranslation();
@@ -14,11 +15,10 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
   let newblog = [];
 
   const getblogs = () => {
-    console.log('blogs4', blogs);
     newblog = [...blogs];
     const shuffled = newblog?.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 4);
-    console.log('selected', selected);
+
     return selected;
   };
 
@@ -28,7 +28,11 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
         {t('Lisez aussi :')}
       </p>
       {loading ? (
-        <h1>{t('Chargement en cours')}</h1>
+        <h1 style={{ textAlign: 'center', padding: '10%' }}>
+          <CircularProgress color="secondary" />
+
+          {/* {t('Chargement en cours')} */}
+        </h1>
       ) : (
         <Grid container spacing={1}>
           {getblogs()?.map(item => (
