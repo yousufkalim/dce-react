@@ -11,15 +11,9 @@ export default function LatestArticle({ blogs, loading, setLoading }) {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
   let newdata = [{}];
-  console.log('blogs', blogs);
-
   return (
     <div className="LatestArticlecontainer">
-      <p
-        className={`${
-          language == 'ar' && 'arabicLatestArticleheading'
-        } LatestArticleheading`}
-      >
+      <p className={`${language == 'ar' && 'arabicLatestArticleheading'} LatestArticleheading`}>
         {t('Derniers articles')}
       </p>
       {loading ? (
@@ -34,8 +28,7 @@ export default function LatestArticle({ blogs, loading, setLoading }) {
                   pathname: `/blog/${blogs[0]?._id}`,
                   state: { message: 'hello, im a passed message!' }
                 }}
-                style={{ textDecoration: 'none', cursor: 'pointer' }}
-              >
+                style={{ textDecoration: 'none', cursor: 'pointer' }}>
                 <div className="latestArticleLeft">
                   <img
                     // src={blogImg}
@@ -69,12 +62,9 @@ export default function LatestArticle({ blogs, loading, setLoading }) {
               </Link>
             </Grid>
             <Grid item xs={12} sm={6}>
-              {blogs.slice(1, 4).map((item) => (
+              {blogs.slice(1, 4).map(item => (
                 <>
-                  <Link
-                    to={`/blog/${item._id}`}
-                    style={{ textDecoration: 'none', color: 'white' }}
-                  >
+                  <Link to={`/blog/${item._id}`} style={{ textDecoration: 'none', color: 'white' }}>
                     <div className="latestArticleRight">
                       {' '}
                       <img

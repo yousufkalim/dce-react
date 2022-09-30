@@ -13,10 +13,13 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AppLogoSVG from '../assets/AppLogo.svg';
 import { BsList } from 'react-icons/bs';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { useNavigate } from 'react-router-dom';
 
 const navBarArr = ['Why DCE', 'How Its Work', 'Register ', 'Login'];
 
 function UnAuthAppBar() {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -101,17 +104,20 @@ function UnAuthAppBar() {
           </Box>
 
           <Box sx={{ width: '80%', display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-            <a style={{ textDecoration: 'none' }} className="animation_dec" href="#WhyChooseDCE">
+            <AnchorLink style={{ textDecoration: 'none' }} className="animation_dec" href="#WhyChooseDCE" > 
               <Button
                 className="auth_appbar_menus"
                 style={{ display: 'inline-block' }}
                 // key={page}
-                onClick={handleCloseNavMenu}
+                onClick={()=>{
+                  handleCloseNavMenu();
+                  navigate('/')
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {t('About')}
               </Button>
-            </a>
+            </AnchorLink>
             <Link to="/blog" style={{textDecoration:"none",marginTop:"15px"}}>
               <Button className="auth_appbar_menus" >
                
@@ -131,18 +137,20 @@ function UnAuthAppBar() {
               </Button>
             </a> */}
 
-            <a style={{ textDecoration: 'none' }} className="animation_work" href="#FindGreatWork">
+            <Link to="/gallery" style={{ textDecoration: 'none' }} className="animation_work" >
               <Button
                 className="auth_appbar_menus"
                 style={{ display: 'inline-block' }}
                 // key={page}
-                onClick={handleCloseNavMenu}
+                onClick={()=>{
+                  handleCloseNavMenu();
+                }}
                 sx={{ my: 1.8, color: 'white', display: 'block' }}
               >
                 {/* {page} */}
                 {t('Gallery')}
               </Button>
-            </a>
+            </Link>
             {/* <Link to="/blog" style={{textDecoration:"none",marginTop:"13px"}}>
               <Button className="blogbutton" >
                

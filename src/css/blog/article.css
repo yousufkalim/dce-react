@@ -1,0 +1,34 @@
+.imgdiv{
+    /* width: 80%; */
+}
+.maindivG{
+    margin-top: 6%;
+}
+.titleDiv{
+    display: flex;
+}
+.titleGallery{
+    font-weight: 900;
+    font-size: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+.galleryimg{
+    width: 400px;
+    padding: 10px;
+    
+}
+.galleryimg:hover{
+    opacity: 0.5;
+    
+}
+.galleryMainDiv{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 10px;
+}
+.imgText{
+    text-align: center;
+    font-weight: 900;
+}

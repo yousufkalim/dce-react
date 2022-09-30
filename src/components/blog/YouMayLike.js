@@ -7,6 +7,7 @@ import { assetsUrl } from '../../config';
 import { Link } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import { Store, UpdateStore } from '../../StoreContext';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function YouMayLike({ blogs, loading, setLoading }) {
   const { t, i18n } = useTranslation();
@@ -14,28 +15,27 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
   let newblog = [];
 
   const getblogs = () => {
-    console.log('blogs4', blogs);
     newblog = [...blogs];
     const shuffled = newblog?.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 4);
-    console.log('selected', selected);
+
     return selected;
   };
 
   return (
     <div className="youMayLikecontainer">
-      <p
-        className={`${
-          language == 'ar' && 'arabicyouMayLikeheading'
-        } youMayLikeheading`}
-      >
+      <p className={`${language == 'ar' && 'arabicyouMayLikeheading'} youMayLikeheading`}>
         {t('Lisez aussi :')}
       </p>
       {loading ? (
-        <h1>{t('Chargement en cours')}</h1>
+        <h1 style={{ textAlign: 'center', padding: '10%' }}>
+          <CircularProgress color="secondary" />
+
+          {/* {t('Chargement en cours')} */}
+        </h1>
       ) : (
         <Grid container spacing={1}>
-          {getblogs()?.map((item) => (
+          {getblogs()?.map(item => (
             <>
               <Grid item xs={12} sm={6} lg={3}>
                 <>
@@ -43,8 +43,7 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
                     <Link
                       to={`/blog/${item._id}`}
                       params={{ testvalue: 'hello' }}
-                      style={{ textDecoration: 'none', cursor: 'pointer' }}
-                    >
+                      style={{ textDecoration: 'none', cursor: 'pointer' }}>
                       <img
                         // src={blogImg}
                         src={assetsUrl + item.blog_images}
@@ -68,12 +67,12 @@ export default function YouMayLike({ blogs, loading, setLoading }) {
                           to={`/blog/${item._id}`}
                           params={{ testvalue: 'hello' }}
                           style={{
-                            textDecoration: 'none',
+                            textDecoration: 'underLine',
+                            color: 'black',
                             cursor: 'pointer'
-                          }}
-                        >
+                          }}>
                           {' '}
-                          <span className="seemore">
+                          <span className="seemore" style={{ color: 'black' }}>
                             {' '}
                             {t('Lire l’article')}
                           </span>
