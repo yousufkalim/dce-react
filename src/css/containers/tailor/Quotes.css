@@ -51,12 +51,14 @@
 }
 
 .tqs_sqm_container {
+  
+  box-shadow: 1px 0px 23px rgb(200 164 160);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 60vh;
-  width: 40vw;
+  width: 25vw;
   background-color: #ffffff;
   border: none;
   border-radius: 10px;
