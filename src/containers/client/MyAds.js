@@ -769,6 +769,7 @@ const RejectQuoteModal = props => {
       response = await Api('post', '/quotes/reject', body);
 
       if (response?.data?.success) {
+        console.log(t(response.data.message));
         toast.success(t(response.data.message));
         navToAds();
       }
@@ -788,14 +789,16 @@ const RejectQuoteModal = props => {
     <div
       className="tqs_sqm_container"
       style={{
-        height: '40vh'
+        height: '18vh',
+        border: '1px solid gray'
       }}>
       <p
         style={{
-          color: '#ACACAC',
-          fontSize: '16px',
+          color: 'gray',
+          fontSize: '20px',
           fontWeight: '100',
-          marginBottom: '5%'
+          marginBottom: '7%',
+          marginRight: '4%'
         }}>
         Voulez-vous refuser l’offre ?
       </p>
@@ -805,7 +808,7 @@ const RejectQuoteModal = props => {
           style={{
             boxShadow: 'none',
             marginRight: '10pt',
-            padding: '1.3% 3%'
+            padding: '2.5% 4.7%'
           }}
           onClick={handleSubmit}
         />

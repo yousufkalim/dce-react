@@ -1,6 +1,6 @@
 // Init
 import React, { useState, useEffect } from 'react';
-import BlogBodyimg from '../../assets/blogimg5.svg';
+import BlogBodyimg from '../../assets/blog11.png';
 import LatestArticle from './LatestArticle';
 import YouMayLike from './YouMayLike';
 import api from '../../api';

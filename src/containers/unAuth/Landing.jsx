@@ -9,6 +9,7 @@ import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
 import Youtubeicon from "../../assets/Youtubeicon.png"
 import LeftBgImage from "../../assets/landingBgLeft.svg"
+import CatalogBackground from "../../assets/CatalogBackground.svg"
 import RightBgImage from "../../assets/landingBgRight.svg"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -112,7 +113,7 @@ const Landing = () => {
 
 
       {/*  2 section */}
-      <div className="chose_main_section" id="WhyChooseDCE">
+      <div className="chose_main_section chose_main_section1" id="WhyChooseDCE">
         <div className="chose_title_main">
           <div className="chose_title">
             <h3>{t('How it works ?')}</h3>
@@ -127,6 +128,9 @@ const Landing = () => {
                 <Link to="/client_register">
                   <button className="how_work_ls how_work_ls_s" style={{ marginTop: "0px", fontSize: "35px" }}>{t('I submit my idea')}</button>
                 </Link>
+              <div className="">
+                <img src={CatalogBackground} className="catalogimg"></img>
+              </div>
               </div>
 
             </div>
@@ -195,7 +199,7 @@ const Landing = () => {
             arrows={true}
       >
 
-      <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
+      <div className="chose_main_section mainpaddingsection" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
       <iframe width="60%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>

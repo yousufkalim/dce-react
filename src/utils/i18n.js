@@ -750,7 +750,7 @@ i18n
         translations: {
           //----------------------------------------------------------Client-------------------------------------------------------
           // toast
-          'Quote discarded successfully': 'Offre refusée',
+          'Quote discarded successfully.': 'Offre refusée',
 
           // landing
           'Sign out': 'Se déconnecter',
