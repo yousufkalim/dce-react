@@ -10,6 +10,7 @@ import NoOrders from '../../components/NoOrders';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import { useTranslation } from 'react-i18next';
+import * as html2canvas from 'html2canvas';
 
 import { Modal } from '@mui/material';
 import Rating from '@mui/material/Rating';
@@ -27,6 +28,7 @@ import { toast } from 'react-toastify';
 
 import * as FormValidations from '../../utils/Validations';
 import { t } from 'i18next';
+import { padding } from '@mui/system';
 
 function ClientOrdersScreen() {
   const { t } = useTranslation();
@@ -136,7 +138,6 @@ function OrderListTile(props) {
       toast.error(t('Order must be completed for billing.'));
     }
   };
-
   return (
     <div
       className="cos_order_list_tile_container"
@@ -579,267 +580,275 @@ const InvoiceOrderModal = props => {
   const [image, takeScreenshot] = useScreenshot();
 
   const download = async () => {
-    await takeScreenshot(ref.current);
+    let image = await takeScreenshot(ref.current);
+
     if (image) {
       saveAs(image, `${props.order.name} - ${Date.now()}.jpeg`);
     }
   };
 
   return (
-    <div className="tqs_sqm_container cos_oim_container">
-      <div className="cos_oim_row1" ref={ref}>
-        <div
-          className="cos_oim_column1"
-          style={{
-            paddingLeft: '5%'
-          }}>
-          <img
-            style={{
-              height: '150pt',
-              width: '200pt',
-              objectFit: 'cover'
-            }}
-            src={InvoiceLogoSVG}
-          />
+    <div className="tqs_sqm_container1 cos_oim_container">
+      <div ref={ref} className="exportImgDiv">
+        <div className="cos_oim_row1">
           <div
+            className="cos_oim_column1"
             style={{
-              marginLeft: '3%'
+              paddingLeft: '5%'
+            }}>
+            <img
+              style={{
+                height: '150pt',
+                width: '200pt',
+                objectFit: 'cover'
+              }}
+              src={InvoiceLogoSVG}
+            />
+            <div
+              style={{
+                marginLeft: '3%'
+              }}>
+              <p
+                style={{
+                  marginTop: '5%',
+                  fontSize: '14px',
+                  fontWeight: '600'
+                }}>
+                Design confections Ethiques
+              </p>
+              <div
+                className="cos_oim_column1_section"
+                style={{
+                  marginTop: '20%'
+                }}>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    color: '#BBBBBB'
+                  }}>
+                  Facturer:
+                </p>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    color: '#BBBBBB'
+                  }}>
+                  Envoyez à:
+                </p>
+              </div>
+              <div
+                className="cos_oim_column1_section"
+                style={{
+                  marginTop: '5%'
+                }}>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold'
+                  }}>
+                  {props.order.client.name}
+                </p>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold'
+                  }}>
+                  {props.order.delivery.address.split(' ').at(-1)}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="cos_oim_column1"
+            style={{
+              alignItems: 'flex-end'
             }}>
             <p
               style={{
+                paddingRight: '3%',
                 marginTop: '5%',
-                fontSize: '14px',
-                fontWeight: '600'
+                fontSize: '26px',
+                fontWeight: '500',
+                letterSpacing: '2'
               }}>
-              Design confections Ethiques
+              FACTURE
+            </p>
+            <p
+              style={{
+                marginTop: '2%',
+                fontSize: '14px'
+              }}>
+              #1
             </p>
             <div
-              className="cos_oim_column1_section"
               style={{
-                marginTop: '20%'
+                marginTop: '5%',
+                paddingRight: '3%',
+                width: '100%'
               }}>
-              <p
+              <_InvoiceR1C2Section
+                title="Date:"
+                description={new Date().toLocaleDateString('en-gb')}
+              />
+              <_InvoiceR1C2Section title="Modalités de paiement:" description="Dépôt bancaire" />
+              <_InvoiceR1C2Section
+                title="Date d'échéance:"
+                description={new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
+              />
+              <_InvoiceR1C2Section title="PO Numéro:" description="N/A" />
+              <div
+                className="cos_oim_column1_section"
                 style={{
-                  fontSize: '12px',
-                  color: '#BBBBBB'
+                  justifyContent: 'space-between',
+                  marginTop: '2%',
+                  marginLeft: '60%',
+                  padding: '2%',
+                  backgroundColor: '#F5F5F5'
                 }}>
-                Facturer:
-              </p>
-              <p
-                style={{
-                  fontSize: '12px',
-                  color: '#BBBBBB'
-                }}>
-                Envoyez à:
-              </p>
-            </div>
-            <div
-              className="cos_oim_column1_section"
-              style={{
-                marginTop: '5%'
-              }}>
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 'bold'
-                }}>
-                {props.order.client.name}
-              </p>
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 'bold'
-                }}>
-                {props.order.delivery.address.split(' ').at(-1)}
-              </p>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold'
+                  }}>
+                  Solde dû:
+                </p>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold'
+                  }}>
+                  {`€${props.quote.price}`}
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="cos_oim_column1"
+          className="cos_oim_row1"
           style={{
-            alignItems: 'flex-end'
+            marginTop: '2%'
           }}>
-          <p
+          <div
+            className="cos_oim_column1"
             style={{
-              paddingRight: '3%',
-              marginTop: '5%',
-              fontSize: '26px',
-              fontWeight: '500',
-              letterSpacing: '2'
+              backgroundColor: '#3A3A3A',
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-            FACTURE
-          </p>
-          <p
+            <p
+              style={{
+                fontSize: '22px',
+                color: '#FFFFFF',
+                padding: '4%'
+              }}>
+              {`${t(props.order.name)}`}
+            </p>
+          </div>
+          <div
+            className="cos_oim_column1"
             style={{
-              marginTop: '2%',
-              fontSize: '14px'
+              backgroundColor: '#3A3A3A',
+              borderTopRightRadius: '10px',
+              borderBottomRightRadius: '10px',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-            #1
-          </p>
+            <p
+              style={{
+                fontSize: '22px',
+                color: '#FFFFFF',
+                padding: '4%'
+              }}>
+              {`€${props.quote.price}`}
+            </p>
+          </div>
+        </div>
+
+        <div
+          className="cos_oim_row1"
+          style={{
+            marginTop: '4%',
+            height: '20vh'
+          }}>
           <div
             style={{
-              marginTop: '5%',
-              paddingRight: '3%',
               width: '100%'
             }}>
             <_InvoiceR1C2Section
-              title="Date:"
-              description={new Date().toLocaleDateString('en-gb')}
+              title="Total:"
+              description={`€${props.quote.price}`}
+              divStyle={{
+                paddingLeft: '80%'
+              }}
             />
-            <_InvoiceR1C2Section title="Modalités de paiement:" description="Dépôt bancaire" />
             <_InvoiceR1C2Section
-              title="Date d'échéance:"
-              description={new Date(props.order.delivery.date).toLocaleDateString('en-gb')}
+              title="Impôt (0%):"
+              description="€0.00"
+              divStyle={{
+                paddingLeft: '80%'
+              }}
             />
-            <_InvoiceR1C2Section title="PO Numéro:" description="N/A" />
-            <div
-              className="cos_oim_column1_section"
-              style={{
-                justifyContent: 'space-between',
-                marginTop: '2%',
-                marginLeft: '60%',
-                padding: '2%',
-                backgroundColor: '#F5F5F5'
-              }}>
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 'bold'
-                }}>
-                Solde dû:
-              </p>
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 'bold'
-                }}>
-                {`€${props.quote.price}`}
-              </p>
-            </div>
+            <_InvoiceR1C2Section
+              title="Expédition:"
+              description="€0.00"
+              divStyle={{
+                paddingLeft: '80%'
+              }}
+            />
+            <_InvoiceR1C2Section
+              title="Total:"
+              description={`€${props.quote.price}`}
+              divStyle={{
+                paddingLeft: '80%'
+              }}
+            />
           </div>
         </div>
-      </div>
-      <div
-        className="cos_oim_row1"
-        style={{
-          marginTop: '2%'
-        }}>
-        <div
-          className="cos_oim_column1"
-          style={{
-            backgroundColor: '#3A3A3A',
-            borderTopLeftRadius: '10px',
-            borderBottomLeftRadius: '10px',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-          <p
-            style={{
-              fontSize: '22px',
-              color: '#FFFFFF',
-              padding: '4%'
-            }}>
-            {`${t(props.order.name)}`}
-          </p>
-        </div>
-        <div
-          className="cos_oim_column1"
-          style={{
-            backgroundColor: '#3A3A3A',
-            borderTopRightRadius: '10px',
-            borderBottomRightRadius: '10px',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-          <p
-            style={{
-              fontSize: '22px',
-              color: '#FFFFFF',
-              padding: '4%'
-            }}>
-            {`€${props.quote.price}`}
-          </p>
-        </div>
-      </div>
-      <div
-        className="cos_oim_row1"
-        style={{
-          marginTop: '4%',
-          height: '20vh'
-        }}>
+
         <div
           style={{
+            marginTop: '4%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
             width: '100%'
           }}>
-          <_InvoiceR1C2Section
-            title="Total:"
-            description={`€${props.quote.price}`}
-            divStyle={{
-              paddingLeft: '80%'
-            }}
-          />
-          <_InvoiceR1C2Section
-            title="Impôt (0%):"
-            description="€0.00"
-            divStyle={{
-              paddingLeft: '80%'
-            }}
-          />
-          <_InvoiceR1C2Section
-            title="Expédition:"
-            description="€0.00"
-            divStyle={{
-              paddingLeft: '80%'
-            }}
-          />
-          <_InvoiceR1C2Section
-            title="Total:"
-            description={`€${props.quote.price}`}
-            divStyle={{
-              paddingLeft: '80%'
-            }}
-          />
+          <p style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px' }}>Remarques:</p>
+          <p style={{ fontSize: '14px' }}>
+            Design CONFECTIONS ETHIQUES est une plateforme en ligne (avec inscription gratuite)
+            permettant créateurs indépendants pour
+          </p>
+          <p style={{ fontSize: '14px' }}>unearth their customers in whole or in part</p>
+          <p
+            style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px', marginTop: '10px' }}>
+            Conditions:
+          </p>
+          <p style={{ fontSize: '14px' }}>
+            Design CONFECTIONS ETHIQUES met en relation des tailleurs à la recherche de nouvelles
+            missions et/ou de nouveaux clients, avec des
+          </p>
+          <p style={{ fontSize: '14px' }}>
+            personnes (particuliers) et/ou personnes morales (sociétés) à la recherche d'un service
+            : sur-mesure confection de vêtements,
+          </p>
+          <p style={{ fontSize: '14px' }}>
+            objets de décoration ou linge de maison ou toutes autres créations
+          </p>
         </div>
       </div>
-      <div
+      <CustomButton
+        text="Télécharger"
         style={{
-          marginTop: '4%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-          width: '100%'
-        }}>
-        <p style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px' }}>Remarques:</p>
-        <p style={{ fontSize: '14px' }}>
-          Design CONFECTIONS ETHIQUES est une plateforme en ligne (avec inscription gratuite)
-          permettant créateurs indépendants pour
-        </p>
-        <p style={{ fontSize: '14px' }}>unearth their customers in whole or in part</p>
-        <p style={{ fontSize: '14px', color: '#BBBBBB', marginBottom: '10px', marginTop: '10px' }}>
-          Conditions:
-        </p>
-        <p style={{ fontSize: '14px' }}>
-          Design CONFECTIONS ETHIQUES met en relation des tailleurs à la recherche de nouvelles
-          missions et/ou de nouveaux clients, avec des
-        </p>
-        <p style={{ fontSize: '14px' }}>
-          personnes (particuliers) et/ou personnes morales (sociétés) à la recherche d'un service :
-          sur-mesure confection de vêtements,
-        </p>
-        <p style={{ fontSize: '14px' }}>
-          objets de décoration ou linge de maison ou toutes autres créations
-        </p>
-        <CustomButton
-          text="Télécharger"
-          style={{
-            alignSelf: 'flex-end',
-            marginTop: '20px'
-          }}
-          onClick={download}
-        />
-      </div>
+          position: 'relative',
+          bottom: '10%',
+          right: '10%',
+          alignSelf: 'flex-end'
+        }}
+        onClick={download}
+      />
     </div>
   );
 };
