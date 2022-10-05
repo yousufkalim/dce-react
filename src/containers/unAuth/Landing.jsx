@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 // router link
 import { Link  } from 'react-router-dom';
 //  translation
@@ -15,8 +15,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import {youtubeChannelId,youtubeApiKey} from "../../config"
+import Cookies from "./Cookies"
 
 const Landing = () => {
+  const [openCookieePopup, setOpenCookieePopup] = useState(true);
 
 
   useEffect(() => {
@@ -70,6 +72,16 @@ const Landing = () => {
   return (
     <div >
       <UnAuthAppBar />
+     
+          {openCookieePopup
+            ? !localStorage.cookies && (
+              <Cookies 
+              setOpenCookieePopup={setOpenCookieePopup}
+              openCookieePopup={openCookieePopup}
+                />
+              )
+            : ''}
+     
 
       {/* 1 section  */}
       <div className="landing_main_container" >
@@ -231,6 +243,9 @@ const Landing = () => {
                 <span style={{ color: '#0085FF' }}> <a href='https://falconconsulting.fr/' target='blank'>{t('Falcon Consulting')}</a> .</span> 
                 <Link style={{color:"#d1d5db", textDecoration: 'none' }} to='/terms_conditions'>
                 <span style={{paddingLeft:"10px"}}>{t('Terms & Conditions')}</span>
+                </Link>  
+                <Link style={{color:"#d1d5db", textDecoration: 'none' }} to='/cgv'>
+                <span style={{paddingLeft:"10px"}}>{t('CGV')}</span>
                 </Link>     
               </h4>
             </div>

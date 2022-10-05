@@ -97,6 +97,7 @@ import ResetPasswordScreen from '../containers/auth/ResetPassword';
 
 import Landing from '../containers/unAuth/Landing';
 import UnAuthTermCondition from '../containers/unAuth/AuthTermsAndConditions';
+import CGV from '../containers/unAuth/CGV';
 // Routes for Auth
 const AuthRoutes = [
   // {
@@ -124,6 +125,12 @@ const AuthRoutes = [
     name: 'TermConditionsScreen',
     icon: <ClientTermsAndConditionsIcon />,
     element: UnAuthTermCondition
+  },
+  {
+    path: '/cgv',
+    name: 'TermConditionsScreen',
+    icon: <ClientTermsAndConditionsIcon />,
+    element: CGV
   },
 
   {

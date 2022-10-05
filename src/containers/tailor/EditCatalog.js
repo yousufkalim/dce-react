@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Modal } from '@mui/material';
 
 import Api from '../../api/index';
+import { assetsUrl } from '../../config';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -43,7 +44,7 @@ function TailorEditCatalogScreen() {
       response = await Api('get', `/catalogs/${params.id}`);
 
       let updatedAttachments = response?.data?.catalog?.attachments?.map(
-        val => (val = `https://dce.falconit.com.pk/${val}`)
+        val => (val = `${assetsUrl}${val}`)
       );
       setImages(updatedAttachments);
       const catalogData = response.data.catalog;
@@ -166,7 +167,8 @@ function InputSection(props) {
 
   const handleSubmit = async event => {
     console.log(state);
-    console.log(props?.images, 'check');
+    // console.log(props?.images, 'check prop images');
+
     event.preventDefault();
 
     const isValidated = FormValidations.tailorCreateCatalog(state);
@@ -187,8 +189,19 @@ function InputSection(props) {
       body.append('category', state.category);
       body.append('price', state.price);
       body.append('description', state.description);
-      for (let i = 0; i < props?.images.length; i++) {
-        body.append('images', props?.images[i]);
+
+      let newImageArray = [];
+      // get new array of images according to requirments
+      props?.images.map(image => {
+        if (typeof image === 'string') {
+          let existingdata = image.replace(assetsUrl, '');
+          newImageArray.push(existingdata);
+        } else {
+          newImageArray.push(image);
+        }
+      });
+      for (let i = 0; i < newImageArray.length; i++) {
+        body.append('images', newImageArray[i]);
       } // Multipart files share the same field name
       response = await Api('put', `/catalogs/${params.id}`, body);
 
