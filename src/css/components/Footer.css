@@ -42,15 +42,15 @@
   margin-left: 5%;
   width: 70%;
   color: white;
-  padding: 25px 10px 10px 10px ;
-  font-size: 22px;
+  padding: 19px 10px 0px 10px ;
+  font-size: 17px;
 }
 .cookieButtoncancel {
   cursor: pointer;
   padding: 10px 26px;
   margin: 5px;
   border: none;
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 5px;
   color: gray;
   background: white;
@@ -63,7 +63,7 @@
   padding: 10px 24px;
   margin: 5px;
   border: none;
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 5px;
   color: white;
   background: black;
@@ -76,8 +76,117 @@
 .buttonsDiv{
   text-align: right;
   margin-right: 15%;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
+
+.ModalDiv{
+  width: 22%;
+  
+  background: #dfb2bc;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 4%;
+  right:4%;
+  box-shadow: 0px 1px 50px rgb(202 16 12 / 37%);
+  
+  animation:a  0.7s ease-in-out;
+  
+}
+
+@keyframes a{
+  from{bottom:-100%}
+  to{bottom: 0%;}
+}
+
+.contactButtondiv{
+  transition: all 0.5s ease-in-out;
+  position: fixed;
+  bottom: 6%;
+  background-color: #cc8e9c;
+  border-radius: 50%;
+  padding: 20px;
+  z-index: 2;
+  right:5%
+}
+.contactButtondiv:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: white;
+
+}
+.smsIcon{
+  color: black !important;
+  font-size: 40px !important;
+  
+}
+.smsIcon:hover{
+  /* color: #cc8e9c !important; */
+  
+  
+}
+
+.contact_input {
+  width: 17vw;
+  padding: 12px;
+  background: #ffffff;
+  border-color: transparent;
+  border-radius: 10px;
+}
+.contactInputDiv{
+  text-align: center;
+}
+.inputDiv{
+  margin: 15px 10px;
+}
+
+.submitButton{
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  align-items: center;
+  padding: 11px 30px;
+  background: #cc8e9c;
+  border-radius: 30px !important;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  border: none;
+  
+}
+.submitButton:hover{
+  transition: all 0.3s ease-in-out;
+  background: #aa6c7a;
+}
+.headerDiv{
+  align-items: center;
+  background: #d195a2;
+  padding: 24px 0px;
+  
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  
+  text-align: center;
+  color: white;
+  
+  border: none;
+
+}
+.arrowDiv{
+  cursor: pointer;
+  position: absolute;
+  color: black;
+  top: -50px;
+  left: 140px;
+}
+.arrowicon{
+  font-size: 70px !important;
+}
+
 @media only screen and (max-width: 600px) {
   .cookiesDiv {
     width: 90%;
