@@ -19,26 +19,25 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
   const rating = calculateRating(catalog.ratings);
   const [value, setValue] = React.useState(rating ?? 0);
 
-  const onClickButtonCallback = (e) => {
+  const onClickButtonCallback = e => {
     e.stopPropagation();
     onClickButton?.();
   };
+  console.log('catalog', catalog);
   return (
     <div
-      className='tailor_catalog_list_tile_container'
+      className="tailor_catalog_list_tile_container"
       style={{
         ...mainDivStyle,
-        width: 'auto',
-      }}
-    >
+        width: 'auto'
+      }}>
       <div
         style={{
           position: 'relative',
           height: '100%',
-          width: '100%',
+          width: '100%'
         }}
-        onClick={onClick}
-      >
+        onClick={onClick}>
         <img
           style={{
             // width: '100%',
@@ -46,13 +45,13 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
             width: '260px',
             height: '200px',
             objectFit: 'cover',
-            borderRadius: '20px',
+            borderRadius: '20px'
           }}
-          src={catalog?.attachments[0] ? assetsURL(catalog.attachments[0]) : CatalogContent1SVG}
+          src={catalog?.attachments ? assetsURL(catalog.attachments.slice(-1)) : CatalogContent1SVG}
         />
         <CustomButton
           text={buttonText}
-          type='submit'
+          type="submit"
           onClick={onClickButtonCallback}
           style={{
             background: '#fff',
@@ -65,13 +64,13 @@ function CatalogListTile({ catalog, buttonText, onClickButton, onClick, mainDivS
             padding: '2% 8%',
             position: 'absolute',
             top: '0',
-            right: '10%',
+            right: '10%'
           }}
         />
-        <p className='tailor_catalog_list_tile_title'>{catalog.name}</p>
-        <div className='tailor_catalog_list_tile_details'>
-          <p className='tailor_catalog_list_tile_price_detail'>{t('Stitching Price')}</p>
-          <p className='tailor_catalog_list_tile_price'>{catalog.price}€</p>
+        <p className="tailor_catalog_list_tile_title">{catalog.name}</p>
+        <div className="tailor_catalog_list_tile_details">
+          <p className="tailor_catalog_list_tile_price_detail">{t('Stitching Price')}</p>
+          <p className="tailor_catalog_list_tile_price">{catalog.price}€</p>
         </div>
         {/* <div className="tailor_catalog_list_tile_details">
           <p className="tailor_catalog_list_tile_price_detail">
