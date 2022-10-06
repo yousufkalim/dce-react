@@ -139,7 +139,7 @@
 }
 
 .submitButton{
-  transition: all 0.3s ease-in-out;
+  transition: all 1s ease-in-out;
   cursor: pointer;
   align-items: center;
   padding: 11px 30px;
@@ -155,7 +155,7 @@
   
 }
 .submitButton:hover{
-  transition: all 0.3s ease-in-out;
+  transition: all 1s ease-in-out;
   background: #aa6c7a;
 }
 .headerDiv{
