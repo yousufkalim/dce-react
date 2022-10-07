@@ -16,9 +16,14 @@ import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import {youtubeChannelId,youtubeApiKey} from "../../config"
 import Cookies from "./Cookies"
+import ContactUs from './ContactUs';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
 const Landing = () => {
   const [openCookieePopup, setOpenCookieePopup] = useState(true);
+  const [openContact, setOpenContact] = useState(false);
+  const [flag, setflag] = useState(false);
 
 
   useEffect(() => {
@@ -72,7 +77,25 @@ const Landing = () => {
   return (
     <div >
       <UnAuthAppBar />
-     
+      <ContactUs
+      openContact={openContact}
+      setOpenContact={setOpenContact}
+
+      />
+      {!openContact?<div
+      onClick={()=>setOpenContact(true)}
+      className="contactButtondiv">
+        
+          
+        <RateReviewIcon className="smsIcon" />
+        
+        {/* <ChatBubbleOutlineIcon className="smsIcon2" /> */}
+        
+        
+      </div>:""
+
+      }
+      
           {openCookieePopup
             ? !localStorage.cookies && (
               <Cookies 

@@ -77,10 +77,12 @@ const ChatScreen = () => {
       response = await Api('post', `/chats/byQuery`, body);
       const chatsData = response.data.chats;
       updateStore({
-        chats: chatsData,
+        chats: chatsData
       });
       if (directUser) {
-        const isDirectUserInvalid = chatsData.some((_) => _.tailor._id == directUser._id || _.client._id == directUser._id);
+        const isDirectUserInvalid = chatsData.some(
+          _ => _.tailor._id == directUser._id || _.client._id == directUser._id
+        );
         if (isDirectUserInvalid) {
           setDirectUser(null);
         } else {
@@ -89,7 +91,7 @@ const ChatScreen = () => {
         }
       }
       updateStore({
-        chat: chatsData[0],
+        chat: chatsData[0]
       });
       return chatsData[0];
     } catch (e) {
@@ -97,15 +99,15 @@ const ChatScreen = () => {
     }
   };
 
-  const getMessages = async (chatID) => {
+  const getMessages = async chatID => {
     let response;
     try {
       response = await Api('post', `/messages/byQuery`, {
-        chat: chatID,
+        chat: chatID
       });
       const messagesData = response.data.messages;
       updateStore({
-        messages: messagesData,
+        messages: messagesData
       });
       setIsLoading(false);
     } catch (e) {
@@ -115,27 +117,30 @@ const ChatScreen = () => {
 
   return (
     <>
-      <div style={{ background: '#DFDFDF' }} className='container-page-vertical'>
-        {user.role == 'client' ? <ClientAppBar activeTab={3} color='#FCFCFC' /> : <TailorAppBar activeTab={3} color='#FCFCFC' />}
-        <div className='client_orders_screen_top' style={{ paddingTop: '6% !important' }}>
-          <div className='chat'>
+      <div style={{ background: '#DFDFDF' }} className="container-page-vertical">
+        {user.role == 'client' ? (
+          <ClientAppBar activeTab={3} color="#FCFCFC" />
+        ) : (
+          <TailorAppBar activeTab={3} color="#FCFCFC" />
+        )}
+        <div className="client_orders_screen_top" style={{ paddingTop: '6% !important' }}>
+          <div className="chat">
             <Box
               sx={{
-                display: mobiletoggle && width <= '768' ? 'none' : 'block',
+                display: mobiletoggle && width <= '768' ? 'none' : 'block'
               }}
               onClick={OpenChat}
-              className='chat-left-bar'
-            >
+              className="chat-left-bar">
               <h4>{t('Chats')}</h4>
-              <div className='recentchats'>
+              <div className="recentchats">
                 <p> {t('Recent Chats')}</p>
-                <img className='recent-down-icon' src={ArrowSVG} />
+                <img className="recent-down-icon" src={ArrowSVG} />
               </div>
-              <div className='search-msg-cont'>
-                <img className='srch-icon' src={SearchSVG} />
-                <input className='search-msg-input' placeholder={t('Search')} />
+              <div className="search-msg-cont">
+                <img className="srch-icon" src={SearchSVG} />
+                <input className="search-msg-input" placeholder={t('Search')} />
               </div>
-              <div className='user-card-container'>
+              <div className="user-card-container">
                 <ConversationsContainer />
               </div>
             </Box>
