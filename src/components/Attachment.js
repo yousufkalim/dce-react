@@ -2,7 +2,10 @@ import AttachmentsSVG from '../assets/PAttachment.svg';
 import ViewImageSVG from '../assets/InputEye.svg';
 import CancelAttachmentSVG from '../assets/CancelAttachment.svg';
 
-function Attachment({ image, view, deselect }) {
+function Attachment({ image, view, deselect, disabled }) {
+  console.log('disabled in attachments', disabled);
+  console.log('image in attachments', image);
+
   return (
     <div
       style={{
@@ -15,29 +18,26 @@ function Attachment({ image, view, deselect }) {
         backgroundColor: 'transparent',
         borderColor: '#f7c9d0',
         borderStyle: 'solid',
-        borderWidth: '0.5px',
-      }}
-    >
+        borderWidth: '0.5px'
+      }}>
       <div
         style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
-          marginLeft: '4%',
-        }}
-      >
+          marginLeft: '4%'
+        }}>
         <img
           src={AttachmentsSVG}
           style={{
-            width: '12pt',
+            width: '12pt'
           }}
         />
         <span
           style={{
-            marginLeft: '10pt',
-          }}
-        >
+            marginLeft: '10pt'
+          }}>
           {image.name}
         </span>
       </div>
@@ -48,26 +48,27 @@ function Attachment({ image, view, deselect }) {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            marginRight: '4%',
-          }}
-        >
+            marginRight: '4%'
+          }}>
           <img
             src={ViewImageSVG}
             style={{
               cursor: 'pointer',
-              width: '12pt',
+              width: '12pt'
             }}
             onClick={view}
           />
-          <img
-            src={CancelAttachmentSVG}
-            style={{
-              cursor: 'pointer',
-              marginLeft: '10pt',
-              width: '12pt',
-            }}
-            onClick={deselect}
-          />
+          {!disabled && (
+            <img
+              src={CancelAttachmentSVG}
+              style={{
+                cursor: 'pointer',
+                marginLeft: '10pt',
+                width: '12pt'
+              }}
+              onClick={deselect}
+            />
+          )}
         </div>
       ) : (
         <></>

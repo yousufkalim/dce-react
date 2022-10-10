@@ -108,6 +108,7 @@ function ClientEditAdScreen() {
         includes_alteration_services: adData.includes_alteration_services,
         create_catalog_after_completion: adData.create_catalog_after_completion
       });
+
       setDeliverySection({
         date: adData.delivery.date,
         type: adData.delivery.type,
