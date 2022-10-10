@@ -35,6 +35,7 @@ import StepLabel from '@mui/material/StepLabel';
 import * as ParseMeasurement from './ParseMeasurement';
 import * as FormValidations from '../utils/Validations';
 
+import { assetsUrl } from '../config';
 import { grey } from '@mui/material/colors';
 
 import { materialFabrics, adNames, colors } from '../utils/Constants';
@@ -69,6 +70,7 @@ function BasicSection({
       ...obj
     });
   };
+  console.log('disba;ed', disabled);
 
   const [anchorElMeasurements, setAnchorElMeasurements] = useState(null);
   const openMeasurements = Boolean(anchorElMeasurements);
@@ -715,9 +717,10 @@ function BasicSection({
         <div className="selected-images-container">
           {images?.map(_ => (
             <Attachment
+              disabled={disabled}
               image={_}
               view={() => {
-                setViewImage(_);
+                setViewImage(typeof _ === 'string' ? assetsUrl + _ : _);
                 handleIsViewImageModalOpen();
               }}
               deselect={() => {
@@ -970,9 +973,11 @@ function TapeMeasurementsModal(props) {
 }
 
 function DeliverySection({ state, setState, onClick, disabled }) {
+  console.log('DeliverySection state', state);
   const { t } = useTranslation();
   const [addresses, setAddresses] = useState([]);
   const _setState = (key, value) => {
+    console.log('value', value);
     const obj = {};
     obj[key] = value;
     setState({
@@ -1024,6 +1029,8 @@ function DeliverySection({ state, setState, onClick, disabled }) {
       try {
         const response = await axios(config);
         const addressToSet = [];
+        console.log('response.data.features', response.data.features);
+
         response.data.features
           .map(item => {
             addressToSet.push({

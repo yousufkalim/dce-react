@@ -58,13 +58,17 @@ function TailorViewQuoteScreen() {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: ''
+    observation: '',
+    attachments: []
   });
+  const [images, setImages] = useState([]);
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
-    address: { zip: '', label: '', city: '', lat: '', lng: '' }
+    address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    client_last_name: '',
+    client_first_name: ''
   });
   const [notesSection, setNotesSection] = useState({
     note: '',
@@ -85,7 +89,9 @@ function TailorViewQuoteScreen() {
     try {
       response = await Api('get', `/orders/${params.id}`);
       const adData = response.data.order;
+      console.log('adData', adData);
       setAd(adData);
+      setImages(adData.attachments);
       setBasicSection({
         gender: adData.gender,
         category: adData.category,
@@ -98,6 +104,7 @@ function TailorViewQuoteScreen() {
         fabric_description: adData.fabric_description,
         height: adData.height,
         observation: adData.observation,
+        attachments: adData.attachments,
 
         includes_alteration_services: adData.includes_alteration_services,
         create_catalog_after_completion: adData.create_catalog_after_completion
@@ -109,7 +116,9 @@ function TailorViewQuoteScreen() {
           zip: adData.delivery.zipcode,
           label: adData.delivery.address,
           city: adData.delivery.city
-        }
+        },
+        client_last_name: adData.delivery.client_last_name,
+        client_first_name: adData.delivery.client_first_name
       });
       setNotesSection({
         note: adData?.budget.note,
@@ -232,6 +241,7 @@ function TailorViewQuoteScreen() {
                   <div className="pa_content_row">
                     <ParseAd.BasicSection
                       disabled
+                      images={images}
                       state={basicSection}
                       setState={setBasicSection}
                     />

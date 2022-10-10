@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SendSVG from '../../assets/send.svg';
 import MovieSVG from '../../assets/attachone.svg';
 import ImageSVG from '../../assets/attachtwo.svg';
@@ -24,21 +24,29 @@ const SendMessage = ({ directUser }) => {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [text, setText] = useState(null);
-
-  const sendTextMessage = () => {
+  const sendTextMessage = e => {
+    console.log('text', text);
     if (!text) {
       toast.error(t('Please type message to send'));
     }
-
     store.socket.emit('send_message', {
       type: 'text',
       content: text,
       direct_user: directUser,
-      chat: store.chat,
+      chat: store.chat
     });
-
     setText('');
   };
+
+  // useEffect(() => {
+  //   const listener = event => {
+  //     if (event.code === 'Enter') {
+  //       console.log('Enter key was pressed. Run your function.');
+  //       sendTextMessage();
+  //     }
+  //   };
+  //   document.addEventListener('keydown', listener);
+  // }, []);
 
   const sendAssetMessage = async (e, type) => {
     const file = e.target.files[0];
@@ -70,7 +78,7 @@ const SendMessage = ({ directUser }) => {
           type: type,
           content: asset,
           direct_user: directUser,
-          chat: store.chat,
+          chat: store.chat
         });
       }
     } catch (e) {
@@ -87,7 +95,7 @@ const SendMessage = ({ directUser }) => {
   const [values, setvalues] = useState({
     video: '',
     image: '',
-    file: '',
+    file: ''
   });
   const ToggleIcon = () => {
     setIconsToggle(!iconsToggle);
@@ -102,10 +110,10 @@ const SendMessage = ({ directUser }) => {
 
   return (
     <>
-      <div className='send-msg-cont' style={{ pointerEvents: isProcessing ? 'none' : 'all' }}>
-        <div className='send-attachments cursor-pointer'>
+      <div className="send-msg-cont" style={{ pointerEvents: isProcessing ? 'none' : 'all' }}>
+        <div className="send-attachments cursor-pointer">
           <Box className={iconsToggle ? 'inptwo' : 'inp'}>
-            <div className='send-att-img cursor-pointer'>
+            {/* <div className="send-att-img cursor-pointer">
               <label htmlFor='videoPicker'>
                 <input
                   type='file'
@@ -117,35 +125,35 @@ const SendMessage = ({ directUser }) => {
                 />
                 <img src={MovieSVG} />
               </label>
-            </div>
-            <div className='send-att-img cursor-pointer'>
-              <label htmlFor='imgPicker'>
+            </div> */}
+            <div className="send-att-img cursor-pointer">
+              <label htmlFor="imgPicker">
                 <input
-                  type='file'
-                  accept='.jpeg,.png,.jpg'
+                  type="file"
+                  accept=".jpeg,.png,.jpg"
                   hidden
-                  id='imgPicker'
-                  onChange={(e) => sendAssetMessage(e, 'image')}
-                  name='image'
+                  id="imgPicker"
+                  onChange={e => sendAssetMessage(e, 'image')}
+                  name="image"
                 />
                 <img src={ImageSVG} />
               </label>
             </div>
-            <div className='send-att-img cursor-pointer'>
-              <label htmlFor='filePicker'>
+            <div className="send-att-img cursor-pointer">
+              <label htmlFor="filePicker">
                 <input
-                  type='file'
-                  accept='*'
+                  type="file"
+                  accept="*"
                   hidden
-                  id='filePicker'
-                  onChange={(e) => sendAssetMessage(e, 'attachment')}
-                  name='file'
+                  id="filePicker"
+                  onChange={e => sendAssetMessage(e, 'attachment')}
+                  name="file"
                 />
                 <img src={DocumentSVG} />
               </label>
             </div>
           </Box>
-          <div onClick={ToggleIcon} className='toggle-icons'>
+          <div onClick={ToggleIcon} className="toggle-icons">
             {iconsToggle ? (
               <RemoveOutlinedIcon sx={{ height: '17px', width: '17px' }} />
             ) : (
@@ -154,22 +162,22 @@ const SendMessage = ({ directUser }) => {
           </div>
         </div>
         <input
-          className='msg-input'
+          className="msg-input"
           placeholder={t('Type a message here')}
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={e => setText(e.target.value)}
         />
         {
           <>
-            <img className='emoji-init' onClick={EmojiOpen} src={chatemoji} />
+            <img className="emoji-init" onClick={EmojiOpen} src={chatemoji} />
             {Open ? (
-              <div className='emoji-open'>
+              <div className="emoji-open">
                 <Picker onEmojiClick={onEmojiClick} />
               </div>
             ) : null}
           </>
         }
-        <div className='send-btn cursor-pointer' onClick={sendTextMessage}>
+        <div className="send-btn cursor-pointer" onClick={sendTextMessage}>
           <img src={SendSVG} />
         </div>
       </div>
