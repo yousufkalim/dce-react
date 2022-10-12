@@ -29,6 +29,7 @@ function ClientAdsScreen() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [ads, setAds] = useState([]);
+  const [pagination, setPagination] = useState([]);
   const user = getUser();
 
   useEffect(() => {
@@ -45,6 +46,7 @@ function ClientAdsScreen() {
       });
       const adsData = response.data.orders;
       setAds(adsData);
+      setPagination(adsData.slice(0, 6));
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
@@ -150,10 +152,24 @@ function ClientAdsScreen() {
             />
           </div>
           <div className="client_ads_screen_row2">
-            {ads.map(_ => (
+            {pagination.map(_ => (
               <AdListTile {..._} />
             ))}
           </div>
+          {console.log('add', ads.length)}
+          {console.log('pagination', pagination.length)}
+          {ads.length == pagination.length ? (
+            ''
+          ) : (
+            <div className="paginationDiv">
+              <button
+                className="paginationButton"
+                onClick={() => setPagination(ads.slice(0, pagination.length + 6))}>
+                View More
+              </button>
+            </div>
+          )}
+
           {ads?.length === 0 ? (
             <>
               {/* <div

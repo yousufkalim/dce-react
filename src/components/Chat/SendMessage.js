@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import useState from 'react-usestateref';
 import SendSVG from '../../assets/send.svg';
 import MovieSVG from '../../assets/attachone.svg';
 import ImageSVG from '../../assets/attachtwo.svg';
@@ -23,30 +24,20 @@ const SendMessage = ({ directUser }) => {
   const updateStore = UpdateStore();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [text, setText] = useState(null);
+  const [text, setText, textref] = useState('');
   const sendTextMessage = e => {
-    console.log('text', text);
-    if (!text) {
+    console.log('textref.current', textref.current);
+    if (!textref.current) {
       toast.error(t('Please type message to send'));
     }
     store.socket.emit('send_message', {
       type: 'text',
-      content: text,
+      content: textref.current,
       direct_user: directUser,
       chat: store.chat
     });
     setText('');
   };
-
-  // useEffect(() => {
-  //   const listener = event => {
-  //     if (event.code === 'Enter') {
-  //       console.log('Enter key was pressed. Run your function.');
-  //       sendTextMessage();
-  //     }
-  //   };
-  //   document.addEventListener('keydown', listener);
-  // }, []);
 
   const sendAssetMessage = async (e, type) => {
     const file = e.target.files[0];
@@ -90,7 +81,8 @@ const SendMessage = ({ directUser }) => {
 
   // Design
   const [iconsToggle, setIconsToggle] = useState(false);
-  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [chosenEmoji, setChosenEmoji, ref] = useState([]);
+
   const [Open, setOpen] = useState(false);
   const [values, setvalues] = useState({
     video: '',
@@ -100,8 +92,12 @@ const SendMessage = ({ directUser }) => {
   const ToggleIcon = () => {
     setIconsToggle(!iconsToggle);
   };
+  console.log('chosenEmoji', chosenEmoji);
   const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
+    setChosenEmoji([emojiObject.emoji]);
+    let emoji = ref.current.join('');
+
+    setText(text + emoji);
   };
   const EmojiOpen = () => {
     setOpen(!Open);
@@ -166,6 +162,11 @@ const SendMessage = ({ directUser }) => {
           placeholder={t('Type a message here')}
           value={text}
           onChange={e => setText(e.target.value)}
+          onKeyDown={e => {
+            if (e.code === 'Enter') {
+              sendTextMessage(e);
+            }
+          }}
         />
         {
           <>
