@@ -37,6 +37,7 @@ function ClientOrdersScreen() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [orders, setOrders] = useState([]);
+  const [orderpagination, setOrderPagination] = useState([]);
   const user = getUser();
 
   useEffect(() => {
@@ -52,6 +53,7 @@ function ClientOrdersScreen() {
       });
       const ordersData = response.data.orders;
       setOrders(ordersData);
+      setOrderPagination(ordersData.slice(0, 6));
       setIsLoading(false);
     } catch (e) {
       console.trace(e);
@@ -85,7 +87,7 @@ function ClientOrdersScreen() {
             />
           </div>
           <div className="client_orders_screen_row2">
-            {orders.map(_ => (
+            {orderpagination.map(_ => (
               <OrderListTile
                 order={_}
                 quote={_.quotes.filter(__ => __.status == 'accepted')[0]}
@@ -93,6 +95,17 @@ function ClientOrdersScreen() {
               />
             ))}
           </div>
+          {orders.length == orderpagination.length ? (
+            ''
+          ) : (
+            <div className="paginationDiv">
+              <button
+                className="paginationButton"
+                onClick={() => setOrderPagination(orders.slice(0, orderpagination.length + 6))}>
+                View More
+              </button>
+            </div>
+          )}
           {orders?.length === 0 ? (
             <>
               <NoOrders RenderText={t('No Orders')} />)
