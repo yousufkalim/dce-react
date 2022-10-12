@@ -41,7 +41,7 @@ function TailorViewOrderScreen() {
     cut: '',
     measurements: {
       type: 'static',
-      value: '',
+      value: ''
     },
     color: '',
     fabric: '',
@@ -51,19 +51,22 @@ function TailorViewOrderScreen() {
     fabric_type: '',
     fabric_description: '',
     height: '',
-    observation: '',
+    observation: ''
   });
   const [deliverySection, setDeliverySection] = useState({
     date: '',
     client_first_name: '',
     client_last_name: '',
     address: { zip: '', label: '', city: '', lat: '', lng: '' },
+    client_last_name: '',
+    client_first_name: ''
   });
   const [notesSection, setNotesSection] = useState({
     note: '',
     min_price: '',
-    max_price: '',
+    max_price: ''
   });
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     getAd();
@@ -77,6 +80,7 @@ function TailorViewOrderScreen() {
       const adData = response.data.order;
       console.log('adData', adData);
       setAd(adData);
+      setImages(adData.attachments);
       setBasicSection({
         gender: adData.gender,
         category: adData.category,
@@ -91,7 +95,7 @@ function TailorViewOrderScreen() {
 
         height: adData.height,
         includes_alteration_services: adData.includes_alteration_services,
-        create_catalog_after_completion: adData.create_catalog_after_completion,
+        create_catalog_after_completion: adData.create_catalog_after_completion
       });
       setDeliverySection({
         date: adData.delivery.date,
@@ -99,14 +103,16 @@ function TailorViewOrderScreen() {
         address: {
           zip: adData.delivery.zipcode,
           label: adData.delivery.address,
-          city: adData.delivery.city,
+          city: adData.delivery.city
         },
+        client_last_name: adData.delivery.client_last_name,
+        client_first_name: adData.delivery.client_first_name
       });
       setNotesSection({
         note: adData?.budget.note,
         min_price: adData?.budget.min_price,
         max_price: adData?.budget.max_price,
-        quotes: adData?.quotes.filter((_) => _.status === 'accepted'),
+        quotes: adData?.quotes.filter(_ => _.status === 'accepted')
       });
     } catch (e) {
       console.trace(e);
@@ -119,44 +125,40 @@ function TailorViewOrderScreen() {
       {isLoading ? (
         <></>
       ) : (
-        <div className='container-page'>
-          <TailorAppBar color='#F8F4EF' activeTab={2} />
+        <div className="container-page">
+          <TailorAppBar color="#F8F4EF" activeTab={2} />
           <div
-            className='containerOrder'
+            className="containerOrder"
             style={{
               background: '#FFE9A0',
-              height: '138vh',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row1_column1'>
+              height: '138vh'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
-                  }}
-                >
+                    fontWeight: '900'
+                  }}>
                   {t('Details of the project submitted')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
-                  }}
-                >
+                    marginBottom: '20%'
+                  }}>
                   {t('by the client')}
                 </p>
                 <img style={{ width: '55%' }} src={AdEdit1SVG} />
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '8%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '8%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={0} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -165,9 +167,10 @@ function TailorViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.BasicSection
                       disabled
+                      images={images}
                       state={basicSection}
                       setState={setBasicSection}
                     />
@@ -177,20 +180,18 @@ function TailorViewOrderScreen() {
             </div>
           </div>
           <div
-            className='container'
+            className="container"
             style={{
-              background: '#FFC396',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1'>
-              <div className='client_edit_ad_screen_row2_column1'>
+              background: '#FFC396'
+            }}>
+            <div className="client_edit_ad_screen_row1">
+              <div className="client_edit_ad_screen_row2_column1">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '7%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '7%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={1} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -199,7 +200,7 @@ function TailorViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.DeliverySection
                       disabled
                       state={deliverySection}
@@ -208,22 +209,20 @@ function TailorViewOrderScreen() {
                   </div>
                 </div>
               </div>
-              <div className='client_edit_ad_screen_row2_column2'>
+              <div className="client_edit_ad_screen_row2_column2">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
-                  }}
-                >
+                    fontWeight: '900'
+                  }}>
                   {t('Delivery')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
-                  }}
-                >
+                    marginBottom: '20%'
+                  }}>
                   {t('Details')}
                 </p>
                 <img style={{ width: '70%' }} src={AdEdit2SVG} />
@@ -231,40 +230,36 @@ function TailorViewOrderScreen() {
             </div>
           </div>
           <div
-            className='container_'
+            className="container_"
             style={{
-              background: '#FFFCFB',
-            }}
-          >
-            <div className='client_edit_ad_screen_row1' style={{ paddingTop: '5%' }}>
-              <div className='client_edit_ad_screen_row1_column1'>
+              background: '#FFFCFB'
+            }}>
+            <div className="client_edit_ad_screen_row1" style={{ paddingTop: '5%' }}>
+              <div className="client_edit_ad_screen_row1_column1">
                 <p
                   style={{
                     fontSize: '30px',
-                    fontWeight: '900',
-                  }}
-                >
+                    fontWeight: '900'
+                  }}>
                   {t('Payment')}
                 </p>
                 <p
                   style={{
                     fontSize: '30px',
                     fontWeight: '900',
-                    marginBottom: '20%',
-                  }}
-                >
+                    marginBottom: '20%'
+                  }}>
                   {t('Details')}
                 </p>
                 <img style={{ width: '20%' }} src={AdEdit3SVG} />
               </div>
-              <div className='client_edit_ad_screen_row1_column2'>
+              <div className="client_edit_ad_screen_row1_column2">
                 <div
-                  className='pa_container'
+                  className="pa_container"
                   style={{
-                    marginTop: '7%',
-                  }}
-                >
-                  <div className='pa_steps_row'>
+                    marginTop: '7%'
+                  }}>
+                  <div className="pa_steps_row">
                     <Stepper activeStep={2} alternativeLabel>
                       {steps.map((label, index) => (
                         <Step key={label}>
@@ -273,7 +268,7 @@ function TailorViewOrderScreen() {
                       ))}
                     </Stepper>
                   </div>
-                  <div className='pa_content_row'>
+                  <div className="pa_content_row">
                     <ParseAd.NotesSection
                       disabled
                       state={notesSection}
@@ -292,10 +287,10 @@ function TailorViewOrderScreen() {
   );
 }
 
-const CompleteOrderSection = (props) => {
+const CompleteOrderSection = props => {
   const [isCompleteOrderModal, setIsCompleteOrderModal] = useState(false);
   const { t } = useTranslation();
-  const handleCompleteOrderModalClose = (e) => {
+  const handleCompleteOrderModalClose = e => {
     setIsCompleteOrderModal(false);
   };
 
@@ -304,27 +299,24 @@ const CompleteOrderSection = (props) => {
       style={{
         height: '30vh',
         width: '100vw',
-        background: '#FFEEEA',
-      }}
-    >
-      <div className='client_edit_ad_screen_row1'>
+        background: '#FFEEEA'
+      }}>
+      <div className="client_edit_ad_screen_row1">
         <p
           style={{
             fontSize: 28,
             fontWeight: '900',
             textDecoration: 'underline',
-            cursor: 'pointer',
+            cursor: 'pointer'
           }}
-          onClick={() => setIsCompleteOrderModal(true)}
-        >
+          onClick={() => setIsCompleteOrderModal(true)}>
           {t('Want to complete this order')}
         </p>
         <Modal
           open={isCompleteOrderModal}
           onClose={handleCompleteOrderModalClose}
-          aria-labelledby='Complete Order'
-          onBackdropClick='false'
-        >
+          aria-labelledby="Complete Order"
+          onBackdropClick="false">
           <CompleteOrderModal handleClose={handleCompleteOrderModalClose} order={props} />
         </Modal>
       </div>
@@ -332,7 +324,7 @@ const CompleteOrderSection = (props) => {
   );
 };
 
-const CompleteOrderModal = (props) => {
+const CompleteOrderModal = props => {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -343,7 +335,7 @@ const CompleteOrderModal = (props) => {
 
   const { t } = useTranslation();
 
-  const handleFileSelect = (event) => {
+  const handleFileSelect = event => {
     setAttachments([...attachments, ...event.target.files]);
   };
 
@@ -351,12 +343,12 @@ const CompleteOrderModal = (props) => {
     navigate('/orders');
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     const isValidated = FormValidations.tailorCompleteOrder({
       // rating,
-      details,
+      details
     });
     if (!isValidated) {
       return;
@@ -400,7 +392,7 @@ const CompleteOrderModal = (props) => {
   };
 
   return (
-    <div className='tqs_sqm_container'>
+    <div className="tqs_sqm_container">
       {/* <div
         className="tqs_sqm_input_container"
         style={{
@@ -424,50 +416,48 @@ const CompleteOrderModal = (props) => {
         </div>
       </div> */}
       <div
-        className='tqs_sqm_textarea_container'
+        className="tqs_sqm_textarea_container"
         style={{
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px',
-          marginBottom: '2%',
-        }}
-      >
-        <div className='tqs_sqm_textarea_label'>
-          <p className='tqs_sqm_input_text'>{t('Details')}</p>
+          marginBottom: '2%'
+        }}>
+        <div className="tqs_sqm_textarea_label">
+          <p className="tqs_sqm_input_text">{t('Details')}</p>
         </div>
-        <div className='tqs_sqm_input_input'>
+        <div className="tqs_sqm_input_input">
           <textarea
-            className='tqs_sqm_textarea_textarea'
+            className="tqs_sqm_textarea_textarea"
             placeholder={t('Describe about submit report')}
             value={details}
-            onChange={(e) => setDetails(e.target.value)}
+            onChange={e => setDetails(e.target.value)}
           />
         </div>
       </div>
       <div
-        className='pa_profile_section_input_container'
+        className="pa_profile_section_input_container"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
           width: '100%',
-          padding: '1.6% 0',
-        }}
-      >
-        <div className='pa_profile_section_input_label'>
-          <p className='pa_profile_section_input_text'>{t('Attachments')}</p>
+          padding: '1.6% 0'
+        }}>
+        <div className="pa_profile_section_input_label">
+          <p className="pa_profile_section_input_text">{t('Attachments')}</p>
         </div>
-        <div className='pa_profile_section_input_input'>
-          <label className='upload-pic-label'>
+        <div className="pa_profile_section_input_input">
+          <label className="upload-pic-label">
             <input
               multiple
-              type='file'
-              accept='image/*'
+              type="file"
+              accept="image/*"
               hidden
-              id='filePicker'
-              name='file'
+              id="filePicker"
+              name="file"
               onChange={handleFileSelect}
             />
-            <div className='upload-img-text-cont'>
-              <span className='upload-img-text'>
+            <div className="upload-img-text-cont">
+              <span className="upload-img-text">
                 {attachments?.name ?? t('upload an illustration of your creation')}
               </span>
               <img src={UploadSVG} />
@@ -475,24 +465,24 @@ const CompleteOrderModal = (props) => {
           </label>
         </div>
       </div>
-      <div className='selected-images-container' style={{ margin: '0' }}>
-        {attachments?.map((val) => (
+      <div className="selected-images-container" style={{ margin: '0' }}>
+        {attachments?.map(val => (
           <span>{val?.name}</span>
         ))}
       </div>
-      <div className='tvqs_sq_buttons'>
+      <div className="tvqs_sq_buttons">
         <CustomButton
           text={t('Cancel')}
           style={{
             boxShadow: 'none',
-            marginRight: '10pt',
+            marginRight: '10pt'
           }}
           onClick={props.handleClose}
         />
         <CustomButton
           text={t('Complete')}
           style={{
-            boxShadow: 'none',
+            boxShadow: 'none'
           }}
           onClick={handleSubmit}
         />

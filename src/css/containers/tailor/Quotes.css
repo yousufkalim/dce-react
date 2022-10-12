@@ -50,6 +50,12 @@
   justify-content: center;
 }
 
+.tqsnew{
+  height: 35vh !important;
+  width: 43vw !important;
+
+}
+
 .tqs_sqm_container {
   box-shadow: 1px 0px 23px rgb(200 164 160);
   position: absolute;

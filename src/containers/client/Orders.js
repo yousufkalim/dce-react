@@ -346,7 +346,7 @@ const FeedbackOrderModal = props => {
   };
 
   return (
-    <div className="tqs_sqm_container">
+    <div className="tqs_sqm_container tqsnew">
       {/* <div
         className="tqs_sqm_input_container"
         style={{
