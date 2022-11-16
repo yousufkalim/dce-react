@@ -185,8 +185,8 @@ function InputSection(props) {
       setIsProcessing(true);
       const body = new FormData();
       body.append('name', state.name);
-      body.append('gender', state.gender);
-      body.append('category', state.category);
+      body.append('gender', state.gender==="Homme"?"male":state.gender==="Femme"?'female':state.gender==="Enfant"?'child':state.gender==="Autre"?'other':'');
+      //body.append('category', state.category);
       body.append('price', state.price);
       body.append('description', state.description);
 
@@ -226,7 +226,9 @@ function InputSection(props) {
         <div
           className="pa_profile_section_input_container"
           style={{
-            borderRadius: '20px'
+           
+            borderTopLeftRadius: '20px',
+            borderTopRightRadius: '20px'
           }}>
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t('Name')}</p>
@@ -248,10 +250,7 @@ function InputSection(props) {
         </div>
         <div
           className="pa_profile_section_input_container"
-          style={{
-            borderTopLeftRadius: '20px',
-            borderTopRightRadius: '20px'
-          }}>
+          >
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t('Gender')}</p>
           </div>
@@ -266,8 +265,10 @@ function InputSection(props) {
               selectValue={t(state.gender)}
               onChange={e => _setState('gender', e.target.value)}
               menuItems={[
-                <MenuItem value={t('male')}>{t('Male')}</MenuItem>,
-                <MenuItem value={t('female')}>{t('Female')}</MenuItem>
+                <MenuItem value={t('male')}>{t('male')}</MenuItem>,
+                <MenuItem value={t('female')}>{t('female')}</MenuItem>,
+                <MenuItem value={t('child')}>{t('child')}</MenuItem>,
+                <MenuItem value={t('other')}>{t('other')}</MenuItem>
               ]}
               selectSX={{
                 fontSize: '12px'
@@ -275,7 +276,7 @@ function InputSection(props) {
             />
           </div>
         </div>
-        <div className="pa_profile_section_input_container">
+        {/* <div className="pa_profile_section_input_container">
           <div className="pa_profile_section_input_label">
             <p className="pa_profile_section_input_text">{t('Category')}</p>
           </div>
@@ -297,7 +298,7 @@ function InputSection(props) {
               ]}
             />
           </div>
-        </div>
+        </div> */}
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -318,7 +319,7 @@ function InputSection(props) {
                 fontSize: '12px'
               }}
               inputPlaceholder={t('Set your Price')}
-              inputDefaultValue={`${t(state.price)}€`}
+              inputDefaultValue={`${t(state.price)}`}
               onChange={e => _setState('price', e.target.value)}
             />
           </div>

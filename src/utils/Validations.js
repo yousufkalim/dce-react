@@ -207,9 +207,9 @@ function tailorCreateCatalog(data) {
     {
       validationFunction: () => Validators.nullValidator('Name', data['name']),
     },
-    // {
-    //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
-    // },
+     {
+       validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
+     },
     // {
     //   validationFunction: () => Validators.selectValidator('Category', data['category']),
     // },
