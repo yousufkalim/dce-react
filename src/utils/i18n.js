@@ -563,7 +563,7 @@ i18n
           medium: 'medium',
           'Leg length': 'Leg length',
           'Save and Next':'Save and Next',
-
+          'Length':'Length',
           //colors
           Color: 'Color',
           White: 'White',
@@ -1313,7 +1313,7 @@ i18n
           '(handle)': '(manipuler)',
           'Leg length': 'Longueur de jambe',
           'Save and Next':'Enregistrer et Suivant',
-
+          'Length':'Longueur',
           Next: 'Suivant',
           large: 'Grand',
           medium: 'Moyen',
