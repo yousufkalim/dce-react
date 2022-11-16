@@ -167,12 +167,10 @@ function InputSection() {
 
     try {
       setIsProcessing(true);
-
       const body = new FormData();
-
       body.append('name', state.name);
-      body.append('gender', state.gender);
-      body.append('category', state.category);
+      body.append('gender', state.gender==="Homme"?"male":state.gender==="Femme"?'female':state.gender==="Enfant"?'child':state.gender==="Autre"?'other':'');
+      //body.append('category', state.category);
       body.append('price', state.price);
       body.append('description', state.description);
       for (let i = 0; i < images.length; i++) {
@@ -241,10 +239,10 @@ function InputSection() {
               selectValue={state.gender}
               onChange={e => _setState('gender', e.target.value)}
               menuItems={[
-                <MenuItem value={t('MAN')}>{t('MAN')}</MenuItem>,
-                <MenuItem value={t('WOMEN')}>{t('WOMEN')}</MenuItem>,
-                <MenuItem value={t('CHILD')}>{t('CHILD')}</MenuItem>,
-                <MenuItem value={t('Other')}>{t('Other')}</MenuItem>
+                <MenuItem value={t('male')}>{t('male')}</MenuItem>,
+                <MenuItem value={t('female')}>{t('female')}</MenuItem>,
+                <MenuItem value={t('child')}>{t('child')}</MenuItem>,
+                <MenuItem value={t('other')}>{t('other')}</MenuItem>
               ]}
               selectSX={{
                 fontSize: '12px'
