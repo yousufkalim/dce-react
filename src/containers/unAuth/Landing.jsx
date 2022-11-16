@@ -234,9 +234,9 @@ const Landing = () => {
             arrows={true}
       >
 
-      <div className="chose_main_section mainpaddingsection" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
+      {/* <div className="chose_main_section mainpaddingsection" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
       <iframe width="60%" height="500" src="https://www.youtube.com/embed/-Tci049s2eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+      </div> */}
       <div className="chose_main_section" id="WhyChooseDCE" style={{display:"flex",justifyContent:"center",width:"100%",height:"100%"}}>
       <iframe width="60%" height="500" src="https://www.youtube.com/embed/CU3l9QGe6SA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>

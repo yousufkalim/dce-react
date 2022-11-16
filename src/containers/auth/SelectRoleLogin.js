@@ -25,6 +25,9 @@ const SelectRoleLoginScreen = () => {
   const navToSelectRole = e => {
     navigate('/select_role_register');
   };
+const navToHome = ()=>{
+  navigate('/home');
+}
 
   return (
     <>
@@ -39,9 +42,9 @@ const SelectRoleLoginScreen = () => {
             <p>abc</p>
           </div> */}
 
-          <div className="login_screen_row1">
+          <div  className="login_screen_row1">
             <div className="login_screen_row1_img_custom" style={{ marginTop: '10%' }}>
-              <img style={{ width: '50%', marginBottom: '5%' }} src={AppLogoSVG} />
+              <img  onClick={navToHome} style={{ width: '50%', marginBottom: '5%', cursor:"pointer" }} src={AppLogoSVG} />
             </div>
             <div className="login_screen_row1_img_custom">
               <img style={{ width: '70%' }} src={DesignElaborationSVG} />

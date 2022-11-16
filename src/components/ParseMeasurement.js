@@ -17,7 +17,7 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
   return (
     <>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -41,12 +41,14 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputDefaultValue={state.arm}
             inputValue={state.arm}
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('arm', e.target.value.replace(/[^0-9]/g, ''))}
           />
+           {state.arm ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -70,12 +72,14 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputValue={state.chest}
             inputType="text"
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('chest', e.target.value.replace(/[^0-9]/g, ''))}
           />
+           {state.chest ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -99,12 +103,14 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputValue={state.waist}
             inputType="text"
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('waist', e.target.value.replace(/[^0-9]/g, ''))}
           />
+           {state.waist ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -128,12 +134,14 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputValue={state.hip}
             inputType="text"
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('hip', e.target.value.replace(/[^0-9]/g, ''))}
           />
+            {state.hip ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -157,12 +165,14 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputValue={state.thigh}
             inputType="text"
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('thigh', e.target.value.replace(/[^0-9]/g, ''))}
           />
+             {state.thigh ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -186,12 +196,14 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputValue={state.calf}
             inputType="text"
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('calf', e.target.value.replace(/[^0-9]/g, ''))}
           />
+            {state.calf ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -215,8 +227,10 @@ function CircumferenceSection({ state, setState, onClick, disabled }) {
             inputValue={state.ankle}
             inputType="text"
             minmax="on"
+            maxChar={true}
             onChange={(e) => _setState('ankle', e.target.value.replace(/[^0-9]/g, ''))}
           />
+           {state.ankle ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <CustomButton
@@ -247,7 +261,7 @@ function LengthSection({ state, setState, onClick, disabled }) {
   return (
     <>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -270,13 +284,15 @@ function LengthSection({ state, setState, onClick, disabled }) {
             inputDefaultValue={state.head_to_floor}
             inputValue={state.head_to_floor}
             minmax="on"
+            maxChar={true}
             inputType="text"
             onChange={(e) => _setState('head_to_floor', e.target.value.replace(/[^0-9]/g, ''))}
           />
+           {state.head_to_floor ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -299,13 +315,15 @@ function LengthSection({ state, setState, onClick, disabled }) {
             inputDefaultValue={state.shoulder_to_floor}
             inputValue={state.shoulder_to_floor}
             minmax="on"
+            maxChar={true}
             inputType="text"
             onChange={(e) => _setState('shoulder_to_floor', e.target.value.replace(/[^0-9]/g, ''))}
           />
+            {state.shoulder_to_floor ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -328,13 +346,15 @@ function LengthSection({ state, setState, onClick, disabled }) {
             inputDefaultValue={state.waist_to_floor}
             inputValue={state.waist_to_floor}
             minmax="on"
+            maxChar={true}
             inputType="text"
             onChange={(e) => _setState('waist_to_floor', e.target.value.replace(/[^0-9]/g, ''))}
           />
+             {state.waist_to_floor ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -359,13 +379,15 @@ function LengthSection({ state, setState, onClick, disabled }) {
             inputDefaultValue={state.arm_length}
             inputValue={state.arm_length}
             minmax="on"
+            maxChar={true}
             inputType="text"
             onChange={(e) => _setState('arm_length', e.target.value.replace(/[^0-9]/g, ''))}
           />
+           {state.arm_length ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <div
-        className="pa_profile_section_input_container"
+        className="pa_profile_section_input_container relative"
         style={{
           borderRadius: '20px',
           marginBottom: '2%',
@@ -388,9 +410,11 @@ function LengthSection({ state, setState, onClick, disabled }) {
             inputDefaultValue={state.leg_length}
             inputValue={state.leg_length}
             minmax="on"
+            maxChar={true}
             inputType="text"
             onChange={(e) => _setState('leg_length', e.target.value.replace(/[^0-9]/g, ''))}
           />
+            {state.leg_length ? <span className="input-cm-sign">cm</span> : null}
         </div>
       </div>
       <CustomButton

@@ -1,6 +1,11 @@
-let baseUrl = 'http://localhost:5000/api';
-let socketUrl = 'http://localhost:5000/';
-let assetsUrl = 'http://localhost:5000/';
+// let baseUrl = 'http://localhost:5000/api';
+// let socketUrl = 'http://localhost:5000/';
+// let assetsUrl = 'http://localhost:5000/';
+
+baseUrl = 'https://dce-api-dev.falconweb.app/api';
+socketUrl = 'https://dce-api-dev.falconweb.app/';
+assetsUrl = 'https://dce-api-dev.falconweb.app/';
+
 let youtubeChannelId = 'UCLcuFnQASrPRn0y2KHeK8Kg';
 let youtubeApiKey = 'GOOGLE_API_KEY_REDACTED';
 

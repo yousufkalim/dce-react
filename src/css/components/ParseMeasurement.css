@@ -1,0 +1,14 @@
+.pa_measurement_section_input_input {
+    text-align: start;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.input-cm-sign{
+    position: absolute;
+    font-size: 12px;
+    padding-left: 28px;
+}

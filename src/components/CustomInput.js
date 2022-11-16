@@ -19,6 +19,7 @@ function CustomInput({
   inputStyle,
   dobinput,
   minmax,
+  maxChar
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { t } = useTranslation();
@@ -61,7 +62,7 @@ function CustomInput({
           placeholder={t(inputPlaceholder)}
           defaultValue={inputDefaultValue}
           value={inputValue}
-          maxlength={minmax ? 30 : 100}
+          maxlength={minmax ? maxChar? 2 : 30 : 100}
           className='custom_input_input'
           style={{
             ...inputStyle,
