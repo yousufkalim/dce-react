@@ -562,7 +562,8 @@ i18n
           large: 'large',
           medium: 'medium',
           'Leg length': 'Leg length',
-
+          'Save and Next':'Save and Next',
+          'Length':'Length',
           //colors
           Color: 'Color',
           White: 'White',
@@ -882,7 +883,7 @@ i18n
           'Do you have an idea for tailoring?': 'Vous avez une idée de confection couture ?',
           'Submit Your Project here!': 'DÉPOSEZ ICI VOTRE PROJET !',
           'desired delivery date': 'Date de livraison souhaitée',
-          'Find your sewing assignments': 'Trouvez vos devoirs de couture',
+          'Find your sewing assignments': 'Je trouve mes missions de couture',
           Type: 'Type',
           //client navbar
           Designers: 'Professionnel',
@@ -1311,6 +1312,8 @@ i18n
           'Arm length': 'Longueur de bras',
           '(handle)': '(manipuler)',
           'Leg length': 'Longueur de jambe',
+          'Save and Next':'Enregistrer et Suivant',
+          'Length':'Longueur',
           Next: 'Suivant',
           large: 'Grand',
           medium: 'Moyen',

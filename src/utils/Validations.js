@@ -102,9 +102,9 @@ function parseAdBasicSection(data) {
     // {
     //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
     // },
-    {
-      validationFunction: () => Validators.selectValidator('Category', data['category']),
-    },
+    // {
+    //   validationFunction: () => Validators.selectValidator('Category', data['category']),
+    // },
     {
       validationFunction: () => Validators.nullValidator('Name', data['name']),
     },
@@ -210,9 +210,9 @@ function tailorCreateCatalog(data) {
     // {
     //   validationFunction: () => Validators.selectValidator("Gender", data["gender"]),
     // },
-    {
-      validationFunction: () => Validators.selectValidator('Category', data['category']),
-    },
+    // {
+    //   validationFunction: () => Validators.selectValidator('Category', data['category']),
+    // },
     {
       validationFunction: () => Validators.moneyValidator('Price', data['price']),
     },

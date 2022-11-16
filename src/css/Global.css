@@ -20,7 +20,12 @@
   height: 100vh;
   overflow-x: auto !important;
 }
-
+.relative{
+  position:relative
+}
+.pointer{
+  cursor: pointer;
+}
 /* Hide scrollbars */
 ::-webkit-scrollbar {
   display: none;

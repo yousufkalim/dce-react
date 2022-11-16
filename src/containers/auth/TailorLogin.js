@@ -96,7 +96,6 @@ function TailorLoginScreen() {
       //   toast.error("You have been blocked");
       // } else
       if (response?.data?.success) {
-        console.log('respone', response);
         toast.success(t('Logged In'));
         handleLogin(response.data.token, response.data.user, updateStore);
         navToHome();
@@ -141,7 +140,7 @@ function TailorLoginScreen() {
             <div className='login_screen_top'>
               <div className='login_screen_row1_designer'>
                 <div className='login_screen_row1_img_designer'>
-                  <img style={{ width: '50%', marginBottom: '5%' }} src={AppLogoSVG} />
+                  <img onClick={navToHome} style={{ width: '50%', marginBottom: '5%',cursor:"pointer"  }} src={AppLogoSVG} />
                 </div>
                 <div style={{ display: 'flex', width: '100%' }}>
                   <div className='login_screen_row1_img_designer_' style={{ paddingTop: '3%' }}>

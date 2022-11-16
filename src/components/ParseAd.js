@@ -70,7 +70,6 @@ function BasicSection({
       ...obj
     });
   };
-  console.log('disba;ed', disabled);
 
   const [anchorElMeasurements, setAnchorElMeasurements] = useState(null);
   const openMeasurements = Boolean(anchorElMeasurements);
@@ -387,7 +386,11 @@ function BasicSection({
             ))}
           </div>
         </div>
-
+        <Tooltip
+            arrow
+            title={
+                <p style={{ fontSize: '14px' }}>Cliquez sur trois points pour sélectionner les mesures</p>
+            }>
         <div
           className="pa_profile_section_input_container"
           style={{
@@ -404,7 +407,7 @@ function BasicSection({
               state?.measurements?.value?.length == 0 ? (
                 ''
               ) : (
-                <p style={{ fontSize: '14px' }}>{state?.measurements?.value}</p>
+                <p style={{ fontSize: '14px',background:"red"}}>{state?.measurements?.value}</p>
               )
             }>
             <div className="pa_profile_section_input_input">
@@ -454,7 +457,7 @@ function BasicSection({
                 MenuListProps={{
                   'aria-labelledby': 'basic-button'
                 }}>
-                <MenuItem onClick={e => selectMeasurementsType('static')}>
+                {/* <MenuItem onClick={e => selectMeasurementsType('static')}>
                   <p>{t('Statique')}</p>
                   <Tooltip
                     arrow
@@ -465,7 +468,7 @@ function BasicSection({
                     }>
                     <InfoIcon sx={{ height: '20px', width: '20px', marginLeft: '5px' }} />
                   </Tooltip>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem
                   onClick={e => {
                     handleIsTapeMeasurementModalOpen();
@@ -500,6 +503,7 @@ function BasicSection({
             </div>
           </Tooltip>
         </div>
+        </Tooltip>
         <p className="pa_profile_section_input_instructions_text" style={{ padding: '0 6%' }}>
           {t("*I'm getting a tape measure.")}
           {t(
@@ -539,9 +543,9 @@ function BasicSection({
                 // onClose={handleCloseColorPicker}
                 style={{
                   position: 'absolute',
-                  top: '50%',
+                  top: '60%',
                   // left: '50%',
-                  transform: 'translateX(80%)',
+                  transform: 'translateX(5%)',
                   marginTop: 15,
                   background: 'green !important'
                   // padding: '5%',
@@ -554,23 +558,27 @@ function BasicSection({
                 /> */}
                 <div
                   style={{
-                    maxHeight: '200px',
-                    overflow: 'scroll'
+                    maxHeight: '150px',
                     // margin: '5%',
-                    // background: 'black',
+                     background: 'white',
+                     borderRadius: '7px',
+                     boxShadow: "4px 6px 10px #d1cbc6",
+                     overflowY:"scroll",
+                     overflowX:'hidden',
                   }}>
+                    <div style={{padding:"5%",zIndex:'900'}}>
                   <CirclePicker
                     width="225px"
                     style={{
                       maxHeight: '30px',
-                      overflow: 'scroll'
                     }}
                     colors={colors}
                     circleSize={28}
-                    // color={this.state.background}
+                     // color={state.background}
                     onChange={handleChange}
                     onChangeComplete={handleChangeComplete}
                   />
+                  </div>
                 </div>
               </div>
             ) : (
@@ -927,13 +935,14 @@ function TapeMeasurementsModal(props) {
         <div
           style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
           <img src={MeasurementDetailsSVG} style={{ width: '70%' }} />
-          <img style={{ width: '70%' }} src={MeasurementChartSVG} />
+          {/* <img style={{ width: '70%' }} src={MeasurementChartSVG} /> */}
         </div>
         <div
           className="pa_container"
           style={{
             height: '100%',
-            width: '100%'
+            width: '100%',
+            marginTop:"2%"
           }}>
           <div
             className="pa_steps_row"
