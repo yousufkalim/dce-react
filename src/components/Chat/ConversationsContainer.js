@@ -12,17 +12,30 @@ import assetsURL from '../../utils/Assets';
 const ConversationsContainer = (props) => {
   const store = Store();
   const updateStore = UpdateStore();
+  const user = getUser();
 
   return (
     <>
-      {store.chats.map((_) => (
+    {
+      props?.searchString? 
+      store?.chats.filter((_)=>(
+        user.role == 'client'? _?.tailor?.name.toLowerCase().includes(props?.searchString?.toLowerCase())
+        :
+         _?.client?.name.toLowerCase().includes(props?.searchString?.toLowerCase()))).map((_) => 
+         (
         <ConversationListTile {..._} />
-      ))}
+      ))
+      :
+       store.chats.map((_) => (
+        <ConversationListTile {..._} />
+      ))
+    }
     </>
   );
 };
 
 const ConversationListTile = (props) => {
+  console.log(props,'props');
   const { t } = useTranslation();
 
   const store = Store();
@@ -40,6 +53,7 @@ const ConversationListTile = (props) => {
 
   const user = getUser();
   const receiver = getReceiver();
+  console.log(receiver,'receiver');
 
   const receiverCheckIn = receiver.check_in ? new Date(receiver.check_in) : null;
   const receiverCheckOut = receiver.check_out ? new Date(receiver.check_out) : null;
