@@ -21,6 +21,7 @@
 
 .css-4ff9q7.Mui-active {
   color: #cc8e9c !important;
+  height: 6vh !important;
 }
 
 .css-4ff9q7.Mui-completed {
@@ -39,4 +40,9 @@
 
 .css-a5nipc.MuiStepLabel-alternativeLabel {
   cursor: pointer;
+}
+
+
+.css-4ff9q7{
+  width: 5em !important;
 }
