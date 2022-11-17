@@ -360,6 +360,7 @@ i18n
           Attachments: 'Attachments',
           'Fixed price': 'Fixed price',
           'Select one category for your ad': 'Select one category for your ad',
+          'Catalogue edited successfully.': 'Catalogue edited successfully.',
 
           //home
           Fabric: 'Fabric',
@@ -1324,6 +1325,7 @@ i18n
           Delivery: 'Livraison',
           Notes: 'Remarques',
           'Catalogue created successfully.': 'Catalogue créé avec succès.',
+          'Catalogue edited successfully.':'Catalogue édité avec succès.',
           //colors
           Color: 'La couleur',
 
