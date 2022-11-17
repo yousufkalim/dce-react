@@ -43,6 +43,7 @@ const ChatScreen = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [directUser, setDirectUser] = useState(location?.state?.directUser);
+  const [searchString, setSearchString] = useState('')
 
   const store = Store();
   const updateStore = UpdateStore();
@@ -114,7 +115,9 @@ const ChatScreen = () => {
       console.trace(e);
     }
   };
-
+  const getSearchString = (e)=>{
+    setSearchString(e.target.value);
+  }
   return (
     <>
       <div style={{ background: '#DFDFDF' }} className="container-page-vertical">
@@ -138,13 +141,13 @@ const ChatScreen = () => {
               </div>
               <div className="search-msg-cont">
                 <img className="srch-icon" src={SearchSVG} />
-                <input className="search-msg-input" placeholder={t('Search')} />
+                <input onChange={getSearchString} className="search-msg-input" placeholder={t('Search')} />
               </div>
               <div className="user-card-container">
-                <ConversationsContainer />
+                <ConversationsContainer searchString={searchString}/>
               </div>
             </Box>
-            <MessagesContainer width={width} mobiletoggle={mobiletoggle} directUser={directUser} />
+            <MessagesContainer width={width} mobiletoggle={mobiletoggle} directUser={directUser} searchString={searchString}/>
           </div>
         </div>
       </div>
