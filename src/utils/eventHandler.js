@@ -1,6 +1,6 @@
 import { env, projectName } from '../config';
 
-function logger() {
+function eventHandler() {
   if (env === 'prod') {
     fetch(`https://devops.falconweb.app/api/events/${projectName}:frontend:${env}`)
       .then(res => res.json())
@@ -21,4 +21,4 @@ function logger() {
   }
 }
 
-export default logger;
+export default eventHandler;

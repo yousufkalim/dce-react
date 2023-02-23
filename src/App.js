@@ -1,7 +1,7 @@
 // Init
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, Flip } from 'react-toastify';
-import logger from './utils/logger';
+import eventHandler from './utils/eventHandler';
 
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from './components/SplashScreen';
@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    logger();
+    eventHandler();
   }, []);
 
   return (
