@@ -2,11 +2,11 @@
 // let socketUrl = 'http://localhost:5000/';
 // let assetsUrl = 'http://localhost:5000/';
 
-baseUrl = 'https://dce-api-dev.falconweb.app/api';
-socketUrl = 'https://dce-api-dev.falconweb.app/';
-assetsUrl = 'https://dce-api-dev.falconweb.app/';
-projectName = 'dce';
-env = 'dev';
+let baseUrl = 'https://dce-api-dev.falconweb.app/api';
+let socketUrl = 'https://dce-api-dev.falconweb.app/';
+let assetsUrl = 'https://dce-api-dev.falconweb.app/';
+let projectName = 'dce';
+let env = 'dev';
 
 let youtubeChannelId = 'UCLcuFnQASrPRn0y2KHeK8Kg';
 let youtubeApiKey = 'GOOGLE_API_KEY_REDACTED';
@@ -25,10 +25,10 @@ if (window.location.host === 'dce-dev.falconweb.app') {
   socketUrl = 'https://dce-api-staging.falconweb.app/';
   assetsUrl = 'https://dce-api-staging.falconweb.app/';
   env = 'staging';
-} else if (window.location.host === 'dce-prod.falconweb.app') {
-  baseUrl = 'https://dce-api-prod.falconweb.app/api';
-  socketUrl = 'https://dce-api-prod.falconweb.app/';
-  assetsUrl = 'https://dce-api-prod.falconweb.app/';
+} else if (window.location.host === 'designconfectionsethiques.com') {
+  baseUrl = 'https://api.designconfectionsethiques.com/api';
+  socketUrl = 'https://api.designconfectionsethiques.com/';
+  assetsUrl = 'https://api.designconfectionsethiques.com/';
   env = 'prod';
 }
 module.exports = {
